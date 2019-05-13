@@ -3,6 +3,7 @@ let logo;
 let mainpage;
 let region;
 var mode = 0;
+var clicked;
 
 // if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 //   console.log("enumerateDevices() not supported.");
@@ -38,6 +39,8 @@ function setup(){
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
 	fullscreen(true);
+  while(!clicked){}
+
 
       
 }
@@ -79,6 +82,7 @@ function draw(){
 
 function mouseClicked() {
   // logo.resize(50, 100);
+  if(!clicked){fullscreen(true);clicked=true;}
   if(mode==1){
     if(mouseY>height-100){
     resizeCanvas(displayWidth,displayHeight);
