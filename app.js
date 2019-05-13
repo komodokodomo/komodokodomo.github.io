@@ -72,18 +72,18 @@ function draw(){
 	}
 	else if(mode==2){
   // image(mainpage,width/2,height/2,width,width*mainpage.height/mainpage.width);
-  image(mainpage,width/2,height/2,w,w*mainpage.height/mainpage.width);
+  image(mainpage,w/2,h/2,w,w*mainpage.height/mainpage.width);
 
 	}
 	
   else if(mode==3){
-  if(capture.width<width){image(capture, width/2, height/2, width, width*capture.height/capture.width);} 
-  else{image(capture, width/2, height/2, height*capture.width/capture.height, height);}
+  if(capture.width<w){image(capture, w/2, h/2, w, w*capture.height/capture.width);} 
+  else{image(capture, w/2, h/2, h*capture.width/capture.height, h);}
   region = get((displayWidth-displayWidth*2/3)/2,(displayHeight-displayWidth*2/3)/2,displayWidth*2/3,displayWidth*2/3);
   fill(0,100);
   noStroke();
-  rect(0, 0, width, height);
-  image(region,width/2,height/2,displayWidth*2/3,displayWidth*2/3);
+  rect(0, 0, w, h);
+  image(region,w/2,h/2,displayWidth*2/3,displayWidth*2/3);
   stroke(126);
   stroke(235,94,94,(sin(millis()/100)+1)*255/2);
   strokeWeight(1);
