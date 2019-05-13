@@ -53,7 +53,7 @@ function draw(){
   }
 
 	else if(mode==1){
-  resizeCanvas(w, h);
+  // resizeCanvas(w, h);
 	background(245);
 	imageMode(CENTER);
 	// image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
@@ -102,7 +102,7 @@ function mouseClicked() {
     timestamp=millis();
     w = window.innerWidth;
     h = window.innerHeight;
-    resizeCanvas(w,h);
+    resizeCanvas(width,height);
   }
   if(mode==2){
     if(mouseY>height-100){
