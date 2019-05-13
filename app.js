@@ -37,7 +37,7 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
-	fullscreen();
+	fullscreen(true);
 
       
 }
@@ -93,7 +93,7 @@ function mouseClicked() {
 
 function startCam(){
   capture = createCapture(constraints);
-  capture.size(1920, 1080);
+  // capture.size(1920, 1080);
   capture.id("hello")
   capture.hide();
 
@@ -111,7 +111,7 @@ function startCam(){
             if(cameras.length > 0){
                 scanner.start(cameras[1]);
             } else {
-                console.error("Please enable Camera!");
+                text("Please enable Camera!",width/2,height/2);
             }
         });
 
