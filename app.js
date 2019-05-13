@@ -53,7 +53,6 @@ function draw(){
   }
 
 	else if(mode==1){
-  // resizeCanvas(w, h);
 	background(245);
 	imageMode(CENTER);
 	// image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
@@ -67,7 +66,7 @@ function draw(){
   if(millis()-timestamp>5000){
     mode=2;
     // resizeCanvas(displayWidth, displayWidth*mainpage.height/mainpage.width);
-    resizeCanvas(w, w*mainpage.height/mainpage.width);
+    resizeCanvas(width, width*mainpage.height/mainpage.width);
     // window.location.href="main.html"
   }
 	}
@@ -102,7 +101,7 @@ function mouseClicked() {
     timestamp=millis();
     w = window.innerWidth;
     h = window.innerHeight;
-    resizeCanvas(width,height);
+    resizeCanvas(w,h);
   }
   if(mode==2){
     if(mouseY>height-100){
