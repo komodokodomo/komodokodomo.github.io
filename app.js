@@ -39,7 +39,6 @@ function setup(){
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
 	fullscreen(true);
-  while(!clicked){}
 
 
       
