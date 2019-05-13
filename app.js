@@ -49,10 +49,11 @@ function draw(){
   if(mode==0){
   background(245);
   imageMode(CENTER);
-  // image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
+  image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);
   }
 
 	else if(mode==1){
+  resizeCanvas(w, h);
 	background(245);
 	imageMode(CENTER);
 	// image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
@@ -105,7 +106,7 @@ function mouseClicked() {
   }
   if(mode==2){
     if(mouseY>height-100){
-    resizeCanvas(displayWidth,displayHeight);
+    resizeCanvas(w,h);
     mode=3;
     background(245);
     startCam();
