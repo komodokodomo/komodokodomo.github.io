@@ -72,7 +72,7 @@ function draw(){
 	}
 	else if(mode==2){
   // image(mainpage,width/2,height/2,width,width*mainpage.height/mainpage.width);
-  image(mainpage,w/2,h/2,w,w*mainpage.height/mainpage.width);
+  image(mainpage,w/2,height/2,w,w*mainpage.height/mainpage.width);
 
 	}
 	
