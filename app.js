@@ -22,8 +22,7 @@ var timestamp;
 // .catch(function(err) {
 //   console.log(err.name + ": " + err.message);
 // });
-var w = window.innerWidth;
-var h = window.innerHeight;
+
 
 var constraints = {
     video: {
@@ -47,11 +46,13 @@ function setup(){
       
 }
 function draw(){
-  
+  var w = window.innerWidth;
+  var h = window.innerHeight;
+
   if(mode==0){
   background(245);
   imageMode(CENTER);
-  image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
+  // image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
   }
 
 	else if(mode==1){
