@@ -83,7 +83,7 @@ function draw(){
   fill(0,100);
   noStroke();
   rect(0, 0, w, h);
-  image(region,w/2,h/2,displayWidth*2/3,displayWidth*2/3);
+  image(region,displayWidth/2,displayHeight/2,displayWidth*2/3,displayWidth*2/3);
   stroke(126);
   stroke(235,94,94,(sin(millis()/100)+1)*255/2);
   strokeWeight(1);
