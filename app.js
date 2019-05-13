@@ -36,7 +36,7 @@ var constraints = {
   };
 
 function setup(){
-	createCanvas(window.innerWidth,window.innerHeight);
+	createCanvas(displayWidth,displayHeight);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
@@ -98,7 +98,7 @@ function draw(){
 
 function mouseClicked() {
   // logo.resize(50, 100);
-  if(mode==0){fullscreen(true);mode=1;timestamp=millis();}
+  if(mode==0){fullscreen(true);mode=1;timestamp=millis();resizeCanvas(w,h);}
   if(mode==2){
     if(mouseY>height-100){
     resizeCanvas(displayWidth,displayHeight);
