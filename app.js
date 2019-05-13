@@ -21,6 +21,8 @@ var clicked;
 // .catch(function(err) {
 //   console.log(err.name + ": " + err.message);
 // });
+var w = window.innerWidth;
+var h = window.innerHeight;
 
 var constraints = {
     video: {
@@ -34,7 +36,7 @@ var constraints = {
   };
 
 function setup(){
-	createCanvas(displayWidth,displayHeight);
+	createCanvas(w,h);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
@@ -47,14 +49,18 @@ function draw(){
 	if(mode==0){
 	background(245);
 	imageMode(CENTER);
-	image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
+	// image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
+  image(logo,w/2,w/2,w*44/100,w*44/(100*logo.width)*logo.height);
+
   noFill();
   stroke(235,94,94);
   strokeWeight(2);
-  arc(displayWidth/2, displayHeight - 3*displayWidth/14, displayWidth/14, displayWidth/14, frameCount/8, frameCount/8 + 1.8*PI);
+  // arc(displayWidth/2, displayHeight - 3*displayWidth/14, displayWidth/14, displayWidth/14, frameCount/8, frameCount/8 + 1.8*PI);
+  arc(w/2, w - 3*w/14, w/14, w/14, frameCount/8, frameCount/8 + 1.8*PI);
   if(millis()>5000){
     mode=1;
-    resizeCanvas(displayWidth, displayWidth*mainpage.height/mainpage.width);
+    // resizeCanvas(displayWidth, displayWidth*mainpage.height/mainpage.width);
+    resizeCanvas(w, w*mainpage.height/mainpage.width);
     // window.location.href="main.html"
   }
 	}
