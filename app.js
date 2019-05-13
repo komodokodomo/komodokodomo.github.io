@@ -4,6 +4,7 @@ let mainpage;
 let region;
 var mode = 0;
 var clicked;
+var timestamp;
 
 // if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 //   console.log("enumerateDevices() not supported.");
@@ -64,7 +65,7 @@ function draw(){
   strokeWeight(2);
   // arc(displayWidth/2, displayHeight - 3*displayWidth/14, displayWidth/14, displayWidth/14, frameCount/8, frameCount/8 + 1.8*PI);
   arc(w/2, h - 3*w/14, w/14, w/14, frameCount/8, frameCount/8 + 1.8*PI);
-  if(millis()>5000){
+  if(millis()-timestamp>5000){
     mode=2;
     // resizeCanvas(displayWidth, displayWidth*mainpage.height/mainpage.width);
     resizeCanvas(w, w*mainpage.height/mainpage.width);
@@ -72,7 +73,9 @@ function draw(){
   }
 	}
 	else if(mode==2){
-  image(mainpage,width/2,height/2,width,width*mainpage.height/mainpage.width);
+  // image(mainpage,width/2,height/2,width,width*mainpage.height/mainpage.width);
+  image(mainpage,w/2,h/2,w,w*mainpage.height/mainpage.width);
+
 	}
 	
   else if(mode==3){
@@ -94,7 +97,7 @@ function draw(){
 
 function mouseClicked() {
   // logo.resize(50, 100);
-  if(mode==0){fullscreen(true);mode=1;}
+  if(mode==0){fullscreen(true);mode=1;timestamp=millis();}
   if(mode==2){
     if(mouseY>height-100){
     resizeCanvas(displayWidth,displayHeight);
