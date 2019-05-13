@@ -40,35 +40,42 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
-	fullscreen(true);
+	// fullscreen(true);
 
 
       
 }
 function draw(){
-	if(mode==0){
+  
+  if(mode==0){
+  background(245);
+  imageMode(CENTER);
+  image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
+  }
+
+	else if(mode==1){
 	background(245);
 	imageMode(CENTER);
 	// image(logo,displayWidth/2,displayHeight/2,displayWidth*44/100,displayWidth*44/(100*logo.width)*logo.height);
-  image(logo,w/2,w/2,w*44/100,w*44/(100*logo.width)*logo.height);
+  image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);
 
   noFill();
   stroke(235,94,94);
   strokeWeight(2);
   // arc(displayWidth/2, displayHeight - 3*displayWidth/14, displayWidth/14, displayWidth/14, frameCount/8, frameCount/8 + 1.8*PI);
-  arc(w/2, w - 3*w/14, w/14, w/14, frameCount/8, frameCount/8 + 1.8*PI);
+  arc(w/2, h - 3*w/14, w/14, w/14, frameCount/8, frameCount/8 + 1.8*PI);
   if(millis()>5000){
-    mode=1;
+    mode=2;
     // resizeCanvas(displayWidth, displayWidth*mainpage.height/mainpage.width);
     resizeCanvas(w, w*mainpage.height/mainpage.width);
     // window.location.href="main.html"
   }
 	}
-	else if(mode==1){
+	else if(mode==2){
   image(mainpage,width/2,height/2,width,width*mainpage.height/mainpage.width);
 	}
 	
-  else if(mode==2){
+  else if(mode==3){
   if(capture.width<width){image(capture, width/2, height/2, width, width*capture.height/capture.width);} 
   else{image(capture, width/2, height/2, height*capture.width/capture.height, height);}
   region = get((displayWidth-displayWidth*2/3)/2,(displayHeight-displayWidth*2/3)/2,displayWidth*2/3,displayWidth*2/3);
@@ -87,11 +94,11 @@ function draw(){
 
 function mouseClicked() {
   // logo.resize(50, 100);
-  if(!clicked){fullscreen(true);clicked=true;}
-  if(mode==1){
+  if(mode==0){fullscreen(true);mode=1;}
+  if(mode==2){
     if(mouseY>height-100){
     resizeCanvas(displayWidth,displayHeight);
-    mode=2;
+    mode=3;
     background(245);
     startCam();
   }
