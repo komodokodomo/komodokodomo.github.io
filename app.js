@@ -5,7 +5,8 @@ let region;
 var mode = 0;
 var clicked;
 var timestamp;
-
+  var w;
+  var h;
 // if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 //   console.log("enumerateDevices() not supported.");
 //   return;
@@ -26,11 +27,7 @@ var timestamp;
 
 var constraints = {
     video: {
-      facingMode: { exact: "environment" },
-      // mandatory: {
-      //   minWidth: 1920,
-      //   minHeight: 1080
-      // }      
+      facingMode: { exact: "environment" }, 
     },
     audio: false
   };
@@ -46,8 +43,8 @@ function setup(){
       
 }
 function draw(){
-  var w = window.innerWidth;
-  var h = window.innerHeight;
+   w = window.innerWidth;
+   h = window.innerHeight;
 
   if(mode==0){
   background(245);
@@ -75,7 +72,7 @@ function draw(){
 	}
 	else if(mode==2){
   // image(mainpage,width/2,height/2,width,width*mainpage.height/mainpage.width);
-  image(mainpage,w/2,h/2,w,w*mainpage.height/mainpage.width);
+  image(mainpage,width/2,height/2,w,w*mainpage.height/mainpage.width);
 
 	}
 	
@@ -98,7 +95,14 @@ function draw(){
 
 function mouseClicked() {
   // logo.resize(50, 100);
-  if(mode==0){fullscreen(true);mode=1;timestamp=millis();resizeCanvas(w,h);}
+  if(mode==0){
+    fullscreen(true);
+    mode=1;
+    timestamp=millis();
+    w = window.innerWidth;
+    h = window.innerHeight;
+    resizeCanvas(w,h);
+  }
   if(mode==2){
     if(mouseY>height-100){
     resizeCanvas(displayWidth,displayHeight);
