@@ -36,7 +36,7 @@ var constraints = {
   };
 
 function setup(){
-	createCanvas(w,h);
+	createCanvas(window.innerWidth,window.innerHeight);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
