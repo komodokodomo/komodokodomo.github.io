@@ -25,10 +25,10 @@ var clicked;
 var constraints = {
     video: {
       facingMode: { exact: "environment" },
-      mandatory: {
-        minWidth: 1920,
-        minHeight: 1080
-      }      
+      // mandatory: {
+      //   minWidth: 1920,
+      //   minHeight: 1080
+      // }      
     },
     audio: false
   };
