@@ -44,22 +44,34 @@ function setup(){
   // mainpage.id("mainpage");
 
   checkboxScreen = createCheckbox('fullscreen', false);
+  checkboxScreen.position(100,0);
   checkboxScreen.changed(myCheckedEvent);
 
   checkboxAR = createCheckbox('AR', false);
+  checkboxAR.position(100,50);
   checkboxAR.changed(myCheckedEvent);
 
   checkboxAccess = createCheckbox('accessibility', false);
+  checkboxAccess.position(100,100);
   checkboxAccess.changed(myCheckedEvent); 
 
   checkboxShortcut = createCheckbox('shortcut', false);
+  checkboxShortcut.position(100,150);
   checkboxShortcut.changed(myCheckedEvent); 
+
   button = createButton('start')
+  button.position(100,200);
   button.mousePressed(startSketch);
 
 	// fullscreen(true);
 
 function startSketch(){
+  checkboxScreen.remove();
+  checkboxAR.remove();
+  checkboxAccess.remove();
+  checkboxShortcut.remove();
+  button.remove();
+
     mode=1;
     timestamp=millis();
     w = window.innerWidth;
