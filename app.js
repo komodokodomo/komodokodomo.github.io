@@ -5,8 +5,12 @@ let region;
 var mode = 0;
 var clicked;
 var timestamp;
-  var w;
-  var h;
+var w;
+var h;
+
+var checkboxScreen,checkboxAR,checkboxAccess,checkboxShortcut;
+var fullscreen,AR,access,shortcut;
+var button;
 // if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 //   console.log("enumerateDevices() not supported.");
 //   return;
@@ -37,8 +41,31 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
+  mainpage.id("mainpage");
+
+  checkboxScreen = createCheckbox('fullscreen', false);
+  checkboxScreen.changed(myCheckedEvent);
+
+  checkboxAR = createCheckbox('AR', false);
+  checkboxAR.changed(myCheckedEvent);
+
+  checkboxAccess = createCheckbox('accessibility', false);
+  checkboxAccess.changed(myCheckedEvent); 
+
+  checkboxShortcut = createCheckbox('shortcut', false);
+  checkboxShortcut.changed(myCheckedEvent); 
+  button = createButton('start')
+  button.mousePressed(startSketch);
+
 	// fullscreen(true);
 
+function startSketch(){
+    mode=1;
+    timestamp=millis();
+    w = window.innerWidth;
+    h = window.innerHeight;
+    resizeCanvas(w,h);
+}
 
       
 }
@@ -87,7 +114,7 @@ function draw(){
   stroke(126);
   stroke(235,94,94,(sin(millis()/100)+1)*255/2);
   strokeWeight(1);
-  line((displayWidth-displayWidth*2/3)/2, height/2, (displayWidth-displayWidth*2/3)/2+displayWidth*2/3, height/2);
+  line((displayWidth-displayWidth*2/3)/2, h/2, (displayWidth-displayWidth*2/3)/2+displayWidth*2/3, h/2);
 
 	}
 
@@ -96,12 +123,7 @@ function draw(){
 function mouseClicked() {
   // logo.resize(50, 100);
   if(mode==0){
-    fullscreen(true);
-    mode=1;
-    timestamp=millis();
-    w = window.innerWidth;
-    h = window.innerHeight;
-    resizeCanvas(w,h);
+    // mode=1;
   }
   if(mode==2){
     if(mouseY>height-100){
@@ -140,3 +162,42 @@ function startCam(){
         });
 
 }
+
+function myCheckedEvent() {
+  if (checkboxScreen.checked()) {
+    console.log("fullscreen");
+    fullscreen(true);
+    resizeCanvas(w,h);
+  } else {
+    console.log("non-fullscreen");
+    fullscreen(false);
+    resizeCanvas(w,h);
+  }
+  if (checkboxAR.checked()) {
+    console.log('AR!');
+  } else {
+    console.log('No AR');
+  }
+  if (checkboxAccess.checked()) {
+    console.log('Accessible mode on');
+  } else {
+    console.log('Get out of my uncaring face');
+  }
+  if (checkboxShortcut.checked()) {
+    console.log('Shortcut');
+  } else {
+    console.log('Longcut');
+  }
+}
+
+  // checkboxScreen = createCheckbox('fullscreen', false);
+  // checkboxScreen.changed(myCheckedEvent);
+
+  // checkboxAR = createCheckbox('AR', false);
+  // checkboxAR.changed(myCheckedEvent);
+
+  // checkboxAccess = createCheckbox('accessibility', false);
+  // checkboxAccess.changed(myCheckedEvent); 
+
+  // checkboxShortcut = createCheckbox('shortcut', false);
+  // checkboxShortcut.changed(myCheckedEvent); 
