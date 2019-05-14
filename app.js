@@ -41,7 +41,7 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
-  mainpage.id("mainpage");
+  // mainpage.id("mainpage");
 
   checkboxScreen = createCheckbox('fullscreen', false);
   checkboxScreen.changed(myCheckedEvent);
