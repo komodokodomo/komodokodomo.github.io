@@ -127,7 +127,13 @@ function draw(){
   stroke(235,94,94,(sin(millis()/100)+1)*255/2);
   strokeWeight(1);
   line((displayWidth-displayWidth*2/3)/2, h/2, (displayWidth-displayWidth*2/3)/2+displayWidth*2/3, h/2);
+
+
+  noStroke();
+  fill(245);
+  textSize(round(w/10);
   text("Scan the QR code on the QR login page",displayWidth/8,h/2+(displayWidth*1/3)*1.3,7*displayWidth/8,h/2+(displayWidth*1/3)*1.5);
+  
   fill(245);
   noStroke();
   rect(0, 0, w, h/10);
