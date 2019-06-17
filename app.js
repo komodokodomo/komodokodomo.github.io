@@ -167,7 +167,7 @@ function mouseClicked() {
   }
   }
   else if(mode==3){
-    if(mouseX<w/5 && mouseY<w/5){mode=2;}
+    if(mouseX<w/5 && mouseY<w/5){mode=2;resizeCanvas(width, width*mainpage.height/mainpage.width);}
   }
   console.log(document.location.href);
 
