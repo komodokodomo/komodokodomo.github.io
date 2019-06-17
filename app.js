@@ -40,7 +40,7 @@ var constraints = {
 
 function setup(){
 	createCanvas(displayWidth,displayHeight);
-  navigator.permissions.request({name:'camera'});
+  capture = createCapture(constraints);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
@@ -178,7 +178,6 @@ function mouseClicked() {
 }
 
 function startCam(){
-  capture = createCapture(constraints);
   // capture.size(1920, 1080);
   capture.id("hello")
   capture.hide();
