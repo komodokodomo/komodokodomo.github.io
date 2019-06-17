@@ -8,6 +8,8 @@ var timestamp;
 var w;
 var h;
 
+var scanner;
+
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxShortcut;
 var fullscreen,AR,access,shortcut;
 var button;
@@ -179,7 +181,7 @@ function startCam(){
   capture.id("hello")
   capture.hide();
 
-        let scanner = new Instascan.Scanner(
+        scanner = new Instascan.Scanner(
             {
                 video: document.getElementById('hello'),
                 mirror: false
