@@ -189,7 +189,8 @@ function startCam(){
             }
         );
         scanner.addListener('scan', function(content) {
-            window.open(content, "_blank");
+            // window.open(content, "_blank");
+            if(mode == 3 && content == "a"){console.log("success");}
         });
         Instascan.Camera.getCameras().then(cameras => 
         {
