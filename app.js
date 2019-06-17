@@ -8,7 +8,7 @@ var timestamp;
 var w;
 var h;
 
-var scanner;
+var started;
 
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxShortcut;
 var fullscreen,AR,access,shortcut;
@@ -165,14 +165,15 @@ function mouseClicked() {
     resizeCanvas(w,h);
     mode=3;
     background(245);
+    if(!started){
     startCam();
+    started = true;
+    }
   }
   }
   else if(mode==3){
     if(mouseX<w/5 && mouseY<w/5){mode=2;resizeCanvas(width, width*mainpage.height/mainpage.width);}
   }
-  console.log(document.location.href);
-
 }
 
 function startCam(){
@@ -181,7 +182,7 @@ function startCam(){
   capture.id("hello")
   capture.hide();
 
-        scanner = new Instascan.Scanner(
+        let scanner = new Instascan.Scanner(
             {
                 video: document.getElementById('hello'),
                 mirror: false
