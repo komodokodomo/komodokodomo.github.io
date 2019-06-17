@@ -148,6 +148,7 @@ function draw(){
   textSize(round(w/15));
   textAlign(CENTER,CENTER);
   text("Scan QR code", w/2, h/20);
+  text("←",w/10, h/20);
 	}
 
 }
