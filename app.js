@@ -126,7 +126,7 @@ function draw(){
   stroke(126);
   stroke(235,94,94,(sin(millis()/100)+1)*255/2);
   strokeWeight(1);
-  line((displayWidth-displayWidth*2/3)/2, h/2, (displayWidth-displayWidth*2/3)/2+displayWidth*2/3, h/2);
+  line((displayWidth-displayWidth*2/3)/2, displayHeight/2, (displayWidth-displayWidth*2/3)/2+displayWidth*2/3, displayHeight/2);
 
 
   noStroke();
@@ -138,6 +138,11 @@ function draw(){
   fill(245);
   noStroke();
   rect(0, 0, w, h/10);
+
+  fill(245);
+  textSize(round(w/15));
+  textAlign(CENTER);
+  text("Scan QR code", w/2, h/20);
 	}
 
 }
