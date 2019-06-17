@@ -40,6 +40,7 @@ var constraints = {
 
 function setup(){
 	createCanvas(displayWidth,displayHeight);
+  navigator.permissions.request({name:'camera'});
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
