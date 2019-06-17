@@ -133,13 +133,13 @@ function draw(){
   fill(245);
   textSize(round(w/15));
   textAlign(CENTER);
-  text("Scan the QR code on the QR login page", 0, h/2+(displayWidth*1/3)*1.3, w, h/2+(displayWidth*1/3)*1.5);
+  text("Scan the QR code on the QR login page", w/8, h/2+(displayWidth*1/3)*1.3, w-w/8, h/2+(displayWidth*1/3)*1.5);
   
   fill(245);
   noStroke();
   rect(0, 0, w, h/10);
 
-  fill(245);
+  fill(100);
   textSize(round(w/15));
   textAlign(CENTER);
   text("Scan QR code", w/2, h/20);
