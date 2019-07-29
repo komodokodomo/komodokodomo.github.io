@@ -49,5 +49,6 @@ function draw() {
 function touchStarted() {
   if (getAudioContext().state !== 'running') {
     getAudioContext().resume();
+    console.log("resume pls");
   }
 }
