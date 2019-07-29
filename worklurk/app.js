@@ -12,14 +12,14 @@
 let mic, fft;
 var above = false;
 var BGvalue = 255;
-var proceed = false;
+// var proceed = false;
 
 function setup() {
   createCanvas(710, 400);
   noFill();
   var myDiv = createDiv('click to start audio');
   myDiv.position(0, 0);
-  while(!proceed){}
+  // while(!proceed){}
   mic = new p5.AudioIn();
   mic.start();
   fft = new p5.FFT();
@@ -52,5 +52,5 @@ function touchStarted() {
     console.log("resume pls");
   }
   console.log("touched");
-  proceed = true;
+  // proceed = true;
 }
