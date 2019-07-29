@@ -12,7 +12,7 @@
 var proceed = false;
 let mic, fft;
 var above = false;
-var BGvalue;
+var BGvalue = 255;
 
 function setup() {
   createCanvas(710, 400);
@@ -22,9 +22,7 @@ function setup() {
   mic.start();
   fft = new p5.FFT();
   fft.setInput(mic);
-  userStartAudio().then(function() {
-      // myDiv.remove();
-   });
+  userStartAudio().then(function() {});
 }
 
 function draw() {
