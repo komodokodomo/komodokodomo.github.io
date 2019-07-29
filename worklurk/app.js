@@ -18,6 +18,8 @@ function setup() {
   createCanvas(710, 400);
   noFill();
   while(!proceed){}
+  mic = new p5.AudioIn();
+  mic.start();
   fft = new p5.FFT();
   fft.setInput(mic);
 }
@@ -44,6 +46,5 @@ function draw() {
 
 function mouseClicked(){
 proceed= true;
- mic = new p5.AudioIn();
- mic.start();
+getAudioContext().resume()
 }
