@@ -17,12 +17,14 @@ var BGvalue = 255;
 function setup() {
   createCanvas(710, 400);
   noFill();
+  var myDiv = createDiv('click to start audio');
+   myDiv.position(0, 0);
   // while(!proceed){}
   mic = new p5.AudioIn();
   mic.start();
   fft = new p5.FFT();
   fft.setInput(mic);
-  userStartAudio().then(function() {});
+  userStartAudio().then(function() {myDiv.remove();});
 }
 
 function draw() {
