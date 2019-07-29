@@ -9,16 +9,14 @@
 // }
 // function draw(){}
 
-
+var proceed = false;
 let mic, fft;
 var above = false;
 
 function setup() {
   createCanvas(710, 400);
   noFill();
-
-  mic = new p5.AudioIn();
-  mic.start();
+  while(!proceed){}
   fft = new p5.FFT();
   fft.setInput(mic);
 }
@@ -40,4 +38,11 @@ function draw() {
     vertex(i, map(spectrum[i], 0, 255, height, 0));
   }
   endShape();
+}
+
+
+function mouseClicked(){
+proceed= true;
+ mic = new p5.AudioIn();
+ mic.start();
 }
