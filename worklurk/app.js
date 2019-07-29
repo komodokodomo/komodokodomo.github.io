@@ -17,11 +17,14 @@ var BGvalue;
 function setup() {
   createCanvas(710, 400);
   noFill();
-  while(!proceed){}
+  // while(!proceed){}
   mic = new p5.AudioIn();
   mic.start();
   fft = new p5.FFT();
   fft.setInput(mic);
+  userStartAudio().then(function() {
+      // myDiv.remove();
+   });
 }
 
 function draw() {
@@ -44,7 +47,7 @@ function draw() {
 }
 
 
-function mouseClicked(){
-proceed= true;
-getAudioContext().resume()
-}
+// function mouseClicked(){
+// proceed= true;
+// getAudioContext().resume()
+// }
