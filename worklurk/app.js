@@ -44,8 +44,6 @@ function draw() {
   endShape();
 }
 
-
-// function mouseClicked(){
-// proceed= true;
-// getAudioContext().resume()
-// }
+function touchStarted() {
+  getAudioContext().resume()
+}
