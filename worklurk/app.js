@@ -37,7 +37,7 @@ function draw() {
   else if(above && energy>70){}
   else if(above && energy<30){console.log("hello");above = false;BGvalue = random(255);}
   else if(!above && energy<30){}
-  console.log(fft.getEnergy(19000));
+  console.log(fft.getEnergy(20000));
 
   beginShape();
   for (i = 0; i < spectrum.length; i++) {
