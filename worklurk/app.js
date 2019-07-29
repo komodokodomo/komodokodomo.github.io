@@ -51,6 +51,6 @@ function touchStarted() {
     getAudioContext().resume();
     console.log("resume pls");
   }
-  console.log("touched");
+  console.log(getAudioContext().state);
   // proceed = true;
 }
