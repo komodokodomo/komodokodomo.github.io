@@ -9,7 +9,6 @@
 // }
 // function draw(){}
 
-var proceed = false;
 let mic, fft;
 var above = false;
 var BGvalue = 255;
@@ -19,7 +18,7 @@ function setup() {
   noFill();
   var myDiv = createDiv('click to start audio');
    myDiv.position(0, 0);
-  // while(!proceed){}
+  while(!proceed){}
   mic = new p5.AudioIn();
   mic.start();
   fft = new p5.FFT();
@@ -51,4 +50,5 @@ function touchStarted() {
     getAudioContext().resume();
     console.log("resume pls");
   }
+  proceed = true;
 }
