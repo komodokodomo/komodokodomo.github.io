@@ -7,7 +7,7 @@ var clicked;
 var timestamp;
 var w;
 var h;
-
+var socket;
 var started;
 
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
