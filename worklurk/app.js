@@ -32,8 +32,8 @@ function draw() {
   background(BGvalue);
 
   let spectrum = fft.analyze();
-  var energy = fft.getEnergy(19000);
-  var energy2 = fft.getEnergy(20000);
+  var energy = fft.getEnergy(17897);
+  var energy2 = fft.getEnergy(22222);
   
   if(!above && energy>90){above=true;}
   else if(above && energy>90){}
