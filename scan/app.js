@@ -10,7 +10,7 @@ var h;
 
 var started;
 
-var checkboxScreen,checkboxAR,checkboxAccess,checkboxShortcut;
+var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
 var fullscreen,AR,access,shortcut;
 var button;
 // if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
@@ -38,6 +38,32 @@ var constraints = {
     audio: false
   };
 
+  function startCon(){
+    socket = io('http://52.221.201.79:1881');
+    socket.on('connect', function() {
+      // socket.emit('add user', unique);
+      console.log("connected");		 
+    });
+    // socket.on('login', (data) => {
+    //   numPeers = data.numUsers;
+    //   console.log(data.numUsers);
+    //   });
+    // socket.on('user joined', (data) => {
+    //   numPeers = data.numUsers;
+    //   console.log(data.numUsers);
+    //   });
+    // socket.on('left', (data) => {
+    //   numPeers = data.numUsers;
+    //   console.log(data.numUsers);
+    //   });
+    // socket.on('roomchange', (data) => {
+    //   roomPopulation = parseInt(data.rooms.split(",")[mode]);
+    //   console.log(data.rooms + ", " + roomPopulation);
+    //   //fetch data for current room person is in
+    //   });
+  
+  }
+
 function setup(){
 	createCanvas(displayWidth,displayHeight);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
@@ -57,21 +83,23 @@ function setup(){
   checkboxAccess.position(10,50);
   checkboxAccess.changed(myCheckedEvent); 
 
-  checkboxShortcut = createCheckbox('shortcut', false);
-  checkboxShortcut.position(10,70);
-  checkboxShortcut.changed(myCheckedEvent); 
+  checkboxChallenge = createCheckbox('challenge', false);
+  checkboxChallenge.position(10,70);
+  checkboxChallenge.changed(myCheckedEvent); 
 
   button = createButton('start')
   button.position(10,90);
   button.mousePressed(startSketch);
-
+  startCon();
 	// fullscreen(true);
+      
+}
 
 function startSketch(){
   checkboxScreen.remove();
   checkboxAR.remove();
   checkboxAccess.remove();
-  checkboxShortcut.remove();
+  checkboxChallenge.remove();
   button.remove();
 
     mode=1;
@@ -81,8 +109,6 @@ function startSketch(){
     resizeCanvas(w,h);
 }
 
-      
-}
 function draw(){
    w = window.innerWidth;
    h = window.innerHeight;
@@ -190,7 +216,11 @@ function startCam(){
         );
         scanner.addListener('scan', function(content) {
             // window.open(content, "_blank");
-            if(mode == 3 && content == "a"){console.log("success");}
+            if(mode == 3 && content == "a"){
+              console.log("success");
+              socket.emit('CHALLENGE', round(random(100000,99999)));
+              //send a socket emit with pseudorandom number to server --> other webpage to change content
+          }
         });
         Instascan.Camera.getCameras().then(cameras => 
         {
@@ -223,7 +253,7 @@ function myCheckedEvent() {
   } else {
     console.log('Get out of my uncaring face');
   }
-  if (checkboxShortcut.checked()) {
+  if (checkboxChallenge.checked()) {
     console.log('Shortcut');
   } else {
     console.log('Longcut');
