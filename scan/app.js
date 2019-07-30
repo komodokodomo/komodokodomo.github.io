@@ -10,7 +10,7 @@ var h;
 // var socket;
 var started;
 
-const socket = io('http://52.221.201.79:443');
+const socket = io('http://52.221.201.79:1881');
 
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
 var fullscreen,AR,access,shortcut;
