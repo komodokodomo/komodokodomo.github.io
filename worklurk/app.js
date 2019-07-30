@@ -39,7 +39,8 @@ function draw() {
   else if(above && energy>90){}
   else if(above && energy<50){console.log("hello");above = false;BGvalue = random(255);}
   else if(!above && energy<50){}
-  console.log(energy2);
+  // console.log(energy2);
+  console.log(fft.getCentroid());
 
   if(!above2 && energy2>90){above2=true;}
   else if(above2 && energy2>90){}
