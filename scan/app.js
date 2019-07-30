@@ -7,8 +7,10 @@ var clicked;
 var timestamp;
 var w;
 var h;
-var socket;
+// var socket;
 var started;
+
+const socket = io('http://52.221.201.79:1881');
 
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
 var fullscreen,AR,access,shortcut;
@@ -39,7 +41,6 @@ var constraints = {
   };
 
   function startCon(){
-    socket = io('http://52.221.201.79:1881');
     socket.on('connect', function() {
       // socket.emit('add user', unique);
       console.log("connected");		 
