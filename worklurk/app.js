@@ -11,6 +11,7 @@
 
 let mic, fft;
 var above = false;
+var above2 = false;
 var BGvalue = 255;
 // var proceed = false;
 
@@ -32,12 +33,18 @@ function draw() {
 
   let spectrum = fft.analyze();
   var energy = fft.getEnergy(19000);
+  var energy2 = fft.getEnergy(20000);
   
-  if(!above && energy>70){above=true;}
-  else if(above && energy>70){}
-  else if(above && energy<30){console.log("hello");above = false;BGvalue = random(255);}
-  else if(!above && energy<30){}
-  console.log(fft.getEnergy(18000));
+  if(!above && energy>90){above=true;}
+  else if(above && energy>90){}
+  else if(above && energy<50){console.log("hello");above = false;BGvalue = random(255);}
+  else if(!above && energy<50){}
+  console.log(energy2);
+
+  if(!above2 && energy2>90){above2=true;}
+  else if(above2 && energy2>90){}
+  else if(above2 && energy2<50){console.log("hello too");above2 = false;}
+  else if(!above2 && energy2<50){}
 
   beginShape();
   for (i = 0; i < spectrum.length; i++) {
