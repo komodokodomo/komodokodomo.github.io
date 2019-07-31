@@ -39,7 +39,7 @@ var constraints = {
   };
 
   function startCon(){
-    socket = io('http://52.221.201.79:1881', {
+    socket = io('http://52.221.201.79:1880', {
       path: '/challenge'
     });
     socket.on('connect', function() {
