@@ -80,7 +80,7 @@ function setup(){
 
 function onQuietReady() {
   transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
-  transmit.transmit(Quiet.str2ab("hello_world"));
+  // transmit.transmit(Quiet.str2ab("hello"));
 };
 
 function onQuietFail(reason) {
@@ -188,7 +188,8 @@ function draw(){
 }
 
 function mouseClicked() {
-  transmit.transmit(Quiet.str2ab("hello_world"));
+  transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
+  transmit.transmit(Quiet.str2ab("hello"));
   // logo.resize(50, 100);
   if(mode==0){
     // mode=1;
