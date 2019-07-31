@@ -67,7 +67,7 @@ function setup(){
   button.position(10,90);
   button.mousePressed(startSketch);
 
-  client = new Paho.MQTT.Client("http://52.221.201.79", 1883, "prototype");
+  client = new Paho.MQTT.Client("52.221.201.79", 1883, "prototype");
   client.onConnectionLost = onConnectionLost;
   client.onMessageArrived = onMessageArrived;
   client.connect({onSuccess:onConnect});   
