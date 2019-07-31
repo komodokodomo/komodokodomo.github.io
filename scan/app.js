@@ -69,7 +69,7 @@ function setup(){
   button.mousePressed(startSketch);
 
   Quiet.init({
-    profilesPrefix: "",
+    profilesPrefix: "/scan/",
     memoryInitializerPrefix: "/",
     libfecPrefix: "/"
 });
