@@ -189,7 +189,7 @@ function draw(){
 
 function mouseClicked() {
   transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
-  transmit.transmit(Quiet.str2ab("hello"));
+  transmit.transmit(Quiet.str2ab("yo"));
   // logo.resize(50, 100);
   if(mode==0){
     // mode=1;
