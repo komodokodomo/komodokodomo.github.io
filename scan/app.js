@@ -39,9 +39,11 @@ var constraints = {
   };
 
   function startCon(){
-    socket = io('http://52.221.201.79:1881');
+    socket = io('http://52.221.201.79:1881', {
+      path: '/challenge'
+    });
     socket.on('connect', function() {
-      // socket.emit('add user', unique);
+      socket.emit('CHALLENGE' );
       console.log("connected");		 
     });
     // socket.on('login', (data) => {
