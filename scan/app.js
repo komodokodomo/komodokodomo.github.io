@@ -67,7 +67,7 @@ function setup(){
   button.position(10,90);
   button.mousePressed(startSketch);
 
-  client = new Paho.Client("http://52.221.201.79", 1883, "prototype");
+  client = new Paho.MQTT.Client("http://52.221.201.79", 1883, "prototype");
   client.onConnectionLost = onConnectionLost;
   client.onMessageArrived = onMessageArrived;
   client.connect({onSuccess:onConnect});   
@@ -76,7 +76,7 @@ function onConnect() {
   // Once a connection has been made, make a subscription and send a message.
   console.log("onConnect");
   // client.subscribe("World");
-  message = new Paho.Message("Hello");
+  message = new Paho.MQTT.Message("Hello");
   message.destinationName = "challenge";
   client.send(message);
 }
