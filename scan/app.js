@@ -78,7 +78,7 @@ function setup(){
 }
 
 function onQuietReady() {
-  transmit = Quiet.transmitter({profile: "test", onFinish: onTransmitFinish});
+  transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
   transmit.transmit(Quiet.str2ab("hello_world"));
 };
 
