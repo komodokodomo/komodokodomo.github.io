@@ -7,8 +7,9 @@ var clicked;
 var timestamp;
 var w;
 var h;
-var socket;
 var started;
+
+var client;
 
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
 var fullscreen,AR,access,shortcut;
@@ -38,33 +39,6 @@ var constraints = {
     audio: false
   };
 
-  function startCon(){
-    socket = io('http://52.221.201.79:1880', {
-      path: '/challenge'
-    });
-    socket.on('connect', function() {
-      socket.emit('CHALLENGE' );
-      console.log("connected");		 
-    });
-    // socket.on('login', (data) => {
-    //   numPeers = data.numUsers;
-    //   console.log(data.numUsers);
-    //   });
-    // socket.on('user joined', (data) => {
-    //   numPeers = data.numUsers;
-    //   console.log(data.numUsers);
-    //   });
-    // socket.on('left', (data) => {
-    //   numPeers = data.numUsers;
-    //   console.log(data.numUsers);
-    //   });
-    // socket.on('roomchange', (data) => {
-    //   roomPopulation = parseInt(data.rooms.split(",")[mode]);
-    //   console.log(data.rooms + ", " + roomPopulation);
-    //   //fetch data for current room person is in
-    //   });
-  
-  }
 
 function setup(){
 	createCanvas(displayWidth,displayHeight);
@@ -92,11 +66,32 @@ function setup(){
   button = createButton('start')
   button.position(10,90);
   button.mousePressed(startSketch);
-  startCon();
-	// fullscreen(true);
-      
+
+  client = new Paho.Client("http://52.221.201.79", 1883, "prototype");
+  client.onConnectionLost = onConnectionLost;
+  client.onMessageArrived = onMessageArrived;
+  client.connect({onSuccess:onConnect});   
+}
+function onConnect() {
+  // Once a connection has been made, make a subscription and send a message.
+  console.log("onConnect");
+  // client.subscribe("World");
+  message = new Paho.Message("Hello");
+  message.destinationName = "challenge";
+  client.send(message);
 }
 
+// called when the client loses its connection
+function onConnectionLost(responseObject) {
+  if (responseObject.errorCode !== 0) {
+    console.log("onConnectionLost:"+responseObject.errorMessage);
+  }
+}
+
+// called when a message arrives
+function onMessageArrived(message) {
+  console.log("onMessageArrived:"+message.payloadString);
+}
 function startSketch(){
   checkboxScreen.remove();
   checkboxAR.remove();
@@ -220,7 +215,6 @@ function startCam(){
             // window.open(content, "_blank");
             if(mode == 3 && content == "a"){
               console.log("success");
-              socket.emit('CHALLENGE', round(random(100000,99999)));
               //send a socket emit with pseudorandom number to server --> other webpage to change content
           }
         });
