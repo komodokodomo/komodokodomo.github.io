@@ -75,6 +75,7 @@ function setup(){
 });
 
   Quiet.addReadyCallback(onQuietReady, onQuietFail);
+  userStartAudio().then(function() {});
 }
 
 function onQuietReady() {
@@ -187,6 +188,7 @@ function draw(){
 }
 
 function mouseClicked() {
+  transmit.transmit(Quiet.str2ab("hello_world"));
   // logo.resize(50, 100);
   if(mode==0){
     // mode=1;
