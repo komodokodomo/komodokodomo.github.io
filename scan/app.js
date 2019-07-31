@@ -13,12 +13,8 @@ var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
 var fullscreen,AR,access,shortcut;
 var button;
 
-var TextTransmitter = (function() {
-  Quiet.init({
-      profilesPrefix: "/",
-      memoryInitializerPrefix: "/",
-      libfecPrefix: "/"
-  });
+
+  
 // if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 //   console.log("enumerateDevices() not supported.");
 //   return;
@@ -71,6 +67,12 @@ function setup(){
   button = createButton('start')
   button.position(10,90);
   button.mousePressed(startSketch);
+
+  Quiet.init({
+    profilesPrefix: "/",
+    memoryInitializerPrefix: "/",
+    libfecPrefix: "/"
+});
 
   Quiet.addReadyCallback(onQuietReady, onQuietFail);
 }
