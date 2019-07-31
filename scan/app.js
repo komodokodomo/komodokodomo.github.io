@@ -74,8 +74,8 @@ function setup(){
     libfecPrefix: "/"
 });
 
-  Quiet.addReadyCallback(onQuietReady, onQuietFail);
-  userStartAudio().then(function() {});
+  userStartAudio().then(function() {  Quiet.addReadyCallback(onQuietReady, onQuietFail);
+  });
 }
 
 function onQuietReady() {
