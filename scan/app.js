@@ -78,8 +78,7 @@ function setup(){
 }
 
 function onQuietReady() {
-  var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
-  transmit = Quiet.transmitter({profile: profilename, onFinish: onTransmitFinish});
+  transmit = Quiet.transmitter({profile: "test", onFinish: onTransmitFinish});
   transmit.transmit(Quiet.str2ab("hello_world"));
 };
 
