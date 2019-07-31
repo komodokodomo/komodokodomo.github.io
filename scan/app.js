@@ -9,11 +9,16 @@ var w;
 var h;
 var started;
 
-var client;
-
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
 var fullscreen,AR,access,shortcut;
 var button;
+
+var TextTransmitter = (function() {
+  Quiet.init({
+      profilesPrefix: "/",
+      memoryInitializerPrefix: "/",
+      libfecPrefix: "/"
+  });
 // if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
 //   console.log("enumerateDevices() not supported.");
 //   return;
@@ -67,31 +72,33 @@ function setup(){
   button.position(10,90);
   button.mousePressed(startSketch);
 
-  client = new Paho.MQTT.Client("52.221.201.79", 1883, "prototype");
-  client.onConnectionLost = onConnectionLost;
-  client.onMessageArrived = onMessageArrived;
-  client.connect({onSuccess:onConnect});   
-}
-function onConnect() {
-  // Once a connection has been made, make a subscription and send a message.
-  console.log("onConnect");
-  // client.subscribe("World");
-  message = new Paho.MQTT.Message("Hello");
-  message.destinationName = "challenge";
-  client.send(message);
+  Quiet.addReadyCallback(onQuietReady, onQuietFail);
 }
 
+function onQuietReady() {
+  var profilename = document.querySelector('[data-quiet-profile-name]').getAttribute('data-quiet-profile-name');
+  transmit = Quiet.transmitter({profile: profilename, onFinish: onTransmitFinish});
+  transmit.transmit(Quiet.str2ab("hello_world"));
+};
+
+function onQuietFail(reason) {
+  console.log("quiet failed to initialize: " + reason);
+};
+
+function onTransmitFinish() {
+console.log("done");
+};
 // called when the client loses its connection
-function onConnectionLost(responseObject) {
-  if (responseObject.errorCode !== 0) {
-    console.log("onConnectionLost:"+responseObject.errorMessage);
-  }
-}
+// function onConnectionLost(responseObject) {
+//   if (responseObject.errorCode !== 0) {
+//     console.log("onConnectionLost:"+responseObject.errorMessage);
+//   }
+// }
 
-// called when a message arrives
-function onMessageArrived(message) {
-  console.log("onMessageArrived:"+message.payloadString);
-}
+// // called when a message arrives
+// function onMessageArrived(message) {
+//   console.log("onMessageArrived:"+message.payloadString);
+// }
 function startSketch(){
   checkboxScreen.remove();
   checkboxAR.remove();
