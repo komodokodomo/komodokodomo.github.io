@@ -188,7 +188,7 @@ function draw(){
 }
 
 function mouseClicked() {
-  transmit = Quiet.transmitter({profile: "audible", onFinish: onTransmitFinish});
+  transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
   var rand = round(random(10000,999999)).toString();
   transmit.transmit(Quiet.str2ab(rand));
   // logo.resize(50, 100);
