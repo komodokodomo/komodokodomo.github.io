@@ -188,7 +188,7 @@ function draw(){
 }
 
 function mouseClicked() {
-  transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
+  transmit = Quiet.transmitter({profile: "audible", onFinish: onTransmitFinish});
   transmit.transmit(Quiet.str2ab("yo"));
   // logo.resize(50, 100);
   if(mode==0){
