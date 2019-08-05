@@ -12,7 +12,7 @@ function setup(){
   h = window.innerHeight;
 	createCanvas(w,h);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
-	logo = loadImage('assets/Singpass.png');
+	logo = loadImage('assets/qr.png');
 
   Quiet.init({
     profilesPrefix: "/scan/",
@@ -56,7 +56,7 @@ function onReceiverCreateFail(reason) {
 };
 
 function onReceiveFail(num_fails) {
-    console.log("It looks like you tried to transmit something. You may need to move the transmitter closer to the receiver and set the volume to 50%.");
+    console.log("You may need to move the transmitter closer to the receiver and set the volume to 50%.");
 }
 
 function draw(){
