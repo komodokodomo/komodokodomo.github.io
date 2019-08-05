@@ -67,7 +67,7 @@ function draw(){
     }
   else if(mode == 1){
     background(245);
-    textMode(CENTER,CENTER);
+    textAlign(CENTER,CENTER);
     textSize(32);
     text(code,w/2,h/2);
   }
