@@ -9,6 +9,8 @@ var w;
 var h;
 var started;
 
+var prof = "maybe";
+
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
 var fullscreen,AR,access,challenge = false;
 var button;
@@ -50,7 +52,7 @@ function setup(){
 
   Quiet.init({
     profilesPrefix: "/scan/",
-    memoryInitializerPrefix: "/",
+    memoryInitializerPrefix: "/scan/",
     libfecPrefix: "/scan/"
 });
 
@@ -60,7 +62,7 @@ function setup(){
 }
 
 function onQuietReady() {
-  transmit = Quiet.transmitter({profile: "audible", onFinish: onTransmitFinish});
+  transmit = Quiet.transmitter({profile: prof, onFinish: onTransmitFinish});
   // transmit.transmit(Quiet.str2ab("hello"));
 };
 
@@ -182,7 +184,7 @@ function mouseClicked() {
       console.log("entering mode 2");
       resizeCanvas(width, width*mainpage.height/mainpage.width);
     }
-    transmit = Quiet.transmitter({profile: "audible", onFinish: onTransmitFinish});
+    transmit = Quiet.transmitter({profile: prof, onFinish: onTransmitFinish});
     var rand = round(random(10000,999999)).toString();
     transmit.transmit(Quiet.str2ab(rand));
   }
@@ -206,7 +208,7 @@ function startCam(){
             // console.log("success");
             if(mode == 3 && content == "https://a"){
               console.log("success");
-              transmit = Quiet.transmitter({profile: "audible", onFinish: onTransmitFinish});
+              transmit = Quiet.transmitter({profile: prof, onFinish: onTransmitFinish});
               var rand = round(random(10000,999999)).toString();
               transmit.transmit(Quiet.str2ab(rand));
               //send a socket emit with pseudorandom number to server --> other webpage to change content

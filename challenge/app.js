@@ -7,6 +7,7 @@ var mode = 0;
 var code = "";
 
 var mic;
+var prof = "maybe";
 
 function setup(){
   w = window.innerWidth;
@@ -21,7 +22,7 @@ function setup(){
 
   Quiet.init({
     profilesPrefix: "/scan/",
-    memoryInitializerPrefix: "/",
+    memoryInitializerPrefix: "/scan/",
     libfecPrefix: "/scan/"
 });
 
@@ -32,7 +33,7 @@ function setup(){
 function onQuietReady() {
   Quiet.receiver(
     {
-    profile: "audible",
+    profile: prof,
     onReceive: onReceive,
     onCreateFail: onReceiverCreateFail,
     onReceiveFail: onReceiveFail
