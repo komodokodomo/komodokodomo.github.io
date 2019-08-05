@@ -109,6 +109,7 @@ function startSketch(){
   button.remove();
 
     mode=1;
+    console.log("entering mode 1");
     timestamp=millis();
     w = window.innerWidth;
     h = window.innerHeight;
@@ -192,10 +193,11 @@ function mouseClicked() {
   if(mode==0){
     // mode=1;
   }
-  if(mode==2){
+  else if(mode==2){
     if(mouseY>height-100){
     resizeCanvas(w,h);
     mode=3;
+    console.log("entering mode 3");
     background(245);
     if(!started){
     startCam();
@@ -204,7 +206,11 @@ function mouseClicked() {
   }
   }
   else if(mode==3){
-    if(mouseX<w/5 && mouseY<w/5){mode=2;resizeCanvas(width, width*mainpage.height/mainpage.width);}
+    if(mouseX<w/5 && mouseY<w/5){
+      mode=2;
+      console.log("entering mode 2");
+      resizeCanvas(width, width*mainpage.height/mainpage.width);
+    }
   }
 }
 
