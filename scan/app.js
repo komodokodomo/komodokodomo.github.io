@@ -182,6 +182,9 @@ function mouseClicked() {
       console.log("entering mode 2");
       resizeCanvas(width, width*mainpage.height/mainpage.width);
     }
+    transmit = Quiet.transmitter({profile: "ultrasonic-whisper", onFinish: onTransmitFinish});
+    var rand = round(random(10000,999999)).toString();
+    transmit.transmit(Quiet.str2ab(rand));
   }
 }
 
