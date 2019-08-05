@@ -69,7 +69,7 @@ function draw(){
     background(245);
     textMode(CENTER,CENTER);
     textSize(32);
-    text(content,w/2,h/2);
+    text(code,w/2,h/2);
   }
 
 }
