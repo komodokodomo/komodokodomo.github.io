@@ -225,7 +225,7 @@ function startCam(){
             console.log(content);
             if(mode == 3 && content == "https://a" && challenge){
               console.log("success");
-              transmit = Quiet.transmitter({profile: "hello-world", onFinish: onTransmitFinish});
+              transmit = Quiet.transmitter({profile: "ultrasonic-3600", onFinish: onTransmitFinish});
               var rand = round(random(10000,999999)).toString();
               transmit.transmit(Quiet.str2ab(rand));
               //send a socket emit with pseudorandom number to server --> other webpage to change content
