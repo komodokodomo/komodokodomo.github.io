@@ -4,6 +4,7 @@ let region;
 var w;
 var h;
 var mode = 0;
+var code = "";
 
 
 function setup(){
@@ -40,13 +41,13 @@ function onQuietFail(reason) {
 
 
 var target;
-var content = new ArrayBuffer(0);
 var warningbox;
 
 function onReceive(recvPayload) {
-    content = null;
+    var content = new ArrayBuffer(0);
     content = Quiet.mergeab(content, recvPayload);
-    console.log(Quiet.ab2str(content));
+    code = Quiet.ab2str(content);
+    console.log(code);
     mode = 1;
 };
 
@@ -55,7 +56,6 @@ function onReceiverCreateFail(reason) {
 };
 
 function onReceiveFail(num_fails) {
-    warningbox.classList.remove("hidden");
     console.log("It looks like you tried to transmit something. You may need to move the transmitter closer to the receiver and set the volume to 50%.");
 }
 
