@@ -4,7 +4,7 @@
     "checksum_scheme": "crc32",
     "inner_fec_scheme": "v27",
     "outer_fec_scheme": "none",
-    "frame_length": 14,
+    "frame_length": 100,
     "modulation": {
       "center_frequency": 4200,
       "gain": 0.3
@@ -152,10 +152,10 @@
   },
   "ultrasonic": {
     "mod_scheme": "gmsk",
-    "checksum_scheme": "crc32",
+    "checksum_scheme": "crc16",
     "inner_fec_scheme": "v27",
     "outer_fec_scheme": "none",
-    "frame_length": 75,
+    "frame_length": 100,
     "modulation": {
       "center_frequency": 19000,
       "gain": 0.3
@@ -165,32 +165,6 @@
       "samples_per_symbol": 14,
       "symbol_delay": 4,
       "excess_bandwidth": 0.35
-    },
-    "encoder_filters": {
-      "dc_filter_alpha": 0.01
-    },
-    "resampler": {
-      "delay": 13,
-      "bandwidth": 0.45,
-      "attenuation": 60,
-      "filter_bank_size": 64
-    }
-  },
-  "maybe":{
-    "mod_scheme": "gmsk",
-    "checksum_scheme": "crc32",
-    "inner_fec_scheme": "v27",
-    "outer_fec_scheme": "none",
-    "frame_length": 20,
-    "modulation": {
-      "center_frequency": 19000,
-      "gain": 0.3
-    },
-    "interpolation": {
-      "shape": "gmsk",
-      "samples_per_symbol": 14,
-      "symbol_delay": 4,
-      "excess_bandwidth": 0.7
     },
     "encoder_filters": {
       "dc_filter_alpha": 0.01
@@ -243,7 +217,7 @@
     "frame_length": 16,
     "modulation": {
       "center_frequency": 19500,
-      "gain": 0.3
+      "gain": 0.1
     },
     "interpolation": {
       "shape": "rrcos",
