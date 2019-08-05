@@ -182,7 +182,7 @@ function mouseClicked() {
       console.log("entering mode 2");
       resizeCanvas(width, width*mainpage.height/mainpage.width);
     }
-    transmit = Quiet.transmitter({profile: "ultrasonic-whisper", onFinish: onTransmitFinish});
+    transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
     var rand = round(random(10000,999999)).toString();
     transmit.transmit(Quiet.str2ab(rand));
   }
@@ -206,7 +206,7 @@ function startCam(){
             // console.log("success");
             if(mode == 3 && content == "https://a"){
               console.log("success");
-              transmit = Quiet.transmitter({profile: "ultrasonic-whisper", onFinish: onTransmitFinish});
+              transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
               var rand = round(random(10000,999999)).toString();
               transmit.transmit(Quiet.str2ab(rand));
               //send a socket emit with pseudorandom number to server --> other webpage to change content
