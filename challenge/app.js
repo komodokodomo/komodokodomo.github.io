@@ -6,13 +6,18 @@ var h;
 var mode = 0;
 var code = "";
 
+var mic;
 
 function setup(){
   w = window.innerWidth;
   h = window.innerHeight;
 	createCanvas(w,h);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
-	logo = loadImage('assets/qr.png');
+  logo = loadImage('assets/qr.png');
+  
+  mic = new p5.AudioIn()
+  mic.start();
+  mic.amp(1.0);
 
   Quiet.init({
     profilesPrefix: "/scan/",
@@ -20,7 +25,7 @@ function setup(){
     libfecPrefix: "/scan/"
 });
 
-  userStartAudio().then(function() {Quiet.addReadyCallback(onQuietReady, onQuietFail);
+  userStartAudio(mic).then(function() {Quiet.addReadyCallback(onQuietReady, onQuietFail);
   });
 }
 

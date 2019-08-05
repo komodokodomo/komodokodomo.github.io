@@ -14,25 +14,6 @@ var fullscreen,AR,access,challenge = false;
 var button;
 
 
-  
-// if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
-//   console.log("enumerateDevices() not supported.");
-//   return;
-// }
-
-// List cameras and microphones.
-
-// navigator.mediaDevices.enumerateDevices()
-// .then(function(devices) {
-//   devices.forEach(function(device) {
-//     console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
-//   });
-// })
-// .catch(function(err) {
-//   console.log(err.name + ": " + err.message);
-// });
-
-
 var constraints = {
     video: {
       facingMode: { exact: "environment" }, 
@@ -46,7 +27,6 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
   mainpage = loadImage('assets/Dashboard.png');
-  // mainpage.id("mainpage");
 
   checkboxScreen = createCheckbox('fullscreen', false);
   checkboxScreen.position(10,10);
@@ -74,7 +54,8 @@ function setup(){
     libfecPrefix: "/scan/"
 });
 
-  userStartAudio().then(function() {  Quiet.addReadyCallback(onQuietReady, onQuietFail);
+  userStartAudio().then(function() {  
+    Quiet.addReadyCallback(onQuietReady, onQuietFail);
   });
 }
 
@@ -90,17 +71,7 @@ function onQuietFail(reason) {
 function onTransmitFinish() {
 console.log("done");
 };
-// called when the client loses its connection
-// function onConnectionLost(responseObject) {
-//   if (responseObject.errorCode !== 0) {
-//     console.log("onConnectionLost:"+responseObject.errorMessage);
-//   }
-// }
 
-// // called when a message arrives
-// function onMessageArrived(message) {
-//   console.log("onMessageArrived:"+message.payloadString);
-// }
 function startSketch(){
   checkboxScreen.remove();
   checkboxAR.remove();
