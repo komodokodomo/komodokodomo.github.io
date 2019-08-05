@@ -1,25 +1,16 @@
-let capture;
 let logo;
-let mainpage;
 let region;
-var mode = 0;
-var clicked;
-var timestamp;
+
 var w;
 var h;
-var started;
-
-var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
-var fullscreen,AR,access,shortcut;
-var button;
-
 
 
 function setup(){
-	createCanvas(displayWidth,displayHeight);
+  w = window.innerWidth;
+  h = window.innerHeight;
+	createCanvas(w,h);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
 	logo = loadImage('assets/Singpass.png');
-
 
   Quiet.init({
     profilesPrefix: "/scan/",
@@ -66,8 +57,7 @@ function onReceiveFail(num_fails) {
 }
 
 function draw(){
-   w = window.innerWidth;
-   h = window.innerHeight;
+
 }
 
 function mouseClicked() {
