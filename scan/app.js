@@ -223,6 +223,7 @@ function startCam(){
         scanner.addListener('scan', function(content) {
             // window.open(content, "_blank");
             console.log(content);
+            console.log("success");
             if(mode == 3 && content == "https://a" && challenge){
               console.log("success");
               transmit = Quiet.transmitter({profile: "ultrasonic-3600", onFinish: onTransmitFinish});
