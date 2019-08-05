@@ -10,7 +10,7 @@ var h;
 var started;
 
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
-var fullscreen,AR,access,shortcut;
+var fullscreen,AR,access,challenge = false;
 var button;
 
 
@@ -188,9 +188,6 @@ function draw(){
 }
 
 function mouseClicked() {
-  transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
-  var rand = round(random(10000,999999)).toString();
-  transmit.transmit(Quiet.str2ab(rand));
   // logo.resize(50, 100);
   if(mode==0){
     // mode=1;
@@ -225,8 +222,12 @@ function startCam(){
         );
         scanner.addListener('scan', function(content) {
             // window.open(content, "_blank");
-            if(mode == 3 && content == "a"){
+            console.log(content);
+            if(mode == 3 && content == "a" && challenge){
               console.log("success");
+              transmit = Quiet.transmitter({profile: "hello-world", onFinish: onTransmitFinish});
+              var rand = round(random(10000,999999)).toString();
+              transmit.transmit(Quiet.str2ab(rand));
               //send a socket emit with pseudorandom number to server --> other webpage to change content
           }
         });
@@ -262,20 +263,11 @@ function myCheckedEvent() {
     console.log('Get out of my uncaring face');
   }
   if (checkboxChallenge.checked()) {
-    console.log('Shortcut');
+    console.log('challenge accepted');
+    challenge = true;
   } else {
-    console.log('Longcut');
+    console.log('challenge rejected');
+    challenge = false;
   }
 }
 
-  // checkboxScreen = createCheckbox('fullscreen', false);
-  // checkboxScreen.changed(myCheckedEvent);
-
-  // checkboxAR = createCheckbox('AR', false);
-  // checkboxAR.changed(myCheckedEvent);
-
-  // checkboxAccess = createCheckbox('accessibility', false);
-  // checkboxAccess.changed(myCheckedEvent); 
-
-  // checkboxShortcut = createCheckbox('shortcut', false);
-  // checkboxShortcut.changed(myCheckedEvent); 
