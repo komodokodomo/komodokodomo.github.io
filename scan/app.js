@@ -71,7 +71,7 @@ function setup(){
   Quiet.init({
     profilesPrefix: "/scan/",
     memoryInitializerPrefix: "/",
-    libfecPrefix: "/"
+    libfecPrefix: "/scan/"
 });
 
   userStartAudio().then(function() {  Quiet.addReadyCallback(onQuietReady, onQuietFail);
