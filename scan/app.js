@@ -223,7 +223,7 @@ function startCam(){
         scanner.addListener('scan', function(content) {
             // window.open(content, "_blank");
             console.log(content);
-            if(mode == 3 && content == "a" && challenge){
+            if(mode == 3 && content == "https://a" && challenge){
               console.log("success");
               transmit = Quiet.transmitter({profile: "hello-world", onFinish: onTransmitFinish});
               var rand = round(random(10000,999999)).toString();
