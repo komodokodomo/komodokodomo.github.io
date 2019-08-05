@@ -177,20 +177,20 @@
     }
   },
   "maybe":{
-    "mod_scheme": "psk2",
+    "mod_scheme": "gmsk",
     "checksum_scheme": "crc32",
     "inner_fec_scheme": "v27",
     "outer_fec_scheme": "none",
-    "frame_length": 34,
+    "frame_length": 9,
     "modulation": {
       "center_frequency": 19000,
-      "gain": 0.02
+      "gain": 0.3
     },
     "interpolation": {
-      "shape": "rrcos",
+      "shape": "gmsk",
       "samples_per_symbol": 14,
       "symbol_delay": 4,
-      "excess_bandwidth": 0.35
+      "excess_bandwidth": 0.7
     },
     "encoder_filters": {
       "dc_filter_alpha": 0.01
