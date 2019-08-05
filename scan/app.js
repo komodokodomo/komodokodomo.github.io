@@ -65,7 +65,7 @@ function setup(){
   checkboxChallenge.changed(myCheckedEvent); 
 
   button = createButton('start')
-  button.position(10,90);
+  button.position(10,110);
   button.mousePressed(startSketch);
 
   Quiet.init({
@@ -79,7 +79,7 @@ function setup(){
 }
 
 function onQuietReady() {
-  transmit = Quiet.transmitter({profile: "ultrasonic", onFinish: onTransmitFinish});
+  transmit = Quiet.transmitter({profile: "cable-64k", onFinish: onTransmitFinish});
   // transmit.transmit(Quiet.str2ab("hello"));
 };
 
