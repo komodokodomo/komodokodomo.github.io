@@ -158,7 +158,7 @@
     "frame_length": 75,
     "modulation": {
       "center_frequency": 19000,
-      "gain": 0.1
+      "gain": 0.3
     },
     "interpolation": {
       "shape": "rrcos",
