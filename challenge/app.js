@@ -21,9 +21,9 @@ function setup(){
   mic.amp(1.0);
 
   Quiet.init({
-    profilesPrefix: "/scan/",
-    memoryInitializerPrefix: "/scan/",
-    libfecPrefix: "/scan/"
+    profilesPrefix: "/challenge/",
+    memoryInitializerPrefix: "/challenge/",
+    libfecPrefix: "/challenge/"
 });
 
   userStartAudio(mic).then(function() {Quiet.addReadyCallback(onQuietReady, onQuietFail);
