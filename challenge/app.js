@@ -27,7 +27,7 @@ function setup(){
 function onQuietReady() {
   Quiet.receiver(
     {
-    profile: "ultrasonic",
+    profile: "ultrasonic-whisper",
     onReceive: onReceive,
     onCreateFail: onReceiverCreateFail,
     onReceiveFail: onReceiveFail
