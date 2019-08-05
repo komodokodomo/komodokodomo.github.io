@@ -79,7 +79,7 @@ function setup(){
 }
 
 function onQuietReady() {
-  transmit = Quiet.transmitter({profile: "cable-64k", onFinish: onTransmitFinish});
+  transmit = Quiet.transmitter({profile: "audible-7k-channel-1", onFinish: onTransmitFinish});
   // transmit.transmit(Quiet.str2ab("hello"));
 };
 

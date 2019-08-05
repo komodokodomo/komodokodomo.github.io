@@ -27,7 +27,7 @@ function setup(){
 function onQuietReady() {
   Quiet.receiver(
     {
-    profile: "cable-64k",
+    profile: "audible-7k-channel-1",
     onReceive: onReceive,
     onCreateFail: onReceiverCreateFail,
     onReceiveFail: onReceiveFail
