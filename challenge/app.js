@@ -27,7 +27,7 @@ function setup(){
 function onQuietReady() {
   Quiet.receiver(
     {
-    profile: "hello-world",
+    profile: "ultrasonic-3600",
     onReceive: onReceive,
     onCreateFail: onReceiverCreateFail,
     onReceiveFail: onReceiveFail
