@@ -9,7 +9,7 @@ var w;
 var h;
 var started;
 
-var prof = "ultrasonic";
+var prof = "yo";
 
 var checkboxScreen,checkboxAR,checkboxAccess,checkboxChallenge;
 var fullscreen,AR,access,challenge = false;
