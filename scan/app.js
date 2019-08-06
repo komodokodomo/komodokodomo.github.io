@@ -185,7 +185,7 @@ function mouseClicked() {
       resizeCanvas(width, width*mainpage.height/mainpage.width);
     }
     transmit = Quiet.transmitter({profile: prof, onFinish: onTransmitFinish});
-    var rand = round(random(10000,999999)).toString();
+    var rand = round(random(100000,999999)).toString();
     transmit.transmit(Quiet.str2ab(rand));
   }
 }
@@ -209,7 +209,7 @@ function startCam(){
             if(mode == 3 && content == "https://a"){
               console.log("success");
               transmit = Quiet.transmitter({profile: prof, onFinish: onTransmitFinish});
-              var rand = round(random(10000,999999)).toString();
+              var rand = round(random(100000,999999)).toString();
               transmit.transmit(Quiet.str2ab(rand));
               //send a socket emit with pseudorandom number to server --> other webpage to change content
           }
