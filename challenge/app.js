@@ -7,7 +7,7 @@ var mode = 0;
 var code = "";
 
 var mic;
-var prof = "yo";
+var prof = "ultrasonic";
 
 function setup(){
   w = window.innerWidth;
