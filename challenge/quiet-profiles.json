@@ -268,17 +268,17 @@
     }
   },
   "yo":{
-    "mod_scheme": "qpsk",
-    "checksum_scheme": "crc16",
+    "mod_scheme": "gmsk",
+    "checksum_scheme": "crc32",
     "inner_fec_scheme": "v27",
     "outer_fec_scheme": "none",
     "frame_length": 75,
     "modulation": {
-      "center_frequency": 19000,
+      "center_frequency": 9000,
       "gain": 0.3
     },
     "interpolation": {
-      "shape": "rrcos",
+      "shape": "rkaiser",
       "samples_per_symbol": 14,
       "symbol_delay": 4,
       "excess_bandwidth": 0.35
@@ -291,13 +291,6 @@
       "bandwidth": 0.45,
       "attenuation": 60,
       "filter_bank_size": 64
-    },
-    "ofdm": {
-      "num_subcarriers": 128,
-      "cyclic_prefix_length": 16,
-      "taper_length": 4,
-      "left_band": 0,
-      "right_band": 0
     }
   }
 }
