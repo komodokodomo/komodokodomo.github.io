@@ -155,13 +155,13 @@
     "checksum_scheme": "crc32",
     "inner_fec_scheme": "rs8",
     "outer_fec_scheme": "none",
-    "frame_length": 34,
+    "frame_length": 75,
     "modulation": {
       "center_frequency": 19000,
       "gain": 0.3
     },
     "interpolation": {
-      "shape": "rrcos",
+      "shape": "rkaiser",
       "samples_per_symbol": 14,
       "symbol_delay": 4,
       "excess_bandwidth": 0.35
