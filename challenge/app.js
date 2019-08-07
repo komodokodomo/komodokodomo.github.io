@@ -14,8 +14,8 @@ var socket;
 
 function startCon(){
 	socket = io('https://cotf.cf', {
-  path: '/challenge'
-  // secure: true
+  path: '/challenge',
+  secure: true
 });
 	socket.on('connect', function() {
 		socket.emit('challenge');
