@@ -9,6 +9,20 @@ var code = "";
 var mic;
 var prof = "ultrasonic";
 
+const socket;
+
+
+function startCon(){
+	socket = io('https://cotf.cf', {
+  path: '/challenge',
+  secure: true
+});
+	socket.on('connect', function() {
+		socket.emit('challenge');
+		console.log("connected");		 
+	});
+}
+
 function setup(){
   w = window.innerWidth;
   h = window.innerHeight;
@@ -28,6 +42,8 @@ function setup(){
 
   userStartAudio(mic).then(function() {Quiet.addReadyCallback(onQuietReady, onQuietFail);
   });
+
+  startCon();
 }
 
 function onQuietReady() {
