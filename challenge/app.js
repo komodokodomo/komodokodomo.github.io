@@ -13,7 +13,7 @@ var socket;
 
 
 function startCon(){
-	socket = io('https://crossorigin.me/https://cotf.cf:1880', {
+	socket = io('https://worklurk.cf', {
   path: '/challenge',
   secure: true,
   // reconnect: true,
