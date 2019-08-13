@@ -8,6 +8,9 @@ var code = "";
 
 var mic;
 var fft;
+var upperThreshold = 80;
+var lowerThreshold = 50;
+var peaked = false;
 var name;
 
 var socket;
@@ -75,7 +78,11 @@ function draw(){
   else if(mode == 1){
     var spectrum = fft.analyze();
     var energy = fft.getEnergy(20000);
-    console.log(energy);
+    if(!peaked && energy<threshold){}
+    else if(!peaked && energy>=upperThreshold){peaked=true;}
+    else if(peaked && energy>=upperThreshold){}
+    else if(peaked && energy<=lowerThreshold){console.log("ping");peaked = false;}
+    
     background(245);
     textAlign(CENTER,CENTER);
     textSize(32);
