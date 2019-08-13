@@ -13,6 +13,8 @@ var lowerThreshold = 50;
 var peaked = false;
 var name;
 
+var pingFreq,lastPing,pingDuration = 500,pingTolerance = 50,pingCounter;
+
 var socket;
 
 var username;
@@ -81,7 +83,13 @@ function draw(){
     if(!peaked && energy<upperThreshold){}
     else if(!peaked && energy>=upperThreshold){peaked=true;}
     else if(peaked && energy>=upperThreshold){}
-    else if(peaked && energy<=lowerThreshold){console.log("ping");peaked = false;}
+    else if(peaked && energy<=lowerThreshold){
+      peaked = false;
+      pingFreq = millis()- lastPing;
+      if(abs(pingFreq-pingDuration)<pingTolerance){pingCounter++;}
+      lastPing = millis();
+      console.log(pingFreq + ", counter: " + pingCounter);
+    }
     
     background(245);
     textAlign(CENTER,CENTER);
