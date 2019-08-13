@@ -10,10 +10,17 @@ var mic;
 var fft;
 var upperThreshold = 80;
 var lowerThreshold = 50;
-var peaked = false;
+var peaked = [];
+var energy = [];
+var majorNumber,majorDetected = false,TTL = 4000,TTLtimer = 0;
+
 var name;
 
-var pingFreq,lastPing,pingDuration = 1000,pingTolerance = 50,pingCounter = 0;
+var pingPeriod,lastPing,pingDuration = 1000,pingTolerance = 50,pingCounter = 0;
+
+var major = [22222,21739,21277,20833,20408,20000,19608,19231,18868,18519,18182];
+var minor1 = [22161,22099,22039,21978,21918,21858,21798];
+var minor2 = [21680,21622,21563,21505,21448,21390,21333];
 
 var socket;
 
@@ -79,17 +86,40 @@ function draw(){
     }
   else if(mode == 1){
     var spectrum = fft.analyze();
-    var energy = fft.getEnergy(20000);
-    if(!peaked && energy<upperThreshold){}
-    else if(!peaked && energy>=upperThreshold){peaked=true;}
-    else if(peaked && energy>=upperThreshold){}
-    else if(peaked && energy<=lowerThreshold){
-      peaked = false;
-      pingFreq = millis()- lastPing;
-      if(abs(pingFreq-pingDuration)<pingTolerance){pingCounter++;}
-      lastPing = millis();
-      console.log(pingFreq + ", counter: " + pingCounter);
+
+    if(!majorDetected){
+    for(var i = 0; i<major.length; i++){
+      energy[i] = fft.getEnergy(major[i]);
+     
+    if(!peaked[i] && energy[i]<upperThreshold){}
+    else if(!peaked[i] && energy[i]>=upperThreshold){peaked[i]=true;}
+    else if(peaked[i] && energy[i]>=upperThreshold){}
+    else if(peaked[i] && energy[i]<=lowerThreshold){
+      peaked[i] = false;
+      majorNumber = i;
+      majorDetected = true;
+      TTLtimer = millis();
     }
+  }
+ }
+ else{
+      if(millis()-TTLtimer>TTL){majorDetected = false;return;}
+      energy[majorNumber] = fft.getEnergy(major[majorNumber]);
+      if(!peaked[majorNumber] && energy[majorNumber]<upperThreshold){}
+      else if(!peaked[majorNumber] && energy[majorNumber]>=upperThreshold){peaked[majorNumber]=true;}
+      else if(peaked[majorNumber] && energy[majorNumber]>=upperThreshold){}
+      else if(peaked[majorNumber] && energy[majorNumber]<=lowerThreshold){
+        peaked[majorNumber] = false;
+        TTLtimer = millis();
+        pingPeriod = millis()- lastPing;
+        if(abs(pingPeriod-pingDuration)<pingTolerance){pingCounter++;}
+        lastPing = millis();
+        console.log(pingPeriod + ", counter: " + pingCounter);
+      }
+
+    }
+  
+
     
     background(245);
     textAlign(CENTER,CENTER);
