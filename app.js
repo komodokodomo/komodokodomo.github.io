@@ -71,7 +71,7 @@ function draw(){
     }
   else if(mode == 1){
     var spectrum = fft.analyze();
-    console.log(fft.getEnergy(22222));
+    console.log(fft.getEnergy(17897));
     background(245);
     textAlign(CENTER,CENTER);
     textSize(32);
