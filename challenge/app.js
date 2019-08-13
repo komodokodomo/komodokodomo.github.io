@@ -13,7 +13,7 @@ var socket;
 
 
 function startCon(){
-	socket = io('worklurk.cf', {
+	socket = io('cotf.cf', {
   // path: '/challenge',
   //secure: true,
   // reconnect: true,
