@@ -47,7 +47,8 @@ function setup(){
   mic.amp(1.0);
 
 
-  userStartAudio(mic).then(function() {;
+  userStartAudio(mic).then(function() {
+    console.log("audio enabled");
   });
 }
 
