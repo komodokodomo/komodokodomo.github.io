@@ -11,6 +11,8 @@ var name;
 
 var socket;
 
+var username;
+var button;
 
 function startCon(){
 	socket = io('cotf.cf', {
@@ -28,12 +30,12 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
 
-  var username = createInput('');
+  username = createInput('');
   username.position(w/2 - username.size().width/2,h/2- username.size().height/2+300);
   console.log(username.size());
   username.input(myInputEvent);
 
-  var button = createButton("login");
+  button = createButton("login");
   button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 1.5*username.size().height);
   button.mousePressed(buttonClickEvent)
   
