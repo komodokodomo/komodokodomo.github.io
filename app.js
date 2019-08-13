@@ -7,6 +7,7 @@ var mode = 0;
 var code = "";
 
 var mic;
+var name;
 
 var socket;
 
@@ -15,7 +16,7 @@ function startCon(){
 	socket = io('cotf.cf', {
 });
 	socket.on('connect', function() {
-		socket.emit('hello');
+		socket.emit('hello',name);
 		console.log("connected");		 
 	});
 }
@@ -26,6 +27,10 @@ function setup(){
 	createCanvas(w,h);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
+  var username = createInput('');
+  username.position(w/2,h/2+100);
+  console.log(username.size());
+  username.input(myInputEvent);
   
   mic = new p5.AudioIn()
   mic.start();
@@ -34,12 +39,14 @@ function setup(){
 
   userStartAudio(mic).then(function() {;
   });
-
-  startCon();
 }
 
 
-
+function myInputEvent() {
+  startCon();
+  name = this.value();
+  console.log('you are typing: ', this.value());
+}
 
 
 
@@ -59,7 +66,6 @@ function draw(){
 }
 
 function mouseClicked() {
-  socket.emit('hello');
 }
 
 
