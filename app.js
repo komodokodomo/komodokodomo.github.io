@@ -29,12 +29,12 @@ function setup(){
   logo = loadImage('assets/tampines.png');
 
   var username = createInput('');
-  username.position(w/2 - username.size().width/2,h/2- username.size().height/2+400);
+  username.position(w/2 - username.size().width/2,h/2- username.size().height/2+300);
   console.log(username.size());
   username.input(myInputEvent);
 
   var button = createButton("login");
-  button.position(w/2 - username.size().width/2,h/2- username.size().height/2+400 + 1.5*username.size().height);
+  button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 1.5*username.size().height);
   button.mousePressed(buttonClickEvent)
   
   mic = new p5.AudioIn()
