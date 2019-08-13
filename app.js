@@ -3,7 +3,7 @@ let region;
 
 var w;
 var h;
-var mode = 0;
+var mode = 0; // 0 - login  1 -
 var code = "";
 
 var mic;
@@ -48,14 +48,13 @@ function setup(){
 
 
 function myInputEvent() {
-  // startCon();
   name = this.value();
-  console.log('you are typing: ', this.value());
+  console.log('typed: ', this.value());
 }
 
 
 function buttonClickEvent() { 
-  if(name!== null){startCon();}
+  if(name!== null){startCon();mode = 1;}
 }
 
 
@@ -70,7 +69,6 @@ function draw(){
     background(245);
     textAlign(CENTER,CENTER);
     textSize(32);
-    text(code,w/2,h/2);
   }
 
 }
