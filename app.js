@@ -7,6 +7,7 @@ var mode = 0; // 0 - login  1 -
 var code = "";
 
 var mic;
+var fft;
 var name;
 
 var socket;
