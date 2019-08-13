@@ -54,7 +54,7 @@ function myInputEvent() {
 
 
 function buttonClickEvent() { 
-  if(name!== null){startCon();mode = 1;}
+  if(name!== null){startCon();mode = 1;button.hide();username.hide();}
 }
 
 
