@@ -33,9 +33,9 @@ function setup(){
   console.log(username.size());
   username.input(myInputEvent);
 
-  var button = createButton();
+  var button = createButton("login");
   button.position(w/2 - username.size().width/2,h/2- username.size().height/2+400 + 1.5*username.size().height);
-  button.clicked(buttonClickEvent)
+  button.mousePressed(buttonClickEvent)
   
   mic = new p5.AudioIn()
   mic.start();
