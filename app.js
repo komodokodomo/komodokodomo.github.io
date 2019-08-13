@@ -72,7 +72,7 @@ function draw(){
     }
   else if(mode == 1){
     var spectrum = fft.analyze();
-    var energy = fft.getEnergy(17897);
+    var energy = fft.getEnergy(20000);
     console.log(energy);
     background(245);
     textAlign(CENTER,CENTER);
