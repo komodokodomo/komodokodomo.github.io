@@ -27,10 +27,15 @@ function setup(){
 	createCanvas(w,h);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
+
   var username = createInput('');
-  username.position(w/2,h/2+100);
+  username.position(w/2 - username.size().width/2,h/2- username.size().height/2+400);
   console.log(username.size());
   username.input(myInputEvent);
+
+  var button = createButton();
+  button.position(w/2 - username.size().width/2,h/2- username.size().height/2+400 + 1.5*username.size().height);
+  button.clicked(buttonClickEvent)
   
   mic = new p5.AudioIn()
   mic.start();
@@ -43,9 +48,14 @@ function setup(){
 
 
 function myInputEvent() {
-  startCon();
+  // startCon();
   name = this.value();
   console.log('you are typing: ', this.value());
+}
+
+
+function buttonClickEvent() { 
+  if(name!== null){startCon();}
 }
 
 
