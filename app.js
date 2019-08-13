@@ -78,7 +78,7 @@ function draw(){
   else if(mode == 1){
     var spectrum = fft.analyze();
     var energy = fft.getEnergy(20000);
-    if(!peaked && energy<threshold){}
+    if(!peaked && energy<upperThreshold){}
     else if(!peaked && energy>=upperThreshold){peaked=true;}
     else if(peaked && energy>=upperThreshold){}
     else if(peaked && energy<=lowerThreshold){console.log("ping");peaked = false;}
