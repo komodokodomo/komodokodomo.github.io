@@ -31,7 +31,6 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
 
-  fft = new p5.FFT();
 
   username = createInput('');
   username.position(w/2 - username.size().width/2,h/2- username.size().height/2+300);
@@ -49,6 +48,8 @@ function setup(){
 
   userStartAudio(mic).then(function() {
     console.log("audio enabled");
+    fft = new p5.FFT();
+    fft.setInput(mic);
   });
 }
 
