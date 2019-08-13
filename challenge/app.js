@@ -99,7 +99,7 @@ function draw(){
 }
 
 function mouseClicked() {
-
+  socket.emit('hello');
 }
 
 
