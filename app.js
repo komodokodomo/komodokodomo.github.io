@@ -30,6 +30,8 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
 
+  fft = new p5.FFT();
+
   username = createInput('');
   username.position(w/2 - username.size().width/2,h/2- username.size().height/2+300);
   console.log(username.size());
@@ -68,6 +70,8 @@ function draw(){
     image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);
     }
   else if(mode == 1){
+    var spectrum = fft.analyze();
+    console.log(fft.getEnergy(22222));
     background(245);
     textAlign(CENTER,CENTER);
     textSize(32);
