@@ -13,14 +13,14 @@ var socket;
 
 
 function startCon(){
-	socket = io('https://worklurk.cf', {
-  path: '/challenge',
-  secure: true,
+	socket = io('worklurk.cf', {
+  // path: '/challenge',
+  //secure: true,
   // reconnect: true,
-  rejectUnauthorized : false
+  //rejectUnauthorized : false
 });
 	socket.on('connect', function() {
-		socket.emit('challenge');
+		socket.emit('hello');
 		console.log("connected");		 
 	});
 }
