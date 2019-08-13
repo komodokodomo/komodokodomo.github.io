@@ -13,7 +13,7 @@ var lowerThreshold = 50;
 var peaked = false;
 var name;
 
-var pingFreq,lastPing,pingDuration = 500,pingTolerance = 50,pingCounter;
+var pingFreq,lastPing,pingDuration = 1000,pingTolerance = 50,pingCounter = 0;
 
 var socket;
 
