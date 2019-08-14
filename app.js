@@ -8,7 +8,7 @@ var code = "";
 
 var mic;
 var fft;
-var upperThreshold = 60;
+var upperThreshold = 70;
 var lowerThreshold = 50;
 var peaked = [];
 var energy = [];
@@ -135,7 +135,6 @@ function draw(){
   // }
   for(var j=0; j<major.length; j++){
     energy[j] =  fft.getEnergy(major[j]);
-    console.log(major[j]);
     if(energy[j]>upperThreshold){majorDetected = true;majorNumber=j;ttlTimerMajor = millis();return;}
     } 
  }
@@ -160,7 +159,7 @@ function draw(){
           ttlTimerMajor = millis();
         }
         lastPing = millis();
-        console.log("major: " + majorNumber.toString() + ", period: " + pingPeriod + ", counter: " + pingCounter);
+        console.log("major: " + majorNumber + ", period: " + pingPeriod + ", counter: " + pingCounter);
       }
     
     if(!minorDetected){
