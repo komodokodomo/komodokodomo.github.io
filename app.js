@@ -135,6 +135,7 @@ function draw(){
   // }
   for(var j=0; j<major.length; j++){
     energy[j] =  fft.getEnergy(major[j]);
+    console.log(major[j]);
     if(energy[j]>upperThreshold){majorDetected = true;majorNumber=j;ttlTimerMajor = millis();return;}
     } 
  }
