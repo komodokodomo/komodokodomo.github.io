@@ -20,14 +20,14 @@ var minorNumber,minorDetected = false,
 
 var name;
 
-var pingPeriod,
-    pingPeriodMinor,
-    lastPing,
-    lastPingMinor,
-    pingDuration = 600,
-    pingTolerance = 50,
-    pingCounter = 0,
-    pingCounterMinor = 0;
+var pingPeriod;
+var pingPeriodMinor;
+var lastPing;
+var lastPingMinor;
+var pingDuration = 600;
+var pingTolerance = 50;
+var pingCounter = 0;
+var pingCounterMinor = 0;
 
 var major = [22222,21739,21277,20833,20408,20000,19608,19231,18868,18519,18182];
 var minor =[ 
