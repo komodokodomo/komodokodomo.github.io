@@ -188,7 +188,7 @@ function draw(){
         console.log(pingPeriodMinor + ", counterMinor: " + pingCounterMinor);
       }  
     }
-    if(pingCounterMinor && pingCounter){console.log("you are at location: " + majorNumber*minorNumber);}
+    if(pingCounterMinor && pingCounter){console.log("you are at location: " + (majorNumber+1)*(minorNumber+1);}
     }
   
 
