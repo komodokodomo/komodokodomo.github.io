@@ -9,7 +9,7 @@ var code = "";
 var mic;
 var fft;
 var upperThreshold = 60;
-var lowerThreshold = 40;
+var lowerThreshold = 50;
 var peaked = [];
 var energy = [];
 var energyMinor = [];
