@@ -21,6 +21,15 @@ var pingPeriod,lastPing,pingDuration = 1000,pingTolerance = 50,pingCounter = 0;
 var major = [22222,21739,21277,20833,20408,20000,19608,19231,18868,18519,18182];
 var minor1 = [22161,22099,22039,21978,21918,21858,21798];
 var minor2 = [21680,21622,21563,21505,21448,21390,21333];
+var minor3 = [21220,21164,21108,21053,20997,20942,20888];
+var minor4 = [20779,20725,20672,20619,20566,20513,20460];
+var minor5 = [20356,20305,20253,20202,20151,20101,20050];
+var minor6 = [19950,19900,19851,19802,19753,19704,19656];
+var minor7 = [19560,19512,19465,19417,19370,19324,19277];
+var minor8 = [19185,19139,19093,19048,19002,18957,18913];
+var minor9 = [18824,18779,18735,18692,18648,18605,18561];
+var minor10 = [18476,18433,18391,18349,18307,18265,18223];
+var minor11 = [18141,18100,18059,18018,17978,17937,17897];
 
 var socket;
 
@@ -103,16 +112,24 @@ function draw(){
   }
  }
  else{
-      if(millis()-TTLtimer>TTL){majorDetected = false;return;}
+      if(millis()-TTLtimer>TTL){
+        majorDetected = false;
+        pingCounter = 0;
+        console.log(pingPeriod + ", counter: " + pingCounter);
+        return;
+      }
       energy[majorNumber] = fft.getEnergy(major[majorNumber]);
       if(!peaked[majorNumber] && energy[majorNumber]<upperThreshold){}
       else if(!peaked[majorNumber] && energy[majorNumber]>=upperThreshold){peaked[majorNumber]=true;}
       else if(peaked[majorNumber] && energy[majorNumber]>=upperThreshold){}
       else if(peaked[majorNumber] && energy[majorNumber]<=lowerThreshold){
         peaked[majorNumber] = false;
-        TTLtimer = millis();
         pingPeriod = millis()- lastPing;
-        if(abs(pingPeriod-pingDuration)<pingTolerance){pingCounter++;}
+        if(abs(pingPeriod-pingDuration)<pingTolerance)
+        {
+          pingCounter++;
+          TTLtimer = millis();
+        }
         lastPing = millis();
         console.log(pingPeriod + ", counter: " + pingCounter);
       }
