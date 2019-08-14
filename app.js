@@ -126,7 +126,7 @@ function draw(){
       peaked[i] = false;
       majorNumber = i;
       majorDetected = true;
-      TTLtimer = millis();
+      TTLtimerMajor = millis();
     }
   }
  }
