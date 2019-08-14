@@ -155,7 +155,7 @@ function draw(){
           ttlTimerMajor = millis();
         }
         lastPing = millis();
-        console.log(pingPeriod + ", counter: " + pingCounter);
+        // console.log(pingPeriod + ", counter: " + pingCounter);
       }
     
     if(!minorDetected){
@@ -185,10 +185,10 @@ function draw(){
           ttlTimerMinor = millis();
         }
         lastPingMinor = millis();
-        console.log(pingPeriodMinor + ", counterMinor: " + pingCounterMinor);
+        // console.log(pingPeriodMinor + ", counterMinor: " + pingCounterMinor);
       }  
     }
-    if(pingCounterMinor && pingCounter){console.log("you are at location: " + (majorNumber+1)*(minorNumber+1));}
+    if(pingCounterMinor > 2 && pingCounter > 2){console.log("you are at location: " + (majorNumber+1)*(minorNumber+1));}
     }
   
 
