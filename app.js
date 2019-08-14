@@ -159,7 +159,7 @@ function draw(){
           ttlTimerMajor = millis();
         }
         lastPing = millis();
-        // console.log(pingPeriod + ", counter: " + pingCounter);
+        console.log("major: " + majorNumber + ", period: " pingPeriod + ", counter: " + pingCounter);
       }
     
     if(!minorDetected){
@@ -189,7 +189,7 @@ function draw(){
           ttlTimerMinor = millis();
         }
         lastPingMinor = millis();
-        // console.log(pingPeriodMinor + ", counterMinor: " + pingCounterMinor);
+        console.log("minor: " + minorNumber + ", period: " pingPeriodMinor + ", counter: " + pingCounterMinor);
       }  
     }
     if(pingCounterMinor > 2 && pingCounter > 2){console.log("major: " + majorNumber +", minor: "+ minorNumber);}
