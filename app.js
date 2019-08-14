@@ -12,24 +12,37 @@ var upperThreshold = 80;
 var lowerThreshold = 50;
 var peaked = [];
 var energy = [];
-var majorNumber,majorDetected = false,TTL = 4000,TTLtimer = 0;
+var energyMinor = [];
+var peakedMinor = [];
+
+var majorNumber,majorDetected = false,TTL = 4000,ttlTimerMajor = 0,ttlTimerMinor = 0;
+var minorNumber,minorDetected = false,
 
 var name;
 
-var pingPeriod,lastPing,pingDuration = 1000,pingTolerance = 50,pingCounter = 0;
+var pingPeriod,
+    pingPeriodMinor,
+    lastPing,
+    lastPingMinor,
+    pingDuration = 600,
+    pingTolerance = 50,
+    pingCounter = 0,
+    pingCounterMinor = 0;
 
 var major = [22222,21739,21277,20833,20408,20000,19608,19231,18868,18519,18182];
-var minor1 = [22161,22099,22039,21978,21918,21858,21798];
-var minor2 = [21680,21622,21563,21505,21448,21390,21333];
-var minor3 = [21220,21164,21108,21053,20997,20942,20888];
-var minor4 = [20779,20725,20672,20619,20566,20513,20460];
-var minor5 = [20356,20305,20253,20202,20151,20101,20050];
-var minor6 = [19950,19900,19851,19802,19753,19704,19656];
-var minor7 = [19560,19512,19465,19417,19370,19324,19277];
-var minor8 = [19185,19139,19093,19048,19002,18957,18913];
-var minor9 = [18824,18779,18735,18692,18648,18605,18561];
-var minor10 = [18476,18433,18391,18349,18307,18265,18223];
-var minor11 = [18141,18100,18059,18018,17978,17937,17897];
+var minor =[ 
+[22161,22099,22039,21978,21918,21858,21798],
+[21680,21622,21563,21505,21448,21390,21333],
+[21220,21164,21108,21053,20997,20942,20888],
+[20779,20725,20672,20619,20566,20513,20460],
+[20356,20305,20253,20202,20151,20101,20050],
+[19950,19900,19851,19802,19753,19704,19656],
+[19560,19512,19465,19417,19370,19324,19277],
+[19185,19139,19093,19048,19002,18957,18913],
+[18824,18779,18735,18692,18648,18605,18561],
+[18476,18433,18391,18349,18307,18265,18223],
+[18141,18100,18059,18018,17978,17937,17897],
+]
 
 var socket;
 
@@ -96,6 +109,11 @@ function draw(){
   else if(mode == 1){
     var spectrum = fft.analyze();
 
+    //check major spectrum
+    //confirm steady frequency
+    //check minor spectrum
+
+
     if(!majorDetected){
     for(var i = 0; i<major.length; i++){
       energy[i] = fft.getEnergy(major[i]);
@@ -112,9 +130,10 @@ function draw(){
   }
  }
  else{
-      if(millis()-TTLtimer>TTL){
+      if(millis()-ttlTimerMajor>TTL){
         majorDetected = false;
         pingCounter = 0;
+        pingPeriod = millis()- lastPing;
         console.log(pingPeriod + ", counter: " + pingCounter);
         return;
       }
@@ -128,11 +147,43 @@ function draw(){
         if(abs(pingPeriod-pingDuration)<pingTolerance)
         {
           pingCounter++;
-          TTLtimer = millis();
+          ttlTimerMajor = millis();
         }
         lastPing = millis();
         console.log(pingPeriod + ", counter: " + pingCounter);
       }
+    
+    if(!minorDetected){
+    for(var j=0; j<minor[majorNumber].length; j++){
+    energyMinor[j] =  fft.getEnergy(minor[majorNumber][j]);
+    if(energyMinor[j]>upperThreshold){minorDetected = true;minorNumber=j;ttlTimerMinor = millis();return;}
+    }  
+    }
+    else{
+      if(millis()-ttlTimerMinor>TTL){
+        minorDetected = false;
+        pingCounterMinor = 0;
+        pingPeriodMinor = millis()- lastPingMinor;
+        console.log(pingPeriodMinor + ", counterMinor: " + pingCounterMinor);
+        return;
+      }
+      energyMinor[minorNumber] = fft.getEnergy(minor[majorNumber][minorNumber]);
+      if(!peakedMinor[minorNumber] && energyMinor[minorNumber]<upperThreshold){}
+      else if(!peakedMinor[minorNumber] && energyMinor[minorNumber]>=upperThreshold){peakedMinor[minorNumber]=true;}
+      else if(peakedMinor[minorNumber] && energyMinor[minorNumber]>=upperThreshold){}
+      else if(peakedMinor[minorNumber] && energyMinor[minorNumber]<=lowerThreshold){
+        peakedMinor[minorNumber] = false;
+        pingPeriodMinor = millis()- lastPingMinor;
+        if(abs(pingPeriodMinor-pingDuration)<pingTolerance)
+        {
+          pingCounterMinor++;
+          ttlTimerMinor = millis();
+        }
+        lastPingMinor = millis();
+        console.log(pingPeriodMinor + ", counterMinor: " + pingCounterMinor);
+      }  
+
+    }
 
     }
   
