@@ -116,19 +116,23 @@ function draw(){
 
 
     if(!majorDetected){
-    for(var i = 0; i<major.length; i++){
-      energy[i] = fft.getEnergy(major[i]);
+  //   for(var i = 0; i<major.length; i++){
+  //     energy[i] = fft.getEnergy(major[i]);
      
-    if(!peaked[i] && energy[i]<upperThreshold){}
-    else if(!peaked[i] && energy[i]>=upperThreshold){peaked[i]=true;}
-    else if(peaked[i] && energy[i]>=upperThreshold){}
-    else if(peaked[i] && energy[i]<=lowerThreshold){
-      peaked[i] = false;
-      majorNumber = i;
-      majorDetected = true;
-      TTLtimerMajor = millis();
-    }
-  }
+  //   if(!peaked[i] && energy[i]<upperThreshold){}
+  //   else if(!peaked[i] && energy[i]>=upperThreshold){peaked[i]=true;}
+  //   else if(peaked[i] && energy[i]>=upperThreshold){}
+  //   else if(peaked[i] && energy[i]<=lowerThreshold){
+  //     peaked[i] = false;
+  //     majorNumber = i;
+  //     majorDetected = true;
+  //     TTLtimerMajor = millis();
+  //   }
+  // }
+  for(var j=0; j<major.length; j++){
+    energy[j] =  fft.getEnergy(major[j]);
+    if(energy[j]>upperThreshold){majorDetected = true;majorNumber=j;ttlTimerMajor = millis();return;}
+    } 
  }
  else{
       if(millis()-ttlTimerMajor>TTL){
