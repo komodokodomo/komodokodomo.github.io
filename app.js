@@ -25,7 +25,7 @@ var pingPeriod;
 var pingPeriodMinor;
 var lastPing;
 var lastPingMinor;
-var pingDuration = 600;
+var pingDuration = 800;
 var pingTolerance = 50;
 var pingCounter = 0;
 var pingCounterMinor = 0;
