@@ -133,9 +133,15 @@ function draw(){
   //     TTLtimerMajor = millis();
   //   }
   // }
-  for(var j=0; j<major.length; j++){
+  for(var j=0; j<major.length; j++)
+    {
     energy[j] =  fft.getEnergy(major[j]);
-    if(energy[j]>upperThreshold){majorDetected = true;majorNumber=j;ttlTimerMajor = millis();return;}
+      if(energy[j]>upperThreshold){
+        majorDetected = true;
+        majorNumber=j;
+        ttlTimerMajor = millis();
+        break;
+      }
     } 
  }
  else{
@@ -165,7 +171,7 @@ function draw(){
     if(!minorDetected){
     for(var j=0; j<minor[majorNumber].length; j++){
     energyMinor[j] =  fft.getEnergy(minor[majorNumber][j]);
-    if(energyMinor[j]>upperThreshold){minorDetected = true;minorNumber=j;ttlTimerMinor = millis();return;}
+    if(energyMinor[j]>upperThreshold){minorDetected = true;minorNumber=j;ttlTimerMinor = millis();break;}
     }  
     }
     else{
