@@ -159,7 +159,7 @@ function draw(){
           ttlTimerMajor = millis();
         }
         lastPing = millis();
-        console.log("major: " + majorNumber + ", period: " + pingPeriod + ", counter: " + pingCounter);
+        console.log("major: " + majorNumber.toString() + ", period: " + pingPeriod + ", counter: " + pingCounter);
       }
     
     if(!minorDetected){
