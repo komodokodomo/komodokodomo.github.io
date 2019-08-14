@@ -15,8 +15,9 @@ var energy = [];
 var energyMinor = [];
 var peakedMinor = [];
 
-var majorNumber,majorDetected = false,TTL = 4000,ttlTimerMajor = 0,ttlTimerMinor = 0;
-var minorNumber,minorDetected = false,
+var majorNumber; var majorDetected = false; var TTL = 4000; var ttlTimerMajor = 0; var ttlTimerMinor = 0;
+var minorNumber;
+var minorDetected = false;
 
 var name;
 
