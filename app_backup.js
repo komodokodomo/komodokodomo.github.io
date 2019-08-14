@@ -71,12 +71,11 @@ function setup(){
 
 
   username = createInput('');
-  username.attribute('placeholder', 'GAME PIN');
   username.position(w/2 - username.size().width/2,h/2- username.size().height/2+300);
   console.log(username.size());
   username.input(myInputEvent);
 
-  button = createButton("ENTER");
+  button = createButton("login");
   button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 1.5*username.size().height);
   button.mousePressed(buttonClickEvent)
   
@@ -91,7 +90,6 @@ function setup(){
     fft.setInput(mic);
   });
 
-  console.log(major.length + ", " + minor[0].length);
 }
 
 
