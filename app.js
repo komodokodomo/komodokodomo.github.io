@@ -88,6 +88,8 @@ function setup(){
     fft = new p5.FFT();
     fft.setInput(mic);
   });
+
+  console.log(major.length + ", " + minor[0].length);
 }
 
 
