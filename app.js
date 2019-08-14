@@ -72,6 +72,7 @@ function setup(){
 
   username = createInput('');
   username.attribute('placeholder', 'GAME PIN');
+  username.attribute('text-align', 'center');
   username.position(w/2 - username.size().width/2,h/2- username.size().height/2+300);
   console.log(username.size());
   username.input(myInputEvent);
