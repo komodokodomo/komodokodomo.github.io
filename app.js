@@ -31,7 +31,7 @@ var pingCounter = 0;
 var pingCounterMinor = 0;
 
 
-var beacons =[ 
+var beacon =[ 
 22222,22161,22099,22039,21978,21918,21858,21798,21739,21680,21622,
 21563,21505,21448,21390,21333,21277,21220,21164,21108,21053,20997,
 20942,20888,20833,20779,20725,20672,20619,20566,20513,20460,20408,
@@ -117,40 +117,40 @@ function draw(){
   //             /\  /\
   //           /\ /\ /\ /\
 
-  if(fft.getEnergy(beacon[0],beacon[beacon.length-1])>upperThreshold)                                //  0 - 1/1
+  if(spectrum.getEnergy(beacon[0],beacon[beacon.length-1])>upperThreshold)                                //  0 - 1/1
   {
-    if(fft.getEnergy(beacon[0],beacon[beacon.length/2-1])>upperThreshold)                            //  0 - 1/2
+    if(spectrum.getEnergy(beacon[0],beacon[beacon.length/2-1])>upperThreshold)                            //  0 - 1/2
     {
-      if(fft.getEnergy(beacon[0],beacon[beacon.length/4-1])>upperThreshold)                          //  0 - 1/4
+      if(spectrum.getEnergy(beacon[0],beacon[beacon.length/4-1])>upperThreshold)                          //  0 - 1/4
       {
-        if(fft.getEnergy(beacon[0],beacon[beacon.length/8-1])>upperThreshold)                        //  0 - 1/8
+        if(spectrum.getEnergy(beacon[0],beacon[beacon.length/8-1])>upperThreshold)                        //  0 - 1/8
         {
           console.log("major : 1")
         }
-        else if(fft.getEnergy(beacon[beacon.length/8],beacon[beacon.length/4-1])>upperThreshold)        // 1/8 - 1/4 
+        else if(spectrum.getEnergy(beacon[beacon.length/8],beacon[beacon.length/4-1])>upperThreshold)        // 1/8 - 1/4 
         {
           console.log("major : 2")
         }
       }
-      else if(fft.getEnergy(beacon[beacon.length/4],beacon[beacon.length/2-1])>upperThreshold)          // 1/4 - 1/2
+      else if(spectrum.getEnergy(beacon[beacon.length/4],beacon[beacon.length/2-1])>upperThreshold)          // 1/4 - 1/2
       {
-        if(fft.getEnergy(beacon[beacon.length/4],beacon[3*beacon.length/8-1])>upperThreshold)           // 1/4 - 3/8
+        if(spectrum.getEnergy(beacon[beacon.length/4],beacon[3*beacon.length/8-1])>upperThreshold)           // 1/4 - 3/8
         {
           console.log("major : 3")
         }
-        else if(fft.getEnergy(beacon[3*beacon.length/8],beacon[beacon.length/2-1])>upperThreshold)      // 3/8 - 1/2
+        else if(spectrum.getEnergy(beacon[3*beacon.length/8],beacon[beacon.length/2-1])>upperThreshold)      // 3/8 - 1/2
         {
           console.log("major : 4")
         }
       }
     }
-    else if(fft.getEnergy(beacon[beacon.length/2],beacon[beacon.length-1])>upperThreshold)             // 1/2 - 1/1
+    else if(spectrum.getEnergy(beacon[beacon.length/2],beacon[beacon.length-1])>upperThreshold)             // 1/2 - 1/1
     {
-      if(fft.getEnergy(beacon[beacon.length/2],beacon[beacon.length-1])>upperThreshold)                // 1/2 - 1/1
+      if(spectrum.getEnergy(beacon[beacon.length/2],beacon[beacon.length-1])>upperThreshold)                // 1/2 - 1/1
       {
-        if(fft.getEnergy(beacon[beacon.length/2],beacon[3*beacon.length/4-1])>upperThreshold)          // 1/2 - 3/4
+        if(spectrum.getEnergy(beacon[beacon.length/2],beacon[3*beacon.length/4-1])>upperThreshold)          // 1/2 - 3/4
         {
-          if(fft.getEnergy(beacon[beacon.length/2],beacon[5*beacon.length/8-1])>upperThreshold)        // 1/2 - 5/8
+          if(spectrum.getEnergy(beacon[beacon.length/2],beacon[5*beacon.length/8-1])>upperThreshold)        // 1/2 - 5/8
           {
             console.log("major : 5")
           }
@@ -159,13 +159,13 @@ function draw(){
             console.log("major : 6")
           }
         }
-        else if(fft.getEnergy(beacon[3*beacon.length/4],beacon[beacon.length-1])>upperThreshold)       // 3/4 - 1/1
+        else if(spectrum.getEnergy(beacon[3*beacon.length/4],beacon[beacon.length-1])>upperThreshold)       // 3/4 - 1/1
         {
-          if(fft.getEnergy(beacon[3*beacon.length/4],beacon[7*beacon.length/8-1])>upperThreshold)      // 3/4 - 7/8
+          if(spectrum.getEnergy(beacon[3*beacon.length/4],beacon[7*beacon.length/8-1])>upperThreshold)      // 3/4 - 7/8
           {
             console.log("major : 7")
           }
-          else if(fft.getEnergy(beacon[7*beacon.length/8],beacon[beacon.length-1])>upperThreshold)      // 7/8 - 1/1
+          else if(spectrum.getEnergy(beacon[7*beacon.length/8],beacon[beacon.length-1])>upperThreshold)      // 7/8 - 1/1
           {
             console.log("major : 8")
           }
