@@ -17,8 +17,7 @@ var beaconCounter = [];
 var beaconTimer = [];
 
 
-var majorNumber = 0; 
-var majorDetected = false; 
+
 var sampleTimer = 0;
 var TTL = 4000; 
 var ttlTimer = 0; 
@@ -162,7 +161,7 @@ function draw(){
           }
           beaconTimer[i] = millis();
         }
-    if(beaconTimer[i]>2){console.log("at region "+i);}
+    if(beaconCounter[i]>2){console.log("at region "+i);}
     }
 
 
