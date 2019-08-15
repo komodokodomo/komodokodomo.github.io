@@ -11,8 +11,10 @@ var fft;
 var upperThreshold = 80;
 var lowerThreshold = 50;
 
-var peaked = [];
+var aboveThreshold = [];
 var energy = [];
+var peakEnergy = [];
+var prevEnergy = [];
 var beaconCounter = [];
 var beaconTimer = [];
 var beaconDetected = [];
@@ -97,7 +99,7 @@ function setup(){
   userStartAudio(mic).then(function() {
     console.log("audio enabled");
     fft = new p5.FFT();
-    fft.smooth(0.1);
+    // fft.smooth(0.1);
     fft.setInput(mic);
   });
 
@@ -124,21 +126,22 @@ function draw(){
     for(var i = 0; i<beacon.length; i++)
     {
         energy[i] = fft.getEnergy(beacon[i]);
-        if(!peaked[i] && energy[i]<upperThreshold){
+        if(!aboveThreshold[i] && energy[i]<upperThreshold){
           if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
             console.log("disconnected from "+i);
             beaconDetected[i] = false;
             beaconCounter[i] = 0;
           }
         }
-        else if(!peaked[i] && energy[i]>=upperThreshold){peaked[i]=true;}
-        else if(peaked[i] && energy[i]>=lowerThreshold){}
-        else if(peaked[i] && energy[i]<lowerThreshold){
-          peaked[i] = false;
+        else if(!aboveThreshold[i] && energy[i]>=upperThreshold){aboveThreshold[i]=true;}
+        else if(aboveThreshold[i] && energy[i]>=lowerThreshold){if(energy[i]>peakEnergy[i]){peakEnergy[i] = energy[i];}}
+        else if(aboveThreshold[i] && energy[i]<lowerThreshold){
+          aboveThreshold[i] = false;
           if(abs(millis() - beaconTimer[i])<pingDuration+pingTolerance){
             beaconTimer[i] = millis();
             beaconCounter[i] = beaconCounter[i] + 1;
-            console.log("ping from "+i +", counter: " +beaconCounter[i]);
+            console.log("ping from "+i +", counter: " +beaconCounter[i] +", power: " +peakEnergy[i]);
+            peakEnergy[i] = 0;
           }
           beaconTimer[i] = millis();
         }
