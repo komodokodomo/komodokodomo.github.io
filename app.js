@@ -15,9 +15,16 @@ var energy = [];
 var energyMinor = [];
 var peakedMinor = [];
 
-var majorNumber = 0; var majorDetected = false; var TTL = 4000; var ttlTimerMajor = 0; var ttlTimerMinor = 0;
+var majorNumber = 0; 
+var majorDetected = false; 
+var sampleTimer = 0;
+var TTL = 4000; 
+var ttlTimerMajor = 0; 
+var ttlTimerMinor = 0;
 var minorNumber = 0;
 var minorDetected = false;
+var highestEnergy = 0;
+var beaconNumber;
 
 var name;
 
@@ -102,71 +109,20 @@ function draw(){
     textAlign(CENTER,CENTER);
     textSize(32);
     var spectrum = fft.analyze();
-
-    //check broad spectrum bands
-    //narrow down till exact spectrum is found
-  //               |
-  //               /\
-  //             /\  /\
-  //           /\ /\ /\ /\
-
-  if(fft.getEnergy(beacon[0],beacon[beacon.length-1])>upperThreshold/16)                                //  0 - 1/1
-  {
-    if(fft.getEnergy(beacon[0],beacon[beacon.length/2-1])>upperThreshold/8)                            //  0 - 1/2
+    for(var i = 0; i<beacon.length; i++)
     {
-      if(fft.getEnergy(beacon[0],beacon[beacon.length/4-1])>upperThreshold/4)                          //  0 - 1/4
-      {
-        if(fft.getEnergy(beacon[0],beacon[beacon.length/8-1])>upperThreshold/2)                        //  0 - 1/8
-        {
-          console.log("major : 1")
-        }
-        else if(fft.getEnergy(beacon[beacon.length/8],beacon[beacon.length/4-1])>upperThreshold/2)        // 1/8 - 1/4 
-        {
-          console.log("major : 2")
-        }
-      }
-      else if(fft.getEnergy(beacon[beacon.length/4],beacon[beacon.length/2-1])>upperThreshold/2)          // 1/4 - 1/2
-      {
-        if(fft.getEnergy(beacon[beacon.length/4],beacon[3*beacon.length/8-1])>upperThreshold/2)           // 1/4 - 3/8
-        {
-          console.log("major : 3")
-        }
-        else if(fft.getEnergy(beacon[3*beacon.length/8],beacon[beacon.length/2-1])>upperThreshold/2)      // 3/8 - 1/2
-        {
-          console.log("major : 4")
-        }
+      if (fft.energy(beacon[i])>highestEnergy){
+        highestEnergy = fft.energy(beacon[i]);
+        beaconNumber = i;
       }
     }
-    else if(fft.getEnergy(beacon[beacon.length/2],beacon[beacon.length-1])>upperThreshold/8)             // 1/2 - 1/1
-    {
-        if(fft.getEnergy(beacon[beacon.length/2],beacon[3*beacon.length/4-1])>upperThreshold/4)          // 1/2 - 3/4
-        {
-          if(fft.getEnergy(beacon[beacon.length/2],beacon[5*beacon.length/8-1])>upperThreshold/2)        // 1/2 - 5/8
-          {
-            console.log("major : 5")
-          }
-          else if(fft.getEnergy(beacon[5*beacon.length/8],beacon[3*beacon.length/4-1])>upperThreshold/2)   // 5/8 - 3/4 
-          {
-            console.log("major : 6")
-          }
-        }
-        else if(fft.getEnergy(beacon[3*beacon.length/4],beacon[beacon.length-1])>upperThreshold/4)       // 3/4 - 1/1
-        {
-          if(fft.getEnergy(beacon[3*beacon.length/4],beacon[7*beacon.length/8-1])>upperThreshold/2)      // 3/4 - 7/8
-          {
-            console.log("major : 7")
-          }
-          else if(fft.getEnergy(beacon[7*beacon.length/8],beacon[beacon.length-1])>upperThreshold/2)      // 7/8 - 1/1
-          {
-            console.log("major : 8")
-          }
-        }
-      }
-    
-  }
-  else{
-    // console.log(fft.getEnergy(beacon[0],beacon[beacon.length-1]));
-  }
+    if(millis()-sampleTimer>800){
+      sampleTimer = millis();
+      console.log(beaconNumber);
+      beaconNumber = null;
+      highestEnergy=0;
+    }
+
   }
 
 }
@@ -189,3 +145,71 @@ function buttonClickEvent() {
     gamepin.hide();
   }
 }
+
+
+
+
+    //check broad spectrum bands
+    //narrow down till exact spectrum is found
+  //               |
+  //               /\
+  //             /\  /\
+  //           /\ /\ /\ /\
+
+  // if(fft.getEnergy(beacon[0],beacon[beacon.length-1])>upperThreshold/16)                                //  0 - 1/1
+  // {
+  //   if(fft.getEnergy(beacon[0],beacon[beacon.length/2-1])>upperThreshold/8)                            //  0 - 1/2
+  //   {
+  //     if(fft.getEnergy(beacon[0],beacon[beacon.length/4-1])>upperThreshold/4)                          //  0 - 1/4
+  //     {
+  //       if(fft.getEnergy(beacon[0],beacon[beacon.length/8-1])>upperThreshold/2)                        //  0 - 1/8
+  //       {
+  //         console.log("major : 1")
+  //       }
+  //       else if(fft.getEnergy(beacon[beacon.length/8],beacon[beacon.length/4-1])>upperThreshold/2)        // 1/8 - 1/4 
+  //       {
+  //         console.log("major : 2")
+  //       }
+  //     }
+  //     else if(fft.getEnergy(beacon[beacon.length/4],beacon[beacon.length/2-1])>upperThreshold/2)          // 1/4 - 1/2
+  //     {
+  //       if(fft.getEnergy(beacon[beacon.length/4],beacon[3*beacon.length/8-1])>upperThreshold/2)           // 1/4 - 3/8
+  //       {
+  //         console.log("major : 3")
+  //       }
+  //       else if(fft.getEnergy(beacon[3*beacon.length/8],beacon[beacon.length/2-1])>upperThreshold/2)      // 3/8 - 1/2
+  //       {
+  //         console.log("major : 4")
+  //       }
+  //     }
+  //   }
+  //   else if(fft.getEnergy(beacon[beacon.length/2],beacon[beacon.length-1])>upperThreshold/8)             // 1/2 - 1/1
+  //   {
+  //       if(fft.getEnergy(beacon[beacon.length/2],beacon[3*beacon.length/4-1])>upperThreshold/4)          // 1/2 - 3/4
+  //       {
+  //         if(fft.getEnergy(beacon[beacon.length/2],beacon[5*beacon.length/8-1])>upperThreshold/2)        // 1/2 - 5/8
+  //         {
+  //           console.log("major : 5")
+  //         }
+  //         else if(fft.getEnergy(beacon[5*beacon.length/8],beacon[3*beacon.length/4-1])>upperThreshold/2)   // 5/8 - 3/4 
+  //         {
+  //           console.log("major : 6")
+  //         }
+  //       }
+  //       else if(fft.getEnergy(beacon[3*beacon.length/4],beacon[beacon.length-1])>upperThreshold/4)       // 3/4 - 1/1
+  //       {
+  //         if(fft.getEnergy(beacon[3*beacon.length/4],beacon[7*beacon.length/8-1])>upperThreshold/2)      // 3/4 - 7/8
+  //         {
+  //           console.log("major : 7")
+  //         }
+  //         else if(fft.getEnergy(beacon[7*beacon.length/8],beacon[beacon.length-1])>upperThreshold/2)      // 7/8 - 1/1
+  //         {
+  //           console.log("major : 8")
+  //         }
+  //       }
+  //     }
+    
+  // }
+  // else{
+  //   // console.log(fft.getEnergy(beacon[0],beacon[beacon.length-1]));
+  // }
