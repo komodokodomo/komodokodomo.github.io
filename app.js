@@ -15,6 +15,8 @@ var peaked = [];
 var energy = [];
 var beaconCounter = [];
 var beaconTimer = [];
+var beaconNumber;
+var beaconDetected = [];
 
 
 
@@ -23,7 +25,6 @@ var TTL = 4000;
 var ttlTimer = 0; 
 
 var highestEnergy = 0;
-var beaconNumber;
 
 var name;
 
@@ -151,8 +152,9 @@ function draw(){
     {
         energy[i] = fft.getEnergy(beacon[i]);
         if(!peaked[i] && energy[i]<upperThreshold){
-          if(millis()-beaconTimer[i]>TTL){
+          if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
             console.log("disconnected from "+i);
+            beaconDetected[i] = false;
             beaconCounter[i] = 0;
           }
         }
@@ -166,7 +168,10 @@ function draw(){
           }
           beaconTimer[i] = millis();
         }
-    if(beaconCounter[i]>2){console.log("at region "+i);}
+    if(beaconCounter[i]>2){
+      beaconDetected[i] = true;
+      console.log("at region "+i);
+    }
     }
 
 
