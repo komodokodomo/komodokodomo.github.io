@@ -156,7 +156,7 @@ function draw(){
         else if(peaked[i] && energy[i]>=lowerThreshold){}
         else if(peaked[i] && energy[i]<lowerThreshold){
           peaked[i] = false;
-          if(abs(millis() - beaconTimer[i])<pingTolerance){
+          if(abs(millis() - beaconTimer[i])<900+pingTolerance){
             beaconCounter[i]++;
           }
           beaconTimer[i] = millis();
