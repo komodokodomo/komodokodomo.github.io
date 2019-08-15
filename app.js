@@ -8,7 +8,7 @@ var code = "";
 
 var mic;
 var fft;
-var upperThreshold = 70;
+var upperThreshold = 80;
 var lowerThreshold = 50;
 
 var peaked = [];
