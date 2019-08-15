@@ -146,7 +146,7 @@ function draw(){
           if(abs(millis() - beaconTimer[i])<pingDuration+pingTolerance){
             beaconTimer[i] = millis();
             beaconCounter[i] = beaconCounter[i] + 1;
-            console.log("ping from "+ i +", counter: " + beaconCounter[i] +", power: " +peakEnergy[i]);
+            // console.log("ping from "+ i +", counter: " + beaconCounter[i] +", power: " +peakEnergy[i]);
             if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
             peakEnergy[i] = 0;       
           }
