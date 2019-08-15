@@ -150,7 +150,12 @@ function draw(){
     for(var i = 0; i<beacon.length; i++)
     {
         energy[i] = fft.getEnergy(beacon[i]);
-        if(!peaked[i] && energy[i]<upperThreshold){if(millis()-beaconTimer[i]>TTL){beaconCounter[i] = 0;}}
+        if(!peaked[i] && energy[i]<upperThreshold){
+          if(millis()-beaconTimer[i]>TTL){
+            console.log("disconnected from "+i);
+            beaconCounter[i] = 0;
+          }
+        }
         else if(!peaked[i] && energy[i]>=upperThreshold){peaked[i]=true;}
         else if(peaked[i] && energy[i]>=lowerThreshold){}
         else if(peaked[i] && energy[i]<lowerThreshold){
