@@ -30,27 +30,21 @@ var pingTolerance = 50;
 var pingCounter = 0;
 var pingCounterMinor = 0;
 
-// var major = [18182,18519,18868,19231,19608,20000,20408,20833,21277,21739,22222];
-var major = [18182,18519,18868,19231,19608,20000,20833,21277,21739,22222];
 
-
-var minor =[ 
-[22161,22099,22039,21978,21918,21858,21798],
-[21680,21622,21563,21505,21448,21390,21333],
-[21220,21164,21108,21053,20997,20942,20888],
-[20779,20725,20672,20619,20566,20513,20460],
-[20356,20305,20253,20202,20151,20101,20050],
-[19950,19900,19851,19802,19753,19704,19656],
-[19560,19512,19465,19417,19370,19324,19277],
-[19185,19139,19093,19048,19002,18957,18913],
-[18824,18779,18735,18692,18648,18605,18561],
-[18476,18433,18391,18349,18307,18265,18223],
-[18141,18100,18059,18018,17978,17937,17897],
+var beacons =[ 
+22222,22161,22099,22039,21978,21918,21858,21798,21739,21680,21622,
+21563,21505,21448,21390,21333,21277,21220,21164,21108,21053,20997,
+20942,20888,20833,20779,20725,20672,20619,20566,20513,20460,20408,
+20356,20305,20253,20202,20151,20101,20050,20000,19950,19900,19851,
+19802,19753,19704,19656,19608,19560,19512,19465,19417,19370,19324,
+19277,19231,19185,19139,19093,19048,19002,18957,18913,18868,18824,
+18779,18735,18692,18648,18605,18561,18519,18476,18433,18391,18349,
+18307,18265,18223,18182,18141,18100,18059,18018,17978,17937,17897,
 ];
 
 var socket;
 
-var username;
+var gamepin;
 var button;
 
 function startCon(){
@@ -70,15 +64,15 @@ function setup(){
   logo = loadImage('assets/tampines.png');
 
 
-  username = createInput('');
-  username.attribute('placeholder', 'GAME PIN');
-  username.style('text-align', 'center');
-  username.position(w/2 - username.size().width/2,h/2- username.size().height/2+300);
-  console.log(username.size());
-  username.input(myInputEvent);
+  gamepin = createInput('');
+  gamepin.attribute('placeholder', 'GAME PIN');
+  gamepin.style('text-align', 'center');
+  gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+300);
+  console.log(gamepin.size());
+  gamepin.input(typeEvent);
 
   button = createButton("ENTER");
-  button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 1.5*username.size().height);
+  button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 1.5*gamepin.size().height);
   button.mousePressed(buttonClickEvent)
   
   mic = new p5.AudioIn()
@@ -96,14 +90,14 @@ function setup(){
 }
 
 
-function myInputEvent() {
+function typeEvent() {
   name = this.value();
   console.log('typed: ', this.value());
 }
 
 
 function buttonClickEvent() { 
-  if(name!== null){startCon();mode = 1;button.hide();username.hide();}
+  if(name!== null){startCon();mode = 1;button.hide();gamepin.hide();}
 }
 
 
@@ -117,92 +111,154 @@ function draw(){
   else if(mode == 1){
     var spectrum = fft.analyze();
 
-    //check major spectrum
-    //confirm steady frequency
-    //check minor spectrum
+    //check broad spectrum bands
+    //narrow down till exact spectrum is found
+  //               |
+  //               /\
+  //             /\  /\
+  //           /\ /\ /\ /\
 
-
-    if(!majorDetected){
-  //   for(var i = 0; i<major.length; i++){
-  //     energy[i] = fft.getEnergy(major[i]);
-     
-  //   if(!peaked[i] && energy[i]<upperThreshold){}
-  //   else if(!peaked[i] && energy[i]>=upperThreshold){peaked[i]=true;}
-  //   else if(peaked[i] && energy[i]>=upperThreshold){}
-  //   else if(peaked[i] && energy[i]<=lowerThreshold){
-  //     peaked[i] = false;
-  //     majorNumber = i;
-  //     majorDetected = true;
-  //     TTLtimerMajor = millis();
-  //   }
-  // }
-  for(var j=0; j<major.length; j++)
+  if(spectrum.getEnergy(beacon[0],beacon[beacon.length-1])>upperThreshold)                                //  0 - 1/1
+  {
+    if(spectrum.getEnergy(beacon[0],beacon[beacon.length/2-1])>upperThreshold)                            //  0 - 1/2
     {
-    energy[j] =  fft.getEnergy(major[j]);
-      if(energy[j]>upperThreshold){
-        majorDetected = true;
-        majorNumber=j;
-        ttlTimerMajor = millis();
-        break;
-      }
-    } 
- }
- else{
-      if(millis()-ttlTimerMajor>TTL){
-        majorDetected = false;
-        pingCounter = 0;
-        pingPeriod = millis()- lastPing;
-        console.log(pingPeriod + ", counter: " + pingCounter);
-        return;
-      }
-      energy[majorNumber] = fft.getEnergy(major[majorNumber]);
-      if(!peaked[majorNumber] && energy[majorNumber]<upperThreshold){}
-      else if(!peaked[majorNumber] && energy[majorNumber]>=upperThreshold){peaked[majorNumber]=true;}
-      else if(peaked[majorNumber] && energy[majorNumber]>=upperThreshold){}
-      else if(peaked[majorNumber] && energy[majorNumber]<=lowerThreshold){
-        peaked[majorNumber] = false;
-        pingPeriod = millis()- lastPing;
-        if(abs(pingPeriod-pingDuration)<pingTolerance)
+      if(spectrum.getEnergy(beacon[0],beacon[beacon.length/4-1])>upperThreshold)                          //  0 - 1/4
+      {
+        if(spectrum.getEnergy(beacon[0],beacon[beacon.length/8-1])>upperThreshold)                        //  0 - 1/8
         {
-          pingCounter++;
-          ttlTimerMajor = millis();
+          console.log("major : 1")
         }
-        lastPing = millis();
-        console.log("major: " + majorNumber + ", period: " + pingPeriod + ", counter: " + pingCounter);
+        else if(spectrum.getEnergy(beacon[beacon.length/8],beacon[beacon.length/4-1])>upperThreshold)        // 1/8 - 1/4 
+        {
+          console.log("major : 2")
+        }
       }
+      else if(spectrum.getEnergy(beacon[beacon.length/4],beacon[beacon.length/2-1])>upperThreshold)          // 1/4 - 1/2
+      {
+        if(spectrum.getEnergy(beacon[beacon.length/4],beacon[3*beacon.length/8-1])>upperThreshold)           // 1/4 - 3/8
+        {
+          console.log("major : 3")
+        }
+        else if(spectrum.getEnergy(beacon[3*beacon.length/8],beacon[beacon.length/2-1])>upperThreshold)      // 3/8 - 1/2
+        {
+          console.log("major : 4")
+        }
+      }
+    }
+    else if(spectrum.getEnergy(beacon[beacon.length/2],beacon[beacon.length-1])>upperThreshold)             // 1/2 - 1/1
+    {
+      if(spectrum.getEnergy(beacon[beacon.length/2],beacon[beacon.length-1])>upperThreshold)                // 1/2 - 1/1
+      {
+        if(spectrum.getEnergy(beacon[beacon.length/2],beacon[3*beacon.length/4-1])>upperThreshold)          // 1/2 - 3/4
+        {
+          if(spectrum.getEnergy(beacon[beacon.length/2],beacon[5*beacon.length/8-1])>upperThreshold)        // 1/2 - 5/8
+          {
+            console.log("major : 5")
+          }
+          else if(spectrum.getEnergy(beacon[5*beacon.length/8],beacon[3*beacon.length/4-1])>upperThreshold)   // 5/8 - 3/4 
+          {
+            console.log("major : 6")
+          }
+        }
+        else if(spectrum.getEnergy(beacon[3*beacon.length/4],beacon[beacon.length-1])>upperThreshold)       // 3/4 - 1/1
+        {
+          if(spectrum.getEnergy(beacon[3*beacon.length/4],beacon[7*beacon.length/8-1])>upperThreshold)      // 3/4 - 7/8
+          {
+            console.log("major : 7")
+          }
+          else if(spectrum.getEnergy(beacon[7*beacon.length/8],beacon[beacon.length-1])>upperThreshold)      // 7/8 - 1/1
+          {
+            console.log("major : 8")
+          }
+        }
+      }
+    }
+  }
+  else{
+    return;
+  }
+  
+//   if(!majorDetected){
+//   //   for(var i = 0; i<major.length; i++){
+//   //     energy[i] = fft.getEnergy(major[i]);
+     
+//   //   if(!peaked[i] && energy[i]<upperThreshold){}
+//   //   else if(!peaked[i] && energy[i]>=upperThreshold){peaked[i]=true;}
+//   //   else if(peaked[i] && energy[i]>=upperThreshold){}
+//   //   else if(peaked[i] && energy[i]<=lowerThreshold){
+//   //     peaked[i] = false;
+//   //     majorNumber = i;
+//   //     majorDetected = true;
+//   //     TTLtimerMajor = millis();
+//   //   }
+//   // }
+//   for(var j=0; j<beacons.length/8; j++)
+//     {
+//     energy[j] =  fft.getEnergy(major[j*major.length/8],major[j+1]);
+//       if(energy[j]>upperThreshold){
+//         majorDetected = true;
+//         majorNumber=j;
+//         ttlTimerMajor = millis();
+//         break;
+//       }
+//     } 
+//  }
+//  else{
+//       if(millis()-ttlTimerMajor>TTL){
+//         majorDetected = false;
+//         pingCounter = 0;
+//         pingPeriod = millis()- lastPing;
+//         console.log(pingPeriod + ", counter: " + pingCounter);
+//         return;
+//       }
+//       energy[majorNumber] = fft.getEnergy(major[majorNumber]);
+//       if(!peaked[majorNumber] && energy[majorNumber]<upperThreshold){}
+//       else if(!peaked[majorNumber] && energy[majorNumber]>=upperThreshold){peaked[majorNumber]=true;}
+//       else if(peaked[majorNumber] && energy[majorNumber]>=upperThreshold){}
+//       else if(peaked[majorNumber] && energy[majorNumber]<=lowerThreshold){
+//         peaked[majorNumber] = false;
+//         pingPeriod = millis()- lastPing;
+//         if(abs(pingPeriod-pingDuration)<pingTolerance)
+//         {
+//           pingCounter++;
+//           ttlTimerMajor = millis();
+//         }
+//         lastPing = millis();
+//         console.log("major: " + majorNumber + ", period: " + pingPeriod + ", counter: " + pingCounter);
+//       }
     
-    if(!minorDetected){
-    for(var j=0; j<minor[majorNumber].length; j++){
-    energyMinor[j] =  fft.getEnergy(minor[majorNumber][j]);
-    if(energyMinor[j]>upperThreshold){minorDetected = true;minorNumber=j;ttlTimerMinor = millis();break;}
-    }  
-    }
-    else{
-      if(millis()-ttlTimerMinor>TTL){
-        minorDetected = false;
-        pingCounterMinor = 0;
-        pingPeriodMinor = millis()- lastPingMinor;
-        console.log(pingPeriodMinor + ", counterMinor: " + pingCounterMinor);
-        return;
-      }
-      energyMinor[minorNumber] = fft.getEnergy(minor[majorNumber][minorNumber]);
-      if(!peakedMinor[minorNumber] && energyMinor[minorNumber]<upperThreshold){}
-      else if(!peakedMinor[minorNumber] && energyMinor[minorNumber]>=upperThreshold){peakedMinor[minorNumber]=true;}
-      else if(peakedMinor[minorNumber] && energyMinor[minorNumber]>=upperThreshold){}
-      else if(peakedMinor[minorNumber] && energyMinor[minorNumber]<=lowerThreshold){
-        peakedMinor[minorNumber] = false;
-        pingPeriodMinor = millis()- lastPingMinor;
-        if(abs(pingPeriodMinor-pingDuration)<pingTolerance)
-        {
-          pingCounterMinor++;
-          ttlTimerMinor = millis();
-        }
-        lastPingMinor = millis();
-        console.log("minor: " + minorNumber + ", period: " + pingPeriodMinor + ", counter: " + pingCounterMinor);
-      }  
-    }
-    if(pingCounterMinor > 2 && pingCounter > 2){console.log("major: " + majorNumber +", minor: "+ minorNumber);}
-    }
+//     if(!minorDetected){
+//     for(var j=0; j<minor[majorNumber].length; j++){
+//     energyMinor[j] =  fft.getEnergy(minor[majorNumber][j]);
+//     if(energyMinor[j]>upperThreshold){minorDetected = true;minorNumber=j;ttlTimerMinor = millis();break;}
+//     }  
+//     }
+//     else{
+//       if(millis()-ttlTimerMinor>TTL){
+//         minorDetected = false;
+//         pingCounterMinor = 0;
+//         pingPeriodMinor = millis()- lastPingMinor;
+//         console.log(pingPeriodMinor + ", counterMinor: " + pingCounterMinor);
+//         return;
+//       }
+//       energyMinor[minorNumber] = fft.getEnergy(minor[majorNumber][minorNumber]);
+//       if(!peakedMinor[minorNumber] && energyMinor[minorNumber]<upperThreshold){}
+//       else if(!peakedMinor[minorNumber] && energyMinor[minorNumber]>=upperThreshold){peakedMinor[minorNumber]=true;}
+//       else if(peakedMinor[minorNumber] && energyMinor[minorNumber]>=upperThreshold){}
+//       else if(peakedMinor[minorNumber] && energyMinor[minorNumber]<=lowerThreshold){
+//         peakedMinor[minorNumber] = false;
+//         pingPeriodMinor = millis()- lastPingMinor;
+//         if(abs(pingPeriodMinor-pingDuration)<pingTolerance)
+//         {
+//           pingCounterMinor++;
+//           ttlTimerMinor = millis();
+//         }
+//         lastPingMinor = millis();
+//         console.log("minor: " + minorNumber + ", period: " + pingPeriodMinor + ", counter: " + pingCounterMinor);
+//       }  
+//     }
+//     if(pingCounterMinor > 2 && pingCounter > 2){console.log("major: " + majorNumber +", minor: "+ minorNumber);}
+//     }
   
 
     
