@@ -10,19 +10,19 @@ var mic;
 var fft;
 var upperThreshold = 70;
 var lowerThreshold = 50;
+
 var peaked = [];
 var energy = [];
-var energyMinor = [];
-var peakedMinor = [];
+var beaconCounter = [];
+var beaconTimer = [];
+
 
 var majorNumber = 0; 
 var majorDetected = false; 
 var sampleTimer = 0;
 var TTL = 4000; 
-var ttlTimerMajor = 0; 
-var ttlTimerMinor = 0;
-var minorNumber = 0;
-var minorDetected = false;
+var ttlTimer = 0; 
+
 var highestEnergy = 0;
 var beaconNumber;
 
@@ -109,8 +109,33 @@ function setup(){
 
 }
 
+// else if(mode == 1){
+//   background(245);
+//   textAlign(CENTER,CENTER);
+//   textSize(32);
+//   var spectrum = fft.analyze();
+//   for(var i = 0; i<beacon.length; i++)
+//   {
+//     if (fft.getEnergy(beacon[i])>highestEnergy){
+//       energy = fft.getEnergy(beacon[i]);
+//       beaconNumber = i;
+//     }
+//   }
+//   if(millis()-sampleTimer>1000){
+//     sampleTimer = millis();
+//     console.log(beaconNumber + ",energy: " + highestEnergy);
+//     beaconNumber = null;
+//     highestEnergy=0;
+//   }
 
+// }
 
+// if(millis()-sampleTimer>1000){
+//   sampleTimer = millis();
+//   console.log(beaconNumber + ",energy: " + highestEnergy);
+//   beaconNumber = null;
+//   highestEnergy=0;
+// }
 
 function draw(){
   if(mode==0){
@@ -125,17 +150,20 @@ function draw(){
     var spectrum = fft.analyze();
     for(var i = 0; i<beacon.length; i++)
     {
-      if (fft.getEnergy(beacon[i])>highestEnergy){
-        highestEnergy = fft.getEnergy(beacon[i]);
-        beaconNumber = i;
-      }
+        energy[i] = fft.getEnergy(beacon[i]);
+        if(!peaked[i] && energy[i]<upperThreshold){if(millis()-beaconTimer[i]>TTL){beaconCounter[i] = 0;}}
+        else if(!peaked[i] && energy[i]>=upperThreshold){peaked[i]=true;}
+        else if(peaked[i] && energy[i]>=lowerThreshold){}
+        else if(peaked[i] && energy[i]<lowerThreshold){
+          peaked[i] = false;
+          if(abs(millis() - beaconTimer[i])<pingTolerance){
+            beaconCounter[i]++;
+          }
+          beaconTimer[i] = millis();
+        }
+    if(beaconTimer[i]>2){console.log("at region "+i);}
     }
-    if(millis()-sampleTimer>1000){
-      sampleTimer = millis();
-      console.log(beaconNumber + ",energy: " + highestEnergy);
-      beaconNumber = null;
-      highestEnergy=0;
-    }
+
 
   }
 
@@ -152,7 +180,7 @@ function typeEvent() {
 
 
 function buttonClickEvent() { 
-  if(name!== "123456"){
+  if(name == "123456"){
     startCon();
     mode = 1;
     button.hide();
