@@ -163,7 +163,8 @@ function draw(){
         else if(peaked[i] && energy[i]<lowerThreshold){
           peaked[i] = false;
           if(abs(millis() - beaconTimer[i])<900+pingTolerance){
-            beaconCounter[i]+=1;
+            beaconTimer[i] = millis();
+            beaconCounter[i]++;
             console.log("ping from "+i);
           }
           beaconTimer[i] = millis();
@@ -185,11 +186,12 @@ function mouseClicked() {
 
 function typeEvent() {
   name = this.value();
-  console.log('typed: ', this.value());
+  // console.log('typed: ', this.value());
 }
 
 
 function buttonClickEvent() { 
+  console.log('typed: ', name);
   if(name == "123456"){
     startCon();
     mode = 1;
