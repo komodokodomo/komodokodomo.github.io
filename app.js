@@ -111,8 +111,8 @@ function draw(){
     var spectrum = fft.analyze();
     for(var i = 0; i<beacon.length; i++)
     {
-      if (fft.energy(beacon[i])>highestEnergy){
-        highestEnergy = fft.energy(beacon[i]);
+      if (fft.getEnergy(beacon[i])>highestEnergy){
+        highestEnergy = fft.getEnergy(beacon[i]);
         beaconNumber = i;
       }
     }
