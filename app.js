@@ -164,7 +164,7 @@ function draw(){
           peaked[i] = false;
           if(abs(millis() - beaconTimer[i])<900+pingTolerance){
             beaconTimer[i] = millis();
-            beaconCounter[i]++;
+            beaconCounter[i] = beaconCounter[i] + 1;
             console.log("ping from "+i +", counter: " +beaconCounter[i]);
           }
           beaconTimer[i] = millis();
