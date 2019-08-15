@@ -18,6 +18,8 @@ var prevEnergy = [];
 var beaconCounter = [];
 var beaconTimer = [];
 var beaconDetected = [];
+var beaconHighestPower = 0;
+var beaconChosen = 0;
 
 
 
@@ -129,27 +131,37 @@ function draw(){
         if(!aboveThreshold[i] && energy[i]<upperThreshold){
           if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
             console.log("disconnected from "+i);
-            beaconDetected[i] = false;
+            // beaconDetected[i] = false;
             beaconCounter[i] = 0;
           }
         }
         else if(!aboveThreshold[i] && energy[i]>=upperThreshold){aboveThreshold[i]=true;}
-        else if(aboveThreshold[i] && energy[i]>=lowerThreshold){if(energy[i]>peakEnergy[i]){peakEnergy[i] = energy[i];}}
+        else if(aboveThreshold[i] && energy[i]>=lowerThreshold){
+        if(energy[i]>peakEnergy[i]){
+          peakEnergy[i] = energy[i];
+        }
+      }
         else if(aboveThreshold[i] && energy[i]<lowerThreshold){
           aboveThreshold[i] = false;
           if(abs(millis() - beaconTimer[i])<pingDuration+pingTolerance){
             beaconTimer[i] = millis();
             beaconCounter[i] = beaconCounter[i] + 1;
-            console.log("ping from "+i +", counter: " +beaconCounter[i] +", power: " +peakEnergy[i]);
-            peakEnergy[i] = 0;
+            console.log("ping from "+ i +", counter: " + beaconCounter[i] +", power: " +peakEnergy[i]);
+            if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
+            peakEnergy[i] = 0;       
           }
           beaconTimer[i] = millis();
         }
-    if(beaconCounter[i]>2){
-      beaconDetected[i] = true;
-      console.log("at region "+i);
-    }
-    }
+      //   
+      // if(beaconCounter[i]>2){
+      //   beaconDetected[i] = true;
+      // }
+  }
+  if(millis()-sampleTimer>1000){
+  if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
+  sampleTimer = millis();
+  }
+  }
 
 
   }
