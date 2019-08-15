@@ -118,7 +118,7 @@ function draw(){
     }
     if(millis()-sampleTimer>800){
       sampleTimer = millis();
-      console.log(beaconNumber);
+      console.log(beaconNumber + ",energy: " + highestEnergy);
       beaconNumber = null;
       highestEnergy=0;
     }
