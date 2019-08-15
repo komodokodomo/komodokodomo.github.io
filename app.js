@@ -86,7 +86,6 @@ function setup(){
     fft.setInput(mic);
   });
 
-  console.log(major.length + ", " + minor[0].length);
 }
 
 
