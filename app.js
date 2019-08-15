@@ -133,6 +133,7 @@ function draw(){
             console.log("disconnected from "+i);
             // beaconDetected[i] = false;
             beaconCounter[i] = 0;
+            if(beaconChosen == i){beaconChosen = null;}
           }
         }
         else if(!aboveThreshold[i] && energy[i]>=upperThreshold){aboveThreshold[i]=true;}
