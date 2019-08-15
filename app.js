@@ -165,7 +165,7 @@ function draw(){
     
   }
   else{
-    console.log(fft.getEnergy(beacon[0],beacon[beacon.length-1]));
+    // console.log(fft.getEnergy(beacon[0],beacon[beacon.length-1]));
   }
   }
 
