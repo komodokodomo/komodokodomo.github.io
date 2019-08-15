@@ -15,7 +15,6 @@ var peaked = [];
 var energy = [];
 var beaconCounter = [];
 var beaconTimer = [];
-var beaconNumber;
 var beaconDetected = [];
 
 
@@ -28,14 +27,9 @@ var highestEnergy = 0;
 
 var name;
 
-var pingPeriod;
-var pingPeriodMinor;
-var lastPing;
-var lastPingMinor;
-var pingDuration = 800;
+
+var pingDuration = 900;
 var pingTolerance = 50;
-var pingCounter = 0;
-var pingCounterMinor = 0;
 
 
 // var beacon =[ 
@@ -107,35 +101,14 @@ function setup(){
     fft.setInput(mic);
   });
 
+  for(var i = 0; i<beacon.length; i++)
+  {
+    beaconDetected[i] = false;
+    beaconCounter[i] = 0;
+  }
+
 }
 
-// else if(mode == 1){
-//   background(245);
-//   textAlign(CENTER,CENTER);
-//   textSize(32);
-//   var spectrum = fft.analyze();
-//   for(var i = 0; i<beacon.length; i++)
-//   {
-//     if (fft.getEnergy(beacon[i])>highestEnergy){
-//       energy = fft.getEnergy(beacon[i]);
-//       beaconNumber = i;
-//     }
-//   }
-//   if(millis()-sampleTimer>1000){
-//     sampleTimer = millis();
-//     console.log(beaconNumber + ",energy: " + highestEnergy);
-//     beaconNumber = null;
-//     highestEnergy=0;
-//   }
-
-// }
-
-// if(millis()-sampleTimer>1000){
-//   sampleTimer = millis();
-//   console.log(beaconNumber + ",energy: " + highestEnergy);
-//   beaconNumber = null;
-//   highestEnergy=0;
-// }
 
 function draw(){
   if(mode==0){
@@ -162,7 +135,7 @@ function draw(){
         else if(peaked[i] && energy[i]>=lowerThreshold){}
         else if(peaked[i] && energy[i]<lowerThreshold){
           peaked[i] = false;
-          if(abs(millis() - beaconTimer[i])<900+pingTolerance){
+          if(abs(millis() - beaconTimer[i])<pingDuration+pingTolerance){
             beaconTimer[i] = millis();
             beaconCounter[i] = beaconCounter[i] + 1;
             console.log("ping from "+i +", counter: " +beaconCounter[i]);
