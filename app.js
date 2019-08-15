@@ -26,7 +26,6 @@ var minorDetected = false;
 var highestEnergy = 0;
 var beaconNumber;
 
-let filter;
 var name;
 
 var pingPeriod;
@@ -91,14 +90,6 @@ function setup(){
   button = createButton("ENTER");
   button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 1.5*gamepin.size().height);
   button.mousePressed(buttonClickEvent)
-
-  filter = new p5.BandPass();
-
-
-
-  mic.disconnect(); // Disconnect soundfile from master output...
-  filter.process(mic); // ...and connect to filter so we'll only hear BandPass.
-  noise.start();
   
   mic = new p5.AudioIn()
   mic.start();
