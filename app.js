@@ -129,7 +129,6 @@ function draw(){
     {
         energy[i] = fft.getEnergy(beacon[i]);
         if(!aboveThreshold[i] && energy[i]<upperThreshold){
-          peakEnergy[i] = 0; 
           if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
             console.log("disconnected from "+ i);
             // beaconDetected[i] = false;
@@ -148,7 +147,7 @@ function draw(){
           if(abs(millis() - beaconTimer[i])<pingDuration+pingTolerance){
             beaconTimer[i] = millis();
             beaconCounter[i] = beaconCounter[i] + 1;
-            // console.log("ping from "+ i +", counter: " + beaconCounter[i] +", power: " +peakEnergy[i]);
+            console.log("ping from "+ i +", counter: " + beaconCounter[i] +", power: " +peakEnergy[i]);
             if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
             peakEnergy[i] = 0;       
           }
