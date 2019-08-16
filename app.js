@@ -158,10 +158,10 @@ function draw(){
       //   beaconDetected[i] = true;
       // }
   }
-  if(millis()-sampleTimer>1000){
-  if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
-  sampleTimer = millis();
-  }
+  // if(millis()-sampleTimer>1000){
+  // if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
+  // sampleTimer = millis();
+  // }
   }
 
 
