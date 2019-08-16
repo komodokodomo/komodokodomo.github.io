@@ -142,7 +142,7 @@ function draw(){
       console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +fft.getEnergy(beacon[i]));
     }
     if(beaconCounter[i]>2){beaconDetected[i] = true;}
-    if(millis() - beaconTimer[i] > TTL){beaconDetected[i] = false;console.log("disconnected from "+ i);}
+    if(millis() - beaconTimer[i] > TTL && beaconDetected[i]==true){beaconDetected[i] = false;console.log("disconnected from "+ i);}
   }
   //   for(var i = 0; i<beacon.length; i++)
   //   {
