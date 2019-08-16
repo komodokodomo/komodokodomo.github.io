@@ -155,10 +155,10 @@ function draw(){
         else if(aboveThreshold[i] && energy[i]<lowerThreshold){
           aboveThreshold[i] = false;
           if(millis()-lastPing[i]<pingDuration+pingTolerance && millis()-lastPing[i]>pingDuration-pingTolerance){
-            console.log(millis() - beaconTimer[i]);
+            // console.log(millis() - beaconTimer[i]);
             beaconTimer[i] = millis();
             beaconCounter[i] = beaconCounter[i] + 1;
-            console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
+            // console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
             if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
             peakEnergy[i] = 0;       
           }
@@ -167,7 +167,7 @@ function draw(){
       if(beaconCounter[i]>2){
         beaconDetected[i] = true;
       }
-  }
+    }
   if(millis()-sampleTimer>1000){
   if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
   else if(beaconChosen == null){console.log("no region detected");}
