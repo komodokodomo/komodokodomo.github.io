@@ -158,7 +158,7 @@ function draw(){
             // console.log(millis() - beaconTimer[i]);
             beaconTimer[i] = millis();
             beaconCounter[i] = beaconCounter[i] + 1;
-            // console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
+            console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
             if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
             peakEnergy[i] = 0;       
           }
