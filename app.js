@@ -140,7 +140,7 @@ function draw(){
       if(abs(millis() - beaconTimer[i] - pingDuration) < pingTolerance){
         beaconCounter[i]++;
       beaconTimer[i] = millis();
-      // console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +fft.getEnergy(beacon[i]));
+      console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +fft.getEnergy(beacon[i]));
     }
     }
     if(beaconCounter[i]>2){beaconDetected[i] = true;console.log("connected to "+ i);}
@@ -201,12 +201,15 @@ function typeEvent() {
 
 
 function buttonClickEvent() { 
-  console.log('typed: ', name);
+  console.log("correct PIN");
   if(name == "123456"){
     startCon();
     mode = 1;
     button.hide();
     gamepin.hide();
+  }
+  else{
+    console.log("wrong PIN");
   }
 }
 
