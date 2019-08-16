@@ -18,6 +18,7 @@ var prevEnergy = [];
 var beaconCounter = [];
 var beaconTimer = [];
 var beaconPrevTimer = [];
+var lastPing = [];
 
 var beaconDetected = [];
 var beaconHighestPower = 0;
@@ -116,6 +117,7 @@ function setup(){
     beaconCounter[i] = 0;
     beaconPrevTimer[i] = 0;
     beaconTimer[i] = 0;
+    lastPing[i] = 0;
     peakDetect[i] = new p5.PeakDetect(beacon[i]-50,beacon[i]+50,0.5);
   }
 
@@ -186,7 +188,8 @@ function draw(){
   sampleTimer = millis();
   }
   }
-
+ 
+  //ADD LAST PING
 
   }
 
