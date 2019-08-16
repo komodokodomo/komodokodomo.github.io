@@ -22,7 +22,7 @@ var lastPing = [];
 
 var beaconDetected = [];
 var beaconHighestPower = 0;
-var beaconChosen = 0;
+var beaconChosen = null;
 
 var peakDetect = [];
 
@@ -169,8 +169,9 @@ function draw(){
       }
   }
   if(millis()-sampleTimer>1000){
-  // if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
-  console.log("at region "+beaconChosen);
+  if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
+  else if(beaconChosen == null){console.log("no region detected");}
+  // console.log("at region "+beaconChosen);
   sampleTimer = millis();
   }
   }
