@@ -149,21 +149,21 @@ function draw(){
           if(abs(millis() - beaconTimer[i])<pingDuration+pingTolerance){
             beaconTimer[i] = millis();
             beaconCounter[i] = beaconCounter[i] + 1;
-            console.log("ping from "+ i +", counter: " + beaconCounter[i] +", power: " +peakEnergy[i]);
+            console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
             if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
             peakEnergy[i] = 0;       
           }
-          beaconTimer[i] = millis();
+          // beaconTimer[i] = millis();
         }
       //   
       if(beaconCounter[i]>2){
         beaconDetected[i] = true;
       }
   }
-  // if(millis()-sampleTimer>1000){
-  // if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
-  // sampleTimer = millis();
-  // }
+  if(millis()-sampleTimer>1000){
+  if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
+  sampleTimer = millis();
+  }
   }
 
 
