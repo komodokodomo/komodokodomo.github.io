@@ -168,7 +168,8 @@ function draw(){
         beaconDetected[i] = true;
       }
     }
-  if(millis()-sampleTimer>1000){
+    beaconHighestPower=0;
+  if(millis()-sampleTimer>pingDuration){
   if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
   else if(beaconChosen == null){console.log("no region detected");}
   // console.log("at region "+beaconChosen);
