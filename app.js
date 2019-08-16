@@ -51,7 +51,7 @@ var pingTolerance = 50;
 // 17429,17391,17354,17316,17279,17241,17204,17167,17131,17094,17058
 // ];
 
-var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356,20779,21220]; //safe space
+var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe space
 // var beacon =[18059,18141,18223,18265,18913,19608,20356]; 
 
 // var beacon =[ 
@@ -133,7 +133,7 @@ function draw(){
         if(!aboveThreshold[i] && energy[i]<upperThreshold){
           if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
             console.log("disconnected from "+ i);
-            // beaconDetected[i] = false;
+            beaconDetected[i] = false;
             beaconCounter[i] = 0;
             if(beaconChosen == i){beaconChosen = null;}
           }
@@ -149,21 +149,21 @@ function draw(){
           if(abs(millis() - beaconTimer[i])<pingDuration+pingTolerance){
             beaconTimer[i] = millis();
             beaconCounter[i] = beaconCounter[i] + 1;
-            console.log("ping from "+ i +", counter: " + beaconCounter[i] +", power: " +peakEnergy[i]);
+            // console.log("ping from "+ i +", counter: " + beaconCounter[i] +", power: " +peakEnergy[i]);
             if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
             peakEnergy[i] = 0;       
           }
           beaconTimer[i] = millis();
         }
       //   
-      // if(beaconCounter[i]>2){
-      //   beaconDetected[i] = true;
-      // }
+      if(beaconCounter[i]>2){
+        beaconDetected[i] = true;
+      }
   }
-  // if(millis()-sampleTimer>1000){
-  // if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
-  // sampleTimer = millis();
-  // }
+  if(millis()-sampleTimer>1000){
+  if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
+  sampleTimer = millis();
+  }
   }
 
 
