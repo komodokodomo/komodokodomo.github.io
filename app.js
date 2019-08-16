@@ -17,10 +17,13 @@ var peakEnergy = [];
 var prevEnergy = [];
 var beaconCounter = [];
 var beaconTimer = [];
+var beaconPrevTimer = [];
+
 var beaconDetected = [];
 var beaconHighestPower = 0;
 var beaconChosen = 0;
 
+var peakDetect = [];
 
 
 var sampleTimer = 0;
@@ -111,6 +114,9 @@ function setup(){
   {
     beaconDetected[i] = false;
     beaconCounter[i] = 0;
+    beaconPrevTimer[i] = 0;
+    beaconTimer[i] = 0;
+    peakDetect[i] = new p5.PeakDetect(beacon[i]-30,beacon[i]+30);
   }
 
 }
@@ -128,42 +134,53 @@ function draw(){
     textSize(32);
     var spectrum = fft.analyze();
     for(var i = 0; i<beacon.length; i++)
-    {
-        energy[i] = fft.getEnergy(beacon[i]);
-        if(!aboveThreshold[i] && energy[i]<upperThreshold){
-          if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
-            console.log("disconnected from "+ i);
-            beaconDetected[i] = false;
-            beaconCounter[i] = 0;
-            if(beaconChosen == i){beaconChosen = null;}
-          }
-        }
-        else if(!aboveThreshold[i] && energy[i]>=upperThreshold){aboveThreshold[i]=true;}
-        else if(aboveThreshold[i] && energy[i]>=lowerThreshold){
-        if(energy[i]>peakEnergy[i]){
-          peakEnergy[i] = energy[i];
-        }
-      }
-        else if(aboveThreshold[i] && energy[i]<lowerThreshold){
-          aboveThreshold[i] = false;
-          if(abs(millis() - beaconTimer[i])<pingDuration+pingTolerance){
-            beaconTimer[i] = millis();
-            beaconCounter[i] = beaconCounter[i] + 1;
-            console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
-            if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
-            peakEnergy[i] = 0;       
-          }
-          // beaconTimer[i] = millis();
-        }
-      //   
-      if(beaconCounter[i]>2){
-        beaconDetected[i] = true;
-      }
+  {
+    peakDetect[i].update(fft);
+    if ( peakDetect[i].isDetected ) {
+      if(abs(millis() - beaconTimer[i] - pingDuration) < pingTolerance){beaconCounter[i]++;}
+      beaconTimer[i] = millis();
+      console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +fft.getEnergy(beacon[i]));
+    }
+    if(beaconCounter[i]>2){beaconDetected[i] = true;}
+    if(millis() - beaconTimer[i] > TTL){beaconDetected[i] = false;console.log("disconnected from "+ i);}
   }
-  if(millis()-sampleTimer>1000){
-  if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
-  sampleTimer = millis();
-  }
+  //   for(var i = 0; i<beacon.length; i++)
+  //   {
+  //       energy[i] = fft.getEnergy(beacon[i]);
+  //       if(!aboveThreshold[i] && energy[i]<upperThreshold){
+  //         if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
+  //           console.log("disconnected from "+ i);
+  //           beaconDetected[i] = false;
+  //           beaconCounter[i] = 0;
+  //           if(beaconChosen == i){beaconChosen = null;}
+  //         }
+  //       }
+  //       else if(!aboveThreshold[i] && energy[i]>=upperThreshold){aboveThreshold[i]=true;}
+  //       else if(aboveThreshold[i] && energy[i]>=lowerThreshold){
+  //       if(energy[i]>peakEnergy[i]){
+  //         peakEnergy[i] = energy[i];
+  //       }
+  //     }
+  //       else if(aboveThreshold[i] && energy[i]<lowerThreshold){
+  //         aboveThreshold[i] = false;
+  //         if(abs(millis() - beaconTimer[i])<pingDuration+pingTolerance){
+  //           beaconTimer[i] = millis();
+  //           beaconCounter[i] = beaconCounter[i] + 1;
+  //           console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
+  //           if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
+  //           peakEnergy[i] = 0;       
+  //         }
+  //         beaconTimer[i] = millis();
+  //       }
+  //     //   
+  //     if(beaconCounter[i]>2){
+  //       beaconDetected[i] = true;
+  //     }
+  // }
+  // if(millis()-sampleTimer>1000){
+  // if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
+  // sampleTimer = millis();
+  // }
   }
 
 
