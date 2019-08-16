@@ -106,7 +106,7 @@ function setup(){
   userStartAudio(mic).then(function() {
     console.log("audio enabled");
     fft = new p5.FFT();
-    fft.smooth(0.9);
+    fft.smooth(0.5);
     fft.setInput(mic);
   });
 
@@ -177,7 +177,6 @@ function draw(){
           }
           beaconTimer[i] = millis();
         }
-      //   
       if(beaconCounter[i]>2){
         beaconDetected[i] = true;
       }
