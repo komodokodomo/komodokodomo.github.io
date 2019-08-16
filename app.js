@@ -116,7 +116,7 @@ function setup(){
     beaconCounter[i] = 0;
     beaconPrevTimer[i] = 0;
     beaconTimer[i] = 0;
-    peakDetect[i] = new p5.PeakDetect(beacon[i]-10,beacon[i]+10,0.5);
+    peakDetect[i] = new p5.PeakDetect(beacon[i]-50,beacon[i]+50,0.5);
   }
 
 }
