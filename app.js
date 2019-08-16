@@ -101,7 +101,7 @@ function setup(){
   userStartAudio(mic).then(function() {
     console.log("audio enabled");
     fft = new p5.FFT();
-    // fft.smooth(0.1);
+    fft.smooth(0.1);
     fft.setInput(mic);
   });
 
@@ -129,8 +129,9 @@ function draw(){
     {
         energy[i] = fft.getEnergy(beacon[i]);
         if(!aboveThreshold[i] && energy[i]<upperThreshold){
+          peakEnergy[i] = 0; 
           if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
-            console.log("disconnected from "+i);
+            console.log("disconnected from "+ i);
             // beaconDetected[i] = false;
             beaconCounter[i] = 0;
             if(beaconChosen == i){beaconChosen = null;}
