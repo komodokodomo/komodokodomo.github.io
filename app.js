@@ -106,7 +106,7 @@ function setup(){
   userStartAudio(mic).then(function() {
     console.log("audio enabled");
     fft = new p5.FFT();
-    fft.smooth(1.0);
+    fft.smooth(0.9);
     fft.setInput(mic);
   });
 
