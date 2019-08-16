@@ -137,7 +137,7 @@ function draw(){
   {
     peakDetect[i].update(fft);
     if ( peakDetect[i].isDetected ) {
-      console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +fft.getEnergy(beacon[i]));
+      console.log("beacon "+ i +", count: " + beaconCounter[i] + "duration: " + abs(millis() - beaconTimer[i] - pingDuration)+ ", pow: " +fft.getEnergy(beacon[i]));
       if(abs(millis() - beaconTimer[i] - pingDuration) < pingTolerance){
       beaconCounter[i]++;
       beaconTimer[i] = millis();
