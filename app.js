@@ -36,7 +36,7 @@ var name;
 
 
 var pingDuration = 900;
-var pingTolerance = 50;
+var pingTolerance = 40;
 
 
 // var beacon =[ 
@@ -139,9 +139,9 @@ function draw(){
     if ( peakDetect[i].isDetected ) {
       if(abs(millis() - beaconTimer[i] - pingDuration) < pingTolerance){beaconCounter[i]++;}
       beaconTimer[i] = millis();
-      console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +fft.getEnergy(beacon[i]));
+      // console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +fft.getEnergy(beacon[i]));
     }
-    if(beaconCounter[i]>2){beaconDetected[i] = true;}
+    if(beaconCounter[i]>2){beaconDetected[i] = true;console.log("disconnected to "+ i);}
     if(millis() - beaconTimer[i] > TTL && beaconDetected[i]==true){beaconDetected[i] = false;console.log("disconnected from "+ i);}
   }
   //   for(var i = 0; i<beacon.length; i++)
