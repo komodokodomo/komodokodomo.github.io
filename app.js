@@ -93,6 +93,7 @@ function setup(){
 
   question = createElement('iframe');
   question.attribute('src', 'https://docs.google.com/forms/d/e/1FAIpQLSdterwwHt905pZvfXTkG7hYom9eN2SheF-InsGcvWCFjSS4yA/viewform?embedded=true');
+  question.hide();
 
   gamepin = createInput('');
   gamepin.attribute('placeholder', 'GAME PIN');
