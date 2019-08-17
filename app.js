@@ -91,8 +91,9 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
 
-  question = createElement('iframe','https://docs.google.com/forms/d/e/1FAIpQLSdterwwHt905pZvfXTkG7hYom9eN2SheF-InsGcvWCFjSS4yA/viewform?embedded=true');
-  
+  question = createElement('iframe');
+  question.attribute('src', 'https://docs.google.com/forms/d/e/1FAIpQLSdterwwHt905pZvfXTkG7hYom9eN2SheF-InsGcvWCFjSS4yA/viewform?embedded=true');
+
   gamepin = createInput('');
   gamepin.attribute('placeholder', 'GAME PIN');
   gamepin.style('text-align', 'center');
