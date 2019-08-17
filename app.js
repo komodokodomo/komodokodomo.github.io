@@ -22,8 +22,8 @@ var lastPing = [];
 
 var beaconDetected = [];
 var beaconHighestPower = 0;
-var beaconChosen = null;
-var beaconPrevChosen = null;
+var beaconChosen = 999;
+var beaconPrevChosen = 999;
 
 
 var peakDetect = [];
@@ -145,7 +145,7 @@ function draw(){
             console.log("disconnected from "+ i);
             beaconDetected[i] = false;
             beaconCounter[i] = 0;
-            if(beaconChosen == i){beaconChosen = null;}
+            if(beaconChosen == i){beaconChosen = 999;}
           }
         }
         else if(!aboveThreshold[i] && energy[i]>=upperThreshold){aboveThreshold[i]=true;}
@@ -173,7 +173,7 @@ function draw(){
     beaconHighestPower=0;
   if(millis()-sampleTimer>pingDuration){
   if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
-  else if(beaconChosen == null){console.log("no region detected");}
+  else if(beaconChosen == 999){console.log("no region detected");}
   // console.log("at region "+beaconChosen);
   sampleTimer = millis();
   }
