@@ -41,6 +41,8 @@ var name;
 var pingDuration = 900;
 var pingTolerance = 40;
 
+var question;
+
 
 // var beacon =[ 
 // 22222,22161,22099,22039,21978,21918,21858,21798,21739,
@@ -89,7 +91,8 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
 
-
+  question = createElement('iframe','https://docs.google.com/forms/d/e/1FAIpQLSdterwwHt905pZvfXTkG7hYom9eN2SheF-InsGcvWCFjSS4yA/viewform?embedded=true');
+  
   gamepin = createInput('');
   gamepin.attribute('placeholder', 'GAME PIN');
   gamepin.style('text-align', 'center');
@@ -187,7 +190,7 @@ function draw(){
   }
 
 
-
+{/* <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdterwwHt905pZvfXTkG7hYom9eN2SheF-InsGcvWCFjSS4yA/viewform?embedded=true" width="640" height="1395" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> */}
 function mouseClicked() {
 }
 
