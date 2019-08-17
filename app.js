@@ -180,7 +180,10 @@ function draw(){
   }
  
   //ADD LAST PING
-  if(beaconChosen !== beaconPrevChosen){console.log("room change");beaconPrevChosen = beaconChosen;}
+  if(beaconChosen !== beaconPrevChosen){
+    socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
+    console.log("room change");
+    beaconPrevChosen = beaconChosen;}
   }
 
 
