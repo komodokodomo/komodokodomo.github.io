@@ -23,6 +23,8 @@ var lastPing = [];
 var beaconDetected = [];
 var beaconHighestPower = 0;
 var beaconChosen = null;
+var beaconPrevChosen = null;
+
 
 var peakDetect = [];
 
@@ -178,7 +180,7 @@ function draw(){
   }
  
   //ADD LAST PING
-
+  if(beaconChosen !== beaconPrevChosen){console.log("room change");beaconPrevChosen = beaconChosen;}
   }
 
 
