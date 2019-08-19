@@ -67,8 +67,8 @@ var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe spac
 var socket;
 
 var gamepin,nickname;
-var button;
-var radio;
+var button,submitButton;
+var radio,optionChose;
 
 function startCon(){
 	socket = io('cotf.cf', {
@@ -114,7 +114,12 @@ function setup(){
 
   button = createButton("ENTER");
   button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 3*gamepin.size().height);
-  button.mousePressed(buttonClickEvent)
+  button.mousePressed(enterButtonEvent);
+
+  submitButton = createButton("SUBMIT");
+  submitButton.position(w/2 - submitButton.size().width/2,h/2- submitButton.size().height/2+300 + 3*gamepin.size().height);
+  submitButton.mousePressed(submitButtonEvent);
+  submitButton.hide();
   
   mic = new p5.AudioIn()
   mic.start();
@@ -189,21 +194,26 @@ function draw(){
     imageMode(CENTER);
     image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);
     }
-  else if(mode == 1){
+  else{
+    
     background(245);
     textAlign(CENTER,CENTER);
-    textSize(32);
+    textSize(32);  
     
     monitorBeacon();
+    if(beaconChosen !== beaconPrevChosen){
+      socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
+      console.log("room change");
+      beaconPrevChosen = beaconChosen;}
+      if(beaconChosen !== 99){radio.show();submitButton.show();}
+    }
+    if(mode == 1){
 
-    
+    }
   }
+
  
-  if(beaconChosen !== beaconPrevChosen){
-    socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
-    console.log("room change");
-    beaconPrevChosen = beaconChosen;}
-  }
+
 
 
 {/* <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdterwwHt905pZvfXTkG7hYom9eN2SheF-InsGcvWCFjSS4yA/viewform?embedded=true" width="640" height="1395" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> */}
@@ -221,9 +231,9 @@ function typeEvent2() {
   // console.log('typed: ', this.value());
 }
 
-function buttonClickEvent() { 
-  console.log("correct PIN");
+function enterButtonEvent() { 
   if(PIN == "123456" && name !== null){
+    console.log("correct PIN");
     startCon();
     mode = 1;
     button.hide();
@@ -235,3 +245,12 @@ function buttonClickEvent() {
   }
 }
 
+function submitButtonEvent() { 
+  if(optionChose !== null){
+    console.log("submitted");
+    mode++;
+  }
+  else{
+    console.log("no option selected");
+  }
+}
