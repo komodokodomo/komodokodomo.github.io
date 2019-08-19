@@ -91,10 +91,10 @@ function setup(){
   question.hide();
 
   radio = createRadio();
-  radio.option('1');
-  radio.option('2');
-  radio.option('3');
-  radio.option('4');
+  radio.option("opt1",'1');
+  radio.option("opt2",'2');
+  radio.option("opt3",'3');
+  radio.option("opt4",'4');
   radio.style('width', '60px');
   radio.position(w/2,h/2);
   radio.hide();
@@ -209,6 +209,7 @@ function draw(){
 
       if(beaconChosen == 8){
         radio.show();
+        radio.option("opt4","test");
         submitButton.show();
       }
       else{
@@ -255,7 +256,7 @@ function enterButtonEvent() {
 }
 
 function submitButtonEvent() { 
-  if(optionChose !== null){
+  if(radio.value() !== null){
     console.log("submitted");
     mode++;
   }
