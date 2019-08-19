@@ -1,47 +1,42 @@
 let logo;
-let region;
 
-var w;
-var h;
-var mode = 0; // 0 - login  1 -
-var code = "";
+var w,h,region;
+
+var mode = 0; 
 
 var mic;
 var fft;
 var upperThreshold = 80;
 var lowerThreshold = 50;
-
 var aboveThreshold = [];
 var energy = [];
 var peakEnergy = [];
-var prevEnergy = [];
 var beaconCounter = [];
 var beaconTimer = [];
-var beaconPrevTimer = [];
 var lastPing = [];
-
+var TTL = 4000; 
 var beaconDetected = [];
 var beaconHighestPower = 0;
 var beaconChosen = 999;
 var beaconPrevChosen = 999;
-
-
-var peakDetect = [];
+var pingDuration = 900;
+var pingTolerance = 40;
+var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe space
 
 
 var sampleTimer = 0;
-var TTL = 4000; 
-var ttlTimer = 0; 
-
-var highestEnergy = 0;
-
-var name,PIN;
 
 
-var pingDuration = 900;
-var pingTolerance = 40;
+var name,INPUT;
 
-var question;
+
+  
+var socket;
+
+var gamepin;
+var button,submitButton;
+var radio;
+
 
 
 // var beacon =[ 
@@ -59,61 +54,31 @@ var question;
 // 17429,17391,17354,17316,17279,17241,17204,17167,17131,17094,17058
 // ];
 
-var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe space
 
-
-
-  
-var socket;
-
-var gamepin,nickname;
-var button,submitButton;
-var radio,optionChose;
-
-function startCon(){
-	socket = io('cotf.cf', {
-});
-	socket.on('connect', function() {
-		socket.emit('hello',name);
-		console.log("connected");		 
-	});
-}
 
 function setup(){
-  w = window.innerWidth;
+  w = window.innerWidth;                                                    
   h = window.innerHeight;
 	createCanvas(w,h);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
 
-  question = createElement('iframe');
-  question.attribute('src', 'https://docs.google.com/forms/d/e/1FAIpQLSdterwwHt905pZvfXTkG7hYom9eN2SheF-InsGcvWCFjSS4yA/viewform?embedded=true');
-  question.hide();
-
   radio = createRadio();
-  radio.option("opt1",'1');
-  radio.option("opt2",'2');
-  radio.option("opt3",'3');
-  radio.option("opt4",'4');
+  radio.option('1');
+  radio.option('2');
+  radio.option('3');
+  radio.option('4');
   radio.style('width', '60px');
   radio.position(w/2,h/2);
   radio.hide();
 
   gamepin = createInput('');
-  gamepin.attribute('placeholder', 'GAME PIN');
+  gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
   gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+300);
-  console.log(gamepin.size());
   gamepin.input(typeEvent);
 
-  nickname = createInput('');
-  nickname.attribute('placeholder', 'NAME');
-  nickname.style('text-align', 'center');
-  nickname.position(w/2 - nickname.size().width/2,h/2- nickname.size().height/2+330);
-  console.log(gamepin.size());
-  nickname.input(typeEvent2);
-
-  button = createButton("ENTER");
+  button = createButton("SUBMIT");
   button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 3*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
 
@@ -127,25 +92,102 @@ function setup(){
   mic.amp(1.0);
 
 
-  userStartAudio(mic).then(function() {
-    console.log("audio enabled");
-    fft = new p5.FFT();
-    // fft.smooth(0.3);
-    fft.setInput(mic);
+  userStartAudio(mic).then(function() 
+  {
+    console.log("audio enabled");                                           //** debug **
+    fft = new p5.FFT();                                                     //initialize new FFT object
+    // fft.smooth(0.3);                                                     //set how much smoothing FFT receives
+    fft.setInput(mic);                                                      //set which input FFT analyzes
   });
 
-  for(var i = 0; i<beacon.length; i++)
+  for(var i = 0; i<beacon.length; i++)                                      //initialize array values to 0
   {
-    beaconDetected[i] = false;
-    beaconCounter[i] = 0;
-    beaconPrevTimer[i] = 0;
-    beaconTimer[i] = 0;
-    lastPing[i] = 0;
+    beaconDetected[i] = false;                                              //////////////////////////////
+    beaconCounter[i] = 0;                                                   //////////////////////////////
+    beaconTimer[i] = 0;                                                     //////////////////////////////
+    lastPing[i] = 0;                                                        //////////////////////////////
   }
 
 }
 
-function monitorBeacon(){
+
+
+function draw()
+{
+  if(mode==0)
+  {                                                                         //home screen + ask for NICKNAME
+    background(245);                                                        //set background to light grey
+    imageMode(CENTER);                                                      //align image coordinates to CENTER
+    image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);         //display loaded image
+  }
+  else if(mode == 1)
+  {                                                                         //home screen + ask for PIN
+    background(245);                                                        //set background to light grey
+    imageMode(CENTER);                                                      //align image coordinates to CENTER
+    image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);         //display loaded image
+  }
+  
+  else
+  {                                                                         //
+    background(245);                                                        //
+    textAlign(CENTER,CENTER);                                               //
+    textSize(32);                                                           //
+    
+    scanBeacon();                                                           //
+    checkRegionChange();                                                    //
+
+
+    if(beaconChosen == 8)
+    {
+      radio.show();
+      submitButton.show();
+    }
+    else
+    {
+      radio.hide();
+      submitButton.hide();
+    }
+  }
+}
+
+function mouseClicked() 
+{
+}
+
+// document.getElementById("myButton1").value="New Button Text";
+
+function typeEvent() {
+  INPUT = this.value();                                                     //update INPUT data with whatever is typed
+  console.log('typed: ', this.value());                                     //** debug **
+}
+
+
+function enterButtonEvent() { 
+  if(mode == 0){                                                            //at initial screen
+    if(INPUT !== null){                                                     //if something was actually typed on the screen
+    name = INPUT;                                                           //set value of "name" to whatever was typed
+    mode = 1;                                                               //then change to PIN entering mode
+    gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
+    INPUT = "";                                                             //reset INPUT value to 0;
+    console.log("welcome " + INPUT)                                         //** debug **
+  }
+}
+  else if(mode ==1 ){
+  if(INPUT == "123456"){                                                    //if players key in the right PIN
+    startCon();                                                             //enter game lobby
+    mode = 2;                                                               //change to task screen
+    button.hide();                                                          //hide away button
+    gamepin.hide();                                                         //hide input button
+    console.log("correct PIN");                                             //** debug **
+  }
+  else{                                                                     //if player keys in a wrong PIN
+    console.log("wrong PIN");
+  }
+}
+}
+
+function scanBeacon()
+{
   var spectrum = fft.analyze();
   for(var i = 0; i<beacon.length; i++)
   {
@@ -181,86 +223,37 @@ function monitorBeacon(){
     }
   }
   beaconHighestPower=0;
-if(millis()-sampleTimer>pingDuration){
-if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
-else if(beaconChosen == 999){console.log("no region detected");}
-// console.log("at region "+beaconChosen);
-sampleTimer = millis();
-}
-}
 
-function draw(){
-  if(mode==0){
-    background(245);
-    imageMode(CENTER);
-    image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);
+if(millis()-sampleTimer>pingDuration)
+  {
+    if(beaconCounter[beaconChosen]>2)
+    {
+      console.log("at region "+beaconChosen);
     }
-  else{
-    background(245);
-    textAlign(CENTER,CENTER);
-    textSize(32);  
-
-    monitorBeacon();
-    if(beaconChosen !== beaconPrevChosen){
-      socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
-      console.log("room change");
-      beaconPrevChosen = beaconChosen;
+    else if(beaconChosen == 999)
+    {
+      console.log("no region detected");
     }
-
-      if(beaconChosen == 8){
-        radio.show();
-        radio.option("opt4","test");
-        submitButton.show();
-      }
-      else{
-        radio.hide();
-        submitButton.hide();
-      }
-    }
-    if(mode == 1){
-
-    }
-  }
-
- 
-
-
-
-{/* <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdterwwHt905pZvfXTkG7hYom9eN2SheF-InsGcvWCFjSS4yA/viewform?embedded=true" width="640" height="1395" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> */}
-function mouseClicked() {
-}
-
-
-function typeEvent() {
-  PIN = this.value();
-  // console.log('typed: ', this.value());
-}
-
-function typeEvent2() {
-  name = this.value();
-  // console.log('typed: ', this.value());
-}
-
-function enterButtonEvent() { 
-  if(PIN == "123456" && name !== null){
-    console.log("correct PIN");
-    startCon();
-    mode = 1;
-    button.hide();
-    gamepin.hide();
-    nickname.hide();
-  }
-  else{
-    console.log("wrong PIN");
+  sampleTimer = millis();
   }
 }
 
-function submitButtonEvent() { 
-  if(radio.value() !== null){
-    console.log("submitted");
-    mode++;
+function(checkRegionChange)
+{
+  if(beaconChosen !== beaconPrevChosen)
+  {
+    socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
+    console.log("room change");
+    beaconPrevChosen = beaconChosen;
   }
-  else{
-    console.log("no option selected");
-  }
+}
+
+function startCon()
+{
+	socket = io('cotf.cf', {});
+  socket.on('connect', function() 
+  {
+		socket.emit('hello',name);
+		console.log("connected");		 
+	});
 }
