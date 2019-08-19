@@ -194,8 +194,6 @@ function draw(){
     background(245);
     imageMode(CENTER);
     image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);
-    radio.hide();
-    submitButton.hide();
     }
   else{
     background(245);
@@ -210,6 +208,10 @@ function draw(){
       if(beaconChosen !== 99){
         radio.show();
         submitButton.show();
+      }
+      else{
+        radio.hide();
+        submitButton.hide();
       }
     }
     if(mode == 1){
