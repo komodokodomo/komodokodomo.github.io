@@ -207,13 +207,13 @@ function draw(){
       beaconPrevChosen = beaconChosen;
     }
 
-      if(beaconChosen == 99){
-        radio.hide();
-        submitButton.hide();
-      }
-      else{
+      if(beaconChosen == 8){
         radio.show();
         submitButton.show();
+      }
+      else{
+        radio.hide();
+        submitButton.hide();
       }
     }
     if(mode == 1){
