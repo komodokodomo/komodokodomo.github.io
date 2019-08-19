@@ -204,14 +204,16 @@ function draw(){
     if(beaconChosen !== beaconPrevChosen){
       socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
       console.log("room change");
-      beaconPrevChosen = beaconChosen;}
-      if(beaconChosen !== 99){
-        radio.show();
-        submitButton.show();
-      }
-      else{
+      beaconPrevChosen = beaconChosen;
+    }
+
+      if(beaconChosen == 99){
         radio.hide();
         submitButton.hide();
+      }
+      else{
+        radio.show();
+        submitButton.show();
       }
     }
     if(mode == 1){
