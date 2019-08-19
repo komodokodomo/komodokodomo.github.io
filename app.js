@@ -186,6 +186,8 @@ function enterButtonEvent() {
 }
 }
 
+function submitButtonEvent() {}
+
 function scanBeacon()
 {
   var spectrum = fft.analyze();
