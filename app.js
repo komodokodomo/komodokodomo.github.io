@@ -238,7 +238,7 @@ if(millis()-sampleTimer>pingDuration)
   }
 }
 
-function(checkRegionChange)
+function checkRegionChange()
 {
   if(beaconChosen !== beaconPrevChosen)
   {
