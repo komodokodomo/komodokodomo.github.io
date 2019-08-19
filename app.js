@@ -35,7 +35,7 @@ var ttlTimer = 0;
 
 var highestEnergy = 0;
 
-var name;
+var name,PIN;
 
 
 var pingDuration = 900;
@@ -60,20 +60,15 @@ var question;
 // ];
 
 var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe space
-// var beacon =[18059,18141,18223,18265,18913,19608,20356]; 
 
-// var beacon =[ 
-//   19277,19185,19093,19002,18913,18824,
-//   18779,18692,18605,18519,18433,18349,
-//   18307,18223,18141,18059,17978,17897,
-//   ];
 
-// var beacon = [18307,18779,19277,19802,20356,20942,18223,18692,19185,19704,20253,20833];
+
   
 var socket;
 
-var gamepin;
+var gamepin,nickname;
 var button;
+var radio;
 
 function startCon(){
 	socket = io('cotf.cf', {
@@ -95,12 +90,27 @@ function setup(){
   question.attribute('src', 'https://docs.google.com/forms/d/e/1FAIpQLSdterwwHt905pZvfXTkG7hYom9eN2SheF-InsGcvWCFjSS4yA/viewform?embedded=true');
   question.hide();
 
+  radio = createRadio();
+  radio.option('1');
+  radio.option('2');
+  radio.option('3');
+  radio.option('4');
+  radio.style('width', '60px');
+  radio.hide();
+
   gamepin = createInput('');
   gamepin.attribute('placeholder', 'GAME PIN');
   gamepin.style('text-align', 'center');
   gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+300);
   console.log(gamepin.size());
   gamepin.input(typeEvent);
+
+  nickname = createInput('');
+  nickname.attribute('placeholder', 'NAME');
+  nickname.style('text-align', 'center');
+  nickname.position(w/2 - nickname.size().width/2,h/2- nickname.size().height/2+330);
+  console.log(gamepin.size());
+  nickname.input(typeEvent);
 
   button = createButton("ENTER");
   button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 1.5*gamepin.size().height);
@@ -129,6 +139,49 @@ function setup(){
 
 }
 
+function monitorBeacon(){
+  var spectrum = fft.analyze();
+  for(var i = 0; i<beacon.length; i++)
+  {
+      energy[i] = fft.getEnergy(beacon[i]);
+      if(!aboveThreshold[i] && energy[i]<upperThreshold){
+        if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
+          console.log("disconnected from "+ i);
+          beaconDetected[i] = false;
+          beaconCounter[i] = 0;
+          if(beaconChosen == i){beaconChosen = 999;}
+        }
+      }
+      else if(!aboveThreshold[i] && energy[i]>=upperThreshold){aboveThreshold[i]=true;}
+      else if(aboveThreshold[i] && energy[i]>=lowerThreshold){
+      if(energy[i]>peakEnergy[i]){
+        peakEnergy[i] = energy[i];
+      }
+    }
+      else if(aboveThreshold[i] && energy[i]<lowerThreshold){
+        aboveThreshold[i] = false;
+        if(millis()-lastPing[i]<pingDuration+pingTolerance && millis()-lastPing[i]>pingDuration-pingTolerance){
+          // console.log(millis() - beaconTimer[i]);
+          beaconTimer[i] = millis();
+          beaconCounter[i] = beaconCounter[i] + 1;
+          // console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
+          if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
+          peakEnergy[i] = 0;       
+        }
+        lastPing[i] = millis();
+      }
+    if(beaconCounter[i]>2){
+      beaconDetected[i] = true;
+    }
+  }
+  beaconHighestPower=0;
+if(millis()-sampleTimer>pingDuration){
+if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
+else if(beaconChosen == 999){console.log("no region detected");}
+// console.log("at region "+beaconChosen);
+sampleTimer = millis();
+}
+}
 
 function draw(){
   if(mode==0){
@@ -140,51 +193,12 @@ function draw(){
     background(245);
     textAlign(CENTER,CENTER);
     textSize(32);
-    var spectrum = fft.analyze();
- 
-    for(var i = 0; i<beacon.length; i++)
-    {
-        energy[i] = fft.getEnergy(beacon[i]);
-        if(!aboveThreshold[i] && energy[i]<upperThreshold){
-          if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
-            console.log("disconnected from "+ i);
-            beaconDetected[i] = false;
-            beaconCounter[i] = 0;
-            if(beaconChosen == i){beaconChosen = 999;}
-          }
-        }
-        else if(!aboveThreshold[i] && energy[i]>=upperThreshold){aboveThreshold[i]=true;}
-        else if(aboveThreshold[i] && energy[i]>=lowerThreshold){
-        if(energy[i]>peakEnergy[i]){
-          peakEnergy[i] = energy[i];
-        }
-      }
-        else if(aboveThreshold[i] && energy[i]<lowerThreshold){
-          aboveThreshold[i] = false;
-          if(millis()-lastPing[i]<pingDuration+pingTolerance && millis()-lastPing[i]>pingDuration-pingTolerance){
-            // console.log(millis() - beaconTimer[i]);
-            beaconTimer[i] = millis();
-            beaconCounter[i] = beaconCounter[i] + 1;
-            // console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
-            if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
-            peakEnergy[i] = 0;       
-          }
-          lastPing[i] = millis();
-        }
-      if(beaconCounter[i]>2){
-        beaconDetected[i] = true;
-      }
-    }
-    beaconHighestPower=0;
-  if(millis()-sampleTimer>pingDuration){
-  if(beaconCounter[beaconChosen]>2){console.log("at region "+beaconChosen);}
-  else if(beaconChosen == 999){console.log("no region detected");}
-  // console.log("at region "+beaconChosen);
-  sampleTimer = millis();
-  }
+    
+    monitorBeacon();
+
+    
   }
  
-  //ADD LAST PING
   if(beaconChosen !== beaconPrevChosen){
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
     console.log("room change");
@@ -198,14 +212,18 @@ function mouseClicked() {
 
 
 function typeEvent() {
+  PIN = this.value();
+  // console.log('typed: ', this.value());
+}
+
+function typeEvent2() {
   name = this.value();
   // console.log('typed: ', this.value());
 }
 
-
 function buttonClickEvent() { 
   console.log("correct PIN");
-  if(name == "123456"){
+  if(PIN == "123456"){
     startCon();
     mode = 1;
     button.hide();
@@ -216,70 +234,3 @@ function buttonClickEvent() {
   }
 }
 
-
-
-
-    //check broad spectrum bands
-    //narrow down till exact spectrum is found
-  //               |
-  //               /\
-  //             /\  /\
-  //           /\ /\ /\ /\
-
-  // if(fft.getEnergy(beacon[0],beacon[beacon.length-1])>upperThreshold/16)                                //  0 - 1/1
-  // {
-  //   if(fft.getEnergy(beacon[0],beacon[beacon.length/2-1])>upperThreshold/8)                            //  0 - 1/2
-  //   {
-  //     if(fft.getEnergy(beacon[0],beacon[beacon.length/4-1])>upperThreshold/4)                          //  0 - 1/4
-  //     {
-  //       if(fft.getEnergy(beacon[0],beacon[beacon.length/8-1])>upperThreshold/2)                        //  0 - 1/8
-  //       {
-  //         console.log("major : 1")
-  //       }
-  //       else if(fft.getEnergy(beacon[beacon.length/8],beacon[beacon.length/4-1])>upperThreshold/2)        // 1/8 - 1/4 
-  //       {
-  //         console.log("major : 2")
-  //       }
-  //     }
-  //     else if(fft.getEnergy(beacon[beacon.length/4],beacon[beacon.length/2-1])>upperThreshold/2)          // 1/4 - 1/2
-  //     {
-  //       if(fft.getEnergy(beacon[beacon.length/4],beacon[3*beacon.length/8-1])>upperThreshold/2)           // 1/4 - 3/8
-  //       {
-  //         console.log("major : 3")
-  //       }
-  //       else if(fft.getEnergy(beacon[3*beacon.length/8],beacon[beacon.length/2-1])>upperThreshold/2)      // 3/8 - 1/2
-  //       {
-  //         console.log("major : 4")
-  //       }
-  //     }
-  //   }
-  //   else if(fft.getEnergy(beacon[beacon.length/2],beacon[beacon.length-1])>upperThreshold/8)             // 1/2 - 1/1
-  //   {
-  //       if(fft.getEnergy(beacon[beacon.length/2],beacon[3*beacon.length/4-1])>upperThreshold/4)          // 1/2 - 3/4
-  //       {
-  //         if(fft.getEnergy(beacon[beacon.length/2],beacon[5*beacon.length/8-1])>upperThreshold/2)        // 1/2 - 5/8
-  //         {
-  //           console.log("major : 5")
-  //         }
-  //         else if(fft.getEnergy(beacon[5*beacon.length/8],beacon[3*beacon.length/4-1])>upperThreshold/2)   // 5/8 - 3/4 
-  //         {
-  //           console.log("major : 6")
-  //         }
-  //       }
-  //       else if(fft.getEnergy(beacon[3*beacon.length/4],beacon[beacon.length-1])>upperThreshold/4)       // 3/4 - 1/1
-  //       {
-  //         if(fft.getEnergy(beacon[3*beacon.length/4],beacon[7*beacon.length/8-1])>upperThreshold/2)      // 3/4 - 7/8
-  //         {
-  //           console.log("major : 7")
-  //         }
-  //         else if(fft.getEnergy(beacon[7*beacon.length/8],beacon[beacon.length-1])>upperThreshold/2)      // 7/8 - 1/1
-  //         {
-  //           console.log("major : 8")
-  //         }
-  //       }
-  //     }
-    
-  // }
-  // else{
-  //   // console.log(fft.getEnergy(beacon[0],beacon[beacon.length-1]));
-  // }
