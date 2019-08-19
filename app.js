@@ -223,11 +223,12 @@ function typeEvent2() {
 
 function buttonClickEvent() { 
   console.log("correct PIN");
-  if(PIN == "123456"){
+  if(PIN == "123456" && name !== null){
     startCon();
     mode = 1;
     button.hide();
     gamepin.hide();
+    nickname.hide();
   }
   else{
     console.log("wrong PIN");
