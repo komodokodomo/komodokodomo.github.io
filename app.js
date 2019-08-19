@@ -96,6 +96,7 @@ function setup(){
   radio.option('3');
   radio.option('4');
   radio.style('width', '60px');
+  radio.position(w/2,h/2);
   radio.hide();
 
   gamepin = createInput('');
@@ -193,19 +194,23 @@ function draw(){
     background(245);
     imageMode(CENTER);
     image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);
+    radio.hide();
+    submitButton.hide();
     }
   else{
-    
     background(245);
     textAlign(CENTER,CENTER);
     textSize(32);  
-    
+
     monitorBeacon();
     if(beaconChosen !== beaconPrevChosen){
       socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
       console.log("room change");
       beaconPrevChosen = beaconChosen;}
-      if(beaconChosen !== 99){radio.show();submitButton.show();}
+      if(beaconChosen !== 99){
+        radio.show();
+        submitButton.show();
+      }
     }
     if(mode == 1){
 
