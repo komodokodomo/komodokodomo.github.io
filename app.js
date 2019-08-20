@@ -72,18 +72,18 @@ function setup(){
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
   gamepin.id("gamepin");
-  gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+300);
+  gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+200);
   gamepin.input(typeEvent);
 
   radio=createRadio("radio");
   radio.hide();
 
   button = createButton("SUBMIT");
-  button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 1.5*gamepin.size().height);
+  button.position(w/2 - button.size().width/2,h/2- button.size().height/2+200 + 1.5*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
 
   submitButton = createButton("SUBMIT");
-  submitButton.position(w/2 - submitButton.size().width/2,h/2- submitButton.size().height/2+300 + 1.5*gamepin.size().height);
+  submitButton.position(w/2 - submitButton.size().width/2,h/2- submitButton.size().height/2+200 + 1.5*gamepin.size().height);
   submitButton.mousePressed(submitButtonEvent);
   submitButton.hide();
   
