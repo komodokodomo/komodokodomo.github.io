@@ -259,6 +259,8 @@ function checkRegionChange()
     radio.option(opt2[beaconChosen]);
     radio.option(opt3[beaconChosen]);
     radio.option(opt4[beaconChosen]);
+    radio.style('width', '60px');
+    radio.style('vertical-align', 'middle');
     }
     beaconPrevChosen = beaconChosen;
   }
