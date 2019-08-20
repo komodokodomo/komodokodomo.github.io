@@ -35,7 +35,12 @@ var socket;
 
 var gamepin;
 var button,submitButton;
-var radio = [];
+var radio;
+
+var opt1 = ["a","b","c","d","e","f","g","h","i"];
+var opt2 = ["a","b","c","d","e","f","g","h","i"];
+var opt3 = ["a","b","c","d","e","f","g","h","i"];
+var opt4 = ["a","b","c","d","e","f","g","h","i"];
 
 
 
@@ -62,14 +67,6 @@ function setup(){
 	createCanvas(w,h);
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
-
-  for(var i=0; i<4; i++)
-  {
-    radio[i] = document.createElement("input",i.toString());
-    radio[i].type = 'radio';
-    radio[i].innerHTML = i.toString();
-  }
-
 
   gamepin = createInput('');
   gamepin.attribute('placeholder', 'NICKNAME');
@@ -249,6 +246,12 @@ function checkRegionChange()
   {
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
     console.log("room change");
+    radio.remove();
+    radio = createRadio("radio");
+    radio.option(opt1[beaconChosen]);
+    radio.option(opt2[beaconChosen]);
+    radio.option(opt3[beaconChosen]);
+    radio.option(opt4[beaconChosen]);
     beaconPrevChosen = beaconChosen;
   }
 }
