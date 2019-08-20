@@ -37,10 +37,10 @@ var gamepin;
 var button,submitButton;
 var radio;
 
-var opt1 = ["a","b","c","d","e","f","g","h","i"];
-var opt2 = ["a","b","c","d","e","f","g","h","i"];
-var opt3 = ["a","b","c","d","e","f","g","h","i"];
-var opt4 = ["a","b","c","d","e","f","g","h","i"];
+var opt1 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
+var opt2 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
+var opt3 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
+var opt4 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
 
 
 
