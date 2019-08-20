@@ -168,7 +168,7 @@ function enterButtonEvent() {
     name = INPUT;                                                           //set value of "name" to whatever was typed
     mode = 1;                                                               //then change to PIN entering mode
     gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
-    document.getElementById('gamepin').value = ''                           //reset INPUT value to 0;
+    document.getElementById('gamepin').value = '';                           //reset INPUT value to 0;
     // INPUT = "";                                                          //reset INPUT value to 0;
     console.log("welcome " + name)                                          //** debug **
   }
