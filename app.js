@@ -247,11 +247,14 @@ function checkRegionChange()
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
     console.log("room change");
     radio.remove();
+    if(beaconChosen!==999)
+    {
     radio = createRadio("radio");
     radio.option(opt1[beaconChosen]);
     radio.option(opt2[beaconChosen]);
     radio.option(opt3[beaconChosen]);
     radio.option(opt4[beaconChosen]);
+    }
     beaconPrevChosen = beaconChosen;
   }
 }
