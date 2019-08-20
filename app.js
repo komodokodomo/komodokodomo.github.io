@@ -75,6 +75,9 @@ function setup(){
   gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+300);
   gamepin.input(typeEvent);
 
+  radio=createRadio("radio");
+  radio.hide();
+
   button = createButton("SUBMIT");
   button.position(w/2 - button.size().width/2,h/2- button.size().height/2+300 + 3*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
