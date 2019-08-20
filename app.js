@@ -249,6 +249,7 @@ function checkRegionChange()
   {
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
     console.log("room change");
+    radio.hide();
     radio.remove();
     if(beaconChosen!==999)
     {
