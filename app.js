@@ -65,8 +65,9 @@ function setup(){
 
   for(var i=0; i<4; i++)
   {
-    radio[i] = createElement("input",i.toString());
+    radio[i] = document.createElement("input",i.toString());
     radio[i].type = 'radio';
+    radio[i].innerHTML = i.toString();
   }
 
 
@@ -138,13 +139,13 @@ function draw()
 
     if(beaconChosen == 8)
     {
-      radio.show();
+      // radio.show();
 
       submitButton.show();
     }
     else
     {
-      radio.hide();
+      // radio.hide();
       submitButton.hide();
     }
   }
