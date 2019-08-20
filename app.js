@@ -35,7 +35,7 @@ var socket;
 
 var gamepin;
 var button,submitButton;
-var radio;
+var radio = [];
 
 
 
@@ -63,14 +63,12 @@ function setup(){
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
 
-  radio = createRadio();
-  radio.option('1');
-  radio.option('2');
-  radio.option('3');
-  radio.option('4');
-  radio.style('width', '60px');
-  radio.position(w/2,h/2);
-  radio.hide();
+  for(var i=0; i<4; i++)
+  {
+    radio[i] = createElement("input",i.toString());
+    radio[i].type = 'radio';
+  }
+
 
   gamepin = createInput('');
   gamepin.attribute('placeholder', 'NICKNAME');
@@ -141,6 +139,7 @@ function draw()
     if(beaconChosen == 8)
     {
       radio.show();
+
       submitButton.show();
     }
     else
@@ -160,7 +159,7 @@ function mouseClicked()
 function typeEvent() {
   INPUT = this.value();                                                     //update INPUT data with whatever is typed
   // console.log('typed: ', this.value());                                  //** debug **
-  console.log(INPUT);                                                       //** debug **
+  //console.log(INPUT);                                                     //** debug **
 }
 
 
