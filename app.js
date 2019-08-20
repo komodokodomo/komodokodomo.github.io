@@ -75,6 +75,7 @@ function setup(){
   gamepin = createInput('');
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
+  gamepin.id("gamepin");
   gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+300);
   gamepin.input(typeEvent);
 
@@ -169,7 +170,7 @@ function enterButtonEvent() {
     name = INPUT;                                                           //set value of "name" to whatever was typed
     mode = 1;                                                               //then change to PIN entering mode
     gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
-    gamepin.value = '';                                                     //reset INPUT value to 0;
+    document.getElementById('gamepin').value = '';                          //reset INPUT value to 0;
     // INPUT = "";                                                          //reset INPUT value to 0;
     console.log("welcome " + name)                                          //** debug **
   }
