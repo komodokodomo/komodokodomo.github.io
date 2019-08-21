@@ -85,7 +85,7 @@ function setup(){
 
   button = createButton("SUBMIT");
   button.size(gamepin.width,gamepin.height);
-  button.position(w/2 - button.size().width/2,h/3- button.size().height/2 + 1.5*gamepin.size().height);
+  button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.5*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
   
 
