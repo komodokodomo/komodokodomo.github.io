@@ -102,6 +102,7 @@ function setup(){
   submitButton.hide();
 
   question = createP("");
+  question.style('text-align', 'center');
   question.position(0,0);
   question.size(w,h/6);
   question.hide();
