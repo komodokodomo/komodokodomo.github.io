@@ -103,6 +103,7 @@ function setup(){
 
   question = createDiv("HEYA");
   question.style('text-align', 'center');
+  question.style('margin', '0 auto');
   question.position(0,0);
   question.size(w,h/6);
   // question.hide();
