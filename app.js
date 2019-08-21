@@ -35,6 +35,7 @@ var socket;
 
 var gamepin;
 var button,submitButton;
+var buttonOpt = [];
 // var radio;
 
 
@@ -89,13 +90,21 @@ function setup(){
 
   button = createButton("SUBMIT");
   button.size(gamepin.width,gamepin.height);
-  button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.2*gamepin.size().height);
+  button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
   
   submitButton = createButton("SUBMIT");
-  submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.2*gamepin.size().height);
+  submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.1*gamepin.size().height);
   submitButton.mousePressed(submitButtonEvent);
   submitButton.hide();
+
+  for(var i = 0; i<4; i++)
+  {
+    buttonOpt[i] = createButton("SUBMIT");
+    buttonOpt[i].label = i.toString();
+    buttonOpt[i].position((i%2)*w/2,round(i/2)*h/6 + 2*h/3);
+    buttonOpt[i].mousePressed(submitButtonEvent);
+  }
   
   mic = new p5.AudioIn()
   mic.start();
@@ -311,8 +320,8 @@ function checkWindowChange(){
   gamepin.size(refDimensions*3/5,refDimensions*3/20);
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   button.size(gamepin.width,gamepin.height);
-  button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.2*gamepin.size().height);
-  submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.5*gamepin.size().height);
+  button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
+  submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.1*gamepin.size().height);
   console.log("window innerDimension change detected");  
   }
 }
@@ -325,16 +334,21 @@ function checkWindowChange(){
 // }
 
 
-// class QuizPage {
+// class Button {
 
-//   constructor(width, height, type, question, options[]) {
+//   constructor(width, height, posX, posY, BG, text) {
 //     this.width = width;
 //     this.height = height;
-//     this.type = type;
+//     this.posX = posX;
+//     this.posY = posY;
+//     this.BG = BG;
+//     this.text = text;
 //   }
 
-//   generate() {
-//     
+//   draw() {
+//   fill(this.BG);
+//   rect(this.posX,this.posY,this.width,this.height);
+
 //   }
 
 //   update() {
