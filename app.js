@@ -33,14 +33,14 @@ var name,INPUT;
 var windowChanged = false;  
 var socket;
 
-var question;
+var question,questionText;
 var gamepin;
 var button,submitButton;
 var buttonOpt = [];
 // var radio;
 
 
-var questionText = 
+var questions = 
 ["11111111111111111","22222222222222222","3333333333333333333",
 "4444444444444444","5555555555555","666666","77777777","8888888","99999"];
 var opt = [
@@ -101,11 +101,13 @@ function setup(){
   submitButton.mousePressed(submitButtonEvent);
   submitButton.hide();
 
-  question = createDiv("HEYA");
+  question = createDiv("");
   question.style('text-align', 'center');
-  question.style('margin', '0 auto');
   question.position(0,0);
   question.size(w,h/6);
+
+  questionText = createP("")
+  question.parent(questionText);
   // question.hide();
 
   for(var i = 0; i<4; i++)
@@ -302,7 +304,7 @@ function checkRegionChange()
         buttonOpt[i].html(opt[i][beaconChosen]);
         buttonOpt[i].show();
       }
-      question.html(questionText[beaconChosen]);
+      questionText.html(questions[beaconChosen]);
       question.show();
     // radio = createRadio("radio");                                                   // load the relevant images, question text, option text
     // radio.position(w/2,h/2);
