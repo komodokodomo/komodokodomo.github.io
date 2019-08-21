@@ -30,7 +30,7 @@ var sampleTimer = 0;
 var name,INPUT;
 
 
-  
+var windowChanged = false;  
 var socket;
 
 var gamepin;
@@ -321,15 +321,15 @@ function startCon()
 function checkWindowChange(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
-  if(ww !== w || hh!== h)
+  if(ww !== w || hh!== h && !windowChanged){windowChanged = true;}
+  else if (ww !== w || hh!== h && windowChanged){}
+  else if (ww == w && hh== h && windowChanged)
   {
+  windowChanged = false;
   var refDimensions;
   if(w > h){refDimensions = h;}
-  else{refDimensions = w;}
-  ww = w;                                                                   //update prev w
-  hh = h;                                                                   //update prev h
+  else{refDimensions = w;}                       
   resizeCanvas(w, h);
-  
   gamepin.size(refDimensions*3/5,refDimensions*3/20);
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   button.size(gamepin.width,gamepin.height);
@@ -342,6 +342,9 @@ function checkWindowChange(){
   }
   console.log("window innerDimension change detected");  
   }
+  else if (ww == w && hh== h && !windowChanged){}
+  ww = w;                                                                    //update prev w
+  hh = h;                                                                    //update prev h
 }
 
 // function windowResized() {
