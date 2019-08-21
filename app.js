@@ -82,7 +82,7 @@ function setup(){
   else{refDimensions = w;}
   
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
-  logo = loadImage('assets/tampines.png');
+  logo = loadImage('assets/logo.png');
 
   gamepin = createInput('');
   gamepin.attribute('placeholder', 'NICKNAME');
