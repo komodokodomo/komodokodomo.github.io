@@ -162,13 +162,13 @@ function draw()
   {                                                                         //home screen + ask for NICKNAME
     background(245);                                                        //set background to light grey
     imageMode(CENTER);                                                      //align image coordinates to CENTER
-    image(logo,w/2,h/2,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
+    image(logo,w/2,h/2 + refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
   }
   else if(mode == 1)
   {                                                                         //home screen + ask for PIN
     background(245);                                                        //set background to light grey
     imageMode(CENTER);                                                      //align image coordinates to CENTER
-    image(logo,w/2,h/3,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
+    image(logo,w/2,h/2 + refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
   }
   
   else
