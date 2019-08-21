@@ -121,8 +121,12 @@ function draw()
   h = window.innerHeight;
   if(ww !== w || hh!== h)
   {
-  ww = w;
-  hh = h;
+  ww = w;                                                                   //update prev w
+  hh = h;                                                                   //update prev h
+  resizeCanvas(w, h);
+  gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+200);
+  button.position(w/2 - button.size().width/2,h/2- button.size().height/2+200 + 1.5*gamepin.size().height);
+  submitButton.position(w/2 - submitButton.size().width/2,h/2- submitButton.size().height/2+200 + 1.5*gamepin.size().height);
   console.log("window innerDimension change detected");  
   }
   if(mode==0)
@@ -295,12 +299,12 @@ function startCon()
 	});
 }
 
-function windowResized() {
-  w = window.innerWidth; 
-  h = window.innerHeight;
-  resizeCanvas(w, h);
-  console.log("window resizing detected");
-}
+// function windowResized() {
+//   w = window.innerWidth; 
+//   h = window.innerHeight;
+//   resizeCanvas(w, h);
+//   console.log("window resizing detected");
+// }
 
 
 // class QuizPage {
