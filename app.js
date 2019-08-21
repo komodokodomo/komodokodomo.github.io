@@ -1,6 +1,6 @@
 let logo;
 
-var w,h,region;
+var w,h,ww,hh,region;
 
 var mode = 0; 
 
@@ -64,7 +64,10 @@ var opt4 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhh
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
-	createCanvas(w,h);
+  ww = w;
+  hh = h;
+  createCanvas(w,h);
+  
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
 
@@ -114,6 +117,14 @@ function setup(){
 
 function draw()
 {
+  w = window.innerWidth;                                                    
+  h = window.innerHeight;
+  if(ww !== w || hh!== h)
+  {
+  ww = w;
+  hh = h;
+  console.log("window innerDimension change detected");  
+  }
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
     background(245);                                                        //set background to light grey
@@ -181,7 +192,7 @@ function enterButtonEvent() {
     mode = 2;                                                               //change to task screen
     button.hide();                                                          //hide away button
     gamepin.hide();                                                         //hide input button
-    console.log("correct PIN");                                             //** debug **
+    console.log("correct PIN");                                             // ** debug **
   }
   else{                                                                     //if player keys in a wrong PIN
     console.log("wrong PIN");
@@ -193,36 +204,49 @@ function submitButtonEvent() {}
 
 function scanBeacon()
 {
-  var spectrum = fft.analyze();
-  for(var i = 0; i<beacon.length; i++)
+  var spectrum = fft.analyze();                                             // get FFT data for subsequent analysis
+  for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
   {
-      energy[i] = fft.getEnergy(beacon[i]);
-      if(!aboveThreshold[i] && energy[i]<upperThreshold){
-        if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true){
-          console.log("disconnected from "+ i);
-          beaconDetected[i] = false;
-          beaconCounter[i] = 0;
-          if(beaconChosen == i){beaconChosen = 999;}
-        }
+    energy[i] = fft.getEnergy(beacon[i]);                                   // get the amplitude of a particular frequency
+    if(!aboveThreshold[i] && energy[i]<upperThreshold)
+    {                                                                       // if amplitude is below threshold and "aboveThreshold" flag is still false
+      if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true)
+      {                                                                     // if the time elapsed since last detected ping exceeds the TTL(Time to Live) value and beacon is still considered detected
+          beaconDetected[i] = false;                                        // set the "beaconDetected" flag to FALSE
+          beaconCounter[i] = 0;                                             // reset the beaconCounter for that frequency to 0
+          console.log("disconnected from "+ i);                             // ** debug **
+          if(beaconChosen == i){beaconChosen = 999;}                        // 
       }
-      else if(!aboveThreshold[i] && energy[i]>=upperThreshold){aboveThreshold[i]=true;}
-      else if(aboveThreshold[i] && energy[i]>=lowerThreshold){
-      if(energy[i]>peakEnergy[i]){
+    }
+    else if(!aboveThreshold[i] && energy[i]>=upperThreshold)
+    {
+      aboveThreshold[i]=true;                                               //change "aboveThreshold" flag to TRUE
+    }
+    else if(aboveThreshold[i] && energy[i]>=lowerThreshold)
+    {
+      if(energy[i]>peakEnergy[i])
+      {
         peakEnergy[i] = energy[i];
       }
     }
-      else if(aboveThreshold[i] && energy[i]<lowerThreshold){
-        aboveThreshold[i] = false;
-        if(millis()-lastPing[i]<pingDuration+pingTolerance && millis()-lastPing[i]>pingDuration-pingTolerance){
+    else if(aboveThreshold[i] && energy[i]<lowerThreshold)
+    {
+      aboveThreshold[i] = false;
+      if(millis()-lastPing[i]<pingDuration+pingTolerance && millis()-lastPing[i]>pingDuration-pingTolerance)
+      {
           // console.log(millis() - beaconTimer[i]);
           beaconTimer[i] = millis();
           beaconCounter[i] = beaconCounter[i] + 1;
           // console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
           if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
           peakEnergy[i] = 0;       
-        }
-        lastPing[i] = millis();
       }
+      else
+      {
+        beaconCounter[i] = 0;                                             //EXPERIMENTAL - testing whether it will make RX more error-resistant
+      }
+      lastPing[i] = millis();
+    }
     if(beaconCounter[i]>2){
       beaconDetected[i] = true;
     }
@@ -247,13 +271,14 @@ function checkRegionChange()
 {
   if(beaconChosen !== beaconPrevChosen)
   {
-    socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());
-    console.log("room change");
-    radio.hide();
+    socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());  // Update server that client has changed rooms
+    console.log("room change");                                                     // ** debug **
+    
+    radio.hide();                                                                   // hide current image, question text, option text
     radio.remove();
-    if(beaconChosen!==999)
+    if(beaconChosen!==999)                                                          // if a particular beacon is detected          
     {
-    radio = createRadio("radio");
+    radio = createRadio("radio");                                                   // load the relevant images, question text, option text
     radio.position(w/2,h/2);
     radio.option(opt1[beaconChosen]);
     radio.option(opt2[beaconChosen]);
@@ -262,6 +287,10 @@ function checkRegionChange()
     // radio.style('width', '60px');
     radio.style('vertical-align', 'middle');
     radio.style('margin-top', '-1px');
+    }
+    else
+    {
+
     }
     beaconPrevChosen = beaconChosen;
   }
@@ -276,3 +305,31 @@ function startCon()
 		console.log("connected");		 
 	});
 }
+
+function windowResized() {
+  w = window.innerWidth; 
+  h = window.innerHeight;
+  resizeCanvas(w, h);
+  console.log("window resizing detected");
+}
+
+
+// class QuizPage {
+
+//   constructor(width, height, type, question, options[]) {
+//     this.width = width;
+//     this.height = height;
+//     this.type = type;
+//   }
+
+//   generate() {
+//     
+//   }
+
+//   update() {
+
+//   }
+
+// }
+
+function quizPage
