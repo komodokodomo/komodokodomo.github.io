@@ -42,10 +42,12 @@ var buttonOpt = [];
 var question = 
 ["11111111111111111","22222222222222222","3333333333333333333",
 "4444444444444444","5555555555555","666666","77777777","8888888","99999"];
-var opt1 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
-var opt2 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
-var opt3 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
-var opt4 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
+var opt = [
+           ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"],
+           ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"],
+           ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"],
+           ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"]
+          ];
 
 
 
@@ -102,7 +104,7 @@ function setup(){
   {
     buttonOpt[i] = createButton("SUBMIT",i);
     buttonOpt[i].id(i.toString());
-    buttonOpt[i].html("test");
+    buttonOpt[i].html(opt[i][0]);
     // document.getElementById(i.toString()).value = i.toString();
     buttonOpt[i].size(w/2,h/6);
     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
