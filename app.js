@@ -35,8 +35,12 @@ var socket;
 
 var gamepin;
 var button,submitButton;
-var radio;
+// var radio;
 
+
+var question = 
+["11111111111111111","22222222222222222","3333333333333333333",
+"4444444444444444","5555555555555","666666","77777777","8888888","99999"];
 var opt1 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
 var opt2 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
 var opt3 = ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"];
@@ -75,18 +79,17 @@ function setup(){
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
   gamepin.id("gamepin");
-  gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+200);
+  gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   gamepin.input(typeEvent);
-
-  radio=createRadio("radio");
-  radio.hide();
+  gamepin.size(500,100);
 
   button = createButton("SUBMIT");
-  button.position(w/2 - button.size().width/2,h/2- button.size().height/2+200 + 1.5*gamepin.size().height);
+  button.position(w/2 - button.size().width/2,h/3- button.size().height/2 + 1.5*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
+  button.size(gamepin.width,gamepin.height);
 
   submitButton = createButton("SUBMIT");
-  submitButton.position(w/2 - submitButton.size().width/2,h/2- submitButton.size().height/2+200 + 1.5*gamepin.size().height);
+  submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.5*gamepin.size().height);
   submitButton.mousePressed(submitButtonEvent);
   submitButton.hide();
   
@@ -117,18 +120,8 @@ function setup(){
 
 function draw()
 {
-  w = window.innerWidth;                                                    
-  h = window.innerHeight;
-  if(ww !== w || hh!== h)
-  {
-  ww = w;                                                                   //update prev w
-  hh = h;                                                                   //update prev h
-  resizeCanvas(w, h);
-  gamepin.position(w/2 - gamepin.size().width/2,h/2- gamepin.size().height/2+200);
-  button.position(w/2 - button.size().width/2,h/2- button.size().height/2+200 + 1.5*gamepin.size().height);
-  submitButton.position(w/2 - submitButton.size().width/2,h/2- submitButton.size().height/2+200 + 1.5*gamepin.size().height);
-  console.log("window innerDimension change detected");  
-  }
+  checkWindowChange();
+
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
     background(245);                                                        //set background to light grey
@@ -139,7 +132,7 @@ function draw()
   {                                                                         //home screen + ask for PIN
     background(245);                                                        //set background to light grey
     imageMode(CENTER);                                                      //align image coordinates to CENTER
-    image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);         //display loaded image
+    image(logo,w/2,h/3,w*44/100,w*44/(100*logo.width)*logo.height);         //display loaded image
   }
   
   else
@@ -158,14 +151,11 @@ function mouseClicked()
 {
 }
 
-// document.getElementById("myButton1").value="New Button Text";
-
 function typeEvent() {
   INPUT = this.value();                                                     //update INPUT data with whatever is typed
   // console.log('typed: ', this.value());                                  //** debug **
   //console.log(INPUT);                                                     //** debug **
 }
-
 
 function enterButtonEvent() { 
   if(mode == 0){                                                            //at initial screen
@@ -266,19 +256,19 @@ function checkRegionChange()
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());  // Update server that client has changed rooms
     console.log("room change");                                                     // ** debug **
     
-    radio.hide();                                                                   // hide current image, question text, option text
-    radio.remove();
+    // radio.hide();                                                                   // hide current image, question text, option text
+    // radio.remove();
     if(beaconChosen!==999)                                                          // if a particular beacon is detected          
     {
-    radio = createRadio("radio");                                                   // load the relevant images, question text, option text
-    radio.position(w/2,h/2);
-    radio.option(opt1[beaconChosen]);
-    radio.option(opt2[beaconChosen]);
-    radio.option(opt3[beaconChosen]);
-    radio.option(opt4[beaconChosen]);
+    // radio = createRadio("radio");                                                   // load the relevant images, question text, option text
+    // radio.position(w/2,h/2);
+    // radio.option(opt1[beaconChosen]);
+    // radio.option(opt2[beaconChosen]);
+    // radio.option(opt3[beaconChosen]);
+    // radio.option(opt4[beaconChosen]);
     // radio.style('width', '60px');
-    radio.style('vertical-align', 'middle');
-    radio.style('margin-top', '-1px');
+    // radio.style('vertical-align', 'middle');
+    // radio.style('margin-top', '-1px');
     submitButton.show();
     }
     else
@@ -291,12 +281,30 @@ function checkRegionChange()
 
 function startCon()
 {
-	socket = io('cotf.cf', {});
+  socket = io('cotf.cf', 
+  {
+  rejectUnauthorized : false
+  });
   socket.on('connect', function() 
   {
 		socket.emit('hello',name);
 		console.log("connected");		 
 	});
+}
+
+function checkWindowChange(){
+  w = window.innerWidth;                                                    
+  h = window.innerHeight;
+  if(ww !== w || hh!== h)
+  {
+  ww = w;                                                                   //update prev w
+  hh = h;                                                                   //update prev h
+  resizeCanvas(w, h);
+  gamepin.position(w/2 - gamepin.size().width/2, h/3-gamepin.size().height/2+200);
+  button.position(w/2 - button.size().width/2,h/3- button.size().height/2+200 + 1.5*gamepin.size().height);
+  submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.5*gamepin.size().height);
+  console.log("window innerDimension change detected");  
+  }
 }
 
 // function windowResized() {
