@@ -109,6 +109,7 @@ function setup(){
 
   questionText = createP("")
   questionText.parent(question);
+  questionText.style("display","inline-block");
   // question.hide();
 
   for(var i = 0; i<4; i++)
