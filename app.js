@@ -102,7 +102,7 @@ function setup(){
   {
     buttonOpt[i] = createButton("SUBMIT",i);
     buttonOpt[i].id("opt"+i.toString());
-    buttonOpt[i].html("opt"+i.toString());
+    buttonOpt[i].html("test");
     // document.getElementById("opt"+i.toString()).value = i.toString();
     buttonOpt[i].size(w/2,h/2);
     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
