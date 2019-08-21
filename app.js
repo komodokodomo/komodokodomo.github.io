@@ -101,7 +101,7 @@ function setup(){
   submitButton.mousePressed(submitButtonEvent);
   submitButton.hide();
 
-  question = createSpan("");
+  question = createP("");
   question.position(0,0);
   question.size(w,h/6);
   question.hide();
