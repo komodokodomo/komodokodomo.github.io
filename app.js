@@ -83,9 +83,9 @@ function setup(){
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
   gamepin.id("gamepin");
-  gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   gamepin.input(typeEvent);
   gamepin.size(refDimensions*4/5,refDimensions*1/5);
+  gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
 
   button = createButton("SUBMIT");
   button.size(gamepin.width,gamepin.height);
@@ -301,11 +301,17 @@ function checkWindowChange(){
   h = window.innerHeight;
   if(ww !== w || hh!== h)
   {
+  var refDimensions;
+  if(w > h){refDimensions = h;}
+  else{refDimensions = w;}
   ww = w;                                                                   //update prev w
   hh = h;                                                                   //update prev h
   resizeCanvas(w, h);
-  gamepin.position(w/2 - gamepin.size().width/2, h/3-gamepin.size().height/2+200);
-  button.position(w/2 - button.size().width/2,h/3- button.size().height/2+200 + 1.5*gamepin.size().height);
+  
+  gamepin.size(refDimensions*4/5,refDimensions*1/5);
+  gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
+  button.size(gamepin.width,gamepin.height);
+  button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.5*gamepin.size().height);
   submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.5*gamepin.size().height);
   console.log("window innerDimension change detected");  
   }
