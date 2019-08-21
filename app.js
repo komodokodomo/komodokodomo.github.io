@@ -147,18 +147,6 @@ function draw()
     scanBeacon();                                                           //
     checkRegionChange();                                                    //
 
-
-    if(beaconChosen == 8)
-    {
-      // radio.show();
-
-      submitButton.show();
-    }
-    else
-    {
-      // radio.hide();
-      submitButton.hide();
-    }
   }
 }
 
@@ -287,10 +275,11 @@ function checkRegionChange()
     // radio.style('width', '60px');
     radio.style('vertical-align', 'middle');
     radio.style('margin-top', '-1px');
+    submitButton.show();
     }
     else
     {
-
+      submitButton.hide();
     }
     beaconPrevChosen = beaconChosen;
   }
