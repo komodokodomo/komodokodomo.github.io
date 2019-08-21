@@ -107,7 +107,7 @@ function setup(){
   question.size(w,h/6);
 
   questionText = createP("")
-  question.parent(questionText);
+  questionText.parent(question);
   // question.hide();
 
   for(var i = 0; i<4; i++)
