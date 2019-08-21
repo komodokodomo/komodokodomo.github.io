@@ -104,7 +104,7 @@ function setup(){
     buttonOpt[i].id("opt"+i);
     document.getElementById("opt"+i).value = i.toString();
     buttonOpt[i].size(w/2,h/2);
-    buttonOpt[i].position((i%2)*w/2,round(i/2)*h/6 + 2*h/3);
+    buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
     buttonOpt[i].mousePressed(submitButtonEvent);
   }
   
