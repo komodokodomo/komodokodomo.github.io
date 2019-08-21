@@ -112,11 +112,12 @@ function setup(){
 
   questionText = createDiv("")
   questionText.parent(question);
+  questionText.id("question");
   // questionText.style("display","inline-block");
-  questionText.style("top","50%");
-  questionText.style("right","50%");
-  questionText.style("position","relative");
-  questionText.style("transform","translate(-50%,-50%)");
+  // questionText.style("top","50%");
+  // questionText.style("right","50%");
+  // questionText.style("position","relative");
+  // questionText.style("transform","translate(-50%,-50%)");
   // question.hide();
 
   for(var i = 0; i<4; i++)

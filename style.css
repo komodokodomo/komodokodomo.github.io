@@ -1,4 +1,4 @@
-.loader,
+/* .loader,
 .loader:before,
 .loader:after {
   border-radius: 50%;
@@ -64,6 +64,13 @@
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
-}
+} */
 body { padding: 0; margin: 0; }
 img { padding: 0; margin: 0; }
+
+question.style {
+  top: 50%;
+  right: 50%;
+  position: absolute;
+  transform: translate(50%, -50%);
+}
