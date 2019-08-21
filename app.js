@@ -37,8 +37,8 @@ var question,questionText;
 var gamepin;
 var button,submitButton;
 var buttonOpt = [];
-// var radio;
-
+var images = [];
+var refDimensions;
 
 var questions = 
 ["11111111111111111","22222222222222222","3333333333333333333",
@@ -76,7 +76,7 @@ function setup(){
   hh = h;
   createCanvas(w,h);
 
-  var refDimensions;
+  
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
   
@@ -122,7 +122,6 @@ function setup(){
     buttonOpt[i] = createButton("SUBMIT",i);
     buttonOpt[i].id(i.toString());
     buttonOpt[i].html(opt[i][0]);
-    // document.getElementById(i.toString()).value = i.toString();
     buttonOpt[i].size(w/2,h/6);
     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
     buttonOpt[i].mousePressed(optionButtonEvent);
@@ -162,13 +161,13 @@ function draw()
   {                                                                         //home screen + ask for NICKNAME
     background(245);                                                        //set background to light grey
     imageMode(CENTER);                                                      //align image coordinates to CENTER
-    image(logo,w/2,h/2,w*44/100,w*44/(100*logo.width)*logo.height);         //display loaded image
+    image(logo,w/2,h/2,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
   }
   else if(mode == 1)
   {                                                                         //home screen + ask for PIN
     background(245);                                                        //set background to light grey
     imageMode(CENTER);                                                      //align image coordinates to CENTER
-    image(logo,w/2,h/3,w*44/100,w*44/(100*logo.width)*logo.height);         //display loaded image
+    image(logo,w/2,h/3,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
   }
   
   else
@@ -358,7 +357,6 @@ function checkWindowChange(){
   else if (ww == w && hh== h && windowChanged)
   {
   windowChanged = false;
-  var refDimensions;
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}                       
   resizeCanvas(w, h);
