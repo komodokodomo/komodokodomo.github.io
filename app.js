@@ -286,6 +286,13 @@ function checkRegionChange()
     // radio.remove();
     if(beaconChosen!==999)                                                          // if a particular beacon is detected          
     {
+      for(var i = 0; i<4; i++)
+      {
+        buttonOpt[i].size(w/2,h/6);
+        buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
+        buttonOpt[i].html(opt[i][beaconChosen]);
+        buttonOpt[i].show();
+      }
     // radio = createRadio("radio");                                                   // load the relevant images, question text, option text
     // radio.position(w/2,h/2);
     // radio.option(opt1[beaconChosen]);
@@ -300,6 +307,10 @@ function checkRegionChange()
     else
     {
       submitButton.hide();
+      for(var i = 0; i<4; i++)
+      {
+        buttonOpt[i].hide();
+      }
     }
     beaconPrevChosen = beaconChosen;
   }
@@ -330,6 +341,7 @@ function checkWindowChange(){
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}                       
   resizeCanvas(w, h);
+ 
   gamepin.size(refDimensions*3/5,refDimensions*3/20);
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   button.size(gamepin.width,gamepin.height);
