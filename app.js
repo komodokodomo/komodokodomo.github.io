@@ -102,19 +102,19 @@ function setup(){
   submitButton.hide();
 
   question = createDiv("");
-  // question.style('text-align', 'center');
-  // question.style('margin', '0 auto');
-  question.style('display', 'flex');
-  question.style('align-items', 'center');
-  question.style('justify-content', 'center');
+  question.style('text-align', 'center');
+  question.style('margin', '0 auto');
+  // question.style('display', 'flex');
+  // question.style('align-items', 'center');
+  // question.style('justify-content', 'center');
   question.position(0,0);
   question.size(w,h/6);
 
-  questionText = createP("")
+  questionText = createDiv("")
   questionText.parent(question);
   questionText.style("display","inline-block");
-  // questionText.style("top","50%");
-  // questionText.style("left","50%");
+  questionText.style("top","50%");
+  questionText.style("left","50%");
   // question.hide();
 
   for(var i = 0; i<4; i++)
