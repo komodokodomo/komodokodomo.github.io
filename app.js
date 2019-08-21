@@ -114,6 +114,7 @@ function setup(){
   questionText.parent(question);
   // questionText.style("display","inline-block");
   questionText.style("top","50%");
+  questionText.style("right","50%");
   questionText.style("position","relative");
   // question.hide();
 
