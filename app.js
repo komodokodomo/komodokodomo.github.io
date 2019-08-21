@@ -250,10 +250,10 @@ function scanBeacon()
           if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
           peakEnergy[i] = 0;       
       }
-      else
-      {
-        beaconCounter[i] = 0;                                             //EXPERIMENTAL - testing whether it will make RX more error-resistant
-      }
+      // else
+      // {
+      //   beaconCounter[i] = 0;                                             //EXPERIMENTAL - testing whether it will make RX more error-resistant
+      // }
       lastPing[i] = millis();
     }
     if(beaconCounter[i]>2){
