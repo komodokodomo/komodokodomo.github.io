@@ -104,21 +104,18 @@ function setup(){
   question = createDiv("");
   question.style('text-align', 'center');
   question.style('margin', '0 auto');
-  // question.style('display', 'flex');
-  // question.style('align-items', 'center');
-  // question.style('justify-content', 'center');
   question.position(0,0);
   question.size(w,h/6);
 
   questionText = createDiv("")
   questionText.parent(question);
   questionText.id("question");
-  // questionText.style("display","inline-block");
-  // questionText.style("top","50%");
-  // questionText.style("right","50%");
-  // questionText.style("position","relative");
-  // questionText.style("transform","translate(-50%,-50%)");
-  // question.hide();
+  questionText.style("display","inline-block");
+  questionText.style("top","50%");
+  questionText.style("right","50%");
+  questionText.style("position","relative");
+  questionText.style("transform","translate(-50%,-50%)");
+  question.hide();
 
   for(var i = 0; i<4; i++)
   {
