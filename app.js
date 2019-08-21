@@ -71,6 +71,10 @@ function setup(){
   ww = w;
   hh = h;
   createCanvas(w,h);
+
+  var refDimensions;
+  if(w > h){refDimensions = h;}
+  else{refDimensions = w;}
   
   region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/tampines.png');
@@ -81,16 +85,15 @@ function setup(){
   gamepin.id("gamepin");
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   gamepin.input(typeEvent);
-  gamepin.size(500,100);
+  gamepin.size(refDimensions*4/5,refDimensions*1/5);
 
   button = createButton("SUBMIT");
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.5*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
   
-
   submitButton = createButton("SUBMIT");
-  submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.5*gamepin.size().height);
+  submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.2*gamepin.size().height);
   submitButton.mousePressed(submitButtonEvent);
   submitButton.hide();
   
