@@ -112,9 +112,9 @@ function setup(){
 
   questionText = createDiv("")
   questionText.parent(question);
-  questionText.style("display","inline-block");
+  // questionText.style("display","inline-block");
   questionText.style("top","50%");
-  questionText.style("left","50%");
+  questionText.style("position","relative");
   // question.hide();
 
   for(var i = 0; i<4; i++)
