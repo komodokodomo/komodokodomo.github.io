@@ -101,11 +101,11 @@ function setup(){
   submitButton.mousePressed(submitButtonEvent);
   submitButton.hide();
 
-  question = createDiv("");
+  question = createDiv("HEYA");
   question.style('text-align', 'center');
   question.position(0,0);
   question.size(w,h/6);
-  question.hide();
+  // question.hide();
 
   for(var i = 0; i<4; i++)
   {
