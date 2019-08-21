@@ -100,7 +100,7 @@ function setup(){
 
   for(var i = 0; i<4; i++)
   {
-    buttonOpt[i] = createButton("SUBMIT");
+    buttonOpt[i] = createButton("SUBMIT",i);
     buttonOpt[i].id("opt"+i);
     document.getElementById("opt"+i).value = i.toString();
     buttonOpt[i].size(w/2,h/2);
@@ -197,7 +197,10 @@ function enterButtonEvent() {
 }
 }
 
-function submitButtonEvent() {}
+function submitButtonEvent() 
+{
+  console.log(this.value());
+}
 
 function scanBeacon()
 {
