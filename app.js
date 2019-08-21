@@ -332,4 +332,3 @@ function windowResized() {
 
 // }
 
-function quizPage
