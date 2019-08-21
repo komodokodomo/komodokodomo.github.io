@@ -41,8 +41,9 @@ var images = [];
 var refDimensions;
 
 var questions = 
-["11111111111111111","22222222222222222","3333333333333333333",
-"4444444444444444","5555555555555","666666","77777777","8888888","99999"];
+["This is a generic question 11111111111111111","This is a generic question 22222222222222222","This is a generic question 3333333333333333333",
+"This is a generic question 4444444444444444","This is a generic question 5555555555555","This is a generic question 666666",
+"This is a generic question 77777777","This is a generic question 8888888","This is a generic question 99999"];
 var opt = [
            ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"],
            ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"],
