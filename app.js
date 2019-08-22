@@ -334,7 +334,8 @@ function checkRegionChange()
       questionText.html(jsonFile[beaconChosen].question);
       question.show();
       // image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
-      image(images[beaconChosen], w/2, 5*h/12);
+      // image(images[beaconChosen], w/2, 5*h/12);
+      images[beaconChosen].show();
 
     submitButton.show();
     }
