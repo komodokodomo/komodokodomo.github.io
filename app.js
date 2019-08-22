@@ -374,7 +374,7 @@ function checkRegionChange()
 
 function startCon()
 {
-  socket = io('cotf.cf', 
+  socket = io('https://cotf.cf', 
   {
   rejectUnauthorized : false
   });
