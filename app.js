@@ -95,9 +95,9 @@ function setup(){
   var count = Object.keys(jsonFile).length;
   console.log(count);
 
-  for(var i =0; i<jsonFile.length; i++)
+  for(var i =0; i<count; i++)
   {
-    images[i] = createImg(jsonFile[i].link);
+    images[i] = loadImage(jsonFile[i].link);
     images.show();
   }
 
@@ -338,7 +338,7 @@ function checkRegionChange()
       questionText.html(jsonFile[beaconChosen].question);
       question.show();
       // image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
-      // image(images[beaconChosen], w/2, 5*h/12);
+      image(images[beaconChosen], w/2, 5*h/12);
       // images[beaconChosen].show();
 
     submitButton.show();
