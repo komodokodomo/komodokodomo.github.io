@@ -197,9 +197,9 @@ function draw()
   
   else
   {                                                                         //
-    background(245);                                                        //
-    textAlign(CENTER,CENTER);                                               //
-    textSize(32);                                                           //
+    // background(245);                                                        //
+    // textAlign(CENTER,CENTER);                                               //
+    // textSize(32);                                                           //
     
     scanBeacon();                                                           //
     checkRegionChange();                                                    //
@@ -335,6 +335,9 @@ function checkRegionChange()
         else if(i == 3){buttonOpt[i].html(jsonFile[beaconChosen].opt3);}
         buttonOpt[i].show();
       }
+      background(245);                                                        //
+      textAlign(CENTER,CENTER);                                               //
+      textSize(32);     
       questionText.html(jsonFile[beaconChosen].question);
       question.show();
       // image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
