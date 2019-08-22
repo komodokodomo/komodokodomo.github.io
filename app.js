@@ -385,16 +385,39 @@ function startCon()
 	});
 }
 
-function checkWindowChange(){
-  w = window.innerWidth;                                                    
+// function checkWindowChange(){
+//   w = window.innerWidth;                                                    
+//   h = window.innerHeight;
+//   if(ww !== w || hh!== h && !windowChanged){windowChanged = true;}
+//   else if (ww !== w || hh!== h && windowChanged){}
+//   else if (ww == w && hh== h && windowChanged)
+//   {
+//   windowChanged = false;
+//   if(w > h){refDimensions = h;}
+//   else{refDimensions = w;}                       
+//   resizeCanvas(w, h);
+ 
+//   gamepin.size(refDimensions*3/5,refDimensions*3/20);
+//   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
+//   button.size(gamepin.width,gamepin.height);
+//   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
+//   submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.1*gamepin.size().height);
+//   for(var i = 0; i<4; i++)
+//   {
+//     buttonOpt[i].size(w/2,h/6);
+//     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
+//   }
+//   question.size(w,h/6);
+//   console.log("window innerDimension change detected");  
+//   }
+//   else if (ww == w && hh== h && !windowChanged){}
+//   ww = w;                                                                    //update prev w
+//   hh = h;                                                                    //update prev h
+// }
+
+function windowResized() {
+  w = window.innerWidth; 
   h = window.innerHeight;
-  if(ww !== w || hh!== h && !windowChanged){windowChanged = true;}
-  else if (ww !== w || hh!== h && windowChanged){}
-  else if (ww == w && hh== h && windowChanged)
-  {
-  windowChanged = false;
-  if(w > h){refDimensions = h;}
-  else{refDimensions = w;}                       
   resizeCanvas(w, h);
  
   gamepin.size(refDimensions*3/5,refDimensions*3/20);
@@ -409,18 +432,7 @@ function checkWindowChange(){
   }
   question.size(w,h/6);
   console.log("window innerDimension change detected");  
-  }
-  else if (ww == w && hh== h && !windowChanged){}
-  ww = w;                                                                    //update prev w
-  hh = h;                                                                    //update prev h
 }
-
-// function windowResized() {
-//   w = window.innerWidth; 
-//   h = window.innerHeight;
-//   resizeCanvas(w, h);
-//   console.log("window resizing detected");
-// }
 
 
 // class Button {
