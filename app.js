@@ -71,7 +71,6 @@ var opt = [
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
   jsonFile = loadJSON(url);
-  console.log(jsonFile.question[0]);
 }
 
 function setup(){
@@ -81,7 +80,7 @@ function setup(){
   hh = h;
   createCanvas(w,h);
 
-  
+  console.log(jsonFile.question[0]);
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
   
