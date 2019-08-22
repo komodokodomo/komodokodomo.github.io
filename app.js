@@ -33,6 +33,7 @@ var windowChanged = false;
 var socket;
 
 var jsonFile;
+var jsonLoaded = false;
 var question,questionText;
 var gamepin;
 var button,submitButton;
@@ -71,16 +72,17 @@ var opt = [
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
   jsonFile = loadJSON(url,loadImages);
-}
-
-function loadImages()
-{
-  console.log(jsonFile.length);
+  while(!jsonLoaded){}
   for(var i =0; i<jsonFile.length; i++)
   {
     // images[i] = loadImage(jsonFile[i].Link);
     images[i] = loadImage("https://drive.google.com/uc?export=view&id=1OnAk_xiT3FI5kahhgci1qPhBf1NXDzSr");
   }
+}
+
+function loadImages()
+{
+  jsonLoaded = true;
 }
 
 
