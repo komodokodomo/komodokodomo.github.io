@@ -73,12 +73,7 @@ function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
   jsonFile = loadJSON(url,loadImages);
   // while(!jsonLoaded){}
-  for(var i =0; i<jsonFile.length; i++)
-  {
-    images[i] = createImg(jsonFile[i].link);
-    // http://www.petwebsite.com/hamsters/hamsters_images/syrian-hamster_000008437184.jpg
-    // images[i] = loadImage("http://www.petwebsite.com/hamsters/hamsters_images/syrian-hamster_000008437184.jpg");
-  }
+
 }
 
 function loadImages()
@@ -96,6 +91,12 @@ function setup(){
 
   console.log(jsonFile[0].question);
   console.log(jsonFile[0].link);
+
+  for(var i =0; i<jsonFile.length; i++)
+  {
+    images[i] = createImg(jsonFile[i].link);
+    images.show();
+  }
 
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
@@ -335,7 +336,7 @@ function checkRegionChange()
       question.show();
       // image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
       // image(images[beaconChosen], w/2, 5*h/12);
-      images[beaconChosen].show();
+      // images[beaconChosen].show();
 
     submitButton.show();
     }
