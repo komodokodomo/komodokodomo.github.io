@@ -94,7 +94,7 @@ function setup(){
   createCanvas(w,h);
 
   console.log(jsonFile[0].question);
-  // console.log(jsonFile[0].0);
+  console.log(jsonFile[i].Link);
 
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
