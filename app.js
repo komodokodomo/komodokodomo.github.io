@@ -78,7 +78,7 @@ function loadImages()
   console.log(jsonFile.length);
   for(var i =0; i<jsonFile.length; i++)
   {
-    images[i] = loadImage(jsonFile[i].link);
+    images[i] = loadImage(jsonFile[i].Link);
   }
 }
 
@@ -91,6 +91,8 @@ function setup(){
   createCanvas(w,h);
 
   console.log(jsonFile[0].question);
+  console.log(jsonFile[0].opt0);
+
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
   
@@ -325,7 +327,7 @@ function checkRegionChange()
       }
       questionText.html(jsonFile[beaconChosen].question);
       question.show();
-      // image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
+      image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
       // image(images[beaconChosen], w/2, 5*h/12);
 
     submitButton.show();
