@@ -80,7 +80,7 @@ function setup(){
   hh = h;
   createCanvas(w,h);
 
-  console.log(jsonFile.question[0]);
+  console.log(jsonFile.question);
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
   
