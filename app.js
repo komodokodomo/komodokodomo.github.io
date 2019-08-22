@@ -354,14 +354,14 @@ function checkRegionChange()
       // image(images[beaconChosen], w/2, 5*h/12);
       // images[beaconChosen].show();
 
-    submitButton.show();
+    // submitButton.show();
     }
     else
     {
       background(245);                                                        //
       textAlign(CENTER,CENTER);                                               //
       textSize(32);     
-      submitButton.hide();
+      // submitButton.hide();
       question.hide();
       for(var i = 0; i<4; i++)
       {
