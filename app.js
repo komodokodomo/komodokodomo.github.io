@@ -26,13 +26,13 @@ var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe spac
 
 var sampleTimer = 0;
 
-
 var name,INPUT;
 
 
 var windowChanged = false;  
 var socket;
 
+var jsonFile;
 var question,questionText;
 var gamepin;
 var button,submitButton;
@@ -68,7 +68,11 @@ var opt = [
 // 17429,17391,17354,17316,17279,17241,17204,17167,17131,17094,17058
 // ];
 
-
+function preload() {
+  let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
+  jsonFile = loadJSON(url);
+  console.log(jsonFile.question[0]);
+}
 
 function setup(){
   w = window.innerWidth;                                                    
@@ -200,7 +204,6 @@ function enterButtonEvent() {
     mode = 1;                                                               //then change to PIN entering mode
     gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
     document.getElementById('gamepin').value = '';                          //reset INPUT value to 0;
-    // INPUT = "";                                                          //reset INPUT value to 0;
     console.log("welcome " + name)                                          //** debug **
   }
 }
@@ -300,8 +303,6 @@ function checkRegionChange()
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());  // Update server that client has changed rooms
     console.log("room change");                                                     // ** debug **
     
-    // radio.hide();                                                                   // hide current image, question text, option text
-    // radio.remove();
     if(beaconChosen!==999)                                                          // if a particular beacon is detected          
     {
       for(var i = 0; i<4; i++)
@@ -313,15 +314,7 @@ function checkRegionChange()
       }
       questionText.html(questions[beaconChosen]);
       question.show();
-    // radio = createRadio("radio");                                                   // load the relevant images, question text, option text
-    // radio.position(w/2,h/2);
-    // radio.option(opt1[beaconChosen]);
-    // radio.option(opt2[beaconChosen]);
-    // radio.option(opt3[beaconChosen]);
-    // radio.option(opt4[beaconChosen]);
-    // radio.style('width', '60px');
-    // radio.style('vertical-align', 'middle');
-    // radio.style('margin-top', '-1px');
+
     submitButton.show();
     }
     else
