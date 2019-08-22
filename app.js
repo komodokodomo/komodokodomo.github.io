@@ -70,8 +70,17 @@ var opt = [
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
-  jsonFile = loadJSON(url);
+  jsonFile = loadJSON(url,loadImages);
 }
+
+function loadImages()
+{
+  for(var i =0; i<jsonFile.length; i++)
+  {
+    images[i] = loadImage(jsonFile[i].link);
+  }
+}
+
 
 function setup(){
   w = window.innerWidth;                                                    
@@ -311,9 +320,9 @@ function checkRegionChange()
         buttonOpt[i].html(opt[i][beaconChosen]);
         buttonOpt[i].show();
       }
-      questionText.html(questions[beaconChosen]);
+      questionText.html(jsonFile[beaconChosen].question);
       question.show();
-
+      image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
     submitButton.show();
     }
     else
