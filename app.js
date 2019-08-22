@@ -252,6 +252,8 @@ function submitButtonEvent()
 function optionButtonEvent() 
 {
   console.log(this.value());
+  if(this.value() == jsonFile[beaconChosen].answer){console.log("correct!");}
+  else{console.log("wrong!!");}
 }
 
 function scanBeacon()
