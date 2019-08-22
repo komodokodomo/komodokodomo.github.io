@@ -316,9 +316,10 @@ function checkRegionChange()
     {
       for(var i = 0; i<4; i++)
       {
+        let obj = i.toString();
         buttonOpt[i].size(w/2,h/6);
         buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-        buttonOpt[i].html(jsonFile[beaconChosen].(i.toString()));
+        buttonOpt[i].html(jsonFile[beaconChosen].obj);
         buttonOpt[i].show();
       }
       questionText.html(jsonFile[beaconChosen].question);
