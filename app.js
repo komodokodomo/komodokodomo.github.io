@@ -138,7 +138,7 @@ function setup(){
 
   for(var i = 0; i<4; i++)
   {
-    buttonOpt[i] = createButton("SUBMIT",i);
+    buttonOpt[i] = createButton("SUBMIT",i.toString());
     buttonOpt[i].id(i.toString());
     buttonOpt[i].html(opt[i][0]);
     buttonOpt[i].size(w/2,h/6);
