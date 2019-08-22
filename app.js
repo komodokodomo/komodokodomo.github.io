@@ -430,6 +430,16 @@ function windowResized() {
     buttonOpt[i].size(w/2,h/6);
     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
   }
+  if(beaconChosen!==999){
+    if(images[beaconChosen].height < images[beaconChosen].width)
+    {
+    image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].height) * w/images[beaconChosen].width);
+    }
+    else
+    {
+    image(images[beaconChosen], w/2, 5*h/12, 5*h*w/images[beaconChosen].width/(12*images[beaconChosen].height), 5*h/12);
+    }
+  }
   question.size(w,h/6);
   console.log("window innerDimension change detected");  
 }
