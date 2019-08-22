@@ -41,6 +41,8 @@ var buttonOpt = [];
 var images = [];
 var refDimensions;
 
+var optText = [opt0,opt1,opt2,opt3];
+
 var questions = 
 ["This is a generic question 11111111111111111","This is a generic question 22222222222222222","This is a generic question 3333333333333333333",
 "This is a generic question 4444444444444444","This is a generic question 5555555555555","This is a generic question 666666",
@@ -325,8 +327,7 @@ function checkRegionChange()
         console.log(obj);
         buttonOpt[i].size(w/2,h/6);
         buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-        // jsonFile[0].opt0
-        buttonOpt[i].html(jsonFile[beaconChosen].obj);
+        buttonOpt[i].html(jsonFile[beaconChosen].optText[i]);
         buttonOpt[i].show();
       }
       questionText.html(jsonFile[beaconChosen].question);
