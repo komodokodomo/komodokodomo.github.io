@@ -97,7 +97,7 @@ function setup(){
 
   for(var i =0; i<count; i++)
   {
-    images[i] = loadImage(jsonFile[i].link);
+    images[i] = loadImage("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
     // images.show();
   }
 
