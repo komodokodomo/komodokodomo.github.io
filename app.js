@@ -325,13 +325,14 @@ function checkRegionChange()
         console.log(obj);
         buttonOpt[i].size(w/2,h/6);
         buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-        buttonOpt[i].html(jsonFile[beaconChosen].obj);
+        // jsonFile[0].opt0
+        buttonOpt[i].html(jsonFile[beaconChosen].opt0);
         buttonOpt[i].show();
       }
       questionText.html(jsonFile[beaconChosen].question);
       question.show();
-      image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
-      // image(images[beaconChosen], w/2, 5*h/12);
+      // image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
+      image(images[beaconChosen], w/2, 5*h/12);
 
     submitButton.show();
     }
