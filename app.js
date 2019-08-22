@@ -234,6 +234,9 @@ function enterButtonEvent() {
     button.hide();                                                          //hide away button
     gamepin.hide();                                                         //hide input button
     console.log("correct PIN");                                             // ** debug **
+    background(245);                                                        //
+    textAlign(CENTER,CENTER);                                               //
+    textSize(32);     
   }
   else{                                                                     //if player keys in a wrong PIN
     console.log("wrong PIN");
@@ -348,6 +351,9 @@ function checkRegionChange()
     }
     else
     {
+      background(245);                                                        //
+      textAlign(CENTER,CENTER);                                               //
+      textSize(32);     
       submitButton.hide();
       question.hide();
       for(var i = 0; i<4; i++)
