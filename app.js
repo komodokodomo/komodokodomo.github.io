@@ -98,7 +98,7 @@ function setup(){
   for(var i =0; i<count; i++)
   {
     images[i] = loadImage(jsonFile[i].link);
-    images.show();
+    // images.show();
   }
 
   if(w > h){refDimensions = h;}
