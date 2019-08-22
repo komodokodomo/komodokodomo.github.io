@@ -343,7 +343,14 @@ function checkRegionChange()
       textSize(32);     
       questionText.html(jsonFile[beaconChosen].question);
       question.show();
+      if(images[beaconChosen].height < images[beaconChosen].width)
+      {
       image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].height) * w/images[beaconChosen].width);
+      }
+      else
+      {
+      image(images[beaconChosen], w/2, 5*h/12, 5*h*w/images[beaconChosen].width/(12*images[beaconChosen].height), 5*h/12);
+      }
       // image(images[beaconChosen], w/2, 5*h/12);
       // images[beaconChosen].show();
 
