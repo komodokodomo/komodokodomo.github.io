@@ -75,8 +75,9 @@ function preload() {
   // while(!jsonLoaded){}
   for(var i =0; i<jsonFile.length; i++)
   {
-    images[i] = createImg(jsonFile[i].link);
-    // images[i] = loadImage("https://crossorigin.me/https://drive.google.com/uc?export=view&id=1OnAk_xiT3FI5kahhgci1qPhBf1NXDzSr");
+    // images[i] = createImg(jsonFile[i].link);
+    // http://www.petwebsite.com/hamsters/hamsters_images/syrian-hamster_000008437184.jpg
+    images[i] = loadImage("http://www.petwebsite.com/hamsters/hamsters_images/syrian-hamster_000008437184.jpg");
   }
 }
 
