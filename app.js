@@ -340,7 +340,7 @@ function checkRegionChange()
       textSize(32);     
       questionText.html(jsonFile[beaconChosen].question);
       question.show();
-      image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
+      image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].height) * w/images[beaconChosen].width);
       // image(images[beaconChosen], w/2, 5*h/12);
       // images[beaconChosen].show();
 
