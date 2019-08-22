@@ -99,7 +99,7 @@ function setup(){
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
   
-  region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
+  // region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/logo.png');
 
   gamepin = createInput('');
