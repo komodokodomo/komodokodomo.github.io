@@ -72,7 +72,7 @@ var opt = [
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
   jsonFile = loadJSON(url,loadImages);
-  while(!jsonLoaded){}
+  // while(!jsonLoaded){}
   for(var i =0; i<jsonFile.length; i++)
   {
     // images[i] = loadImage(jsonFile[i].Link);
