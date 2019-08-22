@@ -91,6 +91,7 @@ function setup(){
 
   console.log(jsonFile[0].question);
   console.log(jsonFile[0].link);
+  console.log(jsonFile.length);
 
   for(var i =0; i<jsonFile.length; i++)
   {
