@@ -75,8 +75,8 @@ function preload() {
   // while(!jsonLoaded){}
   for(var i =0; i<jsonFile.length; i++)
   {
-    // images[i] = loadImage(jsonFile[i].Link);
-    images[i] = loadImage("https://crossorigin.me/https://drive.google.com/uc?export=view&id=1OnAk_xiT3FI5kahhgci1qPhBf1NXDzSr");
+    images[i] = loadImage(jsonFile[i].link);
+    // images[i] = loadImage("https://crossorigin.me/https://drive.google.com/uc?export=view&id=1OnAk_xiT3FI5kahhgci1qPhBf1NXDzSr");
   }
 }
 
@@ -332,7 +332,7 @@ function checkRegionChange()
       questionText.html(jsonFile[beaconChosen].question);
       question.show();
       // image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].width * images[beaconChosen].height)/w);
-      // image(images[beaconChosen], w/2, 5*h/12);
+      image(images[beaconChosen], w/2, 5*h/12);
 
     submitButton.show();
     }
