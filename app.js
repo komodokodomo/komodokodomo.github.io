@@ -385,9 +385,9 @@ function startCon()
 	});
 }
 
-// function checkWindowChange(){
-//   w = window.innerWidth;                                                    
-//   h = window.innerHeight;
+function checkWindowChange(){
+  w = window.innerWidth;                                                    
+  h = window.innerHeight;
 //   if(ww !== w || hh!== h && !windowChanged){windowChanged = true;}
 //   else if (ww !== w || hh!== h && windowChanged){}
 //   else if (ww == w && hh== h && windowChanged)
@@ -413,7 +413,7 @@ function startCon()
 //   else if (ww == w && hh== h && !windowChanged){}
 //   ww = w;                                                                    //update prev w
 //   hh = h;                                                                    //update prev h
-// }
+}
 
 function windowResized() {
   w = window.innerWidth; 
