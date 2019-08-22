@@ -378,6 +378,7 @@ function startCon()
 {
   socket = io('cotf.cf', 
   {
+    secure:true
   // rejectUnauthorized : false
   });
   socket.on('connect', function() 
