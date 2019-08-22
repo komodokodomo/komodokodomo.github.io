@@ -124,6 +124,7 @@ function setup(){
   question = createDiv("");
   question.style('text-align', 'center');
   question.style('margin', '0 auto');
+  question.style('background-color', 'darkgrey');
   question.position(0,0);
   question.size(w,h/6);
 
