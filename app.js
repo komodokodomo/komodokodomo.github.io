@@ -76,7 +76,7 @@ function preload() {
   for(var i =0; i<jsonFile.length; i++)
   {
     // images[i] = loadImage(jsonFile[i].Link);
-    images[i] = loadImage("https://drive.google.com/uc?export=view&id=1OnAk_xiT3FI5kahhgci1qPhBf1NXDzSr");
+    images[i] = createImage("https://drive.google.com/uc?export=view&id=1OnAk_xiT3FI5kahhgci1qPhBf1NXDzSr");
   }
 }
 
