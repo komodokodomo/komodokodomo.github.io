@@ -100,13 +100,7 @@ function setup(){
   hh = h;
   createCanvas(w,h);
 
-  console.log(jsonFile[0].question);
-  console.log(jsonFile[0].link);
-
-  var count = Object.keys(jsonFile).length;
-  console.log(count);
-
-  for(var i =0; i<count; i++)
+  for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
     images[i] = loadImage("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
     // images.show();
@@ -129,6 +123,7 @@ function setup(){
   button = createButton("SUBMIT");
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
+  button.elt.focus();
   button.mousePressed(enterButtonEvent);
   
   submitButton = createButton("SUBMIT");
