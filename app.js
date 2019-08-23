@@ -114,6 +114,7 @@ function setup(){
   question.style('text-align', 'center');
   question.style('margin', '0 auto');
   question.style('background-color', 'darkgrey');
+  question.style('font-size', '1.5rem');
   question.position(0,0);
   question.size(w,h/6);
 
@@ -164,8 +165,6 @@ function setup(){
 
 function draw()
 {
-  // checkWindowChange();
-
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
     background(245);                                                        //set background to light grey
@@ -180,14 +179,9 @@ function draw()
   }
   
   else
-  {                                                                         //
-    // background(245);                                                        //
-    // textAlign(CENTER,CENTER);                                               //
-    // textSize(32);                                                           //
-    
+  {                                                                         //    
     scanBeacon();                                                           //
     checkRegionChange();                                                    //
-
   }
 }
 
@@ -197,7 +191,6 @@ function mouseClicked()
 
 function typeEvent() {
   INPUT = this.value();                                                     //update INPUT data with whatever is typed
-  // console.log('typed: ', this.value());                                  //** debug **
   //console.log(INPUT);                                                     //** debug **
 }
 
@@ -395,12 +388,7 @@ function checkRegionChange()
 
 function startCon()
 {
-  socket = io('cotf.cf', 
-  {
-    // secure : true,
-    // transports : ['websockets']
-  // rejectUnauthorized : false
-  });
+  socket = io('cotf.cf', {});
   socket.on('connect', function() 
   {
 		socket.emit('hello',name);
@@ -416,35 +404,6 @@ function startCon()
 	});
 }
 
-// function checkWindowChange(){
-//   w = window.innerWidth;                                                    
-//   h = window.innerHeight;
-//   if(ww !== w || hh!== h && !windowChanged){windowChanged = true;}
-//   else if (ww !== w || hh!== h && windowChanged){}
-//   else if (ww == w && hh== h && windowChanged)
-//   {
-//   windowChanged = false;
-//   if(w > h){refDimensions = h;}
-//   else{refDimensions = w;}                       
-//   resizeCanvas(w, h);
- 
-//   gamepin.size(refDimensions*3/5,refDimensions*3/20);
-//   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
-//   button.size(gamepin.width,gamepin.height);
-//   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
-//   submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.1*gamepin.size().height);
-//   for(var i = 0; i<4; i++)
-//   {
-//     buttonOpt[i].size(w/2,h/6);
-//     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-//   }
-//   question.size(w,h/6);
-//   console.log("window innerDimension change detected");  
-//   }
-//   else if (ww == w && hh== h && !windowChanged){}
-//   ww = w;                                                                    //update prev w
-//   hh = h;                                                                    //update prev h
-// }
 
 function windowResized() {
   w = window.innerWidth; 
