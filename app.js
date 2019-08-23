@@ -65,7 +65,6 @@ var opt = [
           ];
 
 
-
 // var beacon =[ 
 // 22222,22161,22099,22039,21978,21918,21858,21798,21739,
 // 21680,21622,21563,21505,21448,21390,21333,21277,21220,
@@ -393,7 +392,7 @@ function checkRegionChange()
       background(245);                                                        //
       textAlign(CENTER,CENTER);                                               //
       textSize(32); 
-      text("answered",w/2,h/2);
+      text("answered already lah",w/2,h/2);
       question.hide();
       for(var i = 0; i<4; i++)
       {
