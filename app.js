@@ -276,6 +276,16 @@ function optionButtonEvent()
     socket.emit('wrong');
     answered[beaconChosen] = true;
   }
+    background(245);                                                        //
+    textAlign(CENTER,CENTER);                                               //
+    textSize(32); 
+    text("answered",w/2,h/2);
+    question.hide();
+    for(var i = 0; i<4; i++)
+    {
+        buttonOpt[i].hide();
+    }
+  
 }
 
 function scanBeacon()
@@ -352,8 +362,6 @@ function checkRegionChange()
     
     if(beaconChosen!==999)                                                          // if a particular beacon is detected          
     {
-      if(!answered[beaconChosen])
-      {
       for(var i = 0; i<4; i++)
       {
           buttonOpt[i].size(w/2,h/6);
@@ -377,19 +385,7 @@ function checkRegionChange()
         {
         image(images[beaconChosen], w/2, 5*h/12, 5*h*w/images[beaconChosen].width/(12*images[beaconChosen].height), 5*h/12);
         }
-      }
-      else
-      {
-        background(245);                                                        //
-        textAlign(CENTER,CENTER);                                               //
-        textSize(32); 
-        text("answered",w/2,h/2);
-        question.hide();
-        for(var i = 0; i<4; i++)
-        {
-            buttonOpt[i].hide();
-        }
-      }
+      
       // image(images[beaconChosen], w/2, 5*h/12);
       // images[beaconChosen].show();
 
