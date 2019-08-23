@@ -9,7 +9,7 @@
 
 let logo;
 
-var w,h,ww,hh,region;
+var w,h,ww,hh;
 
 var mode = 0; 
 
@@ -44,7 +44,6 @@ var windowChanged = false;
 var socket;
 
 var jsonFile;
-var jsonLoaded = false;
 var question,questionText;
 var gamepin;
 var button,submitButton;
@@ -52,17 +51,6 @@ var buttonOpt = [];
 var images = [];
 var answered = [];
 var refDimensions;
-
-var questions = 
-["This is a generic question 11111111111111111","This is a generic question 22222222222222222","This is a generic question 3333333333333333333",
-"This is a generic question 4444444444444444","This is a generic question 5555555555555","This is a generic question 666666",
-"This is a generic question 77777777","This is a generic question 8888888","This is a generic question 99999"];
-var opt = [
-           ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"],
-           ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"],
-           ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"],
-           ["aaaaaa","bbbbbb","cccccc","dddddd","eeeeee","fffffff","gggggg","hhhhhhhh","iiiiiii"]
-          ];
 
 
 // var beacon =[ 
@@ -82,16 +70,8 @@ var opt = [
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
-  jsonFile = loadJSON(url,loadImages);
-  // while(!jsonLoaded){}
-
+  jsonFile = loadJSON(url);
 }
-
-function loadImages()
-{
-  jsonLoaded = true;
-}
-
 
 function setup(){
   w = window.innerWidth;                                                    
@@ -109,7 +89,6 @@ function setup(){
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
   
-  // region = createImage(displayWidth-displayWidth*2/3,displayWidth-displayWidth*2/3);
   logo = loadImage('assets/logo.png');
 
   gamepin = createInput('');
