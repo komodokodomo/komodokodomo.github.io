@@ -131,7 +131,6 @@ function setup(){
   {
     buttonOpt[i] = createButton("SUBMIT",i.toString());
     buttonOpt[i].id(i.toString());
-    buttonOpt[i].html(opt[i][0]);
     buttonOpt[i].size(w/2,h/6);
     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
     buttonOpt[i].mousePressed(optionButtonEvent);
@@ -451,6 +450,9 @@ function windowResized() {
   w = window.innerWidth; 
   h = window.innerHeight;
   resizeCanvas(w, h);
+
+  if(w > h){refDimensions = h;}
+  else{refDimensions = w;}
  
   gamepin.size(refDimensions*3/5,refDimensions*3/20);
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
