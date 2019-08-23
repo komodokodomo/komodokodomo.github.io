@@ -433,13 +433,13 @@ function startCon()
 		socket.emit('hello',name);
 		console.log("connected");		 
   });
-  socket.on('roomchange', function() 
+  socket.on('roomchange', function(msg) 
   {
-		console.log(this.data);		 		 
+		console.log(msg);		 		 
   });
   socket.on('left', function() 
   {
-		console.log(this.data);	
+		console.log(msg);	
 	});
 }
 
