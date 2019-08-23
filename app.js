@@ -1,3 +1,12 @@
+
+//TODO 
+
+// add clearing function once button is pressed + update scores accordingly
+// add screen for 999
+// show how many people in same location as you
+// add more trashy content
+
+
 let logo;
 
 var w,h,ww,hh,region;
@@ -23,6 +32,8 @@ var pingDuration = 900;
 var pingTolerance = 40;
 var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe space
 
+var score;
+
 
 var sampleTimer = 0;
 
@@ -39,6 +50,7 @@ var gamepin;
 var button,submitButton;
 var buttonOpt = [];
 var images = [];
+var answered = [];
 var refDimensions;
 
 var questions = 
@@ -180,7 +192,7 @@ function setup(){
 
 function draw()
 {
-  checkWindowChange();
+  // checkWindowChange();
 
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
@@ -252,8 +264,18 @@ function submitButtonEvent()
 function optionButtonEvent() 
 {
   console.log(this.value());
-  if(this.value() == jsonFile[beaconChosen].answer){console.log("correct!");}
-  else{console.log("wrong!!");}
+  if(this.value() == jsonFile[beaconChosen].answer)
+  {
+    console.log("correct!");
+    socket.emit('correct');
+    answered[beaconChosen] = true;
+  }
+  else
+  {
+    console.log("wrong!!");
+    socket.emit('wrong');
+    answered[beaconChosen] = true;
+  }
 }
 
 function scanBeacon()
@@ -330,28 +352,42 @@ function checkRegionChange()
     
     if(beaconChosen!==999)                                                          // if a particular beacon is detected          
     {
+      if(!answered[beaconChosen])
+      {
       for(var i = 0; i<4; i++)
       {
-        buttonOpt[i].size(w/2,h/6);
-        buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-        if(i == 0){buttonOpt[i].html(jsonFile[beaconChosen].opt0);}
-        else if(i == 1){buttonOpt[i].html(jsonFile[beaconChosen].opt1);}
-        else if(i == 2){buttonOpt[i].html(jsonFile[beaconChosen].opt2);}
-        else if(i == 3){buttonOpt[i].html(jsonFile[beaconChosen].opt3);}
-        buttonOpt[i].show();
+          buttonOpt[i].size(w/2,h/6);
+          buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
+          if(i == 0){buttonOpt[i].html(jsonFile[beaconChosen].opt0);}
+          else if(i == 1){buttonOpt[i].html(jsonFile[beaconChosen].opt1);}
+          else if(i == 2){buttonOpt[i].html(jsonFile[beaconChosen].opt2);}
+          else if(i == 3){buttonOpt[i].html(jsonFile[beaconChosen].opt3);}
+          buttonOpt[i].show();
       }
-      background(245);                                                        //
-      textAlign(CENTER,CENTER);                                               //
-      textSize(32);     
-      questionText.html(jsonFile[beaconChosen].question);
-      question.show();
-      if(images[beaconChosen].height < images[beaconChosen].width)
-      {
-      image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].height) * w/images[beaconChosen].width);
+        background(245);                                                        //
+        textAlign(CENTER,CENTER);                                               //
+        textSize(32);     
+        questionText.html(jsonFile[beaconChosen].question);
+        question.show();
+        if(images[beaconChosen].height < images[beaconChosen].width)
+        {
+        image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].height) * w/images[beaconChosen].width);
+        }
+        else
+        {
+        image(images[beaconChosen], w/2, 5*h/12, 5*h*w/images[beaconChosen].width/(12*images[beaconChosen].height), 5*h/12);
+        }
       }
       else
       {
-      image(images[beaconChosen], w/2, 5*h/12, 5*h*w/images[beaconChosen].width/(12*images[beaconChosen].height), 5*h/12);
+        background(245);                                                        //
+        textAlign(CENTER,CENTER);                                               //
+        textSize(32); 
+        question.hide();
+        for(var i = 0; i<4; i++)
+        {
+            buttonOpt[i].hide();
+        }
       }
       // image(images[beaconChosen], w/2, 5*h/12);
       // images[beaconChosen].show();
@@ -389,9 +425,9 @@ function startCon()
 	});
 }
 
-function checkWindowChange(){
-  w = window.innerWidth;                                                    
-  h = window.innerHeight;
+// function checkWindowChange(){
+//   w = window.innerWidth;                                                    
+//   h = window.innerHeight;
 //   if(ww !== w || hh!== h && !windowChanged){windowChanged = true;}
 //   else if (ww !== w || hh!== h && windowChanged){}
 //   else if (ww == w && hh== h && windowChanged)
@@ -417,7 +453,7 @@ function checkWindowChange(){
 //   else if (ww == w && hh== h && !windowChanged){}
 //   ww = w;                                                                    //update prev w
 //   hh = h;                                                                    //update prev h
-}
+// }
 
 function windowResized() {
   w = window.innerWidth; 
@@ -449,26 +485,5 @@ function windowResized() {
 }
 
 
-// class Button {
 
-//   constructor(width, height, posX, posY, BG, text) {
-//     this.width = width;
-//     this.height = height;
-//     this.posX = posX;
-//     this.posY = posY;
-//     this.BG = BG;
-//     this.text = text;
-//   }
-
-//   draw() {
-//   fill(this.BG);
-//   rect(this.posX,this.posY,this.width,this.height);
-
-//   }
-
-//   update() {
-
-//   }
-
-// }
 
