@@ -266,13 +266,13 @@ function optionButtonEvent()
   if(this.value() == jsonFile[beaconChosen].answer)
   {
     console.log("correct!");
-    socket.emit('correct');
+    socket.emit('correct',beaconChosen);
     answered[beaconChosen] = true;
   }
   else
   {
     console.log("wrong!!");
-    socket.emit('wrong');
+    socket.emit('wrong',beaconChosen);
     answered[beaconChosen] = true;
   }
     background(245);                                                        //
@@ -432,6 +432,14 @@ function startCon()
   {
 		socket.emit('hello',name);
 		console.log("connected");		 
+  });
+  socket.on('roomchange', function(msg) 
+  {
+		console.log(msg.payload);		 		 
+  });
+  socket.on('left', function(msg) 
+  {
+		console.log(msg.payload);		 
 	});
 }
 
