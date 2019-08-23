@@ -437,7 +437,7 @@ function startCon()
   {
 		console.log(msg);		 		 
   });
-  socket.on('left', function() 
+  socket.on('left', function(msg) 
   {
 		console.log(msg);	
 	});
