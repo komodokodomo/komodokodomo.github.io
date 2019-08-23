@@ -119,11 +119,11 @@ function setup(){
   gamepin.input(typeEvent);
   gamepin.size(refDimensions*3/5,refDimensions*3/20);
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
+  gamepin.elt.focus();
 
   button = createButton("SUBMIT");
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
-  button.elt.focus();
   button.mousePressed(enterButtonEvent);
   
   submitButton = createButton("SUBMIT");
