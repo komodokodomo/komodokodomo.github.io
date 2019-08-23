@@ -383,6 +383,7 @@ function checkRegionChange()
         background(245);                                                        //
         textAlign(CENTER,CENTER);                                               //
         textSize(32); 
+        text("answered",w/2,h/2);
         question.hide();
         for(var i = 0; i<4; i++)
         {
