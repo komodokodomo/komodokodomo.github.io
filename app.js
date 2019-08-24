@@ -2,7 +2,7 @@
 //TODO 
 
 // add clearing function once button is pressed + update scores accordingly
-// add screen for 999
+// add screen for 99
 // show how many people in same location as you
 // add more trashy content
 
@@ -26,8 +26,8 @@ var lastPing = [];
 var TTL = 4000; 
 var beaconDetected = [];
 var beaconHighestPower = 0;
-var beaconChosen = 999;
-var beaconPrevChosen = 999;
+var beaconChosen = 99;
+var beaconPrevChosen = 99;
 var pingDuration = 900;
 var pingTolerance = 40;
 var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe space
@@ -39,8 +39,6 @@ var sampleTimer = 0;
 
 var name,INPUT;
 
-
-var windowChanged = false;  
 var socket;
 
 var jsonFile;
@@ -114,7 +112,7 @@ function setup(){
   question.style('text-align', 'center');
   question.style('margin', '0 auto');
   question.style('background-color', 'darkgrey');
-  question.style('font-size', '1.5rem');
+  question.style('font-size', '1.2rem');
   question.position(0,0);
   question.size(w,h/6);
 
@@ -266,7 +264,7 @@ function scanBeacon()
           beaconDetected[i] = false;                                        // set the "beaconDetected" flag to FALSE
           beaconCounter[i] = 0;                                             // reset the beaconCounter for that frequency to 0
           console.log("disconnected from "+ i);                             // ** debug **
-          if(beaconChosen == i){beaconChosen = 999;}                        // 
+          if(beaconChosen == i){beaconChosen = 99;}                        // 
       }
     }
     else if(!aboveThreshold[i] && energy[i]>=upperThreshold)
@@ -310,7 +308,7 @@ if(millis()-sampleTimer>pingDuration)
     {
       console.log("at region "+beaconChosen);
     }
-    else if(beaconChosen == 999)
+    else if(beaconChosen == 99)
     {
       console.log("no region detected");
     }
@@ -325,7 +323,7 @@ function checkRegionChange()
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());  // Update server that client has changed rooms
     console.log("room change");                                                     // ** debug **
     
-    if(beaconChosen!==999)                                                          // if a particular beacon is detected          
+    if(beaconChosen!==99)                                                          // if a particular beacon is detected          
     {
     if(!answered[beaconChosen])
     {
@@ -423,7 +421,7 @@ function windowResized() {
     buttonOpt[i].size(w/2,h/6);
     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
   }
-  if(beaconChosen!==999){
+  if(beaconChosen!==99 && !answered[beaconChosen]){
     if(images[beaconChosen].height < images[beaconChosen].width)
     {
     image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].height) * w/images[beaconChosen].width);
