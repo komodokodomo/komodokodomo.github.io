@@ -96,6 +96,8 @@ locationsImage[i].style("display","inline-block");
 locationsImage[i].style("top","50%");
 locationsImage[i].style("right","50%");
 locationsImage[i].style("position","relative");
+locationsImage[i].style("width","100%");
+locationsImage[i].style("height","100%");
     // images.show();
   }
 
