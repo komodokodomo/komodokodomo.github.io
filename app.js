@@ -89,7 +89,7 @@ function setup(){
     locations[i] = createDiv();
 locations[i].size(w,h/6);
 locations[i].position(0,i*h/6);
-locationsImage[i] = createImg("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
+locationsImage[i] = createImg(jsonFile[i].link);
 locationsImage[i].parent(locations[i]);
 locationsImage[i].style("object-fit","cover");
 locationsImage[i].style("display","inline-block");
