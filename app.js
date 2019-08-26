@@ -96,7 +96,8 @@ function setup(){
     locationsImage[i].style("position","relative");
     locationsImage[i].style("width","100%");
     locationsImage[i].style("height","100%");
-    locationsImage[i].style("padding","20px");
+    locationsImage[i].style("padding-bottom","20px");
+    locationsImage[i].style("filter","grayscale(100%)");
     locations[i].hide();
     // images.show();
   }
