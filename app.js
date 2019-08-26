@@ -87,17 +87,16 @@ function setup(){
     images[i] = loadImage("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
 
     locations[i] = createDiv();
-locations[i].size(w,h/6);
-locations[i].position(0,i*h/6);
-locationsImage[i] = createImg(jsonFile[i].link);
-locationsImage[i].parent(locations[i]);
-locationsImage[i].style("object-fit","cover");
-locationsImage[i].style("display","inline-block");
-// locationsImage[i].style("top","50%");
-// locationsImage[i].style("right","50%");
-locationsImage[i].style("position","relative");
-locationsImage[i].style("width","100%");
-locationsImage[i].style("height","100%");
+    locations[i].size(w,h/6);
+    locations[i].position(0,i*h/6);
+    locationsImage[i] = createImg(jsonFile[i].link);
+    locationsImage[i].parent(locations[i]);
+    locationsImage[i].style("object-fit","cover");
+    locationsImage[i].style("display","inline-block");
+    locationsImage[i].style("position","relative");
+    locationsImage[i].style("width","100%");
+    locationsImage[i].style("height","100%");
+    locations[i].hide();
     // images.show();
   }
 
