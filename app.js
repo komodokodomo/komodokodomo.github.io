@@ -1,3 +1,5 @@
+import { rejects } from "assert";
+
 // import { rejects } from "assert";
 
 //TODO 
@@ -409,6 +411,11 @@ function checkRegionChange()
       for(var i =0; i<Object.keys(jsonFile).length; i++)
       {
         locations[i].show();
+        if(answered[i])
+        {
+          fill(20,255,20);
+          rect(0,i*h*1.1/6,w,h/6);
+        }
       }
     }
     beaconPrevChosen = beaconChosen;
