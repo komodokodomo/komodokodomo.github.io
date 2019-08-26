@@ -1,3 +1,4 @@
+import { rejects } from "assert";
 
 //TODO 
 
@@ -31,6 +32,9 @@ var beaconPrevChosen = 99;
 var pingDuration = 900;
 var pingTolerance = 40;
 var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe space
+
+var locations = [];
+var locationsImage = [];
 
 var score;
 
@@ -81,6 +85,17 @@ function setup(){
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
     images[i] = loadImage("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
+
+    locations[i] = createDiv();
+locations[i].size(w,h/6);
+locations[i].position(0,i*h/6);
+locationsImage[i] = createImg("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
+locationsImage[i].parent(locations[i]);
+locationsImage[i].style("object-fit","cover");
+locationsImage[i].style("display","inline-block");
+locationsImage[i].style("top","50%");
+locationsImage[i].style("right","50%");
+locationsImage[i].style("position","relative");
     // images.show();
   }
 
@@ -434,6 +449,23 @@ function windowResized() {
   question.size(w,h/6);
   console.log("window innerDimension change detected");  
 }
+
+// function drawTaskMenu(){
+// for(var i=0; i<Object.keys(jsonFile).length; i++)
+// {
+// locations[i] = createDiv();
+// locations[i].size(w,h/6);
+// locations[i].position(0,i*h/6);
+// locationsImage[i] = createImg("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
+// locationsImage[i].parent(locations[i]);
+// locationsImage[i].style("object-fit","cover");
+// locationsImage[i].style("display","inline-block");
+// locationsImage[i].style("top","50%");
+// locationsImage[i].style("right","50%");
+// locationsImage[i].style("position","relative");
+// }
+
+// }
 
 
 
