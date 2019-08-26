@@ -395,6 +395,11 @@ function checkRegionChange()
       {
         buttonOpt[i].hide();
       }
+      for(var i =0; i<Object.keys(jsonFile).length; i++)
+      {
+        locations[i].show();
+        // images.show();
+      }
     }
     beaconPrevChosen = beaconChosen;
   }
