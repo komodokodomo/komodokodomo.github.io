@@ -88,7 +88,7 @@ function setup(){
 
     locations[i] = createDiv();
     locations[i].size(w,h/6);
-    locations[i].position(0,i*h/6);
+    locations[i].position(0,i*h*1.1/6);
     locationsImage[i] = createImg(jsonFile[i].link);
     locationsImage[i].parent(locations[i]);
     locationsImage[i].style("object-fit","cover");
@@ -96,6 +96,7 @@ function setup(){
     locationsImage[i].style("position","relative");
     locationsImage[i].style("width","100%");
     locationsImage[i].style("height","100%");
+    locationsImage[i].style("padding","20px");
     locations[i].hide();
     // images.show();
   }
