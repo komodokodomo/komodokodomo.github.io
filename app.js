@@ -86,6 +86,7 @@ function setup(){
     locationsText[i].style("right","50%");
     locationsText[i].style("position","relative");
     locationsText[i].style("transform","translate(50%,-50%)");
+    locationsText[i].style("font-size","2rem");
     locationsText[i].parent(locations[i]);
     locationsImage[i] = createImg(jsonFile[i].link);
     locationsImage[i].parent(locations[i]);
