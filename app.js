@@ -228,6 +228,10 @@ function enterButtonEvent() {
     background(245);                                                        //
     textAlign(CENTER,CENTER);                                               //
     textSize(32);     
+    for(var i =0; i<Object.keys(jsonFile).length; i++)
+    {
+      locations[i].show();
+    }
   }
   else{                                                                     //if player keys in a wrong PIN
     console.log("wrong PIN");
@@ -341,6 +345,10 @@ function checkRegionChange()
     
     if(beaconChosen!==99)                                                          // if a particular beacon is detected          
     {
+    for(var i =0; i<Object.keys(jsonFile).length; i++)
+    {
+      locations[i].hide();
+    }
     if(!answered[beaconChosen])
     {
       for(var i = 0; i<4; i++)
@@ -398,7 +406,6 @@ function checkRegionChange()
       for(var i =0; i<Object.keys(jsonFile).length; i++)
       {
         locations[i].show();
-        // images.show();
       }
     }
     beaconPrevChosen = beaconChosen;
