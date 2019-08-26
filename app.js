@@ -70,7 +70,6 @@ function preload() {
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
-
   createCanvas(w,h);
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
@@ -91,7 +90,7 @@ function setup(){
     locationsImage[i].style("filter","grayscale(100%)");
     locations[i].hide();
 
-    peakDetect[i] = new p5.PeakDetect(beacon[i]-100, beacon[i+100, 0.35,1]);
+    peakDetect[i] = new p5.PeakDetect(beacon[i]-100, beacon[i+100, 0.1,1]);
     // images.show();
   }
 
@@ -205,7 +204,7 @@ function enterButtonEvent() {
     mode = 1;                                                               //then change to PIN entering mode
     gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
     document.getElementById('gamepin').value = '';                          //reset INPUT value to 0;
-    document.getElementById('gamepin').type = 'tel';                     //reset INPUT value to 0;
+    document.getElementById('gamepin').type = 'tel';                        //reset INPUT value to 0;
     console.log("welcome " + name)                                          //** debug **
   }
 }
