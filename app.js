@@ -7,6 +7,7 @@ var mode = 0;
 
 var mic;
 var fft;
+var peakDetect = [];
 var upperThreshold = 80;
 var lowerThreshold = 50;
 var aboveThreshold = [];
@@ -89,6 +90,8 @@ function setup(){
     locationsImage[i].style("padding-bottom","20px");
     locationsImage[i].style("filter","grayscale(100%)");
     locations[i].hide();
+
+    peakDetect[i] = new p5.PeakDetect(beacon[i]-100, beacon[i+100, 0.9]);
     // images.show();
   }
 
@@ -260,6 +263,8 @@ function scanBeacon()
   var spectrum = fft.analyze();                                             // get FFT data for subsequent analysis
   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
   {
+    peakDetect[i].update(fft); 
+    if ( peakDetect[i].isDetected ) {console.log("peak found in band:" + i );}
     energy[i] = fft.getEnergy(beacon[i]);                                   // get the amplitude of a particular frequency
     if(!aboveThreshold[i] && energy[i]<upperThreshold)
     {                                                                       // if amplitude is below threshold and "aboveThreshold" flag is still false
@@ -310,11 +315,11 @@ if(millis()-sampleTimer>pingDuration)
   {
     if(beaconCounter[beaconChosen]>2)
     {
-      console.log("at region "+beaconChosen);
+      // console.log("at region "+beaconChosen);
     }
     else if(beaconChosen == 99)
     {
-      console.log("no region detected");
+      // console.log("no region detected");
     }
   sampleTimer = millis();
   }
