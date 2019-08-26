@@ -87,7 +87,7 @@ function setup(){
 
     locations[i] = createDiv();
     locations[i].size(w,h/6);
-    locations[i].position(0,i*h*1.1/6);
+    locations[i].position(0,i*h/6);
     locationsImage[i] = createImg(jsonFile[i].link);
     locationsImage[i].parent(locations[i]);
     locationsImage[i].style("object-fit","cover");
@@ -410,8 +410,9 @@ function checkRegionChange()
         locations[i].show();
         if(answered[i])
         {
-          fill(20,255,20);
-          rect(0,i*h*1.1/6,w,h/6);
+          // fill(20,255,20);
+          // rect(0,i*h/6,w,h/6);
+          locationsImage[i].style("filter","");
         }
       }
     }
