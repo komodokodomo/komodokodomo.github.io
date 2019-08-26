@@ -1,15 +1,7 @@
 
-//TODO 
-
-// add clearing function once button is pressed + update scores accordingly
-// add screen for 99
-// show how many people in same location as you
-// add more trashy content
-
-
 let logo;
 
-var w,h,ww,hh;
+var w,h;
 
 var mode = 0; 
 
@@ -47,7 +39,7 @@ var socket;
 var jsonFile;
 var question,questionText;
 var gamepin;
-var button,submitButton;
+var button;
 var buttonOpt = [];
 var images = [];
 var answered = [];
@@ -77,8 +69,7 @@ function preload() {
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
-  ww = w;
-  hh = h;
+
   createCanvas(w,h);
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
@@ -119,11 +110,6 @@ function setup(){
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
-  
-  submitButton = createButton("SUBMIT");
-  submitButton.position(w/2 - submitButton.size().width/2,h/3- submitButton.size().height/2+200 + 1.1*gamepin.size().height);
-  submitButton.mousePressed(submitButtonEvent);
-  submitButton.hide();
 
   question = createDiv("");
   question.style('text-align', 'center');
@@ -216,7 +202,7 @@ function enterButtonEvent() {
     mode = 1;                                                               //then change to PIN entering mode
     gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
     document.getElementById('gamepin').value = '';                          //reset INPUT value to 0;
-    document.getElementById('gamepin').type = 'number';                     //reset INPUT value to 0;
+    document.getElementById('gamepin').type = 'tel';                     //reset INPUT value to 0;
     console.log("welcome " + name)                                          //** debug **
   }
 }
@@ -241,10 +227,6 @@ function enterButtonEvent() {
 }
 }
 
-function submitButtonEvent() 
-{
-  console.log(this.value());
-}
 
 function optionButtonEvent() 
 {
@@ -399,7 +381,6 @@ function checkRegionChange()
       background(245);                                                        //
       textAlign(CENTER,CENTER);                                               //
       textSize(32);     
-      // submitButton.hide();
       question.hide();
       for(var i = 0; i<4; i++)
       {
@@ -457,7 +438,7 @@ function windowResized() {
     buttonOpt[i].size(w/2,h/6);
     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
   }
-  
+
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
   locations[i].size(w,h/6);
