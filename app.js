@@ -90,7 +90,7 @@ function setup(){
     locationsImage[i].style("filter","grayscale(100%)");
     locations[i].hide();
 
-    peakDetect[i] = new p5.PeakDetect(beacon[i]-100, beacon[i+100, 0.1,1]);
+    peakDetect[i] = new p5.PeakDetect(beacon[i]-100, beacon[i+100, 0.1]);
     // images.show();
   }
 
