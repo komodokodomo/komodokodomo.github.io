@@ -87,7 +87,7 @@ function setup(){
     locationsImage[i].style("width","100%");
     locationsImage[i].style("height","100%");
     locationsImage[i].style("padding-bottom","20px");
-    locationsImage[i].style("filter","grayscale(100%)");
+    // locationsImage[i].style("filter","grayscale(100%)");
     locations[i].hide();
 
     peakDetect[i] = new p5.PeakDetect(beacon[i]-100, beacon[i+100, 0.1]);
@@ -397,7 +397,8 @@ function checkRegionChange()
         {
           // fill(20,255,20);
           // rect(0,i*h/6,w,h/6);
-          locationsImage[i].style("filter","");
+          // locationsImage[i].style("filter","");
+          locationsImage[i].style("opacity","0.3");
         }
       }
     }
