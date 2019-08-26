@@ -27,6 +27,7 @@ var beacon =[17429,17778,18141,18476,18824,19185,19560,19950,20356]; //safe spac
 
 var locations = [];
 var locationsImage = [];
+var locationsText = [];
 
 var score;
 
@@ -79,6 +80,13 @@ function setup(){
     locations[i] = createDiv();
     locations[i].size(w,h/6);
     locations[i].position(0,i*h*1.1/6);
+    locationsText[i] = createDiv("Answered");
+    locationsText[i].style("display","inline-block");
+    locationsText[i].style("top","50%");
+    locationsText[i].style("right","50%");
+    locationsText[i].style("position","relative");
+    locationsText[i].style("transform","translate(50%,-50%)");
+    locationsText[i].parent(locations[i]);
     locationsImage[i] = createImg(jsonFile[i].link);
     locationsImage[i].parent(locations[i]);
     locationsImage[i].style("object-fit","cover");
@@ -89,6 +97,7 @@ function setup(){
     locationsImage[i].style("padding-bottom","20px");
     // locationsImage[i].style("filter","grayscale(100%)");
     locations[i].hide();
+    locationsText[i].hide();
 
     peakDetect[i] = new p5.PeakDetect(beacon[i]-100, beacon[i+100, 0.1]);
     // images.show();
@@ -398,7 +407,8 @@ function checkRegionChange()
           // fill(20,255,20);
           // rect(0,i*h/6,w,h/6);
           // locationsImage[i].style("filter","");
-          locationsImage[i].style("opacity","0.3");
+          locationsImage[i].style("opacity","0.2");
+          locationsText[i].show();
         }
       }
     }
