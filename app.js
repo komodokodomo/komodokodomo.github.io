@@ -457,6 +457,14 @@ function windowResized() {
     buttonOpt[i].size(w/2,h/6);
     buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
   }
+  
+  for(var i =0; i<Object.keys(jsonFile).length; i++)
+  {
+  locations[i].size(w,h/6);
+  locations[i].position(0,i*h*1.1/6);
+  }
+
+
   if(beaconChosen!==99 && !answered[beaconChosen]){
     if(images[beaconChosen].height < images[beaconChosen].width)
     {
