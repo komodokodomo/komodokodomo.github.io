@@ -217,6 +217,7 @@ function enterButtonEvent() {
     mode = 1;                                                               //then change to PIN entering mode
     gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
     document.getElementById('gamepin').value = '';                          //reset INPUT value to 0;
+    document.getElementById('gamepin').type = 'number';                     //reset INPUT value to 0;
     console.log("welcome " + name)                                          //** debug **
   }
 }
