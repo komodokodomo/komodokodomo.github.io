@@ -55,6 +55,7 @@ var lastPingTtlTimer = [];
 var lastPingTTL = [];
 var lastPingEnergy = [];
 var lastPingEnergyHighest;
+var lastPingChosen;
 
 // var beacon =[ 
 // 22222,22161,22099,22039,21978,21918,21858,21798,21739,
@@ -293,6 +294,11 @@ function scanBeacon()
       {
         lastPingPeakCounter[i]++;
         lastPingEnergy[i] = fft.getEnergy(beacon[i]-80, beacon[i]+80);
+        if(lastPingEnergy[i]>lastPingEnergyHighest)
+        {
+          lastPingEnergyHighest = lastPingEnergy[i];
+          lastPingChosen = i;
+        }
       }
       console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]);
       lastPingPeak[i] = millis();
@@ -304,10 +310,11 @@ function scanBeacon()
       {
         lastPingPeakCounter[i] = 0;
         lastPingEnergy[i] = 0;
+        lastPingChosen = null;
         // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
       }
     }
-    if(lastPingPeakCounter[i]>8){console.log("region "+i +" chosen");}
+    if(lastPingPeakCounter[lastPingChosen]>8){console.log("region "+i +" chosen");}
 
 
 
