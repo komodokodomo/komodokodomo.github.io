@@ -286,9 +286,7 @@ function scanBeacon()
   var spectrum = fft.analyze();                                             // get FFT data for subsequent analysis
   lastPingEnergyHighest = 0;
   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
-  {
-    
-    
+  {   
     peakDetect[i].update(fft); 
     if ( peakDetect[i].isDetected ) 
     {
@@ -303,7 +301,7 @@ function scanBeacon()
           // lastPingChosen = i;
         }
       }
-      // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]+", chosen: " + lastPingChosen);
+      console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]+", chosen: " + lastPingChosen);
       lastPingPeak[i] = millis();
       lastPingTtlTimer[i] = millis();
     }
@@ -317,14 +315,6 @@ function scanBeacon()
         // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
       }
     }
-    // if(lastPingPeakCounter[i]>8)
-    // {
-    //   console.log("region "+i +" chosen");
-    //   lastPingDetected[i] = true;
-    // }
-    // else{
-    //   lastPingDetected[i] = false;
-    // }
 
   }
   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
@@ -334,12 +324,12 @@ function scanBeacon()
 
   for(var i = 0; i<lastPingDetected.length; i++)                                      // repeat the same actions for all the frequencies listed
   {
-    console.log("ping from: " +lastPingDetected[i]);
+    // console.log("ping from: " +lastPingDetected[i]);
     if(lastPingEnergyHighest<lastPingEnergy[lastPingDetected[i]])
     {
       lastPingEnergyHighest = lastPingEnergy[lastPingDetected[i]];
       beaconChosen = lastPingDetected[i];
-      console.log("chose: "+beaconChosen);
+      // console.log("chose: "+beaconChosen);
     }
   }
   // console.log("region detected: " + lastPingChosen);
