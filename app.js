@@ -54,7 +54,7 @@ var lastPingPeakCounter = [];
 var lastPingTtlTimer = [];
 var lastPingTTL = [];
 var lastPingEnergy = [];
-var lastPingEnergyHighest;
+var lastPingEnergyHighest = 0;
 var lastPingChosen;
 
 // var beacon =[ 
@@ -300,7 +300,7 @@ function scanBeacon()
           lastPingChosen = i;
         }
       }
-      console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]);
+      console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]+", chosen: " + lastPingChosen);
       lastPingPeak[i] = millis();
       lastPingTtlTimer[i] = millis();
     }
