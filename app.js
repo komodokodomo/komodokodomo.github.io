@@ -49,6 +49,8 @@ var refDimensions;
 
 
 var lastPingPeak = [];
+var lastPingPeakPeriod = [];
+var lastPingPeakCounter = [];
 
 // var beacon =[ 
 // 22222,22161,22099,22039,21978,21918,21858,21798,21739,
@@ -276,8 +278,9 @@ function scanBeacon()
   {
     peakDetect[i].update(fft); 
     if ( peakDetect[i].isDetected ) {
-      // console.log()
-      console.log("peak found in band:" + i +", last ping heard: " + (millis()-lastPingPeak[i]));
+      lastPingPeakPeriod[i] = millis()-lastPingPeak[i];
+      if(lastPingPeakPeriod[i]>170 && lastPingPeakPeriod[i]<230){lastPingPeakCounter[i]++;}
+      console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
       lastPingPeak[i] = millis();
     }
     energy[i] = fft.getEnergy(beacon[i]);                                   // get the amplitude of a particular frequency
