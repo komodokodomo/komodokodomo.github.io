@@ -48,6 +48,8 @@ var answered = [];
 var refDimensions;
 
 
+var lastPingPeak = [];
+
 // var beacon =[ 
 // 22222,22161,22099,22039,21978,21918,21858,21798,21739,
 // 21680,21622,21563,21505,21448,21390,21333,21277,21220,
@@ -273,7 +275,11 @@ function scanBeacon()
   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
   {
     peakDetect[i].update(fft); 
-    if ( peakDetect[i].isDetected ) {console.log("peak found in band:" + i );}
+    if ( peakDetect[i].isDetected ) {
+      // console.log()
+      console.log("peak found in band:" + i +", last ping heard: " + (millis()-lastPingPeak[i]));
+      lastPingPeak[i] = millis();
+    }
     energy[i] = fft.getEnergy(beacon[i]);                                   // get the amplitude of a particular frequency
     if(!aboveThreshold[i] && energy[i]<upperThreshold)
     {                                                                       // if amplitude is below threshold and "aboveThreshold" flag is still false
