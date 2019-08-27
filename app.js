@@ -282,6 +282,7 @@ function optionButtonEvent()
 function scanBeacon()
 {
   var spectrum = fft.analyze();                                             // get FFT data for subsequent analysis
+  lastPingEnergyHighest = 0;
   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
   {
     
