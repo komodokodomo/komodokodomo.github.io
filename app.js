@@ -56,6 +56,7 @@ var lastPingTTL = [];
 var lastPingEnergy = [];
 var lastPingEnergyHighest = 0;
 var lastPingChosen;
+var numDetected;
 
 // var beacon =[ 
 // 22222,22161,22099,22039,21978,21918,21858,21798,21739,
@@ -281,6 +282,7 @@ function optionButtonEvent()
 
 function scanBeacon()
 {
+  var lastPingDetected= [];
   var spectrum = fft.analyze();                                             // get FFT data for subsequent analysis
   lastPingEnergyHighest = 0;
   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
@@ -315,7 +317,14 @@ function scanBeacon()
         // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
       }
     }
-    if(lastPingPeakCounter[lastPingChosen]>8){console.log("region "+i +" chosen");}
+    // if(lastPingPeakCounter[i]>8)
+    // {
+    //   console.log("region "+i +" chosen");
+    //   lastPingDetected[i] = true;
+    // }
+    // else{
+    //   lastPingDetected[i] = false;
+    // }
 
 
 
@@ -364,6 +373,24 @@ function scanBeacon()
       beaconDetected[i] = true;
     }
   }
+  for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
+  {
+    if(lastPingPeakCounter[i]>8){lastPingDetected.push(i);}
+  }
+
+  for(var i = 0; i<lastPingDetected.length; i++)                                      // repeat the same actions for all the frequencies listed
+  {
+    if(lastPingEnergyHighest<lastPingEnergy[lastPingDetected[i]])
+    {
+      lastPingEnergyHighest = lastPingEnergy[lastPingDetected[i]];
+      lastPingChosen = lastPingDetected[i];
+    }
+  }
+  console.log("region detected: " + lastPingChosen);
+
+  
+
+
   beaconHighestPower=0;
 
 if(millis()-sampleTimer>pingDuration)
