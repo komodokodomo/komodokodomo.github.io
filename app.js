@@ -313,7 +313,7 @@ function scanBeacon()
       {
         lastPingPeakCounter[i] = 0;
         lastPingEnergy[i] = 0;
-        beaconChosen = null;
+        beaconChosen = 99;
         // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
       }
     }
