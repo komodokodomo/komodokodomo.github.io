@@ -51,6 +51,8 @@ var refDimensions;
 var lastPingPeak = [];
 var lastPingPeakPeriod = [];
 var lastPingPeakCounter = [];
+var lastPingTtlTimer = [];
+var lastPingTTL = [];
 
 // var beacon =[ 
 // 22222,22161,22099,22039,21978,21918,21858,21798,21739,
@@ -174,6 +176,8 @@ function setup(){
     beaconCounter[i] = 0;                                                   //////////////////////////////
     beaconTimer[i] = 0;                                                     //////////////////////////////
     lastPing[i] = 0;                                                        //////////////////////////////
+    lastPingPeakCounter[i] = 0;
+    lastPingTtlTimer[i] = 0;
   }
 
 }
@@ -277,11 +281,20 @@ function scanBeacon()
   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
   {
     peakDetect[i].update(fft); 
-    if ( peakDetect[i].isDetected ) {
+    if ( peakDetect[i].isDetected ) 
+    {
       lastPingPeakPeriod[i] = millis()-lastPingPeak[i];
       if(lastPingPeakPeriod[i]>170 && lastPingPeakPeriod[i]<230){lastPingPeakCounter[i]++;}
       console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
       lastPingPeak[i] = millis();
+      lastPingTtlTimer[i] = millis();
+    }
+    else
+    {
+      if(millis()-lastPingTtlTimer[i]>TTL/4)
+      {
+        lastPingPeakCounter[i] = 0;
+      }
     }
     energy[i] = fft.getEnergy(beacon[i]);                                   // get the amplitude of a particular frequency
     if(!aboveThreshold[i] && energy[i]<upperThreshold)
