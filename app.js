@@ -102,7 +102,7 @@ function setup(){
     locations[i].hide();
     locationsText[i].hide();
 
-    peakDetect[i] = new p5.PeakDetect(beacon[i]-150, beacon[i]+150, 0.2,60);
+    peakDetect[i] = new p5.PeakDetect(beacon[i]-150, beacon[i]+150, 0.3);
     // images.show();
   }
 
