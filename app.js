@@ -280,12 +280,14 @@ function scanBeacon()
   var spectrum = fft.analyze();                                             // get FFT data for subsequent analysis
   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
   {
+    
+    
     peakDetect[i].update(fft); 
     if ( peakDetect[i].isDetected ) 
     {
       lastPingPeakPeriod[i] = millis()-lastPingPeak[i];
       if(lastPingPeakPeriod[i]>170 && lastPingPeakPeriod[i]<230){lastPingPeakCounter[i]++;}
-      console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
+      // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
       lastPingPeak[i] = millis();
       lastPingTtlTimer[i] = millis();
     }
@@ -294,8 +296,14 @@ function scanBeacon()
       if(millis()-lastPingTtlTimer[i]>TTL/4)
       {
         lastPingPeakCounter[i] = 0;
+        // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
       }
     }
+    if(lastPingPeakCounter[i]>8){console.log("region "+i +" chosen");}
+
+
+
+
     energy[i] = fft.getEnergy(beacon[i]);                                   // get the amplitude of a particular frequency
     if(!aboveThreshold[i] && energy[i]<upperThreshold)
     {                                                                       // if amplitude is below threshold and "aboveThreshold" flag is still false
@@ -497,22 +505,7 @@ function windowResized() {
   console.log("window innerDimension change detected");  
 }
 
-// function drawTaskMenu(){
-// for(var i=0; i<Object.keys(jsonFile).length; i++)
-// {
-// locations[i] = createDiv();
-// locations[i].size(w,h/6);
-// locations[i].position(0,i*h/6);
-// locationsImage[i] = createImg("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
-// locationsImage[i].parent(locations[i]);
-// locationsImage[i].style("object-fit","cover");
-// locationsImage[i].style("display","inline-block");
-// locationsImage[i].style("top","50%");
-// locationsImage[i].style("right","50%");
-// locationsImage[i].style("position","relative");
-// }
 
-// }
 
 
 
