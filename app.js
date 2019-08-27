@@ -313,7 +313,7 @@ function scanBeacon()
       {
         lastPingPeakCounter[i] = 0;
         lastPingEnergy[i] = 0;
-        lastPingChosen = null;
+        beaconChosen = null;
         // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
       }
     }
@@ -338,8 +338,8 @@ function scanBeacon()
     if(lastPingEnergyHighest<lastPingEnergy[lastPingDetected[i]])
     {
       lastPingEnergyHighest = lastPingEnergy[lastPingDetected[i]];
-      lastPingChosen = lastPingDetected[i];
-      console.log("chose: "+lastPingChosen);
+      beaconChosen = lastPingDetected[i];
+      console.log("chose: "+beaconChosen);
     }
   }
   // console.log("region detected: " + lastPingChosen);
