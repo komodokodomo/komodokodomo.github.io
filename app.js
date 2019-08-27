@@ -300,7 +300,7 @@ function scanBeacon()
         if(lastPingEnergy[i]>lastPingEnergyHighest)
         {
           lastPingEnergyHighest = lastPingEnergy[i];
-          lastPingChosen = i;
+          // lastPingChosen = i;
         }
       }
       // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]+", chosen: " + lastPingChosen);
