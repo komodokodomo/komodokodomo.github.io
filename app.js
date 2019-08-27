@@ -326,52 +326,6 @@ function scanBeacon()
     //   lastPingDetected[i] = false;
     // }
 
-
-
-
-    energy[i] = fft.getEnergy(beacon[i]);                                   // get the amplitude of a particular frequency
-    if(!aboveThreshold[i] && energy[i]<upperThreshold)
-    {                                                                       // if amplitude is below threshold and "aboveThreshold" flag is still false
-      if(millis()-beaconTimer[i]>TTL && beaconDetected[i]==true)
-      {                                                                     // if the time elapsed since last detected ping exceeds the TTL(Time to Live) value and beacon is still considered detected
-          beaconDetected[i] = false;                                        // set the "beaconDetected" flag to FALSE
-          beaconCounter[i] = 0;                                             // reset the beaconCounter for that frequency to 0
-          console.log("disconnected from "+ i);                             // ** debug **
-          if(beaconChosen == i){beaconChosen = 99;}                        // 
-      }
-    }
-    else if(!aboveThreshold[i] && energy[i]>=upperThreshold)
-    {
-      aboveThreshold[i]=true;                                               //change "aboveThreshold" flag to TRUE
-    }
-    else if(aboveThreshold[i] && energy[i]>=lowerThreshold)
-    {
-      if(energy[i]>peakEnergy[i])
-      {
-        peakEnergy[i] = energy[i];
-      }
-    }
-    else if(aboveThreshold[i] && energy[i]<lowerThreshold)
-    {
-      aboveThreshold[i] = false;
-      if(millis()-lastPing[i]<pingDuration+pingTolerance && millis()-lastPing[i]>pingDuration-pingTolerance)
-      {
-          // console.log(millis() - beaconTimer[i]);
-          beaconTimer[i] = millis();
-          beaconCounter[i] = beaconCounter[i] + 1;
-          // console.log("beacon "+ i +", count: " + beaconCounter[i] +", pow: " +peakEnergy[i]);
-          if(peakEnergy[i]>beaconHighestPower){beaconHighestPower = peakEnergy[i]; beaconChosen = i;} 
-          peakEnergy[i] = 0;       
-      }
-      // else
-      // {
-      //   beaconCounter[i] = 0;                                             //EXPERIMENTAL - testing whether it will make RX more error-resistant
-      // }
-      lastPing[i] = millis();
-    }
-    if(beaconCounter[i]>2){
-      beaconDetected[i] = true;
-    }
   }
   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
   {
@@ -380,31 +334,16 @@ function scanBeacon()
 
   for(var i = 0; i<lastPingDetected.length; i++)                                      // repeat the same actions for all the frequencies listed
   {
+    console.log("ping from: " +lastPingDetected[i]);
     if(lastPingEnergyHighest<lastPingEnergy[lastPingDetected[i]])
     {
       lastPingEnergyHighest = lastPingEnergy[lastPingDetected[i]];
       lastPingChosen = lastPingDetected[i];
+      console.log("chose: "+lastPingChosen);
     }
   }
-  console.log("region detected: " + lastPingChosen);
+  // console.log("region detected: " + lastPingChosen);
 
-  
-
-
-  beaconHighestPower=0;
-
-if(millis()-sampleTimer>pingDuration)
-  {
-    if(beaconCounter[beaconChosen]>2)
-    {
-      // console.log("at region "+beaconChosen);
-    }
-    else if(beaconChosen == 99)
-    {
-      // console.log("no region detected");
-    }
-  sampleTimer = millis();
-  }
 }
 
 function checkRegionChange()
