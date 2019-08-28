@@ -47,7 +47,7 @@ var images = [];
 var answered = [];
 var refDimensions;
 
-
+var bandwidth = 80;
 var lastPingPeak = [];
 var lastPingPeakPeriod = [];
 var lastPingPeakCounter = [];
@@ -58,20 +58,6 @@ var lastPingEnergyHighest = 0;
 var lastPingChosen;
 var numDetected;
 
-// var beacon =[ 
-// 22222,22161,22099,22039,21978,21918,21858,21798,21739,
-// 21680,21622,21563,21505,21448,21390,21333,21277,21220,
-// 21164,21108,21053,20997,20942,20888,20833,20779,20725,
-// 20672,20619,20566,20513,20460,20408,20356,20305,20253,
-// 20202,20151,20101,20050,20000,19950,19900,19851,19802,
-// 19753,19704,19656,19608,19560,19512,19465,19417,19370,
-// 19324,19277,19231,19185,19139,19093,19048,19002,18957,
-// 18913,18868,18824,18779,18735,18692,18648,18605,18561,
-// 18519,18476,18433,18391,18349,18307,18265,18223,18182,
-// 18141,18100,18059,18018,17978,17937,17897,17857,17817,
-// 17778,17738,17699,17660,17621,17582,17544,17505,17467,
-// 17429,17391,17354,17316,17279,17241,17204,17167,17131,17094,17058
-// ];
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
@@ -110,7 +96,7 @@ function setup(){
     locations[i].hide();
     locationsText[i].hide();
 
-    peakDetect[i] = new p5.PeakDetect(beacon[i]-100, beacon[i]+100, 0.2,1);
+    peakDetect[i] = new p5.PeakDetect(beacon[i]-bandwidth, beacon[i]+bandwidth, 0.2,1);
     // images.show();
   }
 
@@ -294,7 +280,7 @@ function scanBeacon()
       if(lastPingPeakPeriod[i]>170 && lastPingPeakPeriod[i]<230)
       {
         lastPingPeakCounter[i]++;
-        lastPingEnergy[i] = fft.getEnergy(beacon[i]-80, beacon[i]+80);
+        lastPingEnergy[i] = fft.getEnergy(beacon[i]-bandwidth, beacon[i]+bandwidth);
         if(lastPingEnergy[i]>lastPingEnergyHighest)
         {
           lastPingEnergyHighest = lastPingEnergy[i];
@@ -427,11 +413,15 @@ function startCon()
 		socket.emit('hello',name);
 		console.log("connected");		 
   });
-  socket.on('roomchange', function(msg) 
+  socket.on('someone-change', function(msg) 
   {
 		console.log(msg);		 		 
   });
-  socket.on('left', function(msg) 
+  socket.on('someone-left', function(msg) 
+  {
+		console.log(msg);	
+  });
+  socket.on('someone-joined', function(msg) 
   {
 		console.log(msg);	
 	});
