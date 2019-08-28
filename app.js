@@ -287,7 +287,7 @@ function scanBeacon()
           // lastPingChosen = i;
         }
       }
-      console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]+", chosen: " + beaconChosen);
+      // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]+", chosen: " + beaconChosen);
       lastPingPeak[i] = millis();
       lastPingTtlTimer[i] = millis();
     }
