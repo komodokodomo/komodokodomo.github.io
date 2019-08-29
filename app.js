@@ -90,11 +90,11 @@ function setup(){
     
     locationsImage[i] = createImg(jsonFile[i].link);
     locationsImage[i].parent(locations[i]);
-    locationsImage[i].style("object-fit","cover");
+    locationsImage[i].style("object-fit","contain");
     locationsImage[i].style("display","inline-block");
     locationsImage[i].style("position","relative");
-    locationsImage[i].style("width","auto");
-    locationsImage[i].style("height","auto");
+    locationsImage[i].style("width","100%");
+    locationsImage[i].style("height","100%");
 
     // locationsImage[i].style("border-radius","10%");
     // locationsImage[i].style("padding-bottom","20px");
