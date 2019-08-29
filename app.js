@@ -412,7 +412,7 @@ function startCon()
   socket = io('cotf.cf', {});
   socket.on('connect', function() 
   {
-		socket.emit('hello',{name,beaconChosen});
+		socket.emit('hello',{name,room:beaconChosen});
 		console.log("connected");		 
   });
   socket.on('someone-joined', function(msg) 
