@@ -90,7 +90,7 @@ function setup(){
     
     locationsImage[i] = createImg(jsonFile[i].link);
     locationsImage[i].parent(locations[i]);
-    locationsImage[i].style("object-fit","contain");
+    locationsImage[i].style("object-fit","cover");
     locationsImage[i].style("display","inline-block");
     locationsImage[i].style("position","relative");
     locationsImage[i].style("width","100%");
