@@ -93,8 +93,14 @@ function setup(){
     locationsImage[i].style("object-fit","cover");
     locationsImage[i].style("display","inline-block");
     locationsImage[i].style("position","relative");
-    locationsImage[i].style("max-width","100%");
+    if(w<h){
+    locationsImage[i].style("width","100%");
     locationsImage[i].style("height","100%");
+    }
+    else{
+      locationsImage[i].style("width","70%");
+      locationsImage[i].style("height","70%");
+    }
     // locationsImage[i].style("border-radius","10%");
     // locationsImage[i].style("padding-bottom","20px");
     // locationsImage[i].style("filter","grayscale(100%)");
