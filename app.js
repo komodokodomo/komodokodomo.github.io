@@ -58,6 +58,8 @@ var lastPingEnergyHighest = 0;
 var lastPingChosen;
 var numDetected;
 
+var roomList = [[]];
+
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
@@ -396,7 +398,7 @@ function checkRegionChange()
           // fill(20,255,20);
           // rect(0,i*h/6,w,h/6);
           // locationsImage[i].style("filter","");
-          locationsImage[i].style("opacity","0.2");
+          locationsImage[i].style("opacity","0.1");
           locationsText[i].show();
         }
       }
@@ -410,9 +412,13 @@ function startCon()
   socket = io('cotf.cf', {});
   socket.on('connect', function() 
   {
-		socket.emit('hello',name);
+		socket.emit('hello',{name,beaconChosen});
 		console.log("connected");		 
   });
+  socket.on('someone-joined', function(msg) 
+  {
+		console.log(msg);	
+	});
   socket.on('someone-change', function(msg) 
   {
 		console.log(msg);		 		 
@@ -421,10 +427,6 @@ function startCon()
   {
 		console.log(msg);	
   });
-  socket.on('someone-joined', function(msg) 
-  {
-		console.log(msg);	
-	});
 }
 
 
