@@ -78,6 +78,7 @@ function setup(){
     locations[i] = createDiv();
     locations[i].size(w,h/6);
     locations[i].position(0,i*h*1.1/6);
+  
     locationsText[i] = createDiv("Answered");
     locationsText[i].style("display","inline-block");
     locationsText[i].style("top","50%");
@@ -86,14 +87,16 @@ function setup(){
     locationsText[i].style("transform","translate(50%,-50%)");
     locationsText[i].style("font-size","2rem");
     locationsText[i].parent(locations[i]);
+    
     locationsImage[i] = createImg(jsonFile[i].link);
     locationsImage[i].parent(locations[i]);
     locationsImage[i].style("object-fit","cover");
     locationsImage[i].style("display","inline-block");
     locationsImage[i].style("position","relative");
-    locationsImage[i].style("width","100%");
-    locationsImage[i].style("height","100%");
-    locationsImage[i].style("padding-bottom","20px");
+    locationsImage[i].style("max-width","100%");
+    locationsImage[i].style("height","auto");
+    locationsImage[i].style("border-radius","10%");
+    // locationsImage[i].style("padding-bottom","20px");
     // locationsImage[i].style("filter","grayscale(100%)");
     locations[i].hide();
     locationsText[i].hide();
