@@ -76,8 +76,8 @@ function setup(){
     images[i] = loadImage("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
 
     locations[i] = createDiv();
-    locations[i].size(w,h/6);
-    locations[i].position(0,i*h*1.1/6);
+    locations[i].size(w,w*9/16);
+    locations[i].position(0,i*w*9*1.1/16);
   
     locationsText[i] = createDiv("Answered");
     locationsText[i].style("display","inline-block");
@@ -95,7 +95,7 @@ function setup(){
     locationsImage[i].style("position","relative");
     locationsImage[i].style("max-width","100%");
     locationsImage[i].style("height","100%");
-    locationsImage[i].style("border-radius","10%");
+    // locationsImage[i].style("border-radius","10%");
     // locationsImage[i].style("padding-bottom","20px");
     // locationsImage[i].style("filter","grayscale(100%)");
     locations[i].hide();
@@ -453,8 +453,8 @@ function windowResized() {
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
-  locations[i].size(w,h/6);
-  locations[i].position(0,i*h*1.1/6);
+  locations[i].size(w,w*9/16);
+  locations[i].position(0,i*w*9*1.1/16);
   }
 
 
