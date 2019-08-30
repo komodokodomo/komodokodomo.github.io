@@ -77,7 +77,7 @@ function setup(){
 
     locations[i] = createDiv();
     locations[i].size(w,w*9/16);
-    locations[i].position(0,i*w*9*1.1/16);
+    locations[i].position(0,i*w*9*1.05/16);
   
     locationsText[i] = createDiv("Answered");
     locationsText[i].style("display","inline-block");
