@@ -12,7 +12,7 @@ function setup() {
   strokeWeight(4);
   line(w/3,0,w/3,h);
   line(w/3,h/3,w,h/3);
-  textMode(CENTER,CENTER)
+  textAlign(CENTER,CENTER)
   text("Users attempting same task",w/6,h/9);
 }
 
