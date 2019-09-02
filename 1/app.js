@@ -1,6 +1,6 @@
 var w,h;
 
-
+var player = "nicname";
 
 
 
@@ -18,6 +18,7 @@ function setup() {
   noStroke();
   textAlign(CENTER,CENTER);
   textSize(w/80);
+  textStyle(BOLD);
   text("Users attempting same task",w/8,h/10);
 }
 
@@ -43,5 +44,6 @@ function windowResized()
  
   noStroke();
   textSize(w/80);
+  textStyle(BOLD);
   text("Users attempting same task",w/8,h/10);
 }
