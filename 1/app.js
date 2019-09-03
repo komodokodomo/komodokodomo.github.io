@@ -1,14 +1,19 @@
 var w,h;
 
-var player = "nicname";
+var player = ["nicname","siwa","99pi"];
 
 var questionDiv,questionDivText;
 var imageDiv;
+var images = [];
 var answerDiv;
 var chatDiv,chatDivText;
 
-// var chatDivName = [];
+var submitButton;
+
+var chatDivName = [];
+var chatDivNameText = [];
 var chatDivNameButtons = [][2];
+var buttonText = ["chat","get location"];
 
 
 
@@ -40,16 +45,44 @@ function setup() {
   chatDivText = createDiv("0 Users nearby attempting same task");
   chatDivText.parent(chatDiv);
   chatDiv.position(0,0);
-  chatDiv.size(w/4,h);
+  chatDiv.size(w/4,h/10);
 
   chatDivText.style("position","relative");
   chatDivText.style("text-align","center");
   chatDivText.style("left","50%");
-  chatDivText.style("top","5%");
+  chatDivText.style("top","50%");
   chatDivText.style("transform","translate(-50%, -50%)");
   chatDivText.style("font-family","Helvetica, Arial, Sans-Serif");
   chatDivText.style("font-size","1.1em");
+
+  imageDiv = createDiv();
+  imageDiv.position(w/4,h/10);
+  imageDiv.size(3*w/4,h/2);
+
   
+  for(var i; i<player.length; i++)
+  {
+    chatDivName[i] = createDiv();
+    chatDivNameText[i] = createDiv(player[i]);
+    chatDivName[i].position(0,(i+1)*h/10);
+    chatDivName[i].size(w/4,h/10);
+
+    chatDivName[i].style("position","relative");
+    chatDivName[i].style("text-align","left");
+    chatDivName[i].style("left","10%");
+    chatDivName[i].style("top","50%");
+    chatDivName[i].style("transform","translate(-50%, -50%)");
+    chatDivName[i].style("font-family","Helvetica, Arial, Sans-Serif");
+    chatDivName[i].style("font-size","1.1em");
+
+    for(var j; j<2; j++)
+    {
+      chatDivNameButtons[i][j] = createButton(buttonText[j]);
+      chatDivNameButtons[i][j].size(w/12,h/20);
+      chatDivNameButtons[i][j].position(w/8,(i+1)*h/10 + j*h/20);
+    }
+  }
+
 
 
 
@@ -96,4 +129,7 @@ function windowResized()
 
   chatDiv.position(0,0);
   chatDiv.size(w/4,h);
+
+  imageDiv.position(w/4,h/10);
+  imageDiv.size(3*w/4,h/2);
 }
