@@ -23,6 +23,10 @@ function setup() {
   questionDiv.position(w/4,0);
   questionDiv.size(3*w/4,h/10);
   questionDiv.style("background-color","grey");
+  questionDiv.style("text-align","center");
+  questionDiv.style("left","50%");
+  questionDiv.style("top","50%");
+  questionDiv.style("translate","translate(-50%, -50%)");
 
   stroke(150);
   strokeWeight(4);
@@ -60,4 +64,7 @@ function windowResized()
   textSize(w/80);
   textStyle(BOLD);
   text("Users attempting same task",w/8,h/10);
+
+  questionDiv.position(w/4,0);
+  questionDiv.size(3*w/4,h/10);
 }
