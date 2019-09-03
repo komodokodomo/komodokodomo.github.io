@@ -86,10 +86,10 @@ function windowResized()
   line(w/4,0,w/4,h);
   line(w/4,3*h/5,w,3*h/5);
  
-  noStroke();
-  textSize(w/80);
-  textStyle(BOLD);
-  text("Users attempting same task",w/8,h/10);
+  // noStroke();
+  // textSize(w/80);
+  // textStyle(BOLD);
+  // text("Users attempting same task",w/8,h/10);
 
   questionDiv.position(w/4,0);
   questionDiv.size(3*w/4,h/10);
