@@ -66,6 +66,7 @@ function setup() {
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,h/2);
 
+  console.log("loop starting...");
   for(var i=0; i<3; i++)
   {
     images[i] = createImg(imageDivLinks[i]);
@@ -79,8 +80,9 @@ function setup() {
     images[i].style("left","50%");
     images[i].style("top","50%");
     images[i].style("transform","translate(-50%, -50%)");
-
   }
+  console.log("loop ending...");
+
 
   answerDiv = createDiv();
   answerDiv.position(w/4,6*h/10);
