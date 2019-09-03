@@ -25,7 +25,7 @@ function setup() {
 
   questionDiv.position(w/4,0);
   questionDiv.size(3*w/4,h/10);
-  questionDiv.style("background-color","grey");
+  questionDiv.style("background-color","LightGray");
 
   questionDivText.style("position","relative");
   questionDivText.style("text-align","center");
@@ -33,7 +33,7 @@ function setup() {
   questionDivText.style("top","50%");
   questionDivText.style("transform","translate(-50%, -50%)");
 
-  stroke(150);
+  stroke('LightGray');
   strokeWeight(4);
   line(w/4,0,w/4,h);
   line(w/4,3*h/5,w,3*h/5);
