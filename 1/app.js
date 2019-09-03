@@ -48,7 +48,6 @@ function setup() {
   questionDivText.style("font-family","Helvetica, Arial, Sans-Serif");
   questionDivText.style("font-size","1.5em");
 
-
   chatDiv = createDiv();
   chatDivText = createDiv("0 Users nearby attempting same task");
   chatDivText.parent(chatDiv);
@@ -67,7 +66,7 @@ function setup() {
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,h/2);
 
-  for(var i; i<imageDivLinks.length; i++)
+  for(var i; i<3; i++)
   {
     images[i] = createImg(imageDivLinks[i]);
     images[i].parent(imageDiv);
@@ -76,6 +75,9 @@ function setup() {
     images[i].style("position","relative");
     images[i].style("width","90%");
     images[i].style("height","90%");
+    images[i].style("left","50%");
+    images[i].style("top","50%");
+    images[i].style("transform","translate(-50%, -50%)");
 
   }
 
