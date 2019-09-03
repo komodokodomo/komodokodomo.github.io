@@ -77,10 +77,10 @@ function setup() {
   inputBox = createInput();
   inputBox.parent(answerDiv);
   inputBox.style("position","relative");
-  inputBox.style("left","5%");
+  inputBox.style("left","1%");
   inputBox.style("top","5%");
   inputBox.style("width","90%");
-  inputBox.style("height","80%");
+  inputBox.style("height","70%");
   // inputBox.style("transform","translate(-50%, -50%)");
 
   
