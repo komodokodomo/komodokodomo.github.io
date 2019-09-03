@@ -2,7 +2,7 @@ var w,h;
 
 var player = "nicname";
 
-var questionDiv;
+var questionDiv,questionDivText;
 var imageDiv;
 var answerDiv;
 var chatDiv;
@@ -19,14 +19,19 @@ function setup() {
   createCanvas(w, h);
   background(240);
 
-  questionDiv = createDiv("Question 1");
+  questionDiv = createDiv();
+  questionDivText = createDiv("Question 1");
+  questionDivText.parent(questionDiv);
+
   questionDiv.position(w/4,0);
   questionDiv.size(3*w/4,h/10);
   questionDiv.style("background-color","grey");
-  questionDiv.style("text-align","center");
-  questionDiv.style("left","50%");
-  questionDiv.style("top","50%");
-  questionDiv.style("translate","translate(-50%, -50%)");
+
+  questionDivText.style("position","relative");
+  questionDivText.style("text-align","center");
+  questionDivText.style("left","50%");
+  questionDivText.style("top","50%");
+  questionDivText.style("translate","translate(-50%, -50%)");
 
   stroke(150);
   strokeWeight(4);
