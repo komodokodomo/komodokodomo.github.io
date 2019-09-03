@@ -16,6 +16,13 @@ var chatDivNameText = [];
 var chatDivNameButtons = [][2];
 var buttonText = ["chat","get location"];
 
+var images = []
+var imageDivLinks = 
+[
+"https://drive.google.com/uc?export=view&id=1tOtl1XNUvlIEVT2exzU3QKcVWDu66tv1",
+"https://drive.google.com/uc?export=view&id=13oEHMk3nGvB6MbILnnDrIJBSwljwzA5M",
+"https://drive.google.com/uc?export=view&id=1ToNl-oQK2X3Yx3aLd1wBYGcrhC-yQUAt"
+]
 
 
 
@@ -59,6 +66,18 @@ function setup() {
   imageDiv = createDiv();
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,h/2);
+
+  for(var i; i<imageDivLinks.length; i++)
+  {
+    images[i] = createImg(imageDivLinks[i]);
+    images[i].parent(imageDiv);
+    images[i].style("object-fit","cover");
+    // images[i].style("display","inline-block");
+    images[i].style("position","relative");
+    images[i].style("width","90%");
+    images[i].style("height","90%");
+
+  }
 
   answerDiv = createDiv();
   answerDiv.position(w/4,6*h/10);
