@@ -31,7 +31,7 @@ function setup() {
   questionDivText.style("text-align","center");
   questionDivText.style("left","50%");
   questionDivText.style("top","50%");
-  questionDivText.style("translate","translate(-50%, -50%)");
+  questionDivText.style("transform","translate(-50%, -50%)");
 
   stroke(150);
   strokeWeight(4);
