@@ -5,7 +5,7 @@ var player = "nicname";
 var questionDiv,questionDivText;
 var imageDiv;
 var answerDiv;
-var chatDiv;
+var chatDiv,chatDivText;
 
 // var chatDivName = [];
 var chatDivNameButtons = [][2];
@@ -17,7 +17,7 @@ function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
   createCanvas(w, h);
-  background(240);
+  background(235);
 
   questionDiv = createDiv();
   questionDivText = createDiv("Question 1");
@@ -37,8 +37,21 @@ function setup() {
 
 
   chatDiv = createDiv();
+  chatDivText = createDiv("0 Users nearby attempting same task");
+  chatDivText.parent(chatDiv);
   chatDiv.position(0,0);
   chatDiv.size(w/4,h);
+
+  chatDivText.style("position","relative");
+  chatDivText.style("text-align","center");
+  chatDivText.style("left","50%");
+  chatDivText.style("top","5%");
+  chatDivText.style("transform","translate(-50%, -50%)");
+  chatDivText.style("font-family","Helvetica, Arial, Sans-Serif");
+  chatDivText.style("font-size","2em");
+  
+
+
 
 
   stroke('LightGray');
@@ -46,11 +59,11 @@ function setup() {
   line(w/4,0,w/4,h);
   line(w/4,3*h/5,w,3*h/5);
 
-  noStroke();
-  textAlign(CENTER,CENTER);
-  textSize(w/80);
-  textStyle(BOLD);
-  text("Users nearby attempting same task",w/8,h/10);
+  // noStroke();
+  // textAlign(CENTER,CENTER);
+  // textSize(w/80);
+  // textStyle(BOLD);
+  // text("Users nearby attempting same task",w/8,h/10);
 }
 
 function draw() {
@@ -66,7 +79,7 @@ function windowResized()
   w = window.innerWidth;
   h = window.innerHeight;
   resizeCanvas(w, h);
-  background(240);
+  background(235);
 
   stroke('LightGray');
   strokeWeight(4);
