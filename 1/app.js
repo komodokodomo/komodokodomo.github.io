@@ -69,7 +69,7 @@ function setup() {
   // submitButton.style("text-align","center");
   submitButton.style("left","50%");
   submitButton.style("bottom","10%");
-  // submitButton.style("transform","translate(-50%, -50%)");
+  submitButton.style("transform","translate(-50%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
   submitButton.style("font-size","1.1em");
 
