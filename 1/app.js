@@ -63,7 +63,7 @@ function windowResized()
   resizeCanvas(w, h);
   background(240);
 
-  stroke(150);
+  stroke('LightGray');
   strokeWeight(4);
   line(w/4,0,w/4,h);
   line(w/4,3*h/5,w,3*h/5);
