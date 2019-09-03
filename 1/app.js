@@ -128,7 +128,7 @@ function windowResized()
   questionDiv.size(3*w/4,h/10);
 
   chatDiv.position(0,0);
-  chatDiv.size(w/4,h);
+  chatDiv.size(w/4,h/10);
 
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,h/2);
