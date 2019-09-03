@@ -71,6 +71,7 @@ function setup() {
     images[i] = createImg(imageDivLinks[i]);
     images[i].parent(imageDiv);
     images[i].style("object-fit","cover");
+    console.log(imageDivLinks[i]);
     // images[i].style("display","inline-block");
     images[i].style("position","relative");
     images[i].style("width","90%");
