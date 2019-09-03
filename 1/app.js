@@ -66,13 +66,13 @@ function setup() {
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,h/2);
 
-  console.log("loop starting...");
+  // console.log("loop starting...");
   for(var i=0; i<3; i++)
   {
     images[i] = createImg(imageDivLinks[i]);
     images[i].parent(imageDiv);
     images[i].style("object-fit","cover");
-    console.log(imageDivLinks[i]);
+    // console.log(imageDivLinks[i]);
     // images[i].style("display","inline-block");
     images[i].style("position","relative");
     images[i].style("width","90%");
@@ -81,7 +81,7 @@ function setup() {
     images[i].style("top","50%");
     images[i].style("transform","translate(-50%, -50%)");
   }
-  console.log("loop ending...");
+  // console.log("loop ending...");
 
 
   answerDiv = createDiv();
@@ -108,7 +108,7 @@ function setup() {
   inputBox.style("transform","translate(-50%, -60%)");
 
   
-  for(var i; i<3; i++)
+  for(var i=0; i<3; i++)
   {
     chatDivName[i] = createDiv();
     chatDivName[i].position(0,(i+1)*h/10);
@@ -125,7 +125,7 @@ function setup() {
     chatDivName[i].style("font-family","Helvetica, Arial, Sans-Serif");
     chatDivName[i].style("font-size","1.1em");
 
-    for(var j; j<2; j++)
+    for(var j=0; j<2; j++)
     {
       chatDivNameButtons[i][j] = createButton(buttonText[j]);
       chatDivNameButtons[i][j].size(w/12,h/20);
