@@ -63,10 +63,11 @@ function setup() {
   for(var i; i<3; i++)
   {
     chatDivName[i] = createDiv();
-    chatDivNameText[i] = createDiv(player[i]);
-    chatDivNameText[i].parent(chatDivName[i]);
     chatDivName[i].position(0,(i+1)*h/10);
     chatDivName[i].size(w/4,h/10);
+    
+    chatDivNameText[i] = createDiv(player[i]);
+    chatDivNameText[i].parent(chatDivName[i]);
 
     chatDivName[i].style("position","relative");
     chatDivName[i].style("text-align","left");
