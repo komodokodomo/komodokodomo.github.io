@@ -2,6 +2,15 @@ var w,h;
 
 var player = "nicname";
 
+var questionDiv;
+var imageDiv;
+var answerDiv;
+var chatDiv;
+
+// var chatDivName = [];
+var chatDivNameButtons = [][2];
+
+
 
 
 function setup() {
@@ -9,6 +18,11 @@ function setup() {
   h = window.innerHeight;
   createCanvas(w, h);
   background(240);
+
+  questionDiv = createDiv("Question 1");
+  questionDiv.position(w/4,0);
+  questionDiv.size(3*w/4,h/10);
+  questionDiv.style("background-color","grey");
 
   stroke(150);
   strokeWeight(4);
@@ -19,7 +33,7 @@ function setup() {
   textAlign(CENTER,CENTER);
   textSize(w/80);
   textStyle(BOLD);
-  text("Users attempting same task",w/8,h/10);
+  text("Users nearby attempting same task",w/8,h/10);
 }
 
 function draw() {
