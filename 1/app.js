@@ -66,7 +66,7 @@ function setup() {
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,h/2);
 
-  for(var i; i<3; i++)
+  for(var i=0; i<3; i++)
   {
     images[i] = createImg(imageDivLinks[i]);
     images[i].parent(imageDiv);
