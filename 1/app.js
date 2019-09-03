@@ -60,10 +60,11 @@ function setup() {
   imageDiv.size(3*w/4,h/2);
 
   
-  for(var i; i<player.length; i++)
+  for(var i; i<3; i++)
   {
     chatDivName[i] = createDiv();
     chatDivNameText[i] = createDiv(player[i]);
+    chatDivNameText[i].parent(chatDivName[i]);
     chatDivName[i].position(0,(i+1)*h/10);
     chatDivName[i].size(w/4,h/10);
 
