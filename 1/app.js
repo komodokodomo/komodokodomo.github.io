@@ -33,7 +33,7 @@ function setup() {
   questionDivText.style("top","50%");
   questionDivText.style("transform","translate(-50%, -50%)");
   questionDivText.style("font","helvetica");
-  questionDivText.style("font-size","2rem");
+  questionDivText.style("font-size","2vw");
 
 
   stroke('LightGray');
