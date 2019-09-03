@@ -33,7 +33,7 @@ function setup() {
   questionDivText.style("top","50%");
   questionDivText.style("transform","translate(-50%, -50%)");
   questionDivText.style("font-family","Helvetica, Arial, Sans-Serif");
-  questionDivText.style("font-size","2.3vw");
+  questionDivText.style("font-size","1.5em");
 
 
   chatDiv = createDiv();
@@ -48,7 +48,7 @@ function setup() {
   chatDivText.style("top","5%");
   chatDivText.style("transform","translate(-50%, -50%)");
   chatDivText.style("font-family","Helvetica, Arial, Sans-Serif");
-  chatDivText.style("font-size","2em");
+  chatDivText.style("font-size","1.1em");
   
 
 
