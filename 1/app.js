@@ -81,7 +81,7 @@ function setup() {
   inputBox.style("top","50%");
   inputBox.style("width","96%");
   inputBox.style("height","70%");
-  inputBox.style("transform","translate(-50%, -50%)");
+  inputBox.style("transform","translate(-50%, -60%)");
 
   
   for(var i; i<3; i++)
