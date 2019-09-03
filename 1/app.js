@@ -59,6 +59,20 @@ function setup() {
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,h/2);
 
+  answerDiv = createDiv();
+  answerDiv.position(w/4,6*h/10);
+  answerDiv.size(3*w/4,4*h/10);
+
+  submitButton = createButton("submit");
+  submitButton.parent(answerDiv);
+  submitButton.style("position","relative");
+  // submitButton.style("text-align","center");
+  submitButton.style("left","50%");
+  submitButton.style("bottom","10%");
+  // submitButton.style("transform","translate(-50%, -50%)");
+  submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
+  submitButton.style("font-size","1.1em");
+
   
   for(var i; i<3; i++)
   {
@@ -134,4 +148,7 @@ function windowResized()
 
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,h/2);
+
+  answerDiv.position(w/4,6*h/10);
+  answerDiv.size(3*w/4,4*h/10);
 }
