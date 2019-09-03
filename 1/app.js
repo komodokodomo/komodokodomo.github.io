@@ -36,6 +36,11 @@ function setup() {
   questionDivText.style("font-size","2.3vw");
 
 
+  chatDiv = createDiv();
+  chatDiv.position(0,0);
+  chatDiv.size(w/4,h);
+
+
   stroke('LightGray');
   strokeWeight(4);
   line(w/4,0,w/4,h);
@@ -75,4 +80,7 @@ function windowResized()
 
   questionDiv.position(w/4,0);
   questionDiv.size(3*w/4,h/10);
+
+  chatDiv.position(0,0);
+  chatDiv.size(w/4,h);
 }
