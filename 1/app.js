@@ -117,13 +117,13 @@ function setup() {
     chatDivNameText[i] = createDiv(player[i]);  //player[i]
     chatDivNameText[i].parent(chatDivName[i]);
 
-    chatDivName[i].style("position","relative");
-    chatDivName[i].style("text-align","left");
-    chatDivName[i].style("left","10%");
-    chatDivName[i].style("top","50%");
-    chatDivName[i].style("transform","translate(-50%, -50%)");
-    chatDivName[i].style("font-family","Helvetica, Arial, Sans-Serif");
-    chatDivName[i].style("font-size","1.1em");
+    chatDivNameText[i].style("position","relative");
+    chatDivNameText[i].style("text-align","left");
+    chatDivNameText[i].style("left","10%");
+    chatDivNameText[i].style("top","50%");
+    chatDivNameText[i].style("transform","translate(-50%, -50%)");
+    chatDivNameText[i].style("font-family","Helvetica, Arial, Sans-Serif");
+    chatDivNameText[i].style("font-size","1.1em");
 
  
     chatDivNameButtons[2*i] = createButton(buttonText[2*i]);
