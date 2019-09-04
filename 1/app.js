@@ -128,12 +128,12 @@ function setup() {
 
  
     chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
-    chatDivNameButtons[2*i].size(w/12,h/20);
-    chatDivNameButtons[2*i].position(w/8,(i+1)*h/10 + (i%2)*h/20);
+    chatDivNameButtons[2*i].size(w/8,h/20);
+    chatDivNameButtons[2*i].position(w/8,(i+1)*h/10 + (i%2)*h/20 -h/200);
 
     chatDivNameButtons[2*i+1] = createButton(buttonText[(2*i+1)%2]);
-    chatDivNameButtons[2*i+1].size(w/12,h/20);
-    chatDivNameButtons[2*i+1].position(w/8,(i+1)*h/10 + ((i+1)%2)*h/20);
+    chatDivNameButtons[2*i+1].size(w/8,h/20);
+    chatDivNameButtons[2*i+1].position(w/8,(i+1)*h/10 + ((i+1)%2)*h/20 +h/200);
     
   }
 
