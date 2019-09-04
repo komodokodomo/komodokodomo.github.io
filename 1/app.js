@@ -142,7 +142,7 @@ function setup() {
 
 
   stroke('LightGray');
-  strokeWeight(2);
+  strokeWeight(4);
   line(w/4,0,w/4,h);
   line(w/4,3*h/5,w,3*h/5);
 
@@ -169,7 +169,7 @@ function windowResized()
   background(235);
 
   stroke('LightGray');
-  strokeWeight(2);
+  strokeWeight(4);
   line(w/4,0,w/4,h);
   line(w/4,3*h/5,w,3*h/5);
  
