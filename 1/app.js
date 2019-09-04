@@ -52,7 +52,7 @@ function setup() {
   chatDivText = createDiv("0 Users nearby attempting same task");
   chatDivText.parent(chatDiv);
   chatDiv.position(0,0);
-  chatDiv.size(w/4,h/10);
+  chatDiv.size(w/4,h/9);
 
   chatDivText.style("position","relative");
   chatDivText.style("text-align","center");
@@ -72,8 +72,6 @@ function setup() {
     images[i] = createImg(imageDivLinks[i]);
     images[i].parent(imageDiv);
     images[i].style("object-fit","cover");
-    // console.log(imageDivLinks[i]);
-    // images[i].style("display","inline-block");
     images[i].style("position","relative");
     images[i].style("width","90%");
     images[i].style("height","90%");
@@ -113,6 +111,7 @@ function setup() {
     chatDivName[i] = createDiv();
     chatDivName[i].position(0,(i+1)*h/10);
     chatDivName[i].size(w/4,h/10);
+    chatDivName[i].style("border-style","solid");
     
     chatDivNameText[i] = createDiv(player[i]);  //player[i]
     chatDivNameText[i].parent(chatDivName[i]);
