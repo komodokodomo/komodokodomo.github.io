@@ -112,6 +112,8 @@ function setup() {
     chatDivName[i].position(0,(i+1)*h/10);
     chatDivName[i].size(w/4,h/10);
     chatDivName[i].style("border-style","solid");
+    chatDivName[i].style("border-color","LightGray");
+    chatDivName[i].style("border-width","2px");
     
     chatDivNameText[i] = createDiv(player[i]);  //player[i]
     chatDivNameText[i].parent(chatDivName[i]);
