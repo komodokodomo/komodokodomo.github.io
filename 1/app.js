@@ -53,6 +53,9 @@ function setup() {
   chatDivText.parent(chatDiv);
   chatDiv.position(0,0);
   chatDiv.size(w/4,h/8);
+  chatDiv.style("border-bottom-style","solid");
+  chatDiv.style("border-color","LightGray");
+  chatDiv.style("border-width","2px");
 
   chatDivText.style("position","relative");
   chatDivText.style("text-align","center");
@@ -111,7 +114,7 @@ function setup() {
     chatDivName[i] = createDiv();
     chatDivName[i].position(0,i*h/10 + h/8);
     chatDivName[i].size(w/4,h/10);
-    chatDivName[i].style("border-top-style","solid");
+    chatDivName[i].style("border-bottom-style","solid");
     chatDivName[i].style("border-color","LightGray");
     chatDivName[i].style("border-width","2px");
     
