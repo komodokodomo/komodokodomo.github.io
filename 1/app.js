@@ -121,7 +121,7 @@ function setup() {
     chatDivNameText[i].style("text-align","left");
     chatDivNameText[i].style("left","10%");
     chatDivNameText[i].style("top","50%");
-    chatDivNameText[i].style("transform","translate(-50%, -50%)");
+    // chatDivNameText[i].style("transform","translate(-50%, -50%)");
     chatDivNameText[i].style("font-family","Helvetica, Arial, Sans-Serif");
     chatDivNameText[i].style("font-size","1.1em");
 
