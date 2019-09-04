@@ -13,7 +13,7 @@ var inputBox;
 
 var chatDivName = [];
 var chatDivNameText = [];
-var chatDivNameButtons = [][];
+var chatDivNameButtons = [][0,0];
 var buttonText = ["chat","get location"];
 
 var images = []
