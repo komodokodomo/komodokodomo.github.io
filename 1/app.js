@@ -126,11 +126,11 @@ function setup() {
     chatDivNameText[i].style("font-size","1.1em");
 
  
-    chatDivNameButtons[2*i] = createButton(buttonText[2*i]);
+    chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
     chatDivNameButtons[2*i].size(w/12,h/20);
     chatDivNameButtons[2*i].position(w/8,(i+1)*h/10 + i*h/20);
 
-    chatDivNameButtons[2*i+1] = createButton(buttonText[2*i+1]);
+    chatDivNameButtons[2*i+1] = createButton(buttonText[(2*i+1)%2]);
     chatDivNameButtons[2*i+1].size(w/12,h/20);
     chatDivNameButtons[2*i+1].position(w/8,(i+1)*h/10 + i*h/20);
     
