@@ -52,7 +52,7 @@ function setup() {
   chatDivText = createDiv("0 Users nearby attempting same task");
   chatDivText.parent(chatDiv);
   chatDiv.position(0,0);
-  chatDiv.size(w/4,h/9);
+  chatDiv.size(w/4,h/8);
 
   chatDivText.style("position","relative");
   chatDivText.style("text-align","center");
@@ -109,7 +109,7 @@ function setup() {
   for(var i=0; i<3; i++)
   {
     chatDivName[i] = createDiv();
-    chatDivName[i].position(0,(i+1)*h/10);
+    chatDivName[i].position(0,i*h/10 + h/8);
     chatDivName[i].size(w/4,h/10);
     chatDivName[i].style("border-top-style","solid");
     chatDivName[i].style("border-color","LightGray");
@@ -129,11 +129,11 @@ function setup() {
  
     chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
     chatDivNameButtons[2*i].size(w/8,h/20);
-    chatDivNameButtons[2*i].position(w/8,(i+1)*h/10 + (i%2)*h/20 -h/200);
+    chatDivNameButtons[2*i].position(w/8,i*h/10 +h/8 + (i%2)*h/20 -h/200);
 
     chatDivNameButtons[2*i+1] = createButton(buttonText[(2*i+1)%2]);
     chatDivNameButtons[2*i+1].size(w/8,h/20);
-    chatDivNameButtons[2*i+1].position(w/8,(i+1)*h/10 + ((i+1)%2)*h/20 +h/200);
+    chatDivNameButtons[2*i+1].position(w/8,i*h/10 +h/8 + ((i+1)%2)*h/20 +h/200);
     
   }
 
