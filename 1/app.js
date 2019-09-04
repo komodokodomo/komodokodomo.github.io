@@ -13,7 +13,7 @@ var inputBox;
 
 var chatDivName = [];
 var chatDivNameText = [];
-var chatDivNameButtons = [][0,0];
+var chatDivNameButtons = [];
 var buttonText = ["chat","get location"];
 
 var images = []
@@ -125,12 +125,15 @@ function setup() {
     chatDivName[i].style("font-family","Helvetica, Arial, Sans-Serif");
     chatDivName[i].style("font-size","1.1em");
 
-    for(var j=0; j<2; j++)
-    {
-      chatDivNameButtons[i][j] = createButton(buttonText[j]);
-      chatDivNameButtons[i][j].size(w/12,h/20);
-      chatDivNameButtons[i][j].position(w/8,(i+1)*h/10 + j*h/20);
-    }
+ 
+    chatDivNameButtons[2*i] = createButton(buttonText[2*i]);
+    chatDivNameButtons[2*i].size(w/12,h/20);
+    chatDivNameButtons[2*i].position(w/8,(i+1)*h/10 + i*h/20);
+
+    chatDivNameButtons[2*i+1] = createButton(buttonText[2*i+1]);
+    chatDivNameButtons[2*i+1].size(w/12,h/20);
+    chatDivNameButtons[2*i+1].position(w/8,(i+1)*h/10 + i*h/20);
+    
   }
 
 
