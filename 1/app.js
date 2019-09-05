@@ -28,6 +28,7 @@ var imageDivLinks =
 var mode = 0;
 
 var timer = 0;
+var timeBeforeOnline = 5000;
 
 
 function setup() {
@@ -183,7 +184,7 @@ function changeMode(){
   images[mode].hide();
   mode++;
   if(mode>2){mode=2;}
-  else{timer = millis();}
+  else{timer = millis();timeBeforeOnline = random(3000,8000);}
   questionDivText.html(questionText[mode]);
   images[mode].show();
 }
@@ -197,7 +198,7 @@ function locationEnding(){
 }
 
 function draw() {
-  if(millis() - timer>5000){
+  if(millis() - timer>timeBeforeOnline){
     chatDivName[0].show();
   }
   else{
