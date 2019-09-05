@@ -64,7 +64,7 @@ function setup() {
   questionDivText.style("font-size","1.5em");
 
   chatDiv = createDiv();
-  chatDivText = createDiv("0 Users nearby attempting same task");
+  chatDivText = createDiv("0 users nearby attempting same task");
   chatDivText.parent(chatDiv);
   chatDiv.position(0,0);
   chatDiv.size(w/4,h/8);
@@ -271,13 +271,13 @@ function draw() {
   if(!chatChosen && !locationChosen && !questionChosen){
   if(millis() - timer>timeBeforeOnline){
     chatDivName[0].show();
-    chatDivText.html("1 Users nearby attempting same task");
+    chatDivText.html("1 users nearby attempting same task");
     if(millis() - timer>2.5*timeBeforeOnline){
       chatDivName[1].show();
-      chatDivText.html("2 Users nearby attempting same task");
+      chatDivText.html("2 users nearby attempting same task");
       if(millis() - timer>5.5*timeBeforeOnline){
         chatDivName[2].show();
-        chatDivText.html("3 Users nearby attempting same task");
+        chatDivText.html("3 users nearby attempting same task");
       }
     }
   }
@@ -285,7 +285,7 @@ function draw() {
     chatDivName[0].hide();
     chatDivName[1].hide();
     chatDivName[2].hide();
-    chatDivText.html("0 Users nearby attempting same task");
+    chatDivText.html("0 users nearby attempting same task");
   }
 }
 else if(chatChosen == true){background(235);textAlign(CENTER,CENTER);textSize(w/20);text("Chat chosen",w/2,h/2);}
