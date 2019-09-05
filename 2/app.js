@@ -164,7 +164,7 @@ function setup() {
     chatDivNameText[i].style("top","50%");
     chatDivNameText[i].style("transform","translate(0%, -50%)");
     chatDivNameText[i].style("font-family","Helvetica, Arial, Sans-Serif");
-    chatDivNameText[i].style("font-size","1.2rem");
+    chatDivNameText[i].style("font-size","1.4rem");
 
  
     chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
