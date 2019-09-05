@@ -75,6 +75,7 @@ function setup() {
   {
     images[i] = createImg(imageDivLinks[i]);
     images[i].parent(imageDiv);
+    images[i].hide();
     images[i].style("object-fit","cover");
     images[i].style("position","relative");
     images[i].style("width","90%");
@@ -83,14 +84,16 @@ function setup() {
     images[i].style("top","50%");
     images[i].style("transform","translate(-50%, -50%)");
   }
+  images[0].show();
   // console.log("loop ending...");
 
-
+  
   answerDiv = createDiv();
   answerDiv.position(w/4,6*h/10);
   answerDiv.size(3*w/4,4*h/10);
 
   submitButton = createButton("submit");
+  submitButton.mousePressed(changeMode);
   submitButton.parent(answerDiv);
   submitButton.style("position","relative");
   // submitButton.style("text-align","center");
@@ -169,6 +172,13 @@ function setup() {
   // textSize(w/80);
   // textStyle(BOLD);
   // text("Users nearby attempting same task",w/8,h/10);
+}
+
+function changeMode(){
+  images[mode].hide();
+  mode++;
+  if(mode>2){mode=2;}
+  images[mode].show();
 }
 
 function draw() {
