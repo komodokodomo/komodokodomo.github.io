@@ -184,10 +184,7 @@ function setup() {
     chatDivName[i].hide();
   }
 
-
-
-
-
+  hideAll();
   stroke('LightGray');
   strokeWeight(2);
   line(w/4,0,w/4,h);
@@ -251,6 +248,19 @@ function hideAll(){
 
 }
 
+function showAll(){
+
+  questionDiv.show();
+  chatDiv.show();
+  imageDiv.show();
+  answerDiv.show();
+  for(var i=0; i<player.length; i++)
+  {
+    chatDivName[i].show();
+  }
+
+}
+
 function draw() {
   if(!startSketch){
     background(235);
@@ -289,6 +299,7 @@ else if(questionChosen == true){background(235);textAlign(CENTER,CENTER);textSiz
 function mouseClicked() 
 {
   startSketch = true;
+  showAll();
 }
 
 function windowResized()
