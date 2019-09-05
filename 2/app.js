@@ -125,7 +125,7 @@ function setup() {
   // submitButton.style("text-align","center");
   skipButton.style("right","2%");
   skipButton.style("bottom","3%");
-  skipButton.style("transform","translate(-50%, -50%)");
+  skipButton.style("transform","translate(0%, -50%)");
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
   skipButton.style("font-size","1.1em");
   skipButton.style("width","46%");
