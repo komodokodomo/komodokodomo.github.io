@@ -215,9 +215,17 @@ function typeEvent(){
   console.log(inputBoxValue);   
 }
 function skipMode(){
-mode=2;
-questionChosen=true;
-hideAll();
+  document.getElementById('inputBox').value = '';    
+  images[mode].hide();
+  mode++;
+  if(mode>2){mode=2;questionChosen=true;hideAll();}
+  else{
+    inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
+    timer = millis();
+    timeBeforeOnline = random(3000,8000);
+  }
+  questionDivText.html(questionText[mode]);
+  images[mode].show();
 }
 function changeMode(){
   if(document.getElementById('inputBox').value!==""){
