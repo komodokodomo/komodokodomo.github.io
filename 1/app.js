@@ -109,7 +109,7 @@ function setup() {
   inputBox.style("transform","translate(-50%, -60%)");
 
   
-  for(var i=0; i<3; i++)
+  for(var i=0; i<player.length; i++)
   {
     chatDivName[i] = createDiv();
     chatDivName[i].position(0,i*h/10 + h/8);
@@ -206,4 +206,11 @@ function windowResized()
 
   answerDiv.position(w/4,6*h/10);
   answerDiv.size(3*w/4,4*h/10);
+
+
+  for(var i=0; i<player.length; i++)
+  {
+    chatDivName[i].position(0,i*h/10 + h/8);
+    chatDivName[i].size(w/4,h/10);
+  }
 }
