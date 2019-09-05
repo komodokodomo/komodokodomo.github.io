@@ -27,7 +27,7 @@ var imageDivLinks =
 [
 "https://drive.google.com/uc?export=view&id=1EAiSYcXhk9PV1QypkDFLUA33fPZ81NJA",
 "https://drive.google.com/uc?export=view&id=17g8_mhXAJ2tTP3tMZPppUFZksRtEA9Nj",
-"https://drive.google.com/uc?export=view&id=1ToNl-oQK2X3Yx3aLd1wBYGcrhC-yQUAt"
+"https://drive.google.com/uc?export=viewid=1Vx2yWPEDzLaXJm5fdWOOhWZ2hqANno5p"
 ]
 
 var mode = 0;
