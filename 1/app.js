@@ -194,6 +194,7 @@ function setup() {
 }
 
 function changeMode(){
+  inputBox.attribute('value', '');  
   images[mode].hide();
   mode++;
   if(mode>2){mode=2;questionChosen=true;hideAll();}
