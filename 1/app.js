@@ -135,8 +135,8 @@ function setup() {
     // chatDivNameButtons[2*i].size(w/8,h/22);
     chatDivNameButtons[2*i].style("position","relative");
     chatDivNameButtons[2*i].style("right","2%");
-    chatDivNameButtons[2*i].style("top","5%");
-    chatDivNameButtons[2*i].style("height","45%");
+    chatDivNameButtons[2*i].style("top","8%");
+    chatDivNameButtons[2*i].style("height","42%");
     chatDivNameButtons[2*i].style("width","30%");
 
     // chatDivNameButtons[2*i].position(w/8,i*h/10 +h/8 + (i%2)*(h/20)+(h/20-h/22));
@@ -145,8 +145,8 @@ function setup() {
     chatDivNameButtons[2*i+1].parent(chatDivName[i]);
     chatDivNameButtons[2*i+1].style("position","relative");
     chatDivNameButtons[2*i+1].style("right","2%");
-    chatDivNameButtons[2*i+1].style("bottom","5%");
-    chatDivNameButtons[2*i+1].style("height","45%");
+    chatDivNameButtons[2*i+1].style("bottom","8%");
+    chatDivNameButtons[2*i+1].style("height","42%");
     chatDivNameButtons[2*i+1].style("width","30%");
 
     // chatDivNameButtons[2*i+1].size(w/8,h/22);
