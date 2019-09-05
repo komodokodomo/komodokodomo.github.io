@@ -1,7 +1,11 @@
 var w,h;
 
 var player = ["nicname","siwa","99pi"];
-var questionText = ["Question 1","Question 2","Question 3"];
+var questionText = [
+  "Question 1",
+  "Question 2",
+  "Question 3"
+];
 
 var questionDiv,questionDivText;
 var imageDiv;
@@ -201,9 +205,19 @@ function draw() {
   if(millis() - timer>timeBeforeOnline){
     chatDivName[0].show();
     chatDivText.html("1 Users nearby attempting same task");
+    if(millis() - timer>2.5*timeBeforeOnline){
+      chatDivName[1].show();
+      chatDivText.html("2 Users nearby attempting same task");
+      if(millis() - timer>5.5*timeBeforeOnline){
+        chatDivName[2].show();
+        chatDivText.html("3 Users nearby attempting same task");
+      }
+    }
   }
   else{
     chatDivName[0].hide();
+    chatDivName[1].hide();
+    chatDivName[2].hide();
     chatDivText.html("0 Users nearby attempting same task");
   }
 }
