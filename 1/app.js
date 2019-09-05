@@ -1,6 +1,7 @@
 var w,h;
 
 var player = ["nicname","siwa","99pi"];
+var questionText = ["Question 1","Question 2","Question 3"];
 
 var questionDiv,questionDivText;
 var imageDiv;
@@ -178,6 +179,7 @@ function changeMode(){
   images[mode].hide();
   mode++;
   if(mode>2){mode=2;}
+  questionDivText.html(questionText[mode]);
   images[mode].show();
 }
 
