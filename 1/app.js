@@ -132,7 +132,7 @@ function setup() {
  
     chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
     chatDivNameButtons[2*i].size(w/8,h/22);
-    chatDivNameButtons[2*i].position(w/8,i*h/10 +h/8 + (i%2)*(h/20)+(h/20-h/22);
+    chatDivNameButtons[2*i].position(w/8,i*h/10 +h/8 + (i%2)*(h/20)+(h/20-h/22));
 
     chatDivNameButtons[2*i+1] = createButton(buttonText[(2*i+1)%2]);
     chatDivNameButtons[2*i+1].size(w/8,h/22);
