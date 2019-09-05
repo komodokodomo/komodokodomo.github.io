@@ -15,7 +15,7 @@ var chatDiv,chatDivText;
 
 var submitButton;
 var inputBox;
-var inputBoxPlaceholder = ["hello","yes","nope"];
+var inputBoxPlaceholder = ["Knight / Knave / Joker","A / B / C / D / E","______ minutes"];
 
 var chatDivName = [];
 var chatDivNameText = [];
