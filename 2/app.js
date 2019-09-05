@@ -24,6 +24,7 @@ var chatDivNameButtons = [];
 var buttonText = ["chat to meet","get location"];
 
 var startSketch=false;
+var timeStamp = 0;
 
 var images = []
 var imageDivLinks = 
@@ -270,13 +271,13 @@ function draw() {
   }
   else{
     if(!chatChosen && !locationChosen && !questionChosen){
-    if(millis() - timer>timeBeforeOnline){
+    if(millis() - timeStamp - timer>timeBeforeOnline){
       chatDivName[0].show();
       chatDivText.html("1 users nearby attempting same task");
-      if(millis() - timer>2.5*timeBeforeOnline){
+      if(millis() - timeStamp - timer>2.5*timeBeforeOnline){
         chatDivName[1].show();
         chatDivText.html("2 users nearby attempting same task");
-        if(millis() - timer>5.5*timeBeforeOnline){
+        if(millis() - timeStamp - timer>5.5*timeBeforeOnline){
           chatDivName[2].show();
           chatDivText.html("3 users nearby attempting same task");
         }
@@ -298,8 +299,12 @@ else if(questionChosen == true){background(235);textAlign(CENTER,CENTER);textSiz
 
 function mouseClicked() 
 {
+  if(!startSketch){
   startSketch = true;
   showAll();
+  background(235);
+  timeStamp = millis();
+}
 }
 
 function windowResized()
