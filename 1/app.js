@@ -199,7 +199,7 @@ function windowResized()
   questionDiv.size(3*w/4,h/10);
 
   chatDiv.position(0,0);
-  chatDiv.size(w/4,h/10);
+  chatDiv.size(w/4,h/8);
 
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,h/2);
@@ -211,6 +211,6 @@ function windowResized()
   for(var i=0; i<player.length; i++)
   {
     chatDivName[i].position(0,i*h/10 + h/8);
-    chatDivName[i].size(w/4,h/8);
+    chatDivName[i].size(w/4,h/10);
   }
 }
