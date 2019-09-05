@@ -24,6 +24,7 @@ var imageDivLinks =
 "https://drive.google.com/uc?export=view&id=1ToNl-oQK2X3Yx3aLd1wBYGcrhC-yQUAt"
 ]
 
+var mode = 0;
 
 
 function setup() {
