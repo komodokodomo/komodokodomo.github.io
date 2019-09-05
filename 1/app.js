@@ -91,7 +91,7 @@ function setup() {
     images[i].hide();
     images[i].style("object-fit","cover");
     images[i].style("position","relative");
-    images[i].style("width","90%");
+    images[i].style("width","96%");
     images[i].style("height","90%");
     images[i].style("left","50%");
     images[i].style("top","50%");
