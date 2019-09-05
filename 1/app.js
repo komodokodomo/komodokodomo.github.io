@@ -241,9 +241,9 @@ function draw() {
     chatDivText.html("0 Users nearby attempting same task");
   }
 }
-else if(chatChosen == true){background(235);textSize(w/100);text("Chat chosen",w/2,h/2);}
-else if(locationChosen == true){background(235);textSize(w/100);text("Location chosen",w/2,h/2);}
-else if(questionChosen == true){background(235);textSize(w/100);text("Finished",w/2,h/2);}
+else if(chatChosen == true){background(235);textSize(w/20);text("Chat chosen",w/2,h/2);}
+else if(locationChosen == true){background(235);textSize(w/20);text("Location chosen",w/2,h/2);}
+else if(questionChosen == true){background(235);textSize(w/20);text("Finished",w/2,h/2);}
 }
 
 function mouseClicked() 
