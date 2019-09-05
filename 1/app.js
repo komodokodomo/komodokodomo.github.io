@@ -34,6 +34,10 @@ var mode = 0;
 var timer = 0;
 var timeBeforeOnline = 5000;
 
+var chatChosen = false;
+var locationChosen = false;
+var questionChosen = false;
+
 
 function setup() {
   w = window.innerWidth;
@@ -187,17 +191,32 @@ function setup() {
 function changeMode(){
   images[mode].hide();
   mode++;
-  if(mode>2){mode=2;}
+  if(mode>2){mode=2;questionChosen=true;hideAll();}
   else{timer = millis();timeBeforeOnline = random(3000,8000);}
   questionDivText.html(questionText[mode]);
   images[mode].show();
 }
 
 function chatEnding(){
-
+chatChosen = true;
+hideAll();
 }
 
 function locationEnding(){
+locationChosen =true;
+hideAll();
+}
+
+function hideAll(){
+
+  questionDiv.hide();
+  chatDiv.hide();
+  imageDiv.hide();
+  answerDiv.hide();
+  for(var i=0; i<player.length; i++)
+  {
+    chatDivName[i].hide();
+  }
 
 }
 
