@@ -111,10 +111,11 @@ function setup() {
   submitButton.style("position","relative");
   // submitButton.style("text-align","center");
   submitButton.style("left","50%");
-  submitButton.style("bottom","4%");
+  submitButton.style("bottom","3%");
   submitButton.style("transform","translate(-50%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
   submitButton.style("font-size","1.1em");
+  submitButton.style("width","96%");
 
   inputBox = createInput();
   inputBox.id("inputBox");
@@ -124,7 +125,7 @@ function setup() {
   inputBox.style("top","50%");
   inputBox.style("width","96%");
   inputBox.style("height","70%");
-  inputBox.style("transform","translate(-50%, -60%)");
+  inputBox.style("transform","translate(-50%, -63%)");
   inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
   inputBox.style('text-align', 'center');
   inputBox.style('font-size', '2em');
@@ -185,7 +186,7 @@ function setup() {
   stroke('LightGray');
   strokeWeight(2);
   line(w/4,0,w/4,h);
-  line(w/4,3*h/5,w,7*h/10);
+  line(w/4,7*h/10,w,7*h/10);
 
   // noStroke();
   // textAlign(CENTER,CENTER);
@@ -272,7 +273,7 @@ function windowResized()
   stroke('LightGray');
   strokeWeight(2);
   line(w/4,0,w/4,h);
-  line(w/4,3*h/5,w,7*h/10);
+  line(w/4,7*h/10,w,7*h/10);
   }
  
   // noStroke();
