@@ -304,6 +304,10 @@ function mouseClicked()
   showAll();
   background(235);
   timeStamp = millis();
+  stroke('LightGray');
+  strokeWeight(2);
+  line(w/4,0,w/4,h);
+  line(w/4,7*h/10,w,7*h/10);
 }
 }
 
