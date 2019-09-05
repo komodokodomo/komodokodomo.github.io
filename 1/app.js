@@ -81,7 +81,7 @@ function setup() {
 
   imageDiv = createDiv();
   imageDiv.position(w/4,h/10);
-  imageDiv.size(3*w/4,h/2);
+  imageDiv.size(3*w/4,6*h/10);
 
   // console.log("loop starting...");
   for(var i=0; i<3; i++)
@@ -102,8 +102,8 @@ function setup() {
 
   
   answerDiv = createDiv();
-  answerDiv.position(w/4,6*h/10);
-  answerDiv.size(3*w/4,4*h/10);
+  answerDiv.position(w/4,7*h/10);
+  answerDiv.size(3*w/4,3*h/10);
 
   submitButton = createButton("submit");
   submitButton.mousePressed(changeMode);
