@@ -23,6 +23,8 @@ var chatDivNameText = [];
 var chatDivNameButtons = [];
 var buttonText = ["chat to meet","get location"];
 
+var startSketch=false;
+
 var images = []
 var imageDivLinks = 
 [
@@ -45,8 +47,16 @@ function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
   createCanvas(w, h);
+  while(!startSketch)
+  {
+    background(235);
+    textAlign(CENTER,CENTER);
+    textSize(w/20);
+    text("Click anywhere to begin",w/2,h/2);
+  }
   background(235);
 
+  
   questionDiv = createDiv();
   questionDivText = createDiv(questionText[0]);
   questionDivText.parent(questionDiv);
@@ -295,6 +305,7 @@ else if(questionChosen == true){background(235);textAlign(CENTER,CENTER);textSiz
 
 function mouseClicked() 
 {
+  startSketch = true;
 }
 
 function windowResized()
