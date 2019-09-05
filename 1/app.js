@@ -15,6 +15,7 @@ var chatDiv,chatDivText;
 
 var submitButton;
 var inputBox;
+var inputBoxValue;
 var inputBoxPlaceholder = ["Knight / Knave / Joker","A / B / C / D / E","______ minutes"];
 
 var chatDivName = [];
@@ -117,7 +118,7 @@ function setup() {
   submitButton.style("font-size","1.1em");
   submitButton.style("width","96%");
 
-  inputBox = createInput();
+  inputBox = createInput(typeEvent);
   inputBox.id("inputBox");
   inputBox.parent(answerDiv);
   inputBox.style("position","relative");
@@ -195,7 +196,12 @@ function setup() {
   // text("Users nearby attempting same task",w/8,h/10);
 }
 
+function typeEvent(){
+  inputBoxValue = this.value();   
+}
+
 function changeMode(){
+  if(inputBoxValue!==""){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode++;
@@ -207,6 +213,7 @@ function changeMode(){
   }
   questionDivText.html(questionText[mode]);
   images[mode].show();
+}
 }
 
 function chatEnding(){
