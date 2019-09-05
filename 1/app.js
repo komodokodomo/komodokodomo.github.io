@@ -15,6 +15,7 @@ var chatDiv,chatDivText;
 
 var submitButton;
 var inputBox;
+var inputBoxPlaceholder = ["hello","yes","nope"];
 
 var chatDivName = [];
 var chatDivNameText = [];
@@ -123,6 +124,8 @@ function setup() {
   inputBox.style("width","96%");
   inputBox.style("height","70%");
   inputBox.style("transform","translate(-50%, -60%)");
+  inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
+
 
   
   for(var i=0; i<player.length; i++)
@@ -192,7 +195,11 @@ function changeMode(){
   images[mode].hide();
   mode++;
   if(mode>2){mode=2;questionChosen=true;hideAll();}
-  else{timer = millis();timeBeforeOnline = random(3000,8000);}
+  else{
+    inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
+    timer = millis();
+    timeBeforeOnline = random(3000,8000);
+  }
   questionDivText.html(questionText[mode]);
   images[mode].show();
 }
