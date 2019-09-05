@@ -111,7 +111,7 @@ function setup() {
   submitButton.style("position","relative");
   // submitButton.style("text-align","center");
   submitButton.style("left","50%");
-  submitButton.style("bottom","7%");
+  submitButton.style("bottom","4%");
   submitButton.style("transform","translate(-50%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
   submitButton.style("font-size","1.1em");
@@ -185,7 +185,7 @@ function setup() {
   stroke('LightGray');
   strokeWeight(2);
   line(w/4,0,w/4,h);
-  line(w/4,3*h/5,w,3*h/5);
+  line(w/4,3*h/5,w,7*h/10);
 
   // noStroke();
   // textAlign(CENTER,CENTER);
@@ -272,7 +272,7 @@ function windowResized()
   stroke('LightGray');
   strokeWeight(2);
   line(w/4,0,w/4,h);
-  line(w/4,3*h/5,w,3*h/5);
+  line(w/4,3*h/5,w,7*h/10);
   }
  
   // noStroke();
