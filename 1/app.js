@@ -2,9 +2,9 @@ var w,h;
 
 var player = ["nicname","siwa","99pi"];
 var questionText = [
-  "Question 1",
-  "Question 2",
-  "Question 3"
+  "Knight, Knave, or Joker",
+  "What pattern comes next?",
+  "Fastest way to cross the bridge"
 ];
 
 var questionDiv,questionDivText;
@@ -25,8 +25,8 @@ var buttonText = ["chat","get location"];
 var images = []
 var imageDivLinks = 
 [
-"https://drive.google.com/uc?export=view&id=1tOtl1XNUvlIEVT2exzU3QKcVWDu66tv1",
-"https://drive.google.com/uc?export=view&id=13oEHMk3nGvB6MbILnnDrIJBSwljwzA5M",
+"https://drive.google.com/uc?export=view&id=1EAiSYcXhk9PV1QypkDFLUA33fPZ81NJA",
+"https://drive.google.com/uc?export=view&id=17g8_mhXAJ2tTP3tMZPppUFZksRtEA9Nj",
 "https://drive.google.com/uc?export=view&id=1ToNl-oQK2X3Yx3aLd1wBYGcrhC-yQUAt"
 ]
 
