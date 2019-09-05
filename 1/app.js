@@ -198,7 +198,8 @@ function setup() {
 }
 
 function typeEvent(){
-  inputBoxValue = this.value();   
+  inputBoxValue = this.value();
+  console.log(inputBoxValue);   
 }
 
 function changeMode(){
