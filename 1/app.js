@@ -200,9 +200,11 @@ function locationEnding(){
 function draw() {
   if(millis() - timer>timeBeforeOnline){
     chatDivName[0].show();
+    chatDivText.html("1 Users nearby attempting same task");
   }
   else{
     chatDivName[0].hide();
+    chatDivText.html("0 Users nearby attempting same task");
   }
 }
 
