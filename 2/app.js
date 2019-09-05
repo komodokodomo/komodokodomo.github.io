@@ -47,12 +47,13 @@ function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
   createCanvas(w, h);
+
+  background(235);
+  textAlign(CENTER,CENTER);
+  textSize(w/20);
+  text("Click anywhere to begin",w/2,h/2);
   while(!startSketch)
   {
-    background(235);
-    textAlign(CENTER,CENTER);
-    textSize(w/20);
-    text("Click anywhere to begin",w/2,h/2);
   }
   background(235);
 
