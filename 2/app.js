@@ -47,14 +47,6 @@ function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
   createCanvas(w, h);
-
-  background(235);
-  textAlign(CENTER,CENTER);
-  textSize(w/20);
-  text("Click anywhere to begin",w/2,h/2);
-  while(!startSketch)
-  {
-  }
   background(235);
 
   
@@ -180,7 +172,6 @@ function setup() {
  
     chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
     chatDivNameButtons[2*i].parent(chatDivName[i]);
-    // chatDivNameButtons[2*i].size(w/8,h/22);
     chatDivNameButtons[2*i].style("position","relative");
     chatDivNameButtons[2*i].style("font-size","1.2rem");
     chatDivNameButtons[2*i].style("right","4%");
@@ -190,19 +181,6 @@ function setup() {
     chatDivNameButtons[2*i].style("transform","translate(0%, -50%)");
     chatDivNameButtons[2*i].mousePressed(chatEnding);
 
-    // chatDivNameButtons[2*i].position(w/8,i*h/10 +h/8 + (i%2)*(h/20)+(h/20-h/22));
-
-    // chatDivNameButtons[2*i+1] = createButton(buttonText[(2*i+1)%2]);
-    // chatDivNameButtons[2*i+1].mousePressed(locationEnding);
-    // chatDivNameButtons[2*i+1].parent(chatDivName[i]);
-    // chatDivNameButtons[2*i+1].style("position","relative");
-    // chatDivNameButtons[2*i+1].style("right","2%");
-    // chatDivNameButtons[2*i+1].style("bottom","8%");
-    // chatDivNameButtons[2*i+1].style("height","42%");
-    // chatDivNameButtons[2*i+1].style("width","40%");
-
-    // chatDivNameButtons[2*i+1].size(w/8,h/22);
-    // chatDivNameButtons[2*i+1].position(w/8,i*h/10 +h/8 + ((i+1)%2)*(h/20)+2*(h/20-h/22));
     chatDivName[i].hide();
   }
 
@@ -215,11 +193,6 @@ function setup() {
   line(w/4,0,w/4,h);
   line(w/4,7*h/10,w,7*h/10);
 
-  // noStroke();
-  // textAlign(CENTER,CENTER);
-  // textSize(w/80);
-  // textStyle(BOLD);
-  // text("Users nearby attempting same task",w/8,h/10);
 }
 
 function typeEvent(){
@@ -279,29 +252,38 @@ function hideAll(){
 }
 
 function draw() {
-  if(!chatChosen && !locationChosen && !questionChosen){
-  if(millis() - timer>timeBeforeOnline){
-    chatDivName[0].show();
-    chatDivText.html("1 users nearby attempting same task");
-    if(millis() - timer>2.5*timeBeforeOnline){
-      chatDivName[1].show();
-      chatDivText.html("2 users nearby attempting same task");
-      if(millis() - timer>5.5*timeBeforeOnline){
-        chatDivName[2].show();
-        chatDivText.html("3 users nearby attempting same task");
-      }
-    }
+  if(!startSketch){
+    background(235);
+    textAlign(CENTER,CENTER);
+    textSize(w/20);
+    text("Click anywhere to begin",w/2,h/2);
   }
   else{
-    chatDivName[0].hide();
-    chatDivName[1].hide();
-    chatDivName[2].hide();
-    chatDivText.html("0 users nearby attempting same task");
+    if(!chatChosen && !locationChosen && !questionChosen){
+    if(millis() - timer>timeBeforeOnline){
+      chatDivName[0].show();
+      chatDivText.html("1 users nearby attempting same task");
+      if(millis() - timer>2.5*timeBeforeOnline){
+        chatDivName[1].show();
+        chatDivText.html("2 users nearby attempting same task");
+        if(millis() - timer>5.5*timeBeforeOnline){
+          chatDivName[2].show();
+          chatDivText.html("3 users nearby attempting same task");
+        }
+      }
+    }
+    else{
+      chatDivName[0].hide();
+      chatDivName[1].hide();
+      chatDivName[2].hide();
+      chatDivText.html("0 users nearby attempting same task");
+    }
   }
-}
-else if(chatChosen == true){background(235);textAlign(CENTER,CENTER);textSize(w/20);text("Chat chosen",w/2,h/2);}
-else if(locationChosen == true){background(235);textAlign(CENTER,CENTER);textSize(w/20);text("Location chosen",w/2,h/2);}
+
+  else if(chatChosen == true){background(235);textAlign(CENTER,CENTER);textSize(w/20);text("Chat chosen",w/2,h/2);}
+  else if(locationChosen == true){background(235);textAlign(CENTER,CENTER);textSize(w/20);text("Location chosen",w/2,h/2);}
 else if(questionChosen == true){background(235);textAlign(CENTER,CENTER);textSize(w/20);text("Finished",w/2,h/2);}
+}
 }
 
 function mouseClicked() 
