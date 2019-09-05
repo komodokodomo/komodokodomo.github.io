@@ -48,7 +48,7 @@ function setup() {
   background(235);
 
   questionDiv = createDiv();
-  questionDivText = createDiv("Question 1");
+  questionDivText = createDiv(questionText[0]);
   questionDivText.parent(questionDiv);
 
   questionDiv.position(w/4,0);
