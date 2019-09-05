@@ -137,7 +137,7 @@ function setup() {
     chatDivNameButtons[2*i].style("right","2%");
     chatDivNameButtons[2*i].style("top","8%");
     chatDivNameButtons[2*i].style("height","42%");
-    chatDivNameButtons[2*i].style("width","30%");
+    chatDivNameButtons[2*i].style("width","40%");
 
     // chatDivNameButtons[2*i].position(w/8,i*h/10 +h/8 + (i%2)*(h/20)+(h/20-h/22));
 
@@ -147,7 +147,7 @@ function setup() {
     chatDivNameButtons[2*i+1].style("right","2%");
     chatDivNameButtons[2*i+1].style("bottom","8%");
     chatDivNameButtons[2*i+1].style("height","42%");
-    chatDivNameButtons[2*i+1].style("width","30%");
+    chatDivNameButtons[2*i+1].style("width","40%");
 
     // chatDivNameButtons[2*i+1].size(w/8,h/22);
     // chatDivNameButtons[2*i+1].position(w/8,i*h/10 +h/8 + ((i+1)%2)*(h/20)+2*(h/20-h/22));
@@ -211,6 +211,6 @@ function windowResized()
   for(var i=0; i<player.length; i++)
   {
     chatDivName[i].position(0,i*h/10 + h/8);
-    chatDivName[i].size(w/4,h/10);
+    chatDivName[i].size(w/4,h/8);
   }
 }
