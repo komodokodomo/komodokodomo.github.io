@@ -2,7 +2,7 @@ var w,h;
 
 var player = ["nicname","siwa","99pi"];
 var questionText = [
-  "Knight, Knave, or Joker",
+  "Knight, Knave, or Joker?",
   "What pattern comes next?",
   "Fastest way to cross the bridge"
 ];
