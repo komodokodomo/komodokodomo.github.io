@@ -37,7 +37,7 @@ var imageDivLinks =
 var mode = 0;
 
 var timer = 0;
-var timeBeforeOnline = 5000;
+var timeBeforeOnline = [30000,50000,60000];
 
 var chatChosen = false;
 var locationChosen = false;
@@ -205,7 +205,7 @@ function skipMode(){
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
     timer = millis();
-    timeBeforeOnline = random(3000,8000);
+    // timeBeforeOnline = random(3000,8000);
   }
   questionDivText.html(questionText[mode]);
   images[mode].show();
@@ -219,7 +219,7 @@ function changeMode(){
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
     timer = millis();
-    timeBeforeOnline = random(3000,8000);
+    // timeBeforeOnline = random(3000,8000);
   }
   questionDivText.html(questionText[mode]);
   images[mode].show();
@@ -271,13 +271,13 @@ function draw() {
   }
   else{
     if(!chatChosen && !locationChosen && !questionChosen){
-    if(millis() - timeStamp - timer>timeBeforeOnline){
+    if(millis() - timeStamp - timer>timeBeforeOnline[mode]){
       chatDivName[0].show();
       chatDivText.html("1 users nearby attempting same task");
-      if(millis() - timeStamp - timer>2.5*timeBeforeOnline){
+      if(millis() - timeStamp - timer>2.5*timeBeforeOnline[mode]){
         chatDivName[1].show();
         chatDivText.html("2 users nearby attempting same task");
-        if(millis() - timeStamp - timer>5.5*timeBeforeOnline){
+        if(millis() - timeStamp - timer>5.5*timeBeforeOnline[mode]){
           chatDivName[2].show();
           chatDivText.html("3 users nearby attempting same task");
         }
