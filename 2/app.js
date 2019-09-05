@@ -78,7 +78,7 @@ function setup() {
   chatDivText.style("top","50%");
   chatDivText.style("transform","translate(-50%, -50%)");
   chatDivText.style("font-family","Helvetica, Arial, Sans-Serif");
-  chatDivText.style("font-size","1.1em");
+  chatDivText.style("font-size","1.3rem");
 
   imageDiv = createDiv();
   imageDiv.position(w/4,h/10);
