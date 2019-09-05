@@ -204,7 +204,7 @@ function typeEvent(){
 
 function changeMode(){
   if(inputBoxValue.length==0){
-  document.getElementById('inputBox').value = '';    
+  document.getElementById('inputBox').value = "";    
   images[mode].hide();
   mode++;
   if(mode>2){mode=2;questionChosen=true;hideAll();}
