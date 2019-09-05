@@ -117,6 +117,7 @@ function setup() {
   submitButton.style("font-size","1.1em");
 
   inputBox = createInput();
+  inputBox.id("inputBox");
   inputBox.parent(answerDiv);
   inputBox.style("position","relative");
   inputBox.style("left","50%");
@@ -194,7 +195,7 @@ function setup() {
 }
 
 function changeMode(){
-  inputBox.attribute('value', '');  
+  document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode++;
   if(mode>2){mode=2;questionChosen=true;hideAll();}
