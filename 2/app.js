@@ -21,7 +21,7 @@ var inputBoxPlaceholder = ["Knight / Knave / Joker","A / B / C / D / E","______ 
 var chatDivName = [];
 var chatDivNameText = [];
 var chatDivNameButtons = [];
-var buttonText = ["chat","get location"];
+var buttonText = ["chat to meet","get location"];
 
 var images = []
 var imageDivLinks = 
