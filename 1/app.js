@@ -27,6 +27,8 @@ var imageDivLinks =
 
 var mode = 0;
 
+var timer = 0;
+
 
 function setup() {
   w = window.innerWidth;
@@ -143,10 +145,12 @@ function setup() {
     chatDivNameButtons[2*i].style("top","8%");
     chatDivNameButtons[2*i].style("height","42%");
     chatDivNameButtons[2*i].style("width","40%");
+    chatDivNameButtons[2*i].mousePressed(chatEnding);
 
     // chatDivNameButtons[2*i].position(w/8,i*h/10 +h/8 + (i%2)*(h/20)+(h/20-h/22));
 
     chatDivNameButtons[2*i+1] = createButton(buttonText[(2*i+1)%2]);
+    chatDivNameButtons[2*i+1].mousePressed(locationEnding);
     chatDivNameButtons[2*i+1].parent(chatDivName[i]);
     chatDivNameButtons[2*i+1].style("position","relative");
     chatDivNameButtons[2*i+1].style("right","2%");
@@ -156,7 +160,7 @@ function setup() {
 
     // chatDivNameButtons[2*i+1].size(w/8,h/22);
     // chatDivNameButtons[2*i+1].position(w/8,i*h/10 +h/8 + ((i+1)%2)*(h/20)+2*(h/20-h/22));
-    
+    chatDivName[i].hide();
   }
 
 
@@ -179,12 +183,26 @@ function changeMode(){
   images[mode].hide();
   mode++;
   if(mode>2){mode=2;}
+  else{timer = millis();}
   questionDivText.html(questionText[mode]);
   images[mode].show();
 }
 
+function chatEnding(){
+
+}
+
+function locationEnding(){
+
+}
+
 function draw() {
-  
+  if(millis() - timer>5000){
+    chatDivName[0].show();
+  }
+  else{
+    chatDivName[0].hide();
+  }
 }
 
 function mouseClicked() 
