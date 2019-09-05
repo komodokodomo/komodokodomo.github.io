@@ -241,6 +241,9 @@ function draw() {
     chatDivText.html("0 Users nearby attempting same task");
   }
 }
+else if(chatChosen){background(235);text("Chat chosen",w/2,h/2);}
+else if(locationChosen){background(235);text("Location chosen",w/2,h/2);}
+else if(questionChosen){background(235);text("Finished",w/2,h/2);}
 }
 
 function mouseClicked() 
