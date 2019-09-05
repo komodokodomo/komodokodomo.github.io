@@ -160,21 +160,21 @@ function setup() {
     // chatDivNameButtons[2*i].size(w/8,h/22);
     chatDivNameButtons[2*i].style("position","relative");
     chatDivNameButtons[2*i].style("right","2%");
-    chatDivNameButtons[2*i].style("top","8%");
-    chatDivNameButtons[2*i].style("height","42%");
+    chatDivNameButtons[2*i].style("top","50%");
+    chatDivNameButtons[2*i].style("height","50%");
     chatDivNameButtons[2*i].style("width","40%");
     chatDivNameButtons[2*i].mousePressed(chatEnding);
 
     // chatDivNameButtons[2*i].position(w/8,i*h/10 +h/8 + (i%2)*(h/20)+(h/20-h/22));
 
-    chatDivNameButtons[2*i+1] = createButton(buttonText[(2*i+1)%2]);
-    chatDivNameButtons[2*i+1].mousePressed(locationEnding);
-    chatDivNameButtons[2*i+1].parent(chatDivName[i]);
-    chatDivNameButtons[2*i+1].style("position","relative");
-    chatDivNameButtons[2*i+1].style("right","2%");
-    chatDivNameButtons[2*i+1].style("bottom","8%");
-    chatDivNameButtons[2*i+1].style("height","42%");
-    chatDivNameButtons[2*i+1].style("width","40%");
+    // chatDivNameButtons[2*i+1] = createButton(buttonText[(2*i+1)%2]);
+    // chatDivNameButtons[2*i+1].mousePressed(locationEnding);
+    // chatDivNameButtons[2*i+1].parent(chatDivName[i]);
+    // chatDivNameButtons[2*i+1].style("position","relative");
+    // chatDivNameButtons[2*i+1].style("right","2%");
+    // chatDivNameButtons[2*i+1].style("bottom","8%");
+    // chatDivNameButtons[2*i+1].style("height","42%");
+    // chatDivNameButtons[2*i+1].style("width","40%");
 
     // chatDivNameButtons[2*i+1].size(w/8,h/22);
     // chatDivNameButtons[2*i+1].position(w/8,i*h/10 +h/8 + ((i+1)%2)*(h/20)+2*(h/20-h/22));
