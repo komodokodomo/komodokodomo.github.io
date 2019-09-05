@@ -13,7 +13,7 @@ var images = [];
 var answerDiv;
 var chatDiv,chatDivText;
 
-var submitButton;
+var submitButton, skipButton;
 var inputBox;
 var inputBoxValue = "";
 var inputBoxPlaceholder = ["Knight / Knave / Joker","A / B / C / D / E","______ minutes"];
@@ -111,12 +111,24 @@ function setup() {
   submitButton.parent(answerDiv);
   submitButton.style("position","relative");
   // submitButton.style("text-align","center");
-  submitButton.style("left","50%");
+  submitButton.style("left","2%");
   submitButton.style("bottom","3%");
   submitButton.style("transform","translate(-50%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
   submitButton.style("font-size","1.1em");
-  submitButton.style("width","96%");
+  submitButton.style("width","44%");
+
+  skipButton = createButton("skip");
+  skipButton.mousePressed(skipMode);
+  skipButton.parent(answerDiv);
+  skipButton.style("position","relative");
+  // submitButton.style("text-align","center");
+  skipButton.style("right","2%");
+  skipButton.style("bottom","3%");
+  skipButton.style("transform","translate(-50%, -50%)");
+  skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
+  skipButton.style("font-size","1.1em");
+  skipButton.style("width","44%");
 
   inputBox = createInput();
   inputBox.input(typeEvent);
@@ -202,7 +214,10 @@ function typeEvent(){
   inputBoxValue = this.value();
   console.log(inputBoxValue);   
 }
-
+function skipMode(){
+  mode++;
+  if(mode>2){mode=2;questionChosen=true;hideAll();}
+}
 function changeMode(){
   if(document.getElementById('inputBox').value!==""){
   document.getElementById('inputBox').value = '';    

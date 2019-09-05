@@ -203,7 +203,7 @@ function typeEvent(){
 }
 
 function changeMode(){
-  if(inputBoxValue.length==0){
+  if(document.getElementById('inputBox').value!==""){
   document.getElementById('inputBox').value = "";    
   images[mode].hide();
   mode++;
