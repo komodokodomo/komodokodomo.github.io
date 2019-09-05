@@ -164,14 +164,14 @@ function setup() {
     chatDivNameText[i].style("top","50%");
     chatDivNameText[i].style("transform","translate(0%, -50%)");
     chatDivNameText[i].style("font-family","Helvetica, Arial, Sans-Serif");
-    chatDivNameText[i].style("font-size","1.1em");
+    chatDivNameText[i].style("font-size","1.2rem");
 
  
     chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
     chatDivNameButtons[2*i].parent(chatDivName[i]);
     // chatDivNameButtons[2*i].size(w/8,h/22);
     chatDivNameButtons[2*i].style("position","relative");
-    chatDivNameButtons[2*i].style("font-size","1.5rem");
+    chatDivNameButtons[2*i].style("font-size","1.2rem");
     chatDivNameButtons[2*i].style("right","2%");
     chatDivNameButtons[2*i].style("top","50%");
     chatDivNameButtons[2*i].style("height","80%");
