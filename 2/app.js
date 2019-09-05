@@ -116,7 +116,7 @@ function setup() {
   submitButton.style("transform","translate(0%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
   submitButton.style("font-size","1.1em");
-  submitButton.style("width","47%");
+  submitButton.style("width","48%");
 
   skipButton = createButton("skip");
   skipButton.mousePressed(skipMode);
@@ -128,7 +128,7 @@ function setup() {
   skipButton.style("transform","translate(0%, -50%)");
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
   skipButton.style("font-size","1.1em");
-  skipButton.style("width","47%");
+  skipButton.style("width","48%");
 
   inputBox = createInput();
   inputBox.input(typeEvent);
