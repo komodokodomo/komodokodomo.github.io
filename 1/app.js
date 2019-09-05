@@ -118,7 +118,8 @@ function setup() {
   submitButton.style("font-size","1.1em");
   submitButton.style("width","96%");
 
-  inputBox = createInput(typeEvent);
+  inputBox = createInput();
+  inputBox.input(typeEvent);
   inputBox.id("inputBox");
   inputBox.parent(answerDiv);
   inputBox.style("position","relative");
