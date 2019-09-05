@@ -221,6 +221,7 @@ function hideAll(){
 }
 
 function draw() {
+  if(!chatChosen && !locationChosen && !questionChosen){
   if(millis() - timer>timeBeforeOnline){
     chatDivName[0].show();
     chatDivText.html("1 Users nearby attempting same task");
@@ -239,6 +240,7 @@ function draw() {
     chatDivName[2].hide();
     chatDivText.html("0 Users nearby attempting same task");
   }
+}
 }
 
 function mouseClicked() 
