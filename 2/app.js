@@ -215,8 +215,9 @@ function typeEvent(){
   console.log(inputBoxValue);   
 }
 function skipMode(){
-  mode++;
-  if(mode>2){mode=2;questionChosen=true;hideAll();}
+mode=2;
+questionChosen=true;
+hideAll();
 }
 function changeMode(){
   if(document.getElementById('inputBox').value!==""){
