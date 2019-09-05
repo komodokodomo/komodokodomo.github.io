@@ -125,6 +125,8 @@ function setup() {
   inputBox.style("height","70%");
   inputBox.style("transform","translate(-50%, -60%)");
   inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
+  inputBox.style('text-align', 'center');
+  inputBox.style('font-size', '2em');
 
 
   
@@ -248,9 +250,9 @@ function draw() {
     chatDivText.html("0 Users nearby attempting same task");
   }
 }
-else if(chatChosen == true){background(235);textSize(w/20);text("Chat chosen",w/2,h/2);}
-else if(locationChosen == true){background(235);textSize(w/20);text("Location chosen",w/2,h/2);}
-else if(questionChosen == true){background(235);textSize(w/20);text("Finished",w/2,h/2);}
+else if(chatChosen == true){background(235);textAlign(CENTER,CENTER);textSize(w/20);text("Chat chosen",w/2,h/2);}
+else if(locationChosen == true){background(235);textAlign(CENTER,CENTER);textSize(w/20);text("Location chosen",w/2,h/2);}
+else if(questionChosen == true){background(235);textAlign(CENTER,CENTER);textSize(w/20);text("Finished",w/2,h/2);}
 }
 
 function mouseClicked() 
