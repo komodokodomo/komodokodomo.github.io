@@ -171,6 +171,7 @@ function setup() {
     chatDivNameButtons[2*i].parent(chatDivName[i]);
     // chatDivNameButtons[2*i].size(w/8,h/22);
     chatDivNameButtons[2*i].style("position","relative");
+    chatDivNameButtons[2*i].style("font-size","1.5rem");
     chatDivNameButtons[2*i].style("right","2%");
     chatDivNameButtons[2*i].style("top","50%");
     chatDivNameButtons[2*i].style("height","80%");
