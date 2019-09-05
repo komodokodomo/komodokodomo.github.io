@@ -163,6 +163,7 @@ function setup() {
     chatDivNameButtons[2*i].style("top","50%");
     chatDivNameButtons[2*i].style("height","50%");
     chatDivNameButtons[2*i].style("width","40%");
+    chatDivNameButtons[2*i].style("transform","translate(0%, -50%)");
     chatDivNameButtons[2*i].mousePressed(chatEnding);
 
     // chatDivNameButtons[2*i].position(w/8,i*h/10 +h/8 + (i%2)*(h/20)+(h/20-h/22));
