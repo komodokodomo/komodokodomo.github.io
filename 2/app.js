@@ -198,6 +198,7 @@ function typeEvent(){
 }
 function skipMode(){
   shuffle(player[i]);
+  console.log(player);
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode++;
@@ -212,6 +213,7 @@ function skipMode(){
 }
 function changeMode(){
   shuffle(player[i]);
+  console.log(player);
   if(document.getElementById('inputBox').value!==""){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
