@@ -297,7 +297,7 @@ else if(questionChosen == true){background(235);textAlign(CENTER,CENTER);textSiz
 }
 }
 
-function mouseClicked() 
+function touchStarted() 
 {
   if(!startSketch){
   startSketch = true;
