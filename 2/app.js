@@ -305,15 +305,15 @@ function draw() {
     if(millis() - timeStamp - timer>timeBeforeOnline[mode]){
       chatDivName[0].show();
       // chatDivText.html("1 users nearby attempting same task");
-      chatDivText.html("Chat with people nearby attempting same task");
+      chatDivText.html("Meet up with people nearby attempting same task");
       if(millis() - timeStamp - timer>13000+timeBeforeOnline[mode]){
         chatDivName[1].show();
         // chatDivText.html("2 users nearby attempting same task");
-        chatDivText.html("Chat with people nearby attempting same task");
+        chatDivText.html("Meet up with people nearby attempting same task");
         if(millis() - timeStamp - timer>20000*timeBeforeOnline[mode]){
           chatDivName[2].show();
           // chatDivText.html("3 users nearby attempting same task");
-          chatDivText.html("Chat with people nearby attempting same task");
+          chatDivText.html("Meet up with people nearby attempting same task");
         }
       }
     }
@@ -322,7 +322,7 @@ function draw() {
       chatDivName[1].hide();
       chatDivName[2].hide();
       // chatDivText.html("0 users nearby attempting same task");
-      chatDivText.html("Chat with people nearby attempting same task");
+      chatDivText.html("Meet up with people nearby attempting same task");
     }
   }
 
