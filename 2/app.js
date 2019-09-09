@@ -1,6 +1,9 @@
 var w,h;
 
 var player = ["bryan_tan","Tina","ZaCh"];
+var player2 = ["Tina","ZaCh","bryan_tan"];
+var player3 = ["ZaCh","bryan_tan","Tina"];
+
 var questionText = [
   "Knight, Knave, or Joker?",
   "What pattern comes next?",
@@ -148,7 +151,6 @@ function setup() {
   inputBox.style('text-align', 'center');
   inputBox.style('font-size', '2em');
 
-
   
   for(var i=0; i<player.length; i++)
   {
@@ -204,6 +206,18 @@ function skipMode(){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode++;
+  if(mode == 1){
+  for(var i=0; i<player.length; i++)
+  {
+    chatDivNameText[i].html(player2[i]);  
+  }
+  }
+  if(mode == 2){
+  for(var i=0; i<player.length; i++)
+  {
+    chatDivNameText[i].html(player3[i]);  
+  }
+  }
   if(mode>2){mode=2;questionChosen=true;hideAll();}
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
@@ -276,7 +290,7 @@ function draw() {
     if(millis() - timeStamp - timer>timeBeforeOnline[mode]){
       chatDivName[0].show();
       chatDivText.html("1 users nearby attempting same task");
-      if(millis() - timeStamp - timer>2.5*timeBeforeOnline[mode]){
+      if(millis() - timeStamp - timer>2.5+timeBeforeOnline[mode]){
         chatDivName[1].show();
         chatDivText.html("2 users nearby attempting same task");
         if(millis() - timeStamp - timer>5.5*timeBeforeOnline[mode]){
