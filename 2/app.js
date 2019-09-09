@@ -64,7 +64,7 @@ function setup() {
   questionDiv.style("background-color","LightGray");
 
   questionDivText.style("position","relative");
-  questionDivText.style("text-align","center");
+  // questionDivText.style("text-align","center");
   questionDivText.style("left","50%");
   questionDivText.style("top","50%");
   questionDivText.style("transform","translate(-50%, -50%)");
@@ -73,7 +73,7 @@ function setup() {
 
   chatDiv = createDiv();
   // chatDivText = createDiv("0 users nearby attempting same task");
-    chatDivText = createDiv("Chat with people nearby attempting same task");
+    chatDivText = createDiv("Meet up with people nearby attempting same task");
 
   chatDivText.parent(chatDiv);
   chatDiv.position(0,0);
