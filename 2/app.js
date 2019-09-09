@@ -197,6 +197,7 @@ function typeEvent(){
   console.log(inputBoxValue);   
 }
 function skipMode(){
+  shuffle(player[i]);
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode++;
