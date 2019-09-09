@@ -148,7 +148,6 @@ function setup() {
   inputBox.style('text-align', 'center');
   inputBox.style('font-size', '2em');
 
-
   
   for(var i=0; i<player.length; i++)
   {
@@ -211,6 +210,7 @@ function skipMode(){
   images[mode].show();
 }
 function changeMode(){
+  shuffle(player[i]);
   if(document.getElementById('inputBox').value!==""){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
