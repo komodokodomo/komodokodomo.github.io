@@ -198,17 +198,8 @@ function typeEvent(){
   console.log(inputBoxValue);   
 }
 
-function shuffle(array){
-  for(let i = array.length — 1; i > 0; i--){
-    const j = Math.floor(Math.random() * i);
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-}
 function skipMode(){
-  shuffle(player);
-  console.log(player);
+  // chatDivNameText[0].html(player[1]);
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode++;
@@ -221,8 +212,8 @@ function skipMode(){
   images[mode].show();
 }
 function changeMode(){
-  shuffle(player);
-  console.log(player);
+  // shuffle(player);
+  // console.log(player);
   if(document.getElementById('inputBox').value!==""){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
