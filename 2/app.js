@@ -192,13 +192,19 @@ function setup() {
 
 }
 
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
-}
 
 function typeEvent(){
   inputBoxValue = this.value();
   console.log(inputBoxValue);   
+}
+
+function shuffle(array){
+  for(let i = array.length — 1; i > 0; i--){
+    const j = Math.floor(Math.random() * i);
+    const temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
 }
 function skipMode(){
   shuffle(player);
@@ -210,7 +216,6 @@ function skipMode(){
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
     timer = millis();
-    // timeBeforeOnline = random(3000,8000);
   }
   questionDivText.html(questionText[mode]);
   images[mode].show();
@@ -226,7 +231,6 @@ function changeMode(){
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
     timer = millis();
-    // timeBeforeOnline = random(3000,8000);
   }
   questionDivText.html(questionText[mode]);
   images[mode].show();
