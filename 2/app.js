@@ -37,7 +37,7 @@ var imageDivLinks =
 var mode = 0;
 
 var timer = 0;
-var timeBeforeOnline = [24000,10000,24000];
+var timeBeforeOnline = [12000,15000,20000];
 
 var chatChosen = false;
 var locationChosen = false;
