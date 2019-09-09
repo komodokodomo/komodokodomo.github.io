@@ -232,6 +232,18 @@ function changeMode(){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode++;
+  if(mode == 1){
+    for(var i=0; i<player.length; i++)
+    {
+      chatDivNameText[i].html(player2[i]);  
+    }
+    }
+    if(mode == 2){
+    for(var i=0; i<player.length; i++)
+    {
+      chatDivNameText[i].html(player3[i]);  
+    }
+    }
   if(mode>2){mode=2;questionChosen=true;hideAll();}
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
