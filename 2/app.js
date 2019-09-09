@@ -321,7 +321,8 @@ function draw() {
       chatDivName[0].hide();
       chatDivName[1].hide();
       chatDivName[2].hide();
-      chatDivText.html("0 users nearby attempting same task");
+      // chatDivText.html("0 users nearby attempting same task");
+      chatDivText.html("Chat with people nearby attempting same task");
     }
   }
 
