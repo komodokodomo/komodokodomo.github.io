@@ -40,7 +40,8 @@ var imageDivLinks =
 var mode = 0;
 
 var timer = 0;
-var timeBeforeOnline = [12000,15000,20000];
+var timeBeforeOnline = [500,15000,20000];
+// var timeAddition = [500,15000,20000];
 
 var chatChosen = false;
 var locationChosen = false;
@@ -302,10 +303,10 @@ function draw() {
     if(millis() - timeStamp - timer>timeBeforeOnline[mode]){
       chatDivName[0].show();
       chatDivText.html("1 users nearby attempting same task");
-      if(millis() - timeStamp - timer>2.0*timeBeforeOnline[mode]){
+      if(millis() - timeStamp - timer>13000+timeBeforeOnline[mode]){
         chatDivName[1].show();
         chatDivText.html("2 users nearby attempting same task");
-        if(millis() - timeStamp - timer>5.5*timeBeforeOnline[mode]){
+        if(millis() - timeStamp - timer>20000*timeBeforeOnline[mode]){
           chatDivName[2].show();
           chatDivText.html("3 users nearby attempting same task");
         }
