@@ -82,7 +82,7 @@ function setup() {
   chatDivText.style("top","50%");
   chatDivText.style("transform","translate(-50%, -50%)");
   chatDivText.style("font-family","Helvetica, Arial, Sans-Serif");
-  chatDivText.style("font-size","1.3rem");
+  chatDivText.style("font-size","1.2rem");
 
   imageDiv = createDiv();
   imageDiv.position(w/4,h/10);
@@ -168,13 +168,13 @@ function setup() {
     chatDivNameText[i].style("top","50%");
     chatDivNameText[i].style("transform","translate(0%, -50%)");
     chatDivNameText[i].style("font-family","Helvetica, Arial, Sans-Serif");
-    chatDivNameText[i].style("font-size","1.4rem");
+    chatDivNameText[i].style("font-size","1.3rem");
 
  
     chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
     chatDivNameButtons[2*i].parent(chatDivName[i]);
     chatDivNameButtons[2*i].style("position","relative");
-    chatDivNameButtons[2*i].style("font-size","1.2rem");
+    chatDivNameButtons[2*i].style("font-size","1.1rem");
     chatDivNameButtons[2*i].style("right","4%");
     chatDivNameButtons[2*i].style("top","50%");
     chatDivNameButtons[2*i].style("height","80%");
