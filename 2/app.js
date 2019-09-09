@@ -1,6 +1,6 @@
 var w,h;
 
-var player = ["nicname","siwa","99pi"];
+var player = ["bryan_tan","Tina","ZaCh"];
 var questionText = [
   "Knight, Knave, or Joker?",
   "What pattern comes next?",
@@ -37,7 +37,7 @@ var imageDivLinks =
 var mode = 0;
 
 var timer = 0;
-var timeBeforeOnline = [15000,10000,24000];
+var timeBeforeOnline = [24000,10000,24000];
 
 var chatChosen = false;
 var locationChosen = false;
