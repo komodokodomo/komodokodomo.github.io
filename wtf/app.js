@@ -8,8 +8,8 @@ let objects = [];
 var w,h;
 
 function setup() {
-  w = window.innerWidth();
-  h = window.innerHeight();
+  w = window.innerWidth;
+  h = window.innerHeight;
   createCanvas(w, h);
   video = createCapture(constraints);
   video.size(1920, 1080);
@@ -58,7 +58,7 @@ function detect() {
 }
 
 function windowResized(){
-    w = window.innerWidth();
-    h = window.innerHeight();
+    w = window.innerWidth;
+    h = window.innerHeight;
     resizeCanvas(w, h);
 }
