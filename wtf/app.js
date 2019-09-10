@@ -26,13 +26,14 @@ function setup() {
 var constraints = {
     video: {
       facingMode: { exact: "environment" },
-      minWidth: 1920,
-      minHeight: 1080
+      width: 1920,
+      height: 1080
     },
     audio: false
   };
 
 function draw() {
+    
   image(video, 0, 0, width, height);
   for (let i = 0; i < objects.length; i++) {
     noStroke();
