@@ -5,8 +5,13 @@ let yolo;
 let status;
 let objects = [];
 
+var w,h;
+
 function setup() {
-  createCanvas(1920, 1080);
+  w = window.innerWidth();
+  h = window.innerHeight();
+
+  createCanvas(w, h);
   video = createCapture(constraints);
   video.size(1920, 1080);
 
