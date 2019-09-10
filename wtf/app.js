@@ -51,9 +51,10 @@ function draw() {
 //   }
   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
   for (let i = 0; i < objects.length; i++) {
-    // noStroke();
-    // fill(0, 255, 0);
-    // text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
+    noStroke();
+    fill(255);
+    textAlign(CENTER,CENTER);
+    text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
     noFill();
     strokeWeight(8);
     stroke(255);
