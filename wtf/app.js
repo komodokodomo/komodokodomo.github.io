@@ -53,7 +53,12 @@ var constraints = {
 function draw() {
  background(255);
   imageMode(CENTER);
-  if( millis() - swipeTimer > 400){swipeDisplacement = 0;}
+  if( millis() - swipeTimer > 400){
+    if(swipeDisplacement>50){mode++;}
+    else if(swipeDisplacement<-50){mode--;}
+    mode = constrain(mode,0,2);
+    swipeDisplacement = 0;
+    }
 //   if(frameCount%3 == 0){sample = true;}
 //   if((w/h)<(videoWidth/videoHeight))
 //   {
@@ -130,8 +135,5 @@ function touchStarted(){
 function touchMoved(event) {
     swipeTimer = millis();
     swipeDisplacement+=(mouseX - prevX);
-    if(swipeDisplacement>50){mode++;}
-    else if(swipeDisplacement<-50){mode--;}
-    mode = constrain(mode,0,2);
     console.log(event);
 }
