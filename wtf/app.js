@@ -6,6 +6,8 @@ let yolo;
 let objects = [];
 var starting = false;
 
+var alpha = 1.0;
+
 var videoWidth = 1280;
 var videoHeight = 720;
 
@@ -55,7 +57,7 @@ function draw() {
   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
   for (let i = 0; i < objects.length; i++) {
     noStroke();
-    fill(255);
+    fill(255 * alpha);
     textAlign(CENTER,CENTER);
     textStyle(BOLD);
     textSize(32);
@@ -63,7 +65,7 @@ function draw() {
     
     noFill();
     strokeWeight(8);
-    stroke(255);
+    stroke(255 * alpha);
     ellipseMode(CENTER);
     // rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
     ellipse(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width/2, objects[i].w * width/2);
