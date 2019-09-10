@@ -82,6 +82,7 @@ function draw() {
   text(filters[mode],w/2,h/20);
 
   stroke(255);
+  strokeWeight(8);
   fill(255,20);
 //   noStroke();
   rectMode(CENTER);
@@ -103,7 +104,7 @@ function draw() {
     text(objects[i].label, objects[i].x * width + objects[i].w * width/2, objects[i].y * height + objects[i].h * height/2);
  
     noFill();
-    strokeWeight(8);
+    strokeWeight(4);
     stroke(255,alpha);
     // ellipseMode(CENTER);
     rectMode(CORNER);
