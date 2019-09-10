@@ -67,7 +67,7 @@ function draw() {
     mode = constrain(mode,0,2);
     swipeDisplacement = 0;
     }
-  if(frameCount%5 == 0){sample = true;}
+  if(frameCount%5 == 0){detect();}
 //   if((w/h)<(videoWidth/videoHeight))
 //   {
 //       image(video, w/2, h/2, w, h*w/videoWidth);
@@ -128,13 +128,13 @@ function startDetecting() {
 }
 
 function detect() {
-  if(sample){
+//   if(sample){
   yolo.detect(function(err, results) {
     objects = results;
     if(objects.length!==0){console.log(objects);}
     // detect();
   });
-}
+// }
 }
 
 function windowResized(){
