@@ -1,5 +1,11 @@
 var filters = ["physics","chemistry","math"];
 var items = ["teddy bear","keyboard","clock"];
+var itemText = 
+[
+    ["physics relevant topic","physics relevant topic","physics relevant topic"],
+    ["chemistry relevant topic","chemistry relevant topic","chemistry relevant topic"],
+    ["math relevant topic","math relevant topic","math relevant topic"]
+];
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -61,7 +67,7 @@ function draw() {
     mode = constrain(mode,0,2);
     swipeDisplacement = 0;
     }
-//   if(frameCount%3 == 0){sample = true;}
+  if(frameCount%5 == 0){sample = true;}
 //   if((w/h)<(videoWidth/videoHeight))
 //   {
 //       image(video, w/2, h/2, w, h*w/videoWidth);
@@ -122,13 +128,13 @@ function startDetecting() {
 }
 
 function detect() {
-//   if(sample){
+  if(sample){
   yolo.detect(function(err, results) {
     objects = results;
     if(objects.length!==0){console.log(objects);}
-    detect();
+    // detect();
   });
-// }
+}
 }
 
 function windowResized(){
