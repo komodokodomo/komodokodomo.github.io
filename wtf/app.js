@@ -30,7 +30,7 @@ function setup() {
 
 var constraints = {
     video: {
-    //   facingMode: { exact: "environment" },
+      facingMode: { exact: "environment" },
       width: videoWidth,
       height: videoHeight,
       deviceId: d5f0ac88e4e42b8c4269af9754813647c84b0c6a4d6e266a41ad50d1a1c46c7c 
