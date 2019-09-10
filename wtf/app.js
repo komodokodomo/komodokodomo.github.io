@@ -63,7 +63,7 @@ function windowResized(){
 }
 
 
-function touchEvent(){
+function touchStarted(){
  if(!starting){
     starting = true;
     fullscreen(true);
