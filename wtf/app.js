@@ -97,7 +97,7 @@ function draw() {
 
   for (let i = 0; i < objects.length; i++) {
     if(objects[i].label == "person"  || objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
-    if(objects[i].w > 0.35 && objects[i].h > 0.35) {
+    if(objects[i].w * objects[i].h > 0.12) {
     noStroke();
     fill(255,alpha);
     textAlign(CENTER,CENTER);
