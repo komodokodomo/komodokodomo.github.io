@@ -56,8 +56,8 @@ function draw() {
 //   }
   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
   for (let i = 0; i < objects.length; i++) {
-    if(objects[i].label == "person"  || objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
-    if(objects[i].w > 0.2 && objects[i].h > 0.2) {
+    // if(objects[i].label == "person"  || objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
+    if(objects[i].w > 0.3 && objects[i].h > 0.3) {
     noStroke();
     fill(255,alpha);
     textAlign(CENTER,CENTER);
@@ -73,7 +73,7 @@ function draw() {
     ellipse(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width/2, objects[i].w * width/2);
     }
     }
-  }
+//   }
 }
 
 function startDetecting() {
