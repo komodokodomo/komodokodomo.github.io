@@ -117,13 +117,17 @@ function draw() {
     textSize(24);
     if((w - (objects[i].x * w + objects[i].w * width))>w/5)
     {
-        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 2*h/5);
-        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10 + 100, 4*h/5);
+        rect((objects[i].x * width + objects[i].w * width)+w/10,1*h/5,w/5,h/10,5);
+        rect((objects[i].x * width + objects[i].w * width)+w/10,4*h/5,w/5,h/10,5);
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 1*h/5);
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 3*h/5);
     }
     if(objects[i].x - w>w/5)
     {
-        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 2*h/5);
-        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10 + 100, 4*h/5); 
+        rect(objects[i].x * w - w/10, 1*h/5,w/5,h/10,5);
+        rect(objects[i].x * w - w/10, 3*h/5,w/5,h/10,5);
+        text(itemText[mode][0], objects[i].x * w - w/10, 1*h/5);
+        text(itemText[mode][0], objects[i].x * w - w/10, 3*h/5); 
     }
     if(h - (objects[i].y * h + objects[i].h * h)>h/10)
     {
