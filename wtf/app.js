@@ -3,7 +3,7 @@ var objects = ["teddy bear","keyboard","clock"];
 
 let video;
 let yolo;
-let objects = [];
+// let objects = [];
 var starting = false;
 
 var videoWidth = 1280;
@@ -22,21 +22,21 @@ function setup() {
 
   yolo = ml5.YOLO(video, startDetecting);
   
-// let scanner = new Instascan.Scanner(
-//     {
-//         video: document.getElementById('hello'),
-//         mirror: false
-//     }
-// );
+let scanner = new Instascan.Scanner(
+    {
+        video: document.getElementById('hello'),
+        mirror: false
+    }
+);
 
-//   Instascan.Camera.getCameras().then(cameras => 
-//     {
-//         if(cameras.length > 0){
-//             scanner.start(cameras[1]);
-//         } else {
-//             text("Please enable Camera!",width/2,height/2);
-//         }
-//     });
+  Instascan.Camera.getCameras().then(cameras => 
+    {
+        if(cameras.length > 0){
+            scanner.start(cameras[1]);
+        } else {
+            text("Please enable Camera!",width/2,height/2);
+        }
+    });
 
 }
 
