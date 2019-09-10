@@ -11,6 +11,8 @@ var videoHeight = 720;
 
 var w,h;
 
+var sample = false;
+
 function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
@@ -41,6 +43,7 @@ var constraints = {
 function draw() {
  background(255);
   imageMode(CENTER);
+  if(frameCount%3 == 0){sample = true;}
 //   if((w/h)<(videoWidth/videoHeight))
 //   {
 //       image(video, w/2, h/2, w, h*w/videoWidth);
@@ -72,11 +75,13 @@ function startDetecting() {
 }
 
 function detect() {
+  if(sample){
   yolo.detect(function(err, results) {
     objects = results;
     if(objects.length!==0){console.log(objects);}
     detect();
   });
+}
 }
 
 function windowResized(){
