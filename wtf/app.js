@@ -56,20 +56,21 @@ function draw() {
 //   }
   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
   for (let i = 0; i < objects.length; i++) {
+    if(objects[i].label == "person"  || objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
     noStroke();
     fill(255 * alpha);
     textAlign(CENTER,CENTER);
     textStyle(BOLD);
     textSize(32);
     text(objects[i].label, objects[i].x * width + objects[i].w * width/2, objects[i].y * height + objects[i].h * height/2);
-    
+ 
     noFill();
     strokeWeight(8);
     stroke(255 * alpha);
     ellipseMode(CENTER);
     // rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
     ellipse(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width/2, objects[i].w * width/2);
-
+    }
   }
 }
 
