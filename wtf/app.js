@@ -114,7 +114,7 @@ function draw() {
     text(objects[i].label, objects[i].x * width + objects[i].w * width/2, objects[i].y * height + objects[i].h * height/2);
     
     // itemText[mode].findIndex(check);
-    textSize(24);
+    textSize(20);
     if((w - (objects[i].x * w + objects[i].w * width))>w/5)   /// RIGHT
     {
         rectMode(CENTER);
@@ -122,12 +122,12 @@ function draw() {
         stroke(255);
         // noFill();
         fill(255,alpha);
-        rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y * h + objects[i].h * h/2 - h/3,w/5,h/10,5);
-        rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y * h + objects[i].h * h/2 + h/3,w/5,h/10,5);
+        rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y*height + objects[i].h * height/2 - h/3,w/5,h/10,5);
+        rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y*height + objects[i].h * height/2 + h/3,w/5,h/10,5);
         noStroke();
         fill(20);
-        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, objects[i].y * h + objects[i].h * h/2 - h/3);
-        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, objects[i].y * h + objects[i].h * h/2 + h/3);
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, objects[i].y*height + objects[i].h*height/2 - h/3);
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, objects[i].y*height + objects[i].h*height/2 + h/3);
     }
     if(objects[i].x * w>w/5) // LEFT
     {
