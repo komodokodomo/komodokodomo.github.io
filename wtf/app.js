@@ -88,10 +88,10 @@ function draw() {
   fill(255,20);
 //   noStroke();
   rectMode(CENTER);
-  rect(w/2, h/2, w-150, h-padding);
+  rect(w/2, h/2, w-150, h-padding,30);
 
-  rect(0, h/2, 45, h-padding);
-  rect(w, h/2, 45, h-padding);
+  rect(0, h/2, 45, h-padding,30);
+  rect(w, h/2, 45, h-padding,30);
 
 
 
@@ -111,7 +111,7 @@ function draw() {
     rectMode(CENTER);
     // rectMode(CORNER);
     // rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
-    rect(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width*3/4, objects[i].h * height*3/4);
+    rect(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width*3/4, objects[i].h * height*3/4,10);
     }
     }
   }
