@@ -84,7 +84,7 @@ function draw() {
   fill(255,20);
   noStroke();
   rectMode(CENTER);
-  rect(w/2, h/2, w-30, h-30);
+  rect(w/2, h/2, w-100, h-30);
 
 
   for (let i = 0; i < objects.length; i++) {
