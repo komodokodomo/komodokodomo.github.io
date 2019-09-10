@@ -1,6 +1,9 @@
 var filters = ["physics","chemistry","math"];
 var items = ["teddy bear","keyboard","clock"];
 
+var prevX = 0; 
+var prevY = 0;
+
 var itemsText = [];
 
 let video;
@@ -118,4 +121,8 @@ function touchStarted(){
     starting = true;
     fullscreen(true);
 }
+}
+
+function touchMoved(event) {
+    console.log(event);
 }
