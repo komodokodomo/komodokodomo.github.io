@@ -54,8 +54,8 @@ function draw() {
  background(255);
   imageMode(CENTER);
   if( millis() - swipeTimer > 400){
-    if(swipeDisplacement>50){mode++;}
-    else if(swipeDisplacement<-50){mode--;}
+    if(swipeDisplacement>50){mode++;console.log("right");}
+    else if(swipeDisplacement<-50){mode--;console.log("left");}
     mode = constrain(mode,0,2);
     swipeDisplacement = 0;
     }
@@ -71,7 +71,7 @@ function draw() {
   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 
 
-  fill(255);
+  fill(255,100);
   noStroke();
   rectMode(CENTER);
   rect(w/2, h/20, w/5, h/10);
@@ -134,6 +134,7 @@ function touchStarted(){
 
 function touchMoved(event) {
     swipeTimer = millis();
+    // if(swipeTimer - millis)
     swipeDisplacement+=(mouseX - prevX);
     prevX = mouseX;
     // console.log(event);
