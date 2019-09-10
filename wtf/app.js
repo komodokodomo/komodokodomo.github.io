@@ -1,9 +1,9 @@
 var filters = ["physics","chemistry","math"];
-var objects = ["teddy bear","keyboard","clock"];
+var items = ["teddy bear","keyboard","clock"];
 
 let video;
 let yolo;
-// let objects = [];
+let objects = [];
 var starting = false;
 
 var videoWidth = 1280;
@@ -64,6 +64,7 @@ function draw() {
     noFill();
     strokeWeight(8);
     stroke(255);
+    ellipseMode(CENTER);
     // rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
     ellipse(objects[i].x * width, objects[i].y * height, objects[i].w * width/2, objects[i].w * width/2);
 
