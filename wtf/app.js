@@ -7,7 +7,7 @@ let objects = [];
 
 function setup() {
   createCanvas(1920, 1080);
-  video = createCapture(VIDEO);
+  video = createCapture(constraints);
   video.size(1920, 1080);
 
   // Create a YOLO method
@@ -17,6 +17,13 @@ function setup() {
   video.hide();
   status = select('#status');
 }
+
+var constraints = {
+    video: {
+      facingMode: { exact: "environment" }, 
+    },
+    audio: false
+  };
 
 function draw() {
   image(video, 0, 0, width, height);
