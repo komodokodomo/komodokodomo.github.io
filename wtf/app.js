@@ -81,7 +81,7 @@ function draw() {
   textSize(24);
   text(filters[mode],w/2,h/20);
 
-  fill(255,100);
+  fill(255,20);
   noStroke();
   rectMode(CENTER);
   rect(w/2, h/2, w-30, h-30);
