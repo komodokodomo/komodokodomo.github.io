@@ -21,6 +21,22 @@ function setup() {
 
 
   yolo = ml5.YOLO(video, startDetecting);
+  
+// let scanner = new Instascan.Scanner(
+//     {
+//         video: document.getElementById('hello'),
+//         mirror: false
+//     }
+// );
+
+//   Instascan.Camera.getCameras().then(cameras => 
+//     {
+//         if(cameras.length > 0){
+//             scanner.start(cameras[1]);
+//         } else {
+//             text("Please enable Camera!",width/2,height/2);
+//         }
+//     });
 
 }
 
