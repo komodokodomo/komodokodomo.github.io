@@ -20,7 +20,9 @@ function setup() {
 
 var constraints = {
     video: {
-      facingMode: { exact: "environment" }, 
+      facingMode: { exact: "environment" },
+      width: 1920,
+      height: 1080
     },
     audio: false
   };
