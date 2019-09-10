@@ -4,6 +4,8 @@ var items = ["teddy bear","keyboard","clock"];
 var prevX = 0;
 var swipeDisplacement = 0; 
 var swipeTimer = 0;
+
+var padding = 30;
 // var prevY = 0;
 
 
@@ -74,22 +76,22 @@ function draw() {
   fill(255,100);
   noStroke();
   rectMode(CENTER);
-  rect(w/2, h/20, w/5, h/10);
+  rect(w/2, h/20 + padding, w/5, h/10);
   fill(30);
   textAlign(CENTER,CENTER);
   textStyle(BOLD);
   textSize(24);
-  text(filters[mode],w/2,h/20);
+  text(filters[mode],w/2,h/20 + padding);
 
   stroke(255);
   strokeWeight(8);
   fill(255,20);
 //   noStroke();
   rectMode(CENTER);
-  rect(w/2, h/2, w-100, h-30);
+  rect(w/2, h/2, w-100, h-padding);
 
-  rect(0, h/2, 25, h-30);
-  rect(w, h/2, 25, h-30);
+  rect(0, h/2, 25, h-padding);
+  rect(w, h/2, 25, h-padding);
 
 
 
