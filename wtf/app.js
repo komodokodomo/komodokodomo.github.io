@@ -52,9 +52,15 @@ var constraints = {
 function draw() {
  background(255);
   imageMode(CENTER);
-//   if((w/h)>(videoWidth/videoHeight)){image(video, w/2, h/2, w, h*w/videoWidth);}
-//   else{image(video, w/2, h/2, w*h/videoHeight, h);}
-  image(video, w/2, h/2, w, h*w/videoWidth);
+  if((w/h)<(videoWidth/videoHeight))
+  {
+      image(video, w/2, h/2, w, h*w/videoWidth);
+    }
+  else if((w/h)>(videoWidth/videoHeight))
+  {
+      image(video, w/2, h/2, w*h/videoHeight, h);
+  }
+//   image(video, w/2, h/2, w, h);
   for (let i = 0; i < objects.length; i++) {
     // noStroke();
     // fill(0, 255, 0);
