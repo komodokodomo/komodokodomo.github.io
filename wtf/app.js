@@ -82,7 +82,7 @@ function draw() {
   fill(255,200);
   noStroke();
   rectMode(CENTER);
-  rect(w/2, h/20 + padding/2, w/5, h/10);
+  rect(w/2, h/20 + padding/2, w/5, h/10,0,0,5,5);
   fill(30);
   textAlign(CENTER,CENTER);
   textStyle(BOLD);
