@@ -56,7 +56,7 @@ function draw() {
     textAlign(CENTER,CENTER);
     textStyle(BOLD);
     textSize(32);
-    text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
+    text(objects[i].label, objects[i].x * width + objects[i].w * width/2, objects[i].y * height + objects[i].h * height/2);
     
     noFill();
     strokeWeight(8);
