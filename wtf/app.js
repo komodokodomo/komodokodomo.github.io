@@ -36,7 +36,7 @@ function draw() {
   imageMode(CENTER);
 //   if((w/h)>(videoWidth/videoHeight)){image(video, w/2, h/2, w, h*w/videoWidth);}
 //   else{image(video, w/2, h/2, w*h/videoHeight, h);}
-  if(w>videoWidth){image(video, w/2, h/2, w, h*w/videoWidth);}
+  image(video, w/2, h/2, w, h*w/videoWidth);}
   for (let i = 0; i < objects.length; i++) {
     noStroke();
     fill(0, 255, 0);
