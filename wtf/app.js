@@ -12,7 +12,7 @@ function setup() {
   h = window.innerHeight;
   createCanvas(w, h);
   video = createCapture(constraints);
-  video.size(1920, 1080);
+  video.size(1280, 1080);
   video.hide();
 
 
@@ -32,7 +32,7 @@ var constraints = {
 
 function draw() {
   imageMode(CENTER);
-  image(video, w/2, h/2, 1920, 1080);
+  image(video, w/2, h/2, w, w*h/1920);
   for (let i = 0; i < objects.length; i++) {
     noStroke();
     fill(0, 255, 0);
