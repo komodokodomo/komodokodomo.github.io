@@ -61,6 +61,7 @@ function draw() {
 
   fill(255);
   noStroke();
+  rectMode(CENTER);
   rect(w/2, h/20, w/5, h/10);
   fill(30);
   textAlign(CENTER,CENTER);
@@ -83,6 +84,7 @@ function draw() {
     strokeWeight(8);
     stroke(255,alpha);
     // ellipseMode(CENTER);
+    rectMode(CORNER);
     rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
     // ellipse(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width/2, objects[i].w * width/2);
     }
