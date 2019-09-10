@@ -54,7 +54,10 @@ function draw() {
     noStroke();
     fill(255);
     textAlign(CENTER,CENTER);
+    textStyle(BOLD);
+    textSize(32);
     text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
+    
     noFill();
     strokeWeight(8);
     stroke(255);
