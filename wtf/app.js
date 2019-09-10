@@ -99,10 +99,12 @@ function draw() {
   rect(0, h/2, 45, h-padding,30);
   rect(w, h/2, 45, h-padding,30);
 
-
+//   function check(age) {
+//     return age == 10;
+//   }
 
   for (let i = 0; i < objects.length; i++) {
-    if(objects[i].label == "person"  || objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
+    if(objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
     if(objects[i].w * objects[i].h > 0.12) {
     noStroke();
     fill(255,alpha);
@@ -110,6 +112,12 @@ function draw() {
     textStyle(BOLD);
     textSize(32);
     text(objects[i].label, objects[i].x * width + objects[i].w * width/2, objects[i].y * height + objects[i].h * height/2);
+    
+    // itemText[mode].findIndex(check);
+    
+    text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+(w - (objects[i].x * width + objects[i].w * width))/2, h/3);
+    text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+(w - (objects[i].x * width + objects[i].w * width))/2 + 100, 2* h/3);
+    w-objects[i].x * width+ objects[i].w
  
     noFill();
     strokeWeight(4);
