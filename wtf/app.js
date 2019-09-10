@@ -6,7 +6,7 @@ let yolo;
 let objects = [];
 var starting = false;
 
-var alpha = 1.0;
+var alpha = 255;
 
 var videoWidth = 1280;
 var videoHeight = 720;
@@ -59,7 +59,7 @@ function draw() {
     if(objects[i].label == "person"  || objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
     if(objects[i].w > 0.2 && objects[i].h > 0.2) {
     noStroke();
-    fill(255 * alpha);
+    fill(255,alpha);
     textAlign(CENTER,CENTER);
     textStyle(BOLD);
     textSize(32);
@@ -67,7 +67,7 @@ function draw() {
  
     noFill();
     strokeWeight(8);
-    stroke(255 * alpha);
+    stroke(255,alpha);
     ellipseMode(CENTER);
     // rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
     ellipse(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width/2, objects[i].w * width/2);
