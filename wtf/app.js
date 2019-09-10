@@ -61,7 +61,9 @@ function draw() {
     noFill();
     strokeWeight(8);
     stroke(255);
-    rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
+    // rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
+    ellipse(objects[i].x * width, objects[i].y * height, objects[i].w * width/2, objects[i].w * width/2);
+
   }
 }
 
