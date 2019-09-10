@@ -53,7 +53,7 @@ var constraints = {
 function draw() {
  background(255);
   imageMode(CENTER);
-  if( millis() - swipeTimer > 200){swipeDisplacement = 0;}
+  if( millis() - swipeTimer > 400){swipeDisplacement = 0;}
 //   if(frameCount%3 == 0){sample = true;}
 //   if((w/h)<(videoWidth/videoHeight))
 //   {
