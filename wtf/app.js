@@ -76,7 +76,8 @@ function draw() {
 //   {
 //       image(video, w/2, h/2, w*h/videoHeight, h);
 //   }
-  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+//   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 
 
   fill(255,200);
@@ -143,7 +144,7 @@ function draw() {
         text(itemText[mode][0], objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3);
         text(itemText[mode][0], objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3); 
     }
-    if(h - (objects[i].y * h + objects[i].h * h)>h/10)
+    if(h - (objects[i].y * h + objects[i].h * h)>h/10)  //BOT
     {
         rectMode(CENTER);
         strokeWeight(2);
@@ -157,7 +158,7 @@ function draw() {
         text(itemText[mode][0], 2*w/5, objects[i].y * h + objects[i].h * h+h/20);
         text(itemText[mode][0], 4*w/5, objects[i].y * h + objects[i].h * h+h/20);
     }
-    if(objects[i].y*h>h/10)
+    if(objects[i].y*h>h/10)  //TOP
     {
         rectMode(CENTER);
         strokeWeight(2);
@@ -212,6 +213,7 @@ function touchStarted(){
     starting = true;
     fullscreen(true);
 }
+prevX = mouseX;
 }
 
 function touchMoved(event) {
