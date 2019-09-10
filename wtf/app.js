@@ -122,12 +122,12 @@ function draw() {
         stroke(255);
         // noFill();
         fill(255,alpha);
-        rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y*height + objects[i].h * height/2 - h/3,w/5,h/10,5);
-        rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y*height + objects[i].h * height/2 + h/3,w/5,h/10,5);
+        rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,w/5,h/10,5);
+        rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,w/5,h/10,5);
         noStroke();
         fill(20);
-        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, objects[i].y*height + objects[i].h*height/2 - h/3);
-        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, objects[i].y*height + objects[i].h*height/2 + h/3);
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3);
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3);
     }
     if(objects[i].x * w>w/5) // LEFT
     {
@@ -136,12 +136,12 @@ function draw() {
         stroke(255);
         // noFill();
         fill(255,alpha);
-        rect(objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 - h/3,w/5,h/10,5);
-        rect(objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 + h/3,w/5,h/10,5);
+        rect(objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,w/5,h/10,5);
+        rect(objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,w/5,h/10,5);
         noStroke();
         fill(20);
-        text(itemText[mode][0], objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 - h/3);
-        text(itemText[mode][0], objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 + h/3); 
+        text(itemText[mode][0], objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3);
+        text(itemText[mode][0], objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3); 
     }
     if(h - (objects[i].y * h + objects[i].h * h)>h/10)
     {
