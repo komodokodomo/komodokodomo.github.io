@@ -115,7 +115,7 @@ function draw() {
     
     // itemText[mode].findIndex(check);
     textSize(24);
-    if((w - (objects[i].x * w + objects[i].w * width))>w/5)
+    if((w - (objects[i].x * w + objects[i].w * width))>w/5)   /// RIGHT
     {
         rectMode(CENTER);
         strokeWeight(2);
@@ -127,7 +127,7 @@ function draw() {
         text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 1*h/5);
         text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 3*h/5);
     }
-    if(objects[i].x * w- w>w/5)
+    if(objects[i].x * w>w/5) // LEFT
     {
         rectMode(CENTER);
         strokeWeight(2);
