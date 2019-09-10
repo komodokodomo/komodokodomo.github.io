@@ -53,15 +53,15 @@ var constraints = {
 function draw() {
  background(255);
   imageMode(CENTER);
-  if((w/h)<(videoWidth/videoHeight))
-  {
-      image(video, w/2, h/2, w, h*w/videoWidth);
-    }
-  else if((w/h)>(videoWidth/videoHeight))
-  {
-      image(video, w/2, h/2, w*h/videoHeight, h);
-  }
-//   image(video, w/2, h/2, w, h);
+//   if((w/h)<(videoWidth/videoHeight))
+//   {
+//       image(video, w/2, h/2, w, h*w/videoWidth);
+//     }
+//   else if((w/h)>(videoWidth/videoHeight))
+//   {
+//       image(video, w/2, h/2, w*h/videoHeight, h);
+//   }
+  image(video, w/2, h/2, h*videoWidth/videoHeight, h/videoHeight);
   for (let i = 0; i < objects.length; i++) {
     // noStroke();
     // fill(0, 255, 0);
@@ -80,7 +80,7 @@ function startDetecting() {
 function detect() {
   yolo.detect(function(err, results) {
     objects = results;
-    console.log(objects);
+    if(objects.length!==0){console.log(objects);}
     detect();
   });
 }
