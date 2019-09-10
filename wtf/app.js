@@ -44,7 +44,8 @@ var constraints = {
     video: {
       facingMode: { exact: "environment" },
       width: videoWidth,
-      height: videoHeight
+      height: videoHeight,
+      deviceId: 1 
     },
     audio: false
   };
