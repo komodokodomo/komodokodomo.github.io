@@ -120,11 +120,12 @@ function draw() {
         rectMode(CENTER);
         strokeWeight(2);
         stroke(255);
-        noFill();
+        // noFill();
+        fill(255,alpha);
         rect((objects[i].x * width + objects[i].w * width)+w/10,1*h/5,w/5,h/10,5);
         rect((objects[i].x * width + objects[i].w * width)+w/10,3*h/5,w/5,h/10,5);
         noStroke();
-        fill(255);
+        fill(20);
         text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 1*h/5);
         text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 3*h/5);
     }
@@ -133,11 +134,12 @@ function draw() {
         rectMode(CENTER);
         strokeWeight(2);
         stroke(255);
-        noFill();
+        // noFill();
+        fill(255,alpha);
         rect(objects[i].x * w - w/10, 1*h/5,w/5,h/10,5);
         rect(objects[i].x * w - w/10, 3*h/5,w/5,h/10,5);
         noStroke();
-        fill(255);
+        fill(20);
         text(itemText[mode][0], objects[i].x * w - w/10, 1*h/5);
         text(itemText[mode][0], objects[i].x * w - w/10, 3*h/5); 
     }
@@ -146,20 +148,28 @@ function draw() {
         rectMode(CENTER);
         strokeWeight(2);
         stroke(255);
-        noFill();
+        fill(255,alpha);
+        // noFill();
         rect(2*w/5, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10,5);
         rect(4*w/5, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10,5);
         noStroke();
-        fill(255);
+        fill(20);
         text(itemText[mode][0], 2*w/5, objects[i].y * h + objects[i].h * h+h/20);
         text(itemText[mode][0], 4*w/5, objects[i].y * h + objects[i].h * h+h/20);
     }
-    if(objects[i].y - h>h/10)
+    if(objects[i].y*h>h/10)
     {
+        rectMode(CENTER);
+        strokeWeight(2);
+        stroke(255);
+        fill(255,alpha);
+        // noFill();
+        rect(2*w/5, objects[i].y*h - h/20,w/5,h/10,5);
+        rect(4*w/5, objects[i].y*h - h/20,w/5,h/10,5);
         noStroke();
-        fill(255);
-        text(itemText[mode][0], 2*w/5,h/20);
-        text(itemText[mode][0], 4*w/5,h/20);
+        fill(20);
+        text(itemText[mode][0], 2*w/5,objects[i].y*h - h/20);
+        text(itemText[mode][0], 4*w/5,objects[i].y*h - h/20);
     }
 
     // w-objects[i].x * width+ objects[i].w
