@@ -108,10 +108,10 @@ function draw() {
     noFill();
     strokeWeight(4);
     stroke(255,alpha);
-    // ellipseMode(CENTER);
-    rectMode(CORNER);
-    rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
-    // ellipse(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width/2, objects[i].w * width/2);
+    rectMode(CENTER);
+    // rectMode(CORNER);
+    // rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
+    rect(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width*3/4, objects[i].h * height*3/4);
     }
     }
   }
