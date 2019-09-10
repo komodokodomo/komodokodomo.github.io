@@ -135,5 +135,6 @@ function touchStarted(){
 function touchMoved(event) {
     swipeTimer = millis();
     swipeDisplacement+=(mouseX - prevX);
-    console.log(event);
+    prevX = mouseX;
+    // console.log(event);
 }
