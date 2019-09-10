@@ -120,17 +120,17 @@ function draw() {
         text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 2*h/5);
         text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10 + 100, 4*h/5);
     }
-    else if(objects[i].x - w>w/5)
+    if(objects[i].x - w>w/5)
     {
         text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 2*h/5);
         text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10 + 100, 4*h/5); 
     }
-    else if(h - (objects[i].y * h + objects[i].h * h)>h/10)
+    if(h - (objects[i].y * h + objects[i].h * h)>h/10)
     {
         text(itemText[mode][0], 2*w/5, objects[i].y * h + objects[i].h * h+h/20);
         text(itemText[mode][0], 4*w/5, objects[i].y * h + objects[i].h * h+h/20);
     }
-    else if(objects[i].y - h>h/10)
+    if(objects[i].y - h>h/10)
     {
         text(itemText[mode][0], 2*w/5,h/20);
         text(itemText[mode][0], 4*w/5,h/20);
