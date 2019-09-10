@@ -123,6 +123,8 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
         stroke(255);
         // noFill();
         fill(255,alpha);
+        line((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,   objects[i].x * width + objects[i].w * width,   objects[i].y * height + objects[i].h * height);
+        line((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,   objects[i].x * width + objects[i].w * width,   objects[i].y * height + objects[i].h * height);
         rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,w/5,h/10,5);
         rect((objects[i].x * width + objects[i].w * width)+w/10,objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,w/5,h/10,5);
         noStroke();
