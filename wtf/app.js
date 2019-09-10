@@ -73,15 +73,15 @@ function draw() {
   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 
 
-  fill(255,100);
+  fill(255,200);
   noStroke();
   rectMode(CENTER);
-  rect(w/2, h/20 + padding, w/5, h/10);
+  rect(w/2, h/20 + padding/2, w/5, h/10);
   fill(30);
   textAlign(CENTER,CENTER);
   textStyle(BOLD);
   textSize(24);
-  text(filters[mode],w/2,h/20 + padding);
+  text(filters[mode],w/2,h/20 + padding/2);
 
   stroke(255);
   strokeWeight(8);
@@ -90,8 +90,8 @@ function draw() {
   rectMode(CENTER);
   rect(w/2, h/2, w-100, h-padding);
 
-  rect(0, h/2, 25, h-padding);
-  rect(w, h/2, 25, h-padding);
+  rect(0, h/2, 30, h-padding);
+  rect(w, h/2, 30, h-padding);
 
 
 
