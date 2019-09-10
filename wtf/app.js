@@ -5,6 +5,9 @@ let yolo;
 let objects = [];
 var starting = false;
 
+var videoWidth = 1280;
+var videoHeight = 720;
+
 var w,h;
 
 function setup() {
@@ -23,16 +26,17 @@ function setup() {
 
 var constraints = {
     video: {
-      facingMode: { exact: "environment" },
-      width: 1280,
-      height: 720
+      facingMode: { exact: "user" },
+      width: videoWidth,
+      height: videoHeight
     },
     audio: false
   };
 
 function draw() {
   imageMode(CENTER);
-  image(video, w/2, h/2, w*h/720, h);
+  if((w/h)>(videoWidth/videoHeight)){image(video, w/2, h/2, w, h*w/videoWidth);}
+  else{image(video, w/2, h/2, w*h/videoHeight, h);}
   for (let i = 0; i < objects.length; i++) {
     noStroke();
     fill(0, 255, 0);
