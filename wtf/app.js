@@ -1,8 +1,11 @@
 var filters = ["physics","chemistry","math"];
 var items = ["teddy bear","keyboard","clock"];
 
-var prevX = 0; 
-var prevY = 0;
+var prevX = 0;
+var swipeDisplacement = 0; 
+var swipeTimer = 0;
+// var prevY = 0;
+
 
 var itemsText = [];
 
@@ -33,7 +36,7 @@ function setup() {
 
 
   yolo = ml5.YOLO(video, startDetecting);
-  
+  prevX = mouseX;
 
 }
 
@@ -50,6 +53,7 @@ var constraints = {
 function draw() {
  background(255);
   imageMode(CENTER);
+  if( millis() - swipeTimer > 200){swipeDisplacement = 0;}
 //   if(frameCount%3 == 0){sample = true;}
 //   if((w/h)<(videoWidth/videoHeight))
 //   {
@@ -124,5 +128,10 @@ function touchStarted(){
 }
 
 function touchMoved(event) {
+    swipeTimer = millis();
+    swipeDisplacement+=(mouseX - prevX);
+    if(swipeDisplacement>50){mode++;}
+    else if(swipeDisplacement<-50){mode--;}
+    mode = constrain(mode,0,2);
     console.log(event);
 }
