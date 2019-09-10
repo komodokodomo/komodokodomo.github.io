@@ -10,7 +10,6 @@ var w,h;
 function setup() {
   w = window.innerWidth();
   h = window.innerHeight();
-
   createCanvas(w, h);
   video = createCapture(constraints);
   video.size(1920, 1080);
@@ -33,7 +32,7 @@ var constraints = {
   };
 
 function draw() {
-    
+
   image(video, 0, 0, width, height);
   for (let i = 0; i < objects.length; i++) {
     noStroke();
@@ -56,4 +55,10 @@ function detect() {
     console.log(objects);
     detect();
   });
+}
+
+function windowResized(){
+    w = window.innerWidth();
+    h = window.innerHeight();
+    resizeCanvas(w, h);
 }
