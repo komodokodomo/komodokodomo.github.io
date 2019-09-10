@@ -6,8 +6,8 @@ let yolo;
 // let objects = [];
 var starting = false;
 
-var videoWidth = 1920;
-var videoHeight = 1080;
+var videoWidth = 1280;
+var videoHeight = 720;
 
 var w,h;
 
