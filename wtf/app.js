@@ -6,9 +6,9 @@ let status;
 let objects = [];
 
 function setup() {
-  createCanvas(320, 240);
+  createCanvas(1920, 1080);
   video = createCapture(VIDEO);
-  video.size(320, 240);
+  video.size(1920, 1080);
 
   // Create a YOLO method
   yolo = ml5.YOLO(video, startDetecting);
