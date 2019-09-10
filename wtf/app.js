@@ -18,6 +18,8 @@ function setup() {
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
+  var enumeratorPromise = navigator.mediaDevices.enumerateDevices();
+  console.log(enumeratorPromise);
 
 
   yolo = ml5.YOLO(video, startDetecting);
@@ -42,7 +44,7 @@ function setup() {
 
 var constraints = {
     video: {
-      facingMode: { exact: "environment" },
+    //   facingMode: { exact: "environment" },
       width: videoWidth,
       height: videoHeight,
       deviceId: 1 
