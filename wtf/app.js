@@ -61,7 +61,7 @@ function draw() {
 //   {
 //       image(video, w/2, h/2, w*h/videoHeight, h);
 //   }
-  image(video, w/2, h/2, h*videoWidth/videoHeight, h/videoHeight);
+  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
   for (let i = 0; i < objects.length; i++) {
     // noStroke();
     // fill(0, 255, 0);
