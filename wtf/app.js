@@ -44,7 +44,7 @@ function setup() {
 
 
   yolo = ml5.YOLO(video, 
-    // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.3 },
+    { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
     startDetecting);
   prevX = mouseX;
 
