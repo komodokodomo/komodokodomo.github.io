@@ -81,10 +81,15 @@ function draw() {
   textSize(24);
   text(filters[mode],w/2,h/20);
 
+  stroke(255);
   fill(255,20);
-  noStroke();
+//   noStroke();
   rectMode(CENTER);
   rect(w/2, h/2, w-100, h-30);
+
+  rect(0, h/2, 25, h-30);
+  rect(w, h/2, 25, h-30);
+
 
 
   for (let i = 0; i < objects.length; i++) {
