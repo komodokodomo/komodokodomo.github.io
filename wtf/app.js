@@ -114,10 +114,29 @@ function draw() {
     text(objects[i].label, objects[i].x * width + objects[i].w * width/2, objects[i].y * height + objects[i].h * height/2);
     
     // itemText[mode].findIndex(check);
-    
-    text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+(w - (objects[i].x * width + objects[i].w * width))/2, h/3);
-    text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+(w - (objects[i].x * width + objects[i].w * width))/2 + 100, 2* h/3);
-    w-objects[i].x * width+ objects[i].w
+    textSize(24);
+    if((w - (objects[i].x * w + objects[i].w * width))>w/5)
+    {
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 2*h/5);
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10 + 100, 4*h/5);
+    }
+    else if(objects[i].x - w>w/5)
+    {
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, 2*h/5);
+        text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10 + 100, 4*h/5); 
+    }
+    else if(h - (objects[i].y * h + objects[i].h * h)>h/10)
+    {
+        text(itemText[mode][0], 2*w/5, objects[i].y * h + objects[i].h * h+h/20);
+        text(itemText[mode][0], 4*w/5, objects[i].y * h + objects[i].h * h+h/20);
+    }
+    else if(objects[i].y - h>h/10)
+    {
+        text(itemText[mode][0], 2*w/5,h/20);
+        text(itemText[mode][0], 4*w/5,h/20);
+    }
+
+    // w-objects[i].x * width+ objects[i].w
  
     noFill();
     strokeWeight(4);
