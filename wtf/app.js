@@ -88,16 +88,16 @@ function draw() {
   fill(255,20);
 //   noStroke();
   rectMode(CENTER);
-  rect(w/2, h/2, w-100, h-padding);
+  rect(w/2, h/2, w-150, h-padding);
 
-  rect(0, h/2, 30, h-padding);
-  rect(w, h/2, 30, h-padding);
+  rect(0, h/2, 45, h-padding);
+  rect(w, h/2, 45, h-padding);
 
 
 
   for (let i = 0; i < objects.length; i++) {
     // if(objects[i].label == "person"  || objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
-    if(objects[i].w > 0.3 && objects[i].h > 0.3) {
+    if(objects[i].w > 0.4 && objects[i].h > 0.4) {
     noStroke();
     fill(255,alpha);
     textAlign(CENTER,CENTER);
