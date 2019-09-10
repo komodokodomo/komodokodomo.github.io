@@ -19,14 +19,13 @@ function setup() {
   video.hide();
 
 
-  // Create a YOLO method
   yolo = ml5.YOLO(video, startDetecting);
 
 }
 
 var constraints = {
     video: {
-      facingMode: { exact: "user" },
+      facingMode: { exact: "left" },
       width: videoWidth,
       height: videoHeight
     },
