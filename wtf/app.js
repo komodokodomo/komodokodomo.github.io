@@ -38,12 +38,12 @@ function draw() {
 //   else{image(video, w/2, h/2, w*h/videoHeight, h);}
   image(video, w/2, h/2, w, h*w/videoWidth);}
   for (let i = 0; i < objects.length; i++) {
-    noStroke();
-    fill(0, 255, 0);
-    text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
+    // noStroke();
+    // fill(0, 255, 0);
+    // text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
     noFill();
-    strokeWeight(4);
-    stroke(0, 255, 0);
+    strokeWeight(8);
+    stroke(255);
     rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
   }
 }
