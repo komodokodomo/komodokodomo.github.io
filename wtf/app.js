@@ -81,6 +81,11 @@ function draw() {
   textSize(24);
   text(filters[mode],w/2,h/20);
 
+  fill(255,100);
+  noStroke();
+  rectMode(CENTER);
+  rect(w/2, h/2, w-30, h-30);
+
 
   for (let i = 0; i < objects.length; i++) {
     // if(objects[i].label == "person"  || objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
