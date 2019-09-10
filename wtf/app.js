@@ -45,7 +45,7 @@ var constraints = {
 function draw() {
  background(255);
   imageMode(CENTER);
-  if(frameCount%3 == 0){sample = true;}
+//   if(frameCount%3 == 0){sample = true;}
 //   if((w/h)<(videoWidth/videoHeight))
 //   {
 //       image(video, w/2, h/2, w, h*w/videoWidth);
@@ -68,9 +68,9 @@ function draw() {
     noFill();
     strokeWeight(8);
     stroke(255,alpha);
-    ellipseMode(CENTER);
-    // rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
-    ellipse(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width/2, objects[i].w * width/2);
+    // ellipseMode(CENTER);
+    rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
+    // ellipse(objects[i].x * width+ objects[i].w * width/2, objects[i].y * height+ objects[i].h * height/2, objects[i].w * width/2, objects[i].w * width/2);
     }
     }
 //   }
@@ -81,13 +81,13 @@ function startDetecting() {
 }
 
 function detect() {
-  if(sample){
+//   if(sample){
   yolo.detect(function(err, results) {
     objects = results;
     if(objects.length!==0){console.log(objects);}
     detect();
   });
-}
+// }
 }
 
 function windowResized(){
