@@ -24,8 +24,8 @@ var starting = false;
 
 var alpha = 255;
 
-var videoWidth = 1280;
-var videoHeight = 720;
+var videoWidth = 1920;
+var videoHeight = 1080;
 
 var w,h;
 
@@ -67,7 +67,7 @@ function draw() {
     mode = constrain(mode,0,2);
     swipeDisplacement = 0;
     }
-  if(frameCount%5 == 0){detect();}
+//   if(frameCount%5 == 0){detect();}
 //   if((w/h)<(videoWidth/videoHeight))
 //   {
 //       image(video, w/2, h/2, w, h*w/videoWidth);
@@ -132,7 +132,7 @@ function detect() {
   yolo.detect(function(err, results) {
     objects = results;
     if(objects.length!==0){console.log(objects);}
-    // detect();
+    detect();
   });
 // }
 }
