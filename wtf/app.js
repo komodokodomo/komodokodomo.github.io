@@ -2,8 +2,8 @@
 
 let video;
 let yolo;
-let status;
 let objects = [];
+var starting = false;
 
 var w,h;
 
@@ -13,13 +13,12 @@ function setup() {
   createCanvas(w, h);
   video = createCapture(constraints);
   video.size(1920, 1080);
+  video.hide();
+
 
   // Create a YOLO method
   yolo = ml5.YOLO(video, startDetecting);
 
-  // Hide the original video
-  video.hide();
-  status = select('#status');
 }
 
 var constraints = {
@@ -61,4 +60,12 @@ function windowResized(){
     w = window.innerWidth;
     h = window.innerHeight;
     resizeCanvas(w, h);
+}
+
+
+function touchEvent(){
+ if(!starting){
+    starting = true;
+    fullscreen(true);
+}
 }
