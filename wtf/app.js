@@ -32,8 +32,8 @@ var constraints = {
   };
 
 function draw() {
-
-  image(video, 0, 0, width, height);
+  imageMode(CENTER);
+  image(video, w/2, h/2, 1920, 1080);
   for (let i = 0; i < objects.length; i++) {
     noStroke();
     fill(0, 255, 0);
