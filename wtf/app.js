@@ -107,7 +107,7 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 //   }
 
   for (let i = 0; i < objects.length; i++) {
-    if(objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
+    if(objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"|| objects[i].label == "laptop"){
     if(objects[i].w * objects[i].h > 0.12) {
     noStroke();
     fill(255,alpha);
