@@ -1,4 +1,5 @@
-
+var filters = ["physics","chemistry","math"];
+var objects = ["teddy bear","keyboard","clock"];
 
 let video;
 let yolo;
@@ -33,6 +34,7 @@ var constraints = {
   };
 
 function draw() {
+ background(255);
   imageMode(CENTER);
 //   if((w/h)>(videoWidth/videoHeight)){image(video, w/2, h/2, w, h*w/videoWidth);}
 //   else{image(video, w/2, h/2, w*h/videoHeight, h);}
