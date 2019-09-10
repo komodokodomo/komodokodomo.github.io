@@ -37,7 +37,7 @@ function setup() {
   console.log(enumeratorPromise);
 
 
-  yolo = ml5.YOLO(video, startDetecting);
+  yolo = ml5.YOLO(video, { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.3 },startDetecting);
   prevX = mouseX;
 
 }
