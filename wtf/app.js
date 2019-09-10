@@ -16,6 +16,7 @@ var videoHeight = 720;
 var w,h;
 
 var sample = false;
+var mode = 0;
 
 function setup() {
   w = window.innerWidth;
@@ -30,7 +31,6 @@ function setup() {
 
   yolo = ml5.YOLO(video, startDetecting);
   
-
 
 }
 
@@ -57,6 +57,18 @@ function draw() {
 //       image(video, w/2, h/2, w*h/videoHeight, h);
 //   }
   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+
+
+  fill(255);
+  noStroke();
+  rect(w/2, h/20, w/5, h/10);
+  fill(30);
+  textAlign(CENTER,CENTER);
+  textStyle(BOLD);
+  textSize(24);
+  text(filters[mode],w/2,h/20);
+
+
   for (let i = 0; i < objects.length; i++) {
     // if(objects[i].label == "person"  || objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
     if(objects[i].w > 0.3 && objects[i].h > 0.3) {
