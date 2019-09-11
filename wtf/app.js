@@ -129,6 +129,7 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
     textSize(32);
     text(objects[i].label, objects[i].x * width + objects[i].w * width/2, objects[i].y * height + objects[i].h * height/2 -50);
     textSize(20);
+    textStyle();
     text("click on topics to find out more!", objects[i].y * height + objects[i].h * height/2 +50);
     
     // itemText[mode].findIndex(check);
