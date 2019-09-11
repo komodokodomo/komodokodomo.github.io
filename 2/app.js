@@ -306,11 +306,11 @@ function draw() {
       chatDivName[0].show();
       // chatDivText.html("1 users nearby attempting same task");
       chatDivText.html("Meet up with people nearby attempting same task");
-      if(millis() - timeStamp - timer>10000+timeBeforeOnline[mode]){
+      if(millis() - timeStamp - timer>15000+timeBeforeOnline[mode]){
         chatDivName[1].show();
         // chatDivText.html("2 users nearby attempting same task");
         chatDivText.html("Meet up with people nearby attempting same task");
-        if(millis() - timeStamp - timer>15000+timeBeforeOnline[mode]){
+        if(millis() - timeStamp - timer>35000+timeBeforeOnline[mode]){
           chatDivName[2].show();
           // chatDivText.html("3 users nearby attempting same task");
           chatDivText.html("Meet up with people nearby attempting same task");
