@@ -90,7 +90,7 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
     textSize(50);
     text(">>",w-100,h/2);   
     text("<<",100,h/2);   
-   }
+   
 
 
   fill(255,200);
