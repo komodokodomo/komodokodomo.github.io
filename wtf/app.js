@@ -83,11 +83,13 @@ function draw() {
 //   }
 //   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 image(video, w/2, h/2, h*videoWidth/videoHeight, h);
-if(objects.length == 0){
+// if(objects.length == 0){
     var fader = (sin(frameCount/10) + 1)*255/2;
     noStroke();
     fill(0,fader);
-    text("point at objects to begin",w/2,h/2);   
+    textSize(50);
+    text(">>",w-100,h/2);   
+    text("<<",100,h/2);   
    }
 
 
