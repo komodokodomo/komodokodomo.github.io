@@ -157,14 +157,14 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
         stroke(255);
         fill(255,alpha);
         // noFill();
-        line(2*w/5, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10, objects[i].x * w + objects[i].w * w/3, objects[i].y * h + objects[i].h * 9*h/8);
-        line(4*w/5, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10, objects[i].x * w + objects[i].w * 2*w/3, objects[i].y * h + objects[i].h * 9*h/8);
+        line(2*w/5, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10, objects[i].x * w + objects[i].w * w/3, objects[i].y * h + objects[i].h * 7*h/8);
+        line(3*w/5, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10, objects[i].x * w + objects[i].w * 2*w/3, objects[i].y * h + objects[i].h * 7*h/8);
         rect(2*w/5, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10,5);
-        rect(4*w/5, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10,5);
+        rect(3*w/5, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10,5);
         noStroke();
         fill(20);
         text(itemText[mode][0], 2*w/5, objects[i].y * h + objects[i].h * h+h/20);
-        text(itemText[mode][0], 4*w/5, objects[i].y * h + objects[i].h * h+h/20);
+        text(itemText[mode][0], 3*w/5, objects[i].y * h + objects[i].h * h+h/20);
     }
     if(objects[i].y*h>h/10)  //TOP
     {
@@ -173,12 +173,14 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
         stroke(255);
         fill(255,alpha);
         // noFill();
+        line(2*w/5,   objects[i].y*h - h/20,  objects[i].x * w + objects[i].w * w/3, objects[i].y * h + objects[i].h * h/8);
+        line(3*w/5,   objects[i].y*h - h/20,  objects[i].x * w + objects[i].w * 2*w/3, objects[i].y * h + objects[i].h * h/8);
         rect(2*w/5, objects[i].y*h - h/20,w/5,h/10,5);
-        rect(4*w/5, objects[i].y*h - h/20,w/5,h/10,5);
+        rect(3*w/5, objects[i].y*h - h/20,w/5,h/10,5);
         noStroke();
         fill(20);
         text(itemText[mode][0], 2*w/5,objects[i].y*h - h/20);
-        text(itemText[mode][0], 4*w/5,objects[i].y*h - h/20);
+        text(itemText[mode][0], 3*w/5,objects[i].y*h - h/20);
     }
 
     // w-objects[i].x * width+ objects[i].w
