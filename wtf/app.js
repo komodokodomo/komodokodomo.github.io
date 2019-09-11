@@ -44,7 +44,7 @@ function setup() {
 
 
   yolo = ml5.YOLO(video, 
-    { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
+    // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
     startDetecting);
   prevX = mouseX;
 
@@ -117,7 +117,8 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
     text(objects[i].label, objects[i].x * width + objects[i].w * width/2, objects[i].y * height + objects[i].h * height/2);
     
     // itemText[mode].findIndex(check);
-    textSize(20);
+    textStyle(ITALIC);
+    textSize(16);
     if((w - (objects[i].x * w + objects[i].w * width))>w/5)   /// RIGHT
     {
         rectMode(CENTER);
@@ -127,8 +128,8 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
         fill(255,alpha);
         line((objects[i].x * width + objects[i].w * width)+w/10,   objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,   objects[i].x * w + objects[i].w *7*w/8 ,   objects[i].y*height + objects[i].h *h/3 - objects[i].h/8);
         line((objects[i].x * width + objects[i].w * width)+w/10,   objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,   objects[i].x * w + objects[i].w *7*w/8 ,   objects[i].y*height + objects[i].h *2*h/3 - objects[i].h/8);
-        rect((objects[i].x * width + objects[i].w * width)+w/10,   objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,w/5,h/10,5);
-        rect((objects[i].x * width + objects[i].w * width)+w/10,   objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,w/5,h/10,5);
+        rect((objects[i].x * width + objects[i].w * width)+w/10,   objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,w/6,h/12,5);
+        rect((objects[i].x * width + objects[i].w * width)+w/10,   objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,w/6,h/12,5);
         noStroke();
         fill(20);
         text(itemText[mode][0], (objects[i].x * width + objects[i].w * width)+w/10, objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3);
@@ -143,8 +144,8 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
         fill(255,alpha);
         line(objects[i].x * w - w/10,    objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,   objects[i].x * w + objects[i].w *w/8,   objects[i].y*height + objects[i].h *h/3 + objects[i].h/8);
         line(objects[i].x * w - w/10,    objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,   objects[i].x * w + objects[i].w *w/8,   objects[i].y*height + objects[i].h *2*h/3 + objects[i].h/8);
-        rect(objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,w/5,h/10,5);
-        rect(objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,w/5,h/10,5);
+        rect(objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3,w/6,h/12,5);
+        rect(objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 + objects[i].h * h/3,w/6,h/12,5);
         noStroke();
         fill(20);
         text(itemText[mode][0], objects[i].x * w - w/10, objects[i].y * h + objects[i].h * h/2 - objects[i].h * h/3);
@@ -159,8 +160,8 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
         // noFill();
         line(3*w/10+50, objects[i].y * h + objects[i].h * h+h/20,objects[i].x * w + objects[i].w * w/3, objects[i].y * h + objects[i].h * 7*h/8);
         line(7*w/10-50, objects[i].y * h + objects[i].h * h+h/20,objects[i].x * w + objects[i].w * 2*w/3, objects[i].y * h + objects[i].h * 7*h/8);
-        rect(3*w/10+50, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10,5);
-        rect(7*w/10-50, objects[i].y * h + objects[i].h * h+h/20,w/5,h/10,5);
+        rect(3*w/10+50, objects[i].y * h + objects[i].h * h+h/20,w/6,h/12,5);
+        rect(7*w/10-50, objects[i].y * h + objects[i].h * h+h/20,w/6,h/12,5);
         noStroke();
         fill(20);
         text(itemText[mode][0], 3*w/10+50, objects[i].y * h + objects[i].h * h+h/20);
@@ -175,8 +176,8 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
         // noFill();
         line(3*w/10+50,   objects[i].y*h - h/20,  objects[i].x * w + objects[i].w * w/3, objects[i].y * h + objects[i].h * h/8);
         line(7*w/10-50,   objects[i].y*h - h/20,  objects[i].x * w + objects[i].w * 2*w/3, objects[i].y * h + objects[i].h * h/8);
-        rect(3*w/10+50, objects[i].y*h - h/20,w/5,h/10,5);
-        rect(7*w/10-50, objects[i].y*h - h/20,w/5,h/10,5);
+        rect(3*w/10+50, objects[i].y*h - h/20,w/6,h/12,5);
+        rect(7*w/10-50, objects[i].y*h - h/20,w/6,h/12,5);
         noStroke();
         fill(20);
         text(itemText[mode][0], 3*w/10+50,objects[i].y*h - h/20);
