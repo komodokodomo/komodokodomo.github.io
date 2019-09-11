@@ -86,7 +86,7 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 // if(objects.length == 0){
     var fader = (sin(frameCount/10) + 1)*255/2;
     noStroke();
-    fill(0,fader);
+    fill(255,fader);
     textSize(50);
     text(">>",w-100,h/2);   
     text("<<",100,h/2);   
