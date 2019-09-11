@@ -69,7 +69,9 @@ function draw() {
   if( millis() - swipeTimer > 400){
     if(swipeDisplacement>50){mode++;console.log("right");}
     else if(swipeDisplacement<-50){mode--;console.log("left");}
-    mode = constrain(mode,0,2);
+    if(mode<0){mode = 2;}
+    if(mode>2){mode=0;}
+    // mode = constrain(mode,0,2);
     swipeDisplacement = 0;
     }
 //   if(frameCount%5 == 0){detect();}
