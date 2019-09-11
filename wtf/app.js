@@ -64,11 +64,7 @@ var constraints = {
 function draw() {
  background(255);
   imageMode(CENTER);
-    if(objects.length == 0){
-     var fader = (sin(frameCount) + 1)*255/2;
-     fill(0,fader);
-     text("point at objects to begin",w/2,h/2);   
-    }
+
 
   if( millis() - swipeTimer > 400){
     if(swipeDisplacement>50){mode++;console.log("right");}
@@ -87,6 +83,11 @@ function draw() {
 //   }
 //   image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+if(objects.length == 0){
+    var fader = (sin(frameCount/10) + 1)*255/2;
+    fill(0,fader);
+    text("point at objects to begin",w/2,h/2);   
+   }
 
 
   fill(255,200);
