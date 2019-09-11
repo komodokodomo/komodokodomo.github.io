@@ -7,6 +7,7 @@ var itemText =
     ["math relevant topic","math relevant topic","math relevant topic"]
 ];
 
+
 var prevX = 0;
 var swipeDisplacement = 0; 
 var swipeTimer = 0;
@@ -63,6 +64,12 @@ var constraints = {
 function draw() {
  background(255);
   imageMode(CENTER);
+    if(objects.length == 0){
+     var fader = (sin(frameCount) + 1)*255/2;
+     fill(0,fader);
+     text("point at objects to begin",w/2,h/2);   
+    }
+
   if( millis() - swipeTimer > 400){
     if(swipeDisplacement>50){mode++;console.log("right");}
     else if(swipeDisplacement<-50){mode--;console.log("left");}
