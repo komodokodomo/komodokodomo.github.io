@@ -90,8 +90,8 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
     noStroke();
     fill(255,fader);
     textSize(50);
-    text(">>",w-100,h/2);   
-    text("<<",100,h/2);   
+    text(">",w-50,h/2);   
+    text("<",50,h/2);   
    
 
 
