@@ -58,7 +58,7 @@ function setup() {
   red = color(255,0,0);
   blue = color(0,255,0);
   green = color(0,0,255);
-  current = color(255,255,255);
+//   current = color(255,255,255);
 }
 
 var constraints = {
@@ -119,16 +119,16 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
   strokeWeight(8);
 
   if(mode == 0){
-    current = lerp(current,red,0.2);
-    fill(current,50); //COLOR HERE
+    // current = lerp(current,red,0.2);
+    fill(red,50); //COLOR HERE
   }
   else if(mode == 1){
-    current = lerp(current,blue,0.2);
-    fill(current,50); //COLOR HERE
+    // current = lerp(current,blue,0.2);
+    fill(blue,50); //COLOR HERE
   }
   else if(mode == 2){
-    current = lerp(current,green,0.2);
-    fill(current,50); //COLOR HERE
+    // current = lerp(current,green,0.2);
+    fill(green,50); //COLOR HERE
   }
 
 //   noStroke();
