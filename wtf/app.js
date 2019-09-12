@@ -9,7 +9,7 @@ var itemText =
 
 let current;
 
-var colorMode = [];
+var colorMode = new Array();
 
 var prevX = 0;
 var swipeDisplacement = 0; 
