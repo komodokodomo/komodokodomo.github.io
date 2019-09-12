@@ -19,6 +19,7 @@ function setup() {
   osc.freq(240);
   osc.amp(0);
   osc.start();
+  osc.connect();
 }
 
 function draw() {
@@ -47,7 +48,7 @@ function draw() {
 
 function mySelectEvent() {
   var item = sel.value();
-  if(item == "0"){osc.freq(18141);}
+  if(item == "0"){osc.freq(15000);}
   else if(item == "1"){osc.freq(18824);}
   else if(item == "2"){osc.freq(19185);}
 }
