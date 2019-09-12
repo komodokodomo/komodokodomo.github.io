@@ -9,7 +9,7 @@ var itemText =
 
 let current;
 
-colorMode(RGB);
+// colorMode(RGB);
 var red;
 var blue;
 var green;
