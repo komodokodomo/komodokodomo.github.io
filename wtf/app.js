@@ -55,9 +55,9 @@ function setup() {
     startDetecting);
   prevX = mouseX;
 
-  red = color(255,0,0);
-  blue = color(0,255,0);
-  green = color(0,0,255);
+  red = color(255,0,0,30);
+  blue = color(0,255,0,30);
+  green = color(0,0,255,30);
 //   current = color(255,255,255);
 }
 
