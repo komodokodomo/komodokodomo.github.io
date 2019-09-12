@@ -9,7 +9,7 @@ var itemText =
 
 let current;
 
-var colorMode = [color(255,0,0), color(0,255,0), color(0,0,255)];
+var colorMode = [];
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -51,6 +51,9 @@ function setup() {
     // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
     startDetecting);
   prevX = mouseX;
+  colorMode.push(color(255,0,0));
+  colorMode.push(color(0,255,0));
+  colorMode.push(color(0,0,255));
 
 }
 
