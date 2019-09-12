@@ -20,6 +20,9 @@ function setup() {
   osc.amp(0);
   osc.start();
   osc.connect();
+
+  userStartAudio().then(function() {  
+  });
 }
 
 function draw() {
