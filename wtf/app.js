@@ -7,6 +7,9 @@ var itemText =
     ["math relevant topic","math relevant topic","math relevant topic"]
 ];
 
+let current;
+
+var colorMode = [color(255,0,0), color(0,255,0), color(0,0,255)];
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -107,7 +110,9 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 
   stroke(255);
   strokeWeight(8);
-  fill(255,20);
+
+  current = lerp(current,colorMode[mode],0.2);
+  fill(current,50); //COLOR HERE
 //   noStroke();
   rectMode(CENTER);
   rect(w/2, h/2, w-150, h-padding,30);
@@ -120,7 +125,7 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 //   }
 
   for (let i = 0; i < objects.length; i++) {
-    if(objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"){
+    if(objects[i].label == "keyboard" || objects[i].label == "bottle" || objects[i].label == "teddy bear"|| objects[i].label == "camera"){
     if(objects[i].w * objects[i].h > 0.12) {
     noStroke();
     fill(255,alpha);
