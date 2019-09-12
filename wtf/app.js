@@ -58,6 +58,7 @@ function setup() {
   red = color(255,0,0);
   blue = color(0,255,0);
   green = color(0,0,255);
+  current = color(255,255,255);
 }
 
 var constraints = {
