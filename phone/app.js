@@ -23,7 +23,7 @@ function setup() {
 }
 
 function draw() {
-  background(backgroundColor)
+  background(220);
   if(millis()-timer>40 && !on){osc.amp(1.0);on = true;timer=millis();}
   if(millis()-timer>160 && on){osc.amp(0.0);on = false;timer=millis();}
 
