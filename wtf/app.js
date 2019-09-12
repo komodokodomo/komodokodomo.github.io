@@ -10,9 +10,9 @@ var itemText =
 let current;
 
 colorMode(RGB);
-var red = color(255,0,0);
-var blue = color(0,255,0);
-var green = color(0,0,255);
+var red;
+var blue;
+var green;
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -55,7 +55,9 @@ function setup() {
     startDetecting);
   prevX = mouseX;
 
-
+  red = color(255,0,0);
+  blue = color(0,255,0);
+  green = color(0,0,255);
 }
 
 var constraints = {
