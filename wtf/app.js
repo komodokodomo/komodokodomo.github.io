@@ -9,7 +9,10 @@ var itemText =
 
 let current;
 
-var colorMode = new Array();
+
+var red = color(255,0,0);
+var blue = color(0,255,0);
+var green = color(0,0,255);
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -51,9 +54,7 @@ function setup() {
     // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
     startDetecting);
   prevX = mouseX;
-  colorMode.push(color(255,0,0));
-  colorMode.push(color(0,255,0));
-  colorMode.push(color(0,0,255));
+
 
 }
 
@@ -114,8 +115,19 @@ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
   stroke(255);
   strokeWeight(8);
 
-  current = lerp(current,colorMode[mode],0.2);
-  fill(current,50); //COLOR HERE
+  if(mode == 0){
+    current = lerp(current,red,0.2);
+    fill(current,50); //COLOR HERE
+  }
+  else if(mode == 1){
+    current = lerp(current,blue,0.2);
+    fill(current,50); //COLOR HERE
+  }
+  else if(mode == 2){
+    current = lerp(current,green,0.2);
+    fill(current,50); //COLOR HERE
+  }
+
 //   noStroke();
   rectMode(CENTER);
   rect(w/2, h/2, w-150, h-padding,30);
