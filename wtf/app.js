@@ -9,7 +9,7 @@ var itemText =
 
 let current;
 
-
+colorMode(RGB);
 var red = color(255,0,0);
 var blue = color(0,255,0);
 var green = color(0,0,255);
