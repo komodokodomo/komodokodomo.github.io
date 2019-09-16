@@ -299,7 +299,7 @@ function draw() {
   if(!startSketch){
     background(235);
     textAlign(CENTER,CENTER);
-    textSize(w/20);
+    textSize(w/100);
     text(instructions,w/2,h/2);
   }
   else{
