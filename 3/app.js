@@ -299,8 +299,8 @@ function draw() {
   if(!startSketch){
     background(235);
     textAlign(CENTER,CENTER);
-    textSize(w/100);
-    text(instructions,w/2,h/2,w/2,h/2);
+    textSize(w/60);
+    text(instructions,w/4,h/4,w/2,h/2);
   }
   else{
     if(!chatChosen && !locationChosen && !questionChosen){
