@@ -300,7 +300,7 @@ function draw() {
     background(235);
     textAlign(CENTER,CENTER);
     textSize(w/100);
-    text(instructions,w/2,h/2);
+    text(instructions,w/2,h/2,w/2,h/2);
   }
   else{
     if(!chatChosen && !locationChosen && !questionChosen){
