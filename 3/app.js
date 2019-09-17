@@ -447,11 +447,13 @@ function draw() {
               // chatDivName[0].html("Tina");
               chatDivNameText[0].html("ZaCh");
               chatDivNameText[1].html("Aloysius");
+              chatDivName[2].hide();
               // do something
               if(millis() - timeStamp - timer>98000){
                 chatDivNameText[0].html("ZaCh");
                 chatDivNameText[1].html("Aloysius");
                 chatDivNameText[2].html("Daniel");
+                chatDivName[2].show();
                 // do something
                 if(millis() - timeStamp - timer>120000){
                   chatDivNameText[0].html("Aloysius");
