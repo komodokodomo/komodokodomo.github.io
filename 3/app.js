@@ -86,6 +86,8 @@ function setup() {
   chatDivButton.style("background-color","DarkGray");
   chatDivButton.style("color","white");
   chatDivButton.style("text-align","center");
+  chatDivButton.style("left","50%");
+  chatDivButton.style("top","50%");
 
   chatDivText.parent(chatDiv);
   chatDiv.position(0,0);
