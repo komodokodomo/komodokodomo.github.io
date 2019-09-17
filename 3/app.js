@@ -378,7 +378,7 @@ else if(questionChosen == true){background(235);textAlign(CENTER,CENTER);textSiz
 
 function touchStarted() 
 {
-  if(mouseX<100 && mouseY<100){alert(instructions);}
+  // if(mouseX<100 && mouseY<100){alert(instructions);}
   if(!startSketch){
   startSketch = true;
   showAll();
