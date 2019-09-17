@@ -129,6 +129,7 @@ function setup() {
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
   submitButton.style("font-size","1.1em");
   submitButton.style("width","48%");
+  submitButton.style("background-color","LightGray");
 
   skipButton = createButton("skip");
   skipButton.mousePressed(skipMode);
@@ -141,6 +142,7 @@ function setup() {
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
   skipButton.style("font-size","1.1em");
   skipButton.style("width","48%");
+  skipButton.style("background-color","LightGray");
 
   inputBox = createInput();
   inputBox.input(typeEvent);
