@@ -11,7 +11,7 @@ var questionText = [
   "Describe the flight pattern of paper plane C and list out the possible reasons why the plane flies this way?"
 ];
 
-var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be assigned different plane designs. The people shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\n\nOnce you are done with the questions, the activity is completed\n\nMaterials provided: \n\n - Model Plane (Plane A). \n - Folding instructions for planes (A, B and C) \n - Paper";
+var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be assigned different plane designs. The students shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\n\nOnce you are done with the questions, the activity is completed\n\nMaterials provided: \n\n - Model Plane (Plane A). \n - Folding instructions for planes (A, B and C) \n - Paper";
 
 
 var context = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum justo et lectus consequat, id volutpat mauris iaculis. Quisque nunc felis, consequat vitae nibh rhoncus, ultricies bibendum sapien. Sed posuere, urna euismod semper dapibus, nulla erat luctus est, et mollis enim sem eu sem. Sed ac porttitor orci. Suspendisse potenti. Aliquam et libero augue. Quisque fermentum eros eu nisl iaculis consequat sit amet sit amet tellus. Praesent vitae tincidunt turpis.";
@@ -82,7 +82,7 @@ function setup() {
   questionDivText.style("font-size","1.5em");
 
   chatDiv = createDiv();
-  chatDivText = createDiv("Meet up with people nearby attempting same task");
+  chatDivText = createDiv("Meet up with students nearby attempting same task");
 
   chatDivButton = createButton("?")
   chatDivButton.mousePressed(explain);
@@ -406,21 +406,22 @@ function draw() {
   if(!startSketch){
     background(235);
     textAlign(LEFT);
-    textSize(w/60);
-    text(instructions,9*w/16,3*h/16,3*w/8,6*h/8);
 
     textSize(w/40);
     text("Instructions",9*w/16,1*h/16,3*w/8,6*h/8);
 
-    textSize(w/40);
-    text("Context",1*w/16,1*h/16,3*w/8,6*h/8);
-
     textSize(w/60);
-    text(context,1*w/16,3*h/16,3*w/8,6*h/8);
+    text(instructions,9*w/16,3*h/16,3*w/8,6*h/8);
 
-    stroke('LightGray');
-    strokeWeight(2);
-    line(w/2,0,w/2,h);
+    // textSize(w/40);
+    // text("Context",1*w/16,1*h/16,3*w/8,6*h/8);
+
+    // textSize(w/60);
+    // text(context,1*w/16,3*h/16,3*w/8,6*h/8);
+
+    // stroke('LightGray');
+    // strokeWeight(2);
+    // line(w/2,0,w/2,h);
   }
   else{
 
@@ -428,15 +429,15 @@ function draw() {
     if(millis() - timeStamp - timer>timeBeforeOnline[mode]){
       chatDivName[0].show();
       // chatDivText.html("1 users nearby attempting same task");
-      chatDivText.html("Meet up with people nearby attempting same task");
+      chatDivText.html("Meet up with students nearby attempting same task");
       if(millis() - timeStamp - timer>15000+timeBeforeOnline[mode]){
         chatDivName[1].show();
         // chatDivText.html("2 users nearby attempting same task");
-        chatDivText.html("Meet up with people nearby attempting same task");
+        chatDivText.html("Meet up with students nearby attempting same task");
         if(millis() - timeStamp - timer>35000+timeBeforeOnline[mode]){
           chatDivName[2].show();
           // chatDivText.html("3 users nearby attempting same task");
-          chatDivText.html("Meet up with people nearby attempting same task");
+          chatDivText.html("Meet up with students nearby attempting same task");
         }
       }
     }
@@ -445,7 +446,7 @@ function draw() {
       chatDivName[1].hide();
       chatDivName[2].hide();
       // chatDivText.html("0 users nearby attempting same task");
-      chatDivText.html("Meet up with people nearby attempting same task");
+      chatDivText.html("Meet up with students nearby attempting same task");
     }
   }
 
