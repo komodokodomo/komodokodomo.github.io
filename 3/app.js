@@ -149,7 +149,7 @@ function setup() {
   submitButton.parent(answerDiv);
   submitButton.style("position","relative");
   // submitButton.style("text-align","center");
-  submitButton.style("left","50%");
+  submitButton.style("left","35%");
   submitButton.style("bottom","3%");
   submitButton.style("transform","translate(0%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
