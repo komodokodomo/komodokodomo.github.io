@@ -257,10 +257,10 @@ function backMode(){
   // }
   // }
   // if(mode == 2){
-  // for(var i=0; i<player.length; i++)
-  // {
+  for(var i=0; i<player.length; i++)
+  {
     chatDivNameText[i].html(player[i]);  
-  // }
+  }
   // }
   if(mode<0){mode=0;startSketch = false;}
   else{
@@ -289,10 +289,10 @@ function skipMode(){
   // }
   // }
   // if(mode == 2){
-  // for(var i=0; i<player.length; i++)
-  // {
+  for(var i=0; i<player.length; i++)
+  {
     chatDivNameText[i].html(player[i]);  
-  // }
+  }
   // }
   if(mode>2){mode=2;questionChosen=true;hideAll();}
   else{
