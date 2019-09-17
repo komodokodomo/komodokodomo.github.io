@@ -25,6 +25,7 @@ var inputBox;
 var inputBoxValue = "";
 var inputBoxPlaceholder = ["Knight / Knave / Joker","A / B / C / D / E","______ minutes"];
 
+var chatDivButton;
 var chatDivName = [];
 var chatDivNameText = [];
 var chatDivNameText2 = [];
@@ -77,8 +78,14 @@ function setup() {
   questionDivText.style("font-size","1.5em");
 
   chatDiv = createDiv();
-  // chatDivText = createDiv("0 users nearby attempting same task");
-    chatDivText = createDiv("Meet up with people nearby attempting same task");
+  chatDivText = createDiv("Meet up with people nearby attempting same task");
+
+  chatDivButton = createButton("?")
+  chatDivButton.mousePressed(explain);
+  chatDivButton.parent(chatDiv);
+  chatDivButton.style("background-color","DarkGray");
+  chatDivButton.style("color","white");
+  chatDivButton.style("text-align","center");
 
   chatDivText.parent(chatDiv);
   chatDiv.position(0,0);
@@ -393,6 +400,7 @@ function windowResized()
   strokeWeight(2);
   line(w/4,0,w/4,h);
   line(w/4,7*h/10,w,7*h/10);
+  ellipse();
   }
  
   // noStroke();
