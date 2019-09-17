@@ -146,7 +146,7 @@ function setup() {
 
   skipButton = createButton("skip");
   skipButton.mousePressed(skipMode);
-  skipButton.parent(answerDiv);
+  skipButton.parent(questionDiv);
   skipButton.style("position","relative");
   // submitButton.style("text-align","center");
   skipButton.style("right","2%");
