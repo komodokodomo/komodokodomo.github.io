@@ -286,6 +286,7 @@ function backMode(){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode--;
+  shiftback();
   // if(mode == 1){
   // for(var i=0; i<player.length; i++)
   // {
@@ -315,6 +316,7 @@ function typeEvent(){
 
 function skipMode(){
   // chatDivNameText[0].html(player[1]);
+  shiftback();
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode++;
@@ -339,7 +341,7 @@ function skipMode(){
   images[mode].show();
 }
 function changeMode(){
-
+  shiftback();
   if(document.getElementById('inputBox').value!==""){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
