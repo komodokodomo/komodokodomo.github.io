@@ -192,6 +192,9 @@ function setup() {
     chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
     chatDivNameButtons[2*i].parent(chatDivName[i]);
     chatDivNameButtons[2*i].style("position","relative");
+  //   background-color: #4CAF50; /* Green */
+  // border: none;
+    chatDivNameButtons[2*i].style("background-color","LightGray");
     chatDivNameButtons[2*i].style("font-size","1.1rem");
     chatDivNameButtons[2*i].style("right","4%");
     chatDivNameButtons[2*i].style("top","50%");
