@@ -11,7 +11,7 @@ var questionText = [
   "Describe the flight pattern of paper plane C and list out the possible reasons why the plane flies this way?"
 ];
 
-var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be assigned different plane designs. The people shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\n\nOnce you are done with the questions, the activity is completed\n\nMaterials provided: \n\n - Model Plane (Plane A). \n - Folding instructions for planes (A, B and C) \n - Scissors \n - Paper";
+var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be assigned different plane designs. The people shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\n\nOnce you are done with the questions, the activity is completed\n\nMaterials provided: \n\n - Model Plane (Plane A). \n - Folding instructions for planes (A, B and C) \n - Paper";
 
 
 var context = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum justo et lectus consequat, id volutpat mauris iaculis. Quisque nunc felis, consequat vitae nibh rhoncus, ultricies bibendum sapien. Sed posuere, urna euismod semper dapibus, nulla erat luctus est, et mollis enim sem eu sem. Sed ac porttitor orci. Suspendisse potenti. Aliquam et libero augue. Quisque fermentum eros eu nisl iaculis consequat sit amet sit amet tellus. Praesent vitae tincidunt turpis.";
@@ -43,7 +43,7 @@ var imageDivLinks =
 "https://drive.google.com/uc?export=view&id=1Gx4XIIpuJTP3YeZ5Gy2ilF5NyY0pYkqP",
 "https://drive.google.com/uc?export=view&id=1ySYLAMcV8Qil1GOZMlKbiwE_qpBIwiyS",
 "https://drive.google.com/uc?export=view&id=1gKs95JZ2AHtjDnRzfJnH37qeES3jjHeT"
-]
+];
 
 // https://drive.google.com/uc?export=view&id=1bWZhoqZ1kfl2QOF-UgyvcRrZxrDuHt4D
 
