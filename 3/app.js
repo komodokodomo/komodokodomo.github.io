@@ -286,6 +286,10 @@ function backMode(){
   images[mode].hide();
   mode--;
   if(mode<0){mode=0;startSketch = false;}
+  else{
+    inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
+    timer = millis();
+  }
   document.getElementById('inputBox').value = answers[mode];    
 
   shiftback();
@@ -302,10 +306,7 @@ function backMode(){
   }
   // }
   
-  else{
-    inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
-    timer = millis();
-  }
+ 
   questionDivText.html(questionText[mode]);
   images[mode].show();
 }
