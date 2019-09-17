@@ -20,7 +20,7 @@ var images = [];
 var answerDiv;
 var chatDiv,chatDivText;
 
-var submitButton, skipButton;
+var submitButton, skipButton, backButton;
 var inputBox;
 var inputBoxValue = "";
 var inputBoxPlaceholder = ["Knight / Knave / Joker","A / B / C / D / E","______ minutes"];
@@ -131,12 +131,25 @@ function setup() {
   answerDiv.position(w/4,7*h/10);
   answerDiv.size(3*w/4,3*h/10);
 
+  backButton = createButton("back");
+  backButton.mousePressed(backMode);
+  backButton.parent(answerDiv);
+  backButton.style("position","relative");
+  // submitButton.style("text-align","center");
+  backButton.style("left","2%");
+  backButton.style("bottom","3%");
+  backButton.style("transform","translate(0%, -50%)");
+  backButton.style("font-family","Helvetica, Arial, Sans-Serif");
+  backButton.style("font-size","1.1em");
+  backButton.style("width","96%");
+  backButton.style("background-color","LightGray");
+
   submitButton = createButton("submit");
   submitButton.mousePressed(changeMode);
   submitButton.parent(answerDiv);
   submitButton.style("position","relative");
   // submitButton.style("text-align","center");
-  submitButton.style("left","2%");
+  submitButton.style("left","50%");
   submitButton.style("bottom","3%");
   submitButton.style("transform","translate(0%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
@@ -146,17 +159,18 @@ function setup() {
 
   skipButton = createButton("next");
   skipButton.mousePressed(skipMode);
-  skipButton.parent(questionDiv);
+  skipButton.parent(answerDiv);
   skipButton.style("position","relative");
   // submitButton.style("text-align","center");
-  skipButton.style("right","5%");
-  skipButton.style("bottom","50%");
+  skipButton.style("right","2%");
+  skipButton.style("bottom","3%");
   skipButton.style("transform","translate(0%, -50%)");
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
   skipButton.style("font-size","1.1em");
-  skipButton.style("width","20%");
-  skipButton.style("background","none");
-  skipButton.style("border","none");
+  skipButton.style("width","30%");
+  submitButton.style("background-color","LightGray");
+  // skipButton.style("background","none");
+  // skipButton.style("border","none");
 
   inputBox = createInput();
   inputBox.input(typeEvent);
@@ -230,6 +244,7 @@ function setup() {
 
 }
 
+function backMode(){}
 function explain(){alert(instructions);}
 
 function typeEvent(){
