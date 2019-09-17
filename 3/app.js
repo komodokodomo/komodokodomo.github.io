@@ -1,6 +1,6 @@
 var w,h;
 
-var answers = [];
+var answers = ["","","","",""];
 
 var player = ["bryan_tan","Tina","ZaCh"];
 var playerDoing = ["Plane B","Plane C","Plane B"];
