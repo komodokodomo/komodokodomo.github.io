@@ -175,7 +175,28 @@ function setup() {
   // skipButton.style("background","none");
   // skipButton.style("border","none");
 
-
+  inputBox = createInput();
+  inputBox.input(typeEvent);
+  inputBox.id("inputBox");
+  inputBox.parent(answerDiv);
+  inputBox.style("position","relative");
+  inputBox.style("left","50%");
+  inputBox.style("top","50%");
+  inputBox.style("width","96%");
+  inputBox.style("height","70%");
+  inputBox.style("transform","translate(-50%, -63%)");
+  inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
+  inputBox.style('text-align', 'center');
+  inputBox.style('font-size', '2em');
+  inputBox.touchStarted(shift);
+  // document.getElementById("inputBox").onfocus = function(){
+  //   console.log("focused");
+  //   chatDiv.position(0,h/2);
+  //   for(var i=0; i<player.length; i++)
+  //   {
+  //     chatDivName[i].position(0,i*h/10 + h/8 + h/2);
+  //   }
+  // };
 
   // inputBox
 
@@ -229,29 +250,6 @@ function setup() {
     chatDivName[i].hide();
   }
 
-  inputBox = createInput();
-  inputBox.input(typeEvent);
-  inputBox.id("inputBox");
-  inputBox.parent(answerDiv);
-  inputBox.style("position","relative");
-  inputBox.style("left","50%");
-  inputBox.style("top","50%");
-  inputBox.style("width","96%");
-  inputBox.style("height","70%");
-  inputBox.style("transform","translate(-50%, -63%)");
-  inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
-  inputBox.style('text-align', 'center');
-  inputBox.style('font-size', '2em');
-  document.getElementById("inputBox").onfocus = function(){
-    console.log("focused");
-    chatDiv.position(0,h/2);
-    for(var i=0; i<player.length; i++)
-    {
-      // chatDivName[i] = createDiv();
-      chatDivName[i].position(0,i*h/10 + h/8 + h/2);
-    }
-  };
-
   hideAll();
   stroke('LightGray');
   strokeWeight(2);
@@ -269,6 +267,16 @@ function shiftback(){
       chatDivName[i] = createDiv();
       chatDivName[i].position(0,i*h/10 + h/8);
     }
+
+function shift(){
+
+  console.log("focused");
+  chatDiv.position(0,h/2);
+  for(var i=0; i<player.length; i++)
+  {
+    chatDivName[i].position(0,i*h/10 + h/8 + h/2);
+  }
+}
   
 
 }
