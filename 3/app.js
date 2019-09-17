@@ -133,14 +133,7 @@ function setup() {
   answerDiv.id("answerDiv");
   answerDiv.position(w/4,7*h/10);
   answerDiv.size(3*w/4,3*h/10);
-  document.getElementById("answerDiv").onfocus = function(){      
-    chatDiv.position(0,0);
-    for(var i=0; i<player.length; i++)
-    {
-      chatDivName[i] = createDiv();
-      chatDivName[i].position(0,i*h/10 + h/8);
-    }
-  }
+  answerDiv.touchStarted(shiftback); 
 
   backButton = createButton("back");
   backButton.mousePressed(backMode);
@@ -265,6 +258,18 @@ function setup() {
 
 }
 
+function shiftback(){
+
+      
+    chatDiv.position(0,0);
+    for(var i=0; i<player.length; i++)
+    {
+      chatDivName[i] = createDiv();
+      chatDivName[i].position(0,i*h/10 + h/8);
+    }
+  
+
+}
 function backMode(){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
