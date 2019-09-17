@@ -40,10 +40,12 @@ var timeStamp = 0;
 var images = []
 var imageDivLinks = 
 [
-"https://www.youtube.com/embed/QbDUiGmxQIQ",
-"https://www.youtube.com/embed/tzJlH056E50",
-"https://www.youtube.com/embed/VBqIg5zD1Zg"
+"https://drive.google.com/uc?export=view&id=1Gx4XIIpuJTP3YeZ5Gy2ilF5NyY0pYkqP",
+"https://drive.google.com/uc?export=view&id=1ySYLAMcV8Qil1GOZMlKbiwE_qpBIwiyS",
+"https://drive.google.com/uc?export=view&id=1gKs95JZ2AHtjDnRzfJnH37qeES3jjHeT"
 ]
+
+// https://drive.google.com/uc?export=view&id=1bWZhoqZ1kfl2QOF-UgyvcRrZxrDuHt4D
 
 var mode = 0;
 
