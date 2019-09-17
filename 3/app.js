@@ -149,13 +149,14 @@ function setup() {
   skipButton.parent(questionDiv);
   skipButton.style("position","relative");
   // submitButton.style("text-align","center");
-  skipButton.style("right","2%");
-  skipButton.style("bottom","3%");
-  skipButton.style("transform","translate(0%, -50%)");
+  skipButton.style("right","5%");
+  skipButton.style("bottom","50%");
+  // skipButton.style("transform","translate(0%, -50%)");
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
   skipButton.style("font-size","1.1em");
-  skipButton.style("width","48%");
-  skipButton.style("background-color","LightGray");
+  skipButton.style("width","20%");
+  skipButton.style("background","none");
+  skipButton.style("border","none");
 
   inputBox = createInput();
   inputBox.input(typeEvent);
