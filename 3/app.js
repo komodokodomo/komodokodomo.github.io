@@ -188,15 +188,15 @@ function setup() {
   inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
   inputBox.style('text-align', 'center');
   inputBox.style('font-size', '2em');
-  inputBox.mouseClicked(shiftChat);
-  // document.getElementById("inputBox").onfocus = function(){
-  //   console.log("focused");
-  //   chatDiv.position(0,h/2);
-  //   for(var i=0; i<player.length; i++)
-  //   {
-  //     chatDivName[i].position(0,i*h/10 + h/8 + h/2);
-  //   }
-  // };
+  // inputBox.mouseClicked(shiftChat);
+  document.getElementById("inputBox").onfocus = function(){
+    console.log("focused");
+    chatDiv.position(0,h/2);
+    for(var i=0; i<player.length; i++)
+    {
+      chatDivName[i].position(0,i*h/10 + h/8 + h/2);
+    }
+  };
 
   // inputBox
 
@@ -268,15 +268,15 @@ function shiftback(){
       chatDivName[i].position(0,i*h/10 + h/8);
     }
 
-function shiftChat(){
+// function shiftChat(){
 
-  console.log("focused");
-  chatDiv.position(0,h/2);
-  for(var i=0; i<player.length; i++)
-  {
-    chatDivName[i].position(0,i*h/10 + h/8 + h/2);
-  }
-}
+//   console.log("focused");
+//   chatDiv.position(0,h/2);
+//   for(var i=0; i<player.length; i++)
+//   {
+//     chatDivName[i].position(0,i*h/10 + h/8 + h/2);
+//   }
+// }
   
 
 }
