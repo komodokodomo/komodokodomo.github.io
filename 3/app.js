@@ -437,13 +437,26 @@ function draw() {
           chatDivName[2].show();
           // chatDivText.html("3 users nearby attempting same task");
           // chatDivText.html("Meet up with students nearby attempting same task");
+          // bryan_tan","Tina","ZaCh
           if(millis() - timeStamp - timer>50000){
+            chatDivName[0].html("Tina");
+            chatDivName[1].html("ZaCh");
+            chatDivName[2].html("Aloysius");
             // do something
             if(millis() - timeStamp - timer>90000){
+              // chatDivName[0].html("Tina");
+              chatDivName[0].html("ZaCh");
+              chatDivName[1].html("Aloysius");
               // do something
               if(millis() - timeStamp - timer>98000){
+                chatDivName[0].html("ZaCh");
+                chatDivName[1].html("Aloysius");
+                chatDivName[2].html("Daniel");
                 // do something
                 if(millis() - timeStamp - timer>120000){
+                  chatDivName[0].html("Aloysius");
+                  chatDivName[1].html("Daniel");
+                  chatDivName[2].html("Jaylen");
                   // do something
                 }
               }
