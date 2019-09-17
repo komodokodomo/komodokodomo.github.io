@@ -149,12 +149,12 @@ function setup() {
   submitButton.parent(answerDiv);
   submitButton.style("position","relative");
   // submitButton.style("text-align","center");
-  submitButton.style("left","34%");
+  submitButton.style("left","33%");
   submitButton.style("bottom","3%");
   submitButton.style("transform","translate(0%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
   submitButton.style("font-size","1.1em");
-  submitButton.style("width","31%");
+  submitButton.style("width","34%");
   submitButton.style("background-color","LightGray");
 
   skipButton = createButton("next");
@@ -162,7 +162,7 @@ function setup() {
   skipButton.parent(answerDiv);
   skipButton.style("position","relative");
   // submitButton.style("text-align","center");
-  skipButton.style("left","66%");
+  skipButton.style("right","2%");
   skipButton.style("bottom","3%");
   skipButton.style("transform","translate(0%, -50%)");
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
