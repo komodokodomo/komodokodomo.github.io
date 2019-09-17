@@ -246,7 +246,30 @@ function setup() {
 
 }
 
-function backMode(){}
+function backMode(){
+  document.getElementById('inputBox').value = '';    
+  images[mode].hide();
+  mode--;
+  // if(mode == 1){
+  // for(var i=0; i<player.length; i++)
+  // {
+  //   chatDivNameText[i].html(player[i]);  
+  // }
+  // }
+  // if(mode == 2){
+  // for(var i=0; i<player.length; i++)
+  // {
+    chatDivNameText[i].html(player[i]);  
+  // }
+  // }
+  if(mode<0){mode=0;startSketch = false;}
+  else{
+    inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
+    timer = millis();
+  }
+  questionDivText.html(questionText[mode]);
+  images[mode].show();
+}
 function explain(){alert(instructions);}
 
 function typeEvent(){
@@ -259,18 +282,18 @@ function skipMode(){
   document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode++;
-  if(mode == 1){
-  for(var i=0; i<player.length; i++)
-  {
+  // if(mode == 1){
+  // for(var i=0; i<player.length; i++)
+  // {
+  //   chatDivNameText[i].html(player[i]);  
+  // }
+  // }
+  // if(mode == 2){
+  // for(var i=0; i<player.length; i++)
+  // {
     chatDivNameText[i].html(player[i]);  
-  }
-  }
-  if(mode == 2){
-  for(var i=0; i<player.length; i++)
-  {
-    chatDivNameText[i].html(player[i]);  
-  }
-  }
+  // }
+  // }
   if(mode>2){mode=2;questionChosen=true;hideAll();}
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
