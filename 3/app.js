@@ -141,7 +141,7 @@ function setup() {
   submitButton.style("transform","translate(0%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
   submitButton.style("font-size","1.1em");
-  submitButton.style("width","48%");
+  submitButton.style("width","96%");
   submitButton.style("background-color","LightGray");
 
   skipButton = createButton("next");
