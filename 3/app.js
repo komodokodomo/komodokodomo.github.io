@@ -5,8 +5,8 @@ var playerDoing = ["Plane B","Plane C","Plane B"];
 
 var questionText = [
   "Plane A - Question 1",
-  "Plane B - Question 2",
-  "Plane C - Question 3"
+  "Which plane flies further and why?",
+  "How does plane A/B/C behave and why?"
 ];
 
 var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be assigned different plane designs. The people shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\n\nOnce you are done with the questions, the activity is completed!\n\nMaterials provided: \n\nModel Plane (Plane A). \nFolding instructions for planes (A, B and C) \nScissors \nPaper";
@@ -352,6 +352,7 @@ else if(questionChosen == true){background(235);textAlign(CENTER,CENTER);textSiz
 
 function touchStarted() 
 {
+  if(mouseX<100 && mouseY<100){alert(instructions);}
   if(!startSketch){
   startSketch = true;
   showAll();
