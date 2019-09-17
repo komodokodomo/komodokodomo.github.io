@@ -283,9 +283,11 @@ function shiftback(){
 
 }
 function backMode(){
-  document.getElementById('inputBox').value = '';    
   images[mode].hide();
   mode--;
+  if(mode<0){mode=0;startSketch = false;}
+  document.getElementById('inputBox').value = answers[mode];    
+
   shiftback();
   // if(mode == 1){
   // for(var i=0; i<player.length; i++)
@@ -299,7 +301,7 @@ function backMode(){
     chatDivNameText[i].html(player[i]);  
   }
   // }
-  if(mode<0){mode=0;startSketch = false;}
+  
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
     timer = millis();
@@ -317,7 +319,7 @@ function typeEvent(){
 function skipMode(){
   // chatDivNameText[0].html(player[1]);
   shiftback();
-  document.getElementById('inputBox').value = '';    
+  document.getElementById('inputBox').value = answers[mode+1];    
   images[mode].hide();
   mode++;
   // if(mode == 1){
@@ -343,7 +345,8 @@ function skipMode(){
 function changeMode(){
   shiftback();
   if(document.getElementById('inputBox').value!==""){
-  document.getElementById('inputBox').value = '';    
+  answers[mode] = document.getElementById('inputBox').value;
+  document.getElementById('inputBox').value = answers[mode+1];    
   images[mode].hide();
   mode++;
   if(mode == 1){
