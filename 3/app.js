@@ -40,7 +40,7 @@ var imageDivLinks =
 [
 "https://www.youtube.com/embed/QbDUiGmxQIQ",
 "https://www.youtube.com/embed/tzJlH056E50",
-"https://drive.google.com/uc?export=view&id=1Vx2yWPEDzLaXJm5fdWOOhWZ2hqANno5p"
+"https://www.youtube.com/embed/VBqIg5zD1Zg"
 ]
 
 var mode = 0;
