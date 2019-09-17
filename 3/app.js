@@ -188,7 +188,7 @@ function setup() {
   inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
   inputBox.style('text-align', 'center');
   inputBox.style('font-size', '2em');
-  inputBox.touchStarted(shift);
+  inputBox.touchStarted(shiftChat);
   // document.getElementById("inputBox").onfocus = function(){
   //   console.log("focused");
   //   chatDiv.position(0,h/2);
@@ -268,7 +268,7 @@ function shiftback(){
       chatDivName[i].position(0,i*h/10 + h/8);
     }
 
-function shift(){
+function shiftChat(){
 
   console.log("focused");
   chatDiv.position(0,h/2);
