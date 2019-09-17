@@ -4,7 +4,7 @@ var player = ["bryan_tan","Tina","ZaCh"];
 var playerDoing = ["Plane B","Plane C","Plane B"];
 
 var questionText = [
-  "Step 1: Follow instructions on video to fold Plane A",
+  "Describe the flight pattern of paper plane A and list out the possible reasons why the plane flies this way.",
   "Step 2: Throw the plane and observe flight path",
   "Step 3: How does plane A/B/C behave and why?"
 ];
@@ -23,7 +23,7 @@ var chatDiv,chatDivText;
 var submitButton, skipButton, backButton;
 var inputBox;
 var inputBoxValue = "";
-var inputBoxPlaceholder = ["Knight / Knave / Joker","A / B / C / D / E","______ minutes"];
+var inputBoxPlaceholder = ["Paper Plane A flies in a ... because ...","A / B / C / D / E","______ minutes"];
 
 var chatDivButton;
 var chatDivName = [];
