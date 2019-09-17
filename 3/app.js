@@ -168,7 +168,7 @@ function setup() {
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
   skipButton.style("font-size","1.1em");
   skipButton.style("width","31%");
-  submitButton.style("background-color","LightGray");
+  skipButton.style("background-color","LightGray");
   // skipButton.style("background","none");
   // skipButton.style("border","none");
 
