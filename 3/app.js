@@ -193,7 +193,7 @@ function setup() {
     chatDiv.position(0,h/2);
     for(var i=0; i<player.length; i++)
     {
-      chatDivName[i] = createDiv();
+      // chatDivName[i] = createDiv();
       chatDivName[i].position(0,i*h/10 + h/8 + h/2);
     }
   };
