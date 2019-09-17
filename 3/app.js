@@ -5,8 +5,8 @@ var playerDoing = ["Plane B","Plane C","Plane B"];
 
 var questionText = [
   "Describe the flight pattern of paper plane A and list out the possible reasons why the plane flies this way.",
-  "Step 2: Throw the plane and observe flight path",
-  "Step 3: How does plane A/B/C behave and why?"
+  "Describe the flight pattern of paper plane B and list out the possible reasons why the plane flies this way.",
+  "Describe the flight pattern of paper plane C and list out the possible reasons why the plane flies this way?"
 ];
 
 var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be assigned different plane designs. The people shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\n\nOnce you are done with the questions, the activity is completed\n\nMaterials provided: \n\n - Model Plane (Plane A). \n - Folding instructions for planes (A, B and C) \n - Scissors \n - Paper";
