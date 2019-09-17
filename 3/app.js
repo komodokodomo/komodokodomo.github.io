@@ -39,7 +39,7 @@ var images = []
 var imageDivLinks = 
 [
 "https://www.youtube.com/embed/QbDUiGmxQIQ",
-"https://drive.google.com/uc?export=view&id=17g8_mhXAJ2tTP3tMZPppUFZksRtEA9Nj",
+"https://www.youtube.com/embed/tzJlH056E50",
 "https://drive.google.com/uc?export=view&id=1Vx2yWPEDzLaXJm5fdWOOhWZ2hqANno5p"
 ]
 
