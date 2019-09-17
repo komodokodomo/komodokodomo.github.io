@@ -141,7 +141,7 @@ function setup() {
   backButton.style("transform","translate(0%, -50%)");
   backButton.style("font-family","Helvetica, Arial, Sans-Serif");
   backButton.style("font-size","1.1em");
-  backButton.style("width","96%");
+  backButton.style("width","31%");
   backButton.style("background-color","LightGray");
 
   submitButton = createButton("submit");
@@ -154,7 +154,7 @@ function setup() {
   submitButton.style("transform","translate(0%, -50%)");
   submitButton.style("font-family","Helvetica, Arial, Sans-Serif");
   submitButton.style("font-size","1.1em");
-  submitButton.style("width","96%");
+  submitButton.style("width","31%");
   submitButton.style("background-color","LightGray");
 
   skipButton = createButton("next");
@@ -167,7 +167,7 @@ function setup() {
   skipButton.style("transform","translate(0%, -50%)");
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
   skipButton.style("font-size","1.1em");
-  skipButton.style("width","30%");
+  skipButton.style("width","31%");
   submitButton.style("background-color","LightGray");
   // skipButton.style("background","none");
   // skipButton.style("border","none");
