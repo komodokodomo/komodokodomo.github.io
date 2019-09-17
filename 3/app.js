@@ -260,7 +260,7 @@ function setup() {
 
 function shiftback(){
 
-      
+    console.log("shift back"); 
     chatDiv.position(0,0);
     for(var i=0; i<player.length; i++)
     {
