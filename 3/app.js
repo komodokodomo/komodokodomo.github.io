@@ -144,14 +144,14 @@ function setup() {
   submitButton.style("width","48%");
   submitButton.style("background-color","LightGray");
 
-  skipButton = createButton("skip");
+  skipButton = createButton("next");
   skipButton.mousePressed(skipMode);
   skipButton.parent(questionDiv);
   skipButton.style("position","relative");
   // submitButton.style("text-align","center");
   skipButton.style("right","5%");
   skipButton.style("bottom","50%");
-  // skipButton.style("transform","translate(0%, -50%)");
+  skipButton.style("transform","translate(0%, -50%)");
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
   skipButton.style("font-size","1.1em");
   skipButton.style("width","20%");
