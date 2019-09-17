@@ -326,6 +326,8 @@ function draw() {
 
     textSize(w/40);
     text("Context",1*w/16,1*h/16,3*w/8,6*h/8);
+
+    textSize(w/60);
     text(context,1*w/16,3*h/16,3*w/8,6*h/8);
 
     stroke('LightGray');
