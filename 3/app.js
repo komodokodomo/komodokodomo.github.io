@@ -10,7 +10,7 @@ var questionText = [
   "Fastest way to cross the bridge"
 ];
 
-var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A. Other students on the website may be assigned different plane designs. The people shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself. Once you are done with the questions, the activity is completed!Materials provided: Model Plane (Plane A). \n Folding instructions for planes (A, B and C) \n Scissors \nPaper";
+var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\nOther students on the website may be assigned different plane designs. The people shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\nOnce you are done with the questions, the activity is completed!\nMaterials provided: \nModel Plane (Plane A). \n Folding instructions for planes (A, B and C) \n Scissors \nPaper";
 
 var questionDiv,questionDivText;
 var imageDiv;
@@ -298,7 +298,7 @@ function showAll(){
 function draw() {
   if(!startSketch){
     background(235);
-    textAlign(CENTER,CENTER);
+    textAlign(LEFT);
     textSize(w/60);
     text(instructions,w/4,h/4,w/2,h/2);
   }
