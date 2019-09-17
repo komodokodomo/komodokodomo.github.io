@@ -459,7 +459,7 @@ function touchStarted()
 
 if(mouseX > w/4 + 98*3*w/400 || mouseX < w/4 + 2*3*w/400)
 {
-  if(mouseY < h*7/10 + 3*h/20 - 63*70*3*h/(100*100*10) || mouseY < h*7/10 + 3*h/20 + 37*70*3*h/(100*100*10))
+  if(mouseY < h*7/10 + 3*h/20 - 63*70*3*h/(100*100*10) || mouseY > h*7/10 + 3*h/20 + 37*70*3*h/(100*100*10))
   {
     shiftback();
   }
