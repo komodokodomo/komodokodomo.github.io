@@ -130,8 +130,17 @@ function setup() {
 
   
   answerDiv = createDiv();
+  answerDiv.id("answerDiv");
   answerDiv.position(w/4,7*h/10);
   answerDiv.size(3*w/4,3*h/10);
+  document.getElementById("answerDiv").onfocus = function(){      
+    chatDiv.position(0,0);
+    for(var i=0; i<player.length; i++)
+    {
+      chatDivName[i] = createDiv();
+      chatDivName[i].position(0,i*h/10 + h/8);
+    }
+  }
 
   backButton = createButton("back");
   backButton.mousePressed(backMode);
@@ -187,7 +196,14 @@ function setup() {
   inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
   inputBox.style('text-align', 'center');
   inputBox.style('font-size', '2em');
-  document.getElementById("inputBox").onfocus = function(){console.log("focused");};
+  document.getElementById("inputBox").onfocus = function(){
+    chatDiv.position(0,h/2);
+    for(var i=0; i<player.length; i++)
+    {
+      chatDivName[i] = createDiv();
+      chatDivName[i].position(0,i*h/10 + h/8 + h/2);
+    }
+  };
 
   // inputBox
 
@@ -390,22 +406,6 @@ function draw() {
     line(w/2,0,w/2,h);
   }
   else{
-    var x = document.getElementById("inputBox");
-    if (document.hasFocus()) {
-      chatDiv.position(0,h/2);
-      for(var i=0; i<player.length; i++)
-      {
-        chatDivName[i] = createDiv();
-        chatDivName[i].position(0,i*h/10 + h/8 + h/2);
-      }
-    } else {
-      chatDiv.position(0,0);
-      for(var i=0; i<player.length; i++)
-      {
-        chatDivName[i] = createDiv();
-        chatDivName[i].position(0,i*h/10 + h/8);
-      }
-    }
 
     if(!chatChosen && !locationChosen && !questionChosen){
     if(millis() - timeStamp - timer>timeBeforeOnline[mode]){
