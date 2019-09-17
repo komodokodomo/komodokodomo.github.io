@@ -226,6 +226,7 @@ function setup() {
 
 }
 
+function(explain){alert(instructions);}
 
 function typeEvent(){
   inputBoxValue = this.value();
