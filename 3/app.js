@@ -1,5 +1,7 @@
 var w,h;
 
+var answers = [];
+
 var player = ["bryan_tan","Tina","ZaCh"];
 var playerDoing = ["Plane B","Plane C","Plane B"];
 
@@ -23,7 +25,7 @@ var chatDiv,chatDivText;
 var submitButton, skipButton, backButton;
 var inputBox;
 var inputBoxValue = "";
-var inputBoxPlaceholder = ["Paper Plane A flies in a ... because ...","A / B / C / D / E","______ minutes"];
+var inputBoxPlaceholder = ["Paper Plane A flies in a ... because ...","Paper Plane B flies in a ... because ...","Paper Plane C flies in a ... because ..."];
 
 var chatDivButton;
 var chatDivName = [];
