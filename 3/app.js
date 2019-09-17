@@ -1,8 +1,7 @@
 var w,h;
 
 var player = ["bryan_tan","Tina","ZaCh"];
-var player2 = ["Tina","ZaCh","bryan_tan"];
-var player3 = ["ZaCh","bryan_tan","Tina"];
+var playerDoing = ["Plane B","Plane C","Plane B"];
 
 var questionText = [
   "Knight, Knave, or Joker?",
@@ -10,7 +9,7 @@ var questionText = [
   "Fastest way to cross the bridge"
 ];
 
-var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be assigned different plane designs. The people shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\nOnce you are done with the questions, the activity is completed!\n\nMaterials provided: \n\nModel Plane (Plane A). \nFolding instructions for planes (A, B and C) \nScissors \nPaper";
+var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be assigned different plane designs. The people shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\n\nOnce you are done with the questions, the activity is completed!\n\nMaterials provided: \n\nModel Plane (Plane A). \nFolding instructions for planes (A, B and C) \nScissors \nPaper";
 
 var questionDiv,questionDivText;
 var imageDiv;
@@ -25,6 +24,7 @@ var inputBoxPlaceholder = ["Knight / Knave / Joker","A / B / C / D / E","______ 
 
 var chatDivName = [];
 var chatDivNameText = [];
+var chatDivNameText2 = [];
 var chatDivNameButtons = [];
 var buttonText = ["chat to meet","get location"];
 
@@ -169,13 +169,24 @@ function setup() {
     chatDivNameText[i] = createDiv(player[i]);  //player[i]
     chatDivNameText[i].parent(chatDivName[i]);
 
+    chatDivNameText2[i] = createDiv(playerDoing[i]);  //player[i]
+    chatDivNameText2[i].parent(chatDivName[i]);
+
     chatDivNameText[i].style("position","relative");
     chatDivNameText[i].style("text-align","left");
     chatDivNameText[i].style("left","12%");
-    chatDivNameText[i].style("top","50%");
+    chatDivNameText[i].style("top","30%");
     chatDivNameText[i].style("transform","translate(0%, -50%)");
     chatDivNameText[i].style("font-family","Helvetica, Arial, Sans-Serif");
     chatDivNameText[i].style("font-size","1.3rem");
+
+    chatDivNameText2[i].style("position","relative");
+    chatDivNameText2[i].style("text-align","left");
+    chatDivNameText2[i].style("left","12%");
+    chatDivNameText2[i].style("bottom","30%");
+    chatDivNameText2[i].style("transform","translate(0%, -50%)");
+    chatDivNameText2[i].style("font-family","Helvetica, Arial, Sans-Serif");
+    chatDivNameText2[i].style("font-size","1.3rem");
 
  
     chatDivNameButtons[2*i] = createButton(buttonText[(2*i)%2]);
