@@ -439,6 +439,7 @@ function windowResized()
   h = window.innerHeight;
   resizeCanvas(w, h);
   background(235);
+  console.log("resized");
   
   if(!chatChosen && !locationChosen && !questionChosen){
   stroke('LightGray');
