@@ -11,7 +11,7 @@ var questionText = [
   "Describe the flight pattern of paper plane C and list out the possible reasons why the plane flies this way?"
 ];
 
-var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be assigned different plane designs. The students shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\n\nOnce you are done with the questions, the activity is completed and the voucher will be awarded\n\nMaterials provided: \n\n - Model Plane (Plane A). \n - Folding instructions for planes (A, B and C) \n - Paper";
+var instructions = "In this activity, compare 3 paper planes and understand how they fly. You are provided with instructions for 3 paper plane designs and one folded model plane, Plane A.\n\nOther students on the website may be provided with different plane designs. The students shown are those near you. You may choose to either meet up with them to check out their planes or fold the planes yourself.\n\nOnce you are done with the questions, the activity is completed and the voucher will be awarded\n\nMaterials provided: \n\n - Model Plane (Plane A). \n - Folding instructions for planes (A, B and C) \n - Paper";
 
 
 var context = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum justo et lectus consequat, id volutpat mauris iaculis. Quisque nunc felis, consequat vitae nibh rhoncus, ultricies bibendum sapien. Sed posuere, urna euismod semper dapibus, nulla erat luctus est, et mollis enim sem eu sem. Sed ac porttitor orci. Suspendisse potenti. Aliquam et libero augue. Quisque fermentum eros eu nisl iaculis consequat sit amet sit amet tellus. Praesent vitae tincidunt turpis.";
@@ -45,7 +45,6 @@ var imageDivLinks =
 "https://drive.google.com/uc?export=view&id=1gKs95JZ2AHtjDnRzfJnH37qeES3jjHeT"
 ];
 
-// https://drive.google.com/uc?export=view&id=1bWZhoqZ1kfl2QOF-UgyvcRrZxrDuHt4D
 
 var mode = 0;
 
@@ -429,15 +428,27 @@ function draw() {
     if(millis() - timeStamp - timer>timeBeforeOnline[mode]){
       chatDivName[0].show();
       // chatDivText.html("1 users nearby attempting same task");
-      chatDivText.html("Meet up with students nearby attempting same task");
-      if(millis() - timeStamp - timer>15000+timeBeforeOnline[mode]){
+      // chatDivText.html("Meet up with students nearby attempting same task");
+      if(millis() - timeStamp - timer>15000){
         chatDivName[1].show();
         // chatDivText.html("2 users nearby attempting same task");
-        chatDivText.html("Meet up with students nearby attempting same task");
-        if(millis() - timeStamp - timer>35000+timeBeforeOnline[mode]){
+        // chatDivText.html("Meet up with students nearby attempting same task");
+        if(millis() - timeStamp - timer>35000){
           chatDivName[2].show();
           // chatDivText.html("3 users nearby attempting same task");
-          chatDivText.html("Meet up with students nearby attempting same task");
+          // chatDivText.html("Meet up with students nearby attempting same task");
+          if(millis() - timeStamp - timer>50000){
+            // do something
+            if(millis() - timeStamp - timer>90000){
+              // do something
+              if(millis() - timeStamp - timer>98000){
+                // do something
+                if(millis() - timeStamp - timer>120000){
+                  // do something
+                }
+              }
+            }
+          }
         }
       }
     }
