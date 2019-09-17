@@ -131,9 +131,8 @@ function setup() {
   
   answerDiv = createDiv();
   answerDiv.id("answerDiv");
-  answerDiv.position(w/4,7*h/10);
+  answerDiv.position(w/4,7*h/10); 
   answerDiv.size(3*w/4,3*h/10);
-  answerDiv.touchStarted(shiftback); 
 
   backButton = createButton("back");
   backButton.mousePressed(backMode);
@@ -190,6 +189,7 @@ function setup() {
   inputBox.style('text-align', 'center');
   inputBox.style('font-size', '2em');
   document.getElementById("inputBox").onfocus = function(){
+    console.log("focused");
     chatDiv.position(0,h/2);
     for(var i=0; i<player.length; i++)
     {
@@ -455,6 +455,14 @@ function touchStarted()
   strokeWeight(2);
   line(w/4,0,w/4,h);
   line(w/4,7*h/10,w,7*h/10);
+}
+
+if(mouseX > w/4 + 98*3*w/400 || mouseX < w/4 + 2*3*w/400)
+{
+  if(mouseY < h*7/10 + 3*h/20 - 63*70*3*h/(100*100*10) || mouseY < h*7/10 + 3*h/20 + 37*70*3*h/(100*100*10))
+  {
+    shiftback();
+  }
 }
 }
 
