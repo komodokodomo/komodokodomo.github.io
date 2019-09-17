@@ -288,7 +288,7 @@ function backMode(){
   if(mode<0){mode=0;startSketch = false;}
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
-    timer = millis();
+    // timer = millis();
   }
   document.getElementById('inputBox').value = answers[mode];    
 
@@ -338,7 +338,7 @@ function skipMode(){
   if(mode>2){mode=2;questionChosen=true;hideAll();}
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
-    timer = millis();
+    // timer = millis();
   }
   questionDivText.html(questionText[mode]);
   images[mode].show();
@@ -359,7 +359,7 @@ function changeMode(){
   if(mode>2){mode=2;questionChosen=true;hideAll();}
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
-    timer = millis();
+    // timer = millis();
   }
   questionDivText.html(questionText[mode]);
   images[mode].show();
