@@ -319,6 +319,9 @@ function draw() {
     text(instructions,w/2,3*h/16,3*w/8,6*h/8);
     textSize(w/40);
     text("Instructions",w/2,1*h/16,3*w/8,6*h/8);
+    stroke('LightGray');
+    strokeWeight(2);
+    line(w/2,0,w/2,h);
   }
   else{
     if(!chatChosen && !locationChosen && !questionChosen){
