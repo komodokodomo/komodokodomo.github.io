@@ -187,6 +187,9 @@ function setup() {
   inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
   inputBox.style('text-align', 'center');
   inputBox.style('font-size', '2em');
+  document.getElementById("inputBox").onfocus = function(){console.log("focused");};
+
+  // inputBox
 
   
   for(var i=0; i<player.length; i++)
