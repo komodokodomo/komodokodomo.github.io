@@ -390,6 +390,23 @@ function draw() {
     line(w/2,0,w/2,h);
   }
   else{
+    var x = document.getElementById("inputBox");
+    if (document.hasFocus()) {
+      chatDiv.position(0,h/2);
+      for(var i=0; i<player.length; i++)
+      {
+        chatDivName[i] = createDiv();
+        chatDivName[i].position(0,i*h/10 + h/8 + h/2);
+      }
+    } else {
+      chatDiv.position(0,0);
+      for(var i=0; i<player.length; i++)
+      {
+        chatDivName[i] = createDiv();
+        chatDivName[i].position(0,i*h/10 + h/8);
+      }
+    }
+
     if(!chatChosen && !locationChosen && !questionChosen){
     if(millis() - timeStamp - timer>timeBeforeOnline[mode]){
       chatDivName[0].show();
