@@ -130,6 +130,7 @@ function setup() {
     images[i].hide();
     // images[i].class("scroll_frame");
     images[i].style("position","relative");
+    images[i].style("object-fit","contain");
     // images[i].style("height","90%");
     // images[i].style("width","96%");
 
