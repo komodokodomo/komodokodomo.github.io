@@ -129,7 +129,7 @@ function setup() {
     images[i].style("height","90%");
     images[i].style("left","50%");
     images[i].style("top","50%");
-    // images[i].style("transform","translate(-50%, -50%)");
+    images[i].style("transform","translate(-50%, -50%)");
   }
   images[0].show();
   // console.log("loop ending...");
