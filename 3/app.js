@@ -128,16 +128,15 @@ function setup() {
     images[i].attribute("overflow","scroll");
     images[i].parent(imageDiv);
     images[i].hide();
-    images[i].hide();
     // images[i].class("scroll_frame");
     images[i].style("position","relative");
     // images[i].style("height","90%");
     // images[i].style("width","96%");
 
     images[i].style("height","90%");
-    images[i].style("width","10px");
-    images[i].style("min-width","96%");
-    images[i].style("*width","100%");
+    images[i].style("width","100%");
+    // images[i].style("min-width","96%");
+    // images[i].style("*width","100%");
 
     images[i].style("left","50%");
     images[i].style("top","50%");
