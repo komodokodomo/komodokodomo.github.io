@@ -124,7 +124,7 @@ function setup() {
     images[i].attribute("src",imageDivLinks[i]);
     // images[i].attribute("scrolling","yes");
     images[i].attribute("overflow","scroll");
-    images[i].attribute("scrolling","no");
+    // images[i].attribute("scrolling","no");
     images[i].parent(imageDiv);
     images[i].hide();
 
