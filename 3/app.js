@@ -298,7 +298,7 @@ function shiftback(){
 function backMode(){
   images[mode].hide();
   mode--;
-  if(mode<0){mode=0;startSketch = false;}
+  if(mode<0){mode=0;}
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
     // timer = millis();
