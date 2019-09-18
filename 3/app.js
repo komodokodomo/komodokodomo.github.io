@@ -76,6 +76,8 @@ function setup() {
   // questionDivText.style("text-align","center");
   questionDivText.style("left","50%");
   questionDivText.style("top","50%");
+  questionDivText.style("width","80%");
+  questionDivText.style("height","80%");
   questionDivText.style("transform","translate(-50%, -50%)");
   questionDivText.style("font-family","Helvetica, Arial, Sans-Serif");
   questionDivText.style("font-size","1.5em");
