@@ -98,7 +98,7 @@ function setup() {
   chatDiv.position(0,0);
   chatDiv.size(w/4,h/8);
   chatDiv.style("border-bottom-style","solid");
-  chatDiv.style("width","70%");
+  chatDiv.style("width","80%");
   chatDiv.style("border-color","LightGray");
   chatDiv.style("border-width","2px");
 
