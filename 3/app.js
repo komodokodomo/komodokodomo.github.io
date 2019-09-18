@@ -116,15 +116,15 @@ function setup() {
   // imageDiv.class("scroll_frame");
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,6*h/10);
-  imageDiv.style("overflow","auto");
-  imageDiv.style("-webkit-overflow-scrolling","touch");
+  // imageDiv.style("overflow","auto");
+  // imageDiv.style("-webkit-overflow-scrolling","touch");
   // overflow:auto;-webkit-overflow-scrolling:touch
 
   // console.log("loop starting...");
   for(var i=0; i<3; i++)
   {
-    images[i] = createElement("iframe");
-    images[i].attribute("src",imageDivLinks[i]);
+    images[i] = createImg(imageDivLinks[i]);
+    // images[i].attribute("src",imageDivLinks[i]);
     // images[i].attribute("overflow","scroll");
     images[i].parent(imageDiv);
     images[i].hide();
