@@ -337,7 +337,7 @@ function skipMode(){
     chatDivNameText[i].html(player[i]);  
   }
   // }
-  if(mode>2){mode=2;questionChosen=true;hideAll();}
+  // if(mode>2){mode=2;questionChosen=true;hideAll();}   //TRIGGER FINISHED
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
     // timer = millis();
@@ -358,7 +358,7 @@ function changeMode(){
       chatDivNameText[i].html(player[i]);  
     }
     // }
-  if(mode>2){mode=2;questionChosen=true;hideAll();}
+  // if(mode>2){mode=2;questionChosen=true;hideAll();}    //TRIGGER FINISHED
   else{
     inputBox.attribute('placeholder', inputBoxPlaceholder[mode]);
     // timer = millis();
