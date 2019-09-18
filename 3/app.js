@@ -121,19 +121,16 @@ function setup() {
   {
     images[i] = createElement("iframe");
     images[i].attribute("src",imageDivLinks[i]);
-    images[i].attribute("scrolling","yes");
-    // images[i].attribute("overflow","hidden");
+    // images[i].attribute("scrolling","yes");
+    images[i].attribute("overflow","scroll");
     images[i].parent(imageDiv);
     images[i].hide();
     // images[i].style("object-fit","contain");
     images[i].style("position","relative");
     // images[i].style("width","96%");
-    images[i].style("min-height","90%");
-    // images[i].attribute("width","96%");
-    // images[i].attribute("width","1px");
-    images[i].attribute("min-width","96%");
+    images[i].style("height","90%");
+    images[i].style("width","96%");
 
-    images[i].attribute("height","90%");
     images[i].style("left","50%");
     images[i].style("top","50%");
     images[i].style("transform","translate(-50%, -50%)");
