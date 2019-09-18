@@ -40,11 +40,14 @@ var timeStamp = 0;
 var images = []
 var imageDivLinks = 
 [
-"https://drive.google.com/uc?export=view&id=1Gx4XIIpuJTP3YeZ5Gy2ilF5NyY0pYkqP",
-"https://drive.google.com/uc?export=view&id=1ySYLAMcV8Qil1GOZMlKbiwE_qpBIwiyS",
-"https://drive.google.com/uc?export=view&id=1gKs95JZ2AHtjDnRzfJnH37qeES3jjHeT"
+"https://drive.google.com/uc?export=view&id=1USRfKs-oXwrBoYj6hN8vHPrmrczWRNjW",
+"https://drive.google.com/uc?export=view&id=1SGm3QJiZBBRM2s1J7JQJ0wyqmPTHUNEf",
+"https://drive.google.com/uc?export=view&id=1RrxfFXtnvam5HsZSyoMkcPcjp0bxCes_"
 ];
 
+// https://drive.google.com/uc?export=view&id=1USRfKs-oXwrBoYj6hN8vHPrmrczWRNjW
+// https://drive.google.com/uc?export=view&id=1SGm3QJiZBBRM2s1J7JQJ0wyqmPTHUNEf
+// https://drive.google.com/uc?export=view&id=1RrxfFXtnvam5HsZSyoMkcPcjp0bxCes_
 
 var mode = 0;
 
