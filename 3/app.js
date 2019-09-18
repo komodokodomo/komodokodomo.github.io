@@ -124,12 +124,12 @@ function setup() {
     images[i].parent(imageDiv);
     images[i].hide();
     // images[i].style("object-fit","contain");
-    // images[i].style("position","relative");
+    images[i].style("position","relative");
     images[i].style("width","96%");
     images[i].style("height","90%");
     images[i].style("left","50%");
     images[i].style("top","50%");
-    images[i].style("transform","translate(-50%, -50%)");
+    // images[i].style("transform","translate(-50%, -50%)");
   }
   images[0].show();
   // console.log("loop ending...");
