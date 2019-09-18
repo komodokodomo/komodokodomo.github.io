@@ -117,8 +117,8 @@ function setup() {
   // console.log("loop starting...");
   for(var i=0; i<3; i++)
   {
-    images[i] = createImg(imageDivLinks[i]);
-    // images[i].attribute("src",imageDivLinks[i]);
+    images[i] = createElement();
+    images[i].attribute("src",imageDivLinks[i]);
     images[i].parent(imageDiv);
     images[i].hide();
     images[i].style("object-fit","contain");
