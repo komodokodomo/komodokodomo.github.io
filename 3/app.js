@@ -449,6 +449,14 @@ function draw() {
   }
   else{
 
+  let log = document.getElementById('inputBox');
+
+  if (document.hasFocus()) {
+  }
+  else {
+shiftback();
+  }
+
     if(!chatChosen && !locationChosen && !questionChosen){
     if(millis() - timeStamp - timer>timeBeforeOnline[mode]){
       chatDivName[0].show();
