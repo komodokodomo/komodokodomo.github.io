@@ -134,8 +134,8 @@ function setup() {
     // images[i].style("height","90%");
     // images[i].style("width","96%");
 
-    images[i].style("height","90%");
-    images[i].style("width","96%");
+    images[i].style("height","95%");
+    images[i].style("width","98%");
     // images[i].style("min-width","96%");
     // images[i].style("*width","100%");
 
