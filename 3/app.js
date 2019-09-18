@@ -121,6 +121,7 @@ function setup() {
   {
     images[i] = createElement("iframe");
     images[i].attribute("src",imageDivLinks[i]);
+    images[i].attribute("scrolling","AUTO");
     images[i].parent(imageDiv);
     images[i].hide();
     // images[i].style("object-fit","contain");
