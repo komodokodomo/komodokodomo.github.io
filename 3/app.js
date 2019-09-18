@@ -116,6 +116,9 @@ function setup() {
   // imageDiv.class("scroll_frame");
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,6*h/10);
+  imageDiv.style("overflow","auto");
+  imageDiv.style("-webkit-overflow-scrolling","touch");
+  // overflow:auto;-webkit-overflow-scrolling:touch
 
   // console.log("loop starting...");
   for(var i=0; i<3; i++)
@@ -126,7 +129,7 @@ function setup() {
     images[i].parent(imageDiv);
     images[i].hide();
     images[i].hide();
-    images[i].class("scroll_frame");
+    // images[i].class("scroll_frame");
     images[i].style("position","relative");
     // images[i].style("height","90%");
     // images[i].style("width","96%");
