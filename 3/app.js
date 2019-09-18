@@ -120,7 +120,7 @@ function setup() {
   // console.log("loop starting...");
   for(var i=0; i<3; i++)
   {
-    images[i] = createElement();
+    images[i] = createElement("iframe");
     images[i].attribute("src",imageDivLinks[i]);
     images[i].parent(imageDiv);
     images[i].hide();
