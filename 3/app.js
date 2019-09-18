@@ -120,6 +120,7 @@ function setup() {
   for(var i=0; i<3; i++)
   {
     images[i] = createElement("iframe");
+    images[i].class("scroll_frame");
     images[i].attribute("src",imageDivLinks[i]);
     // images[i].attribute("scrolling","yes");
     images[i].attribute("overflow","scroll");
