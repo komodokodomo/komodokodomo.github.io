@@ -83,7 +83,7 @@ function setup() {
   questionDivText.style("font-size","1.5em");
 
   chatDiv = createDiv();
-  chatDivText = createDiv("Meet up with students nearby attempting same task");
+  chatDivText = createDiv("Meet up with students nearby attempting plane activity");
 
   chatDivButton = createButton("?")
   chatDivButton.mousePressed(explain);
@@ -150,7 +150,7 @@ function setup() {
   backButton.style("width","31%");
   backButton.style("background-color","LightGray");
 
-  submitButton = createButton("submit");
+  submitButton = createButton("submit and save");
   submitButton.mousePressed(changeMode);
   submitButton.parent(answerDiv);
   submitButton.style("position","relative");
@@ -504,7 +504,7 @@ function draw() {
       chatDivName[1].hide();
       chatDivName[2].hide();
       // chatDivText.html("0 users nearby attempting same task");
-      chatDivText.html("Meet up with students nearby attempting same task");
+      chatDivText.html("Meet up with students nearby attempting plane activity");
     }
   }
 
