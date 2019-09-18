@@ -138,10 +138,10 @@ function setup() {
     images[i].style("top","50%");
     images[i].style("transform","translate(-50%, -50%)");
 
-    iframe {
-      width: 1px;
-      min-width: 100%;
-    }
+    // iframe {
+    //   width: 1px;
+    //   min-width: 100%;
+    // }
   }
   images[0].show();
   // console.log("loop ending...");
