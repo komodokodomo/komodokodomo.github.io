@@ -130,7 +130,7 @@ function setup() {
     // images[i].style("width","96%");
     // images[i].style("height","90%");
     // images[i].attribute("width","96%");
-    images[i].attribute("width","1px");
+    // images[i].attribute("width","1px");
     images[i].attribute("min-width","96%");
 
     images[i].attribute("height","90%");
