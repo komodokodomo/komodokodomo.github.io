@@ -460,6 +460,36 @@ function draw() {
                   chatDivNameText[1].html("Daniel");
                   chatDivNameText[2].html("Jaylen");
                   // do something
+                  if(millis() - timeStamp - timer>143000){
+                    chatDivNameText[0].html("Daniel");
+                    chatDivNameText[1].html("Jaylen");
+                    chatDivNameText[2].html("Ezekiel");  
+                    if(millis() - timeStamp - timer>170000){
+                      chatDivName[2].hide();
+                      chatDivNameText[0].html("Jaylen");
+                      chatDivNameText[1].html("Ezekiel");
+                      // do something
+                      if(millis() - timeStamp - timer>300000){
+                        chatDivNameText[0].html("Jaylen");
+                        chatDivNameText[1].html("Ezekiel");   //tamara 
+                        chatDivNameText[2].html("Aiden");
+                        chatDivName[2].show();
+                        if(millis() - timeStamp - timer>350000){
+                          chatDivNameText[0].html("Jaylen");
+                          chatDivNameText[1].html("Ezekiel");   //tamara 
+                          chatDivNameText[2].html("Aiden");
+                          chatDivName[2].hide();
+                          chatDivName[1].hide();
+                          if(millis() - timeStamp - timer>420000){
+                            chatDivNameText[0].html("Jaylen");
+                            chatDivNameText[1].html("Tamara");   //tamara 
+                            chatDivNameText[2].html("Aiden");
+                            chatDivName[1].show();
+                          }
+                        }
+                      } 
+                    } 
+                  }
                 }
               }
             }
