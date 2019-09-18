@@ -129,11 +129,19 @@ function setup() {
     images[i].style("position","relative");
     // images[i].style("width","96%");
     // images[i].style("height","90%");
-    images[i].attribute("width","96%");
+    // images[i].attribute("width","96%");
+    images[i].attribute("width","1px");
+    images[i].attribute("min-width","96%");
+
     images[i].attribute("height","90%");
     images[i].style("left","50%");
     images[i].style("top","50%");
     images[i].style("transform","translate(-50%, -50%)");
+
+    iframe {
+      width: 1px;
+      min-width: 100%;
+    }
   }
   images[0].show();
   // console.log("loop ending...");
