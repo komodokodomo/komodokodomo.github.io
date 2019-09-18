@@ -113,7 +113,7 @@ function setup() {
   chatDivText.style("font-size","1.2rem");
 
   imageDiv = createDiv();
-  imageDiv.class("scroll_frame");
+  // imageDiv.class("scroll_frame");
   imageDiv.position(w/4,h/10);
   imageDiv.size(3*w/4,6*h/10);
 
