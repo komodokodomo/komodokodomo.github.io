@@ -167,7 +167,7 @@ function setup() {
   // submitButton.style("text-align","center");
   backButton.style("left","2%");
   backButton.style("top","73%");
-  backButton.style("transform","translate(0%, -50%)");
+  // backButton.style("transform","translate(0%, -50%)");
   backButton.style("font-family","Helvetica, Arial, Sans-Serif");
   backButton.style("font-size","1.1em");
   backButton.style("width","31%");
@@ -195,7 +195,7 @@ function setup() {
   // submitButton.style("text-align","center");
   skipButton.style("right","2%");
   skipButton.style("top","73%");
-  skipButton.style("transform","translate(0%, -50%)");
+  // skipButton.style("transform","translate(0%, -50%)");
   skipButton.style("font-family","Helvetica, Arial, Sans-Serif");
   skipButton.style("font-size","1.1em");
   skipButton.style("width","31%");
