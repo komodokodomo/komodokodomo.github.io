@@ -214,7 +214,7 @@ function setup() {
   inputBox.style("left","2%");
   inputBox.style("top","3%");
   inputBox.style("width","96%");
-  inputBox.style("height","70%");
+  inputBox.style("height","67%");
   // inputBox.style("transform","translate(-50%, -50%)");
   inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
   inputBox.style('text-align', 'center');
