@@ -211,6 +211,10 @@ function setup() {
   inputBox.attribute('placeholder', inputBoxPlaceholder[0]);
   inputBox.style('text-align', 'center');
   inputBox.style('font-size', '2em');
+
+  inputBox.style('word-wrap', 'break-word');
+  inputBox.style('word-break', 'break-all');
+
   // inputBox.mouseClicked(shiftChat);
   document.getElementById("inputBox").onfocus = function(){
     console.log("focused");
