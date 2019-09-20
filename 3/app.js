@@ -205,7 +205,8 @@ function setup() {
   // skipButton.style("background","none");
   // skipButton.style("border","none");
 
-  inputBox = createElement("textarea");
+  // inputBox = createElement("textarea");
+  inputBox = createInput();
   inputBox.input(typeEvent);
   inputBox.id("inputBox");
   inputBox.parent(answerDiv);
