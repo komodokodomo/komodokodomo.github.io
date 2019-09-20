@@ -115,7 +115,8 @@ function setup() {
   imageDiv = createDiv();
   // imageDiv.class("scroll_frame");
   imageDiv.position(w/4,h/10);
-  imageDiv.size(3*w/4,6*h/10);
+  // imageDiv.size(3*w/4,6*h/10);
+  imageDiv.size(3*w/4,13*h/20)
   // imageDiv.style("overflow","auto");
   // imageDiv.style("-webkit-overflow-scrolling","touch");
   // overflow:auto;-webkit-overflow-scrolling:touch
@@ -154,8 +155,10 @@ function setup() {
   
   answerDiv = createDiv();
   answerDiv.id("answerDiv");
-  answerDiv.position(w/4,7*h/10); 
-  answerDiv.size(3*w/4,3*h/10);
+  // answerDiv.position(w/4,7*h/10); 
+  // answerDiv.size(3*w/4,3*h/10);
+  answerDiv.position(w/4,15*h/20); 
+  answerDiv.size(3*w/4,5*h/20);
 
   backButton = createButton("back");
   backButton.mousePressed(backMode);
@@ -282,7 +285,8 @@ function setup() {
   stroke('LightGray');
   strokeWeight(2);
   line(w/4,0,w/4,h);
-  line(w/4,7*h/10,w,7*h/10);
+  // line(w/4,7*h/10,w,7*h/10);
+  line(w/4,15*h/20,w,15*h/20);
 
 }
 
@@ -561,7 +565,8 @@ function touchStarted()
   stroke('LightGray');
   strokeWeight(2);
   line(w/4,0,w/4,h);
-  line(w/4,7*h/10,w,7*h/10);
+  // line(w/4,7*h/10,w,7*h/10);
+  line(w/4,15*h/20,w,15*h/20);
 }
 
 if(mouseX > w/4 + 98*3*w/400 || mouseX < w/4 + 2*3*w/400 ||mouseY < h*7/10 + 3*h/20 - 63*70*3*h/(100*100*10) || mouseY > h*7/10 + 3*h/20 + 37*70*3*h/(100*100*10))
@@ -586,7 +591,8 @@ function windowResized()
   stroke('LightGray');
   strokeWeight(2);
   line(w/4,0,w/4,h);
-  line(w/4,7*h/10,w,7*h/10);
+  // line(w/4,7*h/10,w,7*h/10);
+  line(w/4,15*h/20,w,15*h/20);
   ellipse();
   }
  
@@ -602,11 +608,13 @@ function windowResized()
   chatDiv.size(w/4,h/8);
 
   imageDiv.position(w/4,h/10);
-  imageDiv.size(3*w/4,6*h/10);
+  // imageDiv.size(3*w/4,6*h/10);
+  imageDiv.size(3*w/4,13*h/20)
 
-  answerDiv.position(w/4,7*h/10);
-  answerDiv.size(3*w/4,3*h/10);
-
+  // answerDiv.position(w/4,7*h/10);
+  // answerDiv.size(3*w/4,3*h/10);
+  answerDiv.position(w/4,15*h/20); 
+  answerDiv.size(3*w/4,5*h/20);
 
   for(var i=0; i<player.length; i++)
   {
