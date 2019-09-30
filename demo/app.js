@@ -271,7 +271,7 @@ function optionButtonEvent()
   
 }
 
-var scanBeacon()
+function scanBeacon()
 {
   var lastPingDetected= [];
   var spectrum = fft.analyze();                                                            // get FFT data for subsequent analysis
