@@ -238,7 +238,7 @@ function draw()
   else
   { 
     let region = scanBeacon();  
-    if(region!==null){console.log(region);}                                                             //                                                                  //
+    if(region!==undefined){console.log(region);}                                                             //                                                                  //
     checkRegionChange();                                                    //
   }
 }
