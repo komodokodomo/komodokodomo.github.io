@@ -57,6 +57,8 @@ var lastPingEnergy = [];
 var lastPingEnergyHighest = 0;
 var lastPingChosen;
 
+var finalTranscript;
+
 
 
 //https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277={{ROOMID}}&entry.611071440={{NICKNAME}}&entry.207705783={{TEXT}}
@@ -89,7 +91,7 @@ if ('SpeechRecognition' in window) {
         console.log(finalTranscript);
       } else {
         interimTranscript += transcript;
-        console.log(interimTranscript);
+        console.log("INTERIM: " + interimTranscript);
       }
     }
   }
