@@ -5,6 +5,9 @@ var w,h;
 
 var mode = 0; 
 
+const http = new XMLHttpRequest();
+var formUrl;
+
 var mic;
 var fft;
 var peakDetect = [];
@@ -150,7 +153,7 @@ function setup(){
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
   
-  logo = loadImage('assets/logo.png');
+  logo = loadImage('../assets/logo.png');
 
   gamepin = createInput('');
   gamepin.attribute('placeholder', 'NICKNAME');
@@ -202,7 +205,6 @@ function setup(){
   userStartAudio(mic).then(function() 
   {
     console.log("audio enabled");                                           //** debug **
-    startDictation();
     fft = new p5.FFT();                                                     //initialize new FFT object
     fft.setInput(mic);                                                      //set which input FFT analyzes
   });
@@ -217,16 +219,6 @@ function setup(){
     lastPingTtlTimer[i] = 0;
     lastPingEnergy[i] = 0;
   }
-
-}
-
-
-function startDictation(){
-
-
-
-  
- 
 
 }
 
