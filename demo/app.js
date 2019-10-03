@@ -60,7 +60,7 @@ var numDetected;
 
 var roomList = [[]];
 
-const recognition;
+
 
 //https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277={{ROOMID}}&entry.611071440={{NICKNAME}}&entry.207705783={{TEXT}}
 //https://api.sheety.co/d1251137-9a5b-457e-9b6c-b70a4f5bf675
@@ -194,7 +194,7 @@ function setup(){
   {
     console.log("audio enabled");                                           //** debug **
 
-    recognition = new window.SpeechRecognition();
+    const recognition = new window.SpeechRecognition();
     recognition.interimResults = true;
     recognition.maxAlternatives = 10;
     recognition.continuous = true;
