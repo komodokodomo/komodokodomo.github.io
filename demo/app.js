@@ -70,6 +70,17 @@ var lastPingChosen;
 
 //https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/viewform?usp=pp_url&entry.1852266277=ROOMID&entry.611071440=NICKNAME&entry.207705783=TEXT
 
+
+window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+if ('SpeechRecognition' in window) {
+  const recognition = new window.SpeechRecognition();
+  console.log("dictation supported");
+//   // speech recognition API supported
+} else {
+  console.log("dictation not supported");
+//   // speech recognition API not supported
+}
+
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
   jsonFile = loadJSON(url);
@@ -191,15 +202,7 @@ function setup(){
 
 function startDictation(){
 
-  window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-if ('SpeechRecognition' in window) {
-  const recognition = new window.SpeechRecognition();
-  console.log("dictation supported");
-//   // speech recognition API supported
-} else {
-  console.log("dictation not supported");
-//   // speech recognition API not supported
-}
+
 
   
   recognition.interimResults = true;
