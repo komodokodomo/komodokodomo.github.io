@@ -249,39 +249,45 @@ function draw()
 
 function typeEvent() {
   INPUT = this.value();                                                     //update INPUT data with whatever is typed
-  //console.log(INPUT);                                                     //** debug **
 }
 
 function enterButtonEvent() { 
   if(mode == 0){                                                            //at initial screen
     if(INPUT !== null){                                                     //if something was actually typed on the screen
-    name = INPUT;                                                           //set value of "name" to whatever was typed
-    mode = 1;                                                               //then change to PIN entering mode
-    gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
-    document.getElementById('gamepin').value = '';                          //reset INPUT value to 0;
-    document.getElementById('gamepin').type = 'tel';                        //reset INPUT value to 0;
-    console.log("welcome " + name)                                          //** debug **
-  }
-}
-  else if(mode ==1 ){
-  if(INPUT == "123456"){                                                    //if players key in the right PIN
-    startCon();                                                             //enter game lobby
-    mode = 2;                                                               //change to task screen
+    name = INPUT;
+    startCon();                                                             //enter game lobby //set value of "name" to whatever was typed
+    mode = 2;   
     button.hide();                                                          //hide away button
-    gamepin.hide();                                                         //hide input button
-    console.log("correct PIN");                                             // ** debug **
-    background(245);                                                        //
-    textAlign(CENTER,CENTER);                                               //
-    textSize(32);     
+    gamepin.hide();   
     for(var i =0; i<Object.keys(jsonFile).length; i++)
     {
       locations[i].show();
-    }
-  }
-  else{                                                                     //if player keys in a wrong PIN
-    console.log("wrong PIN");
+    }                                                          //then change to PIN entering mode
+    // gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
+    // document.getElementById('gamepin').value = '';                          //reset INPUT value to 0;
+    // document.getElementById('gamepin').type = 'tel';                        //reset INPUT value to 0;
+    console.log("welcome " + name)                                          //** debug **
   }
 }
+//   else if(mode ==1 ){
+//   if(INPUT == "123456"){                                                    //if players key in the right PIN
+//     // startCon();                                                             //enter game lobby
+//     mode = 2;                                                               //change to task screen
+//     button.hide();                                                          //hide away button
+//     gamepin.hide();                                                         //hide input button
+//     console.log("correct PIN");                                             // ** debug **
+//     background(245);                                                        //
+//     textAlign(CENTER,CENTER);                                               //
+//     textSize(32);     
+//     for(var i =0; i<Object.keys(jsonFile).length; i++)
+//     {
+//       locations[i].show();
+//     }
+//   }
+//   else{                                                                     //if player keys in a wrong PIN
+//     console.log("wrong PIN");
+//   }
+// }
 }
 
 
