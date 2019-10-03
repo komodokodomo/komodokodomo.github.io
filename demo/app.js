@@ -89,6 +89,7 @@ recognition.onresult = (event) => {
       console.log(interimTranscript);
     }
   }
+}
 
 
 //https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/viewform?usp=pp_url&entry.1852266277=ROOMID&entry.611071440=NICKNAME&entry.207705783=TEXT
