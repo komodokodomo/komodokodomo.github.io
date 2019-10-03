@@ -197,6 +197,7 @@ if ('SpeechRecognition' in window) {
   console.log("dictation supported");
 //   // speech recognition API supported
 } else {
+  console.log("dictation not supported");
 //   // speech recognition API not supported
 }
 
