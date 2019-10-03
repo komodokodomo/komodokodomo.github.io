@@ -170,7 +170,7 @@ function setup(){
   userStartAudio(mic).then(function() 
   {
     console.log("audio enabled");                                           //** debug **
-
+    startDictation();
     fft = new p5.FFT();                                                     //initialize new FFT object
     fft.setInput(mic);                                                      //set which input FFT analyzes
   });
@@ -192,15 +192,17 @@ function setup(){
 function startDictation(){
 
   window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-// if ('SpeechRecognition' in window) {
-//   // speech recognition API supported
-// } else {
-//   // speech recognition API not supported
-// }
-
+if ('SpeechRecognition' in window) {
   const recognition = new window.SpeechRecognition();
+  console.log("dictation supported");
+//   // speech recognition API supported
+} else {
+//   // speech recognition API not supported
+}
+
+  
   recognition.interimResults = true;
-  recognition.maxAlternatives = 10;
+  // recognition.maxAlternatives = 10;
   recognition.continuous = true;
   recognition.start();
 
