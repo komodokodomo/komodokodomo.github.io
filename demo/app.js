@@ -60,6 +60,38 @@ var numDetected;
 
 var roomList = [[]];
 
+const recognition;
+
+//https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277={{ROOMID}}&entry.611071440={{NICKNAME}}&entry.207705783={{TEXT}}
+//https://api.sheety.co/d1251137-9a5b-457e-9b6c-b70a4f5bf675
+
+window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+// if ('SpeechRecognition' in window) {
+//   // speech recognition API supported
+// } else {
+//   // speech recognition API not supported
+// }
+
+
+// recognition.onresult = (event) => {
+//   const speechToText = event.results[0][0].transcript;
+// }
+
+recognition.onresult = (event) => {
+  let interimTranscript = '';
+  for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+    let transcript = event.results[i][0].transcript;
+    if (event.results[i].isFinal) {
+      finalTranscript += transcript;
+      console.log(finalTranscript);
+    } else {
+      interimTranscript += transcript;
+      console.log(interimTranscript);
+    }
+  }
+
+
+//https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/viewform?usp=pp_url&entry.1852266277=ROOMID&entry.611071440=NICKNAME&entry.207705783=TEXT
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
@@ -102,7 +134,7 @@ function setup(){
     locations[i].hide();
     locationsText[i].hide();
 
-    peakDetect[i] = new p5.PeakDetect(beacon[i]-bandwidth, beacon[i]+bandwidth, 0.2,1);
+    peakDetect[i] = new p5.PeakDetect(beacon[i]-bandwidth, beacon[i]+bandwidth, 0.2,1);  
     // images.show();
   }
 
@@ -161,6 +193,13 @@ function setup(){
   userStartAudio(mic).then(function() 
   {
     console.log("audio enabled");                                           //** debug **
+
+    recognition = new window.SpeechRecognition();
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 10;
+    recognition.continuous = true;
+
+    recognition.start();
     fft = new p5.FFT();                                                     //initialize new FFT object
     fft.setInput(mic);                                                      //set which input FFT analyzes
   });
@@ -202,9 +241,6 @@ function draw()
   }
 }
 
-function mouseClicked() 
-{
-}
 
 function typeEvent() {
   INPUT = this.value();                                                     //update INPUT data with whatever is typed
