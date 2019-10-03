@@ -236,8 +236,9 @@ function draw()
   }
   
   else
-  {                                                                         //    
-    console.log(scanBeacon());                                                           //
+  { 
+    let region = scanBeacon();  
+    if(region!==null){console.log(region);}                                                             //                                                                  //
     checkRegionChange();                                                    //
   }
 }
