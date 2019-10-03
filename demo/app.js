@@ -57,7 +57,7 @@ var lastPingEnergy = [];
 var lastPingEnergyHighest = 0;
 var lastPingChosen;
 
-var finalTranscript;
+
 
 
 
@@ -84,11 +84,12 @@ if ('SpeechRecognition' in window) {
 
   recognition.onresult = (event) => {
     let interimTranscript = '';
+    let finalTranscript = "";
     for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
       let transcript = event.results[i][0].transcript;
       if (event.results[i].isFinal) {
         finalTranscript += transcript;
-        console.log(finalTranscript);
+        console.log("FINAL: " +finalTranscript);
       } else {
         interimTranscript += transcript;
         console.log("INTERIM: " + interimTranscript);
