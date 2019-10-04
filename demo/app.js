@@ -6,9 +6,9 @@ var w,h,canvas;
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
 
 const options = {
-  lat: 0,
-  lng: 0,
-  zoom: 4,
+  lat: 1.3521,
+  lng: 103.8198,
+  zoom: 11,
   studio: true, // false to use non studio styles
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
