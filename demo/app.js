@@ -122,6 +122,8 @@ function setup(){
   
   mapDiv = createDiv();
   mapDiv.id("map");
+
+  map = L.map('map').setView([51.505, -0.09], 13);
   // map = mappa.tileMap(0,0,4); 
   // map.overlay(canvas);
 
