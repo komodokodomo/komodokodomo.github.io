@@ -3,16 +3,19 @@ let logo;
 
 var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
+var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
 
 const options = {
-  lat: 1.3521,
-  lng: 103.8198,
-  zoom: 11,
-  style: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-}
+  lat: 0,
+  lng: 0,
+  zoom: 4,
+  studio: true, // false to use non studio styles
+  //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
+  style: 'mapbox://styles/mapbox/traffic-night-v2',
+};
 
 // Create an instance of Leaflet
-const mappa = new Mappa('Leaflet');
+const mappa = new Mappa('Mapbox', key);
 let myMap;
 
 
