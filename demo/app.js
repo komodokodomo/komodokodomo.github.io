@@ -1,7 +1,7 @@
 
 let logo;
 
-var w,h,canvas;
+var w,h,canvas,map;
 
 var mode = 0; 
 
@@ -114,6 +114,8 @@ function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
   canvas = createCanvas(w,h);
+  map = mappa.tileMap(0,0,4); 
+  map.overlay(canvas);
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
@@ -231,13 +233,6 @@ function draw()
     imageMode(CENTER);                                                      //align image coordinates to CENTER
     image(logo,w/2,h/2 - 1.1*gamepin.size().height - refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
   }
-  else if(mode == 1)
-  {                                                                         //home screen + ask for PIN
-    background(245);                                                        //set background to light grey
-    imageMode(CENTER);                                                      //align image coordinates to CENTER
-    image(logo,w/2,h/2 - 1.1*gamepin.size().height - refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
-  }
-  
   else
   { 
     let region = scanBeacon();  
@@ -361,75 +356,8 @@ function checkRegionChange()
   if(beaconChosen !== beaconPrevChosen)
   {
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());  // Update server that client has changed rooms
-    console.log("room change");                                                     // ** debug **
-    
-    if(beaconChosen!==99)                                                          // if a particular beacon is detected          
-    {
-    for(var i =0; i<Object.keys(jsonFile).length; i++)
-    {
-      locations[i].hide();
-    }
-    if(!answered[beaconChosen])
-    {
-      for(var i = 0; i<4; i++)
-      {
-          buttonOpt[i].size(w/2,h/6);
-          buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-          if(i == 0){buttonOpt[i].html(jsonFile[beaconChosen].opt0);}
-          else if(i == 1){buttonOpt[i].html(jsonFile[beaconChosen].opt1);}
-          else if(i == 2){buttonOpt[i].html(jsonFile[beaconChosen].opt2);}
-          else if(i == 3){buttonOpt[i].html(jsonFile[beaconChosen].opt3);}
-          buttonOpt[i].show();
-      }
-        background(245);                                                        //
-        textAlign(CENTER,CENTER);                                               //
-        textSize(32);     
-        questionText.html(jsonFile[beaconChosen].question);
-        question.show();
-        if(images[beaconChosen].height < images[beaconChosen].width)
-        {
-        image(images[beaconChosen], w/2, 5*h/12, w, (images[beaconChosen].height) * w/images[beaconChosen].width);
-        }
-        else
-        {
-        image(images[beaconChosen], w/2, 5*h/12, 5*h*w/images[beaconChosen].width/(12*images[beaconChosen].height), 5*h/12);
-        }
-    }
-    else
-    {
-      background(245);                                                        //
-      textAlign(CENTER,CENTER);                                               //
-      textSize(32); 
-      text("answered already lah",w/2,h/2);
-      question.hide();
-      for(var i = 0; i<4; i++)
-      {
-          buttonOpt[i].hide();
-      }  
-    }  
-
-    }
-    else
-    {
-      background(245);                                                        //
-      textAlign(CENTER,CENTER);                                               //
-      textSize(32);     
-      question.hide();
-      for(var i = 0; i<4; i++)
-      {
-        buttonOpt[i].hide();
-      }
-      for(var i =0; i<Object.keys(jsonFile).length; i++)
-      {
-        locations[i].show();
-        if(answered[i])
-        {
-          locationsImage[i].style("opacity","0.1");
-          locationsText[i].show();
-        }
-      }
-    }
-    beaconPrevChosen = beaconChosen;
+    console.log("room change"); 
+    beaconPrevChosen = beaconChosen;                                                    // ** debug **
   }
 }
 
@@ -457,6 +385,7 @@ function startCon()
 
 
 function windowResized() {
+  console.log("window innerDimension change detected");  
   w = window.innerWidth; 
   h = window.innerHeight;
   resizeCanvas(w, h);
@@ -492,7 +421,6 @@ function windowResized() {
     }
   }
   question.size(w,h/6);
-  console.log("window innerDimension change detected");  
 }
 
 
