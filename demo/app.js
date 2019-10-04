@@ -1,11 +1,11 @@
 
 let logo;
-
+var locationData;
 var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
 
-const options = {
+var options = {
   lat: 1.3521,
   lng: 103.8198,
   zoom: 11,
@@ -126,6 +126,9 @@ if ('SpeechRecognition' in window) {
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
+  locationData =  getCurrentPosition();
+  options.lat = locationData.latitude;
+  options.lng = locationData.longitude;
   jsonFile = loadJSON(url);
 }
 
@@ -249,7 +252,7 @@ function draw()
     fill(255,200);
     rect(0,9*h/10,w,h);
     imageMode(CENTER);                                                      //align image coordinates to CENTER
-    image(logo,w/2,h - 1.1*gamepin.size().height - refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
+    image(logo,w/2,h - refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
   }
   else
   { 
