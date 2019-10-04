@@ -1,8 +1,8 @@
 
 let logo;
 
-var w,h,canvas,map;
-const mappa = new Mappa('Leaflet');
+var w,h,canvas,map,mapDiv;
+// const mappa = new Mappa('Leaflet');
 
 
 var mode = 0; 
@@ -119,8 +119,11 @@ function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
   canvas = createCanvas(w,h);
-  map = mappa.tileMap(0,0,4); 
-  map.overlay(canvas);
+  
+  mapDiv = createDiv();
+  mapDiv.id("map");
+  // map = mappa.tileMap(0,0,4); 
+  // map.overlay(canvas);
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
@@ -258,45 +261,14 @@ function enterButtonEvent() {
     gamepin.hide();   
     background(245);    
     fullscreen();
-    // for(var i =0; i<Object.keys(jsonFile).length; i++)
-    // {
-    //   locations[i].show();
-    // }                                                          //then change to PIN entering mode
-    // gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
-    // document.getElementById('gamepin').value = '';                          //reset INPUT value to 0;
-    // document.getElementById('gamepin').type = 'tel';                        //reset INPUT value to 0;
+
     console.log("welcome " + name)                                          //** debug **
   }
 }
 }
 
 
-// function optionButtonEvent() 
-// {
-//   console.log(this.value());
-//   if(this.value() == jsonFile[beaconChosen].answer)
-//   {
-//     console.log("correct!");
-//     socket.emit('correct',beaconChosen);
-//     answered[beaconChosen] = true;
-//   }
-//   else
-//   {
-//     console.log("wrong!!");
-//     socket.emit('wrong',beaconChosen);
-//     answered[beaconChosen] = true;
-//   }
-//     background(245);                                                        //
-//     textAlign(CENTER,CENTER);                                               //
-//     textSize(32); 
-//     text("answered",w/2,h/2);
-//     question.hide();
-//     for(var i = 0; i<4; i++)
-//     {
-//         buttonOpt[i].hide();
-//     }
-  
-// }
+
 
 function scanBeacon()
 {
