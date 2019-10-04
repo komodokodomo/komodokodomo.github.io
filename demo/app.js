@@ -2,6 +2,8 @@
 let logo;
 
 var w,h,canvas,map;
+const mappa = new Mappa('Leaflet');
+
 
 var mode = 0; 
 
