@@ -1,8 +1,19 @@
 
 let logo;
 
-var w,h,canvas,map,mapDiv;
+var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
+
+const options = {
+  lat: 0,
+  lng: 0,
+  zoom: 4,
+  style: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+}
+
+// Create an instance of Leaflet
+const mappa = new Mappa('Leaflet');
+let myMap;
 
 
 var mode = 0; 
@@ -118,28 +129,10 @@ function preload() {
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
-  // canvas = createCanvas(w,h);
+  canvas = createCanvas(w,h).parent('canvasContainer');;
 
-  
-  mapDiv = createDiv();
-  // mapDiv.parent(canvas);
-  mapDiv.style("width","100%");
-  mapDiv.style("height","auto");
-  mapDiv.id("map");
-
-  canvas = createCanvas();
-  background(245,100);
-  canvas.parent(mapDiv);
-
-  text("HELLO",width/2,height/2)
-
-
-  map = L.map('map').setView([51.505, -0.09], 13);
-  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-  // map = mappa.tileMap(0,0,4); 
-  // map.overlay(canvas);
+  myMap = mappa.tileMap(options);
+  myMap.overlay(canvas);
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
