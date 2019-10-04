@@ -7,7 +7,7 @@ var w,h,canvas;
 const options = {
   lat: 1.3521,
   lng: 103.8198,
-  zoom: 12,
+  zoom: 11,
   style: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 }
 
