@@ -128,6 +128,7 @@ function setup(){
   mapDiv.id("map");
 
   canvas = createCanvas();
+  background(245,100);
   canvas.parent(mapDiv);
 
   text("HELLO",width/2,height/2)
