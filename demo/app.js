@@ -1,7 +1,7 @@
 
 let logo;
 
-var w,h;
+var w,h,canvas;
 
 var mode = 0; 
 
@@ -113,7 +113,7 @@ function preload() {
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
-  createCanvas(w,h);
+  canvas = createCanvas(w,h);
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
@@ -269,25 +269,6 @@ function enterButtonEvent() {
     console.log("welcome " + name)                                          //** debug **
   }
 }
-//   else if(mode ==1 ){
-//   if(INPUT == "123456"){                                                    //if players key in the right PIN
-//     // startCon();                                                             //enter game lobby
-//     mode = 2;                                                               //change to task screen
-//     button.hide();                                                          //hide away button
-//     gamepin.hide();                                                         //hide input button
-//     console.log("correct PIN");                                             // ** debug **
-//     background(245);                                                        //
-//     textAlign(CENTER,CENTER);                                               //
-//     textSize(32);     
-//     for(var i =0; i<Object.keys(jsonFile).length; i++)
-//     {
-//       locations[i].show();
-//     }
-//   }
-//   else{                                                                     //if player keys in a wrong PIN
-//     console.log("wrong PIN");
-//   }
-// }
 }
 
 
