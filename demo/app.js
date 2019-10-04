@@ -116,8 +116,8 @@ function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
   canvas = createCanvas(w,h);
-  map = mappa.tileMap(0,0,4); 
-  map.overlay(canvas);
+  // map = mappa.tileMap(0,0,4); 
+  // map.overlay(canvas);
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
