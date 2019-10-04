@@ -118,13 +118,18 @@ function preload() {
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
-  canvas = createCanvas(w,h);
+  // canvas = createCanvas(w,h);
+
   
   mapDiv = createDiv();
   // mapDiv.parent(canvas);
-  mapDiv.style("width","1000px");
-  mapDiv.style("height","1000px");
+  mapDiv.style("width","100%");
+  mapDiv.style("height","100%");
   mapDiv.id("map");
+
+  canvas = createCanvas();
+  canvas.parent(mapDiv);
+
 
   map = L.map('map').setView([51.505, -0.09], 13);
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
