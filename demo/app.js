@@ -242,13 +242,13 @@ function draw()
 {
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
-    background(245);                                                        //set background to light grey
+    // background(245);                                                        //set background to light grey
     imageMode(CENTER);                                                      //align image coordinates to CENTER
     image(logo,w/2,h/2 - 1.1*gamepin.size().height - refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
   }
   else
   { 
-    background(245);    
+    // background(245);    
     let region = scanBeacon();  
     if(region!==undefined){console.log(region);}                                                             //                                                                  //
     checkRegionChange();                                                    //
