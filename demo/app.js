@@ -121,7 +121,9 @@ function setup(){
   canvas = createCanvas(w,h);
   
   mapDiv = createDiv();
-  mapDiv.parent(canvas);
+  // mapDiv.parent(canvas);
+  mapDiv.style("width","1000px");
+  mapDiv.style("height","1000px");
   mapDiv.id("map");
 
   map = L.map('map').setView([51.505, -0.09], 13);
