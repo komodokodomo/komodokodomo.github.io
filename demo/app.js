@@ -11,7 +11,7 @@ const options = {
   zoom: 4,
   studio: true, // false to use non studio styles
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
-  style: 'mapbox://styles/mapbox/Light',
+  style: 'mapbox://styles/mapbox/light',
 };
 
 // Create an instance of Leaflet
