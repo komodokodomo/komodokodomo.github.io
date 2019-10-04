@@ -95,6 +95,9 @@ if ('SpeechRecognition' in window) {
       if (event.results[i].isFinal) {
         finalTranscript += transcript;
         console.log("FINAL: " +finalTranscript);
+        // formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277="+{{ROOMID}}+"&entry.611071440="+{{NICKNAME}}+"&entry.207705783="+{{TEXT}};
+        // http.open("POST",formUrl);
+        // http.send();
       } else {
         interimTranscript += transcript;
         console.log("INTERIM: " + interimTranscript);
