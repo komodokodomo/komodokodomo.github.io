@@ -44,7 +44,7 @@ var name,INPUT;
 var socket;
 
 var jsonFile;
-var question,questionText;
+// var question,questionText;
 var gamepin;
 var button;
 var buttonOpt = [];
@@ -169,23 +169,23 @@ function setup(){
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
 
-  question = createDiv("");
-  question.style('text-align', 'center');
-  question.style('margin', '0 auto');
-  question.style('background-color', 'darkgrey');
-  question.style('font-size', '1.2rem');
-  question.position(0,0);
-  question.size(w,h/6);
+  // question = createDiv("");
+  // question.style('text-align', 'center');
+  // question.style('margin', '0 auto');
+  // question.style('background-color', 'darkgrey');
+  // question.style('font-size', '1.2rem');
+  // question.position(0,0);
+  // question.size(w,h/6);
 
-  questionText = createDiv("")
-  questionText.parent(question);
-  questionText.id("question");
-  questionText.style("display","inline-block");
-  questionText.style("top","50%");
-  questionText.style("right","50%");
-  questionText.style("position","relative");
-  questionText.style("transform","translate(50%,-50%)");
-  question.hide();
+  // questionText = createDiv("")
+  // questionText.parent(question);
+  // questionText.id("question");
+  // questionText.style("display","inline-block");
+  // questionText.style("top","50%");
+  // questionText.style("right","50%");
+  // questionText.style("position","relative");
+  // questionText.style("transform","translate(50%,-50%)");
+  // question.hide();
 
   // for(var i = 0; i<4; i++)
   // {
@@ -420,7 +420,7 @@ function windowResized() {
     image(images[beaconChosen], w/2, 5*h/12, 5*h*w/images[beaconChosen].width/(12*images[beaconChosen].height), 5*h/12);
     }
   }
-  question.size(w,h/6);
+  // question.size(w,h/6);
 }
 
 
