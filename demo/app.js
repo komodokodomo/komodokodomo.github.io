@@ -257,6 +257,7 @@ function enterButtonEvent() {
     button.hide();                                                          //hide away button
     gamepin.hide();   
     background(245);    
+    fullscreen();
     // for(var i =0; i<Object.keys(jsonFile).length; i++)
     // {
     //   locations[i].show();
