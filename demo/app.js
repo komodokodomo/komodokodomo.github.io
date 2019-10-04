@@ -191,15 +191,15 @@ function setup(){
   questionText.style("transform","translate(50%,-50%)");
   question.hide();
 
-  for(var i = 0; i<4; i++)
-  {
-    buttonOpt[i] = createButton("SUBMIT",i.toString());
-    buttonOpt[i].id(i.toString());
-    buttonOpt[i].size(w/2,h/6);
-    buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-    buttonOpt[i].mousePressed(optionButtonEvent);
-    buttonOpt[i].hide();
-  }
+  // for(var i = 0; i<4; i++)
+  // {
+  //   buttonOpt[i] = createButton("SUBMIT",i.toString());
+  //   buttonOpt[i].id(i.toString());
+  //   buttonOpt[i].size(w/2,h/6);
+  //   buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
+  //   buttonOpt[i].mousePressed(optionButtonEvent);
+  //   buttonOpt[i].hide();
+  // }
   
   mic = new p5.AudioIn()
   mic.start();
@@ -237,6 +237,7 @@ function draw()
   }
   else
   { 
+    background(245);    
     let region = scanBeacon();  
     if(region!==undefined){console.log(region);}                                                             //                                                                  //
     checkRegionChange();                                                    //
@@ -270,32 +271,32 @@ function enterButtonEvent() {
 }
 
 
-function optionButtonEvent() 
-{
-  console.log(this.value());
-  if(this.value() == jsonFile[beaconChosen].answer)
-  {
-    console.log("correct!");
-    socket.emit('correct',beaconChosen);
-    answered[beaconChosen] = true;
-  }
-  else
-  {
-    console.log("wrong!!");
-    socket.emit('wrong',beaconChosen);
-    answered[beaconChosen] = true;
-  }
-    background(245);                                                        //
-    textAlign(CENTER,CENTER);                                               //
-    textSize(32); 
-    text("answered",w/2,h/2);
-    question.hide();
-    for(var i = 0; i<4; i++)
-    {
-        buttonOpt[i].hide();
-    }
+// function optionButtonEvent() 
+// {
+//   console.log(this.value());
+//   if(this.value() == jsonFile[beaconChosen].answer)
+//   {
+//     console.log("correct!");
+//     socket.emit('correct',beaconChosen);
+//     answered[beaconChosen] = true;
+//   }
+//   else
+//   {
+//     console.log("wrong!!");
+//     socket.emit('wrong',beaconChosen);
+//     answered[beaconChosen] = true;
+//   }
+//     background(245);                                                        //
+//     textAlign(CENTER,CENTER);                                               //
+//     textSize(32); 
+//     text("answered",w/2,h/2);
+//     question.hide();
+//     for(var i = 0; i<4; i++)
+//     {
+//         buttonOpt[i].hide();
+//     }
   
-}
+// }
 
 function scanBeacon()
 {
@@ -400,11 +401,11 @@ function windowResized() {
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
-  for(var i = 0; i<4; i++)
-  {
-    buttonOpt[i].size(w/2,h/6);
-    buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-  }
+  // for(var i = 0; i<4; i++)
+  // {
+  //   buttonOpt[i].size(w/2,h/6);
+  //   buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
+  // }
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
