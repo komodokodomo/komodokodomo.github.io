@@ -144,14 +144,10 @@ function setup(){
     locationsImage[i].style("width","100%");
     locationsImage[i].style("height","100%");
 
-    // locationsImage[i].style("border-radius","10%");
-    // locationsImage[i].style("padding-bottom","20px");
-    // locationsImage[i].style("filter","grayscale(100%)");
     locations[i].hide();
     locationsText[i].hide();
 
     peakDetect[i] = new p5.PeakDetect(beacon[i]-bandwidth, beacon[i]+bandwidth, 0.2,1);  
-    // images.show();
   }
 
   if(w > h){refDimensions = h;}
