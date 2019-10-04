@@ -5,9 +5,9 @@ var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
 
 const options = {
-  lat: 0,
-  lng: 0,
-  zoom: 4,
+  lat: 1.35,
+  lng: 103,
+  zoom: 6,
   style: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 }
 
