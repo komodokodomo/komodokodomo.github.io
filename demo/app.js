@@ -124,7 +124,7 @@ function setup(){
   mapDiv = createDiv();
   // mapDiv.parent(canvas);
   mapDiv.style("width","100%");
-  mapDiv.style("height","100%");
+  mapDiv.style("height","auto");
   mapDiv.id("map");
 
   canvas = createCanvas();
