@@ -104,7 +104,7 @@ if ('SpeechRecognition' in window) {
 //   // speech recognition API supported
 } else {
   console.log("dictation not supported");
-//   // speech recognition API not supported
+  alert("Please use Chrome or Firefox");
 }
 
 function preload() {
@@ -256,10 +256,11 @@ function enterButtonEvent() {
     mode = 2;   
     button.hide();                                                          //hide away button
     gamepin.hide();   
-    for(var i =0; i<Object.keys(jsonFile).length; i++)
-    {
-      locations[i].show();
-    }                                                          //then change to PIN entering mode
+    background(245);    
+    // for(var i =0; i<Object.keys(jsonFile).length; i++)
+    // {
+    //   locations[i].show();
+    // }                                                          //then change to PIN entering mode
     // gamepin.attribute('placeholder', 'PIN');                                //change the placeholder text within input from "NICKNAME" to "PIN"
     // document.getElementById('gamepin').value = '';                          //reset INPUT value to 0;
     // document.getElementById('gamepin').type = 'tel';                        //reset INPUT value to 0;
