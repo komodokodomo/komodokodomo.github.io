@@ -142,6 +142,12 @@ function setup(){
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
 
+  if(geoCheck() == true){
+		console.log("GPS available");
+	}else{
+		console.log("no GPS");
+	}
+
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
     images[i] = loadImage("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
