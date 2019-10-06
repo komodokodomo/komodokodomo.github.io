@@ -240,7 +240,7 @@ function draw()
   {                                                                         //home screen + ask for NICKNAME
     // background(245);                                                        //set background to light grey
     fill(0);
-    textMode(CENTER);
+    textAlign(CENTER);
     textSize(32);
     text("psst",w/2,h/2);
     // rect(0,9*h/10,w,h);
