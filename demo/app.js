@@ -271,7 +271,7 @@ function enterButtonEvent() {
     mode = 2;   
     button.hide();                                                          //hide away button
     gamepin.hide();   
-    background(245);    
+    // background(245);    
     fullscreen();
 
     console.log("welcome " + name)                                          //** debug **
