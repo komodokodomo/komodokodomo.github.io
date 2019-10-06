@@ -11,6 +11,7 @@ var options = {
   studio: true, // false to use non studio styles
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
+  zoomControl : false
 };
 
 // Create an instance of Leaflet
