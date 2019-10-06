@@ -126,16 +126,13 @@ if ('SpeechRecognition' in window) {
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
-  locationData =  getCurrentPosition();
-  // options.lat = locationData.latitude;
-  // options.lng = locationData.longitude;
- console.log(locationData.latitude);
- console.log(locationData.longitude);
   jsonFile = loadJSON(url);
 }
 
 function doThisOnLocation(position){
   print("lat: " + position.latitude);
+  options.lat=position.latitude;
+  options.lng=position.longitude;
   print("long: " + position.longitude);
 }
 
