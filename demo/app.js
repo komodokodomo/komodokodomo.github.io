@@ -134,10 +134,17 @@ function preload() {
   jsonFile = loadJSON(url);
 }
 
+function doThisOnLocation(position){
+  print("lat: " + position.latitude);
+  print("long: " + position.longitude);
+}
+
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
   canvas = createCanvas(w,h);
+
+  getCurrentPosition(doThisOnLocation);
 
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
