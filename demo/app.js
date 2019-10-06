@@ -8,7 +8,7 @@ var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaG
 var options = {
   lat: 1.3521,
   lng: 103.8198,
-  zoom: 11,
+  zoom: 12,
   studio: true, // false to use non studio styles
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
@@ -133,6 +133,8 @@ function doThisOnLocation(position){
   print("lat: " + position.latitude);
   options.lat=position.latitude;
   options.lng=position.longitude;
+  myMap = mappa.tileMap(options);
+
   print("long: " + position.longitude);
 }
 
@@ -143,7 +145,6 @@ function setup(){
 
   getCurrentPosition(doThisOnLocation);
 
-  myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
 
   if(geoCheck() == true){
