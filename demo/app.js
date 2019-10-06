@@ -239,7 +239,9 @@ function draw()
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
     // background(245);                                                        //set background to light grey
-    fill(255,20);
+    fill(0,20);
+    textMode(CENTER);
+    text("psst",w/2,h/2);
     // rect(0,9*h/10,w,h);
     // imageMode(CENTER);                                                      //align image coordinates to CENTER
   }
