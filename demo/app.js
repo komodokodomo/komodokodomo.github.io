@@ -136,6 +136,7 @@ function doThisOnLocation(position){
   console.log(position.accuracy);
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
+  // myMap.map.flyTo([-33.448890, -70.669265], 9);
 
 
   print("long: " + position.longitude);
@@ -337,6 +338,7 @@ function scanBeacon()
 
 function checkRegionChange()
 {
+  myMap.map.flyTo([-33.448890, -70.669265], 9);
   if(beaconChosen !== beaconPrevChosen)
   {
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());  // Update server that client has changed rooms
