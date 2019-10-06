@@ -7,7 +7,7 @@ var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaG
 var options = {
   lat: 1.3521,
   lng: 103.8198,
-  zoom: 13,
+  zoom: 14,
   studio: true, // false to use non studio styles
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
