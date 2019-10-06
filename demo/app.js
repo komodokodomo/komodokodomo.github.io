@@ -136,7 +136,7 @@ function doThisOnLocation(position){
   console.log(position.accuracy);
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
-  myMap.map.removeControl(map.zoomControl);
+  myMap.map.removeControl(myMap.map.zoomControl);
   // myMap.map.flyTo([-33.448890, -70.669265], 9);
 
 
