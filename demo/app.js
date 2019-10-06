@@ -376,7 +376,8 @@ function windowResized() {
   w = window.innerWidth; 
   h = window.innerHeight;
   canvas.size(w, h);
-  myMap.map.invalidateSize();
+  // myMap.map.invalidateSize();
+  window.setTimeout(function(){ map.invalidateSize()}, 400);
 
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
