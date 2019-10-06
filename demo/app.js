@@ -11,7 +11,7 @@ var options = {
   studio: true, // false to use non studio styles
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
-  zoomControl : false
+  // zoomControl : false
 };
 
 // Create an instance of Leaflet
@@ -136,6 +136,7 @@ function doThisOnLocation(position){
   console.log(position.accuracy);
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
+  myMap.map.removeControl(map.zoomControl);
   // myMap.map.flyTo([-33.448890, -70.669265], 9);
 
 
