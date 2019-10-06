@@ -149,8 +149,6 @@ function setup(){
   canvas.id("canvas");
 
   getCurrentPosition(doThisOnLocation);
-  var x = document.getElementsByClassName("leaflet-control-container");
-  x.style.display = "block";
 
 
   if(geoCheck() == true){
@@ -198,6 +196,7 @@ function setup(){
   // gamepin.parent("canvas");
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
+  gamepin.style('z-index',"2");
   gamepin.id("gamepin");
   gamepin.input(typeEvent);
   gamepin.size(refDimensions*3/5,refDimensions*3/20);
