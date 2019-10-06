@@ -150,7 +150,7 @@ function setup(){
 
   getCurrentPosition(doThisOnLocation);
   var x = document.getElementsByClassName("leaflet-control-container");
-  x.style.display = "none";
+  x.style.display = "block";
 
 
   if(geoCheck() == true){
