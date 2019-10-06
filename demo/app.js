@@ -8,7 +8,7 @@ var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaG
 var options = {
   lat: 1.3521,
   lng: 103.8198,
-  zoom: 12,
+  zoom: 13,
   studio: true, // false to use non studio styles
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
@@ -193,7 +193,7 @@ function setup(){
   logo = loadImage('../assets/logo.png');
 
   gamepin = createInput('');
-  gamepin.parent("canvas");
+  // gamepin.parent("canvas");
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
   gamepin.id("gamepin");
@@ -203,7 +203,7 @@ function setup(){
   gamepin.elt.focus();
 
   button = createButton("SUBMIT");
-  button.parent("canvas");
+  // button.parent("canvas");
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
@@ -241,9 +241,9 @@ function draw()
   {                                                                         //home screen + ask for NICKNAME
     // background(245);                                                        //set background to light grey
     fill(255,200);
-    rect(0,9*h/10,w,h);
-    imageMode(CENTER);                                                      //align image coordinates to CENTER
-    image(logo,w/2,h - refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
+    // rect(0,9*h/10,w,h);
+    // imageMode(CENTER);                                                      //align image coordinates to CENTER
+    // image(logo,w/2,h - refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
   }
   else
   { 
