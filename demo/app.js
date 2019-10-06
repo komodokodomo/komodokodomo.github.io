@@ -206,6 +206,7 @@ function setup(){
   button = createButton("SUBMIT");
   // button.parent("canvas");
   button.size(gamepin.width,gamepin.height);
+  button.style('z-index',"2");
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
 
