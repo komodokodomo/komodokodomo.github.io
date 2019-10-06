@@ -376,7 +376,7 @@ function windowResized() {
   w = window.innerWidth; 
   h = window.innerHeight;
   canvas.size(w, h);
-  myMap.overlay(canvas);
+  myMap.map.invalidateSize();
 
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
