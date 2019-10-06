@@ -145,6 +145,7 @@ function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
   canvas = createCanvas(w,h);
+  canvas.id("canvas");
 
   getCurrentPosition(doThisOnLocation);
 
@@ -192,7 +193,7 @@ function setup(){
   logo = loadImage('../assets/logo.png');
 
   gamepin = createInput('');
-  gamepin.parent(canvas);
+  gamepin.parent("canvas");
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
   gamepin.id("gamepin");
@@ -202,7 +203,7 @@ function setup(){
   gamepin.elt.focus();
 
   button = createButton("SUBMIT");
-  button.parent(canvas);
+  button.parent("canvas");
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
