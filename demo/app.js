@@ -136,8 +136,6 @@ function doThisOnLocation(position){
   console.log(position.accuracy);
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
-  var x = document.getElementsByClassName("leaflet-top leaflet-left");
-  x.style.display = "none";
   // myMap.map.flyTo([-33.448890, -70.669265], 9);
 
 
@@ -151,6 +149,8 @@ function setup(){
   canvas.id("canvas");
 
   getCurrentPosition(doThisOnLocation);
+  var x = document.getElementsByClassName("leaflet-control-container");
+  x.style.display = "none";
 
 
   if(geoCheck() == true){
