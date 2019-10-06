@@ -239,7 +239,7 @@ function draw()
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
     // background(245);                                                        //set background to light grey
-    fill(0,20);
+    fill(0);
     textMode(CENTER);
     textSize(32);
     text("psst",w/2,h/2);
@@ -376,8 +376,6 @@ function windowResized() {
   w = window.innerWidth; 
   h = window.innerHeight;
   canvas.size(w, h);
-  // myMap.map.invalidateSize();
-  window.setTimeout(function(){ myMap.map.invalidateSize()}, 400);
 
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
