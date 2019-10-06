@@ -1,5 +1,4 @@
 
-let logo;
 var locationData;
 var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
@@ -191,7 +190,6 @@ function setup(){
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
   
-  logo = loadImage('../assets/logo.png');
 
   gamepin = createInput('');
   // gamepin.parent("canvas");
@@ -241,10 +239,9 @@ function draw()
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
     // background(245);                                                        //set background to light grey
-    fill(255,200);
+    fill(255,20);
     // rect(0,9*h/10,w,h);
     // imageMode(CENTER);                                                      //align image coordinates to CENTER
-    // image(logo,w/2,h - refDimensions*44/(100*logo.width)*logo.height,refDimensions*44/100,refDimensions*44/(100*logo.width)*logo.height);         //display loaded image
   }
   else
   { 
