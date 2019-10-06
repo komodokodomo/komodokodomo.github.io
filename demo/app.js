@@ -133,6 +133,7 @@ function doThisOnLocation(position){
   print("lat: " + position.latitude);
   options.lat=position.latitude;
   options.lng=position.longitude;
+  console.log(position.accuracy);
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
 
