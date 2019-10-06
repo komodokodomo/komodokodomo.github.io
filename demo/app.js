@@ -192,6 +192,7 @@ function setup(){
   logo = loadImage('../assets/logo.png');
 
   gamepin = createInput('');
+  gamepin.parent(canvas);
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
   gamepin.id("gamepin");
@@ -201,37 +202,11 @@ function setup(){
   gamepin.elt.focus();
 
   button = createButton("SUBMIT");
+  button.parent(canvas);
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
 
-  // question = createDiv("");
-  // question.style('text-align', 'center');
-  // question.style('margin', '0 auto');
-  // question.style('background-color', 'darkgrey');
-  // question.style('font-size', '1.2rem');
-  // question.position(0,0);
-  // question.size(w,h/6);
-
-  // questionText = createDiv("")
-  // questionText.parent(question);
-  // questionText.id("question");
-  // questionText.style("display","inline-block");
-  // questionText.style("top","50%");
-  // questionText.style("right","50%");
-  // questionText.style("position","relative");
-  // questionText.style("transform","translate(50%,-50%)");
-  // question.hide();
-
-  // for(var i = 0; i<4; i++)
-  // {
-  //   buttonOpt[i] = createButton("SUBMIT",i.toString());
-  //   buttonOpt[i].id(i.toString());
-  //   buttonOpt[i].size(w/2,h/6);
-  //   buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-  //   buttonOpt[i].mousePressed(optionButtonEvent);
-  //   buttonOpt[i].hide();
-  // }
   
   mic = new p5.AudioIn()
   mic.start();
