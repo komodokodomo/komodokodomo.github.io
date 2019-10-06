@@ -338,7 +338,7 @@ function scanBeacon()
 
 function checkRegionChange()
 {
-  myMap.map.flyTo([-33.448890, -70.669265], 9);
+  
   if(beaconChosen !== beaconPrevChosen)
   {
     socket.emit('change',beaconChosen.toString()+","+beaconPrevChosen.toString());  // Update server that client has changed rooms
@@ -371,10 +371,11 @@ function startCon()
 
 
 function windowResized() {
+  myMap.map.flyTo([-33.448890, -70.669265], 9);
   console.log("window innerDimension change detected");  
   w = window.innerWidth; 
   h = window.innerHeight;
-  resizeCanvas(w, h);
+  canvas.resizeCanvas(w, h);
 
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
