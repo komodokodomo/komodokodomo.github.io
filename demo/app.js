@@ -371,11 +371,12 @@ function startCon()
 
 
 function windowResized() {
-  myMap.map.flyTo([-33.448890, -70.669265], 9);
+  // myMap.map.flyTo([-33.448890, -70.669265], 9);
   console.log("window innerDimension change detected");  
   w = window.innerWidth; 
   h = window.innerHeight;
   canvas.size(w, h);
+  myMap.overlay(canvas);
 
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
