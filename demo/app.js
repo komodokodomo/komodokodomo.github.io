@@ -375,7 +375,7 @@ function windowResized() {
   console.log("window innerDimension change detected");  
   w = window.innerWidth; 
   h = window.innerHeight;
-  canvas.resizeCanvas(w, h);
+  canvas.size(w, h);
 
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
