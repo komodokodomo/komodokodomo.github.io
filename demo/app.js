@@ -134,6 +134,8 @@ function doThisOnLocation(position){
   options.lat=position.latitude;
   options.lng=position.longitude;
   myMap = mappa.tileMap(options);
+  myMap.overlay(canvas);
+
 
   print("long: " + position.longitude);
 }
@@ -145,7 +147,6 @@ function setup(){
 
   getCurrentPosition(doThisOnLocation);
 
-  myMap.overlay(canvas);
 
   if(geoCheck() == true){
 		console.log("GPS available");
