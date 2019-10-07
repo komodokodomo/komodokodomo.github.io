@@ -187,31 +187,31 @@ function setup(){
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
-    images[i] = loadImage("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
+    // images[i] = loadImage("https://cors-anywhere.herokuapp.com/"+jsonFile[i].link);
 
-    locations[i] = createDiv();
-    locations[i].size(w,w*9/16);
-    locations[i].position(0,i*w*9*1.05/16);
+    // locations[i] = createDiv();
+    // locations[i].size(w,w*9/16);
+    // locations[i].position(0,i*w*9*1.05/16);
   
-    locationsText[i] = createDiv("Answered");
-    locationsText[i].style("display","inline-block");
-    locationsText[i].style("top","50%");
-    locationsText[i].style("right","50%");
-    locationsText[i].style("position","relative");
-    locationsText[i].style("transform","translate(50%,-50%)");
-    locationsText[i].style("font-size","2rem");
-    locationsText[i].parent(locations[i]);
+    // locationsText[i] = createDiv("Answered");
+    // locationsText[i].style("display","inline-block");
+    // locationsText[i].style("top","50%");
+    // locationsText[i].style("right","50%");
+    // locationsText[i].style("position","relative");
+    // locationsText[i].style("transform","translate(50%,-50%)");
+    // locationsText[i].style("font-size","2rem");
+    // locationsText[i].parent(locations[i]);
     
-    locationsImage[i] = createImg(jsonFile[i].link);
-    locationsImage[i].parent(locations[i]);
-    locationsImage[i].style("object-fit","cover");
-    locationsImage[i].style("display","inline-block");
-    locationsImage[i].style("position","relative");
-    locationsImage[i].style("width","100%");
-    locationsImage[i].style("height","100%");
+    // locationsImage[i] = createImg(jsonFile[i].link);
+    // locationsImage[i].parent(locations[i]);
+    // locationsImage[i].style("object-fit","cover");
+    // locationsImage[i].style("display","inline-block");
+    // locationsImage[i].style("position","relative");
+    // locationsImage[i].style("width","100%");
+    // locationsImage[i].style("height","100%");
 
-    locations[i].hide();
-    locationsText[i].hide();
+    // locations[i].hide();
+    // locationsText[i].hide();
 
     peakDetect[i] = new p5.PeakDetect(beacon[i]-bandwidth, beacon[i]+bandwidth, 0.2,1);  
   }
