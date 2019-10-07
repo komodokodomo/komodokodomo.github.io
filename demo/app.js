@@ -149,12 +149,11 @@ function doThisOnLocation(position){
   .addTo(myMap.map);
 
   setInterval(function(){ listening+=".";speechBubble.setContent(listening); if(listening == "....."){listening = ""} }, 500);
+  watchPosition(positionChanged);
   print("long: " + position.longitude);
 }
 
 function positionChanged(position){
-  // print("lat: " + position.latitude);
-  // print("long: " + position.longitude);
   myMap.map.flyTo([position.latitude, position.longitude], 16);
 }
 
@@ -168,7 +167,7 @@ function setup(){
   myMap.overlay(canvas);
 
   
-  watchPosition(positionChanged);
+
 
   if(geoCheck() == true){
 		console.log("GPS available");
