@@ -1,7 +1,7 @@
 
 var locationData,lat,lng;
 var w,h,canvas;
-// const mappa = new Mappa('Leaflet');
+
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
 var listening = "";
 var talking = false;
@@ -115,8 +115,10 @@ if ('SpeechRecognition' in window) {
       let transcript = event.results[i][0].transcript;
       if (event.results[i].isFinal) {
         finalTranscript += transcript;
+        if(!spoken){
         speechBubble.setContent(finalTranscript);
         spoken = true;
+        }
         console.log("FINAL: " +finalTranscript);
         talking = false;
         // formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277="+{{ROOMID}}+"&entry.611071440="+{{NICKNAME}}+"&entry.207705783="+{{TEXT}};
@@ -124,7 +126,7 @@ if ('SpeechRecognition' in window) {
         // http.send();
       } else {
         interimTranscript += transcript;
-        speechBubble.setContent(interimTranscript + listening);
+        if(!spoken){speechBubble.setContent(interimTranscript + listening);}
         console.log("INTERIM: " + interimTranscript);
       }
     }
