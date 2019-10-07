@@ -3,6 +3,7 @@ var locationData;
 var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
+var listening = "";
 
 var speechBubble;
 
@@ -119,7 +120,7 @@ if ('SpeechRecognition' in window) {
         // http.send();
       } else {
         interimTranscript += transcript;
-        speechBubble.setContent(interimTranscript);
+        speechBubble.setContent(interimTranscript + listening);
         console.log("INTERIM: " + interimTranscript);
       }
     }
@@ -140,10 +141,11 @@ function doThisOnLocation(position){
   // options.lat=position.latitude;
   // options.lng=position.longitude;
   // console.log(position.accuracy);
+  // let mpp = (2*Math.PI*L.CRS.EPSG3857.R) / L.CRS.EPSG3857.scale(map.getZoom());
   myMap.map.flyTo([position.latitude, position.longitude], 16);
   speechBubble = L.popup()
   .setLatLng([position.latitude, position.longitude])
-  .setContent("Say something ...")
+  .setContent("")
   .addTo(myMap.map);
 
 
@@ -165,6 +167,7 @@ function setup(){
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
 
+  setInterval(function(){ listening+=".";speechBubble.setContent(listening); if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
 
   if(geoCheck() == true){
