@@ -264,6 +264,7 @@ function setup(){
     lastPingPeakCounter[i] = 0;
     lastPingTtlTimer[i] = 0;
     lastPingEnergy[i] = 0;
+    speechBubble[i] = "";
   }
 
 }
