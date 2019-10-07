@@ -4,6 +4,7 @@ var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
 var listening = "";
+var talking = false;
 
 var speechBubble = [];
 var speechBubbleCounter  = 0;
