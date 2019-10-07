@@ -135,6 +135,10 @@ function doThisOnLocation(position){
   // options.lng=position.longitude;
   // console.log(position.accuracy);
   myMap.map.flyTo([position.latitude, position.longitude], 16);
+  L.popup({ elevation: 260.0 })
+  .setLatLng([position.latitude, position.longitude])
+  .setContent("Transamerica Pyramid")
+  .addTo(myMap.map);
 
 
   print("long: " + position.longitude);
