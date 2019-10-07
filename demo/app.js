@@ -6,7 +6,8 @@ var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaG
 var listening = "";
 var talking = false;
 
-var speechBubble;
+var speechBubble = [];
+var speechBubbleCounter  = 0;
 
 var options = {
   lat: 1.3521,
@@ -115,15 +116,20 @@ if ('SpeechRecognition' in window) {
       let transcript = event.results[i][0].transcript;
       if (event.results[i].isFinal) {
         finalTranscript += transcript;
-        speechBubble.setContent(finalTranscript);
+        speechBubble[speechBubbleCounter].setContent(finalTranscript);
         console.log("FINAL: " +finalTranscript);
         talking = false;
+        speechBubbleCounter++;
+        speechBubble[speechBubbleCounter] = L.popup()
+        .setLatLng([position.latitude, position.longitude])
+        .setContent("")
+        .addTo(myMap.map);
         // formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277="+{{ROOMID}}+"&entry.611071440="+{{NICKNAME}}+"&entry.207705783="+{{TEXT}};
         // http.open("POST",formUrl);
         // http.send();
       } else {
         interimTranscript += transcript;
-        speechBubble.setContent(interimTranscript + listening);
+        speechBubble[speechBubbleCounter].setContent(interimTranscript + listening);
         console.log("INTERIM: " + interimTranscript);
       }
     }
@@ -146,12 +152,12 @@ function doThisOnLocation(position){
   // console.log(position.accuracy);
   // let mpp = (2*Math.PI*L.CRS.EPSG3857.R) / L.CRS.EPSG3857.scale(map.getZoom());
   myMap.map.flyTo([position.latitude, position.longitude], 16);
-  speechBubble = L.popup()
+  speechBubble[speechBubbleCounter] = L.popup()
   .setLatLng([position.latitude, position.longitude])
   .setContent("")
   .addTo(myMap.map);
 
-  setInterval(function(){ listening+=".";if(!talking){speechBubble.setContent("waiting for your secrets" + listening);} if(listening == "....."){listening = ""} }, 500);
+  setInterval(function(){ listening+=".";if(!talking){speechBubble[speechBubbleCounter].setContent("waiting for your secrets" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
   print("long: " + position.longitude);
 }
