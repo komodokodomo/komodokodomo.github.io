@@ -148,7 +148,7 @@ function doThisOnLocation(position){
   .setContent("")
   .addTo(myMap.map);
 
-
+  setInterval(function(){ listening+=".";speechBubble.setContent(listening); if(listening == "....."){listening = ""} }, 500);
   print("long: " + position.longitude);
 }
 
@@ -167,7 +167,7 @@ function setup(){
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
 
-  setInterval(function(){ listening+=".";speechBubble.setContent(listening); if(listening == "....."){listening = ""} }, 500);
+  
   watchPosition(positionChanged);
 
   if(geoCheck() == true){
