@@ -4,6 +4,8 @@ var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
 
+var speechBubble;
+
 var options = {
   lat: 1.3521,
   lng: 103.8198,
@@ -108,12 +110,14 @@ if ('SpeechRecognition' in window) {
       let transcript = event.results[i][0].transcript;
       if (event.results[i].isFinal) {
         finalTranscript += transcript;
+        speechBubble.setContent(finalTranscript);
         console.log("FINAL: " +finalTranscript);
         // formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277="+{{ROOMID}}+"&entry.611071440="+{{NICKNAME}}+"&entry.207705783="+{{TEXT}};
         // http.open("POST",formUrl);
         // http.send();
       } else {
         interimTranscript += transcript;
+        speechBubble.setContent(interimTranscript);
         console.log("INTERIM: " + interimTranscript);
       }
     }
@@ -135,9 +139,9 @@ function doThisOnLocation(position){
   // options.lng=position.longitude;
   // console.log(position.accuracy);
   myMap.map.flyTo([position.latitude, position.longitude], 16);
-  L.popup({ elevation: 260.0 })
+  speechBubble = L.popup()
   .setLatLng([position.latitude, position.longitude])
-  .setContent("Transamerica Pyramid")
+  .setContent("Say something ...")
   .addTo(myMap.map);
 
 
@@ -246,9 +250,9 @@ function draw()
   {                                                                         //home screen + ask for NICKNAME
     // background(245);                                                        //set background to light grey
     fill(0);
-    textAlign(CENTER);
-    textSize(32);
-    text("psst",w/2,h/2);
+    // textAlign(CENTER);
+    textSize(24);
+    text("psst",50,h-100);
     // rect(0,9*h/10,w,h);
     // imageMode(CENTER);                                                      //align image coordinates to CENTER
   }
