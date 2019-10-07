@@ -104,7 +104,6 @@ if ('SpeechRecognition' in window) {
   const recognition = new window.SpeechRecognition();
   console.log("dictation supported");
   recognition.interimResults = true;
-  // recognition.maxAlternatives = 10;
   recognition.continuous = true;
   recognition.start();
 
@@ -118,17 +117,12 @@ if ('SpeechRecognition' in window) {
         speechBubble[speechBubbleCounter].setContent(finalTranscript);
         console.log("FINAL: " +finalTranscript);
         talking = false;
-        speechBubbleCounter++;
-        speechBubble[speechBubbleCounter] = L.popup()
-        .setLatLng([position.latitude, position.longitude])
-        .setContent("")
-        .addTo(myMap.map);
         // formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277="+{{ROOMID}}+"&entry.611071440="+{{NICKNAME}}+"&entry.207705783="+{{TEXT}};
         // http.open("POST",formUrl);
         // http.send();
       } else {
         interimTranscript += transcript;
-        speechBubble[speechBubbleCounter].setContent(interimTranscript + listening);
+        speechBubble.setContent(interimTranscript + listening);
         console.log("INTERIM: " + interimTranscript);
       }
     }
@@ -153,12 +147,12 @@ function doThisOnLocation(position){
   lat = position.latitude;
   lng = position.longitude;
   myMap.map.flyTo([position.latitude, position.longitude], 16);
-  speechBubble[speechBubbleCounter] = L.popup()
+  speechBubble = L.popup()
   .setLatLng([lat, lng])
   .setContent("")
   .addTo(myMap.map);
 
-  setInterval(function(){ listening+=".";if(!talking){speechBubble[speechBubbleCounter].setContent("waiting for your secrets" + listening);} if(listening == "....."){listening = ""} }, 500);
+  setInterval(function(){ listening+=".";if(!talking){speechBubble.setContent("waiting for your secrets" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
   print("long: " + position.longitude);
 }
