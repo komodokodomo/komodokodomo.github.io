@@ -150,6 +150,12 @@ function doThisOnLocation(position){
   print("long: " + position.longitude);
 }
 
+function positionChanged(position){
+  // print("lat: " + position.latitude);
+  // print("long: " + position.longitude);
+  myMap.map.flyTo([position.latitude, position.longitude], 16);
+}
+
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
@@ -159,6 +165,7 @@ function setup(){
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
 
+  watchPosition(positionChanged);
 
   if(geoCheck() == true){
 		console.log("GPS available");
@@ -250,16 +257,19 @@ function draw()
 {
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
-    // background(245);                                                        //set background to light grey
+    // background(245);  
+    clear();                                                      //set background to light grey
     fill(0);
     // textAlign(CENTER);
     textSize(24);
-    text("psst",30,h-30);
+    text("psst",10,h-10);
     // rect(0,9*h/10,w,h);
     // imageMode(CENTER);                                                      //align image coordinates to CENTER
   }
   else
   { 
+    clear();
+    text("psst",10,h-10);
     // background(245);    
     let region = scanBeacon();  
     if(region!==undefined){console.log(region);}                                                             //                                                                  //
