@@ -5,6 +5,7 @@ var w,h,canvas;
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
 var listening = "";
 var talking = false;
+var spoken = false;
 
 var speechBubble = [];
 var speechBubbleCounter  = 0;
@@ -114,7 +115,8 @@ if ('SpeechRecognition' in window) {
       let transcript = event.results[i][0].transcript;
       if (event.results[i].isFinal) {
         finalTranscript += transcript;
-        speechBubble[speechBubbleCounter].setContent(finalTranscript);
+        speechBubble.setContent(finalTranscript);
+        spoken = true;
         console.log("FINAL: " +finalTranscript);
         talking = false;
         // formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277="+{{ROOMID}}+"&entry.611071440="+{{NICKNAME}}+"&entry.207705783="+{{TEXT}};
@@ -152,7 +154,7 @@ function doThisOnLocation(position){
   .setContent("")
   .addTo(myMap.map);
 
-  setInterval(function(){ listening+=".";if(!talking){speechBubble.setContent("waiting for your secrets" + listening);} if(listening == "....."){listening = ""} }, 500);
+  setInterval(function(){ listening+=".";if(!talking && !spoken){speechBubble.setContent("waiting for your secrets" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
   print("long: " + position.longitude);
 }
