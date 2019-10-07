@@ -154,7 +154,7 @@ function doThisOnLocation(position){
   .setContent("")
   .addTo(myMap.map);
 
-  setInterval(function(){ listening+=".";if(!talking && !spoken){speechBubble.setContent("waiting for your secrets" + listening);} if(listening == "....."){listening = ""} }, 500);
+  setInterval(function(){ listening+=".";if(!talking && !spoken){speechBubble.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
   print("long: " + position.longitude);
 }
