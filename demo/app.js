@@ -254,7 +254,7 @@ function draw()
     fill(0);
     // textAlign(CENTER);
     textSize(24);
-    text("psst",50,h-100);
+    text("psst",30,h-30);
     // rect(0,9*h/10,w,h);
     // imageMode(CENTER);                                                      //align image coordinates to CENTER
   }
