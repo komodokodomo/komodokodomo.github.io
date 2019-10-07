@@ -7,7 +7,7 @@ var listening = "";
 var talking = false;
 var spoken = false;
 
-var speechBubble = [];
+var speechBubble;
 var speechBubbleCounter  = 0;
 
 var options = {
