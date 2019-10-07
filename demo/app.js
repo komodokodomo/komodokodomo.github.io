@@ -4,7 +4,6 @@ var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
 var listening = "";
-var talking = false;
 
 var speechBubble = [];
 var speechBubbleCounter  = 0;
@@ -111,19 +110,21 @@ if ('SpeechRecognition' in window) {
   recognition.onresult = (event) => {
     let interimTranscript = '';
     let finalTranscript = "";
-    talking = true;
     for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
       let transcript = event.results[i][0].transcript;
       if (event.results[i].isFinal) {
         finalTranscript += transcript;
         speechBubble[speechBubbleCounter].setContent(finalTranscript);
         console.log("FINAL: " +finalTranscript);
+<<<<<<< HEAD
         talking = false;
         speechBubbleCounter++;
         speechBubble[speechBubbleCounter] = L.popup()
         .setLatLng([position.latitude, position.longitude])
         .setContent("")
         .addTo(myMap.map);
+=======
+>>>>>>> parent of bc9d487... Update app.js
         // formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277="+{{ROOMID}}+"&entry.611071440="+{{NICKNAME}}+"&entry.207705783="+{{TEXT}};
         // http.open("POST",formUrl);
         // http.send();
@@ -159,7 +160,11 @@ function doThisOnLocation(position){
   .setContent("")
   .addTo(myMap.map);
 
+<<<<<<< HEAD
   setInterval(function(){ listening+=".";if(!talking){speechBubble[speechBubbleCounter].setContent("waiting for your secrets" + listening);} if(listening == "....."){listening = ""} }, 500);
+=======
+  setInterval(function(){ listening+=".";speechBubble.setContent(listening); if(listening == "....."){listening = ""} }, 500);
+>>>>>>> parent of bc9d487... Update app.js
   watchPosition(positionChanged);
   print("long: " + position.longitude);
 }
