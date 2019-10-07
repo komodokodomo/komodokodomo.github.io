@@ -213,6 +213,7 @@ function setup(){
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
   gamepin.style('z-index',"2");
+  gamepin.style("transition", "all 2s linear");
   gamepin.id("gamepin");
   gamepin.input(typeEvent);
   gamepin.size(refDimensions*3/5,refDimensions*3/20);
