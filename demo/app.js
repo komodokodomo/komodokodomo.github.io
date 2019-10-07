@@ -116,15 +116,12 @@ if ('SpeechRecognition' in window) {
         finalTranscript += transcript;
         speechBubble[speechBubbleCounter].setContent(finalTranscript);
         console.log("FINAL: " +finalTranscript);
-<<<<<<< HEAD
         talking = false;
         speechBubbleCounter++;
         speechBubble[speechBubbleCounter] = L.popup()
         .setLatLng([position.latitude, position.longitude])
         .setContent("")
         .addTo(myMap.map);
-=======
->>>>>>> parent of bc9d487... Update app.js
         // formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277="+{{ROOMID}}+"&entry.611071440="+{{NICKNAME}}+"&entry.207705783="+{{TEXT}};
         // http.open("POST",formUrl);
         // http.send();
@@ -160,11 +157,7 @@ function doThisOnLocation(position){
   .setContent("")
   .addTo(myMap.map);
 
-<<<<<<< HEAD
   setInterval(function(){ listening+=".";if(!talking){speechBubble[speechBubbleCounter].setContent("waiting for your secrets" + listening);} if(listening == "....."){listening = ""} }, 500);
-=======
-  setInterval(function(){ listening+=".";speechBubble.setContent(listening); if(listening == "....."){listening = ""} }, 500);
->>>>>>> parent of bc9d487... Update app.js
   watchPosition(positionChanged);
   print("long: " + position.longitude);
 }
@@ -269,6 +262,7 @@ function setup(){
     lastPingPeakCounter[i] = 0;
     lastPingTtlTimer[i] = 0;
     lastPingEnergy[i] = 0;
+    speechBubble[i] = "";
   }
 
 }
