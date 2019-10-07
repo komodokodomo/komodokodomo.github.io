@@ -7,7 +7,7 @@ var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaG
 var options = {
   lat: 1.3521,
   lng: 103.8198,
-  zoom: 14,
+  zoom: 12,
   studio: true, // false to use non studio styles
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
@@ -130,13 +130,11 @@ function preload() {
 }
 
 function doThisOnLocation(position){
-  print("lat: " + position.latitude);
-  options.lat=position.latitude;
-  options.lng=position.longitude;
-  console.log(position.accuracy);
-  myMap = mappa.tileMap(options);
-  myMap.overlay(canvas);
-  // myMap.map.flyTo([-33.448890, -70.669265], 9);
+  // print("lat: " + position.latitude);
+  // options.lat=position.latitude;
+  // options.lng=position.longitude;
+  // console.log(position.accuracy);
+  myMap.map.flyTo([position.latitude, position.longitude], 16);
 
 
   print("long: " + position.longitude);
@@ -148,7 +146,8 @@ function setup(){
   canvas = createCanvas(w,h);
   canvas.id("canvas");
 
-  getCurrentPosition(doThisOnLocation);
+  myMap = mappa.tileMap(options);
+  myMap.overlay(canvas);
 
 
   if(geoCheck() == true){
@@ -273,6 +272,7 @@ function enterButtonEvent() {
     gamepin.hide();   
     // background(245);    
     fullscreen();
+    getCurrentPosition(doThisOnLocation);
 
     console.log("welcome " + name)                                          //** debug **
   }
