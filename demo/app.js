@@ -1,5 +1,5 @@
 
-var locationData;
+var locationData,lat,lng;
 var w,h,canvas;
 // const mappa = new Mappa('Leaflet');
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
@@ -151,9 +151,11 @@ function doThisOnLocation(position){
   // options.lng=position.longitude;
   // console.log(position.accuracy);
   // let mpp = (2*Math.PI*L.CRS.EPSG3857.R) / L.CRS.EPSG3857.scale(map.getZoom());
+  lat = position.latitude;
+  lng = position.longitude;
   myMap.map.flyTo([position.latitude, position.longitude], 16);
   speechBubble[speechBubbleCounter] = L.popup()
-  .setLatLng([position.latitude, position.longitude])
+  .setLatLng([lat, lng])
   .setContent("")
   .addTo(myMap.map);
 
@@ -164,6 +166,8 @@ function doThisOnLocation(position){
 
 function positionChanged(position){
   myMap.map.flyTo([position.latitude, position.longitude], 16);
+  lat = position.latitude;
+  lng = position.longitude;
 }
 
 function setup(){
