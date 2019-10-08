@@ -1,5 +1,5 @@
 
-var locationData,lat,lng;
+var locationData,lat,lng,acc;
 var w,h,canvas;
 
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
@@ -148,6 +148,7 @@ function doThisOnLocation(position){
   // options.lng=position.longitude;
   // console.log(position.accuracy);
   // let mpp = (2*Math.PI*L.CRS.EPSG3857.R) / L.CRS.EPSG3857.scale(map.getZoom());
+  acc = position.accuracy;
   lat = position.latitude;
   lng = position.longitude;
   myMap.map.flyTo([position.latitude, position.longitude], 16);
@@ -270,20 +271,15 @@ function draw()
 {
   if(mode==0)
   {                                                                         //home screen + ask for NICKNAME
-    // background(245);  
     clear();                                                      //set background to light grey
     fill(0);
-    // textAlign(CENTER);
     textSize(24);
     text("psst",10,h-10);
-    // rect(0,9*h/10,w,h);
-    // imageMode(CENTER);                                                      //align image coordinates to CENTER
   }
   else
   { 
     clear();
     text("psst",10,h-10);
-    // background(245);    
     let region = scanBeacon();  
     if(region!==undefined){console.log(region);}                                                             //                                                                  //
     checkRegionChange();                                                    //
