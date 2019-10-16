@@ -1,6 +1,6 @@
 
 let current;
-let devices = "";
+let cameras = "";
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -34,8 +34,8 @@ function setup() {
   var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
     devices.forEach(function(device) {
       if(device.kind == "videoinput"){
-        devices += device.label; 
-        console.log(devices);
+        cameras += device.label; 
+        console.log(cameras);
       console.log(device.kind + ": " + device.label +
                   " id = " + device.deviceId);
                 }
@@ -44,7 +44,7 @@ function setup() {
   .catch(function(err) {
     console.log(err.name + ": " + err.message);
   });
-  
+
   w = window.innerWidth;
   h = window.innerHeight;
   createCanvas(w, h);
@@ -70,7 +70,7 @@ function draw() {
 //  checkSwipe();
  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
  text(frameRate(),30,30);
- text(devices,30,50);
+ text(cameras,30,50);
 }
 
 
