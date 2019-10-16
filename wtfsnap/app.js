@@ -5,7 +5,10 @@ var prevX = 0;
 var swipeDisplacement = 0; 
 var swipeTimer = 0;
 
-
+var constraints = {
+  video: true,
+  audio: false
+};
 
 var itemsText = [];
 
@@ -52,15 +55,7 @@ function setup() {
 
 }
 
-var constraints = {
-    video: {
-      facingMode: { exact: "environment" },
-      width: videoWidth,
-      height: videoHeight,
-      // deviceId: d5f0ac88e4e42b8c4269af9754813647c84b0c6a4d6e266a41ad50d1a1c46c7c
-    },
-    audio: false
-  };
+
 
 function draw() {
  background(255);
