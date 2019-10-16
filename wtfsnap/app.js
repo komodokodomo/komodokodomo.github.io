@@ -24,6 +24,7 @@ var videoHeight = 720;
 var w,h;
 
 var sample = false;
+var sampleTimer;
 var mode = 0;
 
 function setup() {
@@ -66,11 +67,15 @@ function draw() {
 
 
 function detect() {
+if(millis() - sampleTimer > 200){
   yolo.detect(function(err, results) {
     objects = results;
+    sampleTimer = millis();
     if(objects.length!==0){console.log(objects);}
     detect();
   });
+}
+else{detect();}
 }
 
 function windowResized(){
