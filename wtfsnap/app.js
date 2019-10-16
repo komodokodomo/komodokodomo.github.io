@@ -27,19 +27,24 @@ var w,h;
 
 var mode = 0;
 
-var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
-  devices.forEach(function(device) {
-    if(device.kind == "videoinput"){
-      devices += device.label; 
-    console.log(device.kind + ": " + device.label +
-                " id = " + device.deviceId);
-              }
-  });
-})
-.catch(function(err) {
-  console.log(err.name + ": " + err.message);
-});
 
+function preload(){
+
+  var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
+    devices.forEach(function(device) {
+      if(device.kind == "videoinput"){
+        devices += device.label; 
+      console.log(device.kind + ": " + device.label +
+                  " id = " + device.deviceId);
+                }
+    });
+  })
+  .catch(function(err) {
+    console.log(err.name + ": " + err.message);
+  });
+
+
+}
 function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
