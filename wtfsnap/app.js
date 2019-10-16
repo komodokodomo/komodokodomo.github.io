@@ -34,7 +34,8 @@ function setup() {
   var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
     devices.forEach(function(device) {
       if(device.kind == "videoinput"){
-        cameras += device.label; 
+        cameras += device.label;
+        cameras += "***";  
         console.log(cameras);
       console.log(device.kind + ": " + device.label +
                   " id = " + device.deviceId);
