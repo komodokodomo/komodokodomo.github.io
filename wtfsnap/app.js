@@ -61,6 +61,7 @@ function setup() {
 function draw() {
  background(255);
  imageMode(CENTER);
+ text(frameRate(),30,30);
 //  checkSwipe();
  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 }
