@@ -30,7 +30,7 @@ var mode = 0;
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
   devices.forEach(function(device) {
     if(device.kind == "videoinput"){
-      devices += device.kind; 
+      devices += device.label; 
     console.log(device.kind + ": " + device.label +
                 " id = " + device.deviceId);
               }
@@ -49,6 +49,7 @@ function setup() {
   video.size(videoWidth, videoHeight);
   video.hide();
 
+  console.log(devices);
   yolo = ml5.YOLO(video, 
     // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
     detect);
