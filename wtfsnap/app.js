@@ -35,16 +35,16 @@ function setup() {
   video.size(videoWidth, videoHeight);
   video.hide();
 
-  // var enumeratorPromise = navigator.getUserMedia.enumerateDevices();
-  // console.log(enumeratorPromise);
+  var promise = navigator.mediaDevices.getUserMedia(constraints);
+  console.log(promise);
 
-  navigator.mediaDevices.getUserMedia(constraints)
-.then(function(stream) {
-  console.log(stream);
-})
-.catch(function(err) {
-  console.log(err);
-});
+//   navigator.mediaDevices.getUserMedia(constraints)
+// .then(function(stream) {
+//   console.log(stream);
+// })
+// .catch(function(err) {
+//   console.log(err);
+// });
 
 
   yolo = ml5.YOLO(video, 
