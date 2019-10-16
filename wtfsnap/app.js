@@ -8,6 +8,7 @@ var swipeTimer = 0;
 var constraints = {
   video: { facingMode: { exact: "environment" } },
   audio: false
+
 };
 
 var itemsText = [];
@@ -23,9 +24,19 @@ var videoHeight = 720;
 
 var w,h;
 
-var sample = false;
-var sampleTimer;
 var mode = 0;
+
+var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
+  devices.forEach(function(device) {
+    if(device.kind == "videoinput"){
+    console.log(device.kind + ": " + device.label +
+                " id = " + device.deviceId);
+              }
+  });
+})
+.catch(function(err) {
+  console.log(err.name + ": " + err.message);
+});
 
 function setup() {
   w = window.innerWidth;
@@ -35,18 +46,6 @@ function setup() {
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
-
-  var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
-    devices.forEach(function(device) {
-      if(device.kind == "videoinput"){
-      console.log(device.kind + ": " + device.label +
-                  " id = " + device.deviceId);
-                }
-    });
-  })
-  .catch(function(err) {
-    console.log(err.name + ": " + err.message);
-  });
 
   yolo = ml5.YOLO(video, 
     // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
@@ -71,7 +70,6 @@ function detect() {
 // if(millis() - sampleTimer > 300){
   yolo.detect(function(err, results) {
     objects = results;
-    sampleTimer = millis();
     if(objects.length!==0){console.log(objects);}
     setTimeout(detect, 200);
   });
