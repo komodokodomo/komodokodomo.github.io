@@ -35,8 +35,8 @@ function setup() {
   video.size(videoWidth, videoHeight);
   video.hide();
 
-  var promise = navigator.mediaDevices.getUserMedia(constraints);
-  console.log(promise);
+  var enumeratorPromise = navigator.mediaDevices.enumerateDevices();
+  console.log(enumeratorPromise);
 
 //   navigator.mediaDevices.getUserMedia(constraints)
 // .then(function(stream) {
