@@ -67,15 +67,15 @@ function draw() {
 
 
 function detect() {
-if(millis() - sampleTimer > 300){
+// if(millis() - sampleTimer > 300){
   yolo.detect(function(err, results) {
     objects = results;
     sampleTimer = millis();
     if(objects.length!==0){console.log(objects);}
-    detect();
+    setTimeout(detect, 200);
   });
-}
-else{detect();}
+// }
+// else{detect();}
 }
 
 function windowResized(){
