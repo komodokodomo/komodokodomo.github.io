@@ -67,7 +67,7 @@ function draw() {
 
 
 function detect() {
-if(millis() - sampleTimer > 200){
+if(millis() - sampleTimer > 300){
   yolo.detect(function(err, results) {
     objects = results;
     sampleTimer = millis();
