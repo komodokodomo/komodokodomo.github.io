@@ -32,7 +32,7 @@ function setup() {
   video.size(videoWidth, videoHeight);
   video.hide();
 
-  var enumeratorPromise = navigator.MediaDevices.getUserMedia.enumerateDevices();
+  var enumeratorPromise = navigator.getUserMedia.enumerateDevices();
   console.log(enumeratorPromise);
 
 
