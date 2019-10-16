@@ -35,17 +35,15 @@ function setup() {
   video.size(videoWidth, videoHeight);
   video.hide();
 
-  var enumeratorPromise = navigator.mediaDevices.enumerateDevices();
-  console.log(enumeratorPromise);
-
-//   navigator.mediaDevices.getUserMedia(constraints)
-// .then(function(stream) {
-//   console.log(stream);
-// })
-// .catch(function(err) {
-//   console.log(err);
-// });
-
+  var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
+    devices.forEach(function(device) {
+      console.log(device.kind + ": " + device.label +
+                  " id = " + device.deviceId);
+    });
+  })
+  .catch(function(err) {
+    console.log(err.name + ": " + err.message);
+  });
 
   yolo = ml5.YOLO(video, 
     // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
