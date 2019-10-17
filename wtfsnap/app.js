@@ -69,7 +69,7 @@ function draw() {
 //  checkSwipe();
  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 
- fill(0,255,0);
+ fill(0);
  noStroke();
  text(frameRate(),30,30);
  text(cameras,30,50);
@@ -87,14 +87,11 @@ function draw() {
 
 
 function detect() {
-// if(millis() - sampleTimer > 300){
   yolo.detect(function(err, results) {
     objects = results;
     if(objects.length!==0){console.log(objects);}
     setTimeout(detect, 200);
   });
-// }
-// else{detect();}
 }
 
 function windowResized(){
