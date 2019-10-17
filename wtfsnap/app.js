@@ -68,6 +68,9 @@ function draw() {
  imageMode(CENTER);
 //  checkSwipe();
  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+
+ fill(0,255,0);
+ noStroke();
  text(frameRate(),30,30);
  text(cameras,30,50);
 
