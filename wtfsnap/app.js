@@ -70,6 +70,16 @@ function draw() {
  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
  text(frameRate(),30,30);
  text(cameras,30,50);
+
+ for (let i = 0; i < objects.length; i++) {
+  noStroke();
+  fill(0, 255, 0);
+  text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
+  noFill();
+  strokeWeight(4);
+  stroke(0, 255, 0);
+  rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
+}
 }
 
 
