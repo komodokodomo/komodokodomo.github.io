@@ -8,9 +8,9 @@ var swipeTimer = 0;
 
 var constraints = {
   video: { 
-  facingMode: { exact: "environment" },
-  width: { min: 1080 },
-  height: { min: 1920 } 
+  facingMode: { exact: "environment" }
+  // width: { min: 1080 },
+  // height: { min: 1920 } 
 },
   audio: false
 
