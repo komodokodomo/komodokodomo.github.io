@@ -86,8 +86,8 @@ image(video, w/2, h/2,w, h);
 
 if(status){
 sampleImage.loadPixels();
-sampleImage = get();
-// sampleImage.updatePixels();
+sampleImage = get(0,0,w,h);
+sampleImage.updatePixels();
 yolo.detect(sampleImage, detect);
 }
 
