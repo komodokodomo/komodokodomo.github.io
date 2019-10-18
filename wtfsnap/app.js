@@ -51,6 +51,7 @@ function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
   canvas = createCanvas(w, h);
+  canvas.id("canvas");
   sampleImage = createImage(w,h);
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
@@ -90,7 +91,8 @@ if(status){
 // console.log("image captured");
 sampleImage = canvas.get();
 
-var dataURL = canvas.toDataURL();
+var test = document.getElementById('canvas');
+var dataURL = test.toDataURL();
 console.log(dataURL);
 
 background(255);
