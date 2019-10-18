@@ -18,7 +18,7 @@ var constraints = {
 var itemsText = [];
 
 let video;
-let yolo;
+let yolo = ml5.YOLO(modelReady);
 let objects = [];
 var starting = false;
 
@@ -67,6 +67,7 @@ function setup() {
 function modelReady() {
   console.log("model Ready!")
   status = true;
+  yolo.detect(sampleImage, detect);
 }
 
 
@@ -84,7 +85,7 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-// if(status){
+if(status){
 // sampleImage.loadPixels();
 console.log("image captured");
 sampleImage = canvas.get();
@@ -92,7 +93,7 @@ background(255);
 image(sampleImage,w/2,h/2,w,h);
 // sampleImage.updatePixels();
 // yolo.detect(sampleImage, detect);
-// }
+}
 
  fill(0);
  noStroke();
@@ -111,12 +112,21 @@ image(sampleImage,w/2,h/2,w,h);
 }
 
 
-function detect() {
-  yolo.detect(function(err, results) {
-    objects = results;
-    if(objects.length!==0){console.log(objects);}
-    setTimeout(detect, 200);
-  });
+// function detect() {
+//   yolo.detect(function(err, results) {
+//     objects = results;
+//     if(objects.length!==0){console.log(objects);}
+//     setTimeout(detect, 200);
+//   });
+// }
+
+function detect(err, results) {
+  if (err) {
+    console.log(err);
+  }
+  console.log(results)
+  objects = results;
+  setTimeout(yolo.detect(sampleImage, detect), 200);
 }
 
 function windowResized(){
