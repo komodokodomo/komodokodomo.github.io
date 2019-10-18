@@ -21,6 +21,7 @@ let yolo;
 let objects = [];
 var starting = false;
 
+let status;
 
 var videoWidth = 1280;
 var videoHeight = 720;
@@ -55,12 +56,17 @@ function setup() {
   video.hide();
 
   
-  yolo = ml5.YOLO(sampleImage, 
-    // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
-    detect);
+  // yolo = ml5.YOLO(sampleImage, 
+  //   // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
+  //   detect);
   prevX = mouseX;
 
 
+}
+
+function modelReady() {
+  console.log("model Ready!")
+  status = true;
 }
 
 
@@ -77,7 +83,11 @@ else{
 // rotate(PI / 2.0);
 image(video, w/2, h/2,w, h);
 }
+
+if(status){
 sampleImage = get();
+yolo.detect(sampleImage, detect);
+}
 
  fill(0);
  noStroke();
