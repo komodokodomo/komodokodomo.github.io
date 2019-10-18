@@ -59,6 +59,7 @@ function setup() {
   // yolo = ml5.YOLO(sampleImage, 
   //   // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
   //   detect);
+  yolo = ml5.YOLO(sampleImage, detect);
   prevX = mouseX;
 
 
@@ -85,10 +86,10 @@ image(video, w/2, h/2,w, h);
 }
 
 if(status){
-sampleImage.loadPixels();
-sampleImage = get(0,0,w,h);
-sampleImage.updatePixels();
-yolo.detect(sampleImage, detect);
+// sampleImage.loadPixels();
+sampleImage = video.get();
+// sampleImage.updatePixels();
+// yolo.detect(sampleImage, detect);
 }
 
  fill(0);
