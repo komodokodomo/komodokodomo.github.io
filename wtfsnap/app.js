@@ -50,7 +50,7 @@ function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
   createCanvas(w, h);
-
+  sampleImage = createImage(w,h);
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
