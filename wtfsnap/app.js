@@ -90,6 +90,7 @@ if(status){
 console.log("image captured");
 sampleImage = canvas.get();
 background(255);
+tint(0,255,0);
 image(sampleImage,w/2,h/2,w,h);
 // sampleImage.updatePixels();
 // yolo.detect(sampleImage, detect);
@@ -126,7 +127,7 @@ function detect(err, results) {
   }
   console.log(results)
   objects = results;
-  setTimeout(yolo.detect(sampleImage, detect), 200);
+  // setTimeout(yolo.detect(sampleImage, detect), 200);
 }
 
 function windowResized(){
