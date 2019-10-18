@@ -17,7 +17,7 @@ var constraints = {
 var itemsText = [];
 
 let video;
-let yolo;
+const yolo = ml5.YOLO(modelReady);
 let objects = [];
 var starting = false;
 
