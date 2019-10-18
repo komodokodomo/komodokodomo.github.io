@@ -3,6 +3,7 @@ let current;
 let cameras = "";
 
 let sampleImage;
+let canvas;
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -17,7 +18,7 @@ var constraints = {
 var itemsText = [];
 
 let video;
-const yolo = ml5.YOLO(modelReady);
+let yolo;
 let objects = [];
 var starting = false;
 
@@ -49,7 +50,7 @@ function setup() {
 
   w = window.innerWidth;
   h = window.innerHeight;
-  createCanvas(w, h);
+  canvas = createCanvas(w, h);
   sampleImage = createImage(w,h);
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
@@ -59,10 +60,8 @@ function setup() {
   // yolo = ml5.YOLO(sampleImage, 
   //   // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
   //   detect);
-  yolo = ml5.YOLO(sampleImage, detect);
+  yolo = ml5.YOLO(sampleImage, detect,modelReady);
   prevX = mouseX;
-
-
 }
 
 function modelReady() {
