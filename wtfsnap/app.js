@@ -87,11 +87,15 @@ image(video, w/2, h/2,w,h);
 
 if(status){
 // sampleImage.loadPixels();
-console.log("image captured");
+// console.log("image captured");
 sampleImage = canvas.get();
+
+var dataURL = canvas.toDataURL();
+console.log(dataURL);
+
 background(255);
 // tint(0,255,0);
-image(sampleImage,0,0,w,h);
+image(sampleImage,w/2,h/2,w,h);
 // sampleImage.updatePixels();
 // yolo.detect(sampleImage, detect);
 }
