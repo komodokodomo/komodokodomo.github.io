@@ -67,7 +67,7 @@ function setup() {
 function modelReady() {
   console.log("model Ready!")
   status = true;
-  yolo.detect(sampleImage, detect);
+  // yolo.detect(sampleImage, detect);
 }
 
 
@@ -90,8 +90,8 @@ if(status){
 console.log("image captured");
 sampleImage = canvas.get();
 background(255);
-tint(0,255,0);
-image(sampleImage,w/2,h/2,w,h);
+// tint(0,255,0);
+image(sampleImage,0,0,w,h);
 // sampleImage.updatePixels();
 // yolo.detect(sampleImage, detect);
 }
