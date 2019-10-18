@@ -2,6 +2,8 @@
 let current;
 let cameras = "";
 
+let sampleImage;
+
 var prevX = 0;
 var swipeDisplacement = 0; 
 var swipeTimer = 0;
@@ -53,7 +55,7 @@ function setup() {
   video.hide();
 
   
-  yolo = ml5.YOLO(video, 
+  yolo = ml5.YOLO(sampleImage, 
     // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
     detect);
   prevX = mouseX;
@@ -71,12 +73,11 @@ if(w>h){
  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 }
 else{
-push();
 // translate(w / 2, h / 2);
 // rotate(PI / 2.0);
 image(video, w/2, h/2,w, h);
-pop();
 }
+sampleImage = get();
 
  fill(0);
  noStroke();
