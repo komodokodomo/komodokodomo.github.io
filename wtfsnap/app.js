@@ -84,7 +84,7 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-if(status){
+// if(status){
 // sampleImage.loadPixels();
 console.log("image captured");
 sampleImage = canvas.get();
@@ -92,7 +92,7 @@ background(255);
 image(sampleImage,w/2,h/2,w,h);
 // sampleImage.updatePixels();
 // yolo.detect(sampleImage, detect);
-}
+// }
 
  fill(0);
  noStroke();
