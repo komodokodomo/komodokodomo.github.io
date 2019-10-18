@@ -74,7 +74,7 @@ else{
 push();
 // translate(w / 2, h / 2);
 // rotate(PI / 2.0);
-image(video, w/2, h/2,h, w);
+image(video, w/2, h/2,w, h);
 pop();
 }
 
