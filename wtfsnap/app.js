@@ -60,7 +60,7 @@ function setup() {
   // yolo = ml5.YOLO(sampleImage, 
   //   // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
   //   detect);
-  yolo = ml5.YOLO(sampleImage, detect,modelReady);
+  //yolo = ml5.YOLO(sampleImage, detect,modelReady);
   prevX = mouseX;
 }
 
@@ -81,12 +81,15 @@ if(w>h){
 else{
 // translate(w / 2, h / 2);
 // rotate(PI / 2.0);
-image(video, w/2, h/2,w, h);
+image(video, w/2, h/2,w,h);
 }
 
 if(status){
 // sampleImage.loadPixels();
-sampleImage = video.get();
+console.log("image captured");
+sampleImage = canvas.get();
+background(255);
+image(sampleImage,w/2,h/2,w,h);
 // sampleImage.updatePixels();
 // yolo.detect(sampleImage, detect);
 }
