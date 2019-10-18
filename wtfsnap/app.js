@@ -71,9 +71,11 @@ if(w>h){
  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 }
 else{
+push();
 translate(w / 2, h / 2);
 rotate(PI / 2.0);
 image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+pop();
 }
 
  fill(0);
