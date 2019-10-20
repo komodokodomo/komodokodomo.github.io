@@ -95,7 +95,7 @@ image(video, w/2, h/2,w,h);
 }
 
 
-if(status){
+// if(status){
 // sampleImage.loadPixels();
 // console.log("image captured");
 // sampleImage = canvas.get();
@@ -111,12 +111,15 @@ if(status){
 // image(sampleImage,w/2,h/2,w,h);
 // sampleImage.updatePixels();
 // yolo.detect(sampleImage, detect);
-}
+// }
 
  fill(0);
  noStroke();
  text(frameRate(),30,30);
  text(cameras,30,50);
+ if(status){
+  text("model loaded",30,70); 
+ }
 
  for (let i = 0; i < objects.length; i++) {
   noStroke();
@@ -141,7 +144,7 @@ function detect() {
   yolo.detect(function(err, results) {
     objects = results;
     if(objects.length!==0){console.log(objects);}
-    setTimeout(detect, 200);
+    setTimeout(detect, 300);
   });
 }
 
