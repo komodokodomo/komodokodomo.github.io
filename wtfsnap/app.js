@@ -18,7 +18,9 @@ var constraints = {
 var itemsText = [];
 
 let video;
-let yolo = ml5.YOLO(modelReady);
+// let yolo = ml5.YOLO(modelReady);
+let yolo;
+
 let objects = [];
 var starting = false;
 
@@ -26,6 +28,8 @@ let status;
 
 var videoWidth = 1280;
 var videoHeight = 720;
+
+var video2;
 
 var w,h;
 
@@ -54,22 +58,27 @@ function setup() {
   canvas.id("canvas");
   sampleImage = createVideo(sampleImageSrc);
   sampleImage.id("sampleImage");
+
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
 
+  var ref = document.querySelector('canvas');
+video2 = document.getElementById('sampleImage');
+var stream = ref.captureStream(25);
+video2.srcObject = stream;
   
   // yolo = ml5.YOLO(sampleImage, 
   //   // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
   //   detect);
-  // yolo = ml5.YOLO(sampleImage, detect,modelReady);
+  yolo = ml5.YOLO(video, detect,modelReady);
   prevX = mouseX;
 }
 
 function modelReady() {
   console.log("model Ready!")
   status = true;
-  // yolo.detect(sampleImage, detect);
+  yolo.detect(video2, detect);
 }
 
 
@@ -85,10 +94,6 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-var ref = document.querySelector('canvas');
-var video = document.getElementById('sampleImage');
-var stream = ref.captureStream(25);
-video.srcObject = stream;
 
 if(status){
 // sampleImage.loadPixels();
@@ -97,9 +102,9 @@ if(status){
 
 //LOOK INTO CAPTURESTREAM
 
-var test = document.getElementById('sampleImage');
-var dataURL = test.toDataURL();
-console.log(dataURL);
+// var test = document.getElementById('sampleImage');
+// var dataURL = test.toDataURL();
+// console.log(dataURL);
 
 // background(255);
 // tint(0,255,0);
@@ -125,6 +130,13 @@ console.log(dataURL);
 }
 
 
+// var canvas = document.getElementById("yourCanvasID");
+// var url = canvas.toDataURL();
+
+// var newImg = document.createElement("img"); // create img tag
+// newImg.src = url;
+// document.body.appendChild(newImg); // add to end of your document
+
 // function detect() {
 //   yolo.detect(function(err, results) {
 //     objects = results;
@@ -139,7 +151,7 @@ function detect(err, results) {
   }
   console.log(results)
   objects = results;
-  // setTimeout(yolo.detect(sampleImage, detect), 200);
+  setTimeout(detect, 200);
 }
 
 function windowResized(){
