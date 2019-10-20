@@ -137,22 +137,22 @@ if(status){
 // newImg.src = url;
 // document.body.appendChild(newImg); // add to end of your document
 
-// function detect() {
-//   yolo.detect(function(err, results) {
-//     objects = results;
-//     if(objects.length!==0){console.log(objects);}
-//     setTimeout(detect, 200);
-//   });
-// }
-
-function detect(err, results) {
-  if (err) {
-    console.log(err);
-  }
-  console.log(results)
-  objects = results;
-  setTimeout(detect, 200);
+function detect() {
+  yolo.detect(function(err, results) {
+    objects = results;
+    if(objects.length!==0){console.log(objects);}
+    setTimeout(detect, 200);
+  });
 }
+
+// function detect(err, results) {
+//   if (err) {
+//     console.log(err);
+//   }
+//   console.log(results)
+//   objects = results;
+//   setTimeout(detect, 200);
+// }
 
 function windowResized(){
     w = window.innerWidth;
