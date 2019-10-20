@@ -78,7 +78,7 @@ video2.srcObject = stream;
 function modelReady() {
   console.log("model Ready!")
   status = true;
-  yolo.detect(video2, detect);
+  // yolo.detect(video2, detect);
 }
 
 
