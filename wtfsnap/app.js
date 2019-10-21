@@ -154,14 +154,14 @@ image(video2, w/2, h/2,w,h);
 //   });
 // }
 
-function detect(err, results) {
-  if (err) {
-    console.log(err);
-  }
-  console.log(results)
-  objects = results;
-  setTimeout(yolo.detect(video2, detect), 300);
-}
+// function detect(err, results) {
+//   if (err) {
+//     console.log(err);
+//   }
+//   console.log(results)
+//   objects = results;
+//   setTimeout(yolo.detect(video2, detect), 300);
+// }
 
 function windowResized(){
     w = window.innerWidth;
