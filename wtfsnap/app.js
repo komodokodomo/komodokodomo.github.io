@@ -82,7 +82,7 @@ function setup() {
 function modelReady() {
   console.log("model Ready!")
   status = true;
-  yolo.detect(video2, detect);
+  // yolo.detect(video2, detect);
 }
 
 
@@ -98,6 +98,8 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
+background(255);
+image(video2, w/2, h/2,w,h);
 
 // if(status){
 // sampleImage.loadPixels();
