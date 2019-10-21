@@ -82,7 +82,8 @@ function setup() {
 function modelReady() {
   console.log("model Ready!")
   status = true;
-  // yolo.detect(video2, detect);
+  setInterval(function(){  yolo.detect(video2, detect); }, 300);
+  
 }
 
 
@@ -153,21 +154,14 @@ image(video, w/2, h/2,w,h);
 //     setTimeout(detect, 300);
 //   });
 // }
-function detect() {
-  yolo.detect(video2) {
-    objects = results;
-    if(objects.length!==0){console.log(objects);}
-    setTimeout(yolo.detect(video2,detect), 300);
-  });
 }
-// function detect(err, results) {
-//   if (err) {
-//     console.log(err);
-//   }
-//   console.log(results)
-//   objects = results;
-//   setTimeout(yolo.detect(video2, detect), 300);
-// }
+function detect(err, results) {
+  if (err) {
+    console.log(err);
+  }
+  console.log(results)
+  objects = results;
+}
 
 function windowResized(){
     w = window.innerWidth;
