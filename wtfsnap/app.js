@@ -18,8 +18,8 @@ var constraints = {
 var itemsText = [];
 
 let video;
-let yolo = ml5.YOLO(modelReady);
-// let yolo;
+// let yolo = ml5.YOLO(modelReady);
+let yolo;
 
 let objects = [];
 var starting = false;
@@ -71,7 +71,7 @@ video2.srcObject = stream;
   // yolo = ml5.YOLO(sampleImage, 
   //   // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
   //   detect);
-  // yolo = ml5.YOLO(video, detect,modelReady);
+  yolo = ml5.YOLO(video, detect,modelReady);
   prevX = mouseX;
 }
 
