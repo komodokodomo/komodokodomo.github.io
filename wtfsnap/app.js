@@ -82,7 +82,7 @@ function setup() {
 function modelReady() {
   console.log("model Ready!")
   status = true;
-  setInterval(function(){  yolo.detect(video2, detect); }, 300);
+  setInterval(function(){yolo.detect(video2, detect);console.log("sampling"); }, 300);
   
 }
 
