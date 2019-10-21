@@ -154,7 +154,7 @@ image(video, w/2, h/2,w,h);
 //     setTimeout(detect, 300);
 //   });
 // }
-}
+// }
 function detect(err, results) {
   if (err) {
     console.log(err);
