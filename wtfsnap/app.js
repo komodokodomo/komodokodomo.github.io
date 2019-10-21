@@ -66,7 +66,7 @@ function setup() {
   // var ref = document.querySelector('canvas');
   var ref = document.getElementById('canvas');
   video2 = document.getElementById('sampleImage');
-  dataUrl = canvas.toDataURL();
+  dataUrl = ref.toDataURL();
   video2.src = dataUrl;
 // video2 = document.getElementById('sampleImage');
 // var stream = ref.captureStream(25);
