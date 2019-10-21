@@ -98,8 +98,8 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-background(255);
-image(video2, w/2, h/2,w,h);
+// background(255);
+// image(video2, w/2, h/2,w,h);
 
 // if(status){
 // sampleImage.loadPixels();
@@ -153,7 +153,13 @@ image(video2, w/2, h/2,w,h);
 //     setTimeout(detect, 300);
 //   });
 // }
-
+function detect() {
+  yolo.detect(video2) {
+    objects = results;
+    if(objects.length!==0){console.log(objects);}
+    setTimeout(yolo.detect(video2,detect), 300);
+  });
+}
 // function detect(err, results) {
 //   if (err) {
 //     console.log(err);
