@@ -82,7 +82,14 @@ function setup() {
 function modelReady() {
   console.log("model Ready!")
   status = true;
-  setInterval(function(){yolo.detect(video2, detect);console.log("sampling"); }, 300);
+  setInterval(function(){
+    var ref = document.getElementById('canvas');
+    video2 = document.getElementById('sampleImage');
+    dataUrl = ref.toDataURL();
+    video2.src = dataUrl;
+    yolo.detect(video2, detect);
+    console.log("sampling"); }
+    , 300);
   
 }
 
