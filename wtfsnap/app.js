@@ -159,8 +159,11 @@ function detect(err, results) {
   if (err) {
     console.log(err);
   }
-  console.log(results)
-  objects = results;
+  if(results.length!==0)
+  {
+    console.log(results);
+    objects = results;
+  }
 }
 
 function windowResized(){
