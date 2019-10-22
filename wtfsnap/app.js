@@ -83,11 +83,11 @@ function modelReady() {
   console.log("model Ready!")
   status = true;
   setInterval(function(){
-    var ref = document.getElementById('canvas');
-    video2 = document.getElementById('sampleImage');
-    dataUrl = ref.toDataURL();
-    video2.src = dataUrl;
-    yolo.detect(video2, detect);
+    // var ref = document.getElementById('canvas');
+    // video2 = document.getElementById('sampleImage');
+    // dataUrl = ref.toDataURL();
+    // video2.src = dataUrl;
+    yolo.detect(canvas, detect);
     console.log("sampling"); }
     , 300);
   
