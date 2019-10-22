@@ -69,7 +69,7 @@ function modelReady() {
   status = true;
   setInterval(function(){
 
-    yolo.detect(sampleImage.canvas, detect);
+    yolo.detect(sampleImage.imageData, detect);
     console.log("sampling"); }
     , 300);
 }
