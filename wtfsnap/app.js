@@ -56,18 +56,17 @@ function setup() {
   h = window.innerHeight;
   canvas = createCanvas(w, h);
   canvas.id("canvas");
-  sampleImage = createImg(sampleImageSrc);
-  sampleImage.id("sampleImage");
+  sampleImage = createImage(w,h);
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
 
   // var ref = document.querySelector('canvas');
-  var ref = document.getElementById('canvas');
-  video2 = document.getElementById('sampleImage');
-  dataUrl = ref.toDataURL();
-  video2.src = dataUrl;
+  // var ref = document.getElementById('canvas');
+  // video2 = document.getElementById('sampleImage');
+  // dataUrl = ref.toDataURL();
+  // video2.src = dataUrl;
 // video2 = document.getElementById('sampleImage');
 // var stream = ref.captureStream(25);
 // video2.srcObject = stream;
@@ -83,11 +82,11 @@ function modelReady() {
   console.log("model Ready!")
   status = true;
   setInterval(function(){
-    var ref = document.getElementById('canvas');
+    // var ref = document.getElementById('canvas');
     // video2 = document.getElementById('sampleImage');
     // dataUrl = ref.toDataURL();
     // video2.src = dataUrl;
-    yolo.detect(ref, detect);
+    yolo.detect(video.get().canvas, detect);
     console.log("sampling"); }
     , 300);
   
