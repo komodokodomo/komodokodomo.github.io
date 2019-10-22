@@ -87,8 +87,9 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-sampleImage = canvas.get();
-
+sampleImage.loadPixels();
+sampleImage = get();
+sampleImage.updatePixels();
 
  fill(0);
  noStroke();
