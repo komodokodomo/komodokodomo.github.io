@@ -2,7 +2,7 @@
 let current;
 let cameras = "";
 
-let sampleImage,sampleImageSrc = "";
+let sampleImage;
 let canvas,clone;
 
 var prevX = 0;
@@ -29,8 +29,6 @@ let status;
 var videoWidth = 1280;
 var videoHeight = 720;
 
-var video2,dataURL;
-
 var w,h;
 
 var mode = 0;
@@ -40,9 +38,7 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
     if(device.kind == "videoinput"){
       cameras += device.label;
       cameras += "***";  
-    // console.log(device.kind + ": " + device.label +
-    //             " id = " + device.deviceId);
-              }
+    }
   });
   console.log(cameras);
 })
@@ -63,19 +59,8 @@ function setup() {
   video.size(videoWidth, videoHeight);
   video.hide();
 
-  // var ref = document.querySelector('canvas');
-  // var ref = document.getElementById('canvas');
-  // video2 = document.getElementById('sampleImage');
-  // dataUrl = ref.toDataURL();
-  // video2.src = dataUrl;
-// video2 = document.getElementById('sampleImage');
-// var stream = ref.captureStream(25);
-// video2.srcObject = stream;
-  
-  // yolo = ml5.YOLO(sampleImage, 
-  //   // { filterBoxesThreshold: 0.01, IOUThreshold: 0.3, classProbThreshold: 0.25 },
-  //   detect);
-  // yolo = ml5.YOLO(video, detect,modelReady);
+  sampleImage = createImage(w,h);
+
   prevX = mouseX;
 }
 
@@ -84,10 +69,9 @@ function modelReady() {
   status = true;
   setInterval(function(){
 
-    yolo.detect(video, detect);
+    yolo.detect(sampleImage, detect);
     console.log("sampling"); }
     , 300);
-  
 }
 
 
@@ -102,6 +86,8 @@ if(w>h){
 else{
 image(video, w/2, h/2,w,h);
 }
+
+sampleImage = canvas.get();
 
 
  fill(0);
