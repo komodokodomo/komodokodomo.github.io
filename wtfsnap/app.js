@@ -83,11 +83,8 @@ function modelReady() {
   console.log("model Ready!")
   status = true;
   setInterval(function(){
-    // var ref = document.getElementById('canvas');
-    // video2 = document.getElementById('sampleImage');
-    // dataUrl = ref.toDataURL();
-    // video2.src = dataUrl;
-    yolo.detect(video.get().canvas, detect);
+
+    yolo.detect(video, detect);
     console.log("sampling"); }
     , 300);
   
@@ -106,26 +103,6 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-// background(255);
-// image(video2, w/2, h/2,w,h);
-
-// if(status){
-// sampleImage.loadPixels();
-// console.log("image captured");
-// sampleImage = canvas.get();
-
-//LOOK INTO CAPTURESTREAM
-
-// var test = document.getElementById('sampleImage');
-// var dataURL = test.toDataURL();
-// console.log(dataURL);
-
-// background(255);
-// tint(0,255,0);
-// image(sampleImage,w/2,h/2,w,h);
-// sampleImage.updatePixels();
-// yolo.detect(sampleImage, detect);
-// }
 
  fill(0);
  noStroke();
@@ -147,21 +124,6 @@ image(video, w/2, h/2,w,h);
 }
 
 
-// var canvas = document.getElementById("yourCanvasID");
-// var url = canvas.toDataURL();
-
-// var newImg = document.createElement("img"); // create img tag
-// newImg.src = url;
-// document.body.appendChild(newImg); // add to end of your document
-
-// function detect() {
-//   yolo.detect(function(err, results) {
-//     objects = results;
-//     if(objects.length!==0){console.log(objects);}
-//     setTimeout(detect, 300);
-//   });
-// }
-// }
 function detect(err, results) {
   if (err) {
     console.log(err);
