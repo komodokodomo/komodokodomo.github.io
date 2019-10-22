@@ -40,11 +40,11 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
     if(device.kind == "videoinput"){
       cameras += device.label;
       cameras += "***";  
-      console.log(cameras);
-    console.log(device.kind + ": " + device.label +
-                " id = " + device.deviceId);
+    // console.log(device.kind + ": " + device.label +
+    //             " id = " + device.deviceId);
               }
   });
+  console.log(cameras);
 })
 .catch(function(err) {
   console.log(err.name + ": " + err.message);
@@ -54,6 +54,7 @@ function setup() {
 
   w = window.innerWidth;
   h = window.innerHeight;
+
   canvas = createCanvas(w, h);
   canvas.id("canvas");
   sampleImage = createImage(w,h);
