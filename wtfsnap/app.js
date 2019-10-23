@@ -18,8 +18,8 @@ var constraints = {
 var itemsText = [];
 
 let video;
-let yolo = ml5.YOLO(modelReady);
-// let yolo;
+// let yolo = ml5.YOLO(modelReady);
+let yolo;
 
 let objects = [];
 var starting = false;
@@ -60,6 +60,15 @@ function setup() {
   video.hide();
 
   sampleImage = createImage(w,h);
+
+  yolo = ml5.YOLO(() => {
+    console.log("model Ready!")
+    status = true;
+    setInterval(function(){
+      yolo.detect(sampleImage.ImageData, detect);
+      console.log("sampling"); }
+      , 500);
+  });
 
   prevX = mouseX;
 }
