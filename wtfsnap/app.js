@@ -66,7 +66,7 @@ function setup() {
     status = true;
     setInterval(function(){
       // yolo.detect(sampleImage.ImageData, detect);
-      console.log(sampleImage);
+      console.log(canvas);
       console.log("sampling"); }
       , 500);
   });
@@ -96,9 +96,13 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-// sampleImage.loadPixels();
-sampleImage = get(0,0,w,h);
-// sampleImage.updatePixels();
+canvas.loadPixels();
+for(var i; i<w; i++){
+  for(var j; j<h; j++){
+    sampleImage = get(i,);
+  }
+}
+canvas.updatePixels();
 
  fill(0);
  noStroke();
