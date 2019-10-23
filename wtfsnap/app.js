@@ -68,7 +68,7 @@ function modelReady() {
   console.log("model Ready!")
   status = true;
   setInterval(function(){
-    yolo.detect(sampleImage.imageData, detect);
+    yolo.detect(sampleImage.ImageData, detect);
     console.log("sampling"); }
     , 300);
 }
