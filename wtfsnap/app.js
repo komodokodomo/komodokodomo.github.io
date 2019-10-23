@@ -97,7 +97,7 @@ image(video, w/2, h/2,w,h);
 }
 
 sampleImage.loadPixels();
-sampleImage = get();
+sampleImage = get(0,0,w,h);
 sampleImage.updatePixels();
 
  fill(0);
