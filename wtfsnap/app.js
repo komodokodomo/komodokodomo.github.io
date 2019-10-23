@@ -70,7 +70,7 @@ function modelReady() {
   setInterval(function(){
     yolo.detect(sampleImage.ImageData, detect);
     console.log("sampling"); }
-    , 300);
+    , 500);
 }
 
 
@@ -87,7 +87,7 @@ image(video, w/2, h/2,w,h);
 }
 
 // sampleImage.loadPixels();
-sampleImage = get();
+sampleImage = video.get();
 // sampleImage.updatePixels();
 
  fill(0);
@@ -112,7 +112,7 @@ sampleImage = get();
 
 function detect(err, results) {
   if (err) {
-    console.log(err);
+    console.error(err);
   }
   if(results.length!==0)
   {
