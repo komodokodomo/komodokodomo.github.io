@@ -78,7 +78,7 @@ function modelReady() {
   console.log("model Ready!")
   status = true;
   setInterval(function(){
-    yolo.detect(sampleImage.ImageData, detect);
+    yolo.detect(sampleImage.getImageData(), detect);
     console.log("sampling"); }
     , 500);
 }
@@ -96,13 +96,13 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-canvas.loadPixels();
-for(var i; i<w; i++){
-  for(var j; j<h; j++){
-    sampleImage = get(i,);
-  }
-}
-canvas.updatePixels();
+// canvas.loadPixels();
+// for(var i; i<w; i++){
+//   for(var j; j<h; j++){
+    sampleImage = get();
+//   }
+// }
+// canvas.updatePixels();
 
  fill(0);
  noStroke();
