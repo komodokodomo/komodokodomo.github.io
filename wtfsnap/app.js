@@ -68,7 +68,6 @@ function modelReady() {
   console.log("model Ready!")
   status = true;
   setInterval(function(){
-
     yolo.detect(sampleImage.imageData, detect);
     console.log("sampling"); }
     , 300);
@@ -87,9 +86,9 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-sampleImage.loadPixels();
+// sampleImage.loadPixels();
 sampleImage = get();
-sampleImage.updatePixels();
+// sampleImage.updatePixels();
 
  fill(0);
  noStroke();
