@@ -116,6 +116,7 @@ for(var i; i<objects.length ;i++){
   stroke(0,255,0);
   strokeWeight(5);
   noFill();
+  console.log("this part is running");
   rect(objects[i].bbox[0],objects[i].bbox[1],objects[i].bbox[2],objects[i].bbox[3]);
 }
 
