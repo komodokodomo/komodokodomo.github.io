@@ -124,13 +124,13 @@ image(video, w/2, h/2,w,h);
 
  console.log("object length: " + objects.length);
 
- for(var i; i<objects.length ;i++){
+ for(var i=0; i<objects.length ;i++){
   rectMode(CORNER);
   stroke(0,255,0);
   strokeWeight(5);
   noFill();
   console.log("this part is running");
-  rect(objects[i].bbox[0],objects[i].bbox[1],objects[i].bbox[2],objects[i].bbox[3]);
+  rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
 }
 
 //  for (let i = 0; i < objects.length; i++) {
