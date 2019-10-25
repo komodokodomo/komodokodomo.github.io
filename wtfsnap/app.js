@@ -3,8 +3,9 @@ let current;
 let cameras = "";
 let density;
 
-let sampleImage;
-let canvas,clone;
+let canvas;
+
+var lensContainer, lensList;
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -13,7 +14,6 @@ var swipeTimer = 0;
 var constraints = {
   video: { facingMode: { exact: "environment" } },
   audio: false
-
 };
 
 var itemsText = [];
@@ -55,13 +55,17 @@ function setup() {
 
   canvas = createCanvas(w, h);
   canvas.id("canvas");
-  sampleImage = createImage(w,h);
+
+  lensContainer = createDiv();
+  lensContainer.id("lensContainer")
+
+  lensList = createElement("ul");
+  lensList.id("lensList")
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
 
-  sampleImage = createImage(w,h);
   var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
@@ -81,6 +85,23 @@ function setup() {
 
   prevX = mouseX;
 }
+
+/* 
+<div id="lens-container">
+<ul id="lens-list">
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+
+<div id="related-content-container">
+<h2 id="object-label"></h2>
+<p id="content"></p>
+<span id="trying">Trying to identify...</span>
+</div> 
+*/
 
 
 function draw() {
@@ -133,7 +154,6 @@ function touchMoved(event) {
     swipeTimer = millis();
     swipeDisplacement+=(mouseX - prevX);
     prevX = mouseX;
-    // console.log(event);
 }
 
 function checkSwipe(){
