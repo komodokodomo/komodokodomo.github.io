@@ -65,7 +65,9 @@ function setup() {
     console.log("model Ready!")
     status = true;
     setInterval(function(){
-      yolo.detect(sampleImage.getImageData(0,0,w,h), detect);
+      var test = document.getElementById('canvas');
+      var ctx = test.getContext('2d');
+      yolo.detect(ctx.getImageData(0,0,w,h), detect);
       // console.log(canvas);
       console.log("sampling"); }
       , 500);
