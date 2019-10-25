@@ -72,7 +72,7 @@ function setup() {
         objects = [];
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
-          rect(objects[i].bbox[0],objects[i].bbox[1],objects[i].bbox[2],objects[i].bbox[3]);
+          rect(objects[i].bbox[0]*w/displayWidth,objects[i].bbox[1]*h/displayHeight,objects[i].bbox[2]*w/displayWidth,objects[i].bbox[3]*h/displayHeight);
           // console.log(objects);
           console.log(objects[i].bbox[0]+", "+objects[i].bbox[1]+", "+objects[i].bbox[2]+", "+objects[i].bbox[3]);
         }
