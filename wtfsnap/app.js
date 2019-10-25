@@ -60,25 +60,21 @@ function setup() {
   sampleImage = createImage(w,h);
 
   video = createCapture(constraints);
-  video.id("video");
+  // video.id("video");
   video.size(videoWidth, videoHeight);
   video.hide();
 
   sampleImage = createImage(w,h);
+  var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
     // detect objects in the image.
     setInterval(function(){
-      var test = document.getElementById('canvas');
       model.detect(test).then(predictions => {
         if(predictions.length > 0){  //predictions[i].bbox[0]
-        // console.log('Predictions: ', predictions);
         objects = [];
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
-          // rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
-          // console.log(objects);
-          // console.log(objects[i].bbox[0]+", "+objects[i].bbox[1]+", "+objects[i].bbox[2]+", "+objects[i].bbox[3]);
         }
         
       }
