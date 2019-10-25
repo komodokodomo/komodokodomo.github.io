@@ -51,6 +51,8 @@ function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
 
+  console.log("width: " + w + " height: " + h);
+
   canvas = createCanvas(w, h);
   canvas.id("canvas");
   sampleImage = createImage(w,h);
