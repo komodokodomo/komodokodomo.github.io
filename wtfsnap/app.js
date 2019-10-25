@@ -56,6 +56,7 @@ function setup() {
   sampleImage = createImage(w,h);
 
   video = createCapture(constraints);
+  video.id("video");
   video.size(videoWidth, videoHeight);
   video.hide();
 
@@ -67,7 +68,9 @@ function setup() {
     setInterval(function(){
       var test = document.getElementById('canvas');
       var ctx = test.getContext('2d');
-      ctx.drawImage(video, 0, 0);
+      var vid = document.getElementById('video');
+      ctx.drawImage(vid, 0, 0);
+
       yolo.detect(ctx.getImageData(0,0,w,h), detect);
       // console.log(canvas);
       console.log("sampling"); }
