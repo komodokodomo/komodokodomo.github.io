@@ -74,7 +74,7 @@ function setup() {
           objects[i]=predictions[i];
           rect(objects[i].bbox[0],objects[i].bbox[1],objects[i].bbox[2],objects[i].bbox[3]);
           // console.log(objects);
-          console.log(objects[i].bbox[0]);
+          console.log(objects[i].bbox[0]+", "+objects[i].bbox[1]+", "+objects[i].bbox[2]+", "+objects[i].bbox[3]);
         }
         
       }
