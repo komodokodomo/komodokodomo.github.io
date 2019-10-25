@@ -19,8 +19,6 @@ var constraints = {
 var itemsText = [];
 
 let video;
-// let yolo = ml5.YOLO(modelReady);
-let yolo;
 
 let objects = [];
 var starting = false;
@@ -67,19 +65,15 @@ function setup() {
   var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
-    // detect objects in the image.
     setInterval(function(){
       model.detect(test).then(predictions => {
-        if(predictions.length > 0){  //predictions[i].bbox[0]
+        if(predictions.length > 0){  
         objects = [];
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
         }
-        
       }
       });
-      // console.log(canvas);
-      console.log("sampling"); }
       , 200);
 
   });
