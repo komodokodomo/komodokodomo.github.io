@@ -73,6 +73,7 @@ function setup() {
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
           console.log(objects);
+          objects[i].bbox[0];
         }
         
       }
