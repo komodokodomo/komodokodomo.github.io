@@ -67,6 +67,7 @@ function setup() {
     setInterval(function(){
       var test = document.getElementById('canvas');
       var ctx = test.getContext('2d');
+      ctx.drawImage(sampleImage, 0, 0);
       yolo.detect(ctx.getImageData(0,0,w,h), detect);
       // console.log(canvas);
       console.log("sampling"); }
@@ -76,14 +77,14 @@ function setup() {
   prevX = mouseX;
 }
 
-function modelReady() {
-  console.log("model Ready!")
-  status = true;
-  setInterval(function(){
-    yolo.detect(sampleImage.getImageData(), detect);
-    console.log("sampling"); }
-    , 500);
-}
+// function modelReady() {
+//   console.log("model Ready!")
+//   status = true;
+//   setInterval(function(){
+//     yolo.detect(sampleImage.getImageData(), detect);
+//     console.log("sampling"); }
+//     , 500);
+// }
 
 
 
