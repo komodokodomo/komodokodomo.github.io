@@ -1,6 +1,7 @@
 
 let current;
 let cameras = "";
+let density;
 
 let sampleImage;
 let canvas,clone;
@@ -51,6 +52,7 @@ function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
 
+  density = pixelDensity();
   console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
 
   canvas = createCanvas(w, h);
@@ -74,7 +76,7 @@ function setup() {
         objects = [];
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
-          rect(objects[i].bbox[0]*w/displayWidth,objects[i].bbox[1]*h/displayHeight,objects[i].bbox[2]*w/displayWidth,objects[i].bbox[3]*h/displayHeight);
+          rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
           // console.log(objects);
           console.log(objects[i].bbox[0]+", "+objects[i].bbox[1]+", "+objects[i].bbox[2]+", "+objects[i].bbox[3]);
         }
