@@ -135,6 +135,9 @@ function detect(err, results) {
     console.log(results);
     objects = results;
   }
+  else{
+    console.log("nothing detected"); 
+  }
 }
 
 function windowResized(){
