@@ -60,7 +60,6 @@ function setup() {
   sampleImage = createImage(w,h);
 
   video = createCapture(constraints);
-  // video.id("video");
   video.size(videoWidth, videoHeight);
   video.hide();
 
@@ -85,20 +84,8 @@ function setup() {
 
   });
 
-
-
   prevX = mouseX;
 }
-
-// function modelReady() {
-//   console.log("model Ready!")
-//   status = true;
-//   setInterval(function(){
-//     yolo.detect(sampleImage.getImageData(), detect);
-//     console.log("sampling"); }
-//     , 500);
-// }
-
 
 
 function draw() {
@@ -118,46 +105,17 @@ image(video, w/2, h/2,w,h);
  text(frameRate(),30,30);
  text(cameras,30,50);
 
-//  console.log("object length: " + objects.length);
- if(objects.length>0){
-  noFill();
-  // rect(objects[0].bbox[0]/density,objects[0].bbox[1]/density,objects[0].bbox[2]/density,objects[0].bbox[3]/density);
- }
-
+ 
  for(var i=0; i<objects.length ;i++){
   rectMode(CORNER);
   stroke(0,255,0);
   strokeWeight(5);
   noFill();
-  // console.log("this part is running");
   rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
 }
 
-//  for (let i = 0; i < objects.length; i++) {
-//   noStroke();
-//   fill(0, 255, 0);
-//   text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
-//   noFill();
-//   strokeWeight(4);
-//   stroke(0, 255, 0);
-//   rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
-// }
 }
 
-
-// function detect(err, results) {
-//   if (err) {
-//     console.error(err);
-//   }
-//   if(results.length!==0)
-//   {
-//     console.log(results);
-//     objects = results;
-//   }
-//   else{
-//     console.log("nothing detected"); 
-//   }
-// }
 
 function windowResized(){
     w = window.innerWidth;
