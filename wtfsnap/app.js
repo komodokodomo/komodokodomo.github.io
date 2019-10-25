@@ -76,7 +76,7 @@ function setup() {
         objects = [];
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
-          rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
+          // rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
           // console.log(objects);
           console.log(objects[i].bbox[0]+", "+objects[i].bbox[1]+", "+objects[i].bbox[2]+", "+objects[i].bbox[3]);
         }
@@ -124,6 +124,7 @@ image(video, w/2, h/2,w,h);
 
  console.log("object length: " + objects.length);
  if(objects.length>0){
+  nofill();
   rect(objects[0].bbox[0]/density,objects[0].bbox[1]/density,objects[0].bbox[2]/density,objects[0].bbox[3]/density);
  }
 
