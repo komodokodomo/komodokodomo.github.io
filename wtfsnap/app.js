@@ -121,7 +121,7 @@ image(video, w/2, h/2,w,h);
  if(status){
   text("model loaded",30,70); 
  }
-
+ console.log("object length" + objects.length);
  for(var i; i<objects.length ;i++){
   rectMode(CORNER);
   stroke(0,255,0);
