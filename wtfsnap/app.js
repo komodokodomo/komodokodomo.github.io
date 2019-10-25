@@ -111,17 +111,14 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-    // sampleImage = get();
-
 
  fill(0);
  noStroke();
  text(frameRate(),30,30);
  text(cameras,30,50);
- if(status){
-  text("model loaded",30,70); 
- }
+
  console.log("object length" + objects.length);
+
  for(var i; i<objects.length ;i++){
   rectMode(CORNER);
   stroke(0,255,0);
