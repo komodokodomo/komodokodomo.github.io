@@ -85,7 +85,7 @@ function setup() {
       });
       // console.log(canvas);
       console.log("sampling"); }
-      , 300);
+      , 200);
 
   });
 
