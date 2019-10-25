@@ -62,20 +62,20 @@ function setup() {
 
   sampleImage = createImage(w,h);
 
-  yolo = ml5.YOLO(() => {
-    console.log("model Ready!")
-    status = true;
+  cocoSsd.load().then(model => {
+    // detect objects in the image.
     setInterval(function(){
       var test = document.getElementById('canvas');
-      var ctx = test.getContext('2d');
-      var vid = document.getElementById('video');
-      ctx.drawImage(vid,0, 0,w,h);
-
-      yolo.detect(ctx.getImageData(0,0,w,h), detect);
+      model.detect(test).then(predictions => {
+        console.log('Predictions: ', predictions);
+      });
       // console.log(canvas);
       console.log("sampling"); }
       , 500);
+
   });
+
+
 
   prevX = mouseX;
 }
@@ -102,7 +102,7 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-    sampleImage = get();
+    // sampleImage = get();
 
 
  fill(0);
@@ -125,19 +125,19 @@ image(video, w/2, h/2,w,h);
 }
 
 
-function detect(err, results) {
-  if (err) {
-    console.error(err);
-  }
-  if(results.length!==0)
-  {
-    console.log(results);
-    objects = results;
-  }
-  else{
-    console.log("nothing detected"); 
-  }
-}
+// function detect(err, results) {
+//   if (err) {
+//     console.error(err);
+//   }
+//   if(results.length!==0)
+//   {
+//     console.log(results);
+//     objects = results;
+//   }
+//   else{
+//     console.log("nothing detected"); 
+//   }
+// }
 
 function windowResized(){
     w = window.innerWidth;
