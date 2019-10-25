@@ -51,7 +51,7 @@ function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
 
-  console.log("width: " + w + " height: " + h);
+  console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
 
   canvas = createCanvas(w, h);
   canvas.id("canvas");
