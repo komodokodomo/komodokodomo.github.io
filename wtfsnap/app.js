@@ -111,15 +111,6 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-for(var i; i<objects.length ;i++){
-  rectMode(CORNER);
-  stroke(0,255,0);
-  strokeWeight(5);
-  noFill();
-  console.log("this part is running");
-  rect(objects[i].bbox[0],objects[i].bbox[1],objects[i].bbox[2],objects[i].bbox[3]);
-}
-
     // sampleImage = get();
 
 
@@ -131,15 +122,24 @@ for(var i; i<objects.length ;i++){
   text("model loaded",30,70); 
  }
 
- for (let i = 0; i < objects.length; i++) {
-  noStroke();
-  fill(0, 255, 0);
-  text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
+ for(var i; i<objects.length ;i++){
+  rectMode(CORNER);
+  stroke(0,255,0);
+  strokeWeight(5);
   noFill();
-  strokeWeight(4);
-  stroke(0, 255, 0);
-  rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
+  console.log("this part is running");
+  rect(objects[i].bbox[0],objects[i].bbox[1],objects[i].bbox[2],objects[i].bbox[3]);
 }
+
+//  for (let i = 0; i < objects.length; i++) {
+//   noStroke();
+//   fill(0, 255, 0);
+//   text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
+//   noFill();
+//   strokeWeight(4);
+//   stroke(0, 255, 0);
+//   rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
+// }
 }
 
 
