@@ -89,6 +89,8 @@ function draw() {
 
 if(w>h){
  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+ image(video, w/2, h/2, w, w*videoHeight/videoWidth);
+
 }
 else{
 image(video, w/2, h/2,w,h);
