@@ -124,7 +124,7 @@ image(video, w/2, h/2,w,h);
 
  console.log("object length: " + objects.length);
  if(objects.length>0){
-  nofill();
+  noFill();
   rect(objects[0].bbox[0]/density,objects[0].bbox[1]/density,objects[0].bbox[2]/density,objects[0].bbox[3]/density);
  }
 
