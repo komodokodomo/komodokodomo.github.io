@@ -72,6 +72,7 @@ function setup() {
         objects = [];
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
+          rect(objects[i].bbox[0],objects[i].bbox[1],objects[i].bbox[2],objects[i].bbox[3]);
           // console.log(objects);
           console.log(objects[i].bbox[0]);
         }
@@ -117,7 +118,7 @@ image(video, w/2, h/2,w,h);
  text(frameRate(),30,30);
  text(cameras,30,50);
 
- console.log("object length" + objects.length);
+ console.log("object length: " + objects.length);
 
  for(var i; i<objects.length ;i++){
   rectMode(CORNER);
