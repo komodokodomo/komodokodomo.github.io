@@ -88,7 +88,7 @@ function draw() {
  imageMode(CENTER);
 
 if(w>h){
- image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+//  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
  image(video, w/2, h/2, w, w*videoHeight/videoWidth);
 
 }
