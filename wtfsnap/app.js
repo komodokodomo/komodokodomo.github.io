@@ -123,6 +123,9 @@ image(video, w/2, h/2,w,h);
  text(cameras,30,50);
 
  console.log("object length: " + objects.length);
+ if(objects.length>0){
+  rect(objects[0].bbox[0]/density,objects[0].bbox[1]/density,objects[0].bbox[2]/density,objects[0].bbox[3]/density);
+ }
 
  for(var i=0; i<objects.length ;i++){
   rectMode(CORNER);
