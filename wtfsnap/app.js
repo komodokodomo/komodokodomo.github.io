@@ -69,7 +69,7 @@ function setup() {
       var test = document.getElementById('canvas');
       var ctx = test.getContext('2d');
       var vid = document.getElementById('video');
-      ctx.drawImage(vid, 0, 0);
+      ctx.drawImage(vid,0, 0,w,h);
 
       yolo.detect(ctx.getImageData(0,0,w,h), detect);
       // console.log(canvas);
@@ -102,13 +102,8 @@ else{
 image(video, w/2, h/2,w,h);
 }
 
-// canvas.loadPixels();
-// for(var i; i<w; i++){
-//   for(var j; j<h; j++){
     sampleImage = get();
-//   }
-// }
-// canvas.updatePixels();
+
 
  fill(0);
  noStroke();
