@@ -125,7 +125,7 @@ image(video, w/2, h/2,w,h);
  console.log("object length: " + objects.length);
  if(objects.length>0){
   noFill();
-  rect(objects[0].bbox[0]/density,objects[0].bbox[1]/density,objects[0].bbox[2]/density,objects[0].bbox[3]/density);
+  // rect(objects[0].bbox[0]/density,objects[0].bbox[1]/density,objects[0].bbox[2]/density,objects[0].bbox[3]/density);
  }
 
  for(var i=0; i<objects.length ;i++){
@@ -133,7 +133,7 @@ image(video, w/2, h/2,w,h);
   stroke(0,255,0);
   strokeWeight(5);
   noFill();
-  console.log("this part is running");
+  // console.log("this part is running");
   rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
 }
 
