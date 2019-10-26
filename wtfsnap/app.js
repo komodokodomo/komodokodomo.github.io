@@ -1,3 +1,4 @@
+var jsonData;
 
 let current;
 let cameras = "";
@@ -103,6 +104,12 @@ function setup() {
 </div> 
 */
 
+
+function preload(){
+  jsonData = loadJson('https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966');
+  console.log(jsonData);
+
+}
 
 function draw() {
  background(255);
