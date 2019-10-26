@@ -132,6 +132,10 @@ image(video, w/2, h/2, w, w*videoHeight/videoWidth);
  noStroke();
  text(frameRate(),30,30);
  text(cameras,30,50);
+ text(w + " x " +h,30,70);
+ if(status){
+text("model loaded",30,90);
+ }
 
  
  for(var i=0; i<objects.length ;i++){
