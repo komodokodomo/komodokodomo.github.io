@@ -13,7 +13,10 @@ var swipeDisplacement = 0;
 var swipeTimer = 0;
 
 var constraints = {
-  video: { facingMode: { exact: "environment" } },
+  video: { facingMode: { exact: "environment" },mandatory: {
+    minWidth: 1280,
+    minHeight: 720
+  } },
   audio: false
 };
 
