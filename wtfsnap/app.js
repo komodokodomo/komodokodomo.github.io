@@ -133,9 +133,10 @@ image(video, w/2, h/2, w, w*video.height/video.width);
  noStroke();
  text(frameRate(),30,30);
  text(cameras,30,50);
- text(w + " x " +h,30,70);
+ text("display: " + w + " x " +h,30,70);
+ text("cam: " + video.width + " x " +video.height,30,90);
  if(status){
-text("model loaded",30,90);
+text("model loaded",30,110);
  }
 
  
