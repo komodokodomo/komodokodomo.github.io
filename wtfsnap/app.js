@@ -71,6 +71,8 @@ function setup() {
   var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
+    console.log("model loaded!");
+    status = true;
     setInterval(function(){
       model.detect(test).then(predictions => {
         if(predictions.length > 0){  
@@ -116,12 +118,13 @@ function draw() {
  imageMode(CENTER);
 
 if(w>h){
-//  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
- image(video, w/2, h/2, w, w*videoHeight/videoWidth);
+ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+//  image(video, w/2, h/2, w, w*videoHeight/videoWidth);
 
 }
 else{
-image(video, w/2, h/2,w,h);
+// image(video, w/2, h/2,w,h);
+image(video, w/2, h/2, w, w*videoHeight/videoWidth);
 }
 
 
