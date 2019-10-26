@@ -13,10 +13,7 @@ var swipeDisplacement = 0;
 var swipeTimer = 0;
 
 var constraints = {
-  video: { facingMode: { exact: "environment" },mandatory: {
-    minWidth: 1280,
-    minHeight: 720
-  } },
+  video: { facingMode: { exact: "environment" } },
   audio: false
 };
 
@@ -121,13 +118,13 @@ function draw() {
  imageMode(CENTER);
 
 if(w>h){
- image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+ image(video, w/2, h/2, h*video.width/video.height, h);
 //  image(video, w/2, h/2, w, w*videoHeight/videoWidth);
 
 }
 else{
 // image(video, w/2, h/2,w,h);
-image(video, w/2, h/2, w, w*videoHeight/videoWidth);
+image(video, w/2, h/2, w, w*video.height/video.width);
 // image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
