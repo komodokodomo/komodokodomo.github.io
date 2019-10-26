@@ -47,6 +47,7 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
 });
 
 function setup() {
+  console.log(jsonData);
 
   w = window.innerWidth;
   h = window.innerHeight;
@@ -108,8 +109,6 @@ function setup() {
 function preload(){
   let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
   jsonData = loadJSON(url);
-  console.log(jsonData);
-
 }
 
 function draw() {
