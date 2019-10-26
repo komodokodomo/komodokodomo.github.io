@@ -106,7 +106,8 @@ function setup() {
 
 
 function preload(){
-  jsonData = loadJSON('https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966');
+  let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
+  jsonData = loadJSON(url);
   console.log(jsonData);
 
 }
