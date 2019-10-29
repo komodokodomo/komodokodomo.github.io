@@ -67,7 +67,7 @@ function setup() {
   lensList.id("lensList")
 
   for(var i = 0; i<jsonDataLength; i++){
-    createElement("li",jsonData.i.subject);
+    createElement("li",jsonData.subject);
   }
 
   video = createCapture(constraints);
