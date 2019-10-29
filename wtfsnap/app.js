@@ -1,5 +1,7 @@
 var jsonData,jsonDataLength;
 
+var subjects = [];
+
 let current;
 let cameras = "";
 let density;
@@ -61,14 +63,17 @@ function setup() {
   canvas.id("canvas");
 
   lensContainer = createDiv();
+  lensContainer.parent(canvas);
   lensContainer.id("lensContainer")
 
   lensList = createElement("ul");
+  lensList.parent(lensContainer);
   lensList.id("lensList")
 
   for(var i = 0; i<jsonDataLength; i++){
     // console.log(jsonData[i].subject);
-    createElement("li",jsonData[i].subject);
+    subjects[i] = createElement("li",jsonData[i].subject);
+    subjects[i].parent(lensList);
   }
 
   video = createCapture(constraints);
