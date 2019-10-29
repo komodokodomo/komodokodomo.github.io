@@ -88,8 +88,7 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-    // MODEL = model;
-    // detect();
+
     setInterval(function(){
       model.detect(test).then(predictions => {
         if(predictions.length > 0){  
@@ -153,7 +152,7 @@ if(w>h){
 }
 else{
 // image(video, w/2, h/2,w,h);
-image(video, w/2, h/2, w, video.height*video.width/w);
+image(video, w/2, h/2, w, (w/video.height)*h);
 // image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
