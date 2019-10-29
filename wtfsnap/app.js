@@ -20,7 +20,6 @@ var constraints = {
 };
 
 var itemsText = [];
-var test,MODEL;
 let video;
 
 let objects = [];
@@ -83,7 +82,7 @@ function setup() {
   video.size(videoWidth, videoHeight);
   video.hide();
 
-  test = document.getElementById('canvas');
+  var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
     console.log("model loaded!");
