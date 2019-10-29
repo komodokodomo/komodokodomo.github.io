@@ -99,12 +99,12 @@ function setup() {
 
     setInterval(function(){
       // console.log(test);
-      var test = document.getElementById('canvas');
+      var test = document.getElementById("canvas");
 
       model.detect(test).then(predictions => {
         console.log(predictions);
+        objects = [];
         if(predictions.length > 0){
-          objects = [];
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
         }
@@ -116,27 +116,6 @@ function setup() {
   );
 
 }
-
-
-
-/* 
-<div id="lens-container">
-<ul id="lens-list">
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ul>
-</div>
-
-<div id="related-content-container">
-<h2 id="object-label"></h2>
-<p id="content"></p>
-<span id="trying">Trying to identify...</span>
-</div> 
-*/
-
-
 
 
 function draw() {
