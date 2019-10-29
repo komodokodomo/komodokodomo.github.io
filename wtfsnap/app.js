@@ -85,12 +85,12 @@ function setup() {
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
-
+  var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-    var test = document.getElementById('canvas');
+    
     setInterval(function(){
       model.detect(test).then(predictions => {
         if(predictions.length > 0){
@@ -163,9 +163,9 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
 text("model loaded",30,110);
  }
 
- console.log(objects.length);
+//  console.log(objects.length);
  for(var i=0; i<objects.length ;i++){
-  console.log("drawing");
+  // console.log("drawing");
   rectMode(CORNER);
   stroke(0,255,0);
   strokeWeight(5);
