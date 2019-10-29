@@ -169,6 +169,7 @@ text("model loaded",30,110);
 
  
  for(var i=0; i<objects.length ;i++){
+  console.log("drawing");
   rectMode(CORNER);
   stroke(0,255,0);
   strokeWeight(5);
