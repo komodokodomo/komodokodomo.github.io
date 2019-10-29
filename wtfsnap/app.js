@@ -152,7 +152,7 @@ if(w>h){
 }
 else{
 // image(video, w/2, h/2,w,h);
-image(video, w/2, h/2, w, (w/video.height)*h);
+image(video, w/2, h/2, w, (w/video.height)*video.width);
 // image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
