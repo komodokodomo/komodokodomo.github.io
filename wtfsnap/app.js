@@ -90,10 +90,8 @@ function setup() {
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
-  video.id("vid");
   video.hide();
 
-  var test = document.getElementById('vid');
 
   cocoSsd.load().then(model => {
     console.log("model loaded!");
@@ -101,6 +99,8 @@ function setup() {
 
     setInterval(function(){
       // console.log(test);
+      var test = document.getElementById('canvas');
+
       model.detect(test).then(predictions => {
         console.log(predictions);
         if(predictions.length > 0){
