@@ -90,20 +90,20 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-    detect();
-    // setInterval(function(){
-    //   // console.log(test);
-    //   model.detect(test).then(predictions => {
-    //     // console.log(predictions);
-    //     if(predictions.length > 0){
-    //       objects = [];
-    //     for (let i = 0; i < predictions.length; i++) {
-    //       objects[i]=predictions[i];
-    //     }
-    //   }
-    //   });
-    // }
-    // , 200);
+    // detect();
+    setInterval(function(){
+      // console.log(test);
+      model.detect(test).then(predictions => {
+        // console.log(predictions);
+        if(predictions.length > 0){
+          objects = [];
+        for (let i = 0; i < predictions.length; i++) {
+          objects[i]=predictions[i];
+        }
+      }
+      });
+    }
+    , 200);
 
   });
 
