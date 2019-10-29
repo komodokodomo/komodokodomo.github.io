@@ -143,7 +143,7 @@ function preload(){
 }
 
 function draw() {
- background(255);
+//  background(255);
  imageMode(CENTER);
 
 if(w>h){
