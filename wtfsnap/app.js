@@ -67,7 +67,7 @@ function setup() {
   lensList.id("lensList")
 
   for(var i = 0; i<jsonDataLength; i++){
-    console.log(jsonData.i.toString().subject);
+    console.log(jsonData.i.subject);
     // createElement("li",jsonData.subject);
   }
 
