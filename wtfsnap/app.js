@@ -147,8 +147,13 @@ function draw() {
  imageMode(CENTER);
 
 if(w>h){
-if(w/h>video.width/video.height){image(video, w/2, h/2, w, w*video.height/video.width);}
-else{image(video, w/2, h/2, h*video.width/video.height, h);}
+if((w/h)<(video.width/video.height))
+{
+  image(video, w/2, h/2, w, w*video.height/video.width);
+}
+else{
+  image(video, w/2, h/2, h*video.width/video.height, h);
+}
 //  image(video, w/2, h/2, w, w*videoHeight/videoWidth);
 
 }
