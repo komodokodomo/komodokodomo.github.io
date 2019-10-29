@@ -1,4 +1,4 @@
-var jsonData;
+var jsonData,jsonDataLength;
 
 let current;
 let cameras = "";
@@ -48,8 +48,9 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
 
 function setup() {
   console.log(jsonData);
+  jsonDataLength = Object.keys(jsonData).length;
   console.log(Object.keys(jsonData).length);
-
+  
   w = window.innerWidth;
   h = window.innerHeight;
 
@@ -64,6 +65,10 @@ function setup() {
 
   lensList = createElement("ul");
   lensList.id("lensList")
+
+  for(var i = 0; i<jsonDataLength; i++){
+    createElement("li",jsonData.i.subject);
+  }
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
