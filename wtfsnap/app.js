@@ -23,6 +23,7 @@ var itemsText = [];
 let video;
 
 var bbTimer;
+var test;
 
 let objects = [];
 var starting = false;
@@ -38,6 +39,7 @@ var mode = 0;
 
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM fully loaded and parsed');
+  test = document.getElementById('canvas');
 });
 
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
@@ -88,7 +90,6 @@ function setup() {
   video.size(videoWidth, videoHeight);
   video.hide();
 
-  var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
     console.log("model loaded!");
