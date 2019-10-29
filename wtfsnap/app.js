@@ -34,6 +34,10 @@ var w,h;
 
 var mode = 0;
 
+window.addEventListener('DOMContentLoaded', (event) => {
+  console.log('DOM fully loaded and parsed');
+});
+
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
   devices.forEach(function(device) {
     if(device.kind == "videoinput"){
@@ -87,7 +91,6 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-
     setInterval(function(){
       model.detect(test).then(predictions => {
         if(predictions.length > 0){  
