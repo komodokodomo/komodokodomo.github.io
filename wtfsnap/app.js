@@ -100,7 +100,7 @@ function setup() {
       }
       });
     }
-    , 250);
+    , 200);
 
   });
 
@@ -153,7 +153,7 @@ if(w>h){
 }
 else{
 // image(video, w/2, h/2,w,h);
-image(video, w/2, h/2, w, w*video.width/video.height);
+image(video, w/2, h/2, w, video.height*video.width/w);
 // image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
