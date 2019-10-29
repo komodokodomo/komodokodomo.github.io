@@ -111,7 +111,7 @@ function setup() {
 }
 
 function detect(){
-  var predictions = await model.detect(test);
+  var predictions = model.detect(test);
   console.log(predictions);
   setTimeout(function(){ detect(); }, 200);
 }
