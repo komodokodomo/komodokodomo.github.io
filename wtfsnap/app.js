@@ -91,31 +91,39 @@ function setup() {
     console.log("model loaded!");
     status = true;
     // detect();
-    setInterval(function(){
-      // console.log(test);
-      model.detect(test).then(predictions => {
-        // console.log(predictions);
-        if(predictions.length > 0){
-          objects = [];
-        for (let i = 0; i < predictions.length; i++) {
-          objects[i]=predictions[i];
-        }
-      }
-      });
+    setInterval(tryDetect, 200);
     }
-    , 200);
+ 
+    // setInterval(function(){
+    //   // console.log(test);
+    //   model.detect(test).then(predictions => {
+    //     // console.log(predictions);
+    //     if(predictions.length > 0){
+    //       objects = [];
+    //     for (let i = 0; i < predictions.length; i++) {
+    //       objects[i]=predictions[i];
+    //     }
+    //   }
+    //   });
+    // }
+    // , 200);
 
-  });
+  );
 
   // prevX = mouseX;
 }
 
-function detect(){
-  var predictions = model.detect(test);
-  console.log(predictions);
-  setTimeout(function(){ detect(); }, 200);
+function tryDetect() {
+  model.detect(test).then(predictions => {
+    // console.log(predictions);
+    if(predictions.length > 0){
+      objects = [];
+    for (let i = 0; i < predictions.length; i++) {
+      objects[i]=predictions[i];
+    }
+  }
+  });
 }
-
 
 
 
@@ -171,7 +179,7 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
  text("display: " + w + " x " +h,30,70);
  text("cam: " + video.width + " x " +video.height,30,90);
  if(status){
-text("model loaded",30,110);
+ text("model loaded",30,110);
  }
 
 //  console.log(objects.length);
