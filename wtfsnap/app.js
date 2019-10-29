@@ -88,36 +88,36 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-    MODEL = model;
-    detect();
-    // setInterval(function(){
-    //   model.detect(test).then(predictions => {
-    //     if(predictions.length > 0){  
-    //     objects = [];
-    //     for (let i = 0; i < predictions.length; i++) {
-    //       objects[i]=predictions[i];
-    //     }
-    //   }
-    //   });
-    // }
-    // , 200);
+    // MODEL = model;
+    // detect();
+    setInterval(function(){
+      model.detect(test).then(predictions => {
+        if(predictions.length > 0){  
+        objects = [];
+        for (let i = 0; i < predictions.length; i++) {
+          objects[i]=predictions[i];
+        }
+      }
+      });
+    }
+    , 250);
 
   });
 
   prevX = mouseX;
 }
 
-function detect(){
-    MODEL.detect(test).then(predictions => {
-      if(predictions.length > 0){  
-      objects = [];
-      for (let i = 0; i < predictions.length; i++) {
-        objects[i]=predictions[i];
-      }
-    }
-    });
-    setInterval(function(){detect();}, 200);
-}
+// function detect(){
+//     MODEL.detect(test).then(predictions => {
+//       if(predictions.length > 0){  
+//       objects = [];
+//       for (let i = 0; i < predictions.length; i++) {
+//         objects[i]=predictions[i];
+//       }
+//     }
+//     });
+//     setInterval(function(){detect();}, 200);
+// }
 
 /* 
 <div id="lens-container">
@@ -153,7 +153,7 @@ if(w>h){
 }
 else{
 // image(video, w/2, h/2,w,h);
-image(video, w/2, h/2, w, w*video.height/video.width);
+image(video, w/2, h/2, w, w*video.width/video.height);
 // image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
