@@ -90,25 +90,32 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-
-    setInterval(function(){
-      // console.log(test);
-      model.detect(test).then(predictions => {
-        // console.log(predictions);
-        if(predictions.length > 0){
-          objects = [];
-        for (let i = 0; i < predictions.length; i++) {
-          objects[i]=predictions[i];
-        }
-      }
-      });
-    }
-    , 200);
+    detect();
+    // setInterval(function(){
+    //   // console.log(test);
+    //   model.detect(test).then(predictions => {
+    //     // console.log(predictions);
+    //     if(predictions.length > 0){
+    //       objects = [];
+    //     for (let i = 0; i < predictions.length; i++) {
+    //       objects[i]=predictions[i];
+    //     }
+    //   }
+    //   });
+    // }
+    // , 200);
 
   });
 
   // prevX = mouseX;
 }
+
+function detect(){
+  var predictions = await model.detect(test);
+  console.log(predictions);
+  setTimeout(function(){ detect(); }, 200);
+}
+
 
 
 
