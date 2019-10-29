@@ -86,11 +86,14 @@ function setup() {
   //   subjects[i].parent(lensList);
   //   subjects[i].show();
   // }
-  var test  = document.getElementById('canvas');
+
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
+  video.id("vid");
   video.hide();
+
+  var test = document.getElementById('vid');
 
   cocoSsd.load().then(model => {
     console.log("model loaded!");
