@@ -20,7 +20,7 @@ var constraints = {
 };
 
 var itemsText = [];
-var test;
+var test,MODEL;
 let video;
 
 let objects = [];
@@ -88,6 +88,7 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
+    MODEL = model;
     detect();
     // setInterval(function(){
     //   model.detect(test).then(predictions => {
@@ -107,7 +108,7 @@ function setup() {
 }
 
 function detect(){
-    model.detect(test).then(predictions => {
+    MODEL.detect(test).then(predictions => {
       if(predictions.length > 0){  
       objects = [];
       for (let i = 0; i < predictions.length; i++) {
