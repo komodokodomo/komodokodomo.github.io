@@ -94,7 +94,7 @@ function setup() {
 
 
   cocoSsd.load().then(model => {
-    console.log("model loaded!");
+    // console.log("model loaded!");
     status = true;
 
     setInterval(function(){
@@ -123,20 +123,16 @@ function draw() {
  imageMode(CENTER);
 
 if(w>h){
-if((w/h)>(video.width/video.height))
-{
-  image(video, w/2, h/2, w, w*video.height/video.width);
+      if((w/h)>(video.width/video.height))
+      {
+        image(video, w/2, h/2, w, w*video.height/video.width);
+      }
+      else{
+        image(video, w/2, h/2, h*video.width/video.height, h);
+      }
 }
 else{
-  image(video, w/2, h/2, h*video.width/video.height, h);
-}
-//  image(video, w/2, h/2, w, w*videoHeight/videoWidth);
-
-}
-else{
-// image(video, w/2, h/2,w,h);
 image(video, w/2, h/2, w, (w/video.height)*video.width);
-// image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
 
