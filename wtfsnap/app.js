@@ -68,19 +68,19 @@ function setup() {
   canvas.id("canvas");
 
   lensContainer = createDiv();
-  lensContainer.parent(canvas);
+  // lensContainer.parent(canvas);
   lensContainer.id("lensContainer")
   lensContainer.show();
 
   lensList = createElement("ul");
-  lensList.parent(lensContainer);
+  // lensList.parent(lensContainer);
   lensList.id("lensList")
   lensList.show();
 
   for(var i = 0; i<jsonDataLength; i++){
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
-    subjects[i].parent(lensList);
+    // subjects[i].parent(lensList);
     subjects[i].show();
   }
 
@@ -114,17 +114,7 @@ function setup() {
   prevX = mouseX;
 }
 
-// function detect(){
-//     MODEL.detect(test).then(predictions => {
-//       if(predictions.length > 0){  
-//       objects = [];
-//       for (let i = 0; i < predictions.length; i++) {
-//         objects[i]=predictions[i];
-//       }
-//     }
-//     });
-//     setInterval(function(){detect();}, 200);
-// }
+
 
 /* 
 <div id="lens-container">
