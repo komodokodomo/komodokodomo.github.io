@@ -53,6 +53,11 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
   console.log(err.name + ": " + err.message);
 });
 
+function preload(){
+  let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
+  jsonData = loadJSON(url);
+}
+
 function setup() {
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
@@ -90,39 +95,23 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-    // detect();
-    setInterval(tryDetect, 200);
-    }
- 
-    // setInterval(function(){
-    //   // console.log(test);
-    //   model.detect(test).then(predictions => {
-    //     // console.log(predictions);
-    //     if(predictions.length > 0){
-    //       objects = [];
-    //     for (let i = 0; i < predictions.length; i++) {
-    //       objects[i]=predictions[i];
-    //     }
-    //   }
-    //   });
-    // }
-    // , 200);
 
+    setInterval(function(){
+      // console.log(test);
+      model.detect(test).then(predictions => {
+        // console.log(predictions);
+        if(predictions.length > 0){
+          objects = [];
+        for (let i = 0; i < predictions.length; i++) {
+          objects[i]=predictions[i];
+        }
+      }
+      });
+    }
+    , 200);
+  }
   );
 
-  // prevX = mouseX;
-}
-
-function tryDetect() {
-  model.detect(test).then(predictions => {
-    // console.log(predictions);
-    if(predictions.length > 0){
-      objects = [];
-    for (let i = 0; i < predictions.length; i++) {
-      objects[i]=predictions[i];
-    }
-  }
-  });
 }
 
 
@@ -145,10 +134,7 @@ function tryDetect() {
 */
 
 
-function preload(){
-  let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
-  jsonData = loadJSON(url);
-}
+
 
 function draw() {
 //  background(255);
