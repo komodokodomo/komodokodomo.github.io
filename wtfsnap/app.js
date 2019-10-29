@@ -22,6 +22,8 @@ var constraints = {
 var itemsText = [];
 let video;
 
+var bbTimer;
+
 let objects = [];
 var starting = false;
 
@@ -93,8 +95,11 @@ function setup() {
     status = true;
     setInterval(function(){
       model.detect(test).then(predictions => {
-        if(predictions.length > 0){  
-        objects = [];
+        if(predictions.length > 0){
+        if(millis()-bbTimer>500){
+          objects = [];
+        }  
+        bbTimer=millis();
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
         }
