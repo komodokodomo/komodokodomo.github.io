@@ -93,6 +93,7 @@ function setup() {
     
     setInterval(function(){
       model.detect(test).then(predictions => {
+        console.log(predictions);
         if(predictions.length > 0){
         // if(millis()-bbTimer>500){
           console.log(predictions[0]);
