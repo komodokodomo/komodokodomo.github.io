@@ -13,7 +13,7 @@ var lensContainer, lensList;
 var prevX = 0;
 var swipeDisplacement = 0; 
 var swipeTimer = 0;
-var test;
+// var test;
 var constraints = {
   video: { facingMode: { exact: "environment" } },
   audio: false
@@ -86,7 +86,7 @@ function setup() {
   //   subjects[i].parent(lensList);
   //   subjects[i].show();
   // }
-  test  = document.getElementById('canvas');
+  var test  = document.getElementById('canvas');
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
