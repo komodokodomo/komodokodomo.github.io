@@ -39,7 +39,6 @@ var mode = 0;
 
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM fully loaded and parsed');
-  test = document.getElementById('canvas');
 });
 
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
@@ -94,6 +93,7 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
+    test = document.getElementById('canvas');
     setInterval(function(){
       model.detect(test).then(predictions => {
         if(predictions.length > 0){
