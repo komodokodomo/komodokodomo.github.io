@@ -48,6 +48,7 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
 
 function setup() {
   console.log(jsonData);
+  console.log(Object.keys(jsonData).length);
 
   w = window.innerWidth;
   h = window.innerHeight;
