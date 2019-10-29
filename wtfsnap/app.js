@@ -56,7 +56,6 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
 function setup() {
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
-  console.log(Object.keys(jsonData).length);
   
   w = window.innerWidth;
   h = window.innerHeight;
@@ -68,9 +67,8 @@ function setup() {
   canvas.id("canvas");
 
   lensContainer = createDiv();
-  // lensContainer.parent(canvas);
   lensContainer.id("lensContainer")
-  lensContainer.show();
+  lensContainer.hide();
 
   lensList = createElement("ul");
   lensList.parent(lensContainer);
