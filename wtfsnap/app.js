@@ -88,21 +88,34 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-    setInterval(function(){
-      model.detect(test).then(predictions => {
-        if(predictions.length > 0){  
-        objects = [];
-        for (let i = 0; i < predictions.length; i++) {
-          objects[i]=predictions[i];
-        }
-      }
-      });
-    }
-      , 200);
+    detect();
+    // setInterval(function(){
+    //   model.detect(test).then(predictions => {
+    //     if(predictions.length > 0){  
+    //     objects = [];
+    //     for (let i = 0; i < predictions.length; i++) {
+    //       objects[i]=predictions[i];
+    //     }
+    //   }
+    //   });
+    // }
+    // , 200);
 
   });
 
   prevX = mouseX;
+}
+
+function detect(){
+    model.detect(test).then(predictions => {
+      if(predictions.length > 0){  
+      objects = [];
+      for (let i = 0; i < predictions.length; i++) {
+        objects[i]=predictions[i];
+      }
+    }
+    });
+    setInterval(function(){detect();}, 200);
 }
 
 /* 
