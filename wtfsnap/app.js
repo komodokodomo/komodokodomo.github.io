@@ -36,9 +36,9 @@ var w,h;
 
 var mode = 0;
 
-window.addEventListener('DOMContentLoaded', (event) => {
-  console.log('DOM fully loaded and parsed');
-});
+// window.addEventListener('DOMContentLoaded', (event) => {
+//   console.log('DOM fully loaded and parsed');
+// });
 
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
   devices.forEach(function(device) {
@@ -85,13 +85,14 @@ function setup() {
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
-  var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
     
     setInterval(function(){
+      var test = document.getElementById('canvas');
+
       model.detect(test).then(predictions => {
         console.log(predictions);
         if(predictions.length > 0){
