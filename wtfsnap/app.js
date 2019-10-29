@@ -167,7 +167,7 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
 text("model loaded",30,110);
  }
 
- 
+ console.log(objects.length);
  for(var i=0; i<objects.length ;i++){
   console.log("drawing");
   rectMode(CORNER);
