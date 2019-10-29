@@ -81,7 +81,6 @@ function setup() {
     subjects[i].parent(lensList);
     subjects[i].show();
   }
-  var test = document.getElementById('canvas');
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
@@ -90,8 +89,9 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-
+    
     setInterval(function(){
+      var test = document.getElementById('canvas');
 
       model.detect(test).then(predictions => {
         console.log(predictions);
