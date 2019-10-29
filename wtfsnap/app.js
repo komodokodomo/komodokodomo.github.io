@@ -96,10 +96,11 @@ function setup() {
     setInterval(function(){
       model.detect(test).then(predictions => {
         if(predictions.length > 0){
-        if(millis()-bbTimer>500){
+        // if(millis()-bbTimer>500){
+          console.log(predictions[0]);
           objects = [];
-        }  
-        bbTimer=millis();
+        // }  
+        // bbTimer=millis();
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
         }
