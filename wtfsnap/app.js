@@ -99,7 +99,7 @@ function setup() {
     setInterval(function(){
       // console.log(test);
       model.detect(test).then(predictions => {
-        // console.log(predictions);
+        console.log(predictions);
         if(predictions.length > 0){
           objects = [];
         for (let i = 0; i < predictions.length; i++) {
