@@ -23,7 +23,6 @@ var itemsText = [];
 let video;
 
 var bbTimer;
-var test;
 
 let objects = [];
 var starting = false;
@@ -93,7 +92,7 @@ function setup() {
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
-    test = document.getElementById('canvas');
+    var test = document.getElementById('canvas');
     setInterval(function(){
       model.detect(test).then(predictions => {
         if(predictions.length > 0){
