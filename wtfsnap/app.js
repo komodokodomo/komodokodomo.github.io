@@ -65,15 +65,18 @@ function setup() {
   lensContainer = createDiv();
   lensContainer.parent(canvas);
   lensContainer.id("lensContainer")
+  lensContainer.show();
 
   lensList = createElement("ul");
   lensList.parent(lensContainer);
   lensList.id("lensList")
+  lensList.show();
 
   for(var i = 0; i<jsonDataLength; i++){
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
+    subjects[i].show();
   }
 
   video = createCapture(constraints);
