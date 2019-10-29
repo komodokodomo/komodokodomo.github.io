@@ -73,14 +73,14 @@ function setup() {
   lensContainer.show();
 
   lensList = createElement("ul");
-  // lensList.parent(lensContainer);
+  lensList.parent(lensContainer);
   lensList.id("lensList")
   lensList.show();
 
   for(var i = 0; i<jsonDataLength; i++){
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
-    // subjects[i].parent(lensList);
+    subjects[i].parent(lensList);
     subjects[i].show();
   }
 
