@@ -13,7 +13,7 @@ var lensContainer, lensList;
 var prevX = 0;
 var swipeDisplacement = 0; 
 var swipeTimer = 0;
-
+var test;
 var constraints = {
   video: { facingMode: { exact: "environment" } },
   audio: false
@@ -81,7 +81,7 @@ function setup() {
     subjects[i].parent(lensList);
     subjects[i].show();
   }
-  var test = document.getElementById('canvas');
+  test  = document.getElementById('canvas');
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
@@ -94,20 +94,16 @@ function setup() {
     setInterval(function(){
 
       model.detect(test).then(predictions => {
-        console.log(predictions);
+        // console.log(predictions);
         if(predictions.length > 0){
-        // if(millis()-bbTimer>500){
-          console.log(predictions[0]);
           objects = [];
-        // }  
-        // bbTimer=millis();
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
         }
       }
       });
     }
-    , 300);
+    , 200);
 
   });
 
