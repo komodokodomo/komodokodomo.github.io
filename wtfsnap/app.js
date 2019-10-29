@@ -92,7 +92,7 @@ function setup() {
     status = true;
 
     setInterval(function(){
-
+      console.log(test);
       model.detect(test).then(predictions => {
         // console.log(predictions);
         if(predictions.length > 0){
