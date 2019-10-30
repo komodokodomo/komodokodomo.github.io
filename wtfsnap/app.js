@@ -18,6 +18,8 @@ var constraints = {
 var itemsText = [];
 
 let video;
+// let yolo = ml5.YOLO(modelReady);
+let yolo;
 
 let objects = [];
 var starting = false;
@@ -57,29 +59,49 @@ function setup() {
   sampleImage = createImage(w,h);
 
   video = createCapture(constraints);
+  video.id("video");
   video.size(videoWidth, videoHeight);
   video.hide();
 
   sampleImage = createImage(w,h);
-  var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
+    // detect objects in the image.
     setInterval(function(){
+      var test = document.getElementById('canvas');
       model.detect(test).then(predictions => {
-        if(predictions.length > 0){  
+        if(predictions.length > 0){  //predictions[i].bbox[0]
+        // console.log('Predictions: ', predictions);
         objects = [];
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
+          // rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
+          // console.log(objects);
+          // console.log(objects[i].bbox[0]+", "+objects[i].bbox[1]+", "+objects[i].bbox[2]+", "+objects[i].bbox[3]);
         }
+        
       }
       });
-    }
+      // console.log(canvas);
+      console.log("sampling"); }
       , 200);
 
   });
 
+
+
   prevX = mouseX;
 }
+
+// function modelReady() {
+//   console.log("model Ready!")
+//   status = true;
+//   setInterval(function(){
+//     yolo.detect(sampleImage.getImageData(), detect);
+//     console.log("sampling"); }
+//     , 500);
+// }
+
 
 
 function draw() {
@@ -87,9 +109,7 @@ function draw() {
  imageMode(CENTER);
 
 if(w>h){
-//  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
- image(video, w/2, h/2, w, w*videoHeight/videoWidth);
-
+ image(video, w/2, h/2, h*videoWidth/videoHeight, h);
 }
 else{
 image(video, w/2, h/2,w,h);
@@ -101,17 +121,46 @@ image(video, w/2, h/2,w,h);
  text(frameRate(),30,30);
  text(cameras,30,50);
 
- 
+//  console.log("object length: " + objects.length);
+ if(objects.length>0){
+  noFill();
+  // rect(objects[0].bbox[0]/density,objects[0].bbox[1]/density,objects[0].bbox[2]/density,objects[0].bbox[3]/density);
+ }
+
  for(var i=0; i<objects.length ;i++){
   rectMode(CORNER);
   stroke(0,255,0);
   strokeWeight(5);
   noFill();
+  // console.log("this part is running");
   rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
 }
 
+//  for (let i = 0; i < objects.length; i++) {
+//   noStroke();
+//   fill(0, 255, 0);
+//   text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
+//   noFill();
+//   strokeWeight(4);
+//   stroke(0, 255, 0);
+//   rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
+// }
 }
 
+
+// function detect(err, results) {
+//   if (err) {
+//     console.error(err);
+//   }
+//   if(results.length!==0)
+//   {
+//     console.log(results);
+//     objects = results;
+//   }
+//   else{
+//     console.log("nothing detected"); 
+//   }
+// }
 
 function windowResized(){
     w = window.innerWidth;
@@ -136,7 +185,6 @@ function touchMoved(event) {
 }
 
 function checkSwipe(){
-
   if( millis() - swipeTimer > 400){
     if(swipeDisplacement>50){mode++;console.log("right");}
     else if(swipeDisplacement<-50){mode--;console.log("left");}
