@@ -1,25 +1,28 @@
+var jsonData,jsonDataLength;
+
+var subjects = [];
+
 let current;
 let cameras = "";
 let density;
 
-let sampleImage;
-let canvas,clone;
+let canvas;
+
+var lensContainer, lensList;
 
 var prevX = 0;
 var swipeDisplacement = 0; 
 var swipeTimer = 0;
-
+// var test;
 var constraints = {
   video: { facingMode: { exact: "environment" } },
   audio: false
-
 };
 
 var itemsText = [];
-
 let video;
-// let yolo = ml5.YOLO(modelReady);
-let yolo;
+
+var bbTimer;
 
 let objects = [];
 var starting = false;
@@ -32,6 +35,10 @@ var videoHeight = 720;
 var w,h;
 
 var mode = 0;
+
+// window.addEventListener('DOMContentLoaded', (event) => {
+//   console.log('DOM fully loaded and parsed');
+// });
 
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
   devices.forEach(function(device) {
@@ -46,8 +53,15 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
   console.log(err.name + ": " + err.message);
 });
 
-function setup() {
+function preload(){
+  let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
+  jsonData = loadJSON(url);
+}
 
+function setup() {
+  console.log(jsonData);
+  jsonDataLength = Object.keys(jsonData).length;
+  
   w = window.innerWidth;
   h = window.innerHeight;
 
@@ -57,49 +71,51 @@ function setup() {
   canvas = createCanvas(w, h);
   canvas.id("canvas");
 
+  // lensContainer = createDiv();
+  // lensContainer.id("lensContainer")
+  // lensContainer.hide();
+
+  // lensList = createElement("ul");
+  // lensList.parent(lensContainer);
+  // lensList.id("lensList")
+  // lensList.show();
+
+  // for(var i = 0; i<jsonDataLength; i++){
+  //   // console.log(jsonData[i].subject);
+  //   subjects[i] = createElement("li",jsonData[i].subject);
+  //   subjects[i].parent(lensList);
+  //   subjects[i].show();
+  // }
+
+
   video = createCapture(constraints);
-  video.id("video");
   video.size(videoWidth, videoHeight);
   video.hide();
+  var test = document.getElementById("canvas");
 
 
   cocoSsd.load().then(model => {
-    // detect objects in the image.
+    console.log("model loaded!");
+    status = true;
+
     setInterval(function(){
-      var test = document.getElementById('canvas');
+      // console.log(test);
+
       model.detect(test).then(predictions => {
-        if(predictions.length > 0){  //predictions[i].bbox[0]
-        console.log('Predictions: ', predictions);
+        console.log(predictions);
         objects = [];
+        if(predictions.length > 0){
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
-          // rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
-          // console.log(objects);
-          // console.log(objects[i].bbox[0]+", "+objects[i].bbox[1]+", "+objects[i].bbox[2]+", "+objects[i].bbox[3]);
         }
-        
       }
       });
-      // console.log(canvas);
-      console.log("sampling"); }
-      , 200);
+    }
+    , 200);
+  }
+  );
 
-  });
-
-
-
-  prevX = mouseX;
 }
-
-// function modelReady() {
-//   console.log("model Ready!")
-//   status = true;
-//   setInterval(function(){
-//     yolo.detect(sampleImage.getImageData(), detect);
-//     console.log("sampling"); }
-//     , 500);
-// }
-
 
 
 function draw() {
@@ -107,10 +123,20 @@ function draw() {
  imageMode(CENTER);
 
 if(w>h){
- image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+if((w/h)>(video.width/video.height))
+{
+  image(video, w/2, h/2, w, w*video.height/video.width);
 }
 else{
-image(video, w/2, h/2,w,h);
+  image(video, w/2, h/2, h*video.width/video.height, h);
+}
+//  image(video, w/2, h/2, w, w*videoHeight/videoWidth);
+
+}
+else{
+// image(video, w/2, h/2,w,h);
+image(video, w/2, h/2, w, (w/video.height)*video.width);
+// image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
 
@@ -118,47 +144,24 @@ image(video, w/2, h/2,w,h);
  noStroke();
  text(frameRate(),30,30);
  text(cameras,30,50);
-
-//  console.log("object length: " + objects.length);
- if(objects.length>0){
-  noFill();
-  // rect(objects[0].bbox[0]/density,objects[0].bbox[1]/density,objects[0].bbox[2]/density,objects[0].bbox[3]/density);
+ text("display: " + w + " x " +h,30,70);
+ text("cam: " + video.width + " x " +video.height,30,90);
+ if(status){
+ text("model loaded",30,110);
  }
 
+//  console.log(objects.length);
  for(var i=0; i<objects.length ;i++){
+  // console.log("drawing");
   rectMode(CORNER);
   stroke(0,255,0);
   strokeWeight(5);
   noFill();
-  // console.log("this part is running");
   rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
 }
 
-//  for (let i = 0; i < objects.length; i++) {
-//   noStroke();
-//   fill(0, 255, 0);
-//   text(objects[i].label, objects[i].x * width, objects[i].y * height - 5);
-//   noFill();
-//   strokeWeight(4);
-//   stroke(0, 255, 0);
-//   rect(objects[i].x * width, objects[i].y * height, objects[i].w * width, objects[i].h * height);
-// }
 }
 
-
-// function detect(err, results) {
-//   if (err) {
-//     console.error(err);
-//   }
-//   if(results.length!==0)
-//   {
-//     console.log(results);
-//     objects = results;
-//   }
-//   else{
-//     console.log("nothing detected"); 
-//   }
-// }
 
 function windowResized(){
     w = window.innerWidth;
@@ -167,28 +170,28 @@ function windowResized(){
 }
 
 
-function touchStarted(){
- if(!starting){
-    starting = true;
-    fullscreen(true);
-}
-prevX = mouseX;
-}
+// function touchStarted(){
+//  if(!starting){
+//     starting = true;
+//     fullscreen(true);
+// }
+// prevX = mouseX;
+// }
 
-function touchMoved(event) {
-    swipeTimer = millis();
-    swipeDisplacement+=(mouseX - prevX);
-    prevX = mouseX;
-    // console.log(event);
-}
+// function touchMoved(event) {
+//     swipeTimer = millis();
+//     swipeDisplacement+=(mouseX - prevX);
+//     prevX = mouseX;
+// }
 
-function checkSwipe(){
-  if( millis() - swipeTimer > 400){
-    if(swipeDisplacement>50){mode++;console.log("right");}
-    else if(swipeDisplacement<-50){mode--;console.log("left");}
-    if(mode<0){mode = 2;}
-    if(mode>2){mode=0;}
-    swipeDisplacement = 0;
-    }
+// function checkSwipe(){
 
-}
+//   if( millis() - swipeTimer > 400){
+//     if(swipeDisplacement>50){mode++;console.log("right");}
+//     else if(swipeDisplacement<-50){mode--;console.log("left");}
+//     if(mode<0){mode = 2;}
+//     if(mode>2){mode=0;}
+//     swipeDisplacement = 0;
+//     }
+
+// }
