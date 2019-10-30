@@ -1,28 +1,23 @@
-var jsonData,jsonDataLength;
-
-var subjects = [];
-
 let current;
 let cameras = "";
 let density;
 
-let canvas;
-
-var lensContainer, lensList;
+let sampleImage;
+let canvas,clone;
 
 var prevX = 0;
 var swipeDisplacement = 0; 
 var swipeTimer = 0;
-// var test;
+
 var constraints = {
   video: { facingMode: { exact: "environment" } },
   audio: false
+
 };
 
 var itemsText = [];
-let video;
 
-var bbTimer;
+let video;
 
 let objects = [];
 var starting = false;
@@ -35,10 +30,6 @@ var videoHeight = 720;
 var w,h;
 
 var mode = 0;
-
-// window.addEventListener('DOMContentLoaded', (event) => {
-//   console.log('DOM fully loaded and parsed');
-// });
 
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
   devices.forEach(function(device) {
@@ -53,15 +44,8 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
   console.log(err.name + ": " + err.message);
 });
 
-function preload(){
-  let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
-  jsonData = loadJSON(url);
-}
-
 function setup() {
-  console.log(jsonData);
-  jsonDataLength = Object.keys(jsonData).length;
-  
+
   w = window.innerWidth;
   h = window.innerHeight;
 
@@ -70,51 +54,31 @@ function setup() {
 
   canvas = createCanvas(w, h);
   canvas.id("canvas");
-
-  // lensContainer = createDiv();
-  // lensContainer.id("lensContainer")
-  // lensContainer.hide();
-
-  // lensList = createElement("ul");
-  // lensList.parent(lensContainer);
-  // lensList.id("lensList")
-  // lensList.show();
-
-  // for(var i = 0; i<jsonDataLength; i++){
-  //   // console.log(jsonData[i].subject);
-  //   subjects[i] = createElement("li",jsonData[i].subject);
-  //   subjects[i].parent(lensList);
-  //   subjects[i].show();
-  // }
-
+  sampleImage = createImage(w,h);
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
 
+  sampleImage = createImage(w,h);
+  var test = document.getElementById('canvas');
 
   cocoSsd.load().then(model => {
-    // console.log("model loaded!");
-    status = true;
-
     setInterval(function(){
-      // console.log(test);
-      var test = document.getElementById("canvas");
-
       model.detect(test).then(predictions => {
-        console.log(predictions);
+        if(predictions.length > 0){  
         objects = [];
-        if(predictions.length > 0){
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
         }
       }
       });
     }
-    , 200);
-  }
-  );
+      , 200);
 
+  });
+
+  prevX = mouseX;
 }
 
 
@@ -123,16 +87,12 @@ function draw() {
  imageMode(CENTER);
 
 if(w>h){
-      if((w/h)>(video.width/video.height))
-      {
-        image(video, w/2, h/2, w, w*video.height/video.width);
-      }
-      else{
-        image(video, w/2, h/2, h*video.width/video.height, h);
-      }
+//  image(video, w/2, h/2, h*videoWidth/videoHeight, h);
+ image(video, w/2, h/2, w, w*videoHeight/videoWidth);
+
 }
 else{
-image(video, w/2, h/2, w, (w/video.height)*video.width);
+image(video, w/2, h/2,w,h);
 }
 
 
@@ -140,15 +100,9 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
  noStroke();
  text(frameRate(),30,30);
  text(cameras,30,50);
- text("display: " + w + " x " +h,30,70);
- text("cam: " + video.width + " x " +video.height,30,90);
- if(status){
- text("model loaded",30,110);
- }
 
-//  console.log(objects.length);
+ 
  for(var i=0; i<objects.length ;i++){
-  // console.log("drawing");
   rectMode(CORNER);
   stroke(0,255,0);
   strokeWeight(5);
@@ -166,28 +120,29 @@ function windowResized(){
 }
 
 
-// function touchStarted(){
-//  if(!starting){
-//     starting = true;
-//     fullscreen(true);
-// }
-// prevX = mouseX;
-// }
+function touchStarted(){
+ if(!starting){
+    starting = true;
+    fullscreen(true);
+}
+prevX = mouseX;
+}
 
-// function touchMoved(event) {
-//     swipeTimer = millis();
-//     swipeDisplacement+=(mouseX - prevX);
-//     prevX = mouseX;
-// }
+function touchMoved(event) {
+    swipeTimer = millis();
+    swipeDisplacement+=(mouseX - prevX);
+    prevX = mouseX;
+    // console.log(event);
+}
 
-// function checkSwipe(){
+function checkSwipe(){
 
-//   if( millis() - swipeTimer > 400){
-//     if(swipeDisplacement>50){mode++;console.log("right");}
-//     else if(swipeDisplacement<-50){mode--;console.log("left");}
-//     if(mode<0){mode = 2;}
-//     if(mode>2){mode=0;}
-//     swipeDisplacement = 0;
-//     }
+  if( millis() - swipeTimer > 400){
+    if(swipeDisplacement>50){mode++;console.log("right");}
+    else if(swipeDisplacement<-50){mode--;console.log("left");}
+    if(mode<0){mode = 2;}
+    if(mode>2){mode=0;}
+    swipeDisplacement = 0;
+    }
 
-// }
+}
