@@ -69,7 +69,7 @@ function setup() {
       var test = document.getElementById('canvas');
       model.detect(test).then(predictions => {
         if(predictions.length > 0){  //predictions[i].bbox[0]
-        // console.log('Predictions: ', predictions);
+        console.log('Predictions: ', predictions);
         objects = [];
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
