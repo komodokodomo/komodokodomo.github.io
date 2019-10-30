@@ -56,14 +56,12 @@ function setup() {
 
   canvas = createCanvas(w, h);
   canvas.id("canvas");
-  sampleImage = createImage(w,h);
 
   video = createCapture(constraints);
   video.id("video");
   video.size(videoWidth, videoHeight);
   video.hide();
 
-  sampleImage = createImage(w,h);
 
   cocoSsd.load().then(model => {
     // detect objects in the image.
