@@ -11,7 +11,7 @@ body
     margin: 0; 
 } 
 
- li {
+ /* li {
     /* display:flex; */
     display: flex;
     align-items: center;
@@ -27,4 +27,29 @@ body
     &:last-child {
       border-right: 2px solid rgba(51, 51, 51, 0.25);
     }
-  }
+  } */
+
+  #lens-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    border: 2px solid black;
+    overflow-x: scroll; }
+
+    #lens-list li {
+      display: flex;
+      align-items: center;
+      border-right: 2px solid black;
+      margin: 0;
+      padding: 0.25rem 1rem;
+      background: white;
+      transition: 300ms ease-in-out; }
+
+      #lens-list li.active {
+        background: black;
+        color: white; }
+        
+      #lens-list li:last-child {
+        border-right: 2px solid rgba(51, 51, 51, 0.25); }

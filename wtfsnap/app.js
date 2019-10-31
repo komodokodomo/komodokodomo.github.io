@@ -75,12 +75,12 @@ function setup() {
   lensContainer.size(w,h/10);
   lensContainer.position(0,9*h/10);
   // lensContainer.style("display","inline");
-  lensContainer.id("lensContainer")
+  lensContainer.id("lens-container")
   // lensContainer.show();
 
   lensList = createElement("ul");
   lensList.parent(lensContainer);
-  lensList.id("lensList");
+  lensList.id("lens-list");
   // lensList.style("display","inline");
   // lensList.show();
 
