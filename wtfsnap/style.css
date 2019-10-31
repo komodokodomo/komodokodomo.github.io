@@ -12,5 +12,5 @@ body
 } 
 
  li {
-    display:inline;
+    display:flex;
   }
