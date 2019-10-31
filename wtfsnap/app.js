@@ -72,8 +72,8 @@ function setup() {
   canvas.id("canvas");
 
   lensContainer = createDiv();
-  lensContainer.size(w,h);
-  lensContainer.position(0,0);
+  lensContainer.size(w,h/10);
+  lensContainer.position(0,9*h/10);
   lensContainer.id("lensContainer")
   lensContainer.show();
 
