@@ -88,7 +88,7 @@ function setup() {
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
-    // subjects[i].style("display","inline");
+    subjects[i].style("display","inline");
     // subjects[i].show();
   }
 
