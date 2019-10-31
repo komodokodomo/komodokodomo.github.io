@@ -88,7 +88,7 @@ function setup() {
   lensList = createElement("ul");
   lensList.parent(lensContainer);
   lensList.id("lens-list");
-  // lensList.style("display","inline");
+  lensList.style("height","100%");
   // lensList.show();
 
   for(var i = 0; i<jsonDataLength; i++){
