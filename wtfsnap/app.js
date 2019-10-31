@@ -58,6 +58,13 @@ function preload(){
   jsonData = loadJSON(url);
 }
 
+
+function doSomething(){
+
+  console.log("subject chosen");
+
+}
+
 function setup() {
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
@@ -88,6 +95,7 @@ function setup() {
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
+    subjects[i].mouseClicked(doSomething);
     // subjects[i].style("display","inline");
     // subjects[i].show();
   }
