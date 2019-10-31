@@ -95,7 +95,7 @@ function setup() {
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
-    subjects[i].mouseClicked(doSomething);
+    subjects[i].mouseClicked(function(){subjects[i].addClass('active');});
     // subjects[i].style("display","inline");
     // subjects[i].show();
   }
