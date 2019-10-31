@@ -74,6 +74,7 @@ function setup() {
   lensContainer = createDiv();
   lensContainer.size(w,h/10);
   lensContainer.position(0,9*h/10);
+  lensContainer.style("display","inline");
   lensContainer.id("lensContainer")
   lensContainer.show();
 
