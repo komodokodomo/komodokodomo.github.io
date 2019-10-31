@@ -76,20 +76,20 @@ function setup() {
   lensContainer.position(0,9*h/10);
   // lensContainer.style("display","inline");
   lensContainer.id("lensContainer")
-  lensContainer.show();
+  // lensContainer.show();
 
   lensList = createElement("ul");
   lensList.parent(lensContainer);
   lensList.id("lensList");
   // lensList.style("display","inline");
-  lensList.show();
+  // lensList.show();
 
   for(var i = 0; i<jsonDataLength; i++){
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
     // subjects[i].style("display","inline");
-    subjects[i].show();
+    // subjects[i].show();
   }
 
 
