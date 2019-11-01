@@ -95,9 +95,9 @@ function setup() {
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
-    subjects[i].id("li"+i);
+    subjects[i].id("li"+i.toString());
     // subjects[i].mouseClicked(function(){subjects[i].addClass('active');});
-    document.getElementById("li"+i).onclick = function(){console.log("you clicked: " + i);};
+    document.getElementById("li"+i.toString()).onclick = function(){console.log("you clicked: " + i);};
     // subjects[i].style("display","inline");
     // subjects[i].show();
   }
