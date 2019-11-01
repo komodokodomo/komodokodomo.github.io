@@ -99,10 +99,9 @@ function setup() {
     // subjects[i].mouseClicked(function(){subjects[i].addClass('active');});
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
-      console.log(document.getElementsByClassName("active"));
-    //   if(document.getElementsByClassName("active")!==undefined){
-    //   document.getElementsByClassName("active").classList.remove("active");
-    // }
+      for(let j = 0; j<jsonDataLength; j++){
+        document.getElementById("li"+i.toString()).classList.remove("active");
+      }
       document.getElementById("li"+i.toString()).classList.add("active");
     };
     // subjects[i].style("display","inline");
