@@ -97,7 +97,7 @@ function setup() {
     subjects[i].parent(lensList);
     subjects[i].id("li"+i.toString());
     // subjects[i].mouseClicked(function(){subjects[i].addClass('active');});
-    document.getElementById("li"+i.toString()).onclick = function(){console.log("you clicked: " + i);};
+    document.getElementById("li"+i.toString()).onclick = function(){console.log("you clicked: " + i.toString());};
     // subjects[i].style("display","inline");
     // subjects[i].show();
   }
