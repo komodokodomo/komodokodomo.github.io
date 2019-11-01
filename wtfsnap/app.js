@@ -91,13 +91,16 @@ function setup() {
   lensList.style("height","100%");
   // lensList.show();
 
-  for(var i = 0; i<jsonDataLength; i++){
+  for(let i = 0; i<jsonDataLength; i++){
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
     subjects[i].id("li"+i.toString());
     // subjects[i].mouseClicked(function(){subjects[i].addClass('active');});
-    document.getElementById("li"+i.toString()).onclick = function(){console.log("you clicked: " + i.toString());};
+    document.getElementById("li"+i.toString()).onclick = function(){
+      console.log("you clicked: " + i.toString());
+      document.getElementById("li"+i.toString()).classList.add("active");
+    };
     // subjects[i].style("display","inline");
     // subjects[i].show();
   }
