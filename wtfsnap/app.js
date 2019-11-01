@@ -8,7 +8,7 @@ let density;
 
 let canvas;
 
-var lensContainer, lensList;
+var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame;
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -89,14 +89,26 @@ function setup() {
   lensList.parent(lensContainer);
   lensList.id("lens-list");
   lensList.style("height","100%");
-  // lensList.show();
+
+  contentContainer = createDiv();
+  contentContainer.size(w,h/2);
+  contentContainer.position(0,4*h/10);
+  contentContainer.id("related-content-container");
+
+  contentLabel = createElement("h2");
+  contentLabel.parent(contentContainer);
+
+  contentText = createP();
+  contentText.parent(contentContainer);
+
+  contentTrying = createSpan("Trying to identify...");
+  contentTrying.parent(contentContainer);
 
   for(let i = 0; i<jsonDataLength; i++){
     // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
     subjects[i].id("li"+i.toString());
-    // subjects[i].mouseClicked(function(){subjects[i].addClass('active');});
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
       for(let j = 0; j<jsonDataLength; j++){
@@ -107,6 +119,12 @@ function setup() {
     // subjects[i].style("display","inline");
     // subjects[i].show();
   }
+
+//   <div id="related-content-container">
+//   <h2 id="object-label"></h2>
+//   <p id="content"></p>
+//   <span id="trying">Trying to identify...</span>
+// </div>
 
 
   video = createCapture(constraints);
@@ -188,6 +206,8 @@ function windowResized(){
     w = window.innerWidth;
     h = window.innerHeight;
     resizeCanvas(w, h);
+    lensContainer.size(w,h/10);
+    lensContainer.position(0,9*h/10);
 }
 
 
