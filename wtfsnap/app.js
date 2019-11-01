@@ -100,7 +100,7 @@ function setup() {
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
       for(let j = 0; j<jsonDataLength; j++){
-        document.getElementById("li"+i.toString()).classList.remove("active");
+        document.getElementById("li"+j.toString()).classList.remove("active");
       }
       document.getElementById("li"+i.toString()).classList.add("active");
     };
