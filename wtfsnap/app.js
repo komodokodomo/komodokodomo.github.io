@@ -99,6 +99,7 @@ function setup() {
     // subjects[i].mouseClicked(function(){subjects[i].addClass('active');});
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
+      document.getElementsByClassName("active").classList.remove("active");
       document.getElementById("li"+i.toString()).classList.add("active");
     };
     // subjects[i].style("display","inline");
