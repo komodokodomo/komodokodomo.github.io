@@ -83,9 +83,9 @@ function setup() {
 
   button = uxRect(0, 0, 0, 0);
   button.uxEvent('click', trigger);
-  button.uxNoFill();
-  button.uxStrokeWeight(4);
-  button.uxRectMode('center');
+  uxNoFill();
+  uxStrokeWeight(4);
+  uxRectMode('center');
 
   canvas = createCanvas(w, h);
   canvas.id("canvas");
