@@ -6,6 +6,8 @@ let current;
 let cameras = "";
 let density;
 
+let maxBoxes = 1;
+
 let canvas;
 
 var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame;
@@ -96,12 +98,15 @@ function setup() {
   contentContainer.id("related-content-container");
 
   contentLabel = createElement("h2");
+  contentLabel.id("object-label");
   contentLabel.parent(contentContainer);
 
   contentText = createP();
+  contentText.id("content");
   contentText.parent(contentContainer);
 
   contentTrying = createSpan("Trying to identify...");
+  contentTrying.id("trying");
   contentTrying.parent(contentContainer);
 
   for(let i = 0; i<jsonDataLength; i++){
@@ -140,7 +145,7 @@ function setup() {
     setInterval(function(){
       // console.log(test);
 
-      model.detect(test,1).then(predictions => {
+      model.detect(test,maxBoxes).then(predictions => {
         console.log(predictions);
         objects = [];
         if(predictions.length > 0){
