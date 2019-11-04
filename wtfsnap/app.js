@@ -2,6 +2,8 @@ var jsonData,jsonDataLength;
 
 var subjects = [];
 
+let button;
+
 let current;
 let cameras = "";
 let density;
@@ -62,9 +64,11 @@ function preload(){
 
 
 function doSomething(){
-
   console.log("subject chosen");
+}
 
+function trigger() {
+  console.log('uxRect just got clicked!');
 }
 
 function setup() {
@@ -76,6 +80,12 @@ function setup() {
 
   density = pixelDensity();
   console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
+
+  button = uxRect(0, 0, 0, 0);
+  button.uxEvent('click', trigger);
+  button.uxNoFill();
+  button.uxStrokeWeight(4);
+  button.uxRectMode('center');
 
   canvas = createCanvas(w, h);
   canvas.id("canvas");
@@ -110,7 +120,6 @@ function setup() {
   contentTrying.parent(contentContainer);
 
   for(let i = 0; i<jsonDataLength; i++){
-    // console.log(jsonData[i].subject);
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
     subjects[i].id("li"+i.toString());
@@ -201,7 +210,9 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
   stroke(0,255,0);
   strokeWeight(5);
   noFill();
-  rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
+  button = uxRect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
+  button.uxRender();
+  // rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
 }
 
 }
