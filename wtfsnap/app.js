@@ -140,7 +140,7 @@ function setup() {
     setInterval(function(){
       // console.log(test);
 
-      model.detect(test).then(predictions => {
+      model.detect(test,1).then(predictions => {
         console.log(predictions);
         objects = [];
         if(predictions.length > 0){
