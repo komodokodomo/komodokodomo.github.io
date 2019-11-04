@@ -212,7 +212,7 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
   strokeWeight(5);
   noFill();
   button = uxRect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
-  button.uxEvent("click","trigger");
+  button.uxEvent("click",trigger);
   button.uxRender();
   // rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
 }
