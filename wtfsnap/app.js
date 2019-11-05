@@ -217,7 +217,12 @@ else{
 }
 else{
 // image(video, w/2, h/2,w,h);
+if((w/h)>(video.height/video.width)){
 image(video, w/2, h/2, w, (w/video.height)*video.width);
+}
+else{
+image(video, w/2, h/2, (h/video.width)*video.height, h);
+}
 // image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
