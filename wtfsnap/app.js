@@ -219,12 +219,14 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
 
 //  console.log(objects.length);
  for(var i=0; i<objects.length ;i++){
+   if(abs(objects[i].bbox[0]/density - prevX)>50){counter = 0;}
+   if(abs(objects[i].bbox[1]/density - prevY)>50){counter = 0;}
 
   if(counter > 0){
-  let lerpX = lerp(objects[i].bbox[0]/density,prevX,0.3);
-  let lerpY = lerp(objects[i].bbox[1]/density,prevY,0.3);
-  let lerpW = lerp(objects[i].bbox[2]/density,prevW,0.3);
-  let lerpH = lerp(objects[i].bbox[3]/density,prevH,0.3);
+  let lerpX = lerp(objects[i].bbox[0]/density,prevX,0.2);
+  let lerpY = lerp(objects[i].bbox[1]/density,prevY,0.2);
+  let lerpW = lerp(objects[i].bbox[2]/density,prevW,0.2);
+  let lerpH = lerp(objects[i].bbox[3]/density,prevH,0.2);
   if(lerpW>lerpH){ //W>H
     button.size(lerpW,lerpW);
   }
