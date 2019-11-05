@@ -120,7 +120,7 @@ function setup() {
   button.size(0,0);
   button.position(0,0);
   button.style("border-style","dashed");
-  button.style("border-radius","50%");
+  // button.style("border-radius","50%");
   button.style("border-color","white");
   button.style("border-width","0.3rem");
   button.style("background-color","transparent");
@@ -229,24 +229,25 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
   let lerpH = lerp(objects[i].bbox[3]/density,prevH,0.2);
   fill(255);
   ellipse(lerpX,lerpY,lerpW/5,lerpH/5);
-  if(lerpW>lerpH){ //W>H
-    button.size(lerpW,lerpW);
-  }
-  else{
-    button.size(lerpH,lerpH);
-  }
+  // if(lerpW>lerpH){ //W>H
+  //   button.size(lerpW,lerpW);
+  // }
+  // else{
+  //   button.size(lerpH,lerpH);
+  // }
+  button.size(lerpW,lerpH);
   button.position(lerpX,lerpY);
   }
 
   else{
   // console.log("drawing");
-  if(objects[i].bbox[2]/density>objects[i].bbox[3]/density){ //W>H
-    button.size(objects[i].bbox[2]/density,objects[i].bbox[2]/density);
-  }
-  else{
-    button.size(objects[i].bbox[3]/density,objects[i].bbox[3]/density); //H>W
-  }
-  // button.size(objects[i].bbox[2]/density,objects[i].bbox[3]/density);  //default
+  // if(objects[i].bbox[2]/density>objects[i].bbox[3]/density){ //W>H
+  //   button.size(objects[i].bbox[2]/density,objects[i].bbox[2]/density);
+  // }
+  // else{
+  //   button.size(objects[i].bbox[3]/density,objects[i].bbox[3]/density); //H>W
+  // }
+  button.size(objects[i].bbox[2]/density,objects[i].bbox[3]/density);  //default
   button.position(objects[i].bbox[0]/density,objects[i].bbox[1]/density);
   }
 
