@@ -97,7 +97,7 @@ function setup() {
   canvas = createCanvas(w, h);
   canvas.id("canvas");
 
-  screenToggle = createImg("/300ppi/fullscreen.png",'toggle fullscreen');
+  screenToggle = createImg("https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
   screenToggle.size(w/16,w/16);
   screenToggle.position(w/32,w/32);
   screenToggle.mouseClicked(toggleScreen);
@@ -239,10 +239,10 @@ if(debug){
    if(abs(objects[i].bbox[1]/density - prevY)>50){counter = 0;}
 
   if(counter > 0){
-  let lerpX = lerp(objects[i].bbox[0]/density,prevX,0.2);
-  let lerpY = lerp(objects[i].bbox[1]/density,prevY,0.2);
-  let lerpW = lerp(objects[i].bbox[2]/density,prevW,0.2);
-  let lerpH = lerp(objects[i].bbox[3]/density,prevH,0.2);
+  let lerpX = lerp(objects[i].bbox[0]/density,prevX,0.3);
+  let lerpY = lerp(objects[i].bbox[1]/density,prevY,0.3);
+  let lerpW = lerp(objects[i].bbox[2]/density,prevW,0.3);
+  let lerpH = lerp(objects[i].bbox[3]/density,prevH,0.3);
   // if(lerpW>lerpH){ //W>H
   //   button.size(lerpW,lerpW);
   // }
