@@ -97,7 +97,7 @@ function setup() {
   canvas = createCanvas(w, h);
   canvas.id("canvas");
 
-  screenToggle = createImg("https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen',"anonymous");
+  screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
   screenToggle.size(w/16,w/16);
   screenToggle.position(w/32,w/32);
   screenToggle.mouseClicked(toggleScreen);
