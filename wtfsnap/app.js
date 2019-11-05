@@ -90,7 +90,6 @@ function setup() {
   lensContainer = createDiv();
   lensContainer.size(w,h/10);
   lensContainer.position(0,9*h/10);
-  // lensContainer.style("display","inline");
   lensContainer.id("lens-container")
   lensContainer.hide();
 
@@ -166,11 +165,14 @@ function setup() {
         console.log(predictions);
         objects = [];
         if(predictions.length > 0){
+        counter++;
+        if(counter>2){counter=2;}
         for (let i = 0; i < predictions.length; i++) {
           objects[i]=predictions[i];
         }
       }
       else{
+        counter = 0;
         button.hide();
         lensContainer.hide();
       }
@@ -217,6 +219,22 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
 
 //  console.log(objects.length);
  for(var i=0; i<objects.length ;i++){
+
+  if(counter > 0){
+  let lerpX = lerp(objects[i].bbox[0]/density,prevX,0.3);
+  let lerpY = lerp(objects[i].bbox[1]/density,prevY,0.3);
+  let lerpW = lerp(objects[i].bbox[2]/density,prevW,0.3);
+  let lerpH = lerp(objects[i].bbox[3]/density,prevH,0.3);
+  if(lerpW>lerpH){ //W>H
+    button.size(lerpW,lerpW);
+  }
+  else{
+    button.size(lerpH,lerpH);
+  }
+  button.position(lerpX,lerpY);
+  }
+
+  else{
   // console.log("drawing");
   if(objects[i].bbox[2]/density>objects[i].bbox[3]/density){ //W>H
     button.size(objects[i].bbox[2]/density,objects[i].bbox[2]/density);
@@ -225,8 +243,14 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
     button.size(objects[i].bbox[3]/density,objects[i].bbox[3]/density); //H>W
   }
   // button.size(objects[i].bbox[2]/density,objects[i].bbox[3]/density);  //default
-
   button.position(objects[i].bbox[0]/density,objects[i].bbox[1]/density);
+  }
+
+  prevX = objects[i].bbox[0]/density;
+  prevY = objects[i].bbox[1]/density;
+  prevW = objects[i].bbox[2]/density;
+  prevH = objects[i].bbox[3]/density;
+
   button.show();
   rectMode(CORNER);
   stroke(0,255,0);
