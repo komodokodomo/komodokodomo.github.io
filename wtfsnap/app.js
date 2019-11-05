@@ -81,8 +81,15 @@ function setup() {
   density = pixelDensity();
   console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
 
-  button = uxRect(0, 0, 0, 0);
-  button.uxEvent('click', trigger);
+
+  button = createDiv();
+  button.size(0,0);
+  button.position(0,0);
+  button.style("border-style","dotted");
+  button.style("border-width","medium");
+  button.hide();
+  // button = uxRect(0, 0, 0, 0);
+  // button.uxEvent('click', trigger);
   uxNoFill();
   uxStrokeWeight(4);
   uxStroke(255);
@@ -163,6 +170,9 @@ function setup() {
           objects[i]=predictions[i];
         }
       }
+      else{
+        button.hide();
+      }
       });
     }
     , 200);
@@ -207,13 +217,16 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
 //  console.log(objects.length);
  for(var i=0; i<objects.length ;i++){
   // console.log("drawing");
+  button.size(objects[i].bbox[2]/density,objects[i].bbox[3]/density);
+  button.position(objects[i].bbox[0]/density,objects[i].bbox[1]/density);
+  button.show();
   rectMode(CORNER);
   stroke(0,255,0);
   strokeWeight(5);
   noFill();
-  button = uxRect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
-  button.uxEvent("click",trigger);
-  button.uxRender();
+  // button = uxRect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
+  // button.uxEvent("click",trigger);
+  // button.uxRender();
   // rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
 }
 
