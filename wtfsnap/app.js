@@ -25,6 +25,9 @@ var constraints = {
   audio: false
 };
 
+
+let debug = false;
+
 var itemsText = [];
 let video;
 
@@ -206,7 +209,7 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
 // image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
-
+if(debug){
  fill(0);
  noStroke();
  text(frameRate(),30,30);
@@ -216,6 +219,7 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
  if(status){
  text("model loaded",30,110);
  }
+}
 
 //  console.log(objects.length);
  for(var i=0; i<objects.length ;i++){
