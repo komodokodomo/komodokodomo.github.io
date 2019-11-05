@@ -69,6 +69,7 @@ function doSomething(){
 
 function trigger() {
   console.log('uxRect just got clicked!');
+  lensContainer.style("display","flex");
 }
 
 function setup() {
@@ -98,7 +99,7 @@ function setup() {
   lensContainer.position(0,9*h/10);
   // lensContainer.style("display","inline");
   lensContainer.id("lens-container")
-  // lensContainer.show();
+  lensContainer.hide();
 
   lensList = createElement("ul");
   lensList.parent(lensContainer);
