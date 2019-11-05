@@ -82,14 +82,7 @@ function setup() {
   console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
 
 
-  button = createDiv();
-  button.mouseClicked(trigger);
-  button.size(0,0);
-  button.position(0,0);
-  button.style("border-style","dotted");
-  button.style("border-width","medium");
-  button.style("background-color","transparent");
-  button.hide();
+
   // button = uxRect(0, 0, 0, 0);
   // button.uxEvent('click', trigger);
   uxNoFill();
@@ -128,6 +121,15 @@ function setup() {
   contentTrying = createSpan("Trying to identify...");
   contentTrying.id("trying");
   contentTrying.parent(contentContainer);
+
+  button = createDiv();
+  button.mouseClicked(trigger);
+  button.size(0,0);
+  button.position(0,0);
+  button.style("border-style","dotted");
+  button.style("border-width","medium");
+  button.style("background-color","transparent");
+  button.hide();
 
   for(let i = 0; i<jsonDataLength; i++){
     subjects[i] = createElement("li",jsonData[i].subject);
