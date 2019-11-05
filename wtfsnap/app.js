@@ -127,7 +127,7 @@ function setup() {
   button.size(0,0);
   button.position(0,0);
   button.style("border-style","dotted");
-  button.style("border-width","medium");
+  button.style("border-width","2rem");
   button.style("background-color","transparent");
   button.hide();
 
