@@ -83,6 +83,7 @@ function setup() {
 
 
   button = createDiv();
+  button.mouseClicked(trigger);
   button.size(0,0);
   button.position(0,0);
   button.style("border-style","dotted");
