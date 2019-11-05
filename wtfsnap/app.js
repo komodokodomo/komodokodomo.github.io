@@ -97,9 +97,9 @@ function setup() {
   canvas = createCanvas(w, h);
   canvas.id("canvas");
 
-  screenToggle = createImg("/300ppi/fullscreen.png",'toggle fullscreen',"anonymous");
-  screenToggle.size(w/8,w/8);
-  screenToggle.position(w/16,w/16);
+  screenToggle = createImg("/300ppi/fullscreen.png",'toggle fullscreen');
+  screenToggle.size(w/16,w/16);
+  screenToggle.position(w/32,w/32);
   screenToggle.mouseClicked(toggleScreen);
 
   lensContainer = createDiv();
