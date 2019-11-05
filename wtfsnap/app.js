@@ -126,7 +126,8 @@ function setup() {
   button.mouseClicked(trigger);
   button.size(0,0);
   button.position(0,0);
-  button.style("border-style","dotted");
+  button.style("border-style","dash");
+  button.style("border-color","white");
   button.style("border-width","0.3rem");
   button.style("background-color","transparent");
   button.hide();
