@@ -8,6 +8,8 @@ let current;
 let cameras = "";
 let density;
 
+let counter = 0;
+
 let maxBoxes = 1;
 
 let canvas;
@@ -81,15 +83,6 @@ function setup() {
 
   density = pixelDensity();
   console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
-
-
-
-  // button = uxRect(0, 0, 0, 0);
-  // button.uxEvent('click', trigger);
-  uxNoFill();
-  uxStrokeWeight(4);
-  uxStroke(255);
-  // uxRectMode('center');
 
   canvas = createCanvas(w, h);
   canvas.id("canvas");
@@ -225,7 +218,14 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
 //  console.log(objects.length);
  for(var i=0; i<objects.length ;i++){
   // console.log("drawing");
-  button.size(objects[i].bbox[2]/density,objects[i].bbox[3]/density);
+  if(objects[i].bbox[2]/density>objects[i].bbox[3]/density){ //W>H
+    button.size(objects[i].bbox[2]/density,objects[i].bbox[2]/density);
+  }
+  else{
+    button.size(objects[i].bbox[3]/density,objects[i].bbox[3]/density); //H>W
+  }
+  // button.size(objects[i].bbox[2]/density,objects[i].bbox[3]/density);  //default
+
   button.position(objects[i].bbox[0]/density,objects[i].bbox[1]/density);
   button.show();
   rectMode(CORNER);
