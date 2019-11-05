@@ -9,6 +9,7 @@ let cameras = "";
 let density;
 
 let counter = 0;
+let screenToggle;
 
 let maxBoxes = 1;
 
@@ -77,6 +78,12 @@ function trigger() {
   lensContainer.style("display","flex");
 }
 
+function toggleScreen() {
+  let fs = fullscreen();
+  console.log(toggleScreen.src);
+  fullscreen(!fs);
+}
+
 function setup() {
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
@@ -89,6 +96,11 @@ function setup() {
 
   canvas = createCanvas(w, h);
   canvas.id("canvas");
+
+  screenToggle = createImg("/300ppi/fullscreen.png",'toggle fullscreen',"anonymous");
+  screenToggle.size(w/8,w/8);
+  screenToggle.position(w/16,w/16);
+  screenToggle.mouseClicked(toggleScreen);
 
   lensContainer = createDiv();
   lensContainer.size(w,h/10);
