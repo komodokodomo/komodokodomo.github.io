@@ -227,6 +227,8 @@ image(video, w/2, h/2, w, (w/video.height)*video.width);
   let lerpY = lerp(objects[i].bbox[1]/density,prevY,0.2);
   let lerpW = lerp(objects[i].bbox[2]/density,prevW,0.2);
   let lerpH = lerp(objects[i].bbox[3]/density,prevH,0.2);
+  fill(255);
+  ellipse(lerpX,lerpY,lerpW/5,lerpH/5);
   if(lerpW>lerpH){ //W>H
     button.size(lerpW,lerpW);
   }
