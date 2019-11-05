@@ -28,7 +28,7 @@ var constraints = {
 var itemsText = [];
 let video;
 
-var bbTimer;
+var prevX,prevY,prevW,prevH;
 
 let objects = [];
 var starting = false;
