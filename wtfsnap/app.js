@@ -88,6 +88,7 @@ function setup() {
   button.position(0,0);
   button.style("border-style","dotted");
   button.style("border-width","medium");
+  button.style("background-color","transparent");
   button.hide();
   // button = uxRect(0, 0, 0, 0);
   // button.uxEvent('click', trigger);
