@@ -178,6 +178,7 @@ function setup() {
       }
       else{
         button.hide();
+        lensContainer.hide();
       }
       });
     }
