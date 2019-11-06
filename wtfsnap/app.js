@@ -233,7 +233,7 @@ else{
 }
 else{
 // image(video, w/2, h/2,w,h);
-if((w/h)>(videoHeight/videoWidth)){
+if((w/h)<(videoHeight/videoWidth)){
 image(video, w/2, h/2, w, (h/videoHeight)*videoWidth);
 }
 else{
