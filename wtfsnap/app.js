@@ -9,7 +9,7 @@ let cameras = "";
 let density;
 
 let counter = 0;
-let screenToggle;
+let screenToggle,screenToggle2;
 
 let maxBoxes = 1;
 
@@ -74,14 +74,22 @@ function doSomething(){
 }
 
 function trigger() {
-  console.log('uxRect just got clicked!');
+  console.log('button clicked!');
   lensContainer.style("display","flex");
 }
 
 function toggleScreen() {
-  let fs = fullscreen();
-  console.log(toggleScreen.src);
-  fullscreen(!fs);
+  fullscreen(true);
+  console.log("fullscreen");
+  screenToggle.hide();
+  screenToggle2.show();
+}
+
+function toggleScreen2() {
+  fullscreen(false);
+  console.log("non-fullscreen");
+  screenToggle.show();
+  screenToggle2.hide();
 }
 
 function setup() {
@@ -101,6 +109,14 @@ function setup() {
   screenToggle.size(w/16,w/16);
   screenToggle.position(w/32,w/32);
   screenToggle.mouseClicked(toggleScreen);
+
+  screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
+  screenToggle2.size(w/16,w/16);
+  screenToggle2.position(w/32,w/32);
+  screenToggle2.mouseClicked(toggleScreen2);
+  screenToggle2.hide();
+  
+ 
 
   lensContainer = createDiv();
   lensContainer.size(w,h/10);
@@ -218,7 +234,7 @@ else{
 else{
 // image(video, w/2, h/2,w,h);
 if((w/h)>(videoHeight/videoWidth)){
-image(video, w/2, h/2, w, (w/videoWidth)*videoHeight);
+image(video, w/2, h/2, w, (h/videoHeight)*videoWidth);
 }
 else{
 image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
