@@ -107,20 +107,6 @@ function setup() {
   canvas = createCanvas(w, h);
   canvas.id("canvas");
 
-  screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
-  screenToggle.size(w/16,w/16);
-  screenToggle.position(w/32,w/32);
-  screenToggle.mouseClicked(toggleScreen);
-
-  screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
-  screenToggle2.size(w/16,w/16);
-  screenToggle2.position(w/32,w/32);
-  screenToggle2.mouseClicked(toggleScreen2);
-  screenToggle2.hide();
-  
- 
-
-
   contentContainer = createDiv();
   contentContainer.size(w,9*h/10);
   contentContainer.position(0,0);
@@ -177,11 +163,17 @@ function setup() {
     // subjects[i].show();
   }
 
-//   <div id="related-content-container">
-//   <h2 id="object-label"></h2>
-//   <p id="content"></p>
-//   <span id="trying">Trying to identify...</span>
-// </div>
+
+screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
+screenToggle.size(w/16,w/16);
+screenToggle.position(w/32,w/32);
+screenToggle.mouseClicked(toggleScreen);
+
+screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
+screenToggle2.size(w/16,w/16);
+screenToggle2.position(w/32,w/32);
+screenToggle2.mouseClicked(toggleScreen2);
+screenToggle2.hide();
 
 
   video = createCapture(constraints);
