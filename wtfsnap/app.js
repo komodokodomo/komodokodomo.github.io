@@ -76,6 +76,7 @@ function trigger() {
   document.getElementById("related-content-container").classList.add("active");
   button.hide();
   hideButton = true;
+  contentLabel.html(objects[i].class);
 }
 
 function toggleScreen() {
