@@ -2,7 +2,7 @@ var jsonData,jsonDataLength;
 
 var subjects = [];
 
-let button;
+let button,hideButton = false;
 
 let current;
 let cameras = "";
@@ -74,7 +74,7 @@ function trigger() {
   lensContainer.style("display","flex");
   // contentContainer.style("display","flex");
   document.getElementById("related-content-container").classList.add("active");
-  button.hide();
+  hideButton = true;
 }
 
 function toggleScreen() {
@@ -284,7 +284,9 @@ if(debug){
   prevW = objects[i].bbox[2]/density;
   prevH = objects[i].bbox[3]/density;
 
+  if(!hideButton){
   button.show();
+}
   rectMode(CORNER);
   stroke(0,255,0);
   strokeWeight(5);
