@@ -67,3 +67,11 @@ body
   #related-content-container.active {
     opacity: 90%;
   }
+
+  #object-label {
+    align-items: center;
+  }
+
+  #content {
+    align-items: center;
+  }
