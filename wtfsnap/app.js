@@ -72,6 +72,7 @@ function preload(){
 function trigger() {
   console.log('button clicked!');
   lensContainer.style("display","flex");
+  contentLabel.style("display","flex");
   // contentContainer.style("display","flex");
   document.getElementById("related-content-container").classList.add("active");
   button.hide();
