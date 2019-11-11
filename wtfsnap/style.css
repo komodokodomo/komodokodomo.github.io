@@ -60,10 +60,11 @@ body
     margin: 0;
     padding: 0.25rem 1rem;
     background: white;
-    opacity: 20%;
+    opacity: 0%;
     transition: 300ms ease-in-out; }
 
   #related-content-container.active {
     background: black;
     color: white; 
+    opacity: 90%;
   }

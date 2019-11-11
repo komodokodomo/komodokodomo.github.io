@@ -72,8 +72,8 @@ function preload(){
 function trigger() {
   console.log('button clicked!');
   lensContainer.style("display","flex");
-  contentContainer.style("display","flex");
-  // document.getElementById("related-content-container").classList.add("active");
+  // contentContainer.style("display","flex");
+  document.getElementById("related-content-container").classList.add("active");
 }
 
 function toggleScreen() {
@@ -131,7 +131,7 @@ function setup() {
   contentContainer.size(w,9*h/10);
   contentContainer.position(0,0);
   contentContainer.id("related-content-container");
-  contentContainer.hide();
+  // contentContainer.hide();
 
   contentLabel = createElement("h2");
   contentLabel.id("object-label");
