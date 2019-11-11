@@ -96,6 +96,8 @@ function toggleScreen2() {
 
 function closeContent(){
   contentContainer.hide();
+  lensContainer.hide();
+  hideButton = false;
 }
 
 function setup() {
