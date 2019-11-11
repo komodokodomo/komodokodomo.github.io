@@ -72,7 +72,8 @@ function preload(){
 function trigger() {
   console.log('button clicked!');
   lensContainer.style("display","flex");
-  document.getElementById("related-content-container").classList.add("active");
+  contentContainer.style("display","flex");
+  // document.getElementById("related-content-container").classList.add("active");
 }
 
 function toggleScreen() {
