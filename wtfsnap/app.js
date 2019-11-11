@@ -208,7 +208,7 @@ function setup() {
       else{
         counter = 0;
         button.hide();
-        lensContainer.hide();
+        // lensContainer.hide();
       }
       });
     }
