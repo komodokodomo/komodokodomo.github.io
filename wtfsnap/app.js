@@ -118,16 +118,6 @@ function setup() {
   
  
 
-  lensContainer = createDiv();
-  lensContainer.size(w,h/10);
-  lensContainer.position(0,9*h/10);
-  lensContainer.id("lens-container")
-  lensContainer.hide();
-
-  lensList = createElement("ul");
-  lensList.parent(lensContainer);
-  lensList.id("lens-list");
-  lensList.style("height","100%");
 
   contentContainer = createDiv();
   contentContainer.size(w,9*h/10);
@@ -142,6 +132,18 @@ function setup() {
   contentText = createP();
   contentText.id("content");
   contentText.parent(contentContainer);
+
+  lensContainer = createDiv();
+  lensContainer.size(w,h/10);
+  lensContainer.position(0,9*h/10);
+  lensContainer.id("lens-container")
+  lensContainer.hide();
+
+  lensList = createElement("ul");
+  lensList.parent(lensContainer);
+  lensList.id("lens-list");
+  lensList.style("height","100%");
+
 
   // contentTrying = createSpan("Trying to identify...");
   // contentTrying.id("trying");
