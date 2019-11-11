@@ -74,6 +74,7 @@ function trigger() {
   lensContainer.style("display","flex");
   // contentContainer.style("display","flex");
   document.getElementById("related-content-container").classList.add("active");
+  button.hide();
   hideButton = true;
 }
 
@@ -284,7 +285,7 @@ if(debug){
   prevW = objects[i].bbox[2]/density;
   prevH = objects[i].bbox[3]/density;
 
-  if(!hideButton){
+  if(hideButton == false){
   button.show();
 }
   rectMode(CORNER);
