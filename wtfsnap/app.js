@@ -15,7 +15,7 @@ let maxBoxes = 1;
 
 let canvas;
 
-var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame;
+var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame, contentClose;
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -94,6 +94,10 @@ function toggleScreen2() {
   screenToggle2.hide();
 }
 
+function closeContent(){
+  contentContainer.hide();
+}
+
 function setup() {
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
@@ -120,6 +124,11 @@ function setup() {
   contentText = createP();
   contentText.id("content");
   contentText.parent(contentContainer);
+
+  contentClose = createA('#', '');
+  contentClose.parent(contentContainer);
+  contentClose.class('close');
+  contentClose.mouseClicked(closeContent);
 
   lensContainer = createDiv();
   lensContainer.size(w,h/10);
