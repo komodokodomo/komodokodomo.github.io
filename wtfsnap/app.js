@@ -69,13 +69,10 @@ function preload(){
 }
 
 
-function doSomething(){
-  console.log("subject chosen");
-}
-
 function trigger() {
   console.log('button clicked!');
   lensContainer.style("display","flex");
+  document.getElementById("related-content-container").classList.add("active");
 }
 
 function toggleScreen() {
@@ -130,9 +127,10 @@ function setup() {
   lensList.style("height","100%");
 
   contentContainer = createDiv();
-  contentContainer.size(w,h/2);
-  contentContainer.position(0,4*h/10);
+  contentContainer.size(w,9*h/10);
+  contentContainer.position(0,0);
   contentContainer.id("related-content-container");
+  contentContainer.hide();
 
   contentLabel = createElement("h2");
   contentLabel.id("object-label");
@@ -142,9 +140,9 @@ function setup() {
   contentText.id("content");
   contentText.parent(contentContainer);
 
-  contentTrying = createSpan("Trying to identify...");
-  contentTrying.id("trying");
-  contentTrying.parent(contentContainer);
+  // contentTrying = createSpan("Trying to identify...");
+  // contentTrying.id("trying");
+  // contentTrying.parent(contentContainer);
 
   button = createDiv();
   button.mouseClicked(trigger);
@@ -275,13 +273,6 @@ if(debug){
   }
 
   else{
-  // console.log("drawing");
-  // if(objects[i].bbox[2]/density>objects[i].bbox[3]/density){ //W>H
-  //   button.size(objects[i].bbox[2]/density,objects[i].bbox[2]/density);
-  // }
-  // else{
-  //   button.size(objects[i].bbox[3]/density,objects[i].bbox[3]/density); //H>W
-  // }
   button.size(objects[i].bbox[2]/density,objects[i].bbox[3]/density);  //default
   button.position(objects[i].bbox[0]/density,objects[i].bbox[1]/density);
   }
@@ -296,10 +287,7 @@ if(debug){
   stroke(0,255,0);
   strokeWeight(5);
   noFill();
-  // button = uxRect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
-  // button.uxEvent("click",trigger);
-  // button.uxRender();
-  // rect(objects[i].bbox[0]/density,objects[i].bbox[1]/density,objects[i].bbox[2]/density,objects[i].bbox[3]/density);
+
 }
 
 }
@@ -314,28 +302,3 @@ function windowResized(){
 }
 
 
-// function touchStarted(){
-//  if(!starting){
-//     starting = true;
-//     fullscreen(true);
-// }
-// prevX = mouseX;
-// }
-
-// function touchMoved(event) {
-//     swipeTimer = millis();
-//     swipeDisplacement+=(mouseX - prevX);
-//     prevX = mouseX;
-// }
-
-// function checkSwipe(){
-
-//   if( millis() - swipeTimer > 400){
-//     if(swipeDisplacement>50){mode++;console.log("right");}
-//     else if(swipeDisplacement<-50){mode--;console.log("left");}
-//     if(mode<0){mode = 2;}
-//     if(mode>2){mode=0;}
-//     swipeDisplacement = 0;
-//     }
-
-// }

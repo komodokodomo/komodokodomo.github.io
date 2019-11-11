@@ -52,3 +52,18 @@ body
         
       #lens-list li:last-child {
         border-right: 2px solid rgba(51, 51, 51, 0.25); }
+
+  #related-content-container {
+    display: flex;
+    align-items: center;
+    border-right: 2px solid black;
+    margin: 0;
+    padding: 0.25rem 1rem;
+    background: white;
+    opacity: 20%;
+    transition: 300ms ease-in-out; }
+
+  #related-content-container.active {
+    background: black;
+    color: white; 
+  }
