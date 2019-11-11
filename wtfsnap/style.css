@@ -64,7 +64,5 @@ body
     transition: 300ms ease-in-out; }
 
   #related-content-container.active {
-    background: black;
-    color: white; 
     opacity: 90%;
   }

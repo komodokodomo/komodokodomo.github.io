@@ -74,6 +74,7 @@ function trigger() {
   lensContainer.style("display","flex");
   // contentContainer.style("display","flex");
   document.getElementById("related-content-container").classList.add("active");
+  button.hide();
 }
 
 function toggleScreen() {
