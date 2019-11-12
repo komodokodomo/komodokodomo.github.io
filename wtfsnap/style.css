@@ -60,6 +60,7 @@ body
     border-right: 2px solid black;
     border-left: 2px solid black;
     border-top: 2px solid black;
+    text-align: center;
     margin: 0;
     padding: 0.25rem 0.25rem;
     background: white;
@@ -72,12 +73,14 @@ body
 
   #object-label {
     display:block;
+    top: 30%;
     position: relative;
     text-align: center;
   }
 
   #content {
     display:block;
+    top: 50%;
     position: relative;
     text-align: center;
   }
