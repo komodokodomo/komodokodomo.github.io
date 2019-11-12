@@ -59,7 +59,7 @@ body
     align-items: center;
     border-right: 2px solid black;
     margin: 0;
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 0.25rem;
     background: white;
     opacity: 0%;
     transition: 300ms ease-in-out; }
