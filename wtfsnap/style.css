@@ -70,12 +70,12 @@ body
 
   #object-label {
     position: relative;
-    align-items: center;
+    text-align: center;
   }
 
   #content {
     position: relative;
-    align-items: center;
+    text-align: center;
   }
 
 
