@@ -16,6 +16,7 @@ let maxBoxes = 1;
 let canvas;
 
 var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame, contentClose;
+var lensNumber;
 
 var prevX = 0;
 var swipeDisplacement = 0; 
@@ -78,6 +79,12 @@ function trigger() {
   button.hide();
   hideButton = true;
   contentLabel.html(objects[0].class);
+  if(lensNumber == undefined){
+    contentText.html("choose a lens to start exploring!");
+  }
+  else{
+      contentText.html(i.toString());
+  }
   console.log(objects[0].class);
 }
 
@@ -167,6 +174,7 @@ function setup() {
     subjects[i].id("li"+i.toString());
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
+      lensNumber = i;
       for(let j = 0; j<jsonDataLength; j++){
         document.getElementById("li"+j.toString()).classList.remove("active");
       }
@@ -200,7 +208,6 @@ screenToggle2.hide();
     status = true;
 
     setInterval(function(){
-      // console.log(test);
 
       model.detect(test,maxBoxes).then(predictions => {
         console.log(predictions);
@@ -215,7 +222,6 @@ screenToggle2.hide();
       else{
         counter = 0;
         button.hide();
-        // lensContainer.hide();
       }
       });
     }
@@ -238,18 +244,14 @@ if((w/h)>(video.width/video.height))
 else{
   image(video, w/2, h/2, h*video.width/video.height, h);
 }
-//  image(video, w/2, h/2, w, w*videoHeight/videoWidth);
-
 }
 else{
-// image(video, w/2, h/2,w,h);
 if((videoHeight/videoWidth)<(w/h)){
 image(video, w/2, h/2, w, (w/videoHeight)*videoWidth);
 }
 else{
 image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
 }
-// image(video, w/2, h/2, w, w*h/videoWidth);
 }
 
 if(debug){
@@ -264,7 +266,6 @@ if(debug){
  }
 }
 
-//  console.log(objects.length);
  for(var i=0; i<objects.length ;i++){
    if(abs(objects[i].bbox[0]/density - prevX)>50){counter = 0;}
    if(abs(objects[i].bbox[1]/density - prevY)>50){counter = 0;}
@@ -274,12 +275,7 @@ if(debug){
   let lerpY = lerp(objects[i].bbox[1]/density,prevY,0.3);
   let lerpW = lerp(objects[i].bbox[2]/density,prevW,0.3);
   let lerpH = lerp(objects[i].bbox[3]/density,prevH,0.3);
-  // if(lerpW>lerpH){ //W>H
-  //   button.size(lerpW,lerpW);
-  // }
-  // else{
-  //   button.size(lerpH,lerpH);
-  // }
+
   button.size(lerpW,lerpH);
   button.position(lerpX,lerpY);
   }
