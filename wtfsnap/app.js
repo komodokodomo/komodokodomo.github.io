@@ -83,7 +83,7 @@ function trigger() {
     contentText.html("choose a lens to start exploring!");
   }
   else{
-      contentText.html(i.toString());
+      contentText.html(lensNumber.toString());
   }
   console.log(objects[0].class);
 }
@@ -175,6 +175,9 @@ function setup() {
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
       lensNumber = i;
+      if(hideButton){
+        contentText.html(lensNumber.toString());
+      }
       for(let j = 0; j<jsonDataLength; j++){
         document.getElementById("li"+j.toString()).classList.remove("active");
       }
