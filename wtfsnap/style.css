@@ -74,6 +74,8 @@ body
   #object-label {
     display:block;
     top: 30%;
+    left:50%;
+    right:50%;
     position: relative;
     text-align: center;
   }
@@ -81,6 +83,8 @@ body
   #content {
     display:block;
     top: 50%;
+    left:50%;
+    right:50%;
     position: relative;
     text-align: center;
   }
