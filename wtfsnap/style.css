@@ -69,13 +69,13 @@ body
   }
 
   #object-label {
-    display:block
+    display:block;
     position: relative;
     text-align: center;
   }
 
   #content {
-    display:block
+    display:block;
     position: relative;
     text-align: center;
   }
