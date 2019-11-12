@@ -15,6 +15,8 @@ let maxBoxes = 1;
 
 let canvas;
 
+var lerpValue = 0.5;
+
 var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame, contentClose;
 var lensNumber;
 
@@ -274,10 +276,10 @@ if(debug){
    if(abs(objects[i].bbox[1]/density - prevY)>50){counter = 0;}
 
   if(counter > 0){
-  let lerpX = lerp(objects[i].bbox[0]/density,prevX,0.3);
-  let lerpY = lerp(objects[i].bbox[1]/density,prevY,0.3);
-  let lerpW = lerp(objects[i].bbox[2]/density,prevW,0.3);
-  let lerpH = lerp(objects[i].bbox[3]/density,prevH,0.3);
+  let lerpX = lerp(objects[i].bbox[0]/density,prevX,lerpValue);
+  let lerpY = lerp(objects[i].bbox[1]/density,prevY,lerpValue);
+  let lerpW = lerp(objects[i].bbox[2]/density,prevW,lerpValue);
+  let lerpH = lerp(objects[i].bbox[3]/density,prevH,lerpValue);
 
   button.size(lerpW,lerpH);
   button.position(lerpX,lerpY);
