@@ -72,7 +72,7 @@ function preload(){
 function trigger() {
   console.log('button clicked!');
   lensContainer.style("display","flex");
-  // contentContainer.style("display","flex");
+  contentContainer.style("display","flex");
   document.getElementById("related-content-container").classList.add("active");
   // contentContainer.style("display","flex");
   button.hide();
@@ -96,7 +96,7 @@ function toggleScreen2() {
 }
 
 function closeContent(){
-  // contentContainer.hide();
+  contentContainer.hide();
   document.getElementById("related-content-container").classList.remove("active");
   // document.getElementById("related-content-container").classList.remove("active");
   lensContainer.hide();
