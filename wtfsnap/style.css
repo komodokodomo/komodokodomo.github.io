@@ -79,8 +79,8 @@ body
 
 
   .close {
-    position: relative;
-    right: 32px;
+    position: absolute;
+    right: 48px;
     top: 32px;
     width: 32px;
     height: 32px;
