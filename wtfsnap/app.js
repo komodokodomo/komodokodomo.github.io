@@ -242,6 +242,7 @@ screenToggle2.hide();
 
     setInterval(function(){
 
+      if(!hideButton){
       model.detect(test,maxBoxes).then(predictions => {
         console.log(predictions);
         objects = [];
@@ -258,6 +259,7 @@ screenToggle2.hide();
       }
       });
     }
+  }
     , 250);
   }
   );
