@@ -204,7 +204,7 @@ function setup() {
         // console.log(something);
 
 
-
+        if(jsonData[i][objects[0].class]!== null){
         let stuff = jsonData[i][objects[0].class].toString();
         let stuffs = stuff.split("\\");
 
@@ -219,6 +219,10 @@ function setup() {
 
         stuff = stuff.replace('\\','<br><br>');
         contentText.html(stuff);
+      }
+      else{
+        contentText.html("no content for now...");
+      }
       }
       for(let j = 0; j<jsonDataLength; j++){
         document.getElementById("li"+j.toString()).classList.remove("active");
