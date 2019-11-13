@@ -209,7 +209,7 @@ function setup() {
         let stuffs = stuff.split("\\");
 
         if(stuffs.length>0){
-
+        console.log("split success");
         let regExp = /\(([^)]+)\)/;
         let matches = regExp.exec(stuffs[0]);
         console.log(matches);
