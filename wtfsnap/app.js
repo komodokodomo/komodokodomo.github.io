@@ -197,7 +197,11 @@ function setup() {
         // contentText.html(lensNumber.toString());
         let something = objects[0].class;
         console.log(something);
-        contentText.html(jsonData[i][something]);
+        let stuff = jsonData[i][something];
+
+        stuff = stuff.replace('\\','<br><br>');
+
+        contentText.html(stuff);
       }
       for(let j = 0; j<jsonDataLength; j++){
         document.getElementById("li"+j.toString()).classList.remove("active");
