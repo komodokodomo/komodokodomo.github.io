@@ -197,7 +197,7 @@ function setup() {
         // contentText.html(lensNumber.toString());
         let something = objects[0].class;
         console.log(something);
-        let stuff = jsonData[i][something];
+        let stuff = jsonData[i][something].toString();
 
         stuff = stuff.replace('\\','<br><br>');
 
