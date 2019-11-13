@@ -57,7 +57,7 @@ body
   #related-content-container {
     display: flex;
     /* align-items: center; */
-    /* justify-content: center; */
+    justify-content: center;
     border-right: 2px solid black;
     border-left: 2px solid black;
     border-top: 2px solid black;
@@ -75,9 +75,10 @@ body
   #object-label {
     /* display:block; */
     top: 30%;
+    width :80%
     /* left:50%;
     right:50%; */
-    margin:auto;
+    /* margin:auto; */
     position: relative;
     text-align: center;
   }
@@ -85,9 +86,10 @@ body
   #content {
     /* display:block; */
     top: 50%;
+    width :80%
     /* left:50%;
     right:50%; */
-    margin:auto;
+    /* margin:auto; */
     position: relative;
     text-align: center;
   }
