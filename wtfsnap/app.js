@@ -18,7 +18,7 @@ let maxBoxes = 1;
 
 let canvas;
 
-var lerpValue = 0.5;
+var lerpValue = 0.3;
 
 var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame, contentClose;
 var lensNumber;
