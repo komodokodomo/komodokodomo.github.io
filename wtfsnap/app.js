@@ -194,15 +194,19 @@ function setup() {
       console.log("you clicked: " + i.toString());
       lensNumber = i;
       if(hideButton){
-        contentText.html(lensNumber.toString());
+        // contentText.html(lensNumber.toString());
+        contentText.html(jsonData[i].(objects[0].class));
       }
       for(let j = 0; j<jsonDataLength; j++){
         document.getElementById("li"+j.toString()).classList.remove("active");
       }
       document.getElementById("li"+i.toString()).classList.add("active");
+      // for(let i = 0; i<jsonDataLength; i++){
+      //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
+      // }
       // jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-      jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
-      console.log("index: " + jsonDataIndex.toString());
+      // jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
+      // console.log("index: " + jsonDataIndex.toString());
     };
     // subjects[i].style("display","inline");
     // subjects[i].show();
