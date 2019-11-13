@@ -214,6 +214,7 @@ function setup() {
         // let matches = regExp.exec(stuffs[0]);
         
         console.log(stuffs[0].split("(")[0]);
+        console.log(stuffs[0].split("(")[1].split(")")[0]);
       }
 
         stuff = stuff.replace('\\','<br><br>');
