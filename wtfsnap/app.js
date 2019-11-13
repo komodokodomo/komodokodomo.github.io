@@ -147,12 +147,6 @@ function setup() {
   contentClose.class('close');
   contentClose.mouseClicked(closeContent);
 
-  contentFrame = createElement("iframe","#");
-  contentFrame.size(w,9*h/10);
-  contentFrame.position(0,h/10);
-  contentFrame.attribute("name","content-frame");
-  contentFrame.hide();
-
   lensContainer = createDiv();
   lensContainer.size(w,h/10);
   lensContainer.position(0,9*h/10);
@@ -172,6 +166,7 @@ function setup() {
   button.style("border-color","white");
   button.style("border-width","0.3rem");
   button.hide();
+
 
   for(let i = 0; i<jsonDataLength; i++){
     subjects[i] = createElement("li",jsonData[i].subject);
@@ -220,6 +215,12 @@ function setup() {
     // subjects[i].style("display","inline");
     // subjects[i].show();
   }
+
+  contentFrame = createElement("iframe","#");
+  contentFrame.size(w,9*h/10);
+  contentFrame.position(0,h/10);
+  contentFrame.attribute("name","content-frame");
+  contentFrame.hide();
 
 
 screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
