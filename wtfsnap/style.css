@@ -73,7 +73,7 @@ body
   }
 
   #object-label {
-    display:block;
+    /* display:block; */
     top: 30%;
     width :80%;
     /* left:50%;
@@ -84,7 +84,7 @@ body
   }
 
   #content {
-    display:block;
+    /* display:block; */
     top: 50%;
     width :80%;
     /* left:50%;
