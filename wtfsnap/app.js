@@ -210,9 +210,10 @@ function setup() {
 
         if(stuffs.length>0){
         console.log("split success");
-        let regExp = /\(([^)]+)\)/;
-        let matches = regExp.exec(stuffs[0]);
-        console.log(matches);
+        // let regExp = /\(([^)]+)\)/;
+        // let matches = regExp.exec(stuffs[0]);
+        
+        console.log(stuffs[0].split("(")[0]);
       }
 
         stuff = stuff.replace('\\','<br><br>');
