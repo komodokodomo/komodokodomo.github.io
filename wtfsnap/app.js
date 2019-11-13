@@ -74,6 +74,16 @@ function preload(){
   jsonData = loadJSON(url);
 }
 
+// var imageList = [
+//   {value: 100},
+//   {value: 200},
+//   {value: 300},
+//   {value: 400},
+//   {value: 500}
+// ];
+
+
+
 
 function trigger() {
   console.log('button clicked!');
@@ -84,12 +94,14 @@ function trigger() {
   button.hide();
   hideButton = true;
   classToExplore = objects[0].class;
-  contentLabel.html(objects[0].class);
+  contentLabel.html(classToExplore);
   if(lensNumber == undefined){
     contentText.html("choose a lens to start exploring!");
   }
   else{
       // jsonDataIndex SEACRH FOR WHICH INDEX TO PULL DATA
+      jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
+      console.log("index: " + jsonDataIndex.toString());
       contentText.html(lensNumber.toString());
   }
   console.log(objects[0].class);
