@@ -162,6 +162,7 @@ function setup() {
   contentFrame = createElement("iframe","#");
   contentFrame.size(w,9*h/10);
   contentFrame.position(0,h/10);
+  contentFrame.attribute("name","content-frame");
   contentFrame.hide();
 
   lensContainer = createDiv();
