@@ -195,7 +195,9 @@ function setup() {
       lensNumber = i;
       if(hideButton){
         // contentText.html(lensNumber.toString());
-        contentText.html(jsonData[i].(objects[0].class));
+        let something = objects[0].class;
+        console.log(something);
+        // contentText.html(jsonData[i].(objects[0].class));
       }
       for(let j = 0; j<jsonDataLength; j++){
         document.getElementById("li"+j.toString()).classList.remove("active");
