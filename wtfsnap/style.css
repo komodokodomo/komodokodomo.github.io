@@ -60,9 +60,9 @@ body
     /* display:block; */
     top: 30%;
     height : 10%;
-    width :50%;
-    left:25%;
-    right:25%;
+    width :100%;
+    /* left:25%;
+    right:25%; */
     /* margin:auto; */
     /* position: relative; */
     text-align: center;
@@ -72,10 +72,10 @@ body
     /* display:block; */
     top: 50%;
     height : 30%;
-    width :50%;
+    width :100%;
     font-family: 'Courier New', Courier, monospace;
-    left:25%;
-    right:25%;
+    /* left:25%;
+    right:25%; */
     /* margin:auto; */
     /* position: relative; */
     text-align: center;
