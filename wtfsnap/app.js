@@ -1,5 +1,8 @@
 var jsonData,jsonDataLength;
 
+var classToExplore = "";
+var jsonDataIndex;
+
 var subjects = [];
 
 let button,hideButton = false;
@@ -80,11 +83,13 @@ function trigger() {
   
   button.hide();
   hideButton = true;
+  classToExplore = objects[0].class;
   contentLabel.html(objects[0].class);
   if(lensNumber == undefined){
     contentText.html("choose a lens to start exploring!");
   }
   else{
+      // jsonDataIndex SEACRH FOR WHICH INDEX TO PULL DATA
       contentText.html(lensNumber.toString());
   }
   console.log(objects[0].class);
