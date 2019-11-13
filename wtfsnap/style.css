@@ -11,23 +11,6 @@ body
     margin: 0; 
 } 
 
- /* li {
-    display: flex;
-    align-items: center;
-    border-right: 2px solid black;
-    margin: 0;
-    padding: 0.25rem 1rem;
-    background: white;
-    transition: 300ms ease-in-out;
-    &.active {
-      background: black;
-      color: white;
-    }
-    &:last-child {
-      border-right: 2px solid rgba(51, 51, 51, 0.25);
-    }
-  } */
-
   #lens-list {
     margin: 0;
     padding: 0;
@@ -78,7 +61,7 @@ body
     width :80%;
     /* left:50%;
     right:50%; */
-    margin:auto;
+    /* margin:auto; */
     position: relative;
     text-align: center;
   }
@@ -89,7 +72,7 @@ body
     width :80%;
     /* left:50%;
     right:50%; */
-    margin:auto;
+    /* margin:auto; */
     position: relative;
     text-align: center;
   }
