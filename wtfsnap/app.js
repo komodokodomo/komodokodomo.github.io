@@ -206,10 +206,14 @@ function setup() {
 
 
         let stuff = jsonData[i][objects[0].class].toString();
+        let stuffs = stuff.split("\\");
+
+        if(stuffs.length>0){
 
         let regExp = /\(([^)]+)\)/;
-        let matches = regExp.exec(stuff);
+        let matches = regExp.exec(stuffs[0]);
         console.log(matches);
+      }
 
         stuff = stuff.replace('\\','<br><br>');
         contentText.html(stuff);
