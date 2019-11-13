@@ -114,6 +114,7 @@ function closeContent(){
   contentContainer.hide();
   lensContainer.hide();
   hideButton = false;
+  lensNumber = undefined;
 }
 
 function setup() {
