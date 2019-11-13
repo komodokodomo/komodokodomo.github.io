@@ -195,12 +195,10 @@ function setup() {
       lensNumber = i;
       if(hideButton){
         // contentText.html(lensNumber.toString());
-        let something = objects[0].class;
-        console.log(something);
-        let stuff = jsonData[i][something].toString();
-
+        // let something = objects[0].class;
+        // console.log(something);
+        let stuff = jsonData[i][objects[0].class].toString();
         stuff = stuff.replace('\\','<br><br>');
-
         contentText.html(stuff);
       }
       for(let j = 0; j<jsonDataLength; j++){
