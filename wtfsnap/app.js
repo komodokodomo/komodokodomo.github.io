@@ -202,7 +202,15 @@ function setup() {
         // contentText.html(lensNumber.toString());
         // let something = objects[0].class;
         // console.log(something);
+
+
+
         let stuff = jsonData[i][objects[0].class].toString();
+
+        let regExp = /\(([^)]+)\)/;
+        let matches = regExp.exec(stuff);
+        console.log(matches);
+
         stuff = stuff.replace('\\','<br><br>');
         contentText.html(stuff);
       }
