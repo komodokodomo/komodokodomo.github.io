@@ -183,16 +183,13 @@ function setup() {
 
         if(jsonData[i][objects[0].class]!== null){
         let stuff = jsonData[i][objects[0].class].toString();
-        let stuffs = stuff.split("\\");
+      //   let stuffs = stuff.split("\\");
 
-        if(stuffs.length>0){
-        console.log("split success");
-        // let regExp = /\(([^)]+)\)/;
-        // let matches = regExp.exec(stuffs[0]);
-        
-        console.log(stuffs[0].split("(")[0]);
-        console.log(stuffs[0].split("(")[1].split(")")[0]);
-      }
+      //   if(stuffs.length>0){
+      //   console.log("split success");
+      //   console.log(stuffs[0].split("(")[0]);
+      //   console.log(stuffs[0].split("(")[1].split(")")[0]);
+      // }
 
         stuff = stuff.replace('\\','<br><br>');
         contentText.html(stuff);
