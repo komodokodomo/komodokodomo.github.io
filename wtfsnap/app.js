@@ -175,14 +175,15 @@ function setup() {
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
       lensNumber = i;
+      for(let j = 0; j<jsonDataLength; j++){
+        document.getElementById("li"+j.toString()).classList.remove("active");
+      }
+      document.getElementById("li"+i.toString()).classList.add("active");
       if(hideButton){
-        // contentText.html(lensNumber.toString());
-        // let something = objects[0].class;
-        // console.log(something);
+ 
 
-
-        if(jsonData[i][objects[0].class]!== null){
-        let stuff = jsonData[i][objects[0].class].toString();
+        if(jsonData[lensNumber][objects[0].class]!== null){
+        let stuff = jsonData[lensNumber][objects[0].class].toString();
         let stuffs = stuff.split("\\");
 
         if(stuffs.length>0){
@@ -198,10 +199,7 @@ function setup() {
         contentText.html("no content for now...");
       }
       }
-      for(let j = 0; j<jsonDataLength; j++){
-        document.getElementById("li"+j.toString()).classList.remove("active");
-      }
-      document.getElementById("li"+i.toString()).classList.add("active");
+
       // for(let i = 0; i<jsonDataLength; i++){
       //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
       // }
@@ -213,11 +211,11 @@ function setup() {
     // subjects[i].show();
   }
 
-  // contentFrame = createElement("iframe","#");
-  // contentFrame.size(w,9*h/10);
-  // contentFrame.position(0,h/10);
-  // contentFrame.attribute("name","content-frame");
-  // contentFrame.hide();
+  contentFrame = createElement("iframe","#");
+  contentFrame.size(w,9*h/10);
+  contentFrame.position(0,h/10);
+  contentFrame.attribute("name","content-frame");
+  contentFrame.hide();
 
 
 screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
