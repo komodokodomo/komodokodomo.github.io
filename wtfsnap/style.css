@@ -61,6 +61,7 @@ body
     top: 30%;
     height : 10%;
     width :100%;
+    padding:50%;
     /* left:25%;
     right:25%; */
     /* margin:auto; */
@@ -73,6 +74,7 @@ body
     top: 50%;
     height : 30%;
     width :100%;
+    padding:50%;
     font-family: 'Courier New', Courier, monospace;
     /* left:25%;
     right:25%; */
