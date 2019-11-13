@@ -159,6 +159,11 @@ function setup() {
   contentClose.class('close');
   contentClose.mouseClicked(closeContent);
 
+  contentFrame = createElement("iframe","#");
+  contentFrame.size(w,9*h/10);
+  contentFrame.position(0,h/10);
+  contentFrame.hide();
+
   lensContainer = createDiv();
   lensContainer.size(w,h/10);
   lensContainer.position(0,9*h/10);
