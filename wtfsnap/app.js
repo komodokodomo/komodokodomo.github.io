@@ -191,8 +191,9 @@ function setup() {
         console.log(stuffs[0].split("(")[0]);
         console.log(stuffs[0].split("(")[1].split(")")[0]);
       }
-
-        stuff = stuff.replace('\\','<br><br>');
+       let testing = "<a href="+ stuffs[0].split("(")[1].split(")")[0] + "target = \"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
+       console.log(testing); 
+       stuff = stuff.replace('\\','<br><br>');
         contentText.html(stuff);
       }
       else{
