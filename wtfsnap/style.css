@@ -50,10 +50,16 @@ body
     padding: 0.25rem 0.25rem;
     background: white;
     opacity: 0%;
+    -moz-opacity: 0.0; /* Firefox and Mozilla browsers */
+    -webkit-opacity: 0.0; /* WebKit browser e.g. Safari */
+    filter: alpha(opacity=0); /* For IE8 and earlier */
     transition: 300ms ease-in-out; }
 
   #related-content-container.active {
     opacity: 90%;
+    -moz-opacity: 0.9; /* Firefox and Mozilla browsers */
+    -webkit-opacity: 0.9; /* WebKit browser e.g. Safari */
+    filter: alpha(opacity=90); /* For IE8 and earlier */
   }
 
   #object-label {
