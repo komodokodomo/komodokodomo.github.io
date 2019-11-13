@@ -100,8 +100,6 @@ function trigger() {
   }
   else{
       // jsonDataIndex SEACRH FOR WHICH INDEX TO PULL DATA
-      jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-      console.log("index: " + jsonDataIndex.toString());
       contentText.html(lensNumber.toString());
   }
   console.log(objects[0].class);
@@ -202,6 +200,8 @@ function setup() {
         document.getElementById("li"+j.toString()).classList.remove("active");
       }
       document.getElementById("li"+i.toString()).classList.add("active");
+      jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
+      console.log("index: " + jsonDataIndex.toString());
     };
     // subjects[i].style("display","inline");
     // subjects[i].show();
