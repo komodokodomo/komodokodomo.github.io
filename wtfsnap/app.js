@@ -183,13 +183,13 @@ function setup() {
 
         if(jsonData[i][objects[0].class]!== null){
         let stuff = jsonData[i][objects[0].class].toString();
-      //   let stuffs = stuff.split("\\");
+        let stuffs = stuff.split("\\");
 
-      //   if(stuffs.length>0){
-      //   console.log("split success");
-      //   console.log(stuffs[0].split("(")[0]);
-      //   console.log(stuffs[0].split("(")[1].split(")")[0]);
-      // }
+        if(stuffs.length>0){
+        console.log("split success");
+        console.log(stuffs[0].split("(")[0]);
+        console.log(stuffs[0].split("(")[1].split(")")[0]);
+      }
 
         stuff = stuff.replace('\\','<br><br>');
         contentText.html(stuff);
@@ -213,11 +213,11 @@ function setup() {
     // subjects[i].show();
   }
 
-  contentFrame = createElement("iframe","#");
-  contentFrame.size(w,9*h/10);
-  contentFrame.position(0,h/10);
-  contentFrame.attribute("name","content-frame");
-  contentFrame.hide();
+  // contentFrame = createElement("iframe","#");
+  // contentFrame.size(w,9*h/10);
+  // contentFrame.position(0,h/10);
+  // contentFrame.attribute("name","content-frame");
+  // contentFrame.hide();
 
 
 screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
