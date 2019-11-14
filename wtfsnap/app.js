@@ -365,10 +365,15 @@ if(debug){
    if(abs(objects[i].bbox[1]/density - prevY)>50){counter = 0;}
 
   if(counter > 0){
-  let lerpX = lerp(objects[i].bbox[0]/density,prevX,lerpValue);
-  let lerpY = lerp(objects[i].bbox[1]/density,prevY,lerpValue);
-  let lerpW = lerp(objects[i].bbox[2]/density,prevW,lerpValue);
-  let lerpH = lerp(objects[i].bbox[3]/density,prevH,lerpValue);
+  // let lerpX = lerp(objects[i].bbox[0]/density,prevX,lerpValue);
+  // let lerpY = lerp(objects[i].bbox[1]/density,prevY,lerpValue);
+  // let lerpW = lerp(objects[i].bbox[2]/density,prevW,lerpValue);
+  // let lerpH = lerp(objects[i].bbox[3]/density,prevH,lerpValue);
+
+  let lerpX = lerp(lerpX,prevX,lerpValue);
+  let lerpY = lerp(lerpY,prevY,lerpValue);
+  let lerpW = lerp(lerpW,prevW,lerpValue);
+  let lerpH = lerp(lerpH,prevH,lerpValue);
 
   button.size(lerpW,lerpH);
   button.position(lerpX,lerpY);
