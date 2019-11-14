@@ -47,7 +47,8 @@ body
     border-top: 2px solid black;
     text-align: center;
     margin: 0;
-    padding: 0.25rem 0.25rem;
+    box-sizing: border-box;
+    /* padding: 0.25rem 0.25rem; */
     background: white;
     opacity: 0%;
     -moz-opacity: 0.0; /* Firefox and Mozilla browsers */
