@@ -113,10 +113,11 @@ function closeContent(){
   lensContainer.hide();
   hideButton = false;
   lensNumber = undefined;
-  contentFrame.hide();
+  contentFrame.hide(); //TEMP HACK
 }
 
 function loadIFRAME(event, ele) {
+  event.preventDefault();
   contentFrame.show();
   contentFrame.attribute("src",ele.getAttribute('href'));
 }
