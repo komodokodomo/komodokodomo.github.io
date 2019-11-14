@@ -162,9 +162,10 @@ function setup() {
   button.mouseClicked(trigger);
   button.size(0,0);
   button.position(0,0);
-  button.style("border-style","dashed");
-  button.style("border-color","white");
-  button.style("border-width","0.3rem");
+  button.id("button");
+  // button.style("border-style","dashed");
+  // button.style("border-color","white");
+  // button.style("border-width","0.3rem");
   button.hide();
 
   for(let i = 0; i<jsonDataLength; i++){

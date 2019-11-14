@@ -11,6 +11,12 @@ body
     margin: 0; 
 } 
 
+  #button {
+  border-style:dashed;
+  border-color:white;
+  border-width:0.3rem;
+  }
+
   #lens-list {
     margin: 0;
     padding: 0;
