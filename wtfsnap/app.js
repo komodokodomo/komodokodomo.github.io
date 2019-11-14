@@ -116,11 +116,11 @@ function closeContent(){
   contentFrame.hide(); //TEMP HACK
 }
 
-function loadIFRAME(event, ele) {
-  event.preventDefault();
-  contentFrame.show();
-  contentFrame.attribute("src",ele.getAttribute('href'));
-}
+// function loadIFRAME(event, ele) {
+//   event.preventDefault();
+//   contentFrame.show();
+//   contentFrame.attribute("src",ele.getAttribute('href'));
+// }
 
 function setup() {
   console.log(jsonData);
@@ -196,7 +196,8 @@ function setup() {
 
         if(stuffs.length>0){
         for(var k=0; k<stuffs.length; k++){
-          let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+          // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+          let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
           things += addon;
         }
         console.log("split success");
