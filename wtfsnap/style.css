@@ -12,7 +12,7 @@ body
 } 
 
   #button {
-  border-style:dashed;
+  border-style:solid;
   border-color:white;
   border-width:0.3rem;
   }
