@@ -113,6 +113,7 @@ function closeContent(){
   lensContainer.hide();
   hideButton = false;
   lensNumber = undefined;
+  contentFrame.hide();
 }
 
 function loadIFRAME(event, ele) {
