@@ -115,6 +115,11 @@ function closeContent(){
   lensNumber = undefined;
 }
 
+function loadIFRAME(event, ele) {
+  contentFrame.show();
+  contentFrame.attribute("src",ele.getAttribute('href'));
+}
+
 function setup() {
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
@@ -189,12 +194,13 @@ function setup() {
 
         if(stuffs.length>0){
         for(var k=0; k<stuffs.length; k++){
-          let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+          let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
           things += addon;
         }
         console.log("split success");
         console.log(stuffs[0].split("(")[0]);
         console.log(stuffs[0].split("(")[1].split(")")[0]);
+        
       }
       //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
        console.log(things); 
