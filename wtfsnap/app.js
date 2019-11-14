@@ -269,13 +269,21 @@ function setup() {
 
 
 screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
-screenToggle.size(w/16,w/16);
-screenToggle.position(w/32,w/32);
+screenToggle.style("width","32px");
+screenToggle.style("height","32px");
+// screenToggle.style("left","32px");
+// screenToggle.style("top","32px");
+// screenToggle.size(w/16,w/16);
+screenToggle.position(32,32);
 screenToggle.mouseClicked(toggleScreen);
 
 screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
-screenToggle2.size(w/16,w/16);
-screenToggle2.position(w/32,w/32);
+// screenToggle2.size(w/16,w/16);
+screenToggle2.position(32,32);
+screenToggle2.style("width","32px");
+screenToggle2.style("height","32px");
+// screenToggle2.style("left","32px");
+// screenToggle2.style("top","32px");
 screenToggle2.mouseClicked(toggleScreen2);
 screenToggle2.hide();
 
