@@ -179,7 +179,7 @@ function drawPoints(){
   fill(255);
   for(let i = 0; i < allPlaces.length; i++){
     let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
-    ellipse(pos.x, pos.y, 5, 5);
+    ellipse(pos.x, pos.y, 50, 50);
   }
 }
 
@@ -191,7 +191,7 @@ function setup(){
 
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
-  myMap.onChange(drawPoints);
+  // myMap.onChange(drawPoints);
 
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
@@ -298,6 +298,12 @@ function draw()
   { 
     clear();
     text("psst",10,h-10);
+    // noStroke();
+    // fill(255);
+    for(let i = 0; i < allPlaces.length; i++){
+      let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
+      ellipse(pos.x, pos.y, 50, 50);
+    }
     let region = scanBeacon();  
     if(region!==undefined){console.log(region);}                                                             //                                                                  //
     checkRegionChange();                                                    //
