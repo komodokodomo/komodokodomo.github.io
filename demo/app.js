@@ -178,7 +178,7 @@ function drawPoints(){
   noStroke();
   fill(255);
   for(let i = 0; i < allPlaces.length; i++){
-    let pos = myMap.latLngToPixel(allCoordinates[i][1], allCoordinates[i][0])
+    let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
     ellipse(pos.x, pos.y, 5, 5);
   }
 }
