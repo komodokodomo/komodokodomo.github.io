@@ -173,6 +173,16 @@ function positionChanged(position){
   lng = position.longitude;
 }
 
+function drawPoints(){
+  clear() 
+  noStroke();
+  fill(255);
+  for(let i = 0; i < allPlaces.length; i++){
+    let pos = myMap.latLngToPixel(allCoordinates[i][1], allCoordinates[i][0])
+    ellipse(pos.x, pos.y, 5, 5);
+  }
+}
+
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
@@ -181,6 +191,7 @@ function setup(){
 
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
+  myMap.onChange(drawPoints);
 
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
