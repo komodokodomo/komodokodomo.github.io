@@ -21,7 +21,7 @@ let canvas;
 var lerpValue = 0.3;
 
 var rounded = false;
-var buttonSizeRatio = 1.0;
+var buttonSizeRatio = 0.5;
 
 var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame, contentClose;
 var lensNumber;
