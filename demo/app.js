@@ -141,7 +141,7 @@ if ('SpeechRecognition' in window) {
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
-  geoData = loadJSON(map.geojson);
+  geoData = loadJSON("map.geojson");
   jsonFile = loadJSON(url);
 }
 
