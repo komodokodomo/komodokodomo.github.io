@@ -20,6 +20,9 @@ let canvas;
 
 var lerpValue = 0.3;
 
+var rounded = false;
+var buttonSizeRatio = 1.0;
+
 var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame, contentClose;
 var lensNumber;
 
@@ -170,9 +173,6 @@ function setup() {
   button.size(0,0);
   button.position(0,0);
   button.id("button");
-  // button.style("border-style","dashed");
-  // button.style("border-color","white");
-  // button.style("border-width","0.3rem");
   button.hide();
 
   for(let i = 0; i<jsonDataLength; i++){
@@ -384,13 +384,13 @@ if(debug){
   // let lerpW = lerp(lerpW,prevW,lerpValue);
   // let lerpH = lerp(lerpH,prevH,lerpValue);
 
-  button.size(lerpW,lerpH);
-  button.position(lerpX,lerpY);
+  button.size(lerpW*buttonSizeRatio,lerpH*buttonSizeRatio);
+  button.position(lerpX+(lerpW*(1-buttonSizeRatio))/2,lerpY+(lerpH*(1-buttonSizeRatio))/2);
   }
 
   else{
-  button.size(objects[i].bbox[2]/density,objects[i].bbox[3]/density);  //default
-  button.position(objects[i].bbox[0]/density,objects[i].bbox[1]/density);
+  button.size(objects[i].bbox[2]*buttonSizeRatio/density,objects[i].bbox[3]*buttonSizeRatio/density);  //default
+  button.position(objects[i].bbox[0]/density+(objects[i].bbox[2]/density*(1-buttonSizeRatio))/2   ,objects[i].bbox[1]/density+(objects[i].bbox[3]/density*(1-buttonSizeRatio))/2);
   }
 
   prevX = objects[i].bbox[0]/density;
