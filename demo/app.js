@@ -2,6 +2,8 @@
 var locationData,lat,lng,acc;
 var w,h,canvas;
 
+let geoData;
+
 var key = "pk.eyJ1Ijoia29tb2Rva29kb21vIiwiYSI6ImNrMWJ5dWwwZzA4ZXUzYm1tNXZoOThjaGkifQ.WfwJZJkKAGFFJxH0d0GYeA";
 var listening = "";
 var talking = false;
@@ -139,6 +141,7 @@ if ('SpeechRecognition' in window) {
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
+  geoData = loadJSON(map.geojson);
   jsonFile = loadJSON(url);
 }
 
@@ -177,7 +180,7 @@ function setup(){
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
 
-  
+  console.log(geoData);
 
 
   if(geoCheck() == true){
