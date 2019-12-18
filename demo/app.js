@@ -105,42 +105,6 @@ var lastPingChosen;
 //https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/viewform?usp=pp_url&entry.1852266277=ROOMID&entry.611071440=NICKNAME&entry.207705783=TEXT
 
 
-// window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-// if ('SpeechRecognition' in window) {
-//   const recognition = new window.SpeechRecognition();
-//   console.log("dictation supported");
-//   recognition.interimResults = true;
-//   recognition.continuous = true;
-//   recognition.start();
-
-//   recognition.onresult = (event) => {
-//     let interimTranscript = '';
-//     let finalTranscript = "";
-//     for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
-//       let transcript = event.results[i][0].transcript;
-//       if (event.results[i].isFinal) {
-//         finalTranscript += transcript;
-//         if(!spoken){
-//         speechBubble.setContent(finalTranscript);
-//         spoken = true;
-//         }
-//         console.log("FINAL: " +finalTranscript);
-//         talking = false;
-//         // formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277="+{{ROOMID}}+"&entry.611071440="+{{NICKNAME}}+"&entry.207705783="+{{TEXT}};
-//         // http.open("POST",formUrl);
-//         // http.send();
-//       } else {
-//         interimTranscript += transcript;
-//         if(!spoken){speechBubble.setContent(interimTranscript + listening);}
-//         console.log("INTERIM: " + interimTranscript);
-//       }
-//     }
-//   }
-// //   // speech recognition API supported
-// } else {
-//   console.log("dictation not supported");
-//   alert("Please use Chrome or Firefox");
-// }
 
 function preload() {
   let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
@@ -169,7 +133,7 @@ function doThisOnLocation(position){
     let places = L.marker()
     .setLatLng([allPlaces[i][1], allPlaces[i][0]])
     // .setContent("")
-    // .setContent('<p>Hello world!</p>')
+    .setContent('<p>Hello world!</p>')
     // .riseOnHover(true)
     .addTo(myMap.map);
 
