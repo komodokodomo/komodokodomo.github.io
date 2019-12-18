@@ -28,7 +28,7 @@ var options = {
 };
 
 // Create an instance of Leaflet
-const mappa = new Mappa('MapboxGL', key);
+const mappa = new Mappa('Mapbox', key);
 let myMap;
 
 
