@@ -165,11 +165,11 @@ function doThisOnLocation(position){
 
   for(let i = 0; i < allPlaces.length; i++){
     let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
-    let places = L.popup()
+    let places = L.marker()
     .setLatLng([allPlaces[i][1], allPlaces[i][0]])
-    .setContent("")
+    // .setContent("")
     .addTo(myMap.map);
-    ellipse(pos.x, pos.y, 50, 50);
+    // ellipse(pos.x, pos.y, 50, 50);
 }
 
   // setInterval(function(){ listening+=".";if(!talking && !spoken){speechBubble.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
