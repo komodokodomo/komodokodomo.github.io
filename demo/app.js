@@ -23,6 +23,7 @@ var options = {
   studio: true, // false to use non studio styles
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
+  
   // zoomControl : false
 };
 
@@ -168,7 +169,7 @@ function doThisOnLocation(position){
     let places = L.marker()
     .setLatLng([allPlaces[i][1], allPlaces[i][0]])
     // .setContent("")
-    .setContent('<p>Hello world!</p>')
+    // .setContent('<p>Hello world!</p>')
     // .riseOnHover(true)
     .addTo(myMap.map);
 
