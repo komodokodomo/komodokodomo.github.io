@@ -159,7 +159,7 @@ function doThisOnLocation(position){
   myMap.map.flyTo([position.latitude, position.longitude], 16);
   speechBubble = L.popup()
   .setLatLng([lat, lng])
-  .setContent("")
+  .setContent("you are here")
   .addTo(myMap.map);
 
 
@@ -172,7 +172,7 @@ function doThisOnLocation(position){
     ellipse(pos.x, pos.y, 50, 50);
 }
 
-  setInterval(function(){ listening+=".";if(!talking && !spoken){speechBubble.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
+  // setInterval(function(){ listening+=".";if(!talking && !spoken){speechBubble.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
   print("long: " + position.longitude);
 }
