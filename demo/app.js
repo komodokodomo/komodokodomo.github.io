@@ -168,7 +168,9 @@ function doThisOnLocation(position){
     let places = L.marker()
     .setLatLng([allPlaces[i][1], allPlaces[i][0]])
     // .setContent("")
+    .riseOnHover(true)
     .addTo(myMap.map);
+
     // ellipse(pos.x, pos.y, 50, 50);
 }
 
@@ -190,10 +192,10 @@ function drawPoints(){
     text("psst",10,h-10);
     noFill();
     stroke(0);
-    for(let i = 0; i < allPlaces.length; i++){
-      let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
-      ellipse(pos.x, pos.y, 5, 5);
-    }
+    // for(let i = 0; i < allPlaces.length; i++){
+    //   let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
+    //   ellipse(pos.x, pos.y, 5, 5);
+    // }
 }
 
 function setup(){
