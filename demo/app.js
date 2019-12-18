@@ -201,6 +201,16 @@ function setup(){
   console.log(allPlaces);
 
 
+    for(let i = 0; i < allPlaces.length; i++){
+      let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
+      let places = L.popup()
+      .setLatLng([allPlaces[i][1], allPlaces[i][0]])
+      .setContent("")
+      .addTo(myMap.map);
+      ellipse(pos.x, pos.y, 50, 50);
+    }
+
+
   if(geoCheck() == true){
 		console.log("GPS available");
 	}else{
