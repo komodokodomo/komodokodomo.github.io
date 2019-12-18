@@ -133,7 +133,7 @@ function doThisOnLocation(position){
     let places = L.marker()
     .setLatLng([allPlaces[i][1], allPlaces[i][0]])
     // .setContent("")
-    .setContent('<p>Hello world!</p>')
+    .setPopupContent('<p>Hello world!</p>')
     // .riseOnHover(true)
     .addTo(myMap.map);
 
