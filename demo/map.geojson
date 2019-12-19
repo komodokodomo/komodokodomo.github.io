@@ -10,7 +10,7 @@
         "fill": "#555555",
         "fill-opacity": 0.5,
         "name": "Sandcrawler",
-        "popupContent": "<h1>Sandcrawler</h1><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"far fa-star\"></span><span class=\"far fa-star\"></span><p>Hi there, this is where the people who made this prototype work!</p>"
+        "popupContent": "<h2>Sandcrawler</h2><p>3.0</p><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"far fa-star\"></span><span class=\"far fa-star\"></span><p>Hi there, this is where the people who made this prototype work!</p>"
       },
       "geometry": {
         "type": "Polygon",
@@ -77,7 +77,7 @@
         "fill": "#555555",
         "fill-opacity": 0.5,
         "name": "MOE HQ (Buona Vista)",
-        "popupContent": "<h1>MOE HQ (Buona Vista)</h1><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star-half-alt\"></span><span class=\"far fa-star\"></span><p>And this is where our colleagues from MOE resides!</p>"
+        "popupContent": "<h2>MOE HQ (Buona Vista)</h2><p>3.5</p><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star-half-alt\"></span><span class=\"far fa-star\"></span><p>And this is where our colleagues from MOE resides!</p>"
       },
       "geometry": {
         "type": "Polygon",
