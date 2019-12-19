@@ -10,15 +10,7 @@
         "fill": "#555555",
         "fill-opacity": 0.5,
         "name": "Sandcrawler",
-        "popupContent": "
-        <h1>Sandcrawler</h1>
-        <br>
-        <span class="fas fa-star "></span>
-        <span class="fas fa-star "></span>
-        <span class="fas fa-star "></span>
-        <span class="fas fa-star-half-alt "></span>
-        <span class="far fa-star"></span>
-        <p>Hi there, this is where the people who made this prototype work!</p>"
+        "popupContent": "<h1>Sandcrawler</h1><br><span class="fas fa-star "></span><span class="fas fa-star "></span><span class="fas fa-star "></span><span class="fas fa-star-half-alt "></span><span class="far fa-star"></span><p>Hi there, this is where the people who made this prototype work!</p>"
       },
       "geometry": {
         "type": "Polygon",
