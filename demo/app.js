@@ -122,6 +122,8 @@ function doThisOnLocation(position){
   lat = position.latitude;
   lng = position.longitude;
   myMap.map.flyTo([position.latitude, position.longitude], 16);
+
+
   speechBubble = L.popup()
   .setLatLng([lat, lng])
   .setContent("you are here")
@@ -130,19 +132,12 @@ function doThisOnLocation(position){
 
   for(let i = 0; i < allPlaces.length; i++){
     let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
-    let places = L.marker()
+    let places = L.marker({riseOnHover:true})
     .setLatLng([allPlaces[i][1], allPlaces[i][0]])
-    // .setContent("")
-    // .setPopup()
-    // .setPopupContent('<p>Hello world!</p>')
     .bindPopup("hello")
     // .on('click', function(e){e.openPopup();})
-    // .riseOnHover(true)
     .addTo(myMap.map);
 
-    // places.on('click', function(){
-    //   places.
-    // });
 
     // var marker = new L.Marker([46.947, 7.4448]).on('click', function(e){alert("hi. you clicked the marker at " + e.latlng);}).addTo(map);
 
