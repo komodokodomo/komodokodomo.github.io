@@ -150,7 +150,7 @@ function doThisOnLocation(position){
   // setInterval(function(){ listening+=".";if(!talking && !spoken){currentPosition.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
   print("lat: " + lat);
-  print("long: " + long);
+  print("long: " + lng);
   print("acc: " + acc);
 }
 
