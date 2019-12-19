@@ -140,7 +140,7 @@ function doThisOnLocation(position){
   currentPositionRadius = L.circle([lat, lng], {
     color: 'red',
     fillColor: '#f03',
-    fillOpacity: 0.5,
+    fillOpacity: 0.3,
     radius: acc
 }).addTo(mymap);
 
