@@ -133,7 +133,7 @@ function doThisOnLocation(position){
   
   fontAwesomeIcon = L.divIcon({
     html: '<i class="fas fa-user-circle"></i>',
-    iconSize: [20, 20],
+    // iconSize: [20, 20],
     className: 'myDivIcon'
   });
   // L.CircleMarker
