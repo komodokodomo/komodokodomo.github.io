@@ -133,7 +133,7 @@ function doThisOnLocation(position){
   // L.CircleMarker
   currentPosition = L.marker()
   .setLatLng([lat, lng])
-  .bindPopup("<h1>Profile</h1><p>noob explorer</p>")
+  .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>")
   .addTo(myMap.map);
 
   L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
