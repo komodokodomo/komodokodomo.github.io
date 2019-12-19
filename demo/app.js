@@ -11,8 +11,8 @@ var listening = "";
 var talking = false;
 var spoken = false;
 
-var speechBubble;
-var speechBubbleCounter  = 0;
+var currentPosition;
+var currentPositionCounter  = 0;
 
 var options = {
   lat: 1.3521,
@@ -130,10 +130,9 @@ function doThisOnLocation(position){
   lng = position.longitude;
   myMap.map.flyTo([position.latitude, position.longitude], 16);
 
-
-  speechBubble = L.popup()
+  currentPosition = L.CircleMarker()
   .setLatLng([lat, lng])
-  .setContent("you are here")
+  .bindPopup("<h1>Profile</h1><p>noob explorer</p>")
   .addTo(myMap.map);
 
   L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
@@ -147,7 +146,7 @@ function doThisOnLocation(position){
 //     .addTo(myMap.map);
 // }
 
-  // setInterval(function(){ listening+=".";if(!talking && !spoken){speechBubble.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
+  // setInterval(function(){ listening+=".";if(!talking && !spoken){currentPosition.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
   print("long: " + position.longitude);
 }
@@ -184,7 +183,7 @@ function setup(){
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
   console.log(allPlaces);
-
+L.CircleMarker
 
   if(geoCheck() == true){
 		console.log("GPS available");
@@ -319,8 +318,6 @@ function enterButtonEvent() {
   }
 }
 }
-
-
 
 
 function scanBeacon()
