@@ -136,7 +136,7 @@ function doThisOnLocation(position){
     // .setPopup()
     // .setPopupContent('<p>Hello world!</p>')
     .bindPopup("hello")
-    .on('click', function(e){e.openPopup();})
+    // .on('click', function(e){e.openPopup();})
     // .riseOnHover(true)
     .addTo(myMap.map);
 
