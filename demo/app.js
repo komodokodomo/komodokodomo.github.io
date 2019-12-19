@@ -129,21 +129,16 @@ function doThisOnLocation(position){
   .setContent("you are here")
   .addTo(myMap.map);
 
-
-  for(let i = 0; i < allPlaces.length; i++){
-    let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
-    let places = L.marker()
-    .setLatLng([allPlaces[i][1], allPlaces[i][0]])
-    .setOptions({riseOnHover: true})
-    .bindPopup("hello")
-    // .on('click', function(e){e.openPopup();})
-    .addTo(myMap.map);
+  L.geoJSON(geoData).addTo(map);
 
 
-    // var marker = new L.Marker([46.947, 7.4448]).on('click', function(e){alert("hi. you clicked the marker at " + e.latlng);}).addTo(map);
-
-    // ellipse(pos.x, pos.y, 50, 50);
-}
+//   for(let i = 0; i < allPlaces.length; i++){
+//     let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
+//     let places = L.marker()
+//     .setLatLng([allPlaces[i][1], allPlaces[i][0]])
+//     .bindPopup("hello")
+//     .addTo(myMap.map);
+// }
 
   // setInterval(function(){ listening+=".";if(!talking && !spoken){speechBubble.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
