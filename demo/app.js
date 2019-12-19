@@ -132,8 +132,9 @@ function doThisOnLocation(position){
 
   for(let i = 0; i < allPlaces.length; i++){
     let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
-    let places = L.marker({riseOnHover:true})
+    let places = L.marker()
     .setLatLng([allPlaces[i][1], allPlaces[i][0]])
+    .setOptions({riseOnHover: true})
     .bindPopup("hello")
     // .on('click', function(e){e.openPopup();})
     .addTo(myMap.map);
@@ -150,7 +151,7 @@ function doThisOnLocation(position){
 }
 
 function positionChanged(position){
-  myMap.map.flyTo([position.latitude, position.longitude], 16);
+  // myMap.map.flyTo([position.latitude, position.longitude], 16);
   lat = position.latitude;
   lng = position.longitude;
 }
