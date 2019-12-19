@@ -90,11 +90,7 @@ var lastPingEnergy = [];
 var lastPingEnergyHighest = 0;
 var lastPingChosen;
 
-const fontAwesomeIcon = L.divIcon({
-  html: '<i class="fas fa-user-circle"></i>',
-  iconSize: [20, 20],
-  className: 'myDivIcon'
-});
+var fontAwesomeIcon;
 
 
 
@@ -134,7 +130,12 @@ function doThisOnLocation(position){
   lat = position.latitude;
   lng = position.longitude;
   myMap.map.flyTo([position.latitude, position.longitude], 16);
-
+  
+  fontAwesomeIcon = L.divIcon({
+    html: '<i class="fas fa-user-circle"></i>',
+    iconSize: [20, 20],
+    className: 'myDivIcon'
+  });
   // L.CircleMarker
   currentPosition = L.marker([lat, lng],{icon: fontAwesomeIcon})
   // .setLatLng([lat, lng])
