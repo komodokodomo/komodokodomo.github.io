@@ -142,7 +142,7 @@ function doThisOnLocation(position){
     fillColor: '#f03',
     fillOpacity: 0.3,
     radius: acc
-}).addTo(mymap);
+}).addTo(myMap.map);
 
   L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
 
