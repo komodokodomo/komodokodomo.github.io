@@ -12,6 +12,7 @@ var talking = false;
 var spoken = false;
 
 var currentPosition;
+var currentPositionRadius;
 var currentPositionCounter  = 0;
 
 var options = {
@@ -135,6 +136,13 @@ function doThisOnLocation(position){
   .setLatLng([lat, lng])
   .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>")
   .addTo(myMap.map);
+
+  currentPositionRadius = L.circle([lat, lng], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: acc
+}).addTo(mymap);
 
   L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
 
