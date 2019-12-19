@@ -149,13 +149,17 @@ function doThisOnLocation(position){
 
   // setInterval(function(){ listening+=".";if(!talking && !spoken){currentPosition.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
-  print("long: " + position.longitude);
+  print("lat: " + lat);
+  print("long: " + long);
+  print("acc: " + acc);
 }
 
 function positionChanged(position){
   // myMap.map.flyTo([position.latitude, position.longitude], 16);
+  acc = position.accuracy;
   lat = position.latitude;
   lng = position.longitude;
+  currentPosition.setLatLng([lat, lng]);
 }
 
 function drawPoints(){
