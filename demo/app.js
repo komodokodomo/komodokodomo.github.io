@@ -131,7 +131,7 @@ function doThisOnLocation(position){
   myMap.map.flyTo([position.latitude, position.longitude], 16);
 
   // L.CircleMarker
-  currentPosition = L.marker()
+  currentPosition = L.CircleMarker()
   .setLatLng([lat, lng])
   .bindPopup("<h1>Profile</h1><p>noob explorer</p>")
   .addTo(myMap.map);
@@ -184,7 +184,7 @@ function setup(){
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
   console.log(allPlaces);
-L.CircleMarker
+// L.CircleMarker
 
   if(geoCheck() == true){
 		console.log("GPS available");
