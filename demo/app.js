@@ -138,9 +138,10 @@ function doThisOnLocation(position){
   .addTo(myMap.map);
 
   currentPositionRadius = L.circle([lat, lng], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.3,
+    color: 'lightgray',
+    stroke: false,
+    // fillColor: '#f03',
+    fillOpacity: 0.1,
     radius: acc
 }).addTo(myMap.map);
 
@@ -168,6 +169,8 @@ function positionChanged(position){
   lat = position.latitude;
   lng = position.longitude;
   currentPosition.setLatLng([lat, lng]);
+  currentPositionRadius.setLatLng([lat, lng]);
+  currentPositionRadius.getRadius(acc);
 }
 
 function drawPoints(){
