@@ -132,7 +132,7 @@ function doThisOnLocation(position){
   myMap.map.flyTo([position.latitude, position.longitude], 16);
 
   // L.CircleMarker
-  currentPosition = L.marker()
+  currentPosition = L.circleMarker()
   .setLatLng([lat, lng])
   .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>")
   .addTo(myMap.map);
