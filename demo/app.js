@@ -273,7 +273,7 @@ function draw()
     clear();                                                      //set background to light grey
     fill(0);
     textSize(24);
-    text("psst",10,h-10);
+    text("parent-child companion app",10,h-10);
   }
   else
   { 
