@@ -77,7 +77,15 @@
         "fill": "#555555",
         "fill-opacity": 0.5,
         "name": "MOE HQ (Buona Vista)",
-        "popupContent": "<h1>MOE HQ (Buona Vista)</h1><br><span class=\"fas fa-star\"></span><p>And this is where our colleagues from MOE resides!</p>"
+        "popupContent": "
+        <h1>MOE HQ (Buona Vista)</h1>
+        <br>
+        <span class=\"fas fa-star\"></span>
+        <span class=\"fas fa-star\"></span>
+        <span class=\"fas fa-star\"></span>
+        <span class=\"fas fa-star-half-alt\"></span>
+        <span class=\"far fa-star\"></span>
+        <p>And this is where our colleagues from MOE resides!</p>"
       },
       "geometry": {
         "type": "Polygon",
