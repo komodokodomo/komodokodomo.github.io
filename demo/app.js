@@ -138,7 +138,7 @@ function doThisOnLocation(position){
   .addTo(myMap.map);
 
   currentPositionRadius = L.circle([lat, lng], {
-    color: 'lightgray',
+    color: 'light-gray',
     stroke: false,
     // fillColor: '#f03',
     fillOpacity: 0.1,
