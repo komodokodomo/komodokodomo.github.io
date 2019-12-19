@@ -112,6 +112,13 @@ function preload() {
   jsonFile = loadJSON(url);
 }
 
+function onEachFeature(feature, layer) {
+  // does this feature have a property named popupContent?
+  if (feature.properties && feature.properties.popupContent) {
+      layer.bindPopup(feature.properties.popupContent);
+  }
+}
+
 function doThisOnLocation(position){
   // print("lat: " + position.latitude);
   // options.lat=position.latitude;
@@ -129,7 +136,7 @@ function doThisOnLocation(position){
   .setContent("you are here")
   .addTo(myMap.map);
 
-  L.geoJSON(geoData).addTo(myMap.map);
+  L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
 
 
 //   for(let i = 0; i < allPlaces.length; i++){
