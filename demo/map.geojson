@@ -157,7 +157,7 @@
         "marker-color": "#7e7e7e",
         "marker-size": "medium",
         "marker-symbol": "",
-        "popupContent": "<h2>Sandcrawler</h2><p>3.0</p><span class=\\\"fas fa-star\\\"></span><span class=\\\"fas fa-star\\\"></span><span class=\\\"fas fa-star\\\"></span><span class=\\\"far fa-star\\\"></span><span class=\\\"far fa-star\\\"></span><p>Hi there, this is where the people who made this prototype work!</p>"
+        "popupContent": "<h2>Sandcrawler</h2><p>3.0</p><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"far fa-star\"></span><span class=\"far fa-star\"></span><p>Hi there, this is where the people who made this prototype work!</p>"
       },
       "geometry": {
         "type": "Point",
