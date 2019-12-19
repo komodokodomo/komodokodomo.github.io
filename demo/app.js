@@ -129,7 +129,7 @@ function doThisOnLocation(position){
   .setContent("you are here")
   .addTo(myMap.map);
 
-  L.geoJSON(geoData).addTo(map);
+  L.geoJSON(geoData).addTo(myMap.map);
 
 
 //   for(let i = 0; i < allPlaces.length; i++){
