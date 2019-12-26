@@ -174,7 +174,7 @@ function doThisOnLocation(position){
     popupAnchor:  [0, 8] // point from which the popup should open relative to the iconAnchor
   });
 
-  myMap.map.on('zoomed', function() {
+  myMap.map.on('zoomend', function() {
     var currentZoom = myMap.map.getZoom();
     profileIcon = new L.Icon({
         iconUrl: 'profile.png',
@@ -182,6 +182,7 @@ function doThisOnLocation(position){
         iconAnchor: [myMap.map.getZoom, myMap.map.getZoom],
         popupAnchor: [0, 0],
     });
+    console.log("zoomed");
     currentPosition.setIcon(profileIcon);
 });
   // L.CircleMarker
