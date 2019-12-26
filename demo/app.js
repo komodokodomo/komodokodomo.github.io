@@ -1,3 +1,10 @@
+var fence = [];
+var polygon = [
+  {lat: 34.045303, lon: -118.334650},  // top left  
+  {lat: 34.045252, lon: -118.334462},  // top right
+  {lat: 34.045131, lon: -118.334498},  // bottom right
+  {lat: 34.045185, lon: -118.334684},  // bottom left
+];
 
 var locationData,lat,lng,acc;
 var allPlaces;
@@ -204,6 +211,10 @@ function setup(){
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
   console.log(allPlaces);
+  for(var i =0; i<Object.keys(geoData.features).length; i++)
+  {
+    console.log(i);
+  }
 // L.CircleMarker
 
   if(geoCheck() == true){
