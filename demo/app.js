@@ -178,8 +178,8 @@ function doThisOnLocation(position){
     var currentZoom = myMap.map.getZoom();
     profileIcon = new L.Icon({
         iconUrl: 'profile.png',
-        iconSize: [myMap.map.getZoom*2, myMap.map.getZoom*2],
-        iconAnchor: [myMap.map.getZoom, myMap.map.getZoom],
+        iconSize: [currentZoom*2, currentZoom*2],
+        iconAnchor: [currentZoom, currentZoom],
         popupAnchor: [0, 0],
     });
     console.log("zoomed");
