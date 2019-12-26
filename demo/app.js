@@ -158,7 +158,7 @@ function doThisOnLocation(position){
   myMap.map.flyTo([position.latitude, position.longitude], 16);
   
   fontAwesomeIcon = L.divIcon({
-    html: '<i class="fas fa-user-circle fas-3x"></i>',
+    html: '<i class="fas fa-user-circle fas"></i>',
     // iconSize: [20, 20],
     // font-size: 32px;
     className: 'myDivIcon'
