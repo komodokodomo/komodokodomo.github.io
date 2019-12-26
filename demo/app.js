@@ -178,6 +178,18 @@ function doThisOnLocation(position){
 
   L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
 
+  for(var i =0; i<Object.keys(geoData.features).length; i++)
+  {
+    console.log(geoData.features[i].geometry.coordinates);
+    var c = centroid(geoData.features[i].geometry.coordinates[0]);
+    console.log(c);
+    let places = L.marker()
+    .setLatLng([c[1], c[0]])
+    .bindPopup(geoData.features[i].properties.popupContent)
+    .addTo(myMap.map);
+    // console.log(i);
+  }
+
 
 //   for(let i = 0; i < allPlaces.length; i++){
 //     let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
@@ -243,17 +255,17 @@ function setup(){
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
   console.log(allPlaces);
-  for(var i =0; i<Object.keys(geoData.features).length; i++)
-  {
-    console.log(geoData.features[i].geometry.coordinates);
-    var c = centroid(geoData.features[i].geometry.coordinates[0]);
-    console.log(c);
-    let places = L.marker()
-    .setLatLng([c[1], c[0]])
-    .bindPopup(geoData.features[i].properties.popupContent)
-    .addTo(myMap.map);
-    // console.log(i);
-  }
+  // for(var i =0; i<Object.keys(geoData.features).length; i++)
+  // {
+  //   console.log(geoData.features[i].geometry.coordinates);
+  //   var c = centroid(geoData.features[i].geometry.coordinates[0]);
+  //   console.log(c);
+  //   let places = L.marker()
+  //   .setLatLng([c[1], c[0]])
+  //   .bindPopup(geoData.features[i].properties.popupContent)
+  //   .addTo(myMap.map);
+  //   // console.log(i);
+  // }
 // L.CircleMarker
 
   if(geoCheck() == true){
