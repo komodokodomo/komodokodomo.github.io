@@ -213,7 +213,8 @@ function setup(){
   console.log(allPlaces);
   for(var i =0; i<Object.keys(geoData.features).length; i++)
   {
-    console.log(i);
+    console.log(geoData.features[i].geometry.coordinates);
+    // console.log(i);
   }
 // L.CircleMarker
 
