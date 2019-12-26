@@ -1,3 +1,22 @@
+// ,
+//     {
+//       "type": "Feature",
+//       "properties": {
+//         "marker-color": "#7e7e7e",
+//         "marker-size": "large",
+//         "marker-symbol": "",
+//         "popupContent": "<h2>MOE HQ (Buona Vista)</h2><p>3.5</p><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star-half-alt\"></span><span class=\"far fa-star\"></span><p>And this is where our colleagues from MOE resides!</p>"
+//       },
+//       "geometry": {
+//         "type": "Point",
+//         "coordinates": [
+//           103.79077076911926,
+//           1.3053503757839529
+//         ]
+//       }
+//     }
+
+
 var fence = [];
 var polygon = [
   {lat: 34.045303, lon: -118.334650},  // top left  
