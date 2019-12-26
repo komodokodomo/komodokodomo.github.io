@@ -176,13 +176,13 @@ function doThisOnLocation(position){
 
   myMap.map.on('zoomed', function() {
     var currentZoom = myMap.map.getZoom();
-    busIcon = new L.Icon({
+    profileIcon = new L.Icon({
         iconUrl: 'profile.png',
         iconSize: [myMap.map.getZoom*2, myMap.map.getZoom*2],
         iconAnchor: [myMap.map.getZoom, myMap.map.getZoom],
         popupAnchor: [0, 0],
     });
-    marker.setIcon(busIcon);
+    currentPosition.setIcon(profileIcon);
 });
   // L.CircleMarker
   currentPosition = L.marker([lat, lng],{icon: profileIcon})
