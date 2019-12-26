@@ -198,6 +198,19 @@ function drawPoints(){
     // }
 }
 
+var centroid = function (arr)
+{
+    var minX, maxX, minY, maxY;
+    for (var i = 0; i < arr.length; i++)
+    {
+        minX = (arr[i][0] < minX || minX == null) ? arr[i][0] : minX;
+        maxX = (arr[i][0] > maxX || maxX == null) ? arr[i][0] : maxX;
+        minY = (arr[i][1] < minY || minY == null) ? arr[i][1] : minY;
+        maxY = (arr[i][1] > maxY || maxY == null) ? arr[i][1] : maxY;
+    }
+    return [(minX + maxX) / 2, (minY + maxY) / 2];
+}
+
 function setup(){
   w = window.innerWidth;                                                    
   h = window.innerHeight;
@@ -214,6 +227,7 @@ function setup(){
   for(var i =0; i<Object.keys(geoData.features).length; i++)
   {
     console.log(geoData.features[i].geometry.coordinates);
+    console.log(center(geoData.features[i].geometry.coordinates));
     // console.log(i);
   }
 // L.CircleMarker
