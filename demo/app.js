@@ -165,12 +165,25 @@ function doThisOnLocation(position){
     className: 'myDivIcon'
   });
 
+
+
   var profileIcon = L.icon({
     iconUrl: 'profile.png',
     iconSize:     [32, 32], // size of the icon
     iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, 8] // point from which the popup should open relative to the iconAnchor
   });
+
+  myMap.map.on('zoomed', function() {
+    var currentZoom = myMap.map.getZoom();
+    busIcon = new L.Icon({
+        iconUrl: 'profile.png',
+        iconSize: [myMap.map.getZoom*2, myMap.map.getZoom*2],
+        iconAnchor: [myMap.map.getZoom, myMap.map.getZoom],
+        popupAnchor: [0, 0],
+    });
+    marker.setIcon(busIcon);
+});
   // L.CircleMarker
   currentPosition = L.marker([lat, lng],{icon: profileIcon})
   // .setLatLng([lat, lng])
