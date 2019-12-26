@@ -176,7 +176,7 @@ function doThisOnLocation(position){
     radius: acc
 }).addTo(myMap.map);
 
-  L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
+  // L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
 
   for(var i =0; i<Object.keys(geoData.features).length; i++)
   {
