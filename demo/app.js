@@ -227,7 +227,7 @@ function setup(){
   for(var i =0; i<Object.keys(geoData.features).length; i++)
   {
     console.log(geoData.features[i].geometry.coordinates);
-    console.log(center(geoData.features[i].geometry.coordinates));
+    console.log(centroid(geoData.features[i].geometry.coordinates));
     // console.log(i);
   }
 // L.CircleMarker
