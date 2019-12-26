@@ -118,12 +118,7 @@ var lastPingChosen;
 
 var fontAwesomeIcon;
 
-var profileIcon = L.icon({
-  iconUrl: 'profile.png',
-  iconSize:     [96, 96], // size of the icon
-  iconAnchor:   [48, 48], // point of the icon which will correspond to marker's location
-  popupAnchor:  [48, 48] // point from which the popup should open relative to the iconAnchor
-});
+
 
 
 //https://docs.google.com/forms/d/e/1FAIpQLSecFpTG3ggWD6GYEe40FcQYEXCdtJ6S5q4Iv6alfYxpdy8KXg/formResponse?entry.1852266277={{ROOMID}}&entry.611071440={{NICKNAME}}&entry.207705783={{TEXT}}
@@ -168,6 +163,13 @@ function doThisOnLocation(position){
     // iconSize: [20, 20],
     // font-size: 32px;
     className: 'myDivIcon'
+  });
+
+  var profileIcon = L.icon({
+    iconUrl: 'profile.png',
+    iconSize:     [96, 96], // size of the icon
+    iconAnchor:   [48, 48], // point of the icon which will correspond to marker's location
+    popupAnchor:  [48, 48] // point from which the popup should open relative to the iconAnchor
   });
   // L.CircleMarker
   currentPosition = L.marker([lat, lng],{icon: profileIcon})
