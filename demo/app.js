@@ -219,7 +219,7 @@ function outsideTheFence(position){
     for(var j=0; j<geoData.features[i].geometry.coordinates[0].length; j++){
     fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][0],lon:geoData.features[i].geometry.coordinates[0][j][1]});
     }
-    let fenceAlert = new geoFencePolygon(fence[i], function(){ console.log("i am in area" + i.toString()); }, function(){ console.log("i out of area" + i.toString()); }, 'mi')
+    let fenceAlert = new geoFencePolygon(fence[i], function(){ console.log("i am in area " + i.toString()); }, function(){ console.log("i am out of the area " + i.toString()); }, 'mi')
     // console.log(i);
   }
 
