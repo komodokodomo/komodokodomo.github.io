@@ -17,7 +17,7 @@
 //     }
 
 
-var fence = [];
+var fence = new Array();
 
 
 var locationData,lat,lng,acc;
