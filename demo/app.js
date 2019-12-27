@@ -18,12 +18,7 @@
 
 
 var fence = [];
-var polygon = [
-  {lat: 34.045303, lon: -118.334650},  // top left  
-  {lat: 34.045252, lon: -118.334462},  // top right
-  {lat: 34.045131, lon: -118.334498},  // bottom right
-  {lat: 34.045185, lon: -118.334684},  // bottom left
-];
+
 
 var locationData,lat,lng,acc;
 var allPlaces;
@@ -187,7 +182,6 @@ function doThisOnLocation(position){
 });
   // L.CircleMarker
   currentPosition = L.marker([lat, lng],{icon: profileIcon})
-  // .setLatLng([lat, lng])
   .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>")
   .addTo(myMap.map);
 
@@ -210,8 +204,14 @@ function doThisOnLocation(position){
     .setLatLng([c[1], c[0]])
     .bindPopup(geoData.features[i].properties.popupContent)
     .addTo(myMap.map);
+  
+    for(var j=0; j<geoData.features[i].geometry.coordinates[0].length(); j++){
+    fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][0],long:geoData.features[i].geometry.coordinates[0][j][1]});
+  }
     // console.log(i);
   }
+
+  console.log(fence);
 
 
 //   for(let i = 0; i < allPlaces.length; i++){
@@ -333,11 +333,9 @@ function setup(){
   
 
   gamepin = createInput('');
-  // gamepin.parent("canvas");
   gamepin.attribute('placeholder', 'NICKNAME');
   gamepin.style('text-align', 'center');
   gamepin.style('z-index',"2");
-  // gamepin.style("transition", "all 2s linear");
   gamepin.id("gamepin");
   gamepin.input(typeEvent);
   gamepin.size(refDimensions*3/5,refDimensions*3/20);
@@ -345,7 +343,6 @@ function setup(){
   gamepin.elt.focus();
 
   button = createButton("SUBMIT");
-  // button.parent("canvas");
   button.size(gamepin.width,gamepin.height);
   button.style('z-index',"2");
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
