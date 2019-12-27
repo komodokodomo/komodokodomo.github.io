@@ -160,7 +160,17 @@ function doThisOnLocation(position){
     className: 'myDivIcon'
   });
 
+  function insideTheFence(position){
+    print("INlat: " + position.latitude);
+    print("INlong: " + position.longitude);
+    print("user is inside of the fence")
+}
 
+function outsideTheFence(position){
+    print("OUTlat: " + position.latitude);
+    print("OUTlong: " + position.longitude);
+    print("user is outside of the fence")
+}
 
   var profileIcon = L.icon({
     iconUrl: 'profile.png',
@@ -207,8 +217,9 @@ function doThisOnLocation(position){
   
     fence[i] = [];
     for(var j=0; j<geoData.features[i].geometry.coordinates[0].length; j++){
-    fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][0],long:geoData.features[i].geometry.coordinates[0][j][1]});
-  }
+    fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][0],lon:geoData.features[i].geometry.coordinates[0][j][1]});
+    }
+    let fenceAlert = new geoFencePolygon(fence[i], function(){ console.log("i am in area" + i.toString()); }, function(){ console.log("i out of area" + i.toString()); }, 'mi')
     // console.log(i);
   }
 
