@@ -206,6 +206,7 @@ function doThisOnLocation(position){
     .addTo(myMap.map);
   
     for(var j=0; j<geoData.features[i].geometry.coordinates[0].length; j++){
+      fence[i] = [];
     fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][0],long:geoData.features[i].geometry.coordinates[0][j][1]});
   }
     // console.log(i);
