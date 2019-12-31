@@ -226,9 +226,11 @@ function outsideTheFence(position){
 
   setInterval(function(){ 
     for( var i = 0; i<fenceAlert.length; i++)
+    {
     var within = fenceAlert[i].insideFence;
     console.log(within); 
     if(within){alert("i am in area " + i.toString());}
+    }
   }, 5000);
 
   console.log(fence);
