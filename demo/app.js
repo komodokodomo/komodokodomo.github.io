@@ -224,6 +224,11 @@ function outsideTheFence(position){
     console.log(fenceAlert[i]);
   }
 
+  setInterval(function(){ 
+    for( var i = 0; i<fenceAlert.length; i++)
+    console.log(fenceAlert[i].insideFence); 
+  }, 5000);
+
   console.log(fence);
 
 
