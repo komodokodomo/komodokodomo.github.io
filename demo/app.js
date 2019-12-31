@@ -208,20 +208,23 @@ function outsideTheFence(position){
 
   for(var i =0; i<Object.keys(geoData.features).length; i++)
   {
-    console.log(geoData.features[i].geometry.coordinates);
+    // console.log(geoData.features[i].geometry.coordinates);
     var c = centroid(geoData.features[i].geometry.coordinates[0]);
-    console.log(c);
+    // console.log(c);
+    
     let places = L.marker()
     .setLatLng([c[1], c[0]])
     .bindPopup(geoData.features[i].properties.popupContent)
     .addTo(myMap.map);
   
     fence[i] = [];
+
     for(var j=0; j<geoData.features[i].geometry.coordinates[0].length; j++){
     fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][0],lon:geoData.features[i].geometry.coordinates[0][j][1]});
     }
+
     fenceAlert[i] = new geoFencePolygon(fence[i], function(position){ alert("i am in area " + i.toString()); }, function(position){ console.log("i am out of area " + i.toString()); }, 'mi');
-    console.log(fenceAlert[i]);
+    
   }
 
   setInterval(function(){ 
@@ -234,6 +237,7 @@ function outsideTheFence(position){
   }, 5000);
 
   console.log(fence);
+  console.log(fenceAlert);
 
 
 //   for(let i = 0; i < allPlaces.length; i++){
