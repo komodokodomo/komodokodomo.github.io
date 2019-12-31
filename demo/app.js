@@ -209,7 +209,7 @@ function outsideTheFence(position){
   for(let i =0; i<Object.keys(geoData.features).length; i++)
   {
     // console.log(geoData.features[i].geometry.coordinates);
-    var c = centroid(geoData.features[i].geometry.coordinates[0]);
+    let c = centroid(geoData.features[i].geometry.coordinates[0]);
     // console.log(c);
     
     let places = L.marker()
@@ -224,7 +224,8 @@ function outsideTheFence(position){
     }
 
     // fenceAlert[i] = new geoFencePolygon(fence[i], function(position){ alert("i am in area " + i.toString()); }, function(position){ console.log("i am out of area " + i.toString()); }, 'mi');
-    fenceAlert[i] = new geoFencePolygon(fence[i]);
+    // fenceAlert[i] = new geoFencePolygon(fence[i]);
+    fenceAlert[i] = new geoFenceCircle(c[1],c[0],5);
   }
 
   setInterval(function(){ 
