@@ -223,19 +223,19 @@ function outsideTheFence(position){
     fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][1],lon:geoData.features[i].geometry.coordinates[0][j][0]});
     } // NEED TO CHECK THIS PORTION
 
-    // fenceAlert[i] = new geoFencePolygon(fence[i], function(position){ alert("i am in area " + i.toString()); }, function(position){ console.log("i am out of area " + i.toString()); }, 'mi');
-    fenceAlert[i] = new geoFencePolygon(fence[i]);
+    fenceAlert[i] = new geoFencePolygon(fence[i], function(position){ alert("i am in area " + i.toString()); }, function(position){ console.log("i am out of area " + i.toString()); }, 'mi');
+    // fenceAlert[i] = new geoFencePolygon(fence[i]);
     // fenceAlert[i] = new geoFenceCircle(c[1],c[0],0.5);
   }
 
-  setInterval(function(){ 
-    for( let i = 0; i<fenceAlert.length; i++)
-    {
-    var within = fenceAlert[i].insideFence;
-    console.log(within); 
-    if(within){alert("i am in area " + i.toString());}
-    }
-  }, 5000);
+  // setInterval(function(){ 
+  //   for( let i = 0; i<fenceAlert.length; i++)
+  //   {
+  //   var within = fenceAlert[i].insideFence;
+  //   console.log(within); 
+  //   if(within){alert("i am in area " + i.toString());}
+  //   }
+  // }, 5000);
 
   console.log(fence);
   console.log(fenceAlert);
