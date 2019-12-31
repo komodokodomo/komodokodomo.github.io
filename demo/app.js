@@ -225,7 +225,7 @@ function outsideTheFence(position){
 
     // fenceAlert[i] = new geoFencePolygon(fence[i], function(position){ alert("i am in area " + i.toString()); }, function(position){ console.log("i am out of area " + i.toString()); }, 'mi');
     // fenceAlert[i] = new geoFencePolygon(fence[i]);
-    fenceAlert[i] = new geoFenceCircle(c[1],c[0],5);
+    fenceAlert[i] = new geoFenceCircle(c[1],c[0],0.5);
   }
 
   setInterval(function(){ 
