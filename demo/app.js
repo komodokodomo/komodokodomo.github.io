@@ -221,7 +221,7 @@ function outsideTheFence(position){
     fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][0],lon:geoData.features[i].geometry.coordinates[0][j][1]});
     }
     fenceAlert[i] = new geoFencePolygon(fence[i], function(){ alert("i am in area " + i.toString()); }, function(){ console.log("i am out of area " + i.toString()); }, 'km')
-    // console.log(i);
+    console.log(fenceAlert[i]);
   }
 
   console.log(fence);
