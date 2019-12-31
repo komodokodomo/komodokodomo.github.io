@@ -201,6 +201,53 @@
           ]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#555555",
+        "stroke-width": 2,
+        "stroke-opacity": 1,
+        "fill": "#555555",
+        "fill-opacity": 0.5,
+        "name": "Low HQ",
+        "popupContent": "<h2>Low HQ</h2><p>5.0</p><span class=\\\\\\\"fas fa-star\\\\\\\"></span><span class=\\\\\\\"fas fa-star\\\\\\\"></span><span class=\\\\\\\"fas fa-star\\\\\\\"></span><span class=\\\\\\\"fas fa-star-half-alt\\\\\\\"></span><span class=\\\\\\\"far fa-star\\\\\\\"></span><p>Where the low-life happens</p>"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              103.90846610069275,
+              1.3181572488884385
+            ],
+            [
+              103.90934586524963,
+              1.3160120485885844
+            ],
+            [
+              103.91422748565674,
+              1.317063196966252
+            ],
+            [
+              103.91336917877197,
+              1.319208396360882
+            ],
+            [
+              103.91258597373962,
+              1.3190046024978548
+            ],
+            [
+              103.91090154647827,
+              1.3186828226801484
+            ],
+            [
+              103.90846610069275,
+              1.3181572488884385
+            ]
+          ]
+        ]
+      }
     }
   ]
 }
