@@ -206,7 +206,7 @@ function outsideTheFence(position){
 
   // L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
 
-  for(var i =0; i<Object.keys(geoData.features).length; i++)
+  for(let i =0; i<Object.keys(geoData.features).length; i++)
   {
     // console.log(geoData.features[i].geometry.coordinates);
     var c = centroid(geoData.features[i].geometry.coordinates[0]);
@@ -219,7 +219,7 @@ function outsideTheFence(position){
   
     fence[i] = [];
 
-    for(var j=0; j<geoData.features[i].geometry.coordinates[0].length; j++){
+    for(let j=0; j<geoData.features[i].geometry.coordinates[0].length; j++){
     fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][0],lon:geoData.features[i].geometry.coordinates[0][j][1]});
     }
 
