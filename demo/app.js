@@ -389,8 +389,8 @@ function setup(){
   button.mousePressed(enterButtonEvent);
 
   infoDiv = createDiv();
-  infoDiv.size(w/2,h/2);
-  infoDiv.position(w/4,h/4);
+  infoDiv.size(0.8*w,0.8*h);
+  infoDiv.position(0.1*w,0.1*h);
   infoDiv.id("infoDiv");
   infoDiv.style("z-index","5");
   infoDiv.style("background","white");
@@ -575,8 +575,8 @@ function windowResized() {
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
-  infoDiv.size(w/2,h/2);
-  infoDiv.position(w/4,h/4);
+  infoDiv.size(0.8*w,0.8*h);
+  infoDiv.position(0.1*w,0.1*h);
   // for(var i = 0; i<4; i++)
   // {
   //   buttonOpt[i].size(w/2,h/6);
