@@ -560,6 +560,7 @@ function windowResized() {
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
+  infoDiv.size(w/2,h/2);
   // for(var i = 0; i<4; i++)
   // {
   //   buttonOpt[i].size(w/2,h/6);
