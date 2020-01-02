@@ -234,6 +234,7 @@ function outsideTheFence(position){
         if(!fenceAlertTrigger[i]){
         alert("i am in area " + i.toString());
         infoDiv.show(); 
+        infoDiv.style("z-index","5");
         fenceAlertTrigger[i] = true;
       }
       },
