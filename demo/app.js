@@ -394,6 +394,7 @@ function setup(){
   infoDiv.id("infoDiv");
   infoDiv.style("z-index","5");
   infoDiv.style("fill","white");
+  infoDiv.style("opacity","1");
   infoDiv.hide();
   
   mic = new p5.AudioIn()
