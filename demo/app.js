@@ -225,7 +225,7 @@ function outsideTheFence(position){
     fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][1],lon:geoData.features[i].geometry.coordinates[0][j][0]});
     } // NEED TO CHECK THIS PORTION
 
-    fenceAlert[i] = new geoFencePolygon(fence[i], function(position){ alert("i am in area " + i.toString()); }, function(position){ console.log("i am out of area " + i.toString()); }, 'mi');
+    fenceAlert[i] = new geoFencePolygon(fence[i], function(position){ alert("i am in area " + i.toString());infoDiv.show(); }, function(position){ console.log("i am out of area " + i.toString()); }, 'mi');
     // fenceAlert[i] = new geoFencePolygon(fence[i]);
     // fenceAlert[i] = new geoFenceCircle(c[1],c[0],0.5);
   }
@@ -382,6 +382,7 @@ function setup(){
   infoDiv.position(w/4,h/4);
   infoDiv.id("infoDiv");
   infoDiv.style("z-index","5");
+  infoDiv.hide();
   
   mic = new p5.AudioIn()
   mic.start();
@@ -450,7 +451,6 @@ function enterButtonEvent() {
     // background(245);    
     fullscreen();
     getCurrentPosition(doThisOnLocation);
-
     console.log("welcome " + name)                                          //** debug **
   }
 }
