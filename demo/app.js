@@ -114,6 +114,8 @@ var lastPingChosen;
 
 var fontAwesomeIcon;
 
+var infoDiv;
+
 
 
 
@@ -375,6 +377,9 @@ function setup(){
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
   button.mousePressed(enterButtonEvent);
 
+  infoDiv = createDiv();
+  infoDiv.size(w/2,h/2);
+  infoDiv.id("infoDiv");
   
   mic = new p5.AudioIn()
   mic.start();
