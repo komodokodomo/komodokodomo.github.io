@@ -196,9 +196,15 @@ function outsideTheFence(position){
 });
   // L.CircleMarker
   currentPosition = L.marker([lat, lng],{icon: profileIcon})
-  .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>")
-  .addTo(myMap.map);
+  .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>").on("popupopen", () => {
+      this.preventDefault();
+      this.update()	;
+    });
+  }
+  currentPosition.addTo(myMap.map);
+  
 
+  
   currentPositionRadius = L.circle([lat, lng], {
     color: 'light-gray',
     stroke: false,
