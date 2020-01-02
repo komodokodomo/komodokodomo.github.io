@@ -393,7 +393,7 @@ function setup(){
   infoDiv.position(w/4,h/4);
   infoDiv.id("infoDiv");
   infoDiv.style("z-index","5");
-  infoDiv.style("fill","white");
+  infoDiv.style("background","white");
   infoDiv.style("opacity","1");
   infoDiv.hide();
   
