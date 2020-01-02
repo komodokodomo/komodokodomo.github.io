@@ -19,6 +19,7 @@
 
 var fence = new Array();
 var fenceAlert = new Array();
+var fenceAlertTrigger = new Array();
 
 
 var locationData,lat,lng,acc;
@@ -138,12 +139,12 @@ function preload() {
   jsonFile = loadJSON(url);
 }
 
-function onEachFeature(feature, layer) {
-  // does this feature have a property named popupContent?
-  if (feature.properties && feature.properties.popupContent) {
-      layer.bindPopup(feature.properties.popupContent);
-  }
-}
+// function onEachFeature(feature, layer) {
+//   // does this feature have a property named popupContent?
+//   if (feature.properties && feature.properties.popupContent) {
+//       layer.bindPopup(feature.properties.popupContent);
+//   }
+// }
 
 function doThisOnLocation(position){
   // print("lat: " + position.latitude);
@@ -223,21 +224,30 @@ function outsideTheFence(position){
 
     for(let j=0; j<geoData.features[i].geometry.coordinates[0].length; j++){
     fence[i].push({lat:geoData.features[i].geometry.coordinates[0][j][1],lon:geoData.features[i].geometry.coordinates[0][j][0]});
-    } // NEED TO CHECK THIS PORTION
+    }
 
-    fenceAlert[i] = new geoFencePolygon(fence[i], function(position){ alert("i am in area " + i.toString());infoDiv.show(); }, function(position){ console.log("i am out of area " + i.toString()); }, 'mi');
+    fenceAlertTrigger[i] = false;
+
+    fenceAlert[i] = new geoFencePolygon(
+      fence[i],
+      function(position){
+        if(!fenceAlertTrigger[i]){
+        alert("i am in area " + i.toString());
+        infoDiv.show(); 
+        fenceAlertTrigger[i] = true;
+      }
+      },
+      function(position){ 
+        if(fenceAlertTrigger[i]){
+          console.log("i am out of area " + i.toString()); 
+          infoDiv.hide(); 
+          fenceAlertTrigger[i] = false;
+        }
+      },
+      'mi');
     // fenceAlert[i] = new geoFencePolygon(fence[i]);
     // fenceAlert[i] = new geoFenceCircle(c[1],c[0],0.5);
   }
-
-  // setInterval(function(){ 
-  //   for( let i = 0; i<fenceAlert.length; i++)
-  //   {
-  //   var within = fenceAlert[i].insideFence;
-  //   console.log(within); 
-  //   if(within){alert("i am in area " + i.toString());}
-  //   }
-  // }, 5000);
 
   console.log(fence);
   console.log(fenceAlert);
