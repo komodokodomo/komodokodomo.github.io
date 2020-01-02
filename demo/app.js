@@ -200,8 +200,7 @@ function outsideTheFence(position){
       this.preventDefault();
       this.update()	;
     });
-  }
-  currentPosition.addTo(myMap.map);
+    currentPosition.addTo(myMap.map);
   
 
   
