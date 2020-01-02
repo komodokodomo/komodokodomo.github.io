@@ -381,6 +381,7 @@ function setup(){
   infoDiv.size(w/2,h/2);
   infoDiv.position(w/4,h/4);
   infoDiv.id("infoDiv");
+  infoDiv.style("z-index","5");
   
   mic = new p5.AudioIn()
   mic.start();
@@ -415,7 +416,7 @@ function draw()
     clear();                                                      //set background to light grey
     fill(0);
     textSize(24);
-    text("parent-child companion app",10,h-10);
+    // text("parent-child companion app",10,h-10);
   }
   else
   { 
