@@ -73,7 +73,7 @@
         "fill": "#555555",
         "fill-opacity": 0.5,
         "name": "MOE HQ (Buona Vista)",
-        "popupContent": "<h2>MOE HQ (Buona Vista)</h2><img src=\"https://upload.wikimedia.org/wikipedia/en/7/73/Ministry_of_Education_%28Singapore%29_logo.png\" class = \"ppic\"><p>3.5</p><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star-half-alt\"></span><span class=\"far fa-star\"></span><p>And this is where our colleagues from MOE resides!</p>"
+        "popupContent": "<h2>MOE HQ (Buona Vista)</h2><img src=\"https://upload.wikimedia.org/wikipedia/en/7/73/Ministry_of_Education_%28Singapore%29_logo.png\" class = \"ppic\"><span>3.5</span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star-half-alt\"></span><span class=\"far fa-star\"></span><p>And this is where our colleagues from MOE resides!</p>"
       },
       "geometry": {
         "type": "Polygon",
@@ -128,7 +128,7 @@
         "fill": "#555555",
         "fill-opacity": 0.5,
         "name": "Home Sweet Home",
-        "popupContent": "<h2>Home Sweet Home</h2><p>3.5</p><span class=\\\"fas fa-star\\\"></span><span class=\\\"fas fa-star\\\"></span><span class=\\\"fas fa-star\\\"></span><span class=\\\"fas fa-star-half-alt\\\"></span><span class=\\\"far fa-star\\\"></span><p>And this is where ZD lives</p>"
+        "popupContent": "<h2>Home Sweet Home</h2><span>3.5</span><span class=\\\"fas fa-star\\\"></span><span class=\\\"fas fa-star\\\"></span><span class=\\\"fas fa-star\\\"></span><span class=\\\"fas fa-star-half-alt\\\"></span><span class=\\\"far fa-star\\\"></span><p>And this is where ZD lives</p>"
       },
       "geometry": {
         "type": "Polygon",
@@ -179,7 +179,7 @@
         "fill": "#555555",
         "fill-opacity": 0.5,
         "name": "Low HQ",
-        "popupContent": "<h2>Low HQ</h2><p>5.0</p><span class=\\\\\\\"fas fa-star\\\\\\\"></span><span class=\\\\\\\"fas fa-star\\\\\\\"></span><span class=\\\\\\\"fas fa-star\\\\\\\"></span><span class=\\\\\\\"fas fa-star-half-alt\\\\\\\"></span><span class=\\\\\\\"far fa-star\\\\\\\"></span><p>Where the low-life happens</p>"
+        "popupContent": "<h2>Low HQ</h2><span>5.0</span><span class=\\\\\\\"fas fa-star\\\\\\\"></span><span class=\\\\\\\"fas fa-star\\\\\\\"></span><span class=\\\\\\\"fas fa-star\\\\\\\"></span><span class=\\\\\\\"fas fa-star-half-alt\\\\\\\"></span><span class=\\\\\\\"far fa-star\\\\\\\"></span><p>Where the low-life happens</p>"
       },
       "geometry": {
         "type": "Polygon",
