@@ -405,6 +405,7 @@ function setup(){
   infoDiv.position(0.1*w,0.1*h);
   infoDiv.id("infoDiv");
   infoDiv.style("z-index","5");
+  infoDiv.style("padding","20px");
   infoDiv.style("background","white");
   infoDiv.style("opacity","0.9");
   infoDiv.hide();
