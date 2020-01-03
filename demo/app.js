@@ -187,7 +187,7 @@ function outsideTheFence(position){
     var currentZoom = myMap.map.getZoom();
     profileIcon = new L.Icon({
         iconUrl: 'profile.png',
-        iconSize: [currentZoom*2, currentZoom*2],
+        iconSize: [currentZoom*2.5, currentZoom*2.5],
         iconAnchor: [currentZoom, currentZoom],
         popupAnchor: [0, 0],
     });
