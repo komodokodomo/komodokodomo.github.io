@@ -324,8 +324,8 @@ function setup(){
   myMap.overlay(canvas);
   myMap.onChange(drawPoints);
   
-
-  myMap.map.removeControl(myMap.map.zoomControl);
+  L.Util.setOptions( myMap.map, {zoomControl: false});
+  // myMap.map.removeControl(myMap.map.zoomControl);
 
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
