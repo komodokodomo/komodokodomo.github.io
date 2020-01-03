@@ -147,6 +147,18 @@ function preload() {
 //   }
 // }
 
+function insideTheFence(position){
+  print("INlat: " + position.latitude);
+  print("INlong: " + position.longitude);
+  print("user is inside of the fence")
+}
+
+function outsideTheFence(position){
+  print("OUTlat: " + position.latitude);
+  print("OUTlong: " + position.longitude);
+  print("user is outside of the fence")
+}
+
 function doThisOnLocation(position){
   // print("lat: " + position.latitude);
   // options.lat=position.latitude;
@@ -164,18 +176,6 @@ function doThisOnLocation(position){
     // font-size: 32px;
     className: 'myDivIcon'
   });
-
-  function insideTheFence(position){
-    print("INlat: " + position.latitude);
-    print("INlong: " + position.longitude);
-    print("user is inside of the fence")
-}
-
-function outsideTheFence(position){
-    print("OUTlat: " + position.latitude);
-    print("OUTlong: " + position.longitude);
-    print("user is outside of the fence")
-}
 
   var profileIcon = L.icon({
     iconUrl: 'profile.png',
@@ -214,6 +214,9 @@ function outsideTheFence(position){
     fillOpacity: 0.1,
     radius: acc
 }).addTo(myMap.map);
+
+L.Util.setOptions( myMap.map, {zoomControl: false});
+// myMap.map.removeControl(myMap.map.zoomControl);
 
   // L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
 
@@ -324,8 +327,7 @@ function setup(){
   myMap.overlay(canvas);
   myMap.onChange(drawPoints);
   
-  L.Util.setOptions( myMap.map, {zoomControl: false});
-  // myMap.map.removeControl(myMap.map.zoomControl);
+
 
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
