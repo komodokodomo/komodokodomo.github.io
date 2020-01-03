@@ -196,7 +196,7 @@ function outsideTheFence(position){
 });
   // L.CircleMarker
   currentPosition = L.marker([lat, lng],{icon: profileIcon})
-  .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>",{width: "auto"})
+  .bindPopup("<img src = \"profile.png\" class =\"ppic\"><h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>",{width: "auto"})
   .addTo(myMap.map);
   
   currentPosition.on("popupopen", () => {
