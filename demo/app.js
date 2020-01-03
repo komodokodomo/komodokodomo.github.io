@@ -246,7 +246,7 @@ L.Util.setOptions( myMap.map, {zoomControl: false});
         alert("i am in area " + i.toString());
         infoDiv.show(); 
         infoDiv.style("z-index","5");
-        infoDiv.html("<h2>Sandcrawler 0/2 journeys explored</h2><img src=\"https://upload.wikimedia.org/wikipedia/en/a/aa/Star_Wars_Sandcrawler.png\" class = \"ppic\"><span>3.2 </span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"far fa-star\"></span><span class=\"far fa-star\"></span><p>Hi there, this is where the people who made this prototype work!</p><button type="button">Lets explore!</button>");
+        infoDiv.html("<h2>Sandcrawler 0/2 journeys explored</h2><img src=\"https://upload.wikimedia.org/wikipedia/en/a/aa/Star_Wars_Sandcrawler.png\" class = \"ppic\"><span>3.2 </span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"far fa-star\"></span><span class=\"far fa-star\"></span><p>Hi there, this is where the people who made this prototype work!</p><button type=\"button\">Lets explore!</button>");
         fenceAlertTrigger[i] = true;
       }
       },
