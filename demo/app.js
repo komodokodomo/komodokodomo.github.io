@@ -45,6 +45,7 @@ var options = {
   pitch: 60,
   bearing: -60,
   studio: true, // false to use non studio styles
+  zoomControl: false, 
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
   
