@@ -10,7 +10,7 @@
         "fill": "#555555",
         "fill-opacity": 0.5,
         "name": "Sandcrawler",
-        "popupContent": "<h2>Sandcrawler</h2>,<div class = "ppic"><img src=\"https://upload.wikimedia.org/wikipedia/en/a/aa/Star_Wars_Sandcrawler.png\"></div><span>3.2 </span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"far fa-star\"></span><span class=\"far fa-star\"></span><p>Hi there, this is where the people who made this prototype work!</p>"
+        "popupContent": "<h2>Sandcrawler</h2>,<div class = \"ppic\"><img src=\"https://upload.wikimedia.org/wikipedia/en/a/aa/Star_Wars_Sandcrawler.png\"></div><span>3.2 </span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"far fa-star\"></span><span class=\"far fa-star\"></span><p>Hi there, this is where the people who made this prototype work!</p>"
       },
       "geometry": {
         "type": "Polygon",
