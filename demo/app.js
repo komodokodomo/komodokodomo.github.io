@@ -159,7 +159,7 @@ function outsideTheFence(position){
   print("user is outside of the fence")
 }
 
-function() closeWindow(){
+function closeWindow(){
 
   infoDiv.hide();
 }
