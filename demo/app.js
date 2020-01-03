@@ -246,7 +246,7 @@ L.Util.setOptions( myMap.map, {zoomControl: false});
         alert("i am in area " + i.toString());
         infoDiv.show(); 
         infoDiv.style("z-index","5");
-        inforDiv.html("<h2>Sandcrawler 0/2 journeys explored</h2><img src=\"https://upload.wikimedia.org/wikipedia/en/a/aa/Star_Wars_Sandcrawler.png\" class = \"ppic\"><span>3.2 </span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"far fa-star\"></span><span class=\"far fa-star\"></span><p>Hi there, this is where the people who made this prototype work!</p>");
+        infoDiv.html("<h2>Sandcrawler 0/2 journeys explored</h2><img src=\"https://upload.wikimedia.org/wikipedia/en/a/aa/Star_Wars_Sandcrawler.png\" class = \"ppic\"><span>3.2 </span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"fas fa-star\"></span><span class=\"far fa-star\"></span><span class=\"far fa-star\"></span><p>Hi there, this is where the people who made this prototype work!</p>");
         fenceAlertTrigger[i] = true;
       }
       },
@@ -326,8 +326,6 @@ function setup(){
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
   myMap.onChange(drawPoints);
-  
-
 
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
@@ -392,7 +390,7 @@ function setup(){
   gamepin.style('z-index',"2");
   gamepin.id("gamepin");
   gamepin.input(typeEvent);
-  gamepin.size(refDimensions*3/5,refDimensions*3/20);
+  gamepin.size(refDimensions*2/5,refDimensions*2/20);
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   gamepin.elt.focus();
 
