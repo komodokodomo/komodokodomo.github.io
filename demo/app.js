@@ -196,13 +196,14 @@ function outsideTheFence(position){
 });
   // L.CircleMarker
   currentPosition = L.marker([lat, lng],{icon: profileIcon})
-  .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>",{width: "auto"}).on("popupopen", () => {
-      // this.preventDefault();
-      // this.update()	;
-      console.log("hellooo");
-    });
-    currentPosition.addTo(myMap.map);
+  .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>",{width: "auto"})
+  .addTo(myMap.map);
   
+  currentPosition.on("popupopen", () => {
+    // this.preventDefault();
+    // this.update()	;
+    console.log("hellooo");
+  });
 
   
   currentPositionRadius = L.circle([lat, lng], {
