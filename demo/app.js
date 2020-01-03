@@ -45,9 +45,9 @@ var options = {
   pitch: 60,
   bearing: -60,
   studio: true, // false to use non studio styles
-  zoomControl: false, 
   //style: 'mapbox.dark' //streets, outdoors, light, dark, satellite (for nonstudio)
   style: 'mapbox://styles/mapbox/light-v10',
+  zoomControl: false
   
   // zoomControl : false
 };
@@ -402,7 +402,7 @@ function setup(){
   infoDiv.id("infoDiv");
   infoDiv.style("z-index","5");
   infoDiv.style("background","white");
-  infoDiv.style("opacity","1");
+  infoDiv.style("opacity","0.9");
   infoDiv.hide();
   
   mic = new p5.AudioIn()
