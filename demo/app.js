@@ -195,8 +195,8 @@ function outsideTheFence(position){
     currentPosition.setIcon(profileIcon);
 });
   // L.CircleMarker
-  currentPosition = L.marker([lat, lng],{icon: profileIcon, maxWidth: "auto"})
-  .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>").on("popupopen", () => {
+  currentPosition = L.marker([lat, lng],{icon: profileIcon})
+  .bindPopup("<h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>",{maxWidth: "auto"}).on("popupopen", () => {
       this.preventDefault();
       this.update()	;
     });
