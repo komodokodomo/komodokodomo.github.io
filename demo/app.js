@@ -323,7 +323,9 @@ function setup(){
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
   myMap.onChange(drawPoints);
-  myMap.map.zoomControl.remove();
+  
+
+  myMap.map.removeControl(myMap.map.zoomControl);
 
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
