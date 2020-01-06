@@ -299,7 +299,7 @@ function drawPoints(){
     clear();
     fill(0);
     noStroke();
-    text("psst",10,h-10);
+    text("field trip",10,h-10);
     noFill();
     stroke(0);
     // for(let i = 0; i < allPlaces.length; i++){
