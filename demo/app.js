@@ -16,6 +16,7 @@
 //       }
 //     }
 
+let floorplan;
 
 var fence = new Array();
 var fenceAlert = new Array();
@@ -161,6 +162,13 @@ function outsideTheFence(position){
 
 function closeWindow(){
   infoDiv.hide();
+  // image(floorplan, 0, 0);
+
+  // [[103.78868132829666, 1.299394728490367], [103.78868132829666, 1.300470017493518]]
+  const pos1 = myMap.latLngToPixel(103.78868132829666, 1.299394728490367);
+  const pos2 = myMap.latLngToPixel(103.790003657341,1.300470017493518);
+// Draw an ellipse using pos
+// ellipse(pos.x, pos.y, 10, 10);
 }
 
 function doThisOnLocation(position){
@@ -224,7 +232,7 @@ function doThisOnLocation(position){
 
   // L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
   var imageUrl = 'https://drive.google.com/uc?export=view&id=1toc3fWB2mOA0k3mbPAQhcgCOMYYcisT4',
-  imageBounds = [[103.78868132829666, 1.299394728490367], [103.78868132829666, 1.300470017493518]];
+  imageBounds = [[103.78868132829666, 1.299394728490367], [103.790003657341,1.300470017493518]];
 
 L.imageOverlay(imageUrl, imageBounds).addTo(myMap.map);
 L.imageOverlay(imageUrl, imageBounds).bringToFront();
@@ -331,6 +339,8 @@ function setup(){
   h = window.innerHeight;
   canvas = createCanvas(w,h);
   canvas.id("canvas");
+
+  floorplan = loadImage('floorplan.png');
 
   myMap = mappa.tileMap(options);
   myMap.overlay(canvas);
