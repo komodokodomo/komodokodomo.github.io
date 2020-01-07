@@ -53,7 +53,7 @@ var options = {
 };
 
 // Create an instance of Leaflet
-const mappa = new Mappa('MapboxGL', key);
+const mappa = new Mappa('Mapbox', key);
 let myMap;
 
 
@@ -161,6 +161,10 @@ function outsideTheFence(position){
 
 function closeWindow(){
   infoDiv.hide();
+  var imageUrl = 'floorplan.png',
+    imageBounds = [[103.78868132829666, 1.299394728490367], [103.78868132829666, 1.300470017493518]];
+
+  L.imageOverlay(imageUrl, imageBounds).addTo(myMap.map);
 }
 
 function doThisOnLocation(position){
