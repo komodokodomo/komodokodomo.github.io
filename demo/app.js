@@ -162,11 +162,13 @@ function outsideTheFence(position){
 
 function closeWindow(){
   infoDiv.hide();
-  // image(floorplan, 0, 0);
-
+  
   // [[103.78868132829666, 1.299394728490367], [103.78868132829666, 1.300470017493518]]
+  const pos1 = myMap.latLngToPixel(103.790003657341,1.300470017493518);
   const pos1 = myMap.latLngToPixel(103.78868132829666, 1.299394728490367);
-  const pos2 = myMap.latLngToPixel(103.790003657341,1.300470017493518);
+  image(floorplan, pos1.x,pos1.y,pos2.x-pos1.x,pos2.y-pos1.y);
+
+ 
 // Draw an ellipse using pos
 // ellipse(pos.x, pos.y, 10, 10);
 }
