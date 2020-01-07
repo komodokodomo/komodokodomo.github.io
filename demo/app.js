@@ -319,8 +319,8 @@ function drawPoints(){
     noFill();
     stroke(0);
 
-    let pos1 = myMap.latLngToPixel(103.790003657341,1.300470017493518);
-    let pos2 = myMap.latLngToPixel(103.78868132829666, 1.299394728490367);
+    let pos1 = myMap.latLngToPixel(1.300470017493518,103.790003657341);
+    let pos2 = myMap.latLngToPixel(1.299394728490367,103.78868132829666);
     console.log(pos1.x + ", " + pos1.y + pos2.x + ", " + pos2.y)
     image(floorplan, pos1.x,pos1.y,pos2.x-pos1.x,pos2.y-pos1.y);
     // for(let i = 0; i < allPlaces.length; i++){
