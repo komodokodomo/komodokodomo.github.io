@@ -227,6 +227,7 @@ function doThisOnLocation(position){
   imageBounds = [[103.78868132829666, 1.299394728490367], [103.78868132829666, 1.300470017493518]];
 
 L.imageOverlay(imageUrl, imageBounds).addTo(myMap.map);
+L.imageOverlay(imageUrl, imageBounds).bringToFront();
 
   for(let i =0; i<Object.keys(geoData.features).length; i++)
   {
