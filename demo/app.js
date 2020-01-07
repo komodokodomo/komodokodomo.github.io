@@ -165,7 +165,7 @@ function closeWindow(){
   
   // [[103.78868132829666, 1.299394728490367], [103.78868132829666, 1.300470017493518]]
   const pos1 = myMap.latLngToPixel(103.790003657341,1.300470017493518);
-  const pos1 = myMap.latLngToPixel(103.78868132829666, 1.299394728490367);
+  const pos2 = myMap.latLngToPixel(103.78868132829666, 1.299394728490367);
   image(floorplan, pos1.x,pos1.y,pos2.x-pos1.x,pos2.y-pos1.y);
 
  
