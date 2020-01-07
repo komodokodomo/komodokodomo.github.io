@@ -148,17 +148,17 @@ function preload() {
 //   }
 // }
 
-function insideTheFence(position){
-  print("INlat: " + position.latitude);
-  print("INlong: " + position.longitude);
-  print("user is inside of the fence")
-}
+// function insideTheFence(position){
+//   print("INlat: " + position.latitude);
+//   print("INlong: " + position.longitude);
+//   print("user is inside of the fence")
+// }
 
-function outsideTheFence(position){
-  print("OUTlat: " + position.latitude);
-  print("OUTlong: " + position.longitude);
-  print("user is outside of the fence")
-}
+// function outsideTheFence(position){
+//   print("OUTlat: " + position.latitude);
+//   print("OUTlong: " + position.longitude);
+//   print("user is outside of the fence")
+// }
 
 function closeWindow(){
   infoDiv.hide();
@@ -277,8 +277,6 @@ L.imageOverlay(imageUrl, imageBounds).bringToFront();
         }
       },
       'mi');
-    // fenceAlert[i] = new geoFencePolygon(fence[i]);
-    // fenceAlert[i] = new geoFenceCircle(c[1],c[0],0.5);
   }
 
   console.log(fence);
@@ -293,7 +291,6 @@ L.imageOverlay(imageUrl, imageBounds).bringToFront();
 //     .addTo(myMap.map);
 // }
 
-  // setInterval(function(){ listening+=".";if(!talking && !spoken){currentPosition.setContent("say something" + listening);} if(listening == "....."){listening = ""} }, 500);
   watchPosition(positionChanged);
   print("lat: " + lat);
   print("long: " + lng);
@@ -322,10 +319,7 @@ function drawPoints(){
     let pos2 = myMap.latLngToPixel(1.299394728490367,103.78868132829666);
     console.log(pos1.x + ", " + pos1.y + pos2.x + ", " + pos2.y)
     image(floorplan, pos1.x,pos1.y,pos2.x-pos1.x,pos2.y-pos1.y);
-    // for(let i = 0; i < allPlaces.length; i++){
-    //   let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
-    //   ellipse(pos.x, pos.y, 5, 5);
-    // }
+ 
 }
 
 var centroid = function (arr)
@@ -356,17 +350,7 @@ function setup(){
   console.log(geoData);
   allPlaces = myMap.geoJSON(geoData, "Point");
   console.log(allPlaces);
-  // for(var i =0; i<Object.keys(geoData.features).length; i++)
-  // {
-  //   console.log(geoData.features[i].geometry.coordinates);
-  //   var c = centroid(geoData.features[i].geometry.coordinates[0]);
-  //   console.log(c);
-  //   let places = L.marker()
-  //   .setLatLng([c[1], c[0]])
-  //   .bindPopup(geoData.features[i].properties.popupContent)
-  //   .addTo(myMap.map);
-  //   // console.log(i);
-  // }
+
 
   if(geoCheck() == true){
 		console.log("GPS available");
@@ -589,17 +573,13 @@ function windowResized() {
   if(w > h){refDimensions = h;}
   else{refDimensions = w;}
  
-  gamepin.size(refDimensions*3/5,refDimensions*3/20);
+  gamepin.size(refDimensions*2/5,refDimensions*2/20);
   gamepin.position(w/2 - gamepin.size().width/2,h/2-gamepin.size().height/2);
   button.size(gamepin.width,gamepin.height);
   button.position(w/2 - button.size().width/2,h/2- gamepin.size().height/2 + 1.1*gamepin.size().height);
   infoDiv.size(0.8*w,0.8*h);
   infoDiv.position(0.1*w,0.1*h);
-  // for(var i = 0; i<4; i++)
-  // {
-  //   buttonOpt[i].size(w/2,h/6);
-  //   buttonOpt[i].position((i%2)*w/2,floor(i/2)*h/6 + 2*h/3);
-  // }
+
 
   for(var i =0; i<Object.keys(jsonFile).length; i++)
   {
