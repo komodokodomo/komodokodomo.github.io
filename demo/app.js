@@ -161,10 +161,6 @@ function outsideTheFence(position){
 
 function closeWindow(){
   infoDiv.hide();
-  var imageUrl = 'floorplan.png',
-    imageBounds = [[103.78868132829666, 1.299394728490367], [103.78868132829666, 1.300470017493518]];
-
-  L.imageOverlay(imageUrl, imageBounds).addTo(myMap.map);
 }
 
 function doThisOnLocation(position){
@@ -223,10 +219,14 @@ function doThisOnLocation(position){
     radius: acc
 }).addTo(myMap.map);
 
-L.Util.setOptions( myMap.map, {zoomControl: false});
+// L.Util.setOptions( myMap.map, {zoomControl: false});
 // myMap.map.removeControl(myMap.map.zoomControl);
 
   // L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
+  var imageUrl = 'floorplan.png',
+  imageBounds = [[103.78868132829666, 1.299394728490367], [103.78868132829666, 1.300470017493518]];
+
+L.imageOverlay(imageUrl, imageBounds).addTo(myMap.map);
 
   for(let i =0; i<Object.keys(geoData.features).length; i++)
   {
