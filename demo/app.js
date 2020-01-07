@@ -239,6 +239,7 @@ function doThisOnLocation(position){
 L.imageOverlay(imageUrl, imageBounds).addTo(myMap.map);
 L.imageOverlay(imageUrl, imageBounds).bringToFront();
 
+
   for(let i =0; i<Object.keys(geoData.features).length; i++)
   {
     // console.log(geoData.features[i].geometry.coordinates);
@@ -317,6 +318,10 @@ function drawPoints(){
     text("field trip",10,h-10);
     noFill();
     stroke(0);
+
+    let pos1 = myMap.latLngToPixel(103.790003657341,1.300470017493518);
+    let pos2 = myMap.latLngToPixel(103.78868132829666, 1.299394728490367);
+    image(floorplan, pos1.x,pos1.y,pos2.x-pos1.x,pos2.y-pos1.y);
     // for(let i = 0; i < allPlaces.length; i++){
     //   let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
     //   ellipse(pos.x, pos.y, 5, 5);
