@@ -115,7 +115,6 @@ var lastPingEnergy = [];
 var lastPingEnergyHighest = 0;
 var lastPingChosen;
 
-var fontAwesomeIcon;
 
 var infoDiv;
 
@@ -184,12 +183,6 @@ function doThisOnLocation(position){
   lng = position.longitude;
   myMap.map.flyTo([position.latitude, position.longitude], 16);
   
-  fontAwesomeIcon = L.divIcon({
-    html: '<i class="fas fa-user-circle fas"></i>',
-    // iconSize: [20, 20],
-    // font-size: 32px;
-    className: 'myDivIcon'
-  });
 
   var profileIcon = L.icon({
     iconUrl: 'profile.png',
@@ -206,17 +199,14 @@ function doThisOnLocation(position){
         iconAnchor: [currentZoom, currentZoom],
         popupAnchor: [0, 0],
     });
-    console.log("zoomed");
+    // console.log("zoomed");
     currentPosition.setIcon(profileIcon);
 });
-  // L.CircleMarker
   currentPosition = L.marker([lat, lng],{icon: profileIcon})
   .bindPopup("<img src = \"profile.png\" class =\"ppic\"><h1>Profile</h1><p>noob explorer</p><br><p>last trip: 22 days ago</p>",{width: "auto"})
   .addTo(myMap.map);
   
   currentPosition.on("popupopen", () => {
-    // this.preventDefault();
-    // this.update()	;
     console.log("hellooo");
   });
 
@@ -279,8 +269,8 @@ L.imageOverlay(imageUrl, imageBounds).bringToFront();
       'mi');
   }
 
-  console.log(fence);
-  console.log(fenceAlert);
+  // console.log(fence);
+  // console.log(fenceAlert);
 
 
 //   for(let i = 0; i < allPlaces.length; i++){
@@ -317,7 +307,7 @@ function drawPoints(){
 
     let pos1 = myMap.latLngToPixel(1.300470017493518,103.790003657341);
     let pos2 = myMap.latLngToPixel(1.299394728490367,103.78868132829666);
-    console.log(pos1.x + ", " + pos1.y + pos2.x + ", " + pos2.y)
+    // console.log(pos1.x + ", " + pos1.y + ", "+ pos2.x + ", " + pos2.y)
     image(floorplan, pos1.x,pos1.y,pos2.x-pos1.x,pos2.y-pos1.y);
  
 }
