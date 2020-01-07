@@ -232,7 +232,7 @@ function doThisOnLocation(position){
 
   // L.geoJSON(geoData, {onEachFeature: onEachFeature}).addTo(myMap.map);
   var imageUrl = 'https://drive.google.com/uc?export=view&id=1toc3fWB2mOA0k3mbPAQhcgCOMYYcisT4',
-  imageBounds = [[103.78868132829666, 1.299394728490367], [103.790003657341,1.300470017493518]];
+  imageBounds = [[103.790003657341,1.300470017493518],[103.78868132829666, 1.299394728490367]];
 
 L.imageOverlay(imageUrl, imageBounds).addTo(myMap.map);
 L.imageOverlay(imageUrl, imageBounds).bringToFront();
