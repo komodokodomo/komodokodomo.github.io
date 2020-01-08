@@ -348,6 +348,7 @@ loginWrapperInputLogin.style("background","#336FB6");
 loginWrapperInputLogin.style("color","white");
 loginWrapperInputLogin.style("position","absolute");
 loginWrapperInputLogin.style("right","0px");
+loginWrapperInputLogin.style("bottom","0px");
 loginWrapperInputLogin.style("border-style","none");
 loginWrapperInputLogin.style("border-radius","0.25rem");
 loginWrapperInputLogin.style("padding","1rem 4rem");
