@@ -179,7 +179,7 @@ function setup() {
 
   buttonClick = createImg("300ppi/click.png","click me");
   buttonClick.parent(button);
-  // buttonClick.style("size")
+  buttonClick.style("width","20%");
 
   for(let i = 0; i<jsonDataLength; i++){
     subjects[i] = createElement("li",jsonData[i].subject);
