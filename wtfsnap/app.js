@@ -9,7 +9,9 @@ let button,hideButton = false;
 let buttonSizeRatio = 1.0;
 let buttonClick;
 
-let login = false;
+let loginStatus = false;
+let loginWrapper;
+ 
 
 
 let current;
@@ -101,7 +103,7 @@ function toggleScreen() {
   fullscreen(true);
   console.log("fullscreen");
   screenToggle.hide();
-  screenToggle2.show();
+  // screenToggle2.show(); 
 }
 
 function toggleScreen2() {
@@ -348,7 +350,7 @@ screenToggle2.hide();
 
 
 function draw() {
-  if(!login){
+  if(!loginStatus){
     background(215);
   }
  
