@@ -180,7 +180,7 @@ function setup() {
   buttonClick = createImg("300ppi/click.png","click me");
   buttonClick.parent(button);
   buttonClick.style("width","20%");
-  // buttonClick.style("width","20%");
+  buttonClick.style("position","absolute");
   buttonClick.style("top","50%");
   buttonClick.style("left","50%");
   buttonClick.style("transform", "translate(-50%, -50%)");
