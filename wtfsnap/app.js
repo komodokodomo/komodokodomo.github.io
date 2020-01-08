@@ -312,8 +312,8 @@ screenToggle.mouseClicked(toggleScreen);
 
 
 loginWrapper = createDiv();
-loginWrapper.size(w/2,h/2);
-loginWrapper.position(w/4,h/4);
+loginWrapper.size(w/2,w/2);
+loginWrapper.position(w/4,(h-w/2)/2);
 
 loginWrapperTitle = createDiv();
 loginWrapperTitle.parent(loginWrapper);
