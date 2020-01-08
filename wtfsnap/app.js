@@ -351,7 +351,7 @@ loginWrapperInputLogin.style("right","0px");
 loginWrapperInputLogin.style("bottom","0px");
 loginWrapperInputLogin.style("border-style","none");
 loginWrapperInputLogin.style("border-radius","0.25rem");
-loginWrapperInputLogin.style("padding","1rem 4rem");
+loginWrapperInputLogin.style("padding","1rem 3rem");
 
 // loginWrapperInputForgot;
 loginWrapperInputForgot = createButton("FORGOT PASSWORD");
