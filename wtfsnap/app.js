@@ -318,7 +318,7 @@ loginWrapper.position(w*0.2,h*0.1);
 loginWrapperTitle = createDiv();
 loginWrapperTitle.parent(loginWrapper);
 loginWrapperTitle.class("section-header");
-loginWrapperTitle.style("height","40%");
+loginWrapperTitle.style("height","10%");
 
 
 loginWrapperInput = createDiv();
