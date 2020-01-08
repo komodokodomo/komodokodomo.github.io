@@ -314,11 +314,16 @@ screenToggle.mouseClicked(toggleScreen);
 loginWrapper = createDiv();
 loginWrapper.size(w/2,h/2);
 loginWrapper.position(w/4,h/4);
+
 loginWrapperTitle = createDiv();
 loginWrapperTitle.parent(loginWrapper);
 loginWrapperTitle.class("section-header");
+loginWrapperTitle.style("height","40%");
+
+
 loginWrapperInput = createDiv();
 loginWrapperInput.parent(loginWrapper);
+
 loginWrapperUsername = createDiv("Username");
 loginWrapperUsername.class("field-label");
 loginWrapperUsername.parent(loginWrapper);
