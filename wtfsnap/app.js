@@ -337,7 +337,7 @@ loginWrapperInputPassword.style("background","#EBF2FE");
 loginWrapperInputPassword.style("padding","10px");
 loginWrapperInputPassword.style("width","inherit");
 loginWrapperInputPassword.style("border-style","none");
-loginWrapperInputPassword.style("margin-bottom","1.5rem");
+loginWrapperInputPassword.style("margin-bottom","1.0rem");
 
 
 
