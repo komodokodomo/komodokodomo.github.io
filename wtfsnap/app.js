@@ -6,6 +6,9 @@ var jsonDataIndex;
 var subjects = [];
 
 let button,hideButton = false;
+let buttonSizeRatio = 1.0;
+let buttonClick;
+
 
 let current;
 let cameras = "";
@@ -21,7 +24,6 @@ let canvas;
 var lerpValue = 0.3;
 
 var rounded = false;
-var buttonSizeRatio = 0.5;
 
 var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame, contentClose;
 var lensNumber;
@@ -55,9 +57,6 @@ var w,h;
 
 var mode = 0;
 
-// window.addEventListener('DOMContentLoaded', (event) => {
-//   console.log('DOM fully loaded and parsed');
-// });
 
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
   devices.forEach(function(device) {
@@ -168,12 +167,19 @@ function setup() {
   lensList.id("lens-list");
   lensList.style("height","100%");
 
+
   button = createDiv();
   button.mouseClicked(trigger);
   button.size(0,0);
   button.position(0,0);
   button.id("button");
+  button.style("text-align","center");
+  button.style("display" ,"block");
   button.hide();
+
+  buttonClick = createImg("300ppi/click.png","click me");
+  buttonClick.parent(button);
+  // buttonClick.style("size")
 
   for(let i = 0; i<jsonDataLength; i++){
     subjects[i] = createElement("li",jsonData[i].subject);

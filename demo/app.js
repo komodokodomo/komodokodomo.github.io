@@ -233,7 +233,6 @@ L.imageOverlay(imageUrl, imageBounds).bringToFront();
   {
     // console.log(geoData.features[i].geometry.coordinates);
     let c = centroid(geoData.features[i].geometry.coordinates[0]);
-    // console.log(c);
     
     let places = L.marker()
     .setLatLng([c[1], c[0]])
