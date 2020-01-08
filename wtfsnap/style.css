@@ -149,7 +149,7 @@ body
   .section-header {
     background-image: url(logo.svg);
     height: 10rem;
-    width: inherit;
+    width: auto;
     background-size: contain;
     background-repeat: no-repeat;
     padding: 0;
