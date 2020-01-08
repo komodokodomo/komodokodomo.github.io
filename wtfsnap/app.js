@@ -9,6 +9,8 @@ let button,hideButton = false;
 let buttonSizeRatio = 1.0;
 let buttonClick;
 
+let login = false;
+
 
 let current;
 let cameras = "";
@@ -346,8 +348,15 @@ screenToggle2.hide();
 
 
 function draw() {
+  if(!login){
+    background(215);
+  }
+ 
+  else{
  background(255);
  imageMode(CENTER);
+
+ 
 
 if(w>h){
 if((w/h)>(video.width/video.height))
@@ -419,7 +428,7 @@ if(debug){
 }
 
 }
-
+}
 
 function windowResized(){
     w = window.innerWidth;
