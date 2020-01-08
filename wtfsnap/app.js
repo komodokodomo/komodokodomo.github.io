@@ -317,11 +317,13 @@ loginWrapperTitle.class("section-header");
 loginWrapperInput = createDiv();
 loginWrapperInput.parent(loginWrapper);
 loginWrapperUsername = createDiv("Username");
+loginWrapperUsername.class(field-label);
 loginWrapperUsername.parent(loginWrapper);
 loginWrapperInputUsername = createInput();
 loginWrapperInputUsername.parent(loginWrapper);
 loginWrapperPassword = createDiv("Password");
 loginWrapperPassword.parent(loginWrapper);
+loginWrapperPassword.class(field-label);
 loginWrapperInputPassword = createInput();
 loginWrapperInputPassword.parent(loginWrapper);
 
