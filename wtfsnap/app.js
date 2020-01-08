@@ -346,11 +346,11 @@ loginWrapperInputLogin = createButton("LOGIN");
 loginWrapperInputLogin.parent(loginWrapper);
 loginWrapperInputLogin.style("background","#336FB6");
 loginWrapperInputLogin.style("color","white");
-loginWrapperInputLogin.style("width","40%");
+// loginWrapperInputLogin.style("width","40%");
 loginWrapperInputLogin.style("right","0px");
 loginWrapperInputLogin.style("border-style","none");
-loginWrapperInputLogin.style("border-radius","5px");
-loginWrapperInputLogin.style("padding","16px 48px");
+loginWrapperInputLogin.style("border-radius","0.25rem");
+loginWrapperInputLogin.style("padding","1rem 4rem");
 
 // loginWrapperInputForgot;
 
