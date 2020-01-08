@@ -173,13 +173,17 @@ function setup() {
   button.size(0,0);
   button.position(0,0);
   button.id("button");
-  button.style("text-align","center");
+  // button.style("text-align","center");
   button.style("display" ,"block");
   button.hide();
 
   buttonClick = createImg("300ppi/click.png","click me");
   buttonClick.parent(button);
   buttonClick.style("width","20%");
+  // buttonClick.style("width","20%");
+  buttonClick.style("top","50%");
+  buttonClick.style("left","50%");
+  buttonClick.style("transform", "translate(-50%, -50%)");
 
   for(let i = 0; i<jsonDataLength; i++){
     subjects[i] = createElement("li",jsonData[i].subject);
