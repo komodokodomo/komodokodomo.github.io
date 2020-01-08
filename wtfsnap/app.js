@@ -322,14 +322,21 @@ loginWrapperUsername.parent(loginWrapper);
 loginWrapperInputUsername = createInput();
 loginWrapperInputUsername.style("background","#EBF2FE");
 loginWrapperInputUsername.style("padding","10px");
+loginWrapperInputUsername.style("width","inherit");
+loginWrapperInputUsername.style("border-style","none");
+
 loginWrapperInputUsername.parent(loginWrapper);
 loginWrapperPassword = createDiv("Password");
 loginWrapperPassword.parent(loginWrapper);
 loginWrapperPassword.class("field-label");
+
 loginWrapperInputPassword = createInput();
 loginWrapperInputPassword.parent(loginWrapper);
 loginWrapperInputPassword.style("background","#EBF2FE");
 loginWrapperInputPassword.style("padding","10px");
+loginWrapperInputPassword.style("width","inherit");
+loginWrapperInputPassword.style("border-style","none");
+
 
 // loginWrapperInputPassword = createInput();
 // loginWrapperInputLogin = createButton("Log in");
