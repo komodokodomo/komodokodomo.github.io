@@ -363,7 +363,7 @@ loginWrapperInputForgot.style("left","0px");
 loginWrapperInputForgot.style("bottom","0px");
 loginWrapperInputForgot.style("border-style","none");
 loginWrapperInputForgot.style("border-radius","0.25rem");
-loginWrapperInputForgot.style("padding","4rem 0rem 0rem 4rem");
+loginWrapperInputForgot.style("padding","4rem 0rem 4rem 0rem");
 
 // screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
 // // screenToggle2.size(w/16,w/16);
