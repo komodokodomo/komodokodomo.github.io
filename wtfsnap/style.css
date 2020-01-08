@@ -145,3 +145,13 @@ body
     margin-left: -15px;
     margin-bottom: -15px;
   }
+
+  .section-header {
+    background-image: url(logo.svg);
+    height: 10rem;
+    width: inherit;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}

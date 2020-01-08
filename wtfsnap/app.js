@@ -11,6 +11,12 @@ let buttonClick;
 
 let loginStatus = false;
 let loginWrapper;
+let loginWrapperTitle;
+let loginWrapperInput;
+let loginWrapperInputUsername;
+let loginWrapperInputPassWord;
+let loginWrapperInputLogin;
+let loginWrapperInputForgot;
  
 
 
@@ -300,6 +306,21 @@ screenToggle.style("height","32px");
 // screenToggle.size(w/16,w/16);
 screenToggle.position(32,32);
 screenToggle.mouseClicked(toggleScreen);
+
+
+loginWrapper = createDiv();
+loginWrapper.size(w/2,h/2);
+loginWrapper.position(w/4,h/4);
+loginWrapperTitle = createDiv();
+loginWrapperTitle.parent(loginWrapper);
+loginWrapperTitle.class("section-header");
+// loginWrapperInput = createDiv();;
+// loginWrapperUsername = createDiv("Username");
+// loginWrapperPassword = createDiv("Password"); 
+// loginWrapperInputUsername = createInput();
+// loginWrapperInputPassword = createInput();
+// loginWrapperInputLogin = createButton("Log in");
+// loginWrapperInputForgot;
 
 // screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
 // // screenToggle2.size(w/16,w/16);
