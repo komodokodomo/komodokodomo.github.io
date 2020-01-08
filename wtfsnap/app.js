@@ -104,7 +104,10 @@ function trigger() {
   }
   console.log(objects[0].class);
 }
-
+function loginUser(){
+loginStatus = true;
+loginWrapper.hide();
+}
 function toggleScreen() {
   fullscreen(true);
   console.log("fullscreen");
@@ -354,6 +357,7 @@ loginWrapperInputLogin.style("bottom","0px");
 loginWrapperInputLogin.style("border-style","none");
 loginWrapperInputLogin.style("border-radius","0.25rem");
 loginWrapperInputLogin.style("padding","1rem 3rem");
+loginWrapperInputLogin.mousePressed(loginUser);
 
 // loginWrapperInputForgot;
 loginWrapperInputForgot = createButton("FORGOT PASSWORD");
