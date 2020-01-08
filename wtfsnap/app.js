@@ -342,7 +342,13 @@ loginWrapperInputPassword.style("margin-bottom","1.5rem");
 
 
 // loginWrapperInputPassword = createInput();
-// loginWrapperInputLogin = createButton("Log in");
+loginWrapperInputLogin = createButton("LOGIN");
+loginWrapperInputLogin.parent(loginWrapper);
+loginWrapperInputLogin.style("background","#336FB6");
+loginWrapperInputLogin.style("color","white");
+loginWrapperInputLogin.style("width","40%");
+loginWrapperInputLogin.style("right","0px");
+
 // loginWrapperInputForgot;
 
 // screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
