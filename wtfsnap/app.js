@@ -324,7 +324,7 @@ loginWrapperInputUsername.style("background","#EBF2FE");
 loginWrapperInputUsername.style("padding","10px");
 loginWrapperInputUsername.style("width","inherit");
 loginWrapperInputUsername.style("border-style","none");
-loginWrapperInputUsername.style("margin-bottom","1.5rem");
+loginWrapperInputUsername.style("margin-bottom","1.0rem");
 
 loginWrapperInputUsername.parent(loginWrapper);
 loginWrapperPassword = createDiv("Password");
