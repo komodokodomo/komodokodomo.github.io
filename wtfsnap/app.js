@@ -340,7 +340,7 @@ loginWrapperInputUsername = createInput();
 loginWrapperInputUsername.style("padding","10px");
 loginWrapperInputUsername.style("width","100%");
 loginWrapperInputUsername.style("border-style","none");
-loginWrapperInputUsername.style("margin-bottom","1.0rem");
+loginWrapperInputUsername.style("margin-bottom","0.5rem");
 loginWrapperInputUsername.parent(loginWrapperInput);
 
 loginWrapperPassword = createDiv("Password");
@@ -353,7 +353,7 @@ loginWrapperInputPassword.parent(loginWrapperInput);
 loginWrapperInputPassword.style("padding","10px");
 loginWrapperInputPassword.style("width","100%");
 loginWrapperInputPassword.style("border-style","none");
-loginWrapperInputPassword.style("margin-bottom","1.0rem");
+loginWrapperInputPassword.style("margin-bottom","1.5rem");
 
 
 
