@@ -332,7 +332,7 @@ loginWrapperInput.parent(loginWrapper);
 
 loginWrapperUsername = createDiv("Username");
 loginWrapperUsername.class("field-label");
-loginWrapperUsername.parent(loginWrapper);
+loginWrapperUsername.parent(loginWrapperInput);
 
 
 loginWrapperInputUsername = createInput();
@@ -341,14 +341,14 @@ loginWrapperInputUsername.style("padding","10px");
 loginWrapperInputUsername.style("width","inherit");
 loginWrapperInputUsername.style("border-style","none");
 loginWrapperInputUsername.style("margin-bottom","1.0rem");
+loginWrapperInputUsername.parent(loginWrapperInput);
 
-loginWrapperInputUsername.parent(loginWrapper);
 loginWrapperPassword = createDiv("Password");
-loginWrapperPassword.parent(loginWrapper);
+loginWrapperPassword.parent(loginWrapperInput);
 loginWrapperPassword.class("field-label");
 
 loginWrapperInputPassword = createInput();
-loginWrapperInputPassword.parent(loginWrapper);
+loginWrapperInputPassword.parent(loginWrapperInput);
 // loginWrapperInputPassword.style("background","#EBF2FE");
 loginWrapperInputPassword.style("padding","10px");
 loginWrapperInputPassword.style("width","inherit");
@@ -359,12 +359,12 @@ loginWrapperInputPassword.style("margin-bottom","1.0rem");
 
 // loginWrapperInputPassword = createInput();
 loginWrapperInputLogin = createButton("LOGIN");
-loginWrapperInputLogin.parent(loginWrapper);
+loginWrapperInputLogin.parent(loginWrapperInput);
 loginWrapperInputLogin.style("background","#336FB6");
 loginWrapperInputLogin.style("color","white");
 loginWrapperInputLogin.style("position","absolute");
 loginWrapperInputLogin.style("right","0px");
-loginWrapperInputLogin.style("bottom","0px");
+// loginWrapperInputLogin.style("bottom","0px");
 loginWrapperInputLogin.style("border-style","none");
 loginWrapperInputLogin.style("border-radius","0.25rem");
 loginWrapperInputLogin.style("padding","1rem 3rem");
@@ -372,12 +372,12 @@ loginWrapperInputLogin.mousePressed(loginUser);
 
 // loginWrapperInputForgot;
 loginWrapperInputForgot = createButton("FORGOT PASSWORD");
-loginWrapperInputForgot.parent(loginWrapper);
+loginWrapperInputForgot.parent(loginWrapperInput);
 loginWrapperInputForgot.style("background","transparent");
 loginWrapperInputForgot.style("color","#336FB6");
 loginWrapperInputForgot.style("position","absolute");
 loginWrapperInputForgot.style("left","0px");
-loginWrapperInputForgot.style("bottom","0px");
+// loginWrapperInputForgot.style("bottom","0px");
 loginWrapperInputForgot.style("border-style","none");
 loginWrapperInputForgot.style("border-radius","0.25rem");
 loginWrapperInputForgot.style("padding","1rem 0rem");
