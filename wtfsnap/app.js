@@ -322,6 +322,8 @@ loginWrapper.position(w*0.2,h*0.1);
 
 loginWrapperTitle = createImg('logo.png','SLS');
 loginWrapperTitle.parent(loginWrapper);
+loginWrapperTitle.style("width","inherit");
+loginWrapperTitle.style("margin","0rem 0rem 1rem 0rem");
 
 
 
