@@ -302,12 +302,12 @@ function setup() {
 
 
 screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
-screenToggle.style("width","32px");
-screenToggle.style("height","32px");
+screenToggle.style("width","16px");
+screenToggle.style("height","16px");
 // screenToggle.style("left","32px");
 // screenToggle.style("top","32px");
 // screenToggle.size(w/16,w/16);
-screenToggle.position(32,32);
+screenToggle.position(16,16);
 screenToggle.mouseClicked(toggleScreen);
 
 
@@ -315,10 +315,14 @@ loginWrapper = createDiv();
 loginWrapper.size(w*0.6,h*0.8);
 loginWrapper.position(w*0.2,h*0.1);
 
-loginWrapperTitle = createDiv();
+// loginWrapperTitle = createDiv();
+// loginWrapperTitle.parent(loginWrapper);
+// loginWrapperTitle.class("section-header");
+// loginWrapperTitle.style("height","15%");
+
+loginWrapperTitle = createImg('logo.png','SLS');
 loginWrapperTitle.parent(loginWrapper);
-loginWrapperTitle.class("section-header");
-loginWrapperTitle.style("height","10%");
+
 
 
 loginWrapperInput = createDiv();
