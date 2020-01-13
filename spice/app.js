@@ -399,33 +399,47 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   var test = document.getElementById("canvas");
 
 
-  cocoSsd.load().then(model => {
-    console.log("model loaded!");
-    status = true;
-
-    setInterval(function(){
-
-      if(!hideButton){
-      model.detect(test,maxBoxes).then(predictions => {
-        console.log(predictions);
-        objects = [];
-        if(predictions.length > 0){
-        counter++;
-        if(counter>2){counter=2;}
-        for (let i = 0; i < predictions.length; i++) {
-          objects[i]=predictions[i];
+  objectDetector.load('/model_web')
+  .then(model => model.detect(test))
+  .then(predictions => {
+    console.log(predictions)
+          setInterval(function(){
+            objectDetector.load('/model_web')
+            .then(model => model.detect(test))
+            .then(predictions => {
+              console.log(predictions)
+            });
         }
-      }
-      else{
-        counter = 0;
-        button.hide();
-      }
-      });
-    }
-  }
-    , 250);
-  }
-  );
+          , 250);
+  })
+  
+  // cocoSsd.load().then(model => {
+  //   console.log("model loaded!");
+  //   status = true;
+
+  //   setInterval(function(){
+
+  //     if(!hideButton){
+  //     model.detect(test,maxBoxes).then(predictions => {
+  //       console.log(predictions);
+  //       objects = [];
+  //       if(predictions.length > 0){
+  //       counter++;
+  //       if(counter>2){counter=2;}
+  //       for (let i = 0; i < predictions.length; i++) {
+  //         objects[i]=predictions[i];
+  //       }
+  //     }
+  //     else{
+  //       counter = 0;
+  //       button.hide();
+  //     }
+  //     });
+  //   }
+  // }
+  //   , 250);
+  // }
+  // );
 
 }
 
