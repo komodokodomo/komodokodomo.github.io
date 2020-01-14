@@ -1,4 +1,5 @@
 var jsonData,jsonDataLength;
+import objectDetector from '@cloud-annotations/object-detection'
 
 var classToExplore = "";
 var jsonDataIndex;
