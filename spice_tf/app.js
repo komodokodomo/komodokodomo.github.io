@@ -47,7 +47,7 @@ var constraints = {
   audio: false
 };
 
-const MODEL_URL = '/spice_tf/saved_model/model.json';
+const MODEL_URL = 'https://worklurk.cf/spice_tf/saved_model/model.json';
 const model = tf.loadGraphModel(MODEL_URL);
 
 
