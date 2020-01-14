@@ -399,13 +399,12 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   var test = document.getElementById("canvas");
 
 
-  objectDetector.load('/model_web')
+  objectDetector.load('/spice/model_web')
   .then(model => model.detect(test))
   .then(predictions => {
     console.log(predictions)
           setInterval(function(){
-            objectDetector.load('/model_web')
-            .then(model => model.detect(test))
+              model.detect(test)
             .then(predictions => {
               console.log(predictions)
             });
