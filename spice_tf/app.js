@@ -50,7 +50,6 @@ var constraints = {
 const MODEL_URL = '/spice_tf/saved_model/model.json';
 
 // For Keras use tf.loadLayersModel().
-const model = await tf.loadGraphModel(MODEL_URL);
 
 
 
@@ -403,6 +402,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.size(videoWidth, videoHeight);
   video.hide();
   var test = document.getElementById("canvas");
+  const model = await tf.loadGraphModel(MODEL_URL);
 
 
   const img = document.getElementById('canvas'); 
