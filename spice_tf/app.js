@@ -407,7 +407,6 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 
   const img = document.getElementById('canvas'); 
-  // const cat = document.getElementById('cat');
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
     console.log(model.predict(tf.browser.fromPixels(img)));
