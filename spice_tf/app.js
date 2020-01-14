@@ -18,7 +18,8 @@ let loginWrapperInputPassWord;
 let loginWrapperInputLogin;
 let loginWrapperInputForgot;
  
-
+const model = tf.loadGraphModel(MODEL_URL);
+var loadedmodel;
 
 let current;
 let cameras = "";
@@ -401,14 +402,14 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
-  var test = document.getElementById("canvas");
-  const model = tf.loadGraphModel(MODEL_URL);
+
 
 
   const img = document.getElementById('canvas'); 
+  loadedmodel = await model;
   // const cat = document.getElementById('cat');
   setInterval(function(){
-  model.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
+    loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
   // model.predict(tf.browser.fromPixels(img));
  },250);
   // objectDetector.load('/spice/model_web') 
