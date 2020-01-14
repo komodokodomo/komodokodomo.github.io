@@ -13,6 +13,7 @@
   "author": "LZD",
   "license": "ISC",
   "dependencies": {
+    "@cloud-annotations/object-detection": "0.0.8",
     "@tensorflow/tfjs": "^1.5.1",
     "protobufjs": "^6.8.8"
   }
