@@ -104,19 +104,26 @@ function setup() {
   video.hide();
 
 
-  var test = document.getElementById("canvas");
+  // var test = document.getElementById("canvas");
+  // objectDetector.load('/spice/model_web')
+  // .then(model => model.detect(test))
+  // .then(predictions => {
+  //   console.log(predictions)
+  //         setInterval(function(){
+  //             model.detect(test)
+  //           .then(predictions => {
+  //             console.log(predictions)
+  //           });
+  //       }
+  //         , 250);
+  // })
+
+  const img = document.getElementById('canvas')
   objectDetector.load('/spice/model_web')
-  .then(model => model.detect(test))
-  .then(predictions => {
-    console.log(predictions)
-          setInterval(function(){
-              model.detect(test)
-            .then(predictions => {
-              console.log(predictions)
-            });
-        }
-          , 250);
-  })
+    .then(model => model.detect(img))
+    .then(predictions => {
+      console.log(predictions)
+    })
   
 
 
