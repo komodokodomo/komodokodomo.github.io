@@ -402,7 +402,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.size(videoWidth, videoHeight);
   video.hide();
   var test = document.getElementById("canvas");
-  const model = await tf.loadGraphModel(MODEL_URL);
+  const model = tf.loadGraphModel(MODEL_URL);
 
 
   const img = document.getElementById('canvas'); 
