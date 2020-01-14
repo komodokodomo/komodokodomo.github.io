@@ -1,5 +1,5 @@
 // import objectDetector from '@cloud-annotations/object-detection'
-
+var testModel;
 
 var jsonData,jsonDataLength;
 
@@ -122,12 +122,18 @@ function setup() {
   // })
 
   const img = document.getElementById('canvas')
+  // objectDetector.load('/spice/model_web')
+  //   .then(model => model.detect(img))
+  //   .then(predictions => {
+  //     console.log(predictions)
+  //   })
+
   objectDetector.load('/spice/model_web')
-    .then(model => model.detect(img))
-    .then(predictions => {
-      console.log(predictions)
-    })
+  .then(model => setInterval(function(){model.detect(img).then(predictions => {
+    console.log(predictions)
+  })},250)
   
+  // testModel = objectDetector.load('/spice/model_web')
 
 
 }
