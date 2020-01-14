@@ -407,11 +407,10 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 
   const img = document.getElementById('canvas'); 
-  loadedmodel = await model;
   // const cat = document.getElementById('cat');
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
-    console.log(loadedmodel.predict(tf.browser.fromPixels(img)));
+    console.log(model.predict(tf.browser.fromPixels(img)));
   // model.predict(tf.browser.fromPixels(img));
  },250);
   // objectDetector.load('/spice/model_web') 
