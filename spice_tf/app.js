@@ -18,7 +18,6 @@ let loginWrapperInputPassWord;
 let loginWrapperInputLogin;
 let loginWrapperInputForgot;
  
-const model = tf.loadGraphModel(MODEL_URL);
 var loadedmodel;
 
 let current;
@@ -49,6 +48,8 @@ var constraints = {
 };
 
 const MODEL_URL = '/spice_tf/saved_model/model.json';
+const model = tf.loadGraphModel(MODEL_URL);
+
 
 // For Keras use tf.loadLayersModel().
 
