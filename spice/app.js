@@ -131,7 +131,7 @@ function setup() {
   objectDetector.load('/spice/model_web')
   .then(model => setInterval(function(){model.detect(img).then(predictions => {
     console.log(predictions)
-  })},250)
+  })},250))
   
   // testModel = objectDetector.load('/spice/model_web')
 
