@@ -413,7 +413,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
       counter++;
       if(counter>2){counter=2;}
       // for (let i = 0; i < predictions.length; i++) {
-        objects[i]=predictions[0];
+        objects[0]=predictions[0];
       // }
     }
     else{
