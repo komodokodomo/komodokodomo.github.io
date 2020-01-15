@@ -48,8 +48,9 @@ var constraints = {
 };
 
 const MODEL_URL = 'https://worklurk.cf/spice_tf/saved_model/model.json';
-const model = tf.loadGraphModel(MODEL_URL);
+let modelPromise;
 
+window.onload = () => modelPromise = tf.loadGraphModel(MODEL_URL);
 
 // For Keras use tf.loadLayersModel().
 
@@ -404,14 +405,9 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.size(videoWidth, videoHeight);
   video.hide();
 
+  startModel();
 
 
-  const img = document.getElementById('canvas'); 
-  setInterval(function(){
-    // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
-    console.log(model.predict(tf.browser.fromPixels(img)));
-  // model.predict(tf.browser.fromPixels(img));
- },250);
   // objectDetector.load('/spice/model_web') 
   // .then(model => 
   //   setInterval(function()
@@ -465,6 +461,16 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   // }
   // );
 
+}
+
+async function startModel(){
+  const img = document.getElementById('canvas'); 
+  const model = await modelPromise;
+  setInterval(function(){
+    // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
+    console.log(model.predict(tf.browser.fromPixels(img)));
+  // model.predict(tf.browser.fromPixels(img));
+ },250);
 }
 
 
