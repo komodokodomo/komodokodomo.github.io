@@ -468,7 +468,9 @@ async function startModel(){
   const model = await modelPromise;
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
-    console.log(model.predict(tf.browser.fromPixels(img)));
+    console.log(tf.image.resizeBilinear(tf.browser.fromPixels(img), [368, 432]));
+
+    // console.log(model.predict(tf.browser.fromPixels(img)));
   // model.predict(tf.browser.fromPixels(img));
  },250);
 }
