@@ -405,7 +405,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
     setInterval(function()
   {
     
-    model.detect(img).then(predictions => { 
+    model.predict(img).then(predictions => { 
       if(!hideButton){
       console.log(predictions) 
       objects = [];
