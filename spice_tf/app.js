@@ -398,32 +398,34 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.hide();
 
 
-  const img = document.getElementById('canvas'); 
 
-  tf.loadGraphModel('web_model/model.json')
-  .then(model => 
-    setInterval(function()
-  {
+  loadModel();
+  // const img = document.getElementById('canvas'); 
+
+  // tf.loadGraphModel('web_model/model.json')
+  // .then(model => 
+  //   setInterval(function()
+  // {
     
-    model.predict(img).then(predictions => { 
-      if(!hideButton){
-      console.log(predictions) 
-      objects = [];
-      if(predictions.length > 0){
-      counter++;
-      if(counter>2){counter=2;}
-      // for (let i = 0; i < predictions.length; i++) {
-        objects[0]=predictions[0];
-      // }
-    }
-    else{
-      counter = 0;
-      button.hide();
-    }
-    }
-    })
+  //   model.predict(img).then(predictions => { 
+  //     if(!hideButton){
+  //     console.log(predictions) 
+  //     objects = [];
+  //     if(predictions.length > 0){
+  //     counter++;
+  //     if(counter>2){counter=2;}
+  //     // for (let i = 0; i < predictions.length; i++) {
+  //       objects[0]=predictions[0];
+  //     // }
+  //   }
+  //   else{
+  //     counter = 0;
+  //     button.hide();
+  //   }
+  //   }
+  //   })
 
-  },250))
+  // },250))
 
   // cocoSsd.load().then(model => {
   //   console.log("model loaded!");
@@ -455,6 +457,18 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 }
 
+  async function loadModel() {
+  const img = document.getElementById('canvas'); 
+
+    this.model = await tf.loadGraphModel('web_model/model.json');
+
+    // const modelURL = '../assets/web/model.json';
+    // this.model = await tf.loadGraphModel(modelURL);
+    const result = await this.model.executeAsync(tf.zeros([1, 300, 300, 3]));
+    await Promise.all(result.map(t => t.data()));
+    result.map(t => t.dispose());
+    // this.predictImages(this.videoCamera.nativeElement, this.model);
+}
 
 function draw() {
   if(!loginStatus){
