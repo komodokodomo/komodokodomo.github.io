@@ -24,7 +24,7 @@ function videoLoaded(){
 async function loadModel() {
   const modelURL = 'spice_tf/web_model/model.json';
   this.model = await tf.loadGraphModel(modelURL);
-  const result = await this.model.executeAsync(tf.zeros([1, 300, 300, 3])) as any;
+  const result = await this.model.executeAsync(tf.zeros([1, 300, 300, 3]));
   await Promise.all(result.map(t => t.data()));
   result.map(t => t.dispose());
   var test = document.getElementById("canvas");
