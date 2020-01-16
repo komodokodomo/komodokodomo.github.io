@@ -465,7 +465,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   async function loadModel() {
   const img = document.getElementById('canvas'); 
 
-    modelJson = await loadJSON('https://worklurk.cf/spice_tf/web_model/model.json');
+    modelJson = await loadJSON('web_model/model.json');
 
     // this.model = await tf.loadGraphModel('web_model/model.json');
     this.model = await tf.loadGraphModel(modelJson);
