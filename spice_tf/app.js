@@ -407,8 +407,13 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 
 
-  loadModel();
-  // const img = document.getElementById('canvas'); 
+  const img = document.getElementById('canvas'); 
+  const model = await modelPromise;
+  setInterval(function(){
+    // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
+    console.log(model.predict(tf.browser.fromPixels(img)));
+  // model.predict(tf.browser.fromPixels(img));
+ },250);  // const img = document.getElementById('canvas'); 
 
   // tf.loadGraphModel('web_model/model.json')
   // .then(model => 
@@ -465,15 +470,9 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 }
 
-async function loadModel(){
-  const img = document.getElementById('canvas'); 
-  const model = await modelPromise;
-  setInterval(function(){
-    // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
-    console.log(model.predict(tf.browser.fromPixels(img)));
-  // model.predict(tf.browser.fromPixels(img));
- },250);
-}
+// async function loadModel(){
+
+// }
 
   // async function loadModel() {
   // const img = document.getElementById('canvas'); 
