@@ -23,12 +23,12 @@ function videoLoaded(){
 
 function preload() {
   // Get the most recent earthquake in the database
-  modelURL ='spice_tf/web_model/model.json';
+  modelURL ='/web_model/model.json';
   tfModel = loadJSON(modelURL);
 }
 
 async function loadModel() {
-  const modelURL = 'spice_tf/web_model/model.json';
+  // const modelURL = '/web_model/model.json';
   this.model = await tf.loadGraphModel(tfModel);
   const result = await this.model.executeAsync(tf.zeros([1, 300, 300, 3]));
   await Promise.all(result.map(t => t.data()));
