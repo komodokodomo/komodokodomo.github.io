@@ -469,12 +469,14 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
     // this.model = await tf.loadGraphModel('web_model/model.json');
     this.model = await tf.loadGraphModel(modelJson);
+    this.model.execute(tf.fromPixels(img));
+
 
     // const modelURL = '../assets/web/model.json';
     // this.model = await tf.loadGraphModel(modelURL);
-    const result = await this.model.executeAsync(tf.zeros([1, 300, 300, 3]));
-    await Promise.all(result.map(t => t.data()));
-    result.map(t => t.dispose());
+    // const result = await this.model.executeAsync(tf.zeros([1, 300, 300, 3]));
+    // await Promise.all(result.map(t => t.data()));
+    // result.map(t => t.dispose());
     // this.predictImages(this.videoCamera.nativeElement, this.model);
 }
 
