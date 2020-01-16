@@ -32,7 +32,6 @@ async function loadModel() {
 }
 
 async function predictImages(video, model) {
-
   const maxNumBoxes = 30;
   const batched = tf.tidy(() => {
     let img = this.canvas.nativeElement;
