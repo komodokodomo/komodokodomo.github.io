@@ -1,6 +1,11 @@
 var jsonData,jsonDataLength;
 let modelJson;
 
+const MODEL_URL = 'https://gds-esd.tk/model/model.json';
+// const model = tf.loadGraphModel(MODEL_URL);
+let modelPromise;
+
+window.onload = () => modelPromise = tf.loadGraphModel(MODEL_URL);
 var classToExplore = "";
 var jsonDataIndex;
 
@@ -460,16 +465,24 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 }
 
-
-
-  async function loadModel() {
+async function loadModel(){
   const img = document.getElementById('canvas'); 
+  const model = await modelPromise;
+  setInterval(function(){
+    // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
+    console.log(model.predict(tf.browser.fromPixels(img)));
+  // model.predict(tf.browser.fromPixels(img));
+ },250);
+}
 
-    modelJson = await loadJSON('https://gds-esd.tk/model/model.json');
+  // async function loadModel() {
+  // const img = document.getElementById('canvas'); 
 
-    // this.model = await tf.loadGraphModel('web_model/model.json');
-    this.model = await tf.loadGraphModel(modelJson);
-    this.model.execute(tf.fromPixels(img));
+  //   modelJson = await loadJSON('https://gds-esd.tk/model/model.json');
+
+  //   // this.model = await tf.loadGraphModel('web_model/model.json');
+  //   this.model = await tf.loadGraphModel(modelJson);
+  //   this.model.execute(tf.fromPixels(img));
 
 
     // const modelURL = '../assets/web/model.json';
@@ -478,7 +491,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
     // await Promise.all(result.map(t => t.data()));
     // result.map(t => t.dispose());
     // this.predictImages(this.videoCamera.nativeElement, this.model);
-}
+// }
 
 function draw() {
   if(!loginStatus){
