@@ -408,10 +408,10 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 
   const img = document.getElementById('canvas'); 
-  const model = await modelPromise;
+  // const model = await modelPromise;
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
-    console.log(model.predict(tf.browser.fromPixels(img)));
+    console.log(modelPromise.predict(tf.browser.fromPixels(img)));
   // model.predict(tf.browser.fromPixels(img));
  },250);  // const img = document.getElementById('canvas'); 
 
