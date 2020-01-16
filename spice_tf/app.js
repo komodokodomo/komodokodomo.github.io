@@ -1,4 +1,4 @@
-let modelURL,tfModel;
+let modelURL;
 let canvas,video;
 
 const constraints = {
@@ -21,15 +21,10 @@ function videoLoaded(){
   return video;
 }
 
-function preload() {
-  // Get the most recent earthquake in the database
-  modelURL ='https://worklurk.cf/spice_tf/web_model/model.json';
-  tfModel = loadJSON(modelURL);
-}
 
 async function loadModel() {
-  // const modelURL = '/web_model/model.json';
-  this.model = await tf.loadGraphModel(tfModel);
+  const modelURL = 'https://worklurk.cf/spice_tf/web_model/model.json';
+  this.model = await tf.loadGraphModel(modelURL);
   const result = await this.model.executeAsync(tf.zeros([1, 300, 300, 3]));
   await Promise.all(result.map(t => t.data()));
   result.map(t => t.dispose());
