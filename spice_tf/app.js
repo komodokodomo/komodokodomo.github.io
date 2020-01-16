@@ -45,8 +45,8 @@ async function predictImages(video, model) {
   const height = batched.shape[1];
   const width = batched.shape[2];
   const result = await this.model.executeAsync(batched);
-  const scores = result[0].dataSync() as Float32Array;
-  const boxes = result[1].dataSync() as Float32Array;
+  const scores = result[0].dataSync();
+  const boxes = result[1].dataSync();
 
   batched.dispose();
   tf.dispose(result);
@@ -56,7 +56,7 @@ async function predictImages(video, model) {
     const boxes2 = tf.tensor2d(boxes, [result[1].shape[1], result[1].shape[3]]);
     return tf.image.nonMaxSuppression(boxes2, maxScores, maxNumBoxes, 0.5, 0.5);
   });
-  const index = tensorIndex.dataSync() as Float32Array;
+  const index = tensorIndex.dataSync();
   tensorIndex.dispose();
   const output = this.generateOutputObject(width, height, boxes, maxScores, index, classes);
   if (output.length > 0) {
