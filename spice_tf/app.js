@@ -400,7 +400,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
   const img = document.getElementById('canvas'); 
 
-  tf.loadGraphModel('/spice_tf/model_web/model.json')
+  tf.loadGraphModel('/model_web/model.json')
   .then(model => 
     setInterval(function()
   {
