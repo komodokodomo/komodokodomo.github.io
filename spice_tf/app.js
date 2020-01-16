@@ -23,7 +23,7 @@ function videoLoaded(){
 
 function preload() {
   // Get the most recent earthquake in the database
-  modelURL ='/web_model/model.json';
+  modelURL ='https://worklurk.cf/spice_tf/web_model/model.json';
   tfModel = loadJSON(modelURL);
 }
 
