@@ -469,8 +469,10 @@ async function startModel(){
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
    let a = tf.image.resizeBilinear(tf.browser.fromPixels(img), [224, 224]);
+   let resized = tf.cast(a, 'float32');
+   let t4d = tf.tensor4d(Array.from(resized.dataSync()),[1,224,224,3]);
     // console.log(a);
-    model.predict(a);
+    model.predict(t4d);
     a.dispose();
 
     // console.log(model.predict(tf.browser.fromPixels(img)));
