@@ -85,7 +85,7 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
 function preload(){
   let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
   jsonData = loadJSON(url);
-  modelJson = loadJSON('https://worklurk.cf/spice_tf/web_model/model.json');
+  // modelJson = loadJSON('https://worklurk.cf/spice_tf/web_model/model.json');
 
 }
 
@@ -464,6 +464,8 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
   async function loadModel() {
   const img = document.getElementById('canvas'); 
+
+    modelJson = await loadJSON('https://worklurk.cf/spice_tf/web_model/model.json');
 
     // this.model = await tf.loadGraphModel('web_model/model.json');
     this.model = await tf.loadGraphModel(modelJson);
