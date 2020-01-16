@@ -1,4 +1,5 @@
 var jsonData,jsonDataLength;
+let modelJson;
 
 var classToExplore = "";
 var jsonDataIndex;
@@ -457,10 +458,15 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 }
 
+function preload(){
+  modelJson = loadJSON('web_model/model.json');
+}
+
   async function loadModel() {
   const img = document.getElementById('canvas'); 
 
-    this.model = await tf.loadGraphModel('web_model/model.json');
+    // this.model = await tf.loadGraphModel('web_model/model.json');
+    this.model = await tf.loadGraphModel(modelJson);
 
     // const modelURL = '../assets/web/model.json';
     // this.model = await tf.loadGraphModel(modelURL);
