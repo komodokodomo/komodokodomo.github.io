@@ -22,7 +22,7 @@ function videoLoaded(){
 }
 
 async function loadModel() {
-  const modelURL = 'https://worklurk.cf/spice_tf/web_model/model.json';
+  const modelURL = 'spice_tf/web_model/model.json';
   this.model = await tf.loadGraphModel(modelURL);
   const result = await this.model.executeAsync(tf.zeros([1, 300, 300, 3]));
   await Promise.all(result.map(t => t.data()));
