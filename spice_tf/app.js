@@ -44,7 +44,7 @@ async function predictImages(video, model) {
   });
   const height = batched.shape[1];
   const width = batched.shape[2];
-  const result = await this.model.executeAsync(batched) as tf.Tensor[];
+  const result = await this.model.executeAsync(batched);
   const scores = result[0].dataSync() as Float32Array;
   const boxes = result[1].dataSync() as Float32Array;
 
