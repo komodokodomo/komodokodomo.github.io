@@ -144,12 +144,13 @@ async function setup() {
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]]).reshape([-1,1]))); //total fail
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]])));//total fail
     // let tfImg = tf.fromPixels(img);
-    // const smalImg = tf.image.resizeBilinear(tfImg, [368, 432]);
+    
     // const resized = tf.cast(smalImg, 'float32');
     // const t4d = tf.tensor4d(Array.from(resized.dataSync()),[1,368,432,3])
     // console.log(model.execute(tf.browser.fromPixels(img)));
     tf.tidy(() => {
-      console.log(model.execute(tf.browser.fromPixels(img)));
+      let smalImg = tf.image.resizeBilinear(tf.browser.fromPixels(img)), [224, 224]);
+      console.log(model.execute(smalImg));
     })
 
   // model.predict(tf.browser.fromPixels(img));
