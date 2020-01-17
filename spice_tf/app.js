@@ -126,7 +126,7 @@ async function setup() {
 
   const model = await tf.automl.loadObjectDetection('https://gds-esd.tk/model/model.json');
   const options = {score: 0.8, iou: 0.8, topk: 20};
-  const predictions = await model.detect(img, options);
+  const predictions = await model.detect(img);
 
   console.log(predictions);
   //  console.log(init(model));
