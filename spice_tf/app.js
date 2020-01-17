@@ -130,8 +130,8 @@ async function setup() {
   // console.log(predictions);
   //  console.log(init(model));
   //  console.log("model loaded");
-   const zeros = tf.zeros([1, 224, 224, 3]);
-   console.log(model.executeAsync(zeros));
+  //  const zeros = tf.zeros([1, 224, 224, 3]);
+  //  console.log(model.executeAsync(zeros));
   //  const shape =  tf.tensor([-1, -1, -1, 3]);
   //  const imgTensor = tf.browser.fromPixels(img);
   //  const imgTensorReshaped = imgTensor.reshapeAs(shape);
@@ -143,8 +143,13 @@ async function setup() {
     // console.log(predictions);
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]]).reshape([-1,1]))); //total fail
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]])));//total fail
-    
+    // let tfImg = tf.fromPixels(img);
+    // const smalImg = tf.image.resizeBilinear(tfImg, [368, 432]);
+    // const resized = tf.cast(smalImg, 'float32');
+    // const t4d = tf.tensor4d(Array.from(resized.dataSync()),[1,368,432,3])
     // console.log(model.execute(tf.browser.fromPixels(img)));
+    console.log(model.execute(tf.fromPixels(img)));
+
   // model.predict(tf.browser.fromPixels(img));
  },250);  // const img = document.getElementById('canvas'); 
 
