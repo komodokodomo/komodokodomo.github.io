@@ -51,11 +51,11 @@ var constraints = {
 };
 
 
-var myPromise = new Promise(function(resolve, reject){
-  // resolve the promise after 1 second
-  console.log("loading model");
-  tf.loadGraphModel("https://gds-esd.tk/model/model.json");
-});
+// var myPromise = new Promise(function(resolve, reject){
+//   // resolve the promise after 1 second
+//   console.log("loading model");
+  
+// });
 
 
 let debug = false;
@@ -115,7 +115,7 @@ async function setup() {
 
 
   const img = document.getElementById('canvas'); 
-   model = await myPromise;
+   model = await tf.loadGraphModel("https://gds-esd.tk/model/model.json");
    console.log("model loaded");
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
