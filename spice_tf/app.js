@@ -125,11 +125,17 @@ async function setup() {
    model = await tf.loadGraphModel("https://gds-esd.tk/model/model.json");
   //  console.log(init(model));
    console.log("model loaded");
+   const shape =  tf.tensor([-1, -1, -1, 3]);
+   const imgTensor = tf.browser.fromPixels(img);
+   const imgTensorReshaped = imgTensor.reshapeAs(shape);
+   console.log(imgTensorReshaped);
+
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
 
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]]).reshape([-1,1]))); //total fail
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]])));//total fail
+    
     console.log(model.execute(tf.browser.fromPixels(img)));
   // model.predict(tf.browser.fromPixels(img));
  },250);  // const img = document.getElementById('canvas'); 
