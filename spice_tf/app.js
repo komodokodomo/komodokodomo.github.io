@@ -130,7 +130,7 @@ async function setup() {
   //  const shape =  tf.tensor([-1, -1, -1, 3]);
   //  const imgTensor = tf.browser.fromPixels(img);
   //  const imgTensorReshaped = imgTensor.reshapeAs(shape);
-   console.log(imgTensorReshaped);
+  //  console.log(imgTensorReshaped);
 
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
@@ -138,7 +138,7 @@ async function setup() {
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]]).reshape([-1,1]))); //total fail
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]])));//total fail
     
-    console.log(model.execute(tf.browser.fromPixels(img)));
+    // console.log(model.execute(tf.browser.fromPixels(img)));
   // model.predict(tf.browser.fromPixels(img));
  },250);  // const img = document.getElementById('canvas'); 
 
