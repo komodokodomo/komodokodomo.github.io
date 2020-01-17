@@ -122,7 +122,7 @@ async function setup() {
 
 
   const img = document.getElementById('canvas'); 
-   model = await tf.loadGraphModel("https://gds-esd.tk/model/model.json");
+   model = await tf.loadGraphModel("https://cotf.cf/model");
 
   // const model = await tf.automl.loadObjectDetection('https://gds-esd.tk/model/model.json');
   // let options = {score: 0.8, iou: 0.8, topk: 1};
