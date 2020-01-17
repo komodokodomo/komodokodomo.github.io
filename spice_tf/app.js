@@ -140,7 +140,8 @@ async function setup() {
   // tf.tidy(() => {
     let tfImg = tf.browser.fromPixels(img);
     let smalImg = tf.image.resizeBilinear(tfImg, [300, 300]);
-    console.log(model.executeAsync(smalImg));
+    let t4d = tf.tensor4d(Array.from(smalImg.dataSync()),[1,300,300,3]);
+    console.log(model.executeAsync(t4d));
   // })
 
   setInterval(function(){
