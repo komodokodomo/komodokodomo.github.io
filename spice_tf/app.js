@@ -97,12 +97,12 @@ function preload(){
   // modelJson = loadJSON('https://worklurk.cf/spice_tf/web_model/model.json')
 }
 
-function init(x){
-	const dummy = tf.zeros([1, 10, 10, 3], 'int32');
-	return x.executeAsync( {[INPUT_TENSOR]: dummy}, OUTPUT_TENSOR ).then(function(result){
-		dummy.dispose();
-		return result;
-	});
+// function init(x){
+// 	const dummy = tf.zeros([1, 10, 10, 3], 'int32');
+// 	return x.executeAsync( {[INPUT_TENSOR]: dummy}, OUTPUT_TENSOR ).then(function(result){
+// 		dummy.dispose();
+// 		return result;
+// 	});
 }
 
 async function setup() {
@@ -123,11 +123,13 @@ async function setup() {
 
   const img = document.getElementById('canvas'); 
    model = await tf.loadGraphModel("https://gds-esd.tk/model/model.json");
-   console.log(init(model));
+  //  console.log(init(model));
    console.log("model loaded");
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
-    console.log(model.execute(tf.browser.fromPixels(img)));
+
+    console.log(tf.browser.fromPixels(img).pad([[1, 0]]).reshape([-1,1]));
+    // console.log(model.execute(tf.browser.fromPixels(img)));
   // model.predict(tf.browser.fromPixels(img));
  },250);  // const img = document.getElementById('canvas'); 
 
