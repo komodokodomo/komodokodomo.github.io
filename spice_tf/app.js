@@ -125,9 +125,8 @@ async function setup() {
   //  model = await tf.loadGraphModel("https://gds-esd.tk/model/model.json");
 
   const model = await tf.automl.loadObjectDetection('https://gds-esd.tk/model/model.json');
-  const options = {score: 0.8, iou: 0.8, topk: 1};
-  const predictions = await model.detect(img,options);
-
+  let options = {score: 0.8, iou: 0.8, topk: 1};
+  let predictions = await model.detect(img,options);
   console.log(predictions);
   //  console.log(init(model));
   //  console.log("model loaded");
@@ -140,7 +139,8 @@ async function setup() {
 
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
-
+    let predictions = await model.detect(img);
+    console.log(predictions);
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]]).reshape([-1,1]))); //total fail
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]])));//total fail
     
