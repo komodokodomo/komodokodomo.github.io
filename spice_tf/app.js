@@ -137,6 +137,12 @@ async function setup() {
   //  const imgTensorReshaped = imgTensor.reshapeAs(shape);
   //  console.log(imgTensorReshaped);
 
+  tf.tidy(() => {
+    let tfImg = tf.browser.fromPixels(img);
+    let smalImg = tf.image.resizeBilinear(tfImg, [300, 300]);
+    console.log(model.executeAsync(smalImg));
+  })
+
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
     // let predictions = model.detect(img);
@@ -148,11 +154,11 @@ async function setup() {
     // const resized = tf.cast(smalImg, 'float32');
     // const t4d = tf.tensor4d(Array.from(resized.dataSync()),[1,368,432,3])
     // console.log(model.execute(tf.browser.fromPixels(img)));
-    tf.tidy(() => {
-      let tfImg = tf.browser.fromPixels(img);
-      let smalImg = tf.image.resizeBilinear(tfImg, [300, 300]);
-      console.log(model.execute(smalImg));
-    })
+    // tf.tidy(() => {
+    //   let tfImg = tf.browser.fromPixels(img);
+    //   let smalImg = tf.image.resizeBilinear(tfImg, [300, 300]);
+    //   console.log(model.execute(smalImg));
+    // })
 
   // model.predict(tf.browser.fromPixels(img));
  },250);  // const img = document.getElementById('canvas'); 
