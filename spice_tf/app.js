@@ -122,16 +122,16 @@ async function setup() {
 
 
   const img = document.getElementById('canvas'); 
-  //  model = await tf.loadGraphModel("https://gds-esd.tk/model/model.json");
+   model = await tf.loadGraphModel("https://gds-esd.tk/model/model.json");
 
-  const model = await tf.automl.loadObjectDetection('https://gds-esd.tk/model/model.json');
-  let options = {score: 0.8, iou: 0.8, topk: 1};
-  let predictions = await model.detect(img,options);
-  console.log(predictions);
+  // const model = await tf.automl.loadObjectDetection('https://gds-esd.tk/model/model.json');
+  // let options = {score: 0.8, iou: 0.8, topk: 1};
+  // let predictions = await model.detect(img,options);
+  // console.log(predictions);
   //  console.log(init(model));
   //  console.log("model loaded");
-  //  const zeros = tf.zeros([1, 224, 224, 3]);
-  //  console.log(model.executeAsync(zeros));
+   const zeros = tf.zeros([1, 224, 224, 3]);
+   console.log(model.executeAsync(zeros));
   //  const shape =  tf.tensor([-1, -1, -1, 3]);
   //  const imgTensor = tf.browser.fromPixels(img);
   //  const imgTensorReshaped = imgTensor.reshapeAs(shape);
@@ -139,8 +139,8 @@ async function setup() {
 
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
-    let predictions = model.detect(img);
-    console.log(predictions);
+    // let predictions = model.detect(img);
+    // console.log(predictions);
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]]).reshape([-1,1]))); //total fail
     // console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]])));//total fail
     
