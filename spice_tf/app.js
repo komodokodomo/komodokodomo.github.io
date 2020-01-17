@@ -150,7 +150,7 @@ async function setup() {
     // console.log(model.execute(tf.browser.fromPixels(img)));
     tf.tidy(() => {
       let tfImg = tf.browser.fromPixels(img);
-      let smalImg = tf.image.resizeBilinear(tfImg, [224, 224]);
+      let smalImg = tf.image.resizeBilinear(tfImg, [300, 300]);
       console.log(model.execute(smalImg));
     })
 
