@@ -126,7 +126,7 @@ async function setup() {
   //  console.log(init(model));
    console.log("model loaded");
    const zeros = tf.zeros([1, 224, 224, 3]);
-   model.predict(zeros).print();
+   model.executeAsync(zeros).print();
   //  const shape =  tf.tensor([-1, -1, -1, 3]);
   //  const imgTensor = tf.browser.fromPixels(img);
   //  const imgTensorReshaped = imgTensor.reshapeAs(shape);
