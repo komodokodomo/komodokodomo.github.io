@@ -122,11 +122,17 @@ async function setup() {
 
 
   const img = document.getElementById('canvas'); 
-   model = await tf.loadGraphModel("https://gds-esd.tk/model/model.json");
+  //  model = await tf.loadGraphModel("https://gds-esd.tk/model/model.json");
+
+  const model = await tf.automl.loadObjectDetection('https://gds-esd.tk/model/model.json');
+  const options = {score: 0.5, iou: 0.5, topk: 20};
+  const predictions = await model.detect(img, options);
+
+  console.log(predictions);
   //  console.log(init(model));
-   console.log("model loaded");
-   const zeros = tf.zeros([1, 224, 224, 3]);
-   console.log(model.executeAsync(zeros));
+  //  console.log("model loaded");
+  //  const zeros = tf.zeros([1, 224, 224, 3]);
+  //  console.log(model.executeAsync(zeros));
   //  const shape =  tf.tensor([-1, -1, -1, 3]);
   //  const imgTensor = tf.browser.fromPixels(img);
   //  const imgTensorReshaped = imgTensor.reshapeAs(shape);
