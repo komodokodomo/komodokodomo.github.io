@@ -26,7 +26,7 @@ img {
 .login {
   z-index: 13;
   position: relative;
-  width: 100%;
+  width: 50%;
   height: 50%;
   display: flex;
   flex-direction: column;
@@ -313,4 +313,10 @@ img {
   font-weight: 500;
   margin-bottom: 0.25rem;
   font-family: "Work Sans", Helvetica, Arial, "Noto Sans Tamil", "Hiragino Sans GB", "STHeiti", "Heiti SC", "微软雅黑", "Microsoft Yahei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+  .login {
+    width: 100%;
+  }
 }

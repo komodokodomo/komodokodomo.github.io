@@ -105,6 +105,7 @@ function trigger() {
   }
   console.log(objects[0].class);
 }
+
 function loginHandler(el) {
   loginStatus = true;
   loginWrapper.setAttribute("style", "display: none;");
@@ -112,8 +113,19 @@ function loginHandler(el) {
 }
 
 function swipeHandler() {
+  if (currScreen === onboardingScreenArr.length) {
+    return
+  }
   onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
   currScreen++;
+}
+
+function startHandler() {
+  onboardingFlow.setAttribute("style", "display: none;");
+  // reset translates
+  for (let i = 0; i < onboardingScreenArr.length; i++) {
+    onboardingScreenArr[i].setAttribute("style", `transform: translateX(0px);`);
+  }
 }
 
 function toggleScreen() {
