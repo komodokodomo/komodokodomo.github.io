@@ -149,7 +149,8 @@ async function setup() {
     // const t4d = tf.tensor4d(Array.from(resized.dataSync()),[1,368,432,3])
     // console.log(model.execute(tf.browser.fromPixels(img)));
     tf.tidy(() => {
-      let smalImg = tf.image.resizeBilinear(tf.browser.fromPixels(img)), [224, 224]);
+      let tfImg = tf.browser.fromPixels(img);
+      let smalImg = tf.image.resizeBilinear(tfImg), [224, 224]);
       console.log(model.execute(smalImg));
     })
 
