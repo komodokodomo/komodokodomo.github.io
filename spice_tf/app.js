@@ -103,7 +103,7 @@ function preload(){
 // 		dummy.dispose();
 // 		return result;
 // 	});
-}
+// }
 
 async function setup() {
   console.log(jsonData);
