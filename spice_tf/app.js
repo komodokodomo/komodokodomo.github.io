@@ -137,11 +137,11 @@ async function setup() {
   //  const imgTensorReshaped = imgTensor.reshapeAs(shape);
   //  console.log(imgTensorReshaped);
 
-  tf.tidy(() => {
+  // tf.tidy(() => {
     let tfImg = tf.browser.fromPixels(img);
     let smalImg = tf.image.resizeBilinear(tfImg, [300, 300]);
     console.log(model.executeAsync(smalImg));
-  })
+  // })
 
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
