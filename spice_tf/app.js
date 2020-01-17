@@ -148,7 +148,9 @@ async function setup() {
     // const resized = tf.cast(smalImg, 'float32');
     // const t4d = tf.tensor4d(Array.from(resized.dataSync()),[1,368,432,3])
     // console.log(model.execute(tf.browser.fromPixels(img)));
-    console.log(model.execute(tf.fromPixels(img)));
+    tf.tidy(() => {
+      console.log(model.execute(tf.browser.fromPixels(img)));
+    })
 
   // model.predict(tf.browser.fromPixels(img));
  },250);  // const img = document.getElementById('canvas'); 
