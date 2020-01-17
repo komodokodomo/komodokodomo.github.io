@@ -114,7 +114,7 @@ async function setup() {
 
 
   const img = document.getElementById('canvas'); 
-   model = await modelPromise;
+   model = await myPromise;
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
     console.log(model.predict(tf.browser.fromPixels(img)));
