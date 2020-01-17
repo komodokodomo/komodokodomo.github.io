@@ -128,7 +128,7 @@ async function setup() {
   setInterval(function(){
     // loadedmodel.predict(tf.browser.fromPixels(img)).then(predictions => {console.log(predictions);});
 
-    console.log(tf.browser.fromPixels(img).pad([[1, 0]]).reshape([-1,1]));
+    console.log(model.predict(tf.browser.fromPixels(img).pad([[1, 0]]).reshape([-1,1])));
     // console.log(model.execute(tf.browser.fromPixels(img)));
   // model.predict(tf.browser.fromPixels(img));
  },250);  // const img = document.getElementById('canvas'); 
