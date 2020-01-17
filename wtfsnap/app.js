@@ -10,15 +10,6 @@ let buttonSizeRatio = 1.0;
 let buttonClick;
 
 let loginStatus = false;
-let loginWrapper;
-let loginWrapperTitle;
-let loginWrapperInput;
-let loginWrapperInputUsername;
-let loginWrapperInputPassWord;
-let loginWrapperInputLogin;
-let loginWrapperInputForgot;
- 
-
 
 let current;
 let cameras = "";
@@ -26,6 +17,8 @@ let density;
 
 let counter = 0;
 let screenToggle,screenToggle2;
+let loginWrapper, onboardingFlow;
+let currScreen = 0;
 
 let maxBoxes = 1;
 
@@ -67,6 +60,14 @@ var w,h;
 
 var mode = 0;
 
+window.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM fully loaded and parsed');
+  loginWrapper = document.getElementsByClassName('login')[0];
+  onboardingFlow = document.getElementsByClassName('onboarding')[0];
+  onboardingScreenArr = document.getElementsByClassName('onboarding-screen');
+
+  onboardingFlow.addEventListener("click", swipeHandler, false);
+});
 
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
   devices.forEach(function(device) {
@@ -104,10 +105,29 @@ function trigger() {
   }
   console.log(objects[0].class);
 }
-function loginUser(){
-loginStatus = true;
-loginWrapper.hide();
+
+function loginHandler(el) {
+  loginStatus = true;
+  loginWrapper.setAttribute("style", "display: none;");
+  onboardingFlow.setAttribute("style", "display: flex;");
 }
+
+function swipeHandler() {
+  if (currScreen === onboardingScreenArr.length) {
+    return
+  }
+  onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
+  currScreen++;
+}
+
+function startHandler() {
+  onboardingFlow.setAttribute("style", "display: none;");
+  // reset translates
+  for (let i = 0; i < onboardingScreenArr.length; i++) {
+    onboardingScreenArr[i].setAttribute("style", `transform: translateX(0px);`);
+  }
+}
+
 function toggleScreen() {
   fullscreen(true);
   console.log("fullscreen");
@@ -300,135 +320,46 @@ function setup() {
   contentFrame.attribute("name","content-frame");
   contentFrame.hide();
 
-
-screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
-screenToggle.style("width","16px");
-screenToggle.style("height","16px");
-// screenToggle.style("left","32px");
-// screenToggle.style("top","32px");
-// screenToggle.size(w/16,w/16);
-screenToggle.position(16,16);
-screenToggle.mouseClicked(toggleScreen);
-
-
-loginWrapper = createDiv();
-loginWrapper.size(w*0.6,h*0.8);
-loginWrapper.position(w*0.2,h*0.1);
-
-// loginWrapperTitle = createDiv();
-// loginWrapperTitle.parent(loginWrapper);
-// loginWrapperTitle.class("section-header");
-// loginWrapperTitle.style("height","15%");
-
-loginWrapperTitle = createImg('logo.png','SLS');
-loginWrapperTitle.parent(loginWrapper);
-loginWrapperTitle.style("width","inherit");
-loginWrapperTitle.style("margin","0rem 0rem 1rem 0rem");
-
-
-
-loginWrapperInput = createDiv();
-loginWrapperInput.parent(loginWrapper);
-
-loginWrapperUsername = createDiv("Username");
-loginWrapperUsername.class("field-label");
-loginWrapperUsername.parent(loginWrapperInput);
-
-
-loginWrapperInputUsername = createInput();
-// loginWrapperInputUsername.style("background","#EBF2FE");
-loginWrapperInputUsername.style("padding","10px");
-loginWrapperInputUsername.style("width","100%");
-loginWrapperInputUsername.style("border-style","none");
-loginWrapperInputUsername.style("margin-bottom","0.5rem");
-loginWrapperInputUsername.parent(loginWrapperInput);
-
-loginWrapperPassword = createDiv("Password");
-loginWrapperPassword.parent(loginWrapperInput);
-loginWrapperPassword.class("field-label");
-
-loginWrapperInputPassword = createInput();
-loginWrapperInputPassword.parent(loginWrapperInput);
-// loginWrapperInputPassword.style("background","#EBF2FE");
-loginWrapperInputPassword.style("padding","10px");
-loginWrapperInputPassword.style("width","100%");
-loginWrapperInputPassword.style("border-style","none");
-loginWrapperInputPassword.style("margin-bottom","1.5rem");
-
-
-
-// loginWrapperInputPassword = createInput();
-loginWrapperInputLogin = createButton("LOGIN");
-loginWrapperInputLogin.parent(loginWrapperInput);
-loginWrapperInputLogin.style("background","#336FB6");
-loginWrapperInputLogin.style("color","white");
-loginWrapperInputLogin.style("position","relative");
-loginWrapperInputLogin.style("right","0px");
-// loginWrapperInputLogin.style("bottom","0px");
-loginWrapperInputLogin.style("border-style","none");
-loginWrapperInputLogin.style("border-radius","0.25rem");
-loginWrapperInputLogin.style("padding","1rem 3rem");
-loginWrapperInputLogin.mousePressed(loginUser);
-
-// loginWrapperInputForgot;
-loginWrapperInputForgot = createButton("FORGOT PASSWORD");
-loginWrapperInputForgot.parent(loginWrapperInput);
-loginWrapperInputForgot.style("background","transparent");
-loginWrapperInputForgot.style("color","#336FB6");
-loginWrapperInputForgot.style("position","relative");
-loginWrapperInputForgot.style("left","0px");
-// loginWrapperInputForgot.style("bottom","0px");
-loginWrapperInputForgot.style("border-style","none");
-loginWrapperInputForgot.style("border-radius","0.25rem");
-loginWrapperInputForgot.style("padding","1rem 0rem");
-
-// screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
-// // screenToggle2.size(w/16,w/16);
-// screenToggle2.position(32,32);
-// screenToggle2.style("width","32px");
-// screenToggle2.style("height","32px");
-// // screenToggle2.style("left","32px");
-// // screenToggle2.style("top","32px");
-// screenToggle2.mouseClicked(toggleScreen2);
-// screenToggle2.hide();
-
+  screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
+  screenToggle.style("width","16px");
+  screenToggle.style("height","16px");
+  // screenToggle.style("left","32px");
+  // screenToggle.style("top","32px");
+  // screenToggle.size(w/16,w/16);
+  screenToggle.position(16,16);
+  screenToggle.mouseClicked(toggleScreen);
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
   var test = document.getElementById("canvas");
 
-
   cocoSsd.load().then(model => {
     console.log("model loaded!");
     status = true;
 
-    setInterval(function(){
+    setInterval(function() {
 
-      if(!hideButton){
-      model.detect(test,maxBoxes).then(predictions => {
-        console.log(predictions);
-        objects = [];
-        if(predictions.length > 0){
-        counter++;
-        if(counter>2){counter=2;}
-        for (let i = 0; i < predictions.length; i++) {
-          objects[i]=predictions[i];
+      if(!hideButton) {
+        model.detect(test,maxBoxes).then(predictions => {
+          console.log(predictions);
+          objects = [];
+          if(predictions.length > 0){
+          counter++;
+          if(counter>2){counter=2;}
+          for (let i = 0; i < predictions.length; i++) {
+            objects[i]=predictions[i];
+          }
         }
+        else{
+          counter = 0;
+          button.hide();
+        }
+        });
       }
-      else{
-        counter = 0;
-        button.hide();
-      }
-      });
-    }
-  }
-    , 250);
-  }
-  );
-
+    }, 250);
+  });
 }
-
 
 function draw() {
   if(!loginStatus){

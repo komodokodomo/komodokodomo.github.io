@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89.667 39.368">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f25f5b;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: #2b2523;
+      }
+
+      .cls-2 {
+        font-size: 15px;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        font-family: NotoSansSC-Bold, Noto Sans SC;
+        font-weight: 700;
+      }
+
+      .cls-2, .cls-3 {
+        letter-spacing: 0.2em;
+      }
+
+      .cls-3 {
+        font-size: 8px;
+      }
+
+      .cls-4 {
+        font-size: 3px;
+        letter-spacing: 0.25em;
+      }
+
+      .cls-5 {
+        fill: #fff;
+        font-size: 4px;
+        letter-spacing: 0.22em;
+      }
+    </style>
+  </defs>
+  <g id="Group_4" data-name="Group 4" transform="translate(-17 -115.648)">
+    <g id="Group_3" data-name="Group 3" transform="translate(17 112.648)">
+      <rect id="Rectangle_373" data-name="Rectangle 373" class="cls-1" width="34.371" height="5.298" transform="translate(0 3.727)"/>
+      <text id="STUDENT" class="cls-2" transform="translate(0 24.025)"><tspan x="0" y="0">STUDENT</tspan></text>
+      <text id="LEARNING_SPACE" data-name="LEARNING SPACE" class="cls-3" transform="translate(0.666 34.368)"><tspan x="0" y="0">LEARNING SPACE</tspan></text>
+      <text id="LEARN_ANYTIME_ANYWHERE_AT_ANY_PACE" data-name="LEARN ANYTIME, ANYWHERE, AT ANY PACE" class="cls-4" transform="translate(0.666 41.368)"><tspan x="0" y="0">LEARN ANYTIME, ANYWHERE, AT ANY PACE</tspan></text>
+      <text id="SINGAPORE" class="cls-5" transform="translate(1.934 8)"><tspan x="0" y="0">SINGAPORE</tspan></text>
+    </g>
+  </g>
+</svg>
