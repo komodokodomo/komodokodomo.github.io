@@ -336,7 +336,7 @@ function setup() {
 
   // cocossd.load(config: { modelUrl: "URL" } = {});
 
-  cocoSsd.load(config: { modelUrl: "https://cotf.cf/model" } = {}).then(model => {
+  cocoSsd.load({ modelUrl: "https://cotf.cf/model" } = {}).then(model => {
     console.log("model loaded!");
     status = true;
 
