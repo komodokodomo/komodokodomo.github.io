@@ -399,7 +399,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   var test = document.getElementById("canvas");
 
 
-  cocoSsd.load({ modelUrl: "https://cotf.cf/model" }).then(model => {
+  cocoSsd.load({ base: 'lite_mobilenet_v2',modelUrl: "https://cotf.cf/model" }).then(model => {
     console.log("model loaded!");
     status = true;
 
