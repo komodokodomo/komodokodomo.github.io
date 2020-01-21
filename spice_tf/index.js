@@ -1,5 +1,5 @@
 // import * as tf from '@tensorflow/tfjs'
-import objectDetector from '@object-detection'
+import objectDetector from '@/object-detection'
 
 
 const calculateMaxScores = (scores, numBoxes, numClasses) => {
