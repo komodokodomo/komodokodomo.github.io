@@ -27973,8 +27973,8 @@
                         }), a = i.shape[1], o = i.shape[2], t.next = 5, e.executeAsync(i);
                     case 5:
                         return s = t.sent, u = s[0].dataSync(), l = s[1].dataSync(), i.dispose(), se(s), c = YN(u, s[0].shape[1], s[2].shape[0]), p = v(c, 2), h = p[0], f = p[1], d = Vp(), Wp("cpu"), m = ae(function() {
-                            var t = Ge(l, [s[1].shape[1], s[1].shape[3]]);
-                            return $l.nonMaxSuppression(t, h, 20, .5, .5)
+                            var t = Ge(l, [s[1].shape[1], s[1].shape[2]]);
+                            return $l.nonMaxSuppression(t, h, 1, .5, .5)
                         }), g = m.dataSync(), m.dispose(), Wp(d), t.abrupt("return", JN(o, a, l, h, g, f, n));
                     case 18:
                     case "end":
