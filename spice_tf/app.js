@@ -1,3 +1,6 @@
+import objectDetector from '@object-detection'
+
+
 var jsonData,jsonDataLength;
 
 var classToExplore = "";

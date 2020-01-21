@@ -1,6 +1,4 @@
-// import * as tf from '@tensorflow/tfjs'
-import objectDetector from '@object-detection'
-
+import * as tf from '@tensorflow/tfjs'
 
 const calculateMaxScores = (scores, numBoxes, numClasses) => {
   const maxes = []
@@ -75,18 +73,18 @@ const runPrediction = async (graph, labels, input) => {
   const [maxScores, classes] = calculateMaxScores(
     scores,
     result[0].shape[1],
-    result[2].shape[0]
+    result[0].shape[2]
   )
 
   const prevBackend = tf.getBackend()
   // run post process in cpu
   tf.setBackend('cpu')
   const indexTensor = tf.tidy(() => {
-    const boxes2 = tf.tensor2d(boxes, [result[1].shape[1], result[1].shape[2]])
+    const boxes2 = tf.tensor2d(boxes, [result[1].shape[1], result[1].shape[3]])
     return tf.image.nonMaxSuppression(
       boxes2,
       maxScores,
-      1, // maxNumBoxes
+      20, // maxNumBoxes
       0.5, // iou_threshold
       0.5 // score_threshold
     )
