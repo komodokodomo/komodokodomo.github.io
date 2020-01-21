@@ -1,4 +1,4 @@
-import objectDetector from './cloud-annotations/object-detection'
+import objectDetector from '@cloud-annotations/dist/object-detection'
 
 
 var jsonData,jsonDataLength;
