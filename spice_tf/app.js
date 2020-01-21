@@ -398,9 +398,9 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
-  // var test = document.getElementById("canvas");
+  const test = document.getElementById("canvas");
 
-  const img = document.getElementById('canvas'); 
+  // const img = document.getElementById('canvas'); 
   // objectDetector.load('model_web') 
   // .then(model => 
   //   setInterval(function()
