@@ -401,57 +401,57 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   // var test = document.getElementById("canvas");
 
   const img = document.getElementById('canvas'); 
-  objectDetector.load('model_web') 
-  .then(model => 
-    setInterval(function()
-  {
+  // objectDetector.load('model_web') 
+  // .then(model => 
+  //   setInterval(function()
+  // {
     
-    model.detect(img).then(predictions => { 
-      if(!hideButton){
-      console.log(predictions) 
-      objects = [];
-      if(predictions.length > 0){
-      counter++;
-      if(counter>2){counter=2;}
-      // for (let i = 0; i < predictions.length; i++) {
-        objects[0]=predictions[0];
-      // }
-    }
-    else{
-      counter = 0;
-      button.hide();
-    }
-    }
-    })
+  //   model.detect(img).then(predictions => { 
+  //     if(!hideButton){
+  //     console.log(predictions) 
+  //     objects = [];
+  //     if(predictions.length > 0){
+  //     counter++;
+  //     if(counter>2){counter=2;}
+  //     // for (let i = 0; i < predictions.length; i++) {
+  //       objects[0]=predictions[0];
+  //     // }
+  //   }
+  //   else{
+  //     counter = 0;
+  //     button.hide();
+  //   }
+  //   }
+  //   })
 
-  },250))
+  // },250))
 
 
-  // cocoSsd.load({ base: 'mobilenet_v2',modelUrl: "https://cotf.cf/model" }).then(model => {
-  //   console.log("model loaded!");
-  //   status = true;
+  cocoSsd.load({ modelUrl: "https://cotf.cf/model" }).then(model => {
+    console.log("model loaded!");
+    status = true;
 
-  //   setInterval(function() {
+    setInterval(function() {
 
-  //     if(!hideButton) {
-  //       model.detect(test,maxBoxes).then(predictions => {
-  //         console.log(predictions);
-  //         objects = [];
-  //         if(predictions.length > 0){
-  //         counter++;
-  //         if(counter>2){counter=2;}
-  //         for (let i = 0; i < predictions.length; i++) {
-  //           objects[i]=predictions[i];
-  //         }
-  //       }
-  //       else{
-  //         counter = 0;
-  //         button.hide();
-  //       }
-  //       });
-  //     }
-  //   }, 250);
-  // });
+      if(!hideButton) {
+        model.detect(test,maxBoxes).then(predictions => {
+          console.log(predictions);
+          objects = [];
+          if(predictions.length > 0){
+          counter++;
+          if(counter>2){counter=2;}
+          for (let i = 0; i < predictions.length; i++) {
+            objects[i]=predictions[i];
+          }
+        }
+        else{
+          counter = 0;
+          button.hide();
+        }
+        });
+      }
+    }, 250);
+  });
 
 
   // cocoSsd.load().then(model => {
