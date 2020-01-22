@@ -109,10 +109,7 @@ async function predict() {
       classPrediction = classPrediction+ prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
   console.log(debugPrediction);
-  
-  fill(0);
-  textSize(24);
-  text(debugPrediction,0,0);
+
 }
 
 function trigger() {
@@ -428,46 +425,11 @@ async function draw() {
 
 await predict();
 
+  
+fill(0);
+textSize(24);
+text(debugPrediction,0,0);
 
-
- for(var i=0; i<objects.length ;i++){
-   if(abs(objects[i].bbox[0]/density - prevX)>50){counter = 0;}
-   if(abs(objects[i].bbox[1]/density - prevY)>50){counter = 0;}
-
-  if(counter > 0){
-  let lerpX = lerp(objects[i].bbox[0]/density,prevX,lerpValue);
-  let lerpY = lerp(objects[i].bbox[1]/density,prevY,lerpValue);
-  let lerpW = lerp(objects[i].bbox[2]/density,prevW,lerpValue);
-  let lerpH = lerp(objects[i].bbox[3]/density,prevH,lerpValue);
-
-  // let lerpX = lerp(lerpX,prevX,lerpValue);
-  // let lerpY = lerp(lerpY,prevY,lerpValue);
-  // let lerpW = lerp(lerpW,prevW,lerpValue);
-  // let lerpH = lerp(lerpH,prevH,lerpValue);
-
-  button.size(lerpW*buttonSizeRatio,lerpH*buttonSizeRatio);
-  button.position(lerpX+(lerpW*(1-buttonSizeRatio))/2,lerpY+(lerpH*(1-buttonSizeRatio))/2);
-  }
-
-  else{
-  button.size(objects[i].bbox[2]*buttonSizeRatio/density,objects[i].bbox[3]*buttonSizeRatio/density);  //default
-  button.position(objects[i].bbox[0]/density+(objects[i].bbox[2]/density*(1-buttonSizeRatio))/2   ,objects[i].bbox[1]/density+(objects[i].bbox[3]/density*(1-buttonSizeRatio))/2);
-  }
-
-  prevX = objects[i].bbox[0]/density;
-  prevY = objects[i].bbox[1]/density;
-  prevW = objects[i].bbox[2]/density;
-  prevH = objects[i].bbox[3]/density;
-
-  if(hideButton == false){
-  button.show();
-}
-  rectMode(CORNER);
-  stroke(0,255,0);
-  strokeWeight(5);
-  noFill();
-
-}
 
 }
 }
