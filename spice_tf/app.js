@@ -2,7 +2,8 @@
 
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
-let model, labelContainer, maxPredictions, classPrediction,debugPrediction;
+let model, labelContainer, maxPredictions, classPrediction,debugPrediction, debugText;
+
 
 let img;
 
@@ -23,7 +24,6 @@ let loginWrapperInputUsername;
 let loginWrapperInputPassWord;
 let loginWrapperInputLogin;
 let loginWrapperInputForgot;
- 
 
 
 let current;
@@ -109,9 +109,10 @@ async function predict() {
       classPrediction = classPrediction+ prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
   console.log(debugPrediction);
-  fill(0);
-  textSize(100);
-  text(debugPrediction,w/2,h/2);
+  // fill(0);
+  // textSize(100);
+  // text(debugPrediction,w/2,h/2);
+  debugText.html(debugPrediction);
 }
 
 function trigger() {
@@ -368,6 +369,9 @@ loginWrapperInputForgot.style("border-style","none");
 loginWrapperInputForgot.style("border-radius","0.25rem");
 loginWrapperInputForgot.style("padding","1rem 0rem");
 
+
+debugText = createDiv();
+debugText.position(100,20);
 // screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
 // // screenToggle2.size(w/16,w/16);
 // screenToggle2.position(32,32);
