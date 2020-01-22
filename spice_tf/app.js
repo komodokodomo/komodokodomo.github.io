@@ -427,7 +427,7 @@ async function draw() {
   image(video, w/2, h/2, videoWidth, videoHeight);
   }
   else{
-    image(video, w/2, h/2, videoWidth, videoHeight);
+    image(video, w/2, h/2, videoHeight, videoWidth);
   }
 
 // if(w>h){
