@@ -1,6 +1,10 @@
 
 
 var jsonData,jsonDataLength;
+const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
+let model, labelContainer, maxPredictions;
+
+let img;
 
 var classToExplore = "";
 var jsonDataIndex;
@@ -86,6 +90,27 @@ var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
 function preload(){
   let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
   jsonData = loadJSON(url);
+}
+
+async function init() {
+  const modelURL = URL + "model.json";
+  const metadataURL = URL + "metadata.json";
+
+  // load the model and metadata
+  // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+  // or files from your local hard drive
+  // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+  model = await tmImage.load(modelURL, metadataURL);
+  maxPredictions = model.getTotalClasses();
+
+}
+
+async function predict() {
+  const prediction = await model.predict(img);
+  for (let i = 0; i < maxPredictions; i++) {
+      const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+      console.log(classPrediction);
+  }
 }
 
 function trigger() {
@@ -398,95 +423,43 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
-  const test = document.getElementById("canvas");
 
-  const img = document.getElementById('canvas'); 
+  img = document.getElementById('canvas'); 
+
+
   
-  objectDetector.load('model_web') 
-  .then(model => 
-    setInterval(function()
-  {
+  // objectDetector.load('model_web') 
+  // .then(model => 
+  //   setInterval(function()
+  // {
     
-    model.detect(img).then(predictions => { 
-      if(!hideButton){
-      console.log(predictions) 
-      objects = [];
-      if(predictions.length > 0){
-      counter++;
-      if(counter>2){counter=2;}
-      // for (let i = 0; i < predictions.length; i++) {
-        objects[0]=predictions[0];
-      // }
-    }
-    else{
-      counter = 0;
-      button.hide();
-    }
-    }
-    })
-
-  },250))
-
-
-  // cocoSsd.load({ modelUrl: "https://cotf.cf/model" }).then(model => {
-  //   console.log("model loaded!");
-  //   status = true;
-
-  //   setInterval(function() {
-
-  //     if(!hideButton) {
-  //       model.detect(test,maxBoxes).then(predictions => {
-  //         console.log(predictions);
-  //         objects = [];
-  //         if(predictions.length > 0){
-  //         counter++;
-  //         if(counter>2){counter=2;}
-  //         for (let i = 0; i < predictions.length; i++) {
-  //           objects[i]=predictions[i];
-  //         }
-  //       }
-  //       else{
-  //         counter = 0;
-  //         button.hide();
-  //       }
-  //       });
-  //     }
-  //   }, 250);
-  // });
-
-
-  // cocoSsd.load().then(model => {
-  //   console.log("model loaded!");
-  //   status = true;
-
-  //   setInterval(function(){
-
+  //   model.detect(img).then(predictions => { 
   //     if(!hideButton){
-  //     model.detect(test,maxBoxes).then(predictions => {
-  //       console.log(predictions);
-  //       objects = [];
-  //       if(predictions.length > 0){
-  //       counter++;
-  //       if(counter>2){counter=2;}
-  //       for (let i = 0; i < predictions.length; i++) {
-  //         objects[i]=predictions[i];
-  //       }
-  //     }
-  //     else{
-  //       counter = 0;
-  //       button.hide();
-  //     }
-  //     });
+  //     console.log(predictions) 
+  //     objects = [];
+  //     if(predictions.length > 0){
+  //     counter++;
+  //     if(counter>2){counter=2;}
+  //     // for (let i = 0; i < predictions.length; i++) {
+  //       objects[0]=predictions[0];
+  //     // }
   //   }
-  // }
-  //   , 250);
-  // }
-  // );
+  //   else{
+  //     counter = 0;
+  //     button.hide();
+  //   }
+  //   }
+  //   })
+
+  // },250))
+
+
+
 
 }
 
 
-function draw() {
+async function draw() {
   if(!loginStatus){
     background(215);
   }
@@ -494,6 +467,8 @@ function draw() {
   else{
  background(255);
  imageMode(CENTER);
+
+ await predict();
 
  
 
