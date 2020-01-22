@@ -16,6 +16,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 img { 
@@ -27,9 +28,10 @@ img {
   z-index: 13;
   position: relative;
   width: 50%;
-  height: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;;
   padding: 2rem;
   box-sizing: border-box;
   font-family: sans-serif;
@@ -76,8 +78,12 @@ img {
 }
 
 .sls-banner {
-  display: flex;
   margin-bottom: 0.75rem;
+}
+
+.sls-banner img {
+  max-width: 100%;
+  height: auto;
 }
 
 .onboarding {
@@ -106,7 +112,6 @@ img {
 }
 
 .onboarding-screen-top, .onboarding-screen-middle, .onboarding-screen-bottom {
-  display: flex;
   position: relative;
 }
 
@@ -134,6 +139,7 @@ img {
 }
 
 .headshot {
+  display: flex;
   margin-left: -20%;
 }
 
@@ -159,6 +165,7 @@ img {
 }
 
 #onboarding-screen-one .onboarding-screen-middle {
+  display: flex;
   margin: 1rem;
 }
 
@@ -178,6 +185,11 @@ img {
 
 #onboarding-screen-four {
   z-index: 1;
+}
+
+#onboarding-screen-four .onboarding-screen-middle img {
+  max-width: 100%;
+  height: auto;
 }
 
 .dots {
