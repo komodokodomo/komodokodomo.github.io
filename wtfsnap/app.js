@@ -16,6 +16,7 @@ let cameras = "";
 let density;
 
 let counter = 0;
+let swipeX = null;
 let screenToggle,screenToggle2;
 let loginWrapper, onboardingFlow;
 let currScreen = 0;
@@ -64,9 +65,18 @@ window.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded and parsed');
   loginWrapper = document.getElementsByClassName('login')[0];
   onboardingFlow = document.getElementsByClassName('onboarding')[0];
+  skipButtons = document.getElementsByClassName('skip-button');
   onboardingScreenArr = document.getElementsByClassName('onboarding-screen');
 
-  onboardingFlow.addEventListener("click", swipeHandler, false);
+  onboardingFlow.addEventListener('mousedown', lock, false);
+  onboardingFlow.addEventListener('touchstart', lock, false);
+  onboardingFlow.addEventListener('mouseup', move, false);
+  onboardingFlow.addEventListener('touchend', move, false);
+
+  // onboardingFlow.addEventListener("click", swipeHandler, false);
+  for (let i = 0; i < skipButtons.length; i++) {
+    skipButtons[i].addEventListener("click", skipHandler, false);
+  }
 });
 
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
@@ -112,12 +122,37 @@ function loginHandler(el) {
   onboardingFlow.setAttribute("style", "display: flex;");
 }
 
-function swipeHandler() {
-  if (currScreen === onboardingScreenArr.length) {
-    return
+function lock(e) {
+  e.changedTouches ? swipeX = e.changedTouches[0].clientX : swipeX = e.clientX;
+}
+
+function move(e) {
+  if (swipeX || swipeX === 0) {
+    var dx = null;
+    e.changedTouches ? dx = e.changedTouches[0].clientX - swipeX : e.clientX - swipeX;
+    let s = Math.sign(dx);
+    if (s > 0 && currScreen !== 0) {
+      // swipe right
+      onboardingScreenArr[currScreen - 1].setAttribute("style", `transform: translateX(0px);`);
+      currScreen--;
+    } else if (s < 0 && currScreen !== onboardingScreenArr.length - 1) {
+      // swipe left
+      onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
+      currScreen++;
+    }
   }
-  onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
-  currScreen++;
+}
+
+// function swipeHandler() {
+//   if (currScreen === onboardingScreenArr.length || currScreen === 0) {
+//     return
+//   }
+//   onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
+//   currScreen++;
+// }
+
+function skipHandler() {
+  onboardingFlow.setAttribute("style", "display: none;");
 }
 
 function startHandler() {
@@ -342,7 +377,7 @@ function setup() {
 
       if(!hideButton) {
         model.detect(test,maxBoxes).then(predictions => {
-          console.log(predictions);
+          // console.log(predictions);
           objects = [];
           if(predictions.length > 0){
           counter++;
