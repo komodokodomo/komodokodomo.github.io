@@ -404,6 +404,7 @@ async function draw() {
   else{
   image(video, w/2, h/2, videoHeight, videoWidth);
   }
+  console.log(typeof debugPrediction);
   fill(0);
   textSize(24);
   text(debugPrediction,0,0);
