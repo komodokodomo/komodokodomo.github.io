@@ -164,7 +164,8 @@ function closeContent(){
 //   contentFrame.attribute("src",ele.getAttribute('href'));
 // }
 
-function setup() {
+async function setup() {
+  await init();
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
   
