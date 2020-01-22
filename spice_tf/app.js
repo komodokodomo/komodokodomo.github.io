@@ -110,7 +110,8 @@ async function predict() {
   }
   console.log(classPrediction);
   fill(0);
-  text(debugPrediction,0,h-20);
+  textSize(24);
+  text(debugPrediction,0,0);
 }
 
 function trigger() {
