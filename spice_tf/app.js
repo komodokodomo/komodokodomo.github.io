@@ -109,7 +109,9 @@ async function predict() {
       classPrediction = classPrediction+ prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
   console.log(debugPrediction);
-
+  fill(0);
+  textSize(24);
+  text(debugPrediction,w/2,h/2);
 }
 
 function trigger() {
@@ -404,10 +406,8 @@ async function draw() {
   else{
   image(video, w/2, h/2, videoHeight, videoWidth);
   }
-  console.log(typeof debugPrediction);
-  fill(0);
-  textSize(24);
-  text(debugPrediction,0,0);
+  // console.log(typeof debugPrediction);
+
 
 // if(w>h){
 // if((w/h)>(video.width/video.height))
