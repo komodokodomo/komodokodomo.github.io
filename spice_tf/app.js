@@ -96,16 +96,12 @@ async function init() {
   const modelURL = URL + "model.json";
   const metadataURL = URL + "metadata.json";
 
-  // load the model and metadata
-  // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-  // or files from your local hard drive
-  // Note: the pose library adds "tmImage" object to your window (window.tmImage)
   model = await tmImage.load(modelURL, metadataURL);
   maxPredictions = model.getTotalClasses();
-
 }
 
 async function predict() {
+
   const prediction = await model.predict(img);
   for (let i = 0; i < maxPredictions; i++) {
       const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
@@ -278,49 +274,6 @@ async function setup() {
   }
 
 
-  // for(let i = 0; i<jsonDataLength; i++){
-  //   subjects[i] = createElement("li",jsonData[i].subject);
-  //   subjects[i].parent(lensList);
-  //   subjects[i].id("li"+i.toString());
-  //   document.getElementById("li"+i.toString()).onclick = function(){
-  //     console.log("you clicked: " + i.toString());
-  //     lensNumber = i;
-  //     for(let j = 0; j<jsonDataLength; j++){
-  //       document.getElementById("li"+j.toString()).classList.remove("active");
-  //     }
-  //     document.getElementById("li"+i.toString()).classList.add("active");
-  //     if(hideButton){
- 
-
-  //       if(jsonData[lensNumber][objects[0].class]!== null){
-  //       let stuff = jsonData[lensNumber][objects[0].class].toString();
-  //       let stuffs = stuff.split("\\");
-
-  //       if(stuffs.length>0){
-  //       console.log("split success");
-  //       console.log(stuffs[0].split("(")[0]);
-  //       console.log(stuffs[0].split("(")[1].split(")")[0]);
-  //     }
-  //      let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
-  //      console.log(testing); 
-  //      stuff = stuff.replace('\\','<br><br>');
-  //       contentText.html(stuff);
-  //     }
-  //     else{
-  //       contentText.html("no content for now...");
-  //     }
-  //     }
-
-  //     // for(let i = 0; i<jsonDataLength; i++){
-  //     //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
-  //     // }
-  //     // jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-  //     // jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
-  //     // console.log("index: " + jsonDataIndex.toString());
-  //   };
-  //   // subjects[i].style("display","inline");
-  //   // subjects[i].show();
-  // }
 
   contentFrame = createElement("iframe","#");
   contentFrame.size(w,9*h/10);
@@ -469,7 +422,6 @@ async function draw() {
  background(255);
  imageMode(CENTER);
 
- await predict();
 
  
 
@@ -491,17 +443,9 @@ image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
 }
 }
 
-if(debug){
- fill(0);
- noStroke();
- text(frameRate(),30,30);
- text(cameras,30,50);
- text("display: " + w + " x " +h,30,70);
- text("cam: " + video.width + " x " +video.height,30,90);
- if(status){
- text("model loaded",30,110);
- }
-}
+await predict();
+
+
 
  for(var i=0; i<objects.length ;i++){
    if(abs(objects[i].bbox[0]/density - prevX)>50){counter = 0;}
