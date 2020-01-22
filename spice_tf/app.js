@@ -2,7 +2,7 @@
 
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
-let model, labelContainer, maxPredictions;
+let model, labelContainer, maxPredictions, classPrediction;
 
 let img;
 
@@ -103,8 +103,9 @@ async function init() {
 async function predict() {
 
   const prediction = await model.predict(img);
+  classPrediction = "";
   for (let i = 0; i < maxPredictions; i++) {
-      const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+      classPrediction = classPrediction+ prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
   console.log(classPrediction);
 }
