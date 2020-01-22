@@ -2,7 +2,7 @@
 
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
-let model, labelContainer, maxPredictions, classPrediction;
+let model, labelContainer, maxPredictions, classPrediction,debugPrediction;
 
 let img;
 
@@ -103,10 +103,14 @@ async function init() {
 async function predict() {
   const prediction = await model.predict(img);
   classPrediction = "";
+  debugPrediction = "";
   for (let i = 0; i < maxPredictions; i++) {
+      debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       classPrediction = classPrediction+ prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+
   }
   console.log(classPrediction);
+  text(debugPrediction,0,h-20,w,20);
 }
 
 function trigger() {
@@ -379,34 +383,6 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.hide();
 
   img = document.getElementById('canvas'); 
-
-
-  
-  // objectDetector.load('model_web') 
-  // .then(model => 
-  //   setInterval(function()
-  // {
-    
-  //   model.detect(img).then(predictions => { 
-  //     if(!hideButton){
-  //     console.log(predictions) 
-  //     objects = [];
-  //     if(predictions.length > 0){
-  //     counter++;
-  //     if(counter>2){counter=2;}
-  //     // for (let i = 0; i < predictions.length; i++) {
-  //       objects[0]=predictions[0];
-  //     // }
-  //   }
-  //   else{
-  //     counter = 0;
-  //     button.hide();
-  //   }
-  //   }
-  //   })
-
-  // },250))
-
 
 
 
