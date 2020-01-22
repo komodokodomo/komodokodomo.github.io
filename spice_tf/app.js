@@ -105,8 +105,8 @@ async function predict() {
   const prediction = await model.predict(img);
   for (let i = 0; i < maxPredictions; i++) {
       const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-      console.log(classPrediction);
   }
+  console.log(classPrediction);
 }
 
 function trigger() {
