@@ -110,7 +110,7 @@ async function predict() {
   }
   console.log(debugPrediction);
   fill(0);
-  textSize(24);
+  textSize(100);
   text(debugPrediction,w/2,h/2);
 }
 
