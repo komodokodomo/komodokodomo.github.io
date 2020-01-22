@@ -402,8 +402,11 @@ async function draw() {
   image(video, w/2, h/2, videoWidth, videoHeight);
   }
   else{
-    image(video, w/2, h/2, videoHeight, videoWidth);
+  image(video, w/2, h/2, videoHeight, videoWidth);
   }
+  fill(0);
+  textSize(24);
+  text(debugPrediction,0,0);
 
 // if(w>h){
 // if((w/h)>(video.width/video.height))
@@ -426,10 +429,6 @@ async function draw() {
 await predict();
 
   
-fill(0);
-textSize(24);
-text(debugPrediction,0,0);
-
 
 }
 }
