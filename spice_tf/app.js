@@ -101,7 +101,6 @@ async function init() {
 }
 
 async function predict() {
-
   const prediction = await model.predict(img);
   classPrediction = "";
   for (let i = 0; i < maxPredictions; i++) {
@@ -424,25 +423,30 @@ async function draw() {
  imageMode(CENTER);
 
 
- 
+ if(w>h){
+  image(video, w/2, h/2, videoWidth, videoHeight);
+  }
+  else{
+    image(video, w/2, h/2, videoWidth, videoHeight);
+  }
 
-if(w>h){
-if((w/h)>(video.width/video.height))
-{
-  image(video, w/2, h/2, w, w*video.height/video.width);
-}
-else{
-  image(video, w/2, h/2, h*video.width/video.height, h);
-}
-}
-else{
-if((videoHeight/videoWidth)<(w/h)){
-image(video, w/2, h/2, w, (w/videoHeight)*videoWidth);
-}
-else{
-image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
-}
-}
+// if(w>h){
+// if((w/h)>(video.width/video.height))
+// {
+//   image(video, w/2, h/2, w, w*video.height/video.width);
+// }
+// else{
+//   image(video, w/2, h/2, h*video.width/video.height, h);
+// }
+// }
+// else{
+// if((videoHeight/videoWidth)<(w/h)){
+// image(video, w/2, h/2, w, (w/videoHeight)*videoWidth);
+// }
+// else{
+// image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
+// }
+// }
 
 await predict();
 
