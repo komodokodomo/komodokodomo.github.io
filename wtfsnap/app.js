@@ -144,7 +144,8 @@ function move(e) {
 }
 
 function clickHandler() {
-  if (currScreen === onboardingScreenArr.length) {
+  if (currScreen === onboardingScreenArr.length - 1) {
+    onboardingFlow.setAttribute("style", "display: none;");
     return
   }
   onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
@@ -257,6 +258,7 @@ function setup() {
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
     subjects[i].id("li"+i.toString());
+
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
       lensNumber = i;
@@ -265,32 +267,34 @@ function setup() {
       }
       document.getElementById("li"+i.toString()).classList.add("active");
       if(hideButton){
- 
-
         if(jsonData[lensNumber][objects[0].class]!== null){
-        let stuff = jsonData[lensNumber][objects[0].class].toString();
-        let stuffs = stuff.split("\\");
-        let things = "";
+          let stuff = jsonData[lensNumber][objects[0].class].toString();
+          let stuffs = stuff.split("\\");
+          let things = "";
 
-        if(stuffs.length>0){
-        for(var k=0; k<stuffs.length; k++){
-          // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-          let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-          things += addon;
+          if(stuffs.length>0){
+          for(var k=0; k<stuffs.length; k++){
+            // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+            let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+            things += addon;
+          }
+          console.log("split success");
+          console.log(stuffs[0].split("(")[0]);
+          console.log(stuffs[0].split("(")[1].split(")")[0]);
         }
-        console.log("split success");
-        console.log(stuffs[0].split("(")[0]);
-        console.log(stuffs[0].split("(")[1].split(")")[0]);
-        
+          //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
+          console.log(things); 
+          //  stuff = stuff.replace('\\','<br><br>');
+          contentText.html(things);
+        } else {
+          contentText.html("no content for now...");
+        }
       }
-      //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
-       console.log(things); 
-      //  stuff = stuff.replace('\\','<br><br>');
-        contentText.html(things);
-      }
-      else{
-        contentText.html("no content for now...");
-      }
+      if (i === jsonDataLength - 1) {
+        // Students tab
+        addContentButton = createElement("button", "Add your own");
+        addContentButton.parent(contentContainer);
+        addContentButton.id("add-content");
       }
 
       // for(let i = 0; i<jsonDataLength; i++){
