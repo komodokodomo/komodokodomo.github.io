@@ -16,6 +16,7 @@ let cameras = "";
 let density;
 
 let counter = 0;
+let swipeX = null;
 let screenToggle,screenToggle2;
 let loginWrapper, onboardingFlow;
 let currScreen = 0;
@@ -64,9 +65,17 @@ window.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded and parsed');
   loginWrapper = document.getElementsByClassName('login')[0];
   onboardingFlow = document.getElementsByClassName('onboarding')[0];
+  skipButtons = document.getElementsByClassName('skip-button');
   onboardingScreenArr = document.getElementsByClassName('onboarding-screen');
 
-  onboardingFlow.addEventListener("click", swipeHandler, false);
+  onboardingFlow.addEventListener('touchstart', lock, false);
+  onboardingFlow.addEventListener('touchend', move, false);
+  onboardingFlow.addEventListener('click', clickHandler, false);
+
+  // onboardingFlow.addEventListener("click", swipeHandler, false);
+  for (let i = 0; i < skipButtons.length; i++) {
+    skipButtons[i].addEventListener("click", skipHandler, false);
+  }
 });
 
 var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
@@ -112,12 +121,39 @@ function loginHandler(el) {
   onboardingFlow.setAttribute("style", "display: flex;");
 }
 
-function swipeHandler() {
-  if (currScreen === onboardingScreenArr.length) {
+function lock(e) {
+  e.changedTouches ? swipeX = e.changedTouches[0].clientX : swipeX = e.clientX;
+}
+
+function move(e) {
+  if (swipeX || swipeX === 0) {
+    var dx = null;
+    e.changedTouches ? dx = e.changedTouches[0].clientX - swipeX : e.clientX - swipeX;
+    let s = Math.sign(dx);
+    if (s > 0 && currScreen !== 0) {
+      // swipe right
+      onboardingScreenArr[currScreen - 1].setAttribute("style", `transform: translateX(0px);`);
+      currScreen--;
+    } else if (s < 0 && currScreen !== onboardingScreenArr.length - 1) {
+      // swipe left
+      onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
+      currScreen++;
+    }
+  }
+  preventDefault();
+}
+
+function clickHandler() {
+  if (currScreen === onboardingScreenArr.length - 1) {
+    onboardingFlow.setAttribute("style", "display: none;");
     return
   }
   onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
   currScreen++;
+}
+
+function skipHandler() {
+  onboardingFlow.setAttribute("style", "display: none;");
 }
 
 function startHandler() {
@@ -222,6 +258,7 @@ function setup() {
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
     subjects[i].id("li"+i.toString());
+
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
       lensNumber = i;
@@ -230,32 +267,34 @@ function setup() {
       }
       document.getElementById("li"+i.toString()).classList.add("active");
       if(hideButton){
- 
-
         if(jsonData[lensNumber][objects[0].class]!== null){
-        let stuff = jsonData[lensNumber][objects[0].class].toString();
-        let stuffs = stuff.split("\\");
-        let things = "";
+          let stuff = jsonData[lensNumber][objects[0].class].toString();
+          let stuffs = stuff.split("\\");
+          let things = "";
 
-        if(stuffs.length>0){
-        for(var k=0; k<stuffs.length; k++){
-          // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-          let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-          things += addon;
+          if(stuffs.length>0){
+          for(var k=0; k<stuffs.length; k++){
+            // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+            let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+            things += addon;
+          }
+          console.log("split success");
+          console.log(stuffs[0].split("(")[0]);
+          console.log(stuffs[0].split("(")[1].split(")")[0]);
         }
-        console.log("split success");
-        console.log(stuffs[0].split("(")[0]);
-        console.log(stuffs[0].split("(")[1].split(")")[0]);
-        
+          //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
+          console.log(things); 
+          //  stuff = stuff.replace('\\','<br><br>');
+          contentText.html(things);
+        } else {
+          contentText.html("no content for now...");
+        }
       }
-      //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
-       console.log(things); 
-      //  stuff = stuff.replace('\\','<br><br>');
-        contentText.html(things);
-      }
-      else{
-        contentText.html("no content for now...");
-      }
+      if (i === jsonDataLength - 1) {
+        // Students tab
+        addContentButton = createElement("button", "Add your own");
+        addContentButton.parent(contentContainer);
+        addContentButton.id("add-content");
       }
 
       // for(let i = 0; i<jsonDataLength; i++){
@@ -342,7 +381,7 @@ function setup() {
 
       if(!hideButton) {
         model.detect(test,maxBoxes).then(predictions => {
-          console.log(predictions);
+          // console.log(predictions);
           objects = [];
           if(predictions.length > 0){
           counter++;

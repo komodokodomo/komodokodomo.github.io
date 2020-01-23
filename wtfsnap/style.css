@@ -16,6 +16,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  position: relative;
+  background: #D6D7D9;
 }
 
 img { 
@@ -27,9 +30,10 @@ img {
   z-index: 13;
   position: relative;
   width: 50%;
-  height: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;;
   padding: 2rem;
   box-sizing: border-box;
   font-family: sans-serif;
@@ -66,6 +70,19 @@ img {
   font-weight: bold;
   color: white;
   background: #116ca5;
+  min-height: 2.5rem;
+}
+
+#add-content {
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  background: #116ca5;
+  min-height: 2.5rem;
 }
 
 .forgot {
@@ -76,24 +93,31 @@ img {
 }
 
 .sls-banner {
-  display: flex;
   margin-bottom: 0.75rem;
+}
+
+.sls-banner img {
+  max-width: 100%;
+  height: auto;
 }
 
 .onboarding {
   z-index: 12;
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
+  align-items: center;
+  background: #D6D7D9;
   display: none;
 }
 
 .onboarding-screen {
   width: 100%;
   height: 100%;
+  max-width: 420px;
   position: absolute;
   overflow: hidden;
   padding: 1rem;
@@ -106,8 +130,17 @@ img {
 }
 
 .onboarding-screen-top, .onboarding-screen-middle, .onboarding-screen-bottom {
-  display: flex;
   position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.onboarding-screen-middle {
+  height: 100%;
+}
+
+.onboarding-screen-top {
+  height: 10%;
 }
 
 .onboarding-screen-top span {
@@ -125,6 +158,11 @@ img {
   font-size: 2rem;
 }
 
+.onboarding-screen-middle img {
+  max-width: 420px;
+  object-fit: contain;
+}
+
 .onboarding-screen-middle p {
   margin: 0;
 }
@@ -134,6 +172,7 @@ img {
 }
 
 .headshot {
+  display: flex;
   margin-left: -20%;
 }
 
@@ -146,12 +185,12 @@ img {
 .onboarding-screen-bottom {
   flex-direction: column;
   text-align: center;
+  margin-top: auto;
   margin-bottom: 2rem;
 }
 
 .onboarding-logo {
-  width: 50%;
-  margin-left: 25%;
+  object-fit: contain;
 }
 
 #onboarding-screen-one {
@@ -159,6 +198,8 @@ img {
 }
 
 #onboarding-screen-one .onboarding-screen-middle {
+  display: flex;
+  justify-content: center;
   margin: 1rem;
 }
 
@@ -178,6 +219,10 @@ img {
 
 #onboarding-screen-four {
   z-index: 1;
+}
+
+#onboarding-screen-four .onboarding-screen-middle img {
+  height: auto;
 }
 
 .dots {
@@ -363,5 +408,8 @@ img {
 @media only screen and (max-width: 600px) {
   .login {
     width: 100%;
+  }
+  .onboarding-logo {
+    max-width: 40%;
   }
 }
