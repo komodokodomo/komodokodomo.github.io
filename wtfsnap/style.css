@@ -17,6 +17,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative;
 }
 
 img { 
@@ -68,6 +69,7 @@ img {
   font-weight: bold;
   color: white;
   background: #116ca5;
+  min-height: 3rem;
 }
 
 .forgot {
@@ -88,18 +90,21 @@ img {
 
 .onboarding {
   z-index: 12;
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
+  align-items: center;
+  background: #D6D7D9;
   display: none;
 }
 
 .onboarding-screen {
   width: 100%;
   height: 100%;
+  max-width: 420px;
   position: absolute;
   overflow: hidden;
   padding: 1rem;
@@ -117,8 +122,12 @@ img {
   justify-content: center;
 }
 
+.onboarding-screen-middle {
+  height: 100%;
+}
+
 .onboarding-screen-top {
-  max-height: 20%;
+  height: 10%;
 }
 
 .onboarding-screen-top span {
@@ -137,6 +146,7 @@ img {
 }
 
 .onboarding-screen-middle img {
+  max-width: 420px;
   object-fit: contain;
 }
 
@@ -162,11 +172,11 @@ img {
 .onboarding-screen-bottom {
   flex-direction: column;
   text-align: center;
+  margin-top: auto;
   margin-bottom: 2rem;
 }
 
 .onboarding-logo {
-  max-width: 15%;
   object-fit: contain;
 }
 
@@ -199,7 +209,6 @@ img {
 }
 
 #onboarding-screen-four .onboarding-screen-middle img {
-  max-width: 100%;
   height: auto;
 }
 
