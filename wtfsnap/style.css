@@ -113,6 +113,12 @@ img {
 
 .onboarding-screen-top, .onboarding-screen-middle, .onboarding-screen-bottom {
   position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.onboarding-screen-top {
+  max-height: 20%;
 }
 
 .onboarding-screen-top span {
@@ -128,6 +134,10 @@ img {
 .onboarding-screen-middle h2 {
   font-weight: 600;
   font-size: 2rem;
+}
+
+.onboarding-screen-middle img {
+  object-fit: contain;
 }
 
 .onboarding-screen-middle p {
@@ -156,8 +166,8 @@ img {
 }
 
 .onboarding-logo {
-  width: 50%;
-  margin-left: 25%;
+  max-width: 15%;
+  object-fit: contain;
 }
 
 #onboarding-screen-one {
@@ -166,6 +176,7 @@ img {
 
 #onboarding-screen-one .onboarding-screen-middle {
   display: flex;
+  justify-content: center;
   margin: 1rem;
 }
 
@@ -375,5 +386,8 @@ img {
 @media only screen and (max-width: 600px) {
   .login {
     width: 100%;
+  }
+  .onboarding-logo {
+    max-width: 40%;
   }
 }

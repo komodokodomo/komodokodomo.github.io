@@ -68,10 +68,9 @@ window.addEventListener('DOMContentLoaded', () => {
   skipButtons = document.getElementsByClassName('skip-button');
   onboardingScreenArr = document.getElementsByClassName('onboarding-screen');
 
-  onboardingFlow.addEventListener('mousedown', lock, false);
   onboardingFlow.addEventListener('touchstart', lock, false);
-  onboardingFlow.addEventListener('mouseup', move, false);
   onboardingFlow.addEventListener('touchend', move, false);
+  onboardingFlow.addEventListener('click', clickHandler, false);
 
   // onboardingFlow.addEventListener("click", swipeHandler, false);
   for (let i = 0; i < skipButtons.length; i++) {
@@ -141,15 +140,16 @@ function move(e) {
       currScreen++;
     }
   }
+  preventDefault();
 }
 
-// function swipeHandler() {
-//   if (currScreen === onboardingScreenArr.length || currScreen === 0) {
-//     return
-//   }
-//   onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
-//   currScreen++;
-// }
+function clickHandler() {
+  if (currScreen === onboardingScreenArr.length) {
+    return
+  }
+  onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
+  currScreen++;
+}
 
 function skipHandler() {
   onboardingFlow.setAttribute("style", "display: none;");
