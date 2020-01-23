@@ -1,4 +1,4 @@
-
+// this model uses image classification instead
 
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
