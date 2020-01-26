@@ -48,7 +48,6 @@ var constraints = {
 };
 
 
-let debug = false;
 
 var itemsText = [];
 let video;
