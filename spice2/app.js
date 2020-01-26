@@ -399,7 +399,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 
   const img = document.getElementById('canvas'); 
-  objectDetector.load('/spice2/model_web') 
+  objectDetector.load('model_web') 
   .then(model => 
     setInterval(function()
   {
