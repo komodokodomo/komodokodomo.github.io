@@ -345,24 +345,48 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
-
-
-  const options = {score: 0.5, iou: 0.5, topk: 20};
   img = document.getElementById('canvas'); 
+  
+  objectDetector.load('model_web') 
+  .then(model => 
+    setInterval(function()
+  {
+    
+    model.detect(img).then(predictions => { 
+      if(!hideButton){
+      console.log(predictions) 
+      objects = [];
+      if(predictions.length > 0){
+      counter++;
+      if(counter>2){counter=2;}
+      // for (let i = 0; i < predictions.length; i++) {
+        objects[0]=predictions[0];
+      // }
+    }
+    else{
+      counter = 0;
+      button.hide();
+    }
+    }
+    })
 
-  model = await tf.automl.loadObjectDetection('model_web/model.json');
-  console.log("model loaded");
-  run();
+  },250))
+
+  // const options = {score: 0.5, iou: 0.5, topk: 20};
+
+  // model = await tf.automl.loadObjectDetection('model_web/model.json');
+  // console.log("model loaded");
+  // run();
 }
 
 
-async function run(){
-  let test = document.getElementById('canvas'); 
-  predictions = await model.detect(test,options);
-  console.log(predictions);
-  setTimeout(run, 300);
+// async function run(){
+//   let test = document.getElementById('canvas'); 
+//   predictions = await model.detect(test,options);
+//   console.log(predictions);
+//   setTimeout(run, 300);
 
-}
+// }
 
 function draw() {
   if(!loginStatus){
