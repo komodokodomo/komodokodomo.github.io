@@ -1,3 +1,5 @@
+import { runInContext } from "vm";
+
 /*
 autoML library runs fine but prediction is totally off, currently do not understand why
 
@@ -356,7 +358,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.hide();
   img = document.getElementById('canvas'); 
   
- let testing = await loadModel();
+ loadModel();
  
 
   // const options = {score: 0.5, iou: 0.5, topk: 20};
@@ -367,13 +369,12 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 }
 
 
-// async function run(){
-//   let test = document.getElementById('canvas'); 
-//   predictions = await model.detect(test,options);
-//   console.log(predictions);
-//   setTimeout(run, 300);
-
-// }
+async function run(){
+  let test = document.getElementById('canvas'); 
+  predictions = await model.predict(test);
+  console.log(predictions);
+  setTimeout(run, 300);
+}
 
 async function loadModel() {
   const modelURL = 'model_web/model.json';
@@ -381,6 +382,7 @@ async function loadModel() {
   let result = await model.executeAsync(tf.zeros([1, 300, 300, 3]));
   await Promise.all(result.map(t => t.data()));
   result.map(t => t.dispose());
+  run();
   // this.predictImages(this.videoCamera.nativeElement, this.model);
 }
 
