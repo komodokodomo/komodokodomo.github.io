@@ -357,14 +357,42 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.hide();
   img = document.getElementById('canvas'); 
   
- loadModel();
- 
+  var ModelConfig = {
+    base : "mobilenet_v2",
+    modelUrl: "model_web/model.json"
+  }
+  
+  
 
-  // const options = {score: 0.5, iou: 0.5, topk: 20};
+  cocoSsd.load(ModelConfig).then(model => {
+    console.log("model loaded!");
+    status = true;
 
-  // model = await tf.automl.loadObjectDetection('model_web/model.json');
-  // console.log("model loaded");
-  // run();
+    setInterval(function(){
+
+      if(!hideButton){
+      model.detect(img,maxBoxes).then(predictions => {
+        console.log(predictions);
+        objects = [];
+        if(predictions.length > 0){
+        counter++;
+        if(counter>2){counter=2;}
+        for (let i = 0; i < predictions.length; i++) {
+          objects[i]=predictions[i];
+        }
+      }
+      else{
+        counter = 0;
+        button.hide();
+      }
+      });
+    }
+  }
+    , 250);
+  }
+  );
+
+
 }
 
 
@@ -375,15 +403,6 @@ async function run(){
   setTimeout(run, 300);
 }
 
-async function loadModel() {
-  const modelURL = 'model_web/model.json';
-  model = await tf.loadGraphModel(modelURL);
-  let result = await model.executeAsync(tf.zeros([1, 300, 300, 3]));
-  await Promise.all(result.map(t => t.data()));
-  result.map(t => t.dispose());
-  run();
-  // this.predictImages(this.videoCamera.nativeElement, this.model);
-}
 
 function draw() {
   if(!loginStatus){
