@@ -5,6 +5,8 @@ var jsonData,jsonDataLength;
 var classToExplore = "";
 var jsonDataIndex;
 
+var options = {score:0.9,topk:1,iou:0.5};
+
 // let modelUrl;
 let model;
 
@@ -358,7 +360,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 async function run(){
   let test = document.getElementById('canvas'); 
-  predictions = await model.detect(test);
+  predictions = await model.detect(test,options);
   console.log(predictions);
   setTimeout(run, 300);
 
