@@ -1,3 +1,5 @@
+import * as automl from '@tensorflow/tfjs-automl';
+
 var jsonData,jsonDataLength;
 
 var classToExplore = "";
