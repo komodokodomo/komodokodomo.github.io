@@ -142,7 +142,7 @@ function closeContent(){
 async function setup() {
 
   modelUrl = 'model_web/model.json'; // URL to the model.json file.
-  model = await automl.loadImageClassification(modelUrl);
+   model = await automl.loadObjectDetection(modelUrl);
 
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
