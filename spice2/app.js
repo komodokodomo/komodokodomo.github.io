@@ -360,7 +360,8 @@ async function run(){
   let test = document.getElementById('canvas'); 
   predictions = await model.detect(test);
   console.log(predictions);
-  run();
+  setTimeout(run(), 300);
+
 }
 
 function draw() {
