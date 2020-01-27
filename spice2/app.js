@@ -23,6 +23,7 @@ let loginWrapperInputPassWord;
 let loginWrapperInputLogin;
 let loginWrapperInputForgot;
  
+let img;
 
 
 let current;
@@ -246,61 +247,11 @@ async function setup() {
       }
       }
 
-      // for(let i = 0; i<jsonDataLength; i++){
-      //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
-      // }
-      // jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-      // jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
-      // console.log("index: " + jsonDataIndex.toString());
     };
-    // subjects[i].style("display","inline");
-    // subjects[i].show();
+
   }
 
 
-  // for(let i = 0; i<jsonDataLength; i++){
-  //   subjects[i] = createElement("li",jsonData[i].subject);
-  //   subjects[i].parent(lensList);
-  //   subjects[i].id("li"+i.toString());
-  //   document.getElementById("li"+i.toString()).onclick = function(){
-  //     console.log("you clicked: " + i.toString());
-  //     lensNumber = i;
-  //     for(let j = 0; j<jsonDataLength; j++){
-  //       document.getElementById("li"+j.toString()).classList.remove("active");
-  //     }
-  //     document.getElementById("li"+i.toString()).classList.add("active");
-  //     if(hideButton){
- 
-
-  //       if(jsonData[lensNumber][objects[0].class]!== null){
-  //       let stuff = jsonData[lensNumber][objects[0].class].toString();
-  //       let stuffs = stuff.split("\\");
-
-  //       if(stuffs.length>0){
-  //       console.log("split success");
-  //       console.log(stuffs[0].split("(")[0]);
-  //       console.log(stuffs[0].split("(")[1].split(")")[0]);
-  //     }
-  //      let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
-  //      console.log(testing); 
-  //      stuff = stuff.replace('\\','<br><br>');
-  //       contentText.html(stuff);
-  //     }
-  //     else{
-  //       contentText.html("no content for now...");
-  //     }
-  //     }
-
-  //     // for(let i = 0; i<jsonDataLength; i++){
-  //     //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
-  //     // }
-  //     // jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-  //     // jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
-  //     // console.log("index: " + jsonDataIndex.toString());
-  //   };
-  //   // subjects[i].style("display","inline");
-  //   // subjects[i].show();
-  // }
 
   contentFrame = createElement("iframe","#");
   contentFrame.size(w,9*h/10);
@@ -390,81 +341,25 @@ loginWrapperInputForgot.style("border-style","none");
 loginWrapperInputForgot.style("border-radius","0.25rem");
 loginWrapperInputForgot.style("padding","1rem 0rem");
 
-// screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
-// // screenToggle2.size(w/16,w/16);
-// screenToggle2.position(32,32);
-// screenToggle2.style("width","32px");
-// screenToggle2.style("height","32px");
-// // screenToggle2.style("left","32px");
-// // screenToggle2.style("top","32px");
-// screenToggle2.mouseClicked(toggleScreen2);
-// screenToggle2.hide();
-
 
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
-  var test = document.getElementById("canvas");
+
+
   const options = {score: 0.5, iou: 0.5, topk: 20};
+  img = document.getElementById('canvas'); 
 
-
-
-  const img = document.getElementById('canvas'); 
-  // objectDetector.load('model_web') 
-  // .then(model => 
-  //   setInterval(function()
-  // {
-  // let predictions = model.detect(img, options);
-  //   model.detect(img).then(predictions => { 
-  //     if(!hideButton){
-      // console.log(predictions);
-  //     objects = [];
-  //     if(predictions.length > 0){
-  //     counter++;
-  //     if(counter>2){counter=2;}
-  //     // for (let i = 0; i < predictions.length; i++) {
-  //       objects[0]=predictions[0];
-  //     // }
-  //   }
-  //   else{
-  //     counter = 0;
-  //     button.hide();
-  //   }
-  //   }
-  //   })
-
-  // },350);
-
-  cocoSsd.load({modelUrl:"model_web/model.json"}).then(model => {
-    console.log("model loaded!");
-    status = true;
-
-    setInterval(function(){
-
-      if(!hideButton){
-      model.detect(test,maxBoxes).then(predictions => {
-        console.log(predictions);
-        objects = [];
-        if(predictions.length > 0){
-        counter++;
-        if(counter>2){counter=2;}
-        for (let i = 0; i < predictions.length; i++) {
-          objects[i]=predictions[i];
-        }
-      }
-      else{
-        counter = 0;
-        button.hide();
-      }
-      });
-    }
-  }
-    , 250);
-  }
-  );
-
+  model = await tf.automl.loadObjectDetection('model_web/model.json');
+  run();
 }
 
+
+async function run(){
+  predictions = await model.detect(img);
+  console.log(predictions);
+  run();
+}
 
 function draw() {
   if(!loginStatus){
