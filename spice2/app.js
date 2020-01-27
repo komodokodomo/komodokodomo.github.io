@@ -356,7 +356,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.hide();
   img = document.getElementById('canvas'); 
   
-  await loadModel();
+ let testing = await loadModel();
  
 
   // const options = {score: 0.5, iou: 0.5, topk: 20};
