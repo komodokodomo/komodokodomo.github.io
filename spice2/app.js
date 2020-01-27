@@ -393,17 +393,6 @@ image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
 }
 }
 
-if(debug){
- fill(0);
- noStroke();
- text(frameRate(),30,30);
- text(cameras,30,50);
- text("display: " + w + " x " +h,30,70);
- text("cam: " + video.width + " x " +video.height,30,90);
- if(status){
- text("model loaded",30,110);
- }
-}
 
  for(var i=0; i<objects.length ;i++){
    if(abs(objects[i].bbox[0]/density - prevX)>50){counter = 0;}
