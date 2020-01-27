@@ -3,6 +3,9 @@ var jsonData,jsonDataLength;
 var classToExplore = "";
 var jsonDataIndex;
 
+let modelUrl;
+let model;
+
 var subjects = [];
 
 let button,hideButton = false;
@@ -138,8 +141,8 @@ function closeContent(){
 
 async function setup() {
 
-  const modelUrl = 'model_web/model.json'; // URL to the model.json file.
-  const model = await automl.loadImageClassification(modelUrl);
+  modelUrl = 'model_web/model.json'; // URL to the model.json file.
+  model = await automl.loadImageClassification(modelUrl);
 
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
@@ -412,7 +415,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   let predictions = model.detect(img, options);
   //   model.detect(img).then(predictions => { 
   //     if(!hideButton){
-      console.log(predictions) 
+      console.log(predictions);cons
   //     objects = [];
   //     if(predictions.length > 0){
   //     counter++;
