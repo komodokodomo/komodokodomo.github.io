@@ -137,6 +137,10 @@ function closeContent(){
 // }
 
 function setup() {
+
+  const modelUrl = 'model_web/model.json'; // URL to the model.json file.
+  const model = await automl.loadImageClassification(modelUrl);
+
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
   
@@ -396,31 +400,33 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.size(videoWidth, videoHeight);
   video.hide();
   var test = document.getElementById("canvas");
+  const options = {score: 0.5, iou: 0.5, topk: 20};
+
 
 
   const img = document.getElementById('canvas'); 
-  objectDetector.load('model_web') 
-  .then(model => 
+  // objectDetector.load('model_web') 
+  // .then(model => 
     setInterval(function()
   {
-    
-    model.detect(img).then(predictions => { 
-      if(!hideButton){
+  let predictions = await model.detect(img, options);
+  //   model.detect(img).then(predictions => { 
+  //     if(!hideButton){
       console.log(predictions) 
-      objects = [];
-      if(predictions.length > 0){
-      counter++;
-      if(counter>2){counter=2;}
-      // for (let i = 0; i < predictions.length; i++) {
-        objects[0]=predictions[0];
-      // }
-    }
-    else{
-      counter = 0;
-      button.hide();
-    }
-    }
-    })
+  //     objects = [];
+  //     if(predictions.length > 0){
+  //     counter++;
+  //     if(counter>2){counter=2;}
+  //     // for (let i = 0; i < predictions.length; i++) {
+  //       objects[0]=predictions[0];
+  //     // }
+  //   }
+  //   else{
+  //     counter = 0;
+  //     button.hide();
+  //   }
+  //   }
+  //   })
 
   },250))
 
