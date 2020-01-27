@@ -428,7 +428,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   //   }
   //   })
 
-  },350))
+  },350);
 
   // cocoSsd.load().then(model => {
   //   console.log("model loaded!");
