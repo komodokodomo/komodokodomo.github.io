@@ -353,7 +353,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   {
     
     model.detect(img).then(predictions => { 
-      if(!hideButton){
+      // if(!hideButton){
       console.log(predictions) 
       objects = [];
       if(predictions.length > 0){
@@ -367,7 +367,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
       counter = 0;
       button.hide();
     }
-    }
+    // }
     })
 
   },250))
