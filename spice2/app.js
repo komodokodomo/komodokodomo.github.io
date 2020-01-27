@@ -136,7 +136,7 @@ function closeContent(){
 //   contentFrame.attribute("src",ele.getAttribute('href'));
 // }
 
-function setup() {
+async function setup() {
 
   const modelUrl = 'model_web/model.json'; // URL to the model.json file.
   const model = await automl.loadImageClassification(modelUrl);
