@@ -1,11 +1,11 @@
-import * as automl from '@tensorflow/tfjs-automl';
+// import * as automl from '@tensorflow/tfjs-automl';
 
 var jsonData,jsonDataLength;
 
 var classToExplore = "";
 var jsonDataIndex;
 
-let modelUrl;
+// let modelUrl;
 let model;
 
 var subjects = [];
@@ -143,8 +143,8 @@ function closeContent(){
 
 async function setup() {
 
-  modelUrl = 'model_web/model.json'; // URL to the model.json file.
-   model = await automl.loadObjectDetection(modelUrl);
+  // modelUrl = 'model_web/model.json'; // URL to the model.json file.
+  //  model = await automl.loadObjectDetection(modelUrl);
 
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
@@ -412,12 +412,12 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   const img = document.getElementById('canvas'); 
   // objectDetector.load('model_web') 
   // .then(model => 
-    setInterval(function()
-  {
-  let predictions = model.detect(img, options);
+  //   setInterval(function()
+  // {
+  // let predictions = model.detect(img, options);
   //   model.detect(img).then(predictions => { 
   //     if(!hideButton){
-      console.log(predictions);cons
+      // console.log(predictions);
   //     objects = [];
   //     if(predictions.length > 0){
   //     counter++;
@@ -433,35 +433,35 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   //   }
   //   })
 
-  },350);
+  // },350);
 
-  // cocoSsd.load().then(model => {
-  //   console.log("model loaded!");
-  //   status = true;
+  cocoSsd.load({modelUrl:"model_web/model.json"}).then(model => {
+    console.log("model loaded!");
+    status = true;
 
-  //   setInterval(function(){
+    setInterval(function(){
 
-  //     if(!hideButton){
-  //     model.detect(test,maxBoxes).then(predictions => {
-  //       console.log(predictions);
-  //       objects = [];
-  //       if(predictions.length > 0){
-  //       counter++;
-  //       if(counter>2){counter=2;}
-  //       for (let i = 0; i < predictions.length; i++) {
-  //         objects[i]=predictions[i];
-  //       }
-  //     }
-  //     else{
-  //       counter = 0;
-  //       button.hide();
-  //     }
-  //     });
-  //   }
-  // }
-  //   , 250);
-  // }
-  // );
+      if(!hideButton){
+      model.detect(test,maxBoxes).then(predictions => {
+        console.log(predictions);
+        objects = [];
+        if(predictions.length > 0){
+        counter++;
+        if(counter>2){counter=2;}
+        for (let i = 0; i < predictions.length; i++) {
+          objects[i]=predictions[i];
+        }
+      }
+      else{
+        counter = 0;
+        button.hide();
+      }
+      });
+    }
+  }
+    , 250);
+  }
+  );
 
 }
 
