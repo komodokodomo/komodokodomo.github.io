@@ -409,7 +409,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   // .then(model => 
     setInterval(function()
   {
-  let predictions = await model.detect(img, options);
+  let predictions = model.detect(img, options);
   //   model.detect(img).then(predictions => { 
   //     if(!hideButton){
       console.log(predictions) 
@@ -428,7 +428,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   //   }
   //   })
 
-  },250))
+  },350))
 
   // cocoSsd.load().then(model => {
   //   console.log("model loaded!");
