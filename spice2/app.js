@@ -1,3 +1,12 @@
+/*
+autoML library runs fine but prediction is totally off, currently do not understand why
+
+
+
+
+*/
+
+
 var jsonData,jsonDataLength;
 
 var classToExplore = "";
@@ -347,30 +356,8 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.hide();
   img = document.getElementById('canvas'); 
   
-  objectDetector.load('model_web') 
-  .then(model => 
-    setInterval(function()
-  {
-    
-    model.detect(img).then(predictions => { 
-      // if(!hideButton){
-      console.log(predictions) 
-      objects = [];
-      if(predictions.length > 0){
-      counter++;
-      if(counter>2){counter=2;}
-      // for (let i = 0; i < predictions.length; i++) {
-        objects[0]=predictions[0];
-      // }
-    }
-    else{
-      counter = 0;
-      button.hide();
-    }
-    // }
-    })
-
-  },250))
+  await loadModel();
+ 
 
   // const options = {score: 0.5, iou: 0.5, topk: 20};
 
@@ -387,6 +374,15 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 //   setTimeout(run, 300);
 
 // }
+
+async function loadModel() {
+  const modelURL = 'model_web/model.json';
+  model = await tf.loadGraphModel(modelURL);
+  let result = await model.executeAsync(tf.zeros([1, 300, 300, 3]));
+  await Promise.all(result.map(t => t.data()));
+  result.map(t => t.dispose());
+  // this.predictImages(this.videoCamera.nativeElement, this.model);
+}
 
 function draw() {
   if(!loginStatus){
