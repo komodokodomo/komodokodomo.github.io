@@ -351,12 +351,14 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   img = document.getElementById('canvas'); 
 
   model = await tf.automl.loadObjectDetection('model_web/model.json');
+  console.log("model loaded");
   run();
 }
 
 
 async function run(){
-  predictions = await model.detect(img);
+  let test = document.getElementById('canvas'); 
+  predictions = await model.detect(test);
   console.log(predictions);
   run();
 }
