@@ -194,11 +194,11 @@
                             boxes = result[1].dataSync();
                             batched.dispose();
                             tf.dispose(result);
-                            _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[2].shape[0]), 2), maxScores = _a[0], classes = _a[1];
+                            _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[0].shape[2]), 2), maxScores = _a[0], classes = _a[1];
                             prevBackend = tf.getBackend();
                             tf.setBackend('cpu');
                             indexTensor = tf.tidy(function () {
-                                var boxes2 = tf.tensor2d(boxes, [result[1].shape[1], result[1].shape[2]]);
+                                var boxes2 = tf.tensor2d(boxes, [result[1].shape[1], result[1].shape[3]]);
                                 return tf.image.nonMaxSuppression(boxes2, maxScores, maxNumBoxes, 0.5, 0.5);
                             });
                             indexes = indexTensor.dataSync();
