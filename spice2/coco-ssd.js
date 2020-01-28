@@ -199,7 +199,7 @@
                             // console.log("boxes: " + boxes);
                             batched.dispose();
                             tf.dispose(result);
-                            _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[1].shape[2]), 2), maxScores = _a[0], classes = _a[1];
+                            _a = __read(this.calculateMaxScores(scores, result[1].shape[1], result[1].shape[2]), 2), maxScores = _a[0], classes = _a[1];
                             console.log(classes);
                             prevBackend = tf.getBackend();
                             tf.setBackend('cpu');
