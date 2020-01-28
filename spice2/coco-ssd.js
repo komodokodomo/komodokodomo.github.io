@@ -190,7 +190,7 @@
                             return [4, this.model.executeAsync(batched)];
                         case 1:
                             result = _b.sent();
-                            console.log(result); 
+                            // console.log(result); 
                             //detection_boxes,detection_scores,detection_classes
                             //1,100 /// // 1,100,4  /// 1,100 /// 
                             scores = result[0].dataSync();
@@ -200,7 +200,7 @@
                             batched.dispose();
                             tf.dispose(result);
                             _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[2].shape[0]), 2), maxScores = _a[0], classes = _a[1];
-                            console.log(_a);
+                            // console.log(_a);
                             prevBackend = tf.getBackend();
                             tf.setBackend('cpu');
                             indexTensor = tf.tidy(function () {
