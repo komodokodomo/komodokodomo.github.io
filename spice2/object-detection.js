@@ -973,8 +973,8 @@
 
 	          case 5:
 	            result = _context.sent;
-	            scores = result[1].dataSync();
-	            boxes = result[0].dataSync(); // clean the webgl tensors
+	            scores = result[0].dataSync();
+	            boxes = result[1].dataSync(); // clean the webgl tensors
 
 	            batched.dispose();
 	            dispose(result);
