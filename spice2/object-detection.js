@@ -973,10 +973,10 @@
 
 	          case 5:
 				result = _context.sent;
-				let a = tf.tensor1d(result[0]);
-				let b = tf.tensor1d(result[2]);
-				let compound = a.concat(b);
-				console.log(compound);
+				// let a = tf.tensor1d(result[0]);
+				// let b = tf.tensor1d(result[2]);
+				// let compound = a.concat(b);
+				console.log(result);
 				boxes = result[0].dataSync(); // clean the webgl tensors
 				scores = result[1].dataSync();
 
