@@ -358,7 +358,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   img = document.getElementById('canvas'); 
   
   var ModelConfig = {
-    base : "mobilenet_v2",
+    // base : "mobilenet_v2",
     modelUrl: "model_web/model.json"
   }
   
