@@ -202,7 +202,7 @@
                             prevBackend = tf.getBackend();
                             tf.setBackend('gpu');
                             indexTensor = tf.tidy(function () {
-                                var boxes2 = tf.tensor2d(boxes, [result[1].shape[1], result[1].shape[3]]);
+                                var boxes2 = tf.tensor2d(boxes, [result[1].shape[1], result[2].shape[1]]);
                                 return tf.image.nonMaxSuppression(boxes2, maxScores, maxNumBoxes, 0.5, 0.5);
                             });
                             indexes = indexTensor.dataSync();
