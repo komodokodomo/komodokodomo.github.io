@@ -43,7 +43,7 @@ let density;
 let counter = 0;
 let screenToggle,screenToggle2;
 
-let maxBoxes = 3;
+let maxBoxes = 1;
 
 let canvas;
 
