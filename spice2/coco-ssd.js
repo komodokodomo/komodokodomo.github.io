@@ -206,8 +206,8 @@
 
     // const [maxScores, classes] = this.calculateMaxScores(scores,                    result[0].shape[1],result[0].shape[2]);
                                                         //( scores: Float32Array,      numBoxes: number, numClasses: number): [number[], number[]] {
-
-                            _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[1].shape[2]), 2), maxScores = _a[0], classes = _a[1];
+                            _a = __read(this.calculateMaxScores(scores, result[0].shape[1], 4), 2), maxScores = _a[0], classes = _a[1];
+                            // _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[1].shape[2]), 2), maxScores = _a[0], classes = _a[1];
                             // console.log(classes);
                             prevBackend = tf.getBackend();
                             tf.setBackend('cpu');
