@@ -190,9 +190,11 @@
                             return [4, this.model.executeAsync(batched)];
                         case 1:
                             result = _b.sent();
-                            console.log(result);
+                            console.log(result); // 1,100,4  /// 1,100 /// 1,100 /// 1
                             scores = result[0].dataSync();
+                            console.log("scores: " + scores);
                             boxes = result[1].dataSync();
+                            console.log("boxes: " + boxes);
                             batched.dispose();
                             tf.dispose(result);
                             _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[0].shape[2]), 2), maxScores = _a[0], classes = _a[1];
