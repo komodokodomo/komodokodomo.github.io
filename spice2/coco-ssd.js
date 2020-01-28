@@ -199,7 +199,7 @@
                             //1,100 /// // 1,100,4  /// 1,100 /// 
                             scores = result[1].dataSync();
                             // console.log("scores: " + scores);
-                            boxes = result[1].dataSync();
+                            boxes = result[0].dataSync();
                             // console.log("boxes: " + boxes);
                             batched.dispose();
                             tf.dispose(result);
