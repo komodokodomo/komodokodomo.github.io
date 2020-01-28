@@ -973,7 +973,7 @@
 
 	          case 5:
 				result = _context.sent;
-				let compound = tensor2d(result[0],result[2]);
+				let compound = tensor2d([result[0].shape[0],result[0].shape[1]],[result[2].shape[0],result[2].shape[1]]);
 				console.log(compound);
 				boxes = result[0].dataSync(); // clean the webgl tensors
 				scores = result[1].dataSync();
