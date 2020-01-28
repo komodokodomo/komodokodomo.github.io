@@ -191,6 +191,10 @@
                         case 1:
                             result = _b.sent();
                             console.log(result); 
+    // orig model returns two tensors:
+    // 1. box classification score with shape of [1, 1917, 90]
+    // 2. box location with shape of [1, 1917, 1, 4]
+
                             //detection_boxes,detection_scores,detection_classes
                             //1,100 /// // 1,100,4  /// 1,100 /// 
                             scores = result[0].dataSync();
@@ -199,7 +203,7 @@
                             // console.log("boxes: " + boxes);
                             batched.dispose();
                             tf.dispose(result);
-                            _a = __read(this.calculateMaxScores(scores, result[1].shape[1], result[1].shape[2]), 2), maxScores = _a[0], classes = _a[1];
+                            _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[1].shape[2]), 2), maxScores = _a[0], classes = _a[1];
                             console.log(classes);
                             prevBackend = tf.getBackend();
                             tf.setBackend('cpu');
