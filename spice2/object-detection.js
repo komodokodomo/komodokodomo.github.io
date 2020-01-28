@@ -972,7 +972,9 @@
 	            return graph.executeAsync(batched);
 
 	          case 5:
-	            result = _context.sent;
+				result = _context.sent;
+				let compound = tensor2d(result[0],result[2]);
+				console.log(compound);
 				boxes = result[0].dataSync(); // clean the webgl tensors
 				scores = result[1].dataSync();
 
