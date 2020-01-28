@@ -200,7 +200,7 @@
                             batched.dispose();
                             tf.dispose(result);
                             _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[2].shape[0]), 2), maxScores = _a[0], classes = _a[1];
-                            // console.log(_a);
+                            console.log(classes);
                             prevBackend = tf.getBackend();
                             tf.setBackend('cpu');
                             indexTensor = tf.tidy(function () {
