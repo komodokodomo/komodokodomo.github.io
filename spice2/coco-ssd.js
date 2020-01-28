@@ -91,22 +91,22 @@
 
     var CLASSES = {
         1: {
-            name: 'belimbi',
+            name: '/m/01g317',
             id: 1,
             displayName: 'belimbi',
         },
         2: {
-            name: 'blue pea',
+            name: '/m/0199g',
             id: 2,
             displayName: 'blue pea',
         },
         3: {
-            name: 'curry',
+            name: '/m/0k4j',
             id: 3,
             displayName: 'curry',
         },
         4: {
-            name: 'pandan',
+            name: '/m/04_sv',
             id: 4,
             displayName: 'pandan',
         },
