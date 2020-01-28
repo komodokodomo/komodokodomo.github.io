@@ -190,6 +190,7 @@
                             return [4, this.model.executeAsync(batched)];
                         case 1:
                             result = _b.sent();
+                            console.log(result);
                             scores = result[0].dataSync();
                             boxes = result[1].dataSync();
                             batched.dispose();
