@@ -372,9 +372,10 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
       if(!hideButton){
       model.detect(img,maxBoxes).then(predictions => {
-        console.log(predictions);
+        
         objects = [];
         if(predictions.length > 0){
+        console.log(predictions);
         counter++;
         if(counter>2){counter=2;}
         for (let i = 0; i < predictions.length; i++) {
