@@ -91,22 +91,22 @@
 
     var CLASSES = {
         1: {
-            name: '/m/01g317',
+            // name: '/m/01g317',
             id: 1,
             displayName: 'belimbi',
         },
         2: {
-            name: '/m/0199g',
+            // name: '/m/0199g',
             id: 2,
             displayName: 'blue pea',
         },
         3: {
-            name: '/m/0k4j',
+            // name: '/m/0k4j',
             id: 3,
             displayName: 'curry',
         },
         4: {
-            name: '/m/04_sv',
+            // name: '/m/04_sv',
             id: 4,
             displayName: 'pandan',
         },
@@ -203,12 +203,16 @@
                             // console.log("boxes: " + boxes);
                             batched.dispose();
                             tf.dispose(result);
+
+    // const [maxScores, classes] = this.calculateMaxScores(scores,                    result[0].shape[1],result[0].shape[2]);
+                                                        //( scores: Float32Array,      numBoxes: number, numClasses: number): [number[], number[]] {
+
                             _a = __read(this.calculateMaxScores(scores, result[0].shape[1], result[1].shape[2]), 2), maxScores = _a[0], classes = _a[1];
                             console.log(classes);
                             prevBackend = tf.getBackend();
                             tf.setBackend('cpu');
                             indexTensor = tf.tidy(function () {
-                                var boxes2 = tf.tensor2d(boxes, [result[1].shape[1], result[1].shape[2]]);
+                                var boxes2 = tf.tensor2d(boxes, [result[0].shape[1], result[1].shape[2]]);
                                 return tf.image.nonMaxSuppression(boxes2, maxScores, maxNumBoxes, 0.5, 0.5);
                             });
                             indexes = indexTensor.dataSync();
