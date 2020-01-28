@@ -43,7 +43,7 @@ let density;
 let counter = 0;
 let screenToggle,screenToggle2;
 
-let maxBoxes = 1;
+let maxBoxes = 3;
 
 let canvas;
 
@@ -455,7 +455,7 @@ image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
 
   else{
   button.size(objects[i].bbox[2]*buttonSizeRatio/density,objects[i].bbox[3]*buttonSizeRatio/density);  //default
-  button.position(objects[i].bbox[0]/density+(objects[i].bbox[2]/density*(1-buttonSizeRatio))/2   ,objects[i].bbox[1]/density+(objects[i].bbox[3]/density*(1-buttonSizeRatio))/2);
+  button.position(objects[i].bbox[0]/density+(objects[i].bbox[2]/density*(1-buttonSizeRatio))/2 ,objects[i].bbox[1]/density+(objects[i].bbox[3]/density*(1-buttonSizeRatio))/2);
   }
 
   prevX = objects[i].bbox[0]/density;
