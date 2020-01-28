@@ -183,14 +183,14 @@
                                 if (!(img instanceof tf.Tensor)) {
                                     img = tf.browser.fromPixels(img);
                                 }
-                                return img.expandDims(1);
+                                return img.expandDims(0);
                             });
                             height = batched.shape[1];
                             width = batched.shape[2];
                             return [4, this.model.executeAsync(batched)];
                         case 1:
                             result = _b.sent();
-                            // console.log(result); 
+                            console.log(result); 
                             //detection_boxes,detection_scores,detection_classes
                             //1,100 /// // 1,100,4  /// 1,100 /// 
                             scores = result[0].dataSync();
