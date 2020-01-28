@@ -183,7 +183,7 @@
                                 if (!(img instanceof tf.Tensor)) {
                                     img = tf.browser.fromPixels(img);
                                 }
-                                return img.expandDims(0);
+                                return img.expandDims(1);
                             });
                             height = batched.shape[1];
                             width = batched.shape[2];
@@ -193,9 +193,9 @@
                             // console.log(result); 
                             //detection_boxes,detection_scores,detection_classes
                             //1,100 /// // 1,100,4  /// 1,100 /// 
-                            scores = result[1].dataSync();
+                            scores = result[0].dataSync();
                             // console.log("scores: " + scores);
-                            boxes = result[0].dataSync();
+                            boxes = result[1].dataSync();
                             // console.log("boxes: " + boxes);
                             batched.dispose();
                             tf.dispose(result);
