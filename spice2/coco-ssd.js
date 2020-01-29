@@ -202,7 +202,7 @@ var compound = [];
                             compound[1]=result[0].shape[1];
                             compound[2]=result[2].shape[0];
                             compound[3]=result[2].shape[1];
-                            let test = tf.tensor1d(compound);
+                            let test = tf.tensor(compound);
                             console.log(test);
                             boxes = result[1].dataSync();
                             // console.log("boxes: " + boxes);
