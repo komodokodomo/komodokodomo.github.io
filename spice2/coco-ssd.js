@@ -205,7 +205,7 @@ var compound = [];
                             // let test = tf.tensor(result[0]);
                             let test = tf.stack([result[0].shape,result[2].shape]);
                             console.log(result);
-                            boxes = result[1].dataSync();
+                            boxes = test.dataSync();
                             // console.log("boxes: " + boxes);
                             batched.dispose();
                             tf.dispose(result);
