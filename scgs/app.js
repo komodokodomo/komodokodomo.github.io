@@ -283,7 +283,7 @@ function setup() {
           for(var k=0; k<stuffs.length; k++){
             // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
             // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-            let addon = stuffs[k].split("(")[0] + "</a><br><br><br>";
+            let addon = stuffs[k].split("(")[0] + "<br><br><br>";
             things += addon;
           }
           console.log("split success");
