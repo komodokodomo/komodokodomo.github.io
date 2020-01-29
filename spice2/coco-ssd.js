@@ -205,7 +205,7 @@ var compound = [];
                             // compound[2]=result[2].shape[0];
                             // compound[3]=result[2].shape[1];
                             // let test = tf.tensor(result[0]);
-                            let test = tf.concat( [ [result[0]] ,[result[2]] ]);
+                            let test = tf.stack( [ [result[0]] ,[result[2]] ]);
                             console.log(test);
                             // console.log("boxes: " + boxes);
                             batched.dispose();
