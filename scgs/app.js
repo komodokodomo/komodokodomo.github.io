@@ -272,7 +272,8 @@ function setup() {
       document.getElementById("li"+i.toString()).classList.add("active");
       if(hideButton){
         if(jsonData[lensNumber][objects[0].class]!== null){
-          let stuff = jsonData[lensNumber][objects[0].class].toString();
+          // let stuff = jsonData[lensNumber][objects[0].class].toString();
+          let stuff = jsonData[lensNumber][objects[0].class];
           console.log(stuff);
           let stuffs = stuff.split("\\");
           let things = "";
