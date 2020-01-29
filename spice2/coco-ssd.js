@@ -34,7 +34,7 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-
+var compound = [];
     function __awaiter(thisArg, _arguments, P, generator) {
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -198,7 +198,11 @@
                             //detection_boxes,detection_scores,detection_classes
                             //1,100 /// // 1,100,4  /// 1,100 /// 
                             scores = result[1].dataSync();
-                            // console.log("scores: " + scores);
+                            compound[0]=result[0].shape[0];
+                            compound[1]=result[0].shape[1];
+                            compound[2]=result[2].shape[0];
+                            compound[3]=result[2].shape[1];
+                            console.log(compound);
                             boxes = result[1].dataSync();
                             // console.log("boxes: " + boxes);
                             batched.dispose();

@@ -357,66 +357,42 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
   video.hide();
   img = document.getElementById('canvas'); 
 
-  objectDetector.load('model_web') 
-  .then(model => 
-    setInterval(function()
-  {
-    
-    model.detect(img).then(predictions => { 
+  
+  var ModelConfig = {
+    base : "mobilenet_v2",
+    modelUrl: "model_web/model.json"
+  }
+  
+  
+
+  cocoSsd.load(ModelConfig).then(model => {
+    console.log("model loaded!");
+    status = true;
+
+    setInterval(function(){
+
       if(!hideButton){
-      console.log(predictions) 
-      objects = [];
-      if(predictions.length > 0){
-      counter++;
-      if(counter>2){counter=2;}
-      // for (let i = 0; i < predictions.length; i++) {
-        objects[0]=predictions[0];
-      // }
-    }
-    else{
-      counter = 0;
-      button.hide();
-    }
-    }
-    })
-
-  },250))
-  
-  // var ModelConfig = {
-  //   base : "mobilenet_v2",
-  //   modelUrl: "model_web/model.json"
-  // }
-  
-  
-
-  // cocoSsd.load(ModelConfig).then(model => {
-  //   console.log("model loaded!");
-  //   status = true;
-
-  //   setInterval(function(){
-
-  //     if(!hideButton){
-  //     model.detect(img,maxBoxes).then(predictions => {
+      model.detect(img,maxBoxes).then(predictions => {
         
-  //       objects = [];
-  //       if(predictions.length > 0){
-  //       console.log(predictions);
-  //       counter++;
-  //       if(counter>2){counter=2;}
-  //       for (let i = 0; i < predictions.length; i++) {
-  //         objects[i]=predictions[i];
-  //       }
-  //     }
-  //     else{
-  //       counter = 0;
-  //       button.hide();
-  //     }
-  //     });
-  //   }
-  // }
-  //   , 250);
-  // }
-  // );
+        objects = [];
+        if(predictions.length > 0){
+        console.log(predictions);
+        counter++;
+        if(counter>2){counter=2;}
+        for (let i = 0; i < predictions.length; i++) {
+          objects[i]=predictions[i];
+        }
+      }
+      else{
+        counter = 0;
+        button.hide();
+      }
+      });
+    }
+  }
+    , 250);
+  }
+  );
 
 
 }
