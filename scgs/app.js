@@ -273,6 +273,7 @@ function setup() {
       if(hideButton){
         if(jsonData[lensNumber][objects[0].class]!== null){
           let stuff = jsonData[lensNumber][objects[0].class].toString();
+          console.log(stuff);
           let stuffs = stuff.split("\\");
           let things = "";
           addContentButton.hide();
