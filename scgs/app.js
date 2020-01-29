@@ -287,7 +287,7 @@ function setup() {
           }
           console.log("split success");
           console.log(stuffs[0].split("(")[0]);
-          console.log(stuffs[0].split("(")[1].split(")")[0]);
+          // console.log(stuffs[0].split("(")[1].split(")")[0]);
         }
           //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
           console.log(things); 
