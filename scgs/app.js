@@ -274,7 +274,7 @@ function setup() {
         if(jsonData[lensNumber][classToExplore]!== null){
           // let stuff = jsonData[lensNumber][objects[0].class].toString();
           let stuff = jsonData[lensNumber][classToExplore].toString();
-          console.log(stuff);
+          console.log(classToExplore);
           let stuffs = stuff.split("\\");
           let things = "";
           
