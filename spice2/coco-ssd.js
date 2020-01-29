@@ -203,7 +203,7 @@ var compound = [];
                             compound[2]=result[2].shape[0];
                             compound[3]=result[2].shape[1];
                             // let test = tf.tensor(compound);
-                            let test = tf.concat(result[0],result[2]);
+                            // let test = tf.concat(result[0],result[2]);
                             console.log(batched);
                             boxes = result[1].dataSync();
                             // console.log("boxes: " + boxes);
