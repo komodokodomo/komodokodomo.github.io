@@ -259,6 +259,13 @@ function setup() {
     subjects[i].parent(lensList);
     subjects[i].id("li"+i.toString());
 
+    if (i === jsonDataLength - 1) {
+      // Students tab
+      addContentButton = createElement("button", "Add your own");
+      addContentButton.parent(contentContainer);
+      addContentButton.id("add-content");
+    }
+
     document.getElementById("li"+i.toString()).onclick = function(){
       console.log("you clicked: " + i.toString());
       lensNumber = i;
@@ -290,68 +297,8 @@ function setup() {
           contentText.html("no content for now...");
         }
       }
-      if (i === jsonDataLength - 1) {
-        // Students tab
-        addContentButton = createElement("button", "Add your own");
-        addContentButton.parent(contentContainer);
-        addContentButton.id("add-content");
-      }
-
-      // for(let i = 0; i<jsonDataLength; i++){
-      //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
-      // }
-      // jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-      // jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
-      // console.log("index: " + jsonDataIndex.toString());
     };
-    // subjects[i].style("display","inline");
-    // subjects[i].show();
   }
-
-
-  // for(let i = 0; i<jsonDataLength; i++){
-  //   subjects[i] = createElement("li",jsonData[i].subject);
-  //   subjects[i].parent(lensList);
-  //   subjects[i].id("li"+i.toString());
-  //   document.getElementById("li"+i.toString()).onclick = function(){
-  //     console.log("you clicked: " + i.toString());
-  //     lensNumber = i;
-  //     for(let j = 0; j<jsonDataLength; j++){
-  //       document.getElementById("li"+j.toString()).classList.remove("active");
-  //     }
-  //     document.getElementById("li"+i.toString()).classList.add("active");
-  //     if(hideButton){
- 
-
-  //       if(jsonData[lensNumber][objects[0].class]!== null){
-  //       let stuff = jsonData[lensNumber][objects[0].class].toString();
-  //       let stuffs = stuff.split("\\");
-
-  //       if(stuffs.length>0){
-  //       console.log("split success");
-  //       console.log(stuffs[0].split("(")[0]);
-  //       console.log(stuffs[0].split("(")[1].split(")")[0]);
-  //     }
-  //      let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
-  //      console.log(testing); 
-  //      stuff = stuff.replace('\\','<br><br>');
-  //       contentText.html(stuff);
-  //     }
-  //     else{
-  //       contentText.html("no content for now...");
-  //     }
-  //     }
-
-  //     // for(let i = 0; i<jsonDataLength; i++){
-  //     //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
-  //     // }
-  //     // jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-  //     // jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
-  //     // console.log("index: " + jsonDataIndex.toString());
-  //   };
-  //   // subjects[i].style("display","inline");
-  //   // subjects[i].show();
-  // }
 
   contentFrame = createElement("iframe","#");
   contentFrame.size(w,9*h/10);
