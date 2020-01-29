@@ -254,6 +254,10 @@ function setup() {
   buttonClick.style("left","50%");
   buttonClick.style("transform", "translate(-50%, -50%)");
 
+  addContentButton = createElement("button", "Add your own");
+  addContentButton.parent(contentContainer);
+  addContentButton.id("add-content");
+
   for(let i = 0; i<jsonDataLength; i++){
     subjects[i] = createElement("li",jsonData[i].subject);
     subjects[i].parent(lensList);
@@ -271,6 +275,7 @@ function setup() {
           let stuff = jsonData[lensNumber][objects[0].class].toString();
           let stuffs = stuff.split("\\");
           let things = "";
+          addContentButton.hide();
 
           if(stuffs.length>0){
           for(var k=0; k<stuffs.length; k++){
@@ -292,10 +297,11 @@ function setup() {
         }
       }
       if (i === jsonDataLength - 1) {
+        addContentButton.show();
         // Students tab
-        addContentButton = createElement("button", "Add your own");
-        addContentButton.parent(contentContainer);
-        addContentButton.id("add-content");
+        // addContentButton = createElement("button", "Add your own");
+        // addContentButton.parent(contentContainer);
+        // addContentButton.id("add-content");
       }
 
       // for(let i = 0; i<jsonDataLength; i++){
