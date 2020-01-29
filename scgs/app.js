@@ -271,7 +271,7 @@ function setup() {
       }
       document.getElementById("li"+i.toString()).classList.add("active");
       if(hideButton){
-        if(jsonData[lensNumber][objects[0].class]!== null){
+        if(jsonData[lensNumber][classToExplore]!== null){
           // let stuff = jsonData[lensNumber][objects[0].class].toString();
           let stuff = jsonData[lensNumber][classToExplore].toString();
           console.log(stuff);
