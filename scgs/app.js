@@ -276,7 +276,7 @@ function setup() {
           console.log(stuff);
           let stuffs = stuff.split("\\");
           let things = "";
-          addContentButton.hide();
+          
 
           if(stuffs.length>0){
           for(var k=0; k<stuffs.length; k++){
@@ -303,6 +303,9 @@ function setup() {
         // addContentButton = createElement("button", "Add your own");
         // addContentButton.parent(contentContainer);
         // addContentButton.id("add-content");
+      }
+      else{
+        addContentButton.hide();
       }
 
       // for(let i = 0; i<jsonDataLength; i++){
