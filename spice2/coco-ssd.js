@@ -198,12 +198,12 @@ var compound = [];
                             //detection_boxes,detection_scores,detection_classes
                             //1,100 /// // 1,100,4  /// 1,100 /// 
                             scores = result[1].dataSync();
-                            compound[0]=result[0].shape[0];
-                            compound[1]=result[0].shape[1];
-                            compound[2]=result[2].shape[0];
-                            compound[3]=result[2].shape[1];
-                            let test = tf.tensor(result[0]);
-                            // let test = tf.concat(result[0],result[2]);
+                            // compound[0]=result[0].shape[0];
+                            // compound[1]=result[0].shape[1];
+                            // compound[2]=result[2].shape[0];
+                            // compound[3]=result[2].shape[1];
+                            // let test = tf.tensor(result[0]);
+                            let test = tf.concat(result[0],result[2]);
                             console.log(test);
                             boxes = result[1].dataSync();
                             // console.log("boxes: " + boxes);
