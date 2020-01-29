@@ -209,6 +209,7 @@ var compound = [];
                             // console.log("boxes: " + boxes);
                             batched.dispose();
                             tf.dispose(result);
+                            tf.dispose(test);
 
     // const [maxScores, classes] = this.calculateMaxScores(scores,                    result[0].shape[1],result[0].shape[2]);
                                                         //( scores: Float32Array,      numBoxes: number, numClasses: number): [number[], number[]] {
