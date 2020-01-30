@@ -385,6 +385,7 @@ debugText.position(100,20);
   video = createCapture(constraints);
   video.size(videoWidth, videoHeight);
   video.hide();
+  
 
   img = document.getElementById('canvas'); 
 
@@ -403,12 +404,12 @@ async function draw() {
  imageMode(CENTER);
 
 
- if(w>h){
+//  if(w>h){
   image(video, w/2, h/2, videoWidth, videoHeight);
-  }
-  else{
-  image(video, w/2, h/2, videoHeight, videoWidth);
-  }
+  // }
+  // else{
+  // image(video, w/2, h/2, videoHeight, videoWidth);
+  // }
   // console.log(typeof debugPrediction);
 
 
@@ -440,6 +441,8 @@ async function draw() {
 function windowResized(){
     w = window.innerWidth;
     h = window.innerHeight;
+    if(w>h){  resizeCanvas(h, h);}
+    else{  resizeCanvas(w, w);}
     resizeCanvas(w, h);
     lensContainer.size(w,h/10);
     lensContainer.position(0,9*h/10);
