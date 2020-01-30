@@ -1,4 +1,3 @@
-// this model uses image classification instead
 
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
@@ -54,8 +53,6 @@ var constraints = {
 };
 
 
-let debug = false;
-
 var itemsText = [];
 let video;
 
@@ -66,8 +63,8 @@ var starting = false;
 
 let status;
 
-var videoWidth = 1080;
-var videoHeight = 1080;
+var videoWidth = 1280;
+var videoHeight = 720;
 
 var w,h;
 
@@ -108,15 +105,12 @@ async function predict() {
       debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       classPrediction = classPrediction+ prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
-  console.log(debugPrediction);
-  // fill(0);
-  // textSize(100);
-  // text(debugPrediction,w/2,h/2);
+  console.log(classPrediction);
   debugText.html(debugPrediction);
   predict();
 }
 
-function trigger() {
+function trigger() {   
   console.log('button clicked!');
   lensContainer.style("display","flex");
   contentContainer.style("display","flex");
@@ -134,6 +128,8 @@ function trigger() {
   }
   console.log(objects[0].class);
 }
+
+
 function loginUser(){
 loginStatus = true;
 loginWrapper.hide();
@@ -175,10 +171,12 @@ async function setup() {
   w = window.innerWidth;
   h = window.innerHeight;
 
+
   density = pixelDensity();
   console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
 
-  canvas = createCanvas(w, h);
+  if(w>h){  canvas = createCanvas(h, h);}
+  else{  canvas = createCanvas(w, w);}
   canvas.id("canvas");
 
   contentContainer = createDiv();
