@@ -141,12 +141,7 @@ function toggleScreen() {
   // screenToggle2.show(); 
 }
 
-function toggleScreen2() {
-  fullscreen(false);
-  console.log("non-fullscreen");
-  screenToggle.show();
-  screenToggle2.hide();
-}
+
 
 function closeContent(){
   document.getElementById("related-content-container").classList.remove("active");
@@ -371,15 +366,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 debugText = createDiv();
 debugText.position(100,20);
-// screenToggle2 = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1hXjCPTS8UiLYQwsnF32wI3yTOTsaobdF",'un-toggle fullscreen');
-// // screenToggle2.size(w/16,w/16);
-// screenToggle2.position(32,32);
-// screenToggle2.style("width","32px");
-// screenToggle2.style("height","32px");
-// // screenToggle2.style("left","32px");
-// // screenToggle2.style("top","32px");
-// screenToggle2.mouseClicked(toggleScreen2);
-// screenToggle2.hide();
+
 
 
   video = createCapture(constraints);
