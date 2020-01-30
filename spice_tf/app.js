@@ -113,6 +113,7 @@ async function predict() {
   // textSize(100);
   // text(debugPrediction,w/2,h/2);
   debugText.html(debugPrediction);
+  predict();
 }
 
 function trigger() {
@@ -431,7 +432,7 @@ async function draw() {
 // }
 // }
 
-await predict();
+// await predict();
 
   
 
