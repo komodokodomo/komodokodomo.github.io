@@ -66,8 +66,8 @@ var starting = false;
 
 let status;
 
-var videoWidth = 1280;
-var videoHeight = 720;
+var videoWidth = 1080;
+var videoHeight = 1080;
 
 var w,h;
 
