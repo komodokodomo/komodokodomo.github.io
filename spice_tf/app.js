@@ -103,7 +103,7 @@ async function predict() {
   debugPrediction = "";
   for (let i = 0; i < maxPredictions; i++) {
       debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
-      classPrediction = classPrediction+ prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+      classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
   console.log(classPrediction);
   debugText.html(debugPrediction);
