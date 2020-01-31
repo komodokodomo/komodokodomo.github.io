@@ -401,10 +401,12 @@ if(!loginStatus){
 
 if(mobile) {
  if(w>h){
-  image(video, width/2, height/2, videoWidth, videoHeight);
+  // image(video, width/2, height/2, videoWidth, videoHeight);
+  image(video, width/2, height/2, height*videoWidth/videoHeight, height);
   }
   else{
-  image(video, w/2, h/2, videoHeight, videoWidth);
+  image(video, width/2, height/2, height*videoHeight/videoWidth, height);
+  // image(video, w/2, h/2, videoHeight, videoWidth);
   }
 }
 else{
