@@ -409,11 +409,10 @@ if(mobile) {
 }
 else{
   if(w>h){
-  image(video, width/2, height/2, h*videoWidth/videoHeight, h);
+    image(video, width/2, height/2, w, w*videoHeight/videoWidth);
   }
   else{
-    image(video, width/2, height/2, w, w*videoHeight/videoWidth);
-
+    image(video, width/2, height/2, h*videoWidth/videoHeight, h);
   }
 }
 
