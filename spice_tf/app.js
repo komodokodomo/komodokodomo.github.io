@@ -106,7 +106,9 @@ async function predict() {
       debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
-  text(debugPrediction,w/2,h/2);
+  fill(0);
+  textSize(50);
+  text(debugPrediction,width/2,height/2);
   console.log(debugPrediction);
   debugText.html(debugPrediction);
   predict();
