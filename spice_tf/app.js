@@ -390,8 +390,8 @@ predict();
 }
 
 
-async function draw() {
-  if(!loginStatus){
+function draw() {
+if(!loginStatus){
     background(215);
   }
  
@@ -408,7 +408,13 @@ if(mobile) {
   }
 }
 else{
-  image(video, width/2, height/2, videoWidth, videoHeight);
+  if(w>h){
+  image(video, width/2, height/2, h*videoWidth/videoHeight, h);
+  }
+  else{
+    image(video, width/2, height/2, w, w*videoHeight/videoWidth);
+
+  }
 }
 
 
