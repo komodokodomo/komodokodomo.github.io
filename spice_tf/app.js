@@ -430,7 +430,7 @@ function windowResized(){
     h = window.innerHeight;
     if(w>h){  resizeCanvas(h, h);}
     else{  resizeCanvas(w, w);}
-    resizeCanvas(w, h);
+    
     lensContainer.size(w,h/10);
     lensContainer.position(0,9*h/10);
     contentContainer.size(w,9*h/10);
