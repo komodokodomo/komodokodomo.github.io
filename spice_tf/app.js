@@ -3,6 +3,7 @@ var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
 let model, labelContainer, maxPredictions, classPrediction,debugPrediction, debugText;
 
+let mobile = false;
 
 let img;
 
@@ -161,6 +162,10 @@ function closeContent(){
 
 async function setup() {
   await init();
+
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    mobile = true;
+   }
 
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
@@ -392,14 +397,18 @@ async function draw() {
  background(255);
  imageMode(CENTER);
 
-
-//  if(w>h){
+if(mobile) {
+ if(w>h){
   image(video, width/2, height/2, videoWidth, videoHeight);
-  // }
-  // else{
-  // image(video, w/2, h/2, videoHeight, videoWidth);
-  // }
-  // console.log(typeof debugPrediction);
+  }
+  else{
+  image(video, w/2, h/2, videoHeight, videoWidth);
+  }
+}
+else{
+  image(video, width/2, height/2, videoWidth, videoHeight);
+}
+
 
 
 // if(w>h){
