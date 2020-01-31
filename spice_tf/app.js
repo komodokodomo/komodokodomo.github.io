@@ -105,7 +105,7 @@ async function predict() {
       debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
-  console.log(classPrediction);
+  console.log(debugPrediction);
   debugText.html(debugPrediction);
   predict();
 }
@@ -376,7 +376,7 @@ debugText.position(100,20);
 
   img = document.getElementById('canvas'); 
 
-
+predict();
 
 }
 
