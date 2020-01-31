@@ -105,6 +105,7 @@ async function predict() {
       debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
+  text(debugPrediction,w/2,h/2);
   console.log(debugPrediction);
   debugText.html(debugPrediction);
   predict();
@@ -160,6 +161,7 @@ function closeContent(){
 
 async function setup() {
   await init();
+
   console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
   
@@ -430,7 +432,7 @@ function windowResized(){
     h = window.innerHeight;
     if(w>h){  resizeCanvas(h, h);}
     else{  resizeCanvas(w, w);}
-    
+
     lensContainer.size(w,h/10);
     lensContainer.position(0,9*h/10);
     contentContainer.size(w,9*h/10);
