@@ -64,8 +64,8 @@ var starting = false;
 
 let status;
 
-var videoWidth = 1280;
-var videoHeight = 720;
+var videoWidth = 1920;
+var videoHeight = 1080;
 
 var w,h;
 
@@ -410,27 +410,6 @@ else{
 }
 
 
-
-// if(w>h){
-// if((w/h)>(video.width/video.height))
-// {
-//   image(video, w/2, h/2, w, w*video.height/video.width);
-// }
-// else{
-//   image(video, w/2, h/2, h*video.width/video.height, h);
-// }
-// }
-// else{
-// if((videoHeight/videoWidth)<(w/h)){
-// image(video, w/2, h/2, w, (w/videoHeight)*videoWidth);
-// }
-// else{
-// image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
-// }
-// }
-
-// await predict();
-
   
 
 }
@@ -439,6 +418,7 @@ else{
 function windowResized(){
     w = window.innerWidth;
     h = window.innerHeight;
+
     if(w>h){  resizeCanvas(h, h);}
     else{  resizeCanvas(w, w);}
 
