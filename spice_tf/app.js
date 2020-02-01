@@ -108,7 +108,7 @@ async function predict() {
   let highestClass;
   for (let i = 0; i < maxPredictions; i++) {
       debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
-      if(highestProb<prediction[i].probability.toFixed(2)){highestClass = i;}
+      if(highestProb<prediction[i].probability.toFixed(2)){highestProb=prediction[i].probability.toFixed(2);highestClass = i;}
       classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
   fill(0);
