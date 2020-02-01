@@ -3,6 +3,8 @@ var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
 let model, labelContainer, maxPredictions, classPrediction,debugPrediction, debugText;
 
+let highest;
+
 let mobile = false;
 
 let img;
@@ -102,14 +104,17 @@ async function predict() {
   const prediction = await model.predict(img);
   classPrediction = "";
   debugPrediction = "";
+  let highestProb = 0.0;
+  let highestClass;
   for (let i = 0; i < maxPredictions; i++) {
       debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
+      if(highestProb<prediction[i].probability.toFixed(2)){highestClass = i;}
       classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
   fill(0);
   textSize(50);
   text(debugPrediction,width/2,height/2);
-  console.log(debugPrediction);
+  console.log(prediction[highestClass].className + ": " + prediction[highestClass].probability.toFixed(2));
   debugText.html(debugPrediction);
   predict();
 }
@@ -138,6 +143,8 @@ function loginUser(){
 loginStatus = true;
 loginWrapper.hide();
 }
+
+
 function toggleScreen() {
   fullscreen(true);
   console.log("fullscreen");
