@@ -153,7 +153,7 @@ async function setup() {
   else{  
     canvas = createCanvas(w-canvasPadding, w-canvasPadding);
   }
-  canvas.position(w/2-canvas.width/2,5*h/8 - canvas.height/2);
+  canvas.position(w/2-canvas.width/2,3*h/8 - canvas.height/2);
   // canvas = createCanvas();
   // canvas.parent(canvasContainer);
   canvas.id("canvas");
@@ -351,7 +351,7 @@ function windowResized(){
       else{  
         canvas = createCanvas(w-canvasPadding, w-canvasPadding);
       }
-      canvas.position(w/2-canvas.width/2,5*h/8 - canvas.height/2);
+      canvas.position(w/2-canvas.width/2,3*h/8 - canvas.height/2);
 
     chatbox.size(canvas.width,h/8);
     chatbox.position(canvasPadding/2,h/8 + canvas.height + canvasPadding/2);
