@@ -167,53 +167,53 @@ async function setup() {
 
 
 
-  lensList = createElement("ul");
-  lensList.parent(lensContainer);
-  lensList.id("lens-list");
-  lensList.style("height","100%");
+  // lensList = createElement("ul");
+  // lensList.parent(lensContainer);
+  // lensList.id("lens-list");
+  // lensList.style("height","100%");
 
 
-  for(let i = 0; i<jsonDataLength; i++){
-    subjects[i] = createElement("li",jsonData[i].subject);
-    subjects[i].parent(lensList);
-    subjects[i].id("li"+i.toString());
-    document.getElementById("li"+i.toString()).onclick = function(){
-      console.log("you clicked: " + i.toString());
-      lensNumber = i;
-      for(let j = 0; j<jsonDataLength; j++){
-        document.getElementById("li"+j.toString()).classList.remove("active");
-      }
-      document.getElementById("li"+i.toString()).classList.add("active");
-      if(hideButton){
+  // for(let i = 0; i<jsonDataLength; i++){
+  //   subjects[i] = createElement("li",jsonData[i].subject);
+  //   subjects[i].parent(lensList);
+  //   subjects[i].id("li"+i.toString());
+  //   document.getElementById("li"+i.toString()).onclick = function(){
+  //     console.log("you clicked: " + i.toString());
+  //     lensNumber = i;
+  //     for(let j = 0; j<jsonDataLength; j++){
+  //       document.getElementById("li"+j.toString()).classList.remove("active");
+  //     }
+  //     document.getElementById("li"+i.toString()).classList.add("active");
+  //     if(hideButton){
  
 
-        if(jsonData[lensNumber][objects[0].class]!== null){
-        let stuff = jsonData[lensNumber][objects[0].class].toString();
-        let stuffs = stuff.split("\\");
-        let things = "";
+  //       if(jsonData[lensNumber][objects[0].class]!== null){
+  //       let stuff = jsonData[lensNumber][objects[0].class].toString();
+  //       let stuffs = stuff.split("\\");
+  //       let things = "";
 
-        if(stuffs.length>0){
-        for(var k=0; k<stuffs.length; k++){
-          // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-          let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-          things += addon;
-        }
-        console.log("split success");
-        console.log(stuffs[0].split("(")[0]);
-        console.log(stuffs[0].split("(")[1].split(")")[0]);
+  //       if(stuffs.length>0){
+  //       for(var k=0; k<stuffs.length; k++){
+  //         // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+  //         let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+  //         things += addon;
+  //       }
+  //       console.log("split success");
+  //       console.log(stuffs[0].split("(")[0]);
+  //       console.log(stuffs[0].split("(")[1].split(")")[0]);
         
-      }
-      //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
-       console.log(things); 
-      //  stuff = stuff.replace('\\','<br><br>');
-        contentText.html(things);
-      }
-      else{
-        contentText.html("no content for now...");
-      }
-      }
-    };
-  }
+  //     }
+  //     //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
+  //      console.log(things); 
+  //     //  stuff = stuff.replace('\\','<br><br>');
+  //       contentText.html(things);
+  //     }
+  //     else{
+  //       contentText.html("no content for now...");
+  //     }
+  //     }
+  //   };
+  // }
 
 
 
@@ -356,10 +356,14 @@ function windowResized(){
     chatbox.size(canvas.width,h/8);
     chatbox.position(canvasPadding/2,h/8 + canvas.height + canvasPadding/2);
 
+    titleContainer.size(w,h/8);
+    titleContainer.position(0,0);
 
+    canvasContainer.size(w,h/2);
+    canvasContainer.position(0,h/8);
 
-    lensContainer.size(w,h/10);
-    lensContainer.position(0,9*h/10);
+    lensContainer.size(w,3*h/8);
+    lensContainer.position(0,5*h/8);
 }
 
 
