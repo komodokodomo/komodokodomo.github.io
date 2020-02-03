@@ -201,24 +201,24 @@ async function setup() {
 
 
 
-  contentContainer = createDiv();
-  contentContainer.size(w,9*h/10);
-  contentContainer.position(0,0);
-  contentContainer.id("related-content-container");
-  contentContainer.hide();
+  // contentContainer = createDiv();
+  // contentContainer.size(w,9*h/10);
+  // contentContainer.position(0,0);
+  // contentContainer.id("related-content-container");
+  // contentContainer.hide();
 
-  contentLabel = createElement("h2");
-  contentLabel.id("object-label");
-  contentLabel.parent(contentContainer);
+  // contentLabel = createElement("h2");
+  // contentLabel.id("object-label");
+  // contentLabel.parent(contentContainer);
 
-  contentText = createP();
-  contentText.id("content");
-  contentText.parent(contentContainer);
+  // contentText = createP();
+  // contentText.id("content");
+  // contentText.parent(contentContainer);
 
-  contentClose = createA('#', '');
-  contentClose.parent(contentContainer);
-  contentClose.class('close');
-  contentClose.mouseClicked(closeContent);
+  // contentClose = createA('#', '');
+  // contentClose.parent(contentContainer);
+  // contentClose.class('close');
+  // contentClose.mouseClicked(closeContent);
 
   lensContainer = createDiv();
   lensContainer.size(w,h/10);
