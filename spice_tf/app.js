@@ -111,6 +111,9 @@ function loginUser(){
 loginStatus = true;
 loginWrapper.hide();
 canvas.show();
+lensContainer.show();
+canvasContainer.show();
+titleContainer.show();
 }
 
 
@@ -138,6 +141,7 @@ async function setup() {
   titleContainer.size(w,h/10);
   titleContainer.position(0,0);
   titleContainer.id("title-container")
+  titleContainer.hide();
 
   let titleContainerBack = createDiv("<");
   titleContainerBack.parent(titleContainer);
@@ -157,7 +161,8 @@ async function setup() {
   canvasContainer = createDiv();
   canvasContainer.size(w,h/2);
   canvasContainer.position(0,h/10);
-  canvasContainer.id("canvas-container")
+  canvasContainer.id("canvas-container");
+  canvasContainer.hide();
   // canvasContainer.hide();
 
   if(w>h){
@@ -177,7 +182,8 @@ async function setup() {
   lensContainer = createDiv();
   lensContainer.size(w,4*h/10);
   lensContainer.position(0,6*h/10);
-  lensContainer.id("lens-container")
+  lensContainer.id("lens-container");
+  lensContainer.hide();
 
   var myElement = document.getElementById('lens-container');
   var mc = new Hammer(myElement);
