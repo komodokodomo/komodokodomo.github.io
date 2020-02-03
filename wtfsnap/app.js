@@ -35,7 +35,7 @@ var lensNumber;
 var prevX = 0;
 var swipeDisplacement = 0; 
 var swipeTimer = 0;
-// var test;
+
 var constraints = {
   video: { facingMode: { exact: "environment" } },
   audio: false
@@ -67,10 +67,16 @@ window.addEventListener('DOMContentLoaded', () => {
   onboardingFlow = document.getElementsByClassName('onboarding')[0];
   skipButtons = document.getElementsByClassName('skip-button');
   onboardingScreenArr = document.getElementsByClassName('onboarding-screen');
+  contentContainer = document.getElementById("related-content-container");
+  lensContainer = document.getElementById("lens-container");
+  triggerButton = document.getElementById("trigger-button");
+  contentFrame = document.getElementById("content-frame");
 
   onboardingFlow.addEventListener('touchstart', lock, false);
   onboardingFlow.addEventListener('touchend', move, false);
   onboardingFlow.addEventListener('click', clickHandler, false);
+
+  triggerButton.addEventListener('click', trigger, false);
 
   // onboardingFlow.addEventListener("click", swipeHandler, false);
   for (let i = 0; i < skipButtons.length; i++) {
@@ -100,9 +106,9 @@ function trigger() {
   console.log('button clicked!');
   lensContainer.style("display","flex");
   contentContainer.style("display","flex");
-  document.getElementById("related-content-container").classList.add("active");
+  contentContainer.classList.add("active");
   
-  button.hide();
+  triggerButton.css("display", "none");
   hideButton = true;
   classToExplore = objects[0].class;
   contentLabel.html(classToExplore);
@@ -167,31 +173,25 @@ function startHandler() {
 function toggleScreen() {
   fullscreen(true);
   console.log("fullscreen");
-  screenToggle.hide();
+  screenToggle.setAttribute("display", "none");
   // screenToggle2.show(); 
 }
 
 function toggleScreen2() {
   fullscreen(false);
   console.log("non-fullscreen");
-  screenToggle.show();
-  screenToggle2.hide();
+  screenToggle.setAttribute("display", "block");
+  screenToggle2.setAttribute("display", "none");
 }
 
 function closeContent(){
-  document.getElementById("related-content-container").classList.remove("active");
-  contentContainer.hide();
-  lensContainer.hide();
+  contentContainer.classList.remove("active");
+  contentContainer.setAttribute("display", "none");
+  lensContainer.setAttribute("display", "none");
   hideButton = false;
   lensNumber = undefined;
-  contentFrame.hide(); //TEMP HACK
+  contentFrame.setAttribute("display", "none");
 }
-
-// function loadIFRAME(event, ele) {
-//   event.preventDefault();
-//   contentFrame.show();
-//   contentFrame.attribute("src",ele.getAttribute('href'));
-// }
 
 function setup() {
   console.log(jsonData);
@@ -206,12 +206,6 @@ function setup() {
   canvas = createCanvas(w, h);
   canvas.id("canvas");
 
-  contentContainer = createDiv();
-  contentContainer.size(w,9*h/10);
-  contentContainer.position(0,0);
-  contentContainer.id("related-content-container");
-  // contentContainer.hide();
-
   contentLabel = createElement("h2");
   contentLabel.id("object-label");
   contentLabel.parent(contentContainer);
@@ -225,29 +219,13 @@ function setup() {
   contentClose.class('close');
   contentClose.mouseClicked(closeContent);
 
-  lensContainer = createDiv();
-  lensContainer.size(w,h/10);
-  lensContainer.position(0,9*h/10);
-  lensContainer.id("lens-container")
-  lensContainer.hide();
-
   lensList = createElement("ul");
   lensList.parent(lensContainer);
   lensList.id("lens-list");
   lensList.style("height","100%");
 
-
-  button = createDiv();
-  button.mouseClicked(trigger);
-  button.size(0,0);
-  button.position(0,0);
-  button.id("button");
-  // button.style("text-align","center");
-  button.style("display" ,"block");
-  button.hide();
-
   buttonClick = createImg("300ppi/click.png","click me");
-  buttonClick.parent(button);
+  buttonClick.parent(triggerButton);
   buttonClick.style("width","20%");
   buttonClick.style("position","absolute");
   buttonClick.style("top","50%");
@@ -300,12 +278,6 @@ function setup() {
     };
   }
 
-  contentFrame = createElement("iframe","#");
-  contentFrame.size(w,9*h/10);
-  contentFrame.position(0,h/10);
-  contentFrame.attribute("name","content-frame");
-  contentFrame.hide();
-
   screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
   screenToggle.style("width","16px");
   screenToggle.style("height","16px");
@@ -339,7 +311,7 @@ function setup() {
         }
         else{
           counter = 0;
-          button.hide();
+          triggerButton.setAttribute("display", "none");
         }
         });
       }
@@ -350,84 +322,68 @@ function setup() {
 function draw() {
   if(!loginStatus){
     background(215);
+  } else {
+    background(255);
+    imageMode(CENTER);
+
+    if (w>h) {
+      if((w/h)>(video.width/video.height)) {
+        image(video, w/2, h/2, w, w*video.height/video.width);
+      } else {
+        image(video, w/2, h/2, h*video.width/video.height, h);
+      }
+    } else {
+      if((videoHeight/videoWidth)<(w/h)) {
+        image(video, w/2, h/2, w, (w/videoHeight)*videoWidth);
+      } else {
+        image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
+      }
+    }
+
+    if(debug){
+      fill(0);
+      noStroke();
+      text(frameRate(),30,30);
+      text(cameras,30,50);
+      text("display: " + w + " x " +h,30,70);
+      text("cam: " + video.width + " x " +video.height,30,90);
+      if(status){
+        text("model loaded",30,110);
+      }
+    }
+
+    for(var i=0; i<objects.length ;i++){
+      if(abs(objects[i].bbox[0]/density - prevX)>50){counter = 0;}
+      if(abs(objects[i].bbox[1]/density - prevY)>50){counter = 0;}
+
+      if(counter > 0){
+        let lerpX = lerp(objects[i].bbox[0]/density,prevX,lerpValue);
+        let lerpY = lerp(objects[i].bbox[1]/density,prevY,lerpValue);
+        let lerpW = lerp(objects[i].bbox[2]/density,prevW,lerpValue);
+        let lerpH = lerp(objects[i].bbox[3]/density,prevH,lerpValue);
+
+        button.size(lerpW*buttonSizeRatio,lerpH*buttonSizeRatio);
+        button.position(lerpX+(lerpW*(1-buttonSizeRatio))/2,lerpY+(lerpH*(1-buttonSizeRatio))/2);
+      } else {
+        button.size(objects[i].bbox[2]*buttonSizeRatio/density,objects[i].bbox[3]*buttonSizeRatio/density);  //default
+        button.position(objects[i].bbox[0]/density+(objects[i].bbox[2]/density*(1-buttonSizeRatio))/2   ,objects[i].bbox[1]/density+(objects[i].bbox[3]/density*(1-buttonSizeRatio))/2);
+      }
+
+      prevX = objects[i].bbox[0]/density;
+      prevY = objects[i].bbox[1]/density;
+      prevW = objects[i].bbox[2]/density;
+      prevH = objects[i].bbox[3]/density;
+
+      if(hideButton == false){
+        triggerButton.css("display", "block");
+      }
+
+      rectMode(CORNER);
+      stroke(0,255,0);
+      strokeWeight(5);
+      noFill();
+    }
   }
- 
-  else{
- background(255);
- imageMode(CENTER);
-
- 
-
-if(w>h){
-if((w/h)>(video.width/video.height))
-{
-  image(video, w/2, h/2, w, w*video.height/video.width);
-}
-else{
-  image(video, w/2, h/2, h*video.width/video.height, h);
-}
-}
-else{
-if((videoHeight/videoWidth)<(w/h)){
-image(video, w/2, h/2, w, (w/videoHeight)*videoWidth);
-}
-else{
-image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
-}
-}
-
-if(debug){
- fill(0);
- noStroke();
- text(frameRate(),30,30);
- text(cameras,30,50);
- text("display: " + w + " x " +h,30,70);
- text("cam: " + video.width + " x " +video.height,30,90);
- if(status){
- text("model loaded",30,110);
- }
-}
-
- for(var i=0; i<objects.length ;i++){
-   if(abs(objects[i].bbox[0]/density - prevX)>50){counter = 0;}
-   if(abs(objects[i].bbox[1]/density - prevY)>50){counter = 0;}
-
-  if(counter > 0){
-  let lerpX = lerp(objects[i].bbox[0]/density,prevX,lerpValue);
-  let lerpY = lerp(objects[i].bbox[1]/density,prevY,lerpValue);
-  let lerpW = lerp(objects[i].bbox[2]/density,prevW,lerpValue);
-  let lerpH = lerp(objects[i].bbox[3]/density,prevH,lerpValue);
-
-  // let lerpX = lerp(lerpX,prevX,lerpValue);
-  // let lerpY = lerp(lerpY,prevY,lerpValue);
-  // let lerpW = lerp(lerpW,prevW,lerpValue);
-  // let lerpH = lerp(lerpH,prevH,lerpValue);
-
-  button.size(lerpW*buttonSizeRatio,lerpH*buttonSizeRatio);
-  button.position(lerpX+(lerpW*(1-buttonSizeRatio))/2,lerpY+(lerpH*(1-buttonSizeRatio))/2);
-  }
-
-  else{
-  button.size(objects[i].bbox[2]*buttonSizeRatio/density,objects[i].bbox[3]*buttonSizeRatio/density);  //default
-  button.position(objects[i].bbox[0]/density+(objects[i].bbox[2]/density*(1-buttonSizeRatio))/2   ,objects[i].bbox[1]/density+(objects[i].bbox[3]/density*(1-buttonSizeRatio))/2);
-  }
-
-  prevX = objects[i].bbox[0]/density;
-  prevY = objects[i].bbox[1]/density;
-  prevW = objects[i].bbox[2]/density;
-  prevH = objects[i].bbox[3]/density;
-
-  if(hideButton == false){
-  button.show();
-}
-  rectMode(CORNER);
-  stroke(0,255,0);
-  strokeWeight(5);
-  noFill();
-
-}
-
-}
 }
 
 function windowResized(){
