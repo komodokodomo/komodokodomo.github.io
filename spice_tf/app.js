@@ -27,6 +27,8 @@ let loginWrapperInputPassWord;
 let loginWrapperInputLogin;
 let loginWrapperInputForgot;
 
+let canvasPadding = 50;
+
 
 let current;
 let cameras = "";
@@ -186,9 +188,11 @@ async function setup() {
   density = pixelDensity();
   console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
 
-  if(w>h){  canvas = createCanvas(h, h);}
-  else{  canvas = createCanvas(w, w);}
+  if(w>h){  canvas = createCanvas(h-canvasPadding, h-canvasPadding);}
+  else{  canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
   canvas.id("canvas");
+  canvas.position(w/2,h/2);
+
 
   contentContainer = createDiv();
   contentContainer.size(w,9*h/10);
@@ -435,8 +439,10 @@ function windowResized(){
     w = window.innerWidth;
     h = window.innerHeight;
 
-    if(w>h){  resizeCanvas(h, h);}
-    else{  resizeCanvas(w, w);}
+    if(w>h){  resizeCanvas(h-canvasPadding, h-canvasPadding);}
+    else{  resizeCanvas(w-canvasPadding, w-canvasPadding);}
+    canvas.position(w/2,h/2);
+
 
     lensContainer.size(w,h/10);
     lensContainer.position(0,9*h/10);
