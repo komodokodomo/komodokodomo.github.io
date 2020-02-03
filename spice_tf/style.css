@@ -16,6 +16,12 @@ border-radius: 10px;
 border: 2px solid black;
 } 
 
+#title-container {
+  border-style:solid;
+  border-color:black;
+  border-width:2px;
+  }
+
 
 .speech-bubble {
 	position: relative;
