@@ -51,6 +51,7 @@ border: 3px solid black;
   position: relative;
   width: 130px;
   height: 100px;
+  font-weight: bold;
   text-align: center;
   line-height: 100px;
   background-color: lightgrey;
