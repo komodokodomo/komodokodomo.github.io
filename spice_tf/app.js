@@ -126,7 +126,7 @@ async function predict() {
 function trigger() {   
   console.log('button clicked!');
   lensContainer.style("display","flex");
-  contentContainer.style("display","flex");
+  // contentContainer.style("display","flex");
   document.getElementById("related-content-container").classList.add("active");
   
   button.hide();
@@ -161,7 +161,7 @@ canvas.show();
 
 function closeContent(){
   document.getElementById("related-content-container").classList.remove("active");
-  contentContainer.hide();
+  // contentContainer.hide();
   lensContainer.hide();
   hideButton = false;
   lensNumber = undefined;
@@ -199,16 +199,13 @@ async function setup() {
   canvas.position(w/2-canvas.width/2,h/8);
   canvas.hide();
 
-  chatbox = createDiv();
-  chatbox.size(canvas.width,h/8);
-  chatbox.position(canvasPadding/2,h/8 + canvas.height + canvasPadding/2);
-  chatbox.class("speech-bubble");
+
 
   contentContainer = createDiv();
   contentContainer.size(w,9*h/10);
   contentContainer.position(0,0);
   contentContainer.id("related-content-container");
-  // contentContainer.hide();
+  contentContainer.hide();
 
   contentLabel = createElement("h2");
   contentLabel.id("object-label");
@@ -393,6 +390,11 @@ loginWrapperInputForgot.style("border-style","none");
 loginWrapperInputForgot.style("border-radius","0.25rem");
 loginWrapperInputForgot.style("padding","1rem 0rem");
 
+chatbox = createDiv();
+chatbox.size(canvas.width,h/8);
+chatbox.position(canvasPadding/2,h/8 + canvas.height + canvasPadding/2);
+chatbox.class("speech-bubble");
+
 
 debugText = createDiv();
 debugText.position(100,20);
@@ -462,7 +464,7 @@ function windowResized(){
 
     lensContainer.size(w,h/10);
     lensContainer.position(0,9*h/10);
-    contentContainer.size(w,9*h/10);
+    // contentContainer.size(w,9*h/10);
 }
 
 
