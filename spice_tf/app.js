@@ -2,7 +2,7 @@
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
 
-let model, maxPredictions, classPrediction,debugPrediction, debugText;
+let model, maxPredictions, classPrediction,debugPrediction;
 
 
 var classToExplore = "";
@@ -83,7 +83,7 @@ async function predict() {
   }
 
   console.log(prediction[highestClass].className + ": " + prediction[highestClass].probability.toFixed(2));
-  debugText.html(debugPrediction);
+  chatbox.html(debugPrediction);
   predict();
 }
 
@@ -291,8 +291,6 @@ chatbox.position(canvasPadding/2,h/8 + canvas.height + canvasPadding/2);
 chatbox.class("speech-bubble");
 
 
-debugText = createDiv();
-debugText.position(100,20);
 
 
 
