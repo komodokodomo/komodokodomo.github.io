@@ -21,7 +21,7 @@ let loginWrapperInputPassWord;
 let loginWrapperInputLogin;
 let loginWrapperInputForgot;
 
-let canvasPadding = 20;
+let canvasPadding = 40;
 
 let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
@@ -135,14 +135,14 @@ async function setup() {
   density = pixelDensity();
 
   titleContainer = createDiv();
-  titleContainer.size(w,h/8);
+  titleContainer.size(w,h/10);
   titleContainer.position(0,0);
   titleContainer.id("title-container")
   // titleContainer.hide();
 
   canvasContainer = createDiv();
   canvasContainer.size(w,h/2);
-  canvasContainer.position(0,h/8);
+  canvasContainer.position(0,h/10);
   canvasContainer.id("canvas-container")
   // canvasContainer.hide();
 
@@ -154,15 +154,15 @@ async function setup() {
     if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
     else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
   }
-  canvas.position(w/2-canvas.width/2,3*h/8 - canvas.height/2);
+  canvas.position(w/2-canvas.width/2,7*h/20 - canvas.height/2);
   // canvas = createCanvas();
   // canvas.parent(canvasContainer);
   canvas.id("canvas");
   canvas.hide();
 
   lensContainer = createDiv();
-  lensContainer.size(w,3*h/8);
-  lensContainer.position(0,5*h/8);
+  lensContainer.size(w,4*h/10);
+  lensContainer.position(0,6*h/10);
   lensContainer.id("lens-container")
   // lensContainer.hide();
 
@@ -287,7 +287,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 chatbox = createDiv();
 chatbox.size(canvas.width,h/8);
-chatbox.position(w/2-canvas.width/2,5*h/8 + canvasPadding/2);
+chatbox.position(w/2-canvas.width/2,6*h/10 + canvasPadding/2);
 chatbox.class("speech-bubble");
 
 
@@ -351,10 +351,10 @@ function windowResized(){
         if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
         else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
       }
-      canvas.position(w/2-canvas.width/2,3*h/8 - canvas.height/2);
+      canvas.position(w/2-canvas.width/2,7*h/20 - canvas.height/2);
 
     chatbox.size(canvas.width,h/8);
-    chatbox.position(w/2-canvas.width/2,5*h/8 + canvasPadding/2);
+    chatbox.position(w/2-canvas.width/2,6*h/10 + canvasPadding/2);
 
     titleContainer.size(w,h/8);
     titleContainer.position(0,0);
