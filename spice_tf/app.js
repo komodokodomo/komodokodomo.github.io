@@ -1,12 +1,9 @@
 
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
-let model, labelContainer, maxPredictions, classPrediction,debugPrediction, debugText;
 
+let model, maxPredictions, classPrediction,debugPrediction, debugText;
 
-let mobile = false;
-
-let img;
 
 var classToExplore = "";
 var jsonDataIndex;
@@ -26,40 +23,24 @@ let loginWrapperInputForgot;
 
 let canvasPadding = 50;
 
-let chatbox;
-
-
-// let cameras = "";
-let density;
-
-let counter = 0;
-
-
-let canvas;
-
 let titleContainer, canvasContainer, lensContainer;
+let lensList,lensNumber, contentText, contentClose;
+let canvas,video,img,chatbox;
 
 
-var lensList, contentText, contentClose;
-var lensNumber;
 
-var constraints = {
+let mobile = false;
+let w,h,density;
+const constraints = {
   video: { facingMode: { exact: "environment" } },
   audio: false
 };
+const videoWidth = 1920,videoHeight = 1080;
 
 
-var itemsText = [];
-let video;
 
 let objects = [];
 
-let status;
-
-var videoWidth = 1920;
-var videoHeight = 1080;
-
-var w,h;
 
 
 
@@ -151,10 +132,7 @@ async function setup() {
   
   w = window.innerWidth;
   h = window.innerHeight;
-
-
   density = pixelDensity();
-  console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
 
   if(w>h){  canvas = createCanvas(h-canvasPadding, h-canvasPadding);}
   else{  canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
@@ -163,6 +141,18 @@ async function setup() {
       // canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
   canvas.position(w/2-canvas.width/2,h/8);
   canvas.hide();
+
+  titleContainer = createDiv();
+  titleContainer.size(w,h/8);
+  titleContainer.position(0,0);
+  titleContainer.id("title-container")
+  titleContainer.hide();
+
+  canvasContainer = createDiv();
+  canvasContainer.size(w,h/2);
+  canvasContainer.position(0,h/8);
+  canvasContainer.id("canvas-container")
+  canvasContainer.hide();
 
   lensContainer = createDiv();
   lensContainer.size(w,3*h/8);
@@ -224,10 +214,6 @@ loginWrapper = createDiv();
 loginWrapper.size(w*0.6,h*0.8);
 loginWrapper.position(w*0.2,h*0.1);
 
-// loginWrapperTitle = createDiv();
-// loginWrapperTitle.parent(loginWrapper);
-// loginWrapperTitle.class("section-header");
-// loginWrapperTitle.style("height","15%");
 
 loginWrapperTitle = createImg('logo.png','SLS');
 loginWrapperTitle.parent(loginWrapper);
@@ -302,12 +288,11 @@ debugText.position(100,20);
 
 
 
-  video = createCapture(constraints);
-  video.size(videoWidth, videoHeight);
-  video.hide();
+video = createCapture(constraints);
+video.size(videoWidth, videoHeight);
+video.hide();
   
-
-  img = document.getElementById('canvas'); 
+img = document.getElementById('canvas'); 
 
 predict();
 
