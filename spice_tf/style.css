@@ -61,26 +61,26 @@ border: 3px solid black;
   border-radius: 10px;
 }
 
-.speech-bubble:before, .speech-bubble:after {
-  left: 10px;
-  top: 70px;
-  width: 40px;
-  height: 40px;
-  background-color: lightgrey;
-  border: 3px solid black;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+.speech-bubble:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 30px;
+  top: 100px;
+  border: 25px solid;
+  border-color: black transparent transparent black;
 }
 
 .speech-bubble:after {
-  width: 20px;
-  height: 20px;
-  left: 5px;
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 38px;
   top: 100px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  border: 22px solid;
+  border-color: lightgrey transparent transparent lightgrey;
 }
 
   #button {
