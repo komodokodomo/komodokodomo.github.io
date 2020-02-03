@@ -134,14 +134,6 @@ async function setup() {
   h = window.innerHeight;
   density = pixelDensity();
 
-  if(w>h){  canvas = createCanvas(h-canvasPadding, h-canvasPadding);}
-  else{  canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
-  canvas.id("canvas");
-  
-      // canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
-  canvas.position(w/2-canvas.width/2,h/8);
-  canvas.hide();
-
   titleContainer = createDiv();
   titleContainer.size(w,h/8);
   titleContainer.position(0,0);
@@ -154,11 +146,26 @@ async function setup() {
   canvasContainer.id("canvas-container")
   canvasContainer.hide();
 
+  if(w>h){
+  if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
+  else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
+  }
+  else{  
+    canvas = createCanvas(w-canvasPadding, w-canvasPadding);
+  }
+  canvas.position(w/2-canvas.width/2,5*h/8 - canvas.height/2);
+  // canvas = createCanvas();
+  // canvas.parent(canvasContainer);
+  canvas.id("canvas");
+  canvas.hide();
+
   lensContainer = createDiv();
   lensContainer.size(w,3*h/8);
   lensContainer.position(0,5*h/8);
   lensContainer.id("lens-container")
   lensContainer.hide();
+
+
 
   lensList = createElement("ul");
   lensList.parent(lensContainer);
@@ -337,11 +344,14 @@ function windowResized(){
     w = window.innerWidth;
     h = window.innerHeight;
 
-    if(w>h){  resizeCanvas(h-canvasPadding, h-canvasPadding);}
-    else{  resizeCanvas(w-canvasPadding, w-canvasPadding);}
-    
-    // canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
-    canvas.position(w/2-canvas.width/2,h/8);
+    if(w>h){
+      if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
+      else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
+      }
+      else{  
+        canvas = createCanvas(w-canvasPadding, w-canvasPadding);
+      }
+      canvas.position(w/2-canvas.width/2,5*h/8 - canvas.height/2);
 
     chatbox.size(canvas.width,h/8);
     chatbox.position(canvasPadding/2,h/8 + canvas.height + canvasPadding/2);
