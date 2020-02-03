@@ -200,7 +200,7 @@ async function setup() {
   canvas.hide();
 
   chatbox = createDiv();
-  chatbox.size(canvas.width(),h/8);
+  chatbox.size(canvas.width,h/8);
   chatbox.position(canvasPadding,6*h/8);
   chatbox.class("speech-bubble");
 
