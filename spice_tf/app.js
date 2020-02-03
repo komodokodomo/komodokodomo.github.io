@@ -141,13 +141,15 @@ async function setup() {
 
   let titleContainerBack = createDiv("<");
   titleContainerBack.parent(titleContainer);
+  titleContainerBack.style("","");
 
   let titleContainerContent = createDiv("Spice Garden");
-  titleContainerBack.parent(titleContainer);
+  titleContainerContent.parent(titleContainer);
+  titleContainerContent.style("","");
 
   let titleContainerMenu = createDiv("menu");
-  titleContainerBack.parent(titleContainer);
-  // titleContainer.hide();
+  titleContainerMenu.parent(titleContainer);
+  titleContainerMenu.style("","");
 
   canvasContainer = createDiv();
   canvasContainer.size(w,h/2);
