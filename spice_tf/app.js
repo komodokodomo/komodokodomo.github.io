@@ -29,8 +29,7 @@ let canvasPadding = 50;
 let chatbox;
 
 
-let current;
-let cameras = "";
+// let cameras = "";
 let density;
 
 let counter = 0;
@@ -38,12 +37,11 @@ let counter = 0;
 
 let canvas;
 
+let titleContainer, canvasContainer, lensContainer;
 
-var lensContainer, lensList, contentText, contentTrying, contentFrame, contentClose;
+
+var lensList, contentText, contentClose;
 var lensNumber;
-
-var swipeDisplacement = 0; 
-var swipeTimer = 0;
 
 var constraints = {
   video: { facingMode: { exact: "environment" } },
@@ -135,21 +133,11 @@ canvas.show();
 }
 
 
-
-
-
 function closeContent(){
   document.getElementById("related-content-container").classList.remove("active");
   lensContainer.hide();
   lensNumber = undefined;
-  contentFrame.hide(); //TEMP HACK
 }
-
-// function loadIFRAME(event, ele) {
-//   event.preventDefault();
-//   contentFrame.show();
-//   contentFrame.attribute("src",ele.getAttribute('href'));
-// }
 
 async function setup() {
   await init();
@@ -175,8 +163,6 @@ async function setup() {
       // canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
   canvas.position(w/2-canvas.width/2,h/8);
   canvas.hide();
-
-
 
   lensContainer = createDiv();
   lensContainer.size(w,3*h/8);
@@ -229,25 +215,8 @@ async function setup() {
         contentText.html("no content for now...");
       }
       }
-
-      // for(let i = 0; i<jsonDataLength; i++){
-      //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
-      // }
-      // jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-      // jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
-      // console.log("index: " + jsonDataIndex.toString());
     };
-    // subjects[i].style("display","inline");
-    // subjects[i].show();
   }
-
-
-
-  contentFrame = createElement("iframe","#");
-  contentFrame.size(w,9*h/10);
-  contentFrame.position(0,h/10);
-  contentFrame.attribute("name","content-frame");
-  contentFrame.hide();
 
 
 
