@@ -154,7 +154,7 @@ async function setup() {
     if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
     else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
   }
-  canvas.position(w/2-canvas.width/2,7*h/20 - canvas.height/2);
+  canvas.position(w/2-canvas.width/2, 6*h/10 - canvas.height);
   // canvas = createCanvas();
   // canvas.parent(canvasContainer);
   canvas.id("canvas");
@@ -351,7 +351,7 @@ function windowResized(){
         if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
         else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
       }
-      canvas.position(w/2-canvas.width/2,7*h/20 - canvas.height/2);
+      canvas.position(w/2-canvas.width/2, 6*h/10 - canvas.height);
 
     chatbox.size(canvas.width,h/8);
     chatbox.position(w/2-canvas.width/2,6*h/10 + canvasPadding/2);
