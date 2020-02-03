@@ -191,7 +191,9 @@ async function setup() {
   if(w>h){  canvas = createCanvas(h-canvasPadding, h-canvasPadding);}
   else{  canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
   canvas.id("canvas");
-  canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
+  
+      // canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
+      canvas.position(w/2-canvas.width/2,h/7);
 
 
   contentContainer = createDiv();
@@ -441,7 +443,10 @@ function windowResized(){
 
     if(w>h){  resizeCanvas(h-canvasPadding, h-canvasPadding);}
     else{  resizeCanvas(w-canvasPadding, w-canvasPadding);}
-    canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
+    
+    // canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
+    canvas.position(w/2-canvas.width/2,h/7);
+
 
 
     lensContainer.size(w,h/10);

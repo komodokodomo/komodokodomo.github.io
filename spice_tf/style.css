@@ -15,6 +15,27 @@ canvas {
 border-radius: 10px;
 } 
 
+
+.speech-bubble {
+	position: relative;
+	background: lightgray;
+	border-radius: 10px;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 18px solid transparent;
+	border-top-color: lightgray;
+	border-bottom: 0;
+	margin-left: -18px;
+	margin-bottom: -18px;
+}
+
   #button {
   border-style:solid;
   border-color:white;
