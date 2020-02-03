@@ -313,7 +313,7 @@ loginWrapperInputForgot.style("padding","1rem 0rem");
 
 chatbox = createDiv();
 chatbox.size(canvas.width,h/8);
-chatbox.position(w/2-canvas.width/2,6*h/10 + canvasPadding/2);
+chatbox.position(w/2-canvas.width/2,canvasPadding/2);
 chatbox.class("speech-bubble");
 chatbox.parent(lensContainer);
 
