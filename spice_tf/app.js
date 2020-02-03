@@ -86,7 +86,7 @@ async function predict() {
   if(parseInt(prediction[highestClass].probability.toFixed(2).toInt)>0.95){
     chatbox.html(" I think its a "+prediction[highestClass].className);
   }
-  else{
+  else if(parseInt(prediction[highestClass].probability.toFixed(2).toInt)<=0.95){
   chatbox.html("Hmmm is it a " + prediction[highestClass].className + "...");
   }
   predict();
