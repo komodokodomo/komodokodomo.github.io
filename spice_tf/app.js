@@ -151,7 +151,8 @@ async function setup() {
   else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
   }
   else{  
-    canvas = createCanvas(w-canvasPadding, w-canvasPadding);
+    if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
+    else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
   }
   canvas.position(w/2-canvas.width/2,3*h/8 - canvas.height/2);
   // canvas = createCanvas();
@@ -349,7 +350,8 @@ function windowResized(){
       else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
       }
       else{  
-        canvas = createCanvas(w-canvasPadding, w-canvasPadding);
+        if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
+        else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
       }
       canvas.position(w/2-canvas.width/2,3*h/8 - canvas.height/2);
 
