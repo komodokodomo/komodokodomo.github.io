@@ -138,13 +138,13 @@ async function setup() {
   titleContainer.size(w,h/8);
   titleContainer.position(0,0);
   titleContainer.id("title-container")
-  titleContainer.hide();
+  // titleContainer.hide();
 
   canvasContainer = createDiv();
   canvasContainer.size(w,h/2);
   canvasContainer.position(0,h/8);
   canvasContainer.id("canvas-container")
-  canvasContainer.hide();
+  // canvasContainer.hide();
 
   if(w>h){
   if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
@@ -163,7 +163,7 @@ async function setup() {
   lensContainer.size(w,3*h/8);
   lensContainer.position(0,5*h/8);
   lensContainer.id("lens-container")
-  lensContainer.hide();
+  // lensContainer.hide();
 
 
 
