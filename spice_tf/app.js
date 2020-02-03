@@ -21,7 +21,7 @@ let loginWrapperInputPassWord;
 let loginWrapperInputLogin;
 let loginWrapperInputForgot;
 
-let canvasPadding = 50;
+let canvasPadding = 20;
 
 let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
