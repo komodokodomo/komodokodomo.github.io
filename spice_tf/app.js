@@ -144,15 +144,16 @@ function trigger() {
 function loginUser(){
 loginStatus = true;
 loginWrapper.hide();
+canvas.show();
 }
 
 
-function toggleScreen() {
-  fullscreen(true);
-  console.log("fullscreen");
-  screenToggle.hide();
+// function toggleScreen() {
+//   fullscreen(true);
+//   console.log("fullscreen");
+//   screenToggle.hide();
   // screenToggle2.show(); 
-}
+// }
 
 
 
@@ -193,7 +194,8 @@ async function setup() {
   canvas.id("canvas");
   
       // canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
-      canvas.position(w/2-canvas.width/2,h/7);
+  canvas.position(w/2-canvas.width/2,h/7);
+  canvas.hide();
 
 
   contentContainer = createDiv();
@@ -304,14 +306,14 @@ async function setup() {
   contentFrame.hide();
 
 
-screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
-screenToggle.style("width","16px");
-screenToggle.style("height","16px");
+// screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
+// screenToggle.style("width","16px");
+// screenToggle.style("height","16px");
 // screenToggle.style("left","32px");
 // screenToggle.style("top","32px");
 // screenToggle.size(w/16,w/16);
-screenToggle.position(16,16);
-screenToggle.mouseClicked(toggleScreen);
+// screenToggle.position(16,16);
+// screenToggle.mouseClicked(toggleScreen);
 
 
 loginWrapper = createDiv();
