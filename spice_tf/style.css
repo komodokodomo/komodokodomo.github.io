@@ -16,11 +16,13 @@ border-radius: 10px;
 border: 2px solid black;
 } 
 
-#title-container {
-  border-style:solid;
-  border-color:black;
-  border-width:2px;
+#title-container{
+  border-bottom:2px solid black;
   }
+
+#lens-container{
+  border-top:2px solid black;
+}
 
 
 .speech-bubble {
