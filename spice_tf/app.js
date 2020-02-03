@@ -29,6 +29,8 @@ let loginWrapperInputForgot;
 
 let canvasPadding = 50;
 
+let chatbox;
+
 
 let current;
 let cameras = "";
@@ -194,9 +196,13 @@ async function setup() {
   canvas.id("canvas");
   
       // canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
-  canvas.position(w/2-canvas.width/2,h/7);
+  canvas.position(w/2-canvas.width/2,h/8);
   canvas.hide();
 
+  chatbox = createDiv();
+  chatbox.size(canvas.width(),h/8);
+  chatbox.position(canvasPadding,6*h/8);
+  chatbox.class("speech-bubble");
 
   contentContainer = createDiv();
   contentContainer.size(w,9*h/10);
@@ -447,7 +453,7 @@ function windowResized(){
     else{  resizeCanvas(w-canvasPadding, w-canvasPadding);}
     
     // canvas.position(w/2-canvas.width/2,h/2-canvas.height/2);
-    canvas.position(w/2-canvas.width/2,h/7);
+    canvas.position(w/2-canvas.width/2,h/8);
 
 
 
