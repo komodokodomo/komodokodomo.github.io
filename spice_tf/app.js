@@ -181,7 +181,7 @@ async function setup() {
 
   var myElement = document.getElementById('lens-container');
   var mc = new Hammer(myElement);
-  mc.on("panleft panright tap press", function(ev) {
+  mc.on("swipeleft swiperight tap press", function(ev) {
    console.log(ev.type +" gesture detected.");
   });
   // lensContainer.hide();
