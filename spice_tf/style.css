@@ -175,7 +175,7 @@ border: 3px solid black;
     border: 3px solid black;
     border-radius: 10px;
     transition: all 1s;
-    overflow: auto;
+    overflow: scroll;
   }
   
   .speech-bubble:before {
