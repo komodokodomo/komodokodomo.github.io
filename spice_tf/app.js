@@ -206,7 +206,7 @@ async function setup() {
     faces[i].style("left","25%");
     faces[i].style("width","50%");
     faces[i].style("bottom","0");
-    if(i == faceMode){}
+    if(i == faceMode){faces[i].show();}
     else{faces[i].hide();}
   }
 
