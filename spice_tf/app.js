@@ -84,7 +84,7 @@ async function predict() {
 
   console.log(prediction[highestClass].className + ": " + prediction[highestClass].probability.toFixed(2));
   if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
-    chatbox.html(" I think its a "+prediction[highestClass].className + ". Click to find out more");
+    chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\>Click to find out more");
   }
   else if(parseFloat(prediction[highestClass].probability.toFixed(2))<=0.95){
   chatbox.html("Hmmm is it a " + prediction[highestClass].className + "...");
