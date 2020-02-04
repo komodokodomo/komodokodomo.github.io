@@ -142,6 +142,7 @@ async function setup() {
   titleContainerBack.style("display", "flex");
   titleContainerBack.style("align-items", "center");
   titleContainerBack.style("justify-content", "center");
+  titleContainerBack.style("font-weight", "bold");
 
   let titleContainerContent = createDiv("Spice Garden");
   titleContainerContent.parent(titleContainer);
@@ -152,8 +153,10 @@ async function setup() {
   titleContainerContent.style("display", "flex");
   titleContainerContent.style("align-items", "center");
   titleContainerContent.style("justify-content", "center");
+  titleContainerContent.style("font-weight", "bold");
 
-  let titleContainerMenu = createDiv("menu");
+
+  let titleContainerMenu = createDiv("☰");
   titleContainerMenu.parent(titleContainer);
   titleContainerMenu.style("position","absolute");
   titleContainerMenu.style("left","90%");
@@ -162,6 +165,7 @@ async function setup() {
   titleContainerMenu.style("display", "flex");
   titleContainerMenu.style("align-items", "center");
   titleContainerMenu.style("justify-content", "center");
+  titleContainerMenu.style("font-weight", "bold");
   
 
   canvasContainer = createDiv();
