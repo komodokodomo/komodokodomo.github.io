@@ -144,6 +144,73 @@ async function setup() {
   h = window.innerHeight;
   density = pixelDensity();
 
+
+
+
+  lensContainer = createDiv();
+  lensContainer.size(w,4*h/10);
+  lensContainer.position(0,6*h/10);
+  lensContainer.id("lens-container");
+  lensContainer.hide();
+
+  for(let i = 0; i<3; i++){
+    faces[i] = createImg("300ppi/faces"+(2*(i+1)).toString()+".png")
+    faces[i].parent(lensContainer);
+    faces[i].style("position","absolute");
+    faces[i].style("left","25%");
+    faces[i].style("width","50%");
+    faces[i].style("bottom","0");
+    if(i === faceMode){faces[i].show();}
+    else{faces[i].hide();}
+  }
+
+  chatboxContainer = createDiv();
+  chatboxContainer.size(canvas.width,h);
+  chatboxContainer.id("chatbox-container")
+  chatboxContainer.position(w/2-canvas.width/2,0);
+
+  chatbox = createDiv();
+  chatbox.parent(chatboxContainer);
+  // chatbox.size(canvas.width,h/8);
+  chatbox.class("speech-bubble");
+  chatbox.id("chatbox")
+  let a = document.getElementById("chatbox");
+  a.classList.add("contract");
+  chatbox.mousePressed(trigger);
+
+
+  var myElement = document.getElementById('chatbox-container');
+  var mc = new Hammer(myElement);
+  mc.on("swipeleft swiperight tap press", function(ev) {
+   console.log(ev.type +" gesture detected.");
+   faces[faceMode].hide();
+   if(ev.type == "swipeleft"){faceMode++;}
+   else if(ev.type == "swiperight"){faceMode--;}
+   if(faceMode>faces.length-1){faceMode=0;}
+   else if(faceMode<0){faceMode=faces.length-1;}
+   faces[faceMode].show();
+  });
+
+  canvasContainer = createDiv();
+  canvasContainer.size(w,h/2);
+  canvasContainer.position(0,h/10);
+  canvasContainer.id("canvas-container");
+  canvasContainer.hide();
+  // canvasContainer.hide();
+
+  if(w>h){
+  if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
+  else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
+  }
+  else{  
+    if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
+    else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
+  }
+  canvas.position(w/2-canvas.width/2, 7*h/20 - canvas.height/2);
+  canvas.id("canvas");
+  canvas.hide();
+
+
   titleContainer = createDiv();
   titleContainer.size(w,h/10);
   titleContainer.position(0,0);
@@ -187,71 +254,6 @@ async function setup() {
   titleContainerMenu.style("justify-content", "center");
   titleContainerMenu.style("font-weight", "bold");
   titleContainerMenu.style("font-size", "1.2rem");
-
-
-  canvasContainer = createDiv();
-  canvasContainer.size(w,h/2);
-  canvasContainer.position(0,h/10);
-  canvasContainer.id("canvas-container");
-  canvasContainer.hide();
-  // canvasContainer.hide();
-
-  if(w>h){
-  if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
-  else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
-  }
-  else{  
-    if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
-    else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
-  }
-  canvas.position(w/2-canvas.width/2, 7*h/20 - canvas.height/2);
-  canvas.id("canvas");
-  canvas.hide();
-
-
-
-  lensContainer = createDiv();
-  lensContainer.size(w,4*h/10);
-  lensContainer.position(0,6*h/10);
-  lensContainer.id("lens-container");
-  lensContainer.hide();
-
-  for(let i = 0; i<3; i++){
-    faces[i] = createImg("300ppi/faces"+(2*(i+1)).toString()+".png")
-    faces[i].parent(lensContainer);
-    faces[i].style("position","absolute");
-    faces[i].style("left","25%");
-    faces[i].style("width","50%");
-    faces[i].style("bottom","0");
-    if(i === faceMode){faces[i].show();}
-    else{faces[i].hide();}
-  }
-
-  chatboxContainer = createDiv();
-  chatboxContainer.size(canvas.width,h);
-  chatboxContainer.position(w/2-canvas.width/2,0);
-
-  chatbox = createDiv();
-  chatbox.parent(chatboxContainer);
-  // chatbox.size(canvas.width,h/8);
-  chatbox.class("speech-bubble");
-  chatbox.id("chatbox")
-  let a = document.getElementById("chatbox");
-  a.classList.add("contract");
-  chatbox.mousePressed(trigger);
-
-
-  var myElement = document.getElementById('lens-container');
-  var mc = new Hammer(myElement);
-  mc.on("swipeleft swiperight tap press", function(ev) {
-   console.log(ev.type +" gesture detected.");
-   faces[faceMode].hide();
-   if(ev.type == "swipeleft"){faceMode++;}
-   else if(ev.type == "swiperight"){faceMode--;}
-   if(faceMode>faces.length-1){faceMode=0;}
-   else if(faceMode<0){faceMode=faces.length-1;}
-   faces[faceMode].show();
-  });
   // lensContainer.hide();
 
 
