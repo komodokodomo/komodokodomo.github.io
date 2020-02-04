@@ -203,7 +203,7 @@ async function setup() {
   lensContainer.id("lens-container");
   lensContainer.hide();
 
-  for(let i = 0; i<3; i++){
+  for(let i = 1; i<4; i++){
     faces[i] = createImg("300ppi/face"+i.toString()+".png")
     faces[i].parent(lensContainer);
   }
