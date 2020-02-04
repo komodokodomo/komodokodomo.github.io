@@ -47,52 +47,7 @@ border: 3px solid black;
 	margin-bottom: -18px;
 } */
 
-.speech-bubble {
-  position: relative;
-  width: 130px;
-  height: 100px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 100px;
-  background-color: lightgrey;
-  border: 3px solid black;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-}
 
-.speech-bubble:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 50%;
-  top: 101px;
-  border: 9px solid;
-  border-color: black transparent transparent black;
-}
-
-.speech-bubble:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  right: 50%;
-  top: 101px;
-  border: 9px solid;
-  border-color: black transparent transparent black;
-}
-
-.speech-bubble:after {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 38px;
-  top: 100px;
-  border: 15px solid;
-  border-color: #fff transparent transparent #fff;
-}
 
   #button {
   border-style:solid;
@@ -209,12 +164,61 @@ border: 3px solid black;
   
 
 
-  .speech-bubble {
+  /* .speech-bubble {
     position: relative;
     background: #dddfde;
     border-radius: .4em;
+  } */
+
+  .speech-bubble {
+    position: relative;
+    width: 130px;
+    height: 100px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 100px;
+    background-color: lightgrey;
+    border: 3px solid black;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
   }
   
+  /* .speech-bubble:before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 101px;
+    border: 9px solid;
+    border-color: black transparent transparent black;
+  } */
+  
+  /* .speech-bubble:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 38px;
+    top: 100px;
+    border: 15px solid;
+    border-color: #fff transparent transparent #fff;
+  } */
+  
+  .speech-bubble:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-color: black transparent transparent black;
+    border-bottom: 0;
+    margin-left: -15px;
+    margin-bottom: -15px;
+  }
   .speech-bubble:after {
     content: '';
     position: absolute;
