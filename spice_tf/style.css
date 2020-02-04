@@ -176,35 +176,13 @@ border: 3px solid black;
     height: 100px;
     font-weight: bold;
     text-align: center;
-    line-height: 100px;
+    line-height: 1rem;
     background-color: lightgrey;
     border: 3px solid black;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
   }
-  
-  /* .speech-bubble:before {
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 50%;
-    top: 101px;
-    border: 9px solid;
-    border-color: black transparent transparent black;
-  } */
-  
-  /* .speech-bubble:after {
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 38px;
-    top: 100px;
-    border: 15px solid;
-    border-color: #fff transparent transparent #fff;
-  } */
   
   .speech-bubble:before {
     content: '';
