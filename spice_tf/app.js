@@ -220,10 +220,12 @@ async function setup() {
   var mc = new Hammer(myElement);
   mc.on("swipeleft swiperight tap press", function(ev) {
    console.log(ev.type +" gesture detected.");
+   faces[lensMode].hide();
    if(ev.type == "swipeleft"){lensMode++;}
    else if(ev.type == "swiperight"){lensMode--;}
    if(lensMode>faces.length-1){lensMode=0;}
    else if(lensMode<0){lensMode=faces.length-1;}
+   faces[lensMode].show();
   });
   // lensContainer.hide();
 
