@@ -171,8 +171,8 @@ border: 3px solid black;
     border-radius: .4em;
   } */
 
-  .speech-bubble {
-    position: relative;
+  .speech-bubble.close {
+    /* position: relative; */
     /* width: 130px;
     height: 100px; */
     font-weight: bold;
