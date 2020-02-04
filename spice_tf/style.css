@@ -213,11 +213,11 @@ border: 3px solid black;
     left: 50%;
     width: 0;
     height: 0;
-    border: 18px solid transparent;
+    border: 19px solid transparent;
     border-top-color: black;
     border-bottom: 0;
-    margin-left: -15px;
-    margin-bottom: -15px;
+    margin-left: -19px;
+    margin-bottom: -19px;
   }
   .speech-bubble:after {
     content: '';
@@ -227,7 +227,7 @@ border: 3px solid black;
     width: 0;
     height: 0;
     border: 15px solid transparent;
-    border-top-color: #dddfde;
+    border-top-color: lightgrey;
     border-bottom: 0;
     margin-left: -15px;
     margin-bottom: -15px;
