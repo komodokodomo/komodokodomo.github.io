@@ -358,7 +358,7 @@ chatbox = createDiv();
 chatbox.size(canvas.width,h/8);
 chatbox.position(w/2-canvas.width/2,canvasPadding/2);
 chatbox.class("speech-bubble");
-chatbox.class("close");
+chatbox.class("contract");
 // chatbox.parent(lensContainer);
 chatbox.mousePressed(trigger);
 
