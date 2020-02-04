@@ -184,7 +184,7 @@ async function setup() {
 
 
   chatboxClose = createDiv("X");
-  // chatboxClose.parent(chatbox);
+  chatboxClose.parent(chatbox);
   chatboxClose.style("z-index","6");
   chatboxClose.hide();
   chatboxClose.id("chatbox-close");
