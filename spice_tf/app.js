@@ -115,6 +115,7 @@ titleContainer.show();
 canvasContainer.show();
 canvas.show();
 lensContainer.show();
+chatboxContainer.show();
 // for(let i = 0; i < faces.length; i++){
 //  faces[i].style("display","none"); 
 // }
@@ -209,6 +210,7 @@ async function setup() {
 
   chatboxContainer.size(canvas.width,h);
   chatboxContainer.position(w/2-canvas.width/2,0);
+  chatboxContainer.hide();
 
 
   titleContainer = createDiv();
