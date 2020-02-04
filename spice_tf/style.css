@@ -6,8 +6,8 @@ body
   margin: 0; 
   display:inline-block;
   font-family: 'Noto Sans', sans-serif;
-}
 
+}
  img { 
     padding: 0;
     margin: 0; 
@@ -26,27 +26,6 @@ border: 3px solid black;
   border-top:3px solid black;
   overflow: hidden;
 }
-
-
-/* .speech-bubble {
-	position: relative;
-	background: lightgray;
-	border-radius: 10px;
-}
-
-.speech-bubble:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: 5px solid transparent;
-	border-top-color: lightgray;
-	border-bottom: 0;
-	margin-left: -18px;
-	margin-bottom: -18px;
-} */
 
 
 
@@ -163,13 +142,6 @@ border: 3px solid black;
     transform: rotate(-45deg);
   }
   
-
-
-  /* .speech-bubble {
-    position: relative;
-    background: #dddfde;
-    border-radius: .4em;
-  } */
   .speech-bubble{
     z-index: 5;
   }
