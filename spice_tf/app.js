@@ -137,7 +137,7 @@ async function setup() {
   titleContainerBack.parent(titleContainer);
   titleContainerBack.style("position","absolute");
   titleContainerBack.style("left","0%");
-  titleContainerBack.style("width","10%");
+  titleContainerBack.style("width","20%");
   titleContainerBack.style("height","100%");
   titleContainerBack.style("display", "flex");
   titleContainerBack.style("align-items", "center");
@@ -147,20 +147,21 @@ async function setup() {
   let titleContainerContent = createDiv("Spice Garden");
   titleContainerContent.parent(titleContainer);
   titleContainerContent.style("position","absolute");
-  titleContainerContent.style("left","10%");
-  titleContainerContent.style("width","80%");
+  titleContainerContent.style("left","20%");
+  titleContainerContent.style("width","60%");
   titleContainerContent.style("height","100%");
   titleContainerContent.style("display", "flex");
   titleContainerContent.style("align-items", "center");
   titleContainerContent.style("justify-content", "center");
   titleContainerContent.style("font-weight", "bold");
+  titleContainerContent.style("font-size", "1.5rem");
 
 
   let titleContainerMenu = createDiv("☰");
   titleContainerMenu.parent(titleContainer);
   titleContainerMenu.style("position","absolute");
-  titleContainerMenu.style("left","90%");
-  titleContainerMenu.style("width","10%");
+  titleContainerMenu.style("left","80%");
+  titleContainerMenu.style("width","20%");
   titleContainerMenu.style("height","100%");
   titleContainerMenu.style("display", "flex");
   titleContainerMenu.style("align-items", "center");
