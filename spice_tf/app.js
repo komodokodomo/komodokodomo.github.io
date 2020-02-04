@@ -208,19 +208,6 @@ async function setup() {
   canvas.id("canvas");
   canvas.hide();
 
-  chatboxContainer = createDiv();
-  chatboxContainer.size(canvas.width,h);
-  chatboxContainer.position(w/2-canvas.width/2,0);
-
-
-  chatbox = createDiv();
-  chatbox.parent(chatboxContainer);
-  chatbox.size(canvas.width,h/8);
-  chatbox.class("speech-bubble");
-  chatbox.id("chatbox")
-  let a = document.getElementById("chatbox");
-  a.classList.add("contract");
-  chatbox.mousePressed(trigger);
 
 
   lensContainer = createDiv();
@@ -239,6 +226,20 @@ async function setup() {
     if(i === faceMode){faces[i].show();}
     else{faces[i].hide();}
   }
+
+  chatboxContainer = createDiv();
+  chatboxContainer.size(canvas.width,h);
+  chatboxContainer.position(w/2-canvas.width/2,0);
+
+  chatbox = createDiv();
+  chatbox.parent(chatboxContainer);
+  chatbox.size(canvas.width,h/8);
+  chatbox.class("speech-bubble");
+  chatbox.id("chatbox")
+  let a = document.getElementById("chatbox");
+  a.classList.add("contract");
+  chatbox.mousePressed(trigger);
+
 
   var myElement = document.getElementById('lens-container');
   var mc = new Hammer(myElement);
