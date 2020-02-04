@@ -172,7 +172,7 @@ border: 3px solid black;
   } */
 
   .speech-bubble.contract {
-    /* position: relative; */
+    position: relative;
     width: 100%;
     top: calc(60% + 20px); 
     font-weight: bold;
