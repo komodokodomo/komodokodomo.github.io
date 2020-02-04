@@ -173,9 +173,6 @@ async function setup() {
   titleContainerMenu.style("font-size", "1.2rem");
 
 
-
-  
-
   canvasContainer = createDiv();
   canvasContainer.size(w,h/2);
   canvasContainer.position(0,h/10);
@@ -192,8 +189,6 @@ async function setup() {
     else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
   }
   canvas.position(w/2-canvas.width/2, 7*h/20 - canvas.height/2);
-  // canvas = createCanvas();
-  // canvas.parent(canvasContainer);
   canvas.id("canvas");
   canvas.hide();
 
@@ -204,8 +199,9 @@ async function setup() {
   lensContainer.hide();
 
   for(let i = 1; i<4; i++){
-    faces[i] = createImg("300ppi/face"+i.toString()+".png")
+    faces[i] = createImg("300ppi/face"+(2*i).toString()+".png")
     faces[i].parent(lensContainer);
+    faces[i].style("position","absolute");
   }
 
   var myElement = document.getElementById('lens-container');
