@@ -183,7 +183,7 @@ async function setup() {
   chatbox.mousePressed(trigger);
 
 
-  chatboxClose = createDiv("X");
+  chatboxClose = createP("X");
   chatboxClose.parent(chatbox);
   chatboxClose.style("z-index","6");
   chatboxClose.hide();
