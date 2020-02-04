@@ -185,6 +185,7 @@ async function setup() {
 
   chatboxClose = createP("X");
   chatboxClose.parent(chatbox);
+  chatboxClose.style("z-index","6");
   chatboxClose.hide();
   chatboxClose.id("chatbox-close");
   chatboxClose.mousePressed(contractChatbox);
