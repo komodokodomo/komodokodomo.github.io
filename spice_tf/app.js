@@ -27,6 +27,7 @@ let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
 let canvas,video,img,chatbox;
 
+let faces = [];
 
 
 let mobile = false;
@@ -171,6 +172,8 @@ async function setup() {
   titleContainerMenu.style("font-weight", "bold");
   titleContainerMenu.style("font-size", "1.2rem");
 
+
+
   
 
   canvasContainer = createDiv();
@@ -199,6 +202,11 @@ async function setup() {
   lensContainer.position(0,6*h/10);
   lensContainer.id("lens-container");
   lensContainer.hide();
+
+  for(let i = 0; i<3; i++){
+    faces[i] = createImg("300ppi/face"+i.toString()+".png")
+    faces[i].parent(lensContainer);
+  }
 
   var myElement = document.getElementById('lens-container');
   var mc = new Hammer(myElement);
