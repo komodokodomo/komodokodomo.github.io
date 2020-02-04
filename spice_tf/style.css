@@ -173,8 +173,8 @@ border: 3px solid black;
 
   .speech-bubble {
     position: relative;
-    width: 130px;
-    height: 100px;
+    /* width: 130px;
+    height: 100px; */
     font-weight: bold;
     /* text-align: center; */
     display: flex;
