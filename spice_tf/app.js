@@ -136,20 +136,21 @@ async function setup() {
   let titleContainerBack = createDiv("<");
   titleContainerBack.parent(titleContainer);
   titleContainerBack.style("position","relative");
-  titleContainerBack.style("left","0px");
+  titleContainerBack.style("left","0%");
   titleContainerBack.style("width","10%");
   titleContainerBack.style("height","100%");
 
   let titleContainerContent = createDiv("Spice Garden");
   titleContainerContent.parent(titleContainer);
   titleContainerContent.style("position","relative");
+  titleContainerContent.style("left","10%");
   titleContainerContent.style("width","80%");
   titleContainerContent.style("height","100%");
 
   let titleContainerMenu = createDiv("menu");
   titleContainerMenu.parent(titleContainer);
   titleContainerMenu.style("position","relative");
-  titleContainerMenu.style("right","0px");
+  titleContainerMenu.style("left","90%");
   titleContainerMenu.style("width","10%");
   titleContainerMenu.style("height","100%");
   
