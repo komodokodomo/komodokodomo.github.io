@@ -233,7 +233,7 @@ async function setup() {
 
   chatbox = createDiv();
   chatbox.parent(chatboxContainer);
-  chatbox.size(canvas.width,h/8);
+  // chatbox.size(canvas.width,h/8);
   chatbox.class("speech-bubble");
   chatbox.id("chatbox")
   let a = document.getElementById("chatbox");
