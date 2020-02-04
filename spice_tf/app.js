@@ -107,9 +107,9 @@ canvasContainer.show();
 canvas.show();
 lensContainer.show();
 for(let i = 0; i < faces.length; i++){
- faces[i].hide(); 
+ faces[i].style("display","none"); 
 }
-faces[lensMode].show();
+faces[lensMode].style("display","block"); 
 
 
 }
