@@ -42,21 +42,6 @@ const videoWidth = 1920,videoHeight = 1080;
 let objects = [];
 
 
-
-
-// var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
-//   devices.forEach(function(device) {
-//     if(device.kind == "videoinput"){
-//       cameras += device.label;
-//       cameras += "***";  
-//     }
-//   });
-//   console.log(cameras);
-// })
-// .catch(function(err) {
-//   console.log(err.name + ": " + err.message);
-// });
-
 function preload(){
   let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
   jsonData = loadJSON(url);
@@ -152,6 +137,7 @@ async function setup() {
   titleContainerBack.parent(titleContainer);
   titleContainerBack.style("position","relative");
   titleContainerBack.style("left","0px");
+  titleContainerBack.style("width","100px");
 
   let titleContainerContent = createDiv("Spice Garden");
   titleContainerContent.parent(titleContainer);
@@ -161,6 +147,7 @@ async function setup() {
   titleContainerMenu.parent(titleContainer);
   titleContainerMenu.style("position","relative");
   titleContainerMenu.style("right","0px");
+  titleContainerMenu.style("width","100px");
   
 
   canvasContainer = createDiv();
