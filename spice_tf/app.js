@@ -137,17 +137,21 @@ async function setup() {
   titleContainerBack.parent(titleContainer);
   titleContainerBack.style("position","relative");
   titleContainerBack.style("left","0px");
-  titleContainerBack.style("width","100px");
+  titleContainerBack.style("width","10%");
+  titleContainerBack.style("height","100%");
 
   let titleContainerContent = createDiv("Spice Garden");
   titleContainerContent.parent(titleContainer);
   titleContainerContent.style("position","relative");
+  titleContainerContent.style("width","80%");
+  titleContainerContent.style("height","100%");
 
   let titleContainerMenu = createDiv("menu");
   titleContainerMenu.parent(titleContainer);
   titleContainerMenu.style("position","relative");
   titleContainerMenu.style("right","0px");
-  titleContainerMenu.style("width","100px");
+  titleContainerMenu.style("width","10%");
+  titleContainerMenu.style("height","100%");
   
 
   canvasContainer = createDiv();
