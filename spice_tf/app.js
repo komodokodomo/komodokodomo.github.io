@@ -135,24 +135,33 @@ async function setup() {
 
   let titleContainerBack = createDiv("<");
   titleContainerBack.parent(titleContainer);
-  titleContainerBack.style("position","relative");
+  titleContainerBack.style("position","absolute");
   titleContainerBack.style("left","0%");
   titleContainerBack.style("width","10%");
   titleContainerBack.style("height","100%");
+  titleContainerBack.style("display", "flex");
+  titleContainerBack.style("align-items", "center");
+  titleContainerBack.style("justify-content", "center");
 
   let titleContainerContent = createDiv("Spice Garden");
   titleContainerContent.parent(titleContainer);
-  titleContainerContent.style("position","relative");
+  titleContainerContent.style("position","absolute");
   titleContainerContent.style("left","10%");
   titleContainerContent.style("width","80%");
   titleContainerContent.style("height","100%");
+  titleContainerContent.style("display", "flex");
+  titleContainerContent.style("align-items", "center");
+  titleContainerContent.style("justify-content", "center");
 
   let titleContainerMenu = createDiv("menu");
   titleContainerMenu.parent(titleContainer);
-  titleContainerMenu.style("position","relative");
+  titleContainerMenu.style("position","absolute");
   titleContainerMenu.style("left","90%");
   titleContainerMenu.style("width","10%");
   titleContainerMenu.style("height","100%");
+  titleContainerMenu.style("display", "flex");
+  titleContainerMenu.style("align-items", "center");
+  titleContainerMenu.style("justify-content", "center");
   
 
   canvasContainer = createDiv();
