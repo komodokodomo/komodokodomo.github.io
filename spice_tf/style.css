@@ -24,6 +24,7 @@ border: 3px solid black;
 
 #lens-container{
   border-top:3px solid black;
+  overflow: hidden;
 }
 
 
@@ -175,12 +176,15 @@ border: 3px solid black;
     width: 130px;
     height: 100px;
     font-weight: bold;
-    text-align: center;
-    line-height: 1rem;
+    /* text-align: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5rem;
     background-color: lightgrey;
     border: 3px solid black;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
+    /* -webkit-border-radius: 10px;
+    -moz-border-radius: 10px; */
     border-radius: 10px;
   }
   
