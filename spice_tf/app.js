@@ -85,6 +85,9 @@ async function predict() {
 function trigger() { 
   if(chatboxExpand){
     console.log('button clicked!');
+    let a = document.getElementById("chatbox");
+    a.classList.remove("contract");
+    a.classList.add("expand");
   }  
   else{
     console.log('not confident enough!'); 
