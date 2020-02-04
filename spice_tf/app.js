@@ -40,6 +40,7 @@ const constraints = {
 const videoWidth = 1920,videoHeight = 1080;
 
 
+
 let objects = [];
 
 
@@ -69,6 +70,7 @@ async function predict() {
       classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
 
+  // console.log(prediction[highestClass].className + ": " + prediction[highestClass].probability.toFixed(2));
   if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
     chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\>Click to find out more");
     chatboxExpand = true;
@@ -86,7 +88,6 @@ function trigger() {
     let a = document.getElementById("chatbox");
     a.classList.remove("contract");
     a.classList.add("expand");
-    chatboxClose.show();
   }  
   else{
     console.log('not confident enough!'); 
@@ -121,13 +122,6 @@ chatboxContainer.show();
 // faces[lensMode].style("display","block"); 
 
 
-}
-
-function contractChatbox(){
-  let a = document.getElementById("chatbox");
-  a.classList.remove("expand");
-  a.classList.add("contract");
-  chatboxClose.hide();
 }
 
 
@@ -181,13 +175,6 @@ async function setup() {
   let a = document.getElementById("chatbox");
   a.classList.add("contract");
   chatbox.mousePressed(trigger);
-
-
-  chatboxClose = createP("X");
-  chatboxClose.parent(chatbox);
-  chatboxClose.hide();
-  chatboxClose.id("chatbox-close");
-  chatboxClose.mousePressed(contractChatbox);
 
 
   var myElement = document.getElementById('chatbox-container');
