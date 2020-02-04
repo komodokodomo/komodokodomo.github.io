@@ -106,10 +106,10 @@ titleContainer.show();
 canvasContainer.show();
 canvas.show();
 lensContainer.show();
-for(let i = 0; i < faces.length; i++){
- faces[i].style("display","none"); 
-}
-faces[lensMode].style("display","block"); 
+// for(let i = 0; i < faces.length; i++){
+//  faces[i].style("display","none"); 
+// }
+// faces[lensMode].style("display","block"); 
 
 
 }
@@ -205,15 +205,15 @@ async function setup() {
   lensContainer.id("lens-container");
   lensContainer.hide();
 
-  for(let i = 1; i<4; i++){
-    faces[i] = createImg("300ppi/face"+(2*i).toString()+".png")
+  for(let i = 0; i<3; i++){
+    faces[i] = createImg("300ppi/face"+(2*(i+1)).toString()+".png")
     faces[i].parent(lensContainer);
     faces[i].style("position","absolute");
     faces[i].style("left","25%");
     faces[i].style("width","50%");
     faces[i].style("bottom","0");
-    // if(i === faceMode){faces[i].show();}
-    // else{faces[i].hide();}
+    if(i === faceMode){faces[i].show();}
+    else{faces[i].hide();}
   }
 
   var myElement = document.getElementById('lens-container');
