@@ -25,7 +25,7 @@ let canvasPadding = 40;
 
 let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
-let canvas,video,img,chatbox;
+let canvas,video,img,chatbox,chatboxExpand;
 
 let faces = [];
 let faceMode = 0;
@@ -63,40 +63,46 @@ async function predict() {
   debugPrediction = "";
   let highestProb = 0.0;
   let highestClass;
+  
   for (let i = 0; i < maxPredictions; i++) {
       debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       if(highestProb<prediction[i].probability.toFixed(2)){highestProb=prediction[i].probability.toFixed(2);highestClass = i;}
       classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
 
-  console.log(prediction[highestClass].className + ": " + prediction[highestClass].probability.toFixed(2));
+  // console.log(prediction[highestClass].className + ": " + prediction[highestClass].probability.toFixed(2));
   if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
     chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\>Click to find out more");
+    chatboxExpand = true;
   }
   else if(parseFloat(prediction[highestClass].probability.toFixed(2))<=0.95){
   chatbox.html("Hmmm is it a " + prediction[highestClass].className + "...");
+  chatboxExpand = false;
   }
   predict();
 }
 
-// function trigger() {   
-//   console.log('button clicked!');
-//   lensContainer.style("display","flex");
-//   // contentContainer.style("display","flex");
-//   document.getElementById("related-content-container").classList.add("active");
+function trigger() { 
+  if(chatboxExpand){
+    console.log('button clicked!');
+  }  
+  else{
+    console.log('not confident enough!'); 
+  }
+  // document.getElementById("related-content-container").classList.add("active");
   
-//   button.hide();
-//   hideButton = true;
-//   classToExplore = objects[0].class;
-//   contentLabel.html(classToExplore);
-//   if(lensNumber == undefined){
-//     contentText.html("choose a lens to start exploring!");
-//   }
-//   else{
-//       contentText.html(lensNumber.toString());
-//   }
-//   console.log(objects[0].class);
-// }
+  // button.hide();
+  // hideButton = true;
+  // classToExplore = objects[0].class;
+  // contentLabel.html(classToExplore);
+  // if(lensNumber == undefined){
+  //   contentText.html("choose a lens to start exploring!");
+  // }
+  // else{
+  //     contentText.html(lensNumber.toString());
+  // }
+  // console.log(objects[0].class);
+}
 
 
 function loginUser(){
@@ -353,8 +359,7 @@ chatbox.size(canvas.width,h/8);
 chatbox.position(w/2-canvas.width/2,canvasPadding/2);
 chatbox.class("speech-bubble");
 chatbox.parent(lensContainer);
-
-
+chatbox.mousePressed(trigger);
 
 
 
