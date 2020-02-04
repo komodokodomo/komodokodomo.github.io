@@ -177,7 +177,7 @@ async function setup() {
   chatbox = createDiv();
   chatbox.parent(chatboxContainer);
   chatbox.class("speech-bubble");
-  chatbox.id("chatbox");
+  chatbox.id("chatbox")
   let a = document.getElementById("chatbox");
   a.classList.add("contract");
   chatbox.mousePressed(trigger);
