@@ -86,7 +86,7 @@ function trigger() {
     let a = document.getElementById("chatbox");
     a.classList.remove("contract");
     a.classList.add("expand");
-    // chatboxClose.show();
+    chatboxClose.show();
   }  
   else{
     console.log('not confident enough!'); 
@@ -127,7 +127,7 @@ function contractChatbox(){
   let a = document.getElementById("chatbox");
   a.classList.remove("expand");
   a.classList.add("contract");
-  // chatboxClose.hide();
+  chatboxClose.hide();
 }
 
 
@@ -183,12 +183,12 @@ async function setup() {
   chatbox.mousePressed(trigger);
 
 
-  // chatboxClose = createDiv("X");
+  chatboxClose = createDiv("X");
   // chatboxClose.parent(chatbox);
-  // chatboxClose.style("z-index","6");
-  // chatboxClose.hide();
-  // chatboxClose.id("chatbox-close");
-  // chatboxClose.mousePressed(contractChatbox);
+  chatboxClose.style("z-index","6");
+  chatboxClose.hide();
+  chatboxClose.id("chatbox-close");
+  chatboxClose.mousePressed(contractChatbox);
 
 
   var myElement = document.getElementById('chatbox-container');
