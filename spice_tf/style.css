@@ -28,27 +28,6 @@ border: 3px solid black;
 }
 
 
-/* .speech-bubble {
-	position: relative;
-	background: lightgray;
-	border-radius: 10px;
-}
-
-.speech-bubble:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: 5px solid transparent;
-	border-top-color: lightgray;
-	border-bottom: 0;
-	margin-left: -18px;
-	margin-bottom: -18px;
-} */
-
-
 
   #button {
   border-style:solid;
@@ -163,13 +142,9 @@ border: 3px solid black;
     transform: rotate(-45deg);
   }
   
-
-
-  /* .speech-bubble {
-    position: relative;
-    background: #dddfde;
-    border-radius: .4em;
-  } */
+  .speech-bubble{
+    z-index: 5;
+  }
 
   .speech-bubble.contract {
     position: relative;
