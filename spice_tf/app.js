@@ -104,6 +104,7 @@ loginStatus = true;
 loginWrapper.hide();
 canvas.show();
 lensContainer.show();
+faces[lensMode].show();
 canvasContainer.show();
 titleContainer.show();
 }
@@ -206,8 +207,8 @@ async function setup() {
     faces[i].style("left","25%");
     faces[i].style("width","50%");
     faces[i].style("bottom","0");
-    if(i === faceMode){faces[i].show();}
-    else{faces[i].hide();}
+    // if(i === faceMode){faces[i].show();}
+    // else{faces[i].hide();}
   }
 
   var myElement = document.getElementById('lens-container');
