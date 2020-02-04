@@ -104,6 +104,9 @@ loginStatus = true;
 loginWrapper.hide();
 canvas.show();
 lensContainer.show();
+for(let i = 0; i < faces.length; i++){
+ faces[i].hide(); 
+}
 faces[lensMode].show();
 canvasContainer.show();
 titleContainer.show();
