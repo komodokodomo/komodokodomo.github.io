@@ -84,7 +84,7 @@ async function predict() {
 
   console.log(prediction[highestClass].className + ": " + prediction[highestClass].probability.toFixed(2));
   if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
-    chatbox.html(" I think its a "+prediction[highestClass].className);
+    chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\> click to find out more");
   }
   else if(parseFloat(prediction[highestClass].probability.toFixed(2))<=0.95){
   chatbox.html("Hmmm is it a " + prediction[highestClass].className + "...");
@@ -317,7 +317,7 @@ loginWrapperInputForgot.style("border-radius","0.25rem");
 loginWrapperInputForgot.style("padding","1rem 0rem");
 
 chatbox = createDiv();
-chatbox.size(canvas.width,h/16);
+chatbox.size(canvas.width,h/8);
 chatbox.position(w/2-canvas.width/2,canvasPadding/2);
 chatbox.class("speech-bubble");
 chatbox.parent(lensContainer);
