@@ -28,6 +28,7 @@ let lensList,lensNumber, contentText, contentClose;
 let canvas,video,img,chatbox;
 
 let faces = [];
+let faceMode = 0;
 
 
 let mobile = false;
@@ -205,6 +206,8 @@ async function setup() {
     faces[i].style("left","25%");
     faces[i].style("width","50%");
     faces[i].style("bottom","0");
+    if(i == faceMode){}
+    else{faces[i].hide();}
   }
 
   var myElement = document.getElementById('lens-container');
