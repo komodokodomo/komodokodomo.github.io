@@ -165,13 +165,10 @@ async function setup() {
   }
 
   chatboxContainer = createDiv();
-  chatboxContainer.size(canvas.width,h);
   chatboxContainer.id("chatbox-container")
-  chatboxContainer.position(w/2-canvas.width/2,0);
 
   chatbox = createDiv();
   chatbox.parent(chatboxContainer);
-  // chatbox.size(canvas.width,h/8);
   chatbox.class("speech-bubble");
   chatbox.id("chatbox")
   let a = document.getElementById("chatbox");
@@ -209,6 +206,9 @@ async function setup() {
   canvas.position(w/2-canvas.width/2, 7*h/20 - canvas.height/2);
   canvas.id("canvas");
   canvas.hide();
+
+  chatboxContainer.size(canvas.width,h);
+  chatboxContainer.position(w/2-canvas.width/2,0);
 
 
   titleContainer = createDiv();
