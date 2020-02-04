@@ -212,7 +212,7 @@ async function setup() {
   lensContainer.hide();
 
   for(let i = 0; i<3; i++){
-    faces[i] = createImg("300ppi/face"+(2*(i+1)).toString()+".png")
+    faces[i] = createImg("300ppi/faces"+(2*(i+1)).toString()+".png")
     faces[i].parent(lensContainer);
     faces[i].style("position","absolute");
     faces[i].style("left","25%");
