@@ -202,6 +202,9 @@ async function setup() {
     faces[i] = createImg("300ppi/face"+(2*i).toString()+".png")
     faces[i].parent(lensContainer);
     faces[i].style("position","absolute");
+    faces[i].style("left","25%");
+    faces[i].style("width","50%");
+    faces[i].style("bottom","0");
   }
 
   var myElement = document.getElementById('lens-container');
