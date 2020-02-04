@@ -205,6 +205,21 @@ async function setup() {
   canvas.id("canvas");
   canvas.hide();
 
+  chatboxContainer = createDiv();
+  chatboxContainer.size(canvas.width,h);
+  chatboxContainer.position(w/2-canvas.width/2,0);
+
+
+  chatbox = createDiv();
+  chatbox.parent(chatboxContainer);
+  chatbox.size(canvas.width,h/8);
+  chatbox.class("speech-bubble");
+  chatbox.id("chatbox")
+  let a = document.getElementById("chatbox");
+  a.classList.add("contract");
+  chatbox.mousePressed(trigger);
+
+
   lensContainer = createDiv();
   lensContainer.size(w,4*h/10);
   lensContainer.position(0,6*h/10);
@@ -354,17 +369,6 @@ loginWrapperInputForgot.style("border-style","none");
 loginWrapperInputForgot.style("border-radius","0.25rem");
 loginWrapperInputForgot.style("padding","1rem 0rem");
 
-chatboxContainer = createDiv();
-chatboxContainer.size(canvas.width,h);
-
-chatbox = createDiv();
-chatbox.parent(chatboxContainer);
-chatbox.size(canvas.width,h/8);
-chatbox.class("speech-bubble");
-chatbox.id("chatbox")
-let a = document.getElementById("chatbox");
-a.classList.add("contract");
-chatbox.mousePressed(trigger);
 
 
 
@@ -428,6 +432,7 @@ function windowResized(){
       canvas.position(w/2-canvas.width/2, 7*h/20 - canvas.height/2);
 
       chatboxContainer.size(canvas.width,h);
+      chatboxContainer.position(w/2-canvas.width/2,0);
 
     
       // chatbox.size(canvas.width,h/8);
