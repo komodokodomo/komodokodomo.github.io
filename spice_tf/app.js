@@ -25,7 +25,7 @@ let canvasPadding = 40;
 
 let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
-let canvas,video,img,chatbox,chatboxExpand,chatboxContainer;
+let canvas,video,img,chatbox,chatboxClose;chatboxExpand,chatboxContainer;
 
 let faces = [];
 let faceMode = 0;
