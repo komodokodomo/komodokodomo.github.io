@@ -25,7 +25,7 @@ let canvasPadding = 40;
 
 let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
-let canvas,video,img,chatbox,chatboxExpand;
+let canvas,video,img,chatbox,chatboxExpand,chatboxContainer;
 
 let faces = [];
 let faceMode = 0;
@@ -354,14 +354,16 @@ loginWrapperInputForgot.style("border-style","none");
 loginWrapperInputForgot.style("border-radius","0.25rem");
 loginWrapperInputForgot.style("padding","1rem 0rem");
 
+chatboxContainer = createDiv();
+chatboxContainer.size(canvas.width,h);
+
 chatbox = createDiv();
+chatbox.parent(chatboxContainer);
 chatbox.size(canvas.width,h/8);
-chatbox.position(w/2-canvas.width/2,canvasPadding/2);
 chatbox.class("speech-bubble");
 chatbox.id("chatbox")
 let a = document.getElementById("chatbox");
 a.classList.add("contract");
-// chatbox.parent(lensContainer);
 chatbox.mousePressed(trigger);
 
 
@@ -425,8 +427,11 @@ function windowResized(){
       }
       canvas.position(w/2-canvas.width/2, 7*h/20 - canvas.height/2);
 
-    chatbox.size(canvas.width,h/8);
-    chatbox.position(w/2-canvas.width/2,canvasPadding/2);
+      chatboxContainer.size(canvas.width,h);
+
+    
+      // chatbox.size(canvas.width,h/8);
+    // chatbox.position(w/2-canvas.width/2,canvasPadding/2);
     
     titleContainer.size(w,h/10);
     titleContainer.position(0,0);
