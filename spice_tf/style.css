@@ -189,7 +189,7 @@ border: 3px solid black;
   .speech-bubble.expand {
     position: relative;
     width: 100%;
-    height: calc(60% + 40px); 
+    height: calc(60% + 20px); 
     top: calc(10% + 20px); 
     font-weight: bold;
     display: flex;
