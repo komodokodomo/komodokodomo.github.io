@@ -181,7 +181,6 @@ async function setup() {
   chatbox.mousePressed(trigger);
 
 
-  // chatboxClose.hide();
 
 
   var myElement = document.getElementById('chatbox-container');
@@ -225,6 +224,7 @@ async function setup() {
   chatboxClose.parent(chatboxContainer);
   chatboxClose.style("z-index","6");
   chatboxClose.style("font-weight","bold");
+  chatboxClose.style("position","absolute");
   // chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10+canvasPadding/2);
 
 
