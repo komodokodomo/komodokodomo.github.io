@@ -25,7 +25,7 @@ let canvasPadding = 40;
 
 let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
-let canvas,video,img,chatbox,chatboxClose,chatboxContent,chatboxExpand,chatboxExpanded = false,chatboxContainer;
+let canvas,video,img,chatbox,chatboxClose,chatboxContent,chatboxTitle,chatboxExpand,chatboxExpanded = false,chatboxContainer;
 
 let faces = [];
 let faceMode = 0;
@@ -99,6 +99,10 @@ function trigger() {
     let c = document.getElementById("chatbox-content");
     c.classList.remove("down");
     c.classList.add("up");
+
+    let d = document.getElementById("chatbox-content");
+    d.classList.remove("hideX");
+    d.classList.add("showX");
   }  
   else{
     console.log('not confident enough!'); 
@@ -232,6 +236,15 @@ async function setup() {
   chatboxClose.style("z-index","6");
   chatboxClose.style("font-weight","bold");
   chatboxClose.style("position","absolute");
+
+  chatboxTitle = createDiv();
+  chatboxTitle.id("chatbox-title");
+  chatboxTitle.class("hideX");
+  chatboxTitle.parent(chatboxContainer);
+  chatboxTitle.style("z-index","6");
+  chatboxTitle.style("font-weight","bold");
+  chatboxTitle.style("position","absolute");
+  chatboxTitle.style("left","20px");
 
   chatboxContent = createP("Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.");
   chatboxContent.id("chatbox-content");
