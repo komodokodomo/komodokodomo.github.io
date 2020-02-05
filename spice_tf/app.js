@@ -265,8 +265,14 @@ async function setup() {
 
   lensName = createDiv(jsonData[0].subject);
   lensName.parent(lensContainer);
+  lensName.style("position","absolute");
   lensName.style("width","100%");
   lensName.style("bottom","5%");
+  lensName.style("font-weight","bold");
+  lensName.style("display", "flex");
+  lensName.style("align-items", "center");
+  lensName.style("justify-content", "center");
+
   
 
   chatboxContainer = createDiv();
