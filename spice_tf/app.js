@@ -25,7 +25,7 @@ let canvasPadding = 40;
 
 let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
-let canvas,video,img,chatbox,chatboxClose,chatboxExpand,chatboxExpanded = false,chatboxContainer;
+let canvas,video,img,chatbox,chatboxClose,chatboxContent,chatboxExpand,chatboxExpanded = false,chatboxContainer;
 
 let faces = [];
 let faceMode = 0;
@@ -228,8 +228,12 @@ async function setup() {
   chatboxClose.style("z-index","6");
   chatboxClose.style("font-weight","bold");
   chatboxClose.style("position","absolute");
-  // chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10+canvasPadding/2);
 
+  chatboxContent = createP();
+  chatboxContent.id("chatbox-content");
+  chatboxContent.parent(chatboxContainer);
+  chatboxContent.style("z-index","6");
+  chatboxContent.style("position","absolute");
 
   titleContainer = createDiv();
   titleContainer.size(w,h/10);

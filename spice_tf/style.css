@@ -142,9 +142,16 @@ border: 3px solid black;
     transform: rotate(-45deg);
   }
 
+  #chatbox-content {
+    top:calc(10% + 80px);
+    height: calc(50%-160px);
+    left:40px;
+    width:calc(100%-80px);
+  }
+
   .hideX{
     right : 20px;
-    top: calc(60% + 20px); 
+    top: calc(60% + 40px); 
     opacity: 0.0;
   }
   .showX{
