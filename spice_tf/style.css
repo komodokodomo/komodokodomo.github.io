@@ -145,8 +145,8 @@ border: 3px solid black;
   #chatbox-content {
     top:calc(10% + 80px);
     left:40px;
-    width:calc(100%-80px);    
-    height: calc(50%-160px);
+    width:calc(100% - 80px);    
+    height: calc(50% - 160px);
   }
 
   .hideX{
