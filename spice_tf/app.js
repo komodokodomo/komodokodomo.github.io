@@ -280,8 +280,9 @@ async function setup() {
    faces[faceMode].hide();
    if(ev.type == "swipeleft"){faceMode++;}
    else if(ev.type == "swiperight"){faceMode--;}
+
    if(faceMode>faces.length-1){faceMode=0;}
-   else if(faceMode<0){faceMode=faces.length-1;}
+   if(faceMode<0){faceMode=faces.length-1;}
    faces[faceMode].show();
    console.log(faceMode);
   
