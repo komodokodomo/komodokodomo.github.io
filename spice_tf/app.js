@@ -112,8 +112,8 @@ function trigger() {
     chatboxExpanded = true;
     chatbox.html("");
     // chatboxContent.html(jsonData[faceMode].classname);
-    // console.log(jsonData[lensNumber].classname);
-    console.log(classname);
+    console.log(jsonData[faceMode].classname);
+    // console.log(classname);
 
     // if(jsonData[faceMode].classname!== null){
     //   console.log(jsonData[lensNumber].classname);
