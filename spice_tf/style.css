@@ -157,12 +157,14 @@ border: 3px solid black;
     width:calc(100% - 60px);    
     height: 0;
     overflow: auto;
+    transition: all 1s; 
   }
 
   .hideX{
     right : 20px;
     top: calc(60% + 40px); 
     opacity: 0.0;
+    transition: all 1s; 
   }
   .showX{
     right : 20px;
@@ -189,6 +191,7 @@ border: 3px solid black;
     background-color: lightgrey;
     border: 3px solid black;
     border-radius: 10px;
+    transition: all 1s; 
   }
 
   .speech-bubble.expand {
