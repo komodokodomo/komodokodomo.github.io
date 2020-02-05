@@ -236,6 +236,7 @@ async function setup() {
   chatboxContent.parent(chatboxContainer);
   chatboxContent.style("z-index","6");
   chatboxContent.style("position","absolute");
+  chatboxContent.hide();
 
   titleContainer = createDiv();
   titleContainer.size(w,h/10);
