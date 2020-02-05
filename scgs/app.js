@@ -1,324 +1,395 @@
+
 var jsonData,jsonDataLength;
+const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
+const infoURL = 'https://cors-anywhere.herokuapp.com/https://gds-esd.tk/sheet/1V_naAwK3rQAWowSV0ny6SdjXwclEBmSw7J-wMMCOrBE/1';
+
+
+let model, maxPredictions, classPrediction,debugPrediction;
+let prevProb = [];
+let lerpProb = [];
+
+let classname;
 
 var classToExplore = "";
 var jsonDataIndex;
 
 var subjects = [];
 
-let button,hideButton = false;
-let buttonSizeRatio = 1.0;
-let buttonClick;
+let hideButton = false;
 
 let loginStatus = false;
+let loginWrapper;
+let loginWrapperTitle;
+let loginWrapperInput;
+let loginWrapperInputUsername;
+let loginWrapperInputPassWord;
+let loginWrapperInputLogin;
+let loginWrapperInputForgot;
 
-let current;
-let cameras = "";
-let density;
+let canvasPadding = 40;
 
-let counter = 0;
-let swipeX = null;
-let screenToggle,screenToggle2;
-let loginWrapper, onboardingFlow;
-let currScreen = 0;
+let titleContainer, canvasContainer, lensContainer;
+let lensList,lensNumber, lensName, contentText, contentClose;
+let canvas,video,img,chatbox,chatboxClose,chatboxContent,chatboxTitle,chatboxExpand,chatboxExpanded = false,chatboxContainer;
 
-let maxBoxes = 1;
+let faces = [];
+let faceMode = 0;
 
-let canvas;
 
-var lerpValue = 0.3;
-
-var rounded = false;
-
-var lensContainer, lensList, contentContainer, contentLabel, contentText, contentTrying, contentFrame, contentClose;
-var lensNumber;
-
-var prevX = 0;
-var swipeDisplacement = 0; 
-var swipeTimer = 0;
-// var test;
-var constraints = {
+let mobile = false;
+let w,h,density;
+const constraints = {
   video: { facingMode: { exact: "environment" } },
   audio: false
 };
+const videoWidth = 1920,videoHeight = 1080;
 
 
-let debug = false;
-
-var itemsText = [];
-let video;
-
-var prevX,prevY,prevW,prevH;
 
 let objects = [];
-var starting = false;
 
-let status;
 
-var videoWidth = 1280;
-var videoHeight = 720;
-
-var w,h;
-
-var mode = 0;
-
-window.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM fully loaded and parsed');
-  loginWrapper = document.getElementsByClassName('login')[0];
-  onboardingFlow = document.getElementsByClassName('onboarding')[0];
-  skipButtons = document.getElementsByClassName('skip-button');
-  onboardingScreenArr = document.getElementsByClassName('onboarding-screen');
-
-  onboardingFlow.addEventListener('touchstart', lock, false);
-  onboardingFlow.addEventListener('touchend', move, false);
-  onboardingFlow.addEventListener('click', clickHandler, false);
-
-  // onboardingFlow.addEventListener("click", swipeHandler, false);
-  for (let i = 0; i < skipButtons.length; i++) {
-    skipButtons[i].addEventListener("click", skipHandler, false);
-  }
-});
-
-var enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
-  devices.forEach(function(device) {
-    if(device.kind == "videoinput"){
-      cameras += device.label;
-      cameras += "***";  
-    }
-  });
-  console.log(cameras);
-})
-.catch(function(err) {
-  console.log(err.name + ": " + err.message);
-});
-
-function preload(){
-  let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
-  jsonData = loadJSON(url);
+async function preload(){
+  jsonData = loadJSON(infoURL);
 }
 
-function trigger() {
-  console.log('button clicked!');
-  lensContainer.style("display","flex");
-  contentContainer.style("display","flex");
-  document.getElementById("related-content-container").classList.add("active");
-  
-  button.hide();
-  hideButton = true;
-  classToExplore = objects[0].class;
-  contentLabel.html(classToExplore);
-  if(lensNumber == undefined){
-    contentText.html("choose a lens to start exploring!");
+async function init() {
+  const modelURL = URL + "model.json";
+  const metadataURL = URL + "metadata.json";
+
+  model = await tmImage.load(modelURL, metadataURL);
+  maxPredictions = model.getTotalClasses();
+  for (let i = 0; i < maxPredictions; i++) {
+    lerpProb[i] = 0.0;
   }
+}
+
+async function predict() {
+  const prediction = await model.predict(img);
+  classPrediction = "";
+  debugPrediction = "";
+  let highestProb = 0.0;
+  let highestClass;
+  if(!chatboxExpanded){
+
+  for (let i = 0; i < maxPredictions; i++) {
+      // debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
+      lerpProb[i] = lerp(lerpProb[i],prediction[i].probability,0.5);
+      // debugPrediction = debugPrediction + lerpProb[i].toFixed(2) +', ';
+      // if(highestProb<prediction[i].probability.toFixed(2)){highestProb=prediction[i].probability.toFixed(2);highestClass = i;}
+      if(highestProb<lerpProb[i]){highestProb=lerpProb[i];highestClass = i;}
+
+      // classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+  }
+
+  // console.log(debugPrediction);
+
+  classname = prediction[highestClass].className;
+  if(jsonData[faceMode][classname]=== undefined || jsonData[faceMode][classname]=== null){}
   else{
-      contentText.html(lensNumber.toString());
+  if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
+    chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\>Click to find out more");
+    chatboxExpand = true;
   }
-  console.log(objects[0].class);
-}
-
-function loginHandler(el) {
-  loginStatus = true;
-  loginWrapper.setAttribute("style", "display: none;");
-  onboardingFlow.setAttribute("style", "display: flex;");
-}
-
-function lock(e) {
-  e.changedTouches ? swipeX = e.changedTouches[0].clientX : swipeX = e.clientX;
-}
-
-function move(e) {
-  if (swipeX || swipeX === 0) {
-    var dx = null;
-    e.changedTouches ? dx = e.changedTouches[0].clientX - swipeX : e.clientX - swipeX;
-    let s = Math.sign(dx);
-    if (s > 0 && currScreen !== 0) {
-      // swipe right
-      onboardingScreenArr[currScreen - 1].setAttribute("style", `transform: translateX(0px);`);
-      currScreen--;
-    } else if (s < 0 && currScreen !== onboardingScreenArr.length - 1) {
-      // swipe left
-      onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
-      currScreen++;
-    }
+  else if(parseFloat(prediction[highestClass].probability.toFixed(2))<=0.95){
+  chatbox.html("Hmmm is it a " + prediction[highestClass].className + "...");
+  chatboxExpand = false;
   }
-  preventDefault();
-}
-
-function clickHandler() {
-  if (currScreen === onboardingScreenArr.length - 1) {
-    onboardingFlow.setAttribute("style", "display: none;");
-    return
-  }
-  onboardingScreenArr[currScreen].setAttribute("style", `transform: translateX(-${window.innerWidth}px);`);
-  currScreen++;
-}
-
-function skipHandler() {
-  onboardingFlow.setAttribute("style", "display: none;");
-}
-
-function startHandler() {
-  onboardingFlow.setAttribute("style", "display: none;");
-  // reset translates
-  for (let i = 0; i < onboardingScreenArr.length; i++) {
-    onboardingScreenArr[i].setAttribute("style", `transform: translateX(0px);`);
   }
 }
+  predict();
+}
+function untrigger() { 
+    setTimeout(function(){chatboxExpanded = false;},1000);
+    console.log('close chatbox');
+    let a = document.getElementById("chatbox");
+    a.classList.remove("expand");
+    a.classList.add("contract");
 
-function toggleScreen() {
-  fullscreen(true);
-  console.log("fullscreen");
-  screenToggle.hide();
-  // screenToggle2.show(); 
+    let b = document.getElementById("chatbox-close");
+    b.classList.remove("showX");
+    b.classList.add("hideX");
+
+    let c = document.getElementById("chatbox-content");    
+    c.classList.remove("up");
+    c.classList.add("down");
+
+    let d = document.getElementById("chatbox-title");
+    // chatboxTitle.html("");
+    d.classList.remove("showX");
+    d.classList.add("hideX");
+
+  }  
+function trigger() { 
+  if(chatboxExpand){
+    chatboxExpanded = true;
+    chatbox.html("");
+
+    changeContent();
+
+
+    console.log('button clicked!');
+    let a = document.getElementById("chatbox");
+    a.classList.remove("contract");
+    a.classList.add("expand");
+
+    let b = document.getElementById("chatbox-close");
+    b.classList.remove("hideX");
+    b.classList.add("showX");
+
+    let c = document.getElementById("chatbox-content");
+    c.classList.remove("down");
+    c.classList.add("up");
+
+    let d = document.getElementById("chatbox-title");
+    chatboxTitle.html(classname);
+    d.classList.remove("hideX");
+    d.classList.add("showX");
+  }  
+  else{
+    console.log('not confident enough!'); 
+  }
+  // document.getElementById("related-content-container").classList.add("active");
+  
+  // button.hide();
+  // hideButton = true;
+  // classToExplore = objects[0].class;
+  // contentLabel.html(classToExplore);
+  // if(lensNumber == undefined){
+  //   contentText.html("choose a lens to start exploring!");
+  // }
+  // else{
+  //     contentText.html(lensNumber.toString());
+  // }
+  // console.log(objects[0].class);
 }
 
-function toggleScreen2() {
-  fullscreen(false);
-  console.log("non-fullscreen");
-  screenToggle.show();
-  screenToggle2.hide();
+
+function loginUser(){
+loginStatus = true;
+loginWrapper.hide();
+titleContainer.show();
+canvasContainer.show();
+canvas.show();
+lensContainer.show();
+chatboxContainer.show();
+// for(let i = 0; i < faces.length; i++){
+//  faces[i].style("display","none"); 
+// }
+// faces[lensMode].style("display","block"); 
+
+
 }
+
 
 function closeContent(){
   document.getElementById("related-content-container").classList.remove("active");
-  contentContainer.hide();
   lensContainer.hide();
-  hideButton = false;
   lensNumber = undefined;
-  contentFrame.hide(); //TEMP HACK
 }
 
-// function loadIFRAME(event, ele) {
-//   event.preventDefault();
-//   contentFrame.show();
-//   contentFrame.attribute("src",ele.getAttribute('href'));
-// }
+function changeContent(){
+  if(jsonData[faceMode][classname]!== null || jsonData[faceMode][classname]!== undefined){
+    console.log(jsonData[faceMode][classname]);
+    // let stuff = (jsonData[faceMode][classname]).toString();
+    let stuff = jsonData[faceMode][classname];
+    let stuffs = stuff.split("\\");
+    let things = "";
 
-function setup() {
-  console.log(jsonData);
+    if(stuffs.length>0){
+    for(var k=0; k<stuffs.length; k++){
+      // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+      let addon = stuffs[k] + "<br><br><br>";
+      things += addon;
+    }
+    console.log("split success");
+    
+  }
+  //  console.log(things); 
+  chatboxContent.html(things);
+  }
+}
+
+async function setup() {
+  await init();
+  console.log( await jsonData);
+  
+
+  if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    mobile = true;
+   }
+
   jsonDataLength = Object.keys(jsonData).length;
   
   w = window.innerWidth;
   h = window.innerHeight;
-
   density = pixelDensity();
-  console.log("width: " + w + " height: " + h + " pixelDensity: " + pixelDensity());
 
-  canvas = createCanvas(w, h);
-  canvas.id("canvas");
 
-  contentContainer = createDiv();
-  contentContainer.size(w,9*h/10);
-  contentContainer.position(0,0);
-  contentContainer.id("related-content-container");
-  // contentContainer.hide();
 
-  contentLabel = createElement("h2");
-  contentLabel.id("object-label");
-  contentLabel.parent(contentContainer);
-
-  contentText = createP();
-  contentText.id("content");
-  contentText.parent(contentContainer);
-
-  contentClose = createA('#', '');
-  contentClose.parent(contentContainer);
-  contentClose.class('close');
-  contentClose.mouseClicked(closeContent);
 
   lensContainer = createDiv();
-  lensContainer.size(w,h/10);
-  lensContainer.position(0,9*h/10);
-  lensContainer.id("lens-container")
+  lensContainer.size(w,4*h/10);
+  lensContainer.position(0,6*h/10);
+  lensContainer.id("lens-container");
   lensContainer.hide();
 
-  lensList = createElement("ul");
-  lensList.parent(lensContainer);
-  lensList.id("lens-list");
-  lensList.style("height","100%");
-
-
-  button = createDiv();
-  button.mouseClicked(trigger);
-  button.size(0,0);
-  button.position(0,0);
-  button.id("button");
-  // button.style("text-align","center");
-  button.style("display" ,"block");
-  button.hide();
-
-  buttonClick = createImg("300ppi/click.png","click me");
-  buttonClick.parent(button);
-  buttonClick.style("width","20%");
-  buttonClick.style("position","absolute");
-  buttonClick.style("top","50%");
-  buttonClick.style("left","50%");
-  buttonClick.style("transform", "translate(-50%, -50%)");
-
-  addContentButton = createElement("button", "Add your own");
-  addContentButton.parent(contentContainer);
-  addContentButton.id("add-content");
-
-  for(let i = 0; i<jsonDataLength; i++){
-    subjects[i] = createElement("li",jsonData[i].subject);
-    subjects[i].parent(lensList);
-    subjects[i].id("li"+i.toString());
-
-    document.getElementById("li"+i.toString()).onclick = function(){
-      console.log("you clicked: " + i.toString());
-      lensNumber = i;
-      for(let j = 0; j<jsonDataLength; j++){
-        document.getElementById("li"+j.toString()).classList.remove("active");
-      }
-      document.getElementById("li"+i.toString()).classList.add("active");
-      if(hideButton){
-        if(jsonData[lensNumber][classToExplore]!== null){
-          // let stuff = jsonData[lensNumber][objects[0].class].toString();
-          let stuff = jsonData[lensNumber][classToExplore].toString();
-          console.log(classToExplore);
-          let stuffs = stuff.split("\\");
-          let things = "";
-          
-
-          if(stuffs.length>0){
-          for(var k=0; k<stuffs.length; k++){
-            // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-            // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-            let addon = stuffs[k].split("(")[0] + "<br><br><br>";
-            things += addon;
-          }
-          console.log("split success");
-          console.log(stuffs[0].split("(")[0]);
-          // console.log(stuffs[0].split("(")[1].split(")")[0]);
-        }
-          //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
-          console.log(things); 
-          //  stuff = stuff.replace('\\','<br><br>');
-          contentText.html(things);
-        } else {
-          contentText.html("no content for now...");
-        }
-      }
-      if (i === jsonDataLength - 1) {
-        addContentButton.show();
-        // Students tab
-        // addContentButton = createElement("button", "Add your own");
-        // addContentButton.parent(contentContainer);
-        // addContentButton.id("add-content");
-      }
-      else{
-        addContentButton.hide();
-      }
-
-      // for(let i = 0; i<jsonDataLength; i++){
-      //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
-      // }
-      // jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-      // jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
-      // console.log("index: " + jsonDataIndex.toString());
-    };
-    // subjects[i].style("display","inline");
-    // subjects[i].show();
+  for(let i = 0; i<3; i++){
+    faces[i] = createImg("300ppi/faces"+(2*(i+1)).toString()+".png")
+    faces[i].parent(lensContainer);
+    faces[i].style("position","absolute");
+    faces[i].style("left","50%");
+    faces[i].style("height","45%");
+    faces[i].style("transform", "translate(-50%)");
+    faces[i].style("bottom","0%");
+    if(i === faceMode){faces[i].show();}
+    else{faces[i].hide();}
   }
+
+  lensName = createDiv(jsonData[0].subject);
+  lensName.parent(lensContainer);
+  lensName.style("position","absolute");
+  lensName.style("width","100%");
+  lensName.style("height","10%");
+  lensName.style("bottom","47%");
+  lensName.style("font-weight","bold");
+  lensName.style("display", "flex");
+  lensName.style("align-items", "center");
+  lensName.style("justify-content", "center");
+
+  
+
+  chatboxContainer = createDiv();
+  chatboxContainer.id("chatbox-container")
+
+  chatbox = createDiv();
+  chatbox.parent(chatboxContainer);
+  chatbox.class("speech-bubble");
+  chatbox.id("chatbox");
+  let a = document.getElementById("chatbox");
+  a.classList.add("contract");
+  chatbox.mousePressed(trigger);
+
+
+
+
+  var myElement = document.getElementById('chatbox-container');
+  var mc = new Hammer(myElement);
+  mc.on("swipeleft swiperight", function(ev) {
+   console.log(ev.type);
+   faces[faceMode].hide();
+   if(ev.type == "swipeleft"){faceMode++;}
+   else if(ev.type == "swiperight"){faceMode--;}
+
+   if(faceMode>faces.length-1){faceMode=0;}
+   if(faceMode<0){faceMode=faces.length-1;}
+   faces[faceMode].show();
+   console.log(faceMode);
+  
+   lensName.html(jsonData[faceMode].subject);
+   changeContent();
+  });
+
+  canvasContainer = createDiv();
+  canvasContainer.size(w,h/2);
+  canvasContainer.position(0,h/10);
+  canvasContainer.id("canvas-container");
+  canvasContainer.hide();
+  // canvasContainer.hide();
+
+  if(w>h){
+  if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
+  else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
+  }
+  else{  
+    if(w>h/2){canvas = createCanvas(h/2-canvasPadding, h/2-canvasPadding);}
+    else{canvas = createCanvas(w-canvasPadding, w-canvasPadding);}
+  }
+  canvas.position(w/2-canvas.width/2, 7*h/20 - canvas.height/2);
+  canvas.id("canvas");
+  canvas.hide();
+
+  chatboxContainer.size(canvas.width,h);
+  chatboxContainer.position(w/2-canvas.width/2,0);
+  chatboxContainer.hide();
+
+  chatboxClose = createDiv("X");
+  chatboxClose.id("chatbox-close");
+  chatboxClose.class("hideX");
+  chatboxClose.parent(chatboxContainer);
+  chatboxClose.style("z-index","6");
+  chatboxClose.style("font-weight","bold");
+  chatboxClose.style("position","absolute");
+  chatboxClose.mousePressed(untrigger);
+
+  chatboxTitle = createDiv();
+  chatboxTitle.id("chatbox-title");
+  chatboxTitle.class("hideX");
+  chatboxTitle.parent(chatboxContainer);
+  chatboxTitle.style("z-index","6");
+  chatboxTitle.style("font-weight","bold");
+  chatboxTitle.style("position","absolute");
+  chatboxTitle.style("left","30px");
+  chatboxTitle.style("inline-size","fit-content");
+
+  chatboxContent = createP("Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.");
+  chatboxContent.id("chatbox-content");
+  chatboxContent.parent(chatboxContainer);
+  chatboxContent.style("z-index","6");
+  chatboxContent.style("position","absolute");
+  chatboxContent.class("down");
+
+  titleContainer = createDiv();
+  titleContainer.size(w,h/10);
+  titleContainer.position(0,0);
+  titleContainer.id("title-container")
+  titleContainer.hide();
+
+  let titleContainerBack = createDiv("<");
+  titleContainerBack.parent(titleContainer);
+  titleContainerBack.style("position","absolute");
+  titleContainerBack.style("left","0%");
+  titleContainerBack.style("width","20%");
+  titleContainerBack.style("height","100%");
+  titleContainerBack.style("display", "flex");
+  titleContainerBack.style("align-items", "center");
+  titleContainerBack.style("justify-content", "center");
+  titleContainerBack.style("font-weight", "bold");
+  titleContainerBack.style("font-size", "1.2rem");
+
+
+  let titleContainerContent = createDiv("Spice Garden");
+  titleContainerContent.parent(titleContainer);
+  titleContainerContent.style("position","absolute");
+  titleContainerContent.style("left","20%");
+  titleContainerContent.style("width","60%");
+  titleContainerContent.style("height","100%");
+  titleContainerContent.style("display", "flex");
+  titleContainerContent.style("align-items", "center");
+  titleContainerContent.style("justify-content", "center");
+  titleContainerContent.style("font-weight", "bold");
+  titleContainerContent.style("font-size", "1.3rem");
+
+
+  let titleContainerMenu = createDiv("☰");
+  titleContainerMenu.parent(titleContainer);
+  titleContainerMenu.style("position","absolute");
+  titleContainerMenu.style("left","80%");
+  titleContainerMenu.style("width","20%");
+  titleContainerMenu.style("height","100%");
+  titleContainerMenu.style("display", "flex");
+  titleContainerMenu.style("align-items", "center");
+  titleContainerMenu.style("justify-content", "center");
+  titleContainerMenu.style("font-weight", "bold");
+  titleContainerMenu.style("font-size", "1.2rem");
+  // lensContainer.hide();
+
+
+
+  // lensList = createElement("ul");
+  // lensList.parent(lensContainer);
+  // lensList.id("lens-list");
+  // lensList.style("height","100%");
 
 
   // for(let i = 0; i<jsonDataLength; i++){
@@ -338,92 +409,116 @@ function setup() {
   //       if(jsonData[lensNumber][objects[0].class]!== null){
   //       let stuff = jsonData[lensNumber][objects[0].class].toString();
   //       let stuffs = stuff.split("\\");
+  //       let things = "";
 
   //       if(stuffs.length>0){
+  //       for(var k=0; k<stuffs.length; k++){
+  //         // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+  //         let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+  //         things += addon;
+  //       }
   //       console.log("split success");
   //       console.log(stuffs[0].split("(")[0]);
   //       console.log(stuffs[0].split("(")[1].split(")")[0]);
+        
   //     }
-  //      let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
-  //      console.log(testing); 
-  //      stuff = stuff.replace('\\','<br><br>');
-  //       contentText.html(stuff);
+  //     //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
+  //      console.log(things); 
+  //     //  stuff = stuff.replace('\\','<br><br>');
+  //       contentText.html(things);
   //     }
   //     else{
   //       contentText.html("no content for now...");
   //     }
   //     }
-
-  //     // for(let i = 0; i<jsonDataLength; i++){
-  //     //   if(classToExplore == jsonData[i].subject){jsonDataIndex = i;}
-  //     // }
-  //     // jsonDataIndex = jsonData.map(function (img) { return img.value; }).indexOf(classToExplore);
-  //     // jsonDataIndex = jsonData.findIndex(img => img.value === classToExplore);
-  //     // console.log("index: " + jsonDataIndex.toString());
   //   };
-  //   // subjects[i].style("display","inline");
-  //   // subjects[i].show();
   // }
 
-  contentFrame = createElement("iframe","#");
-  contentFrame.size(w,9*h/10);
-  contentFrame.position(0,h/10);
-  contentFrame.attribute("name","content-frame");
-  contentFrame.hide();
 
-  screenToggle = createImg("https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1N9_nJChavTNQ6FTE4fEIfV5NcPc4yvVn",'toggle fullscreen');
-  screenToggle.style("width","16px");
-  screenToggle.style("height","16px");
-  // screenToggle.style("left","32px");
-  // screenToggle.style("top","32px");
-  // screenToggle.size(w/16,w/16);
-  screenToggle.position(16,16);
-  screenToggle.mouseClicked(toggleScreen);
 
-  video = createCapture(constraints);
-  video.size(videoWidth, videoHeight);
-  video.hide();
-  img = document.getElementById('canvas'); 
+loginWrapper = createDiv();
+loginWrapper.size(w*0.6,h*0.8);
+loginWrapper.position(w*0.2,h*0.1);
+
+
+loginWrapperTitle = createImg('logo.png','SLS');
+loginWrapperTitle.parent(loginWrapper);
+loginWrapperTitle.style("width","inherit");
+loginWrapperTitle.style("margin","0rem 0rem 1rem 0rem");
+
+
+
+loginWrapperInput = createDiv();
+loginWrapperInput.parent(loginWrapper);
+
+loginWrapperUsername = createDiv("Username");
+loginWrapperUsername.class("field-label");
+loginWrapperUsername.parent(loginWrapperInput);
+
+
+loginWrapperInputUsername = createInput();
+loginWrapperInputUsername.style("background","lightgrey");
+loginWrapperInputUsername.style("padding","10px");
+loginWrapperInputUsername.style("width","100%");
+loginWrapperInputUsername.style("border-style","none");
+loginWrapperInputUsername.style("margin-bottom","0.5rem");
+loginWrapperInputUsername.parent(loginWrapperInput);
+
+loginWrapperPassword = createDiv("Password");
+loginWrapperPassword.parent(loginWrapperInput);
+loginWrapperPassword.class("field-label");
+
+loginWrapperInputPassword = createInput();
+loginWrapperInputPassword.parent(loginWrapperInput);
+loginWrapperInputPassword.style("background","lightgrey");
+loginWrapperInputPassword.style("padding","10px");
+loginWrapperInputPassword.style("width","100%");
+loginWrapperInputPassword.style("border-style","none");
+loginWrapperInputPassword.style("margin-bottom","1.5rem");
+
+
+
+// loginWrapperInputPassword = createInput();
+loginWrapperInputLogin = createButton("LOGIN");
+loginWrapperInputLogin.parent(loginWrapperInput);
+loginWrapperInputLogin.style("background","#336FB6");
+loginWrapperInputLogin.style("color","white");
+loginWrapperInputLogin.style("position","relative");
+loginWrapperInputLogin.style("right","0px");
+// loginWrapperInputLogin.style("bottom","0px");
+loginWrapperInputLogin.style("border-style","none");
+loginWrapperInputLogin.style("border-radius","0.25rem");
+loginWrapperInputLogin.style("padding","1rem 3rem");
+loginWrapperInputLogin.mousePressed(loginUser);
+
+// loginWrapperInputForgot;
+loginWrapperInputForgot = createButton("FORGOT PASSWORD");
+loginWrapperInputForgot.parent(loginWrapperInput);
+loginWrapperInputForgot.style("background","transparent");
+loginWrapperInputForgot.style("color","#336FB6");
+loginWrapperInputForgot.style("position","relative");
+loginWrapperInputForgot.style("left","0px");
+// loginWrapperInputForgot.style("bottom","0px");
+loginWrapperInputForgot.style("border-style","none");
+loginWrapperInputForgot.style("border-radius","0.25rem");
+loginWrapperInputForgot.style("padding","1rem 0rem");
+
+
+
+
+video = createCapture(constraints);
+video.size(videoWidth, videoHeight);
+video.hide();
   
-  var ModelConfig = {
-    base : "mobilenet_v2",
-    modelUrl: "model_web/model.json"
-  }
-  
-  
+img = document.getElementById('canvas'); 
 
-  cocoSsd.load(ModelConfig).then(model => {
-    console.log("model loaded!");
-    status = true;
+predict();
 
-    setInterval(function(){
-
-      if(!hideButton){
-      model.detect(img,maxBoxes).then(predictions => {
-        
-        objects = [];
-        if(predictions.length > 0){
-        console.log(predictions);
-        counter++;
-        if(counter>2){counter=2;}
-        for (let i = 0; i < predictions.length; i++) {
-          objects[i]=predictions[i];
-        }
-      }
-      else{
-        counter = 0;
-        button.hide();
-      }
-      });
-    }
-  }
-    , 250);
-  }
-  );
 }
 
+
 function draw() {
-  if(!loginStatus){
+if(!loginStatus){
     background(215);
   }
  
@@ -431,76 +526,27 @@ function draw() {
  background(255);
  imageMode(CENTER);
 
- 
-
-if(w>h){
-if((w/h)>(video.width/video.height))
-{
-  image(video, w/2, h/2, w, w*video.height/video.width);
-}
-else{
-  image(video, w/2, h/2, h*video.width/video.height, h);
-}
-}
-else{
-if((videoHeight/videoWidth)<(w/h)){
-image(video, w/2, h/2, w, (w/videoHeight)*videoWidth);
-}
-else{
-image(video, w/2, h/2, (h/videoWidth)*videoHeight, h);
-}
-}
-
-if(debug){
- fill(0);
- noStroke();
- text(frameRate(),30,30);
- text(cameras,30,50);
- text("display: " + w + " x " +h,30,70);
- text("cam: " + video.width + " x " +video.height,30,90);
- if(status){
- text("model loaded",30,110);
- }
-}
-
- for(var i=0; i<objects.length ;i++){
-   if(abs(objects[i].bbox[0]/density - prevX)>50){counter = 0;}
-   if(abs(objects[i].bbox[1]/density - prevY)>50){counter = 0;}
-
-  if(counter > 0){
-  let lerpX = lerp(objects[i].bbox[0]/density,prevX,lerpValue);
-  let lerpY = lerp(objects[i].bbox[1]/density,prevY,lerpValue);
-  let lerpW = lerp(objects[i].bbox[2]/density,prevW,lerpValue);
-  let lerpH = lerp(objects[i].bbox[3]/density,prevH,lerpValue);
-
-  // let lerpX = lerp(lerpX,prevX,lerpValue);
-  // let lerpY = lerp(lerpY,prevY,lerpValue);
-  // let lerpW = lerp(lerpW,prevW,lerpValue);
-  // let lerpH = lerp(lerpH,prevH,lerpValue);
-
-  button.size(lerpW*buttonSizeRatio,lerpH*buttonSizeRatio);
-  button.position(lerpX+(lerpW*(1-buttonSizeRatio))/2,lerpY+(lerpH*(1-buttonSizeRatio))/2);
+if(mobile) {
+ if(w>h){
+  // image(video, width/2, height/2, videoWidth, videoHeight);
+  image(video, width/2, height/2, height*videoWidth/videoHeight, height);
   }
-
   else{
-  button.size(objects[i].bbox[2]*buttonSizeRatio/density,objects[i].bbox[3]*buttonSizeRatio/density);  //default
-  button.position(objects[i].bbox[0]/density+(objects[i].bbox[2]/density*(1-buttonSizeRatio))/2   ,objects[i].bbox[1]/density+(objects[i].bbox[3]/density*(1-buttonSizeRatio))/2);
+  image(video, width/2, height/2, width, width*videoWidth/videoHeight);
+  // image(video, w/2, h/2, videoHeight, videoWidth);
   }
-
-  prevX = objects[i].bbox[0]/density;
-  prevY = objects[i].bbox[1]/density;
-  prevW = objects[i].bbox[2]/density;
-  prevH = objects[i].bbox[3]/density;
-
-  if(hideButton == false){
-  button.show();
 }
-  rectMode(CORNER);
-  stroke(0,255,0);
-  strokeWeight(5);
-  noFill();
-
+else{
+  // if(w>h){
+    image(video, width/2, height/2, height*videoWidth/videoHeight, height);
+  // }
+  // else{
+  //   image(video, width/2, height/2, width, width*videoHeight/videoWidth);
+  // }
 }
+
+
+  
 
 }
 }
@@ -508,10 +554,36 @@ if(debug){
 function windowResized(){
     w = window.innerWidth;
     h = window.innerHeight;
-    resizeCanvas(w, h);
-    lensContainer.size(w,h/10);
-    lensContainer.position(0,9*h/10);
-    contentContainer.size(w,9*h/10);
+
+    if(w>h){
+      if(w>h/2){canvas.size(h/2-canvasPadding, h/2-canvasPadding);}
+      else{canvas.size(w-canvasPadding, w-canvasPadding);}
+      }
+      else{  
+        if(w>h/2){canvas.size(h/2-canvasPadding, h/2-canvasPadding);}
+        else{canvas.size(w-canvasPadding, w-canvasPadding);}
+      }
+      canvas.position(w/2-canvas.width/2, 7*h/20 - canvas.height/2);
+
+      chatboxContainer.size(canvas.width,h);
+      chatboxContainer.position(w/2-canvas.width/2,0);
+
+      // chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10+canvasPadding/2);
+
+      // chatbox.size(canvas.width,h/8);
+    // chatbox.position(w/2-canvas.width/2,canvasPadding/2);
+    
+    titleContainer.size(w,h/10);
+    titleContainer.position(0,0);
+
+    canvasContainer.size(w,h/2);
+    canvasContainer.position(0,h/10);
+
+    lensContainer.size(w,4*h/10);
+    lensContainer.position(0,6*h/10);
 }
 
 
+
+
+  
