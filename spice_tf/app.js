@@ -84,7 +84,27 @@ if(!chatboxExpanded){
 }
   predict();
 }
+function untrigger() { 
+    chatboxExpanded = false;
+    console.log('close chatbox');
+    let a = document.getElementById("chatbox");
+    a.classList.remove("expand");
+    a.classList.add("contract");
 
+    let b = document.getElementById("chatbox-close");
+    b.classList.remove("showX");
+    b.classList.add("hideX");
+
+    let c = document.getElementById("chatbox-content");    
+    c.classList.remove("up");
+    c.classList.add("down");
+
+    let d = document.getElementById("chatbox-title");
+    chatboxTitle.html("");
+    d.classList.remove("showX");
+    d.classList.add("hideX");
+
+  }  
 function trigger() { 
   if(chatboxExpand){
     chatboxExpanded = true;
@@ -239,6 +259,7 @@ async function setup() {
   chatboxClose.style("z-index","6");
   chatboxClose.style("font-weight","bold");
   chatboxClose.style("position","absolute");
+  chatboxClose.mousePressed(untrigger);
 
   chatboxTitle = createDiv();
   chatboxTitle.id("chatbox-title");
