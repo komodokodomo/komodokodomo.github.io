@@ -143,13 +143,13 @@ border: 3px solid black;
   }
 
   .hideX{
-    right : 40px;
-    top: calc(10% + 40px); 
+    right : 20px;
+    top: calc(60% + 20px); 
     opacity: 0.0;
   }
   .showX{
-    right : 40px;
-    top: calc(60% + 40px);
+    right : 20px;
+    top: calc(10% + 20px);
     opacity: 1.0;
     transition: all 1s; 
   }
