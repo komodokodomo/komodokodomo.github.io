@@ -197,6 +197,27 @@ function closeContent(){
   lensNumber = undefined;
 }
 
+function changeContent(){
+  if(jsonData[faceMode][classname]!== null){
+    console.log(jsonData[faceMode][classname]);
+    let stuff = (jsonData[faceMode][classname]).toString();
+    let stuffs = stuff.split("\\");
+    let things = "";
+
+    if(stuffs.length>0){
+    for(var k=0; k<stuffs.length; k++){
+      // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+      let addon = stuffs[k] + "<br><br><br>";
+      things += addon;
+    }
+    console.log("split success");
+    
+  }
+   console.log(things); 
+  chatboxContent.html(things);
+  }
+}
+
 async function setup() {
   await init();
 
@@ -255,6 +276,8 @@ async function setup() {
    if(faceMode>faces.length-1){faceMode=0;}
    else if(faceMode<0){faceMode=faces.length-1;}
    faces[faceMode].show();
+
+   changeContent();
   });
 
   canvasContainer = createDiv();
