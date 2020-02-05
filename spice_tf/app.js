@@ -103,7 +103,7 @@ function trigger() {
     c.classList.add("up");
 
     let d = document.getElementById("chatbox-content");
-    chatboxContent.html(classname);
+    chatboxTitle.html(classname);
     d.classList.remove("hideX");
     d.classList.add("showX");
   }  
