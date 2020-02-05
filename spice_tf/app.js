@@ -110,7 +110,29 @@ function trigger() {
   if(chatboxExpand){
     chatboxExpanded = true;
     chatbox.html("");
-    chatboxContent.html(jsonData[faceMode].classname);
+    // chatboxContent.html(jsonData[faceMode].classname);
+
+    if(jsonData[faceMode][objects[0].class]!== null){
+      let stuff = jsonData[lensNumber][objects[0].class].toString();
+      let stuffs = stuff.split("\\");
+      let things = "";
+
+      if(stuffs.length>0){
+      for(var k=0; k<stuffs.length; k++){
+        // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+        let addon = stuffs[k].split("(")[0] + "<br><br><br>";
+        things += addon;
+      }
+      console.log("split success");
+      console.log(stuffs[0].split("(")[0]);
+      console.log(stuffs[0].split("(")[1].split(")")[0]);
+      
+    }
+    //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
+     console.log(things); 
+    //  stuff = stuff.replace('\\','<br><br>');
+    chatboxContent.html(things);
+    }
 
     console.log('button clicked!');
     let a = document.getElementById("chatbox");
