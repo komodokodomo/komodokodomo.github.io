@@ -95,6 +95,8 @@ function trigger() {
     let b = document.getElementById("chatbox-close");
     b.classList.remove("hideX");
     b.classList.add("showX");
+
+    chatboxContent.show();
   }  
   else{
     console.log('not confident enough!'); 
