@@ -5,6 +5,8 @@ const infoURL = 'https://cors-anywhere.herokuapp.com/https://gds-esd.tk/sheet/1V
 
 
 let model, maxPredictions, classPrediction,debugPrediction;
+let prevProb = [];
+let lerpProb = [];
 
 let classname;
 
@@ -70,8 +72,11 @@ async function predict() {
   for (let i = 0; i < maxPredictions; i++) {
       // debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       if(highestProb<prediction[i].probability.toFixed(2)){highestProb=prediction[i].probability.toFixed(2);highestClass = i;}
+      lerpProb[i] = lerp(lerpProb[i],prediction[i].probability,0.5);
+      debugPrediction = debugPrediction + lerpProb[i].toFixed(2) +', ';
       // classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
+
 
 
   classname = prediction[highestClass].className;
