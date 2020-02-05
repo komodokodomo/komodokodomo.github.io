@@ -29,7 +29,7 @@ let loginWrapperInputForgot;
 let canvasPadding = 40;
 
 let titleContainer, canvasContainer, lensContainer;
-let lensList,lensNumber, contentText, contentClose;
+let lensList,lensNumber, lensName, contentText, contentClose;
 let canvas,video,img,chatbox,chatboxClose,chatboxContent,chatboxTitle,chatboxExpand,chatboxExpanded = false,chatboxContainer;
 
 let faces = [];
@@ -127,25 +127,26 @@ function trigger() {
     // chatboxContent.html(jsonData[faceMode].classname);
     // console.log(jsonData[faceMode][classname]);
     // console.log(classname);
+    changeContent();
 
-    if(jsonData[faceMode][classname]!== null){
-      console.log(jsonData[faceMode][classname]);
-      let stuff = (jsonData[faceMode][classname]).toString();
-      let stuffs = stuff.split("\\");
-      let things = "";
+    // if(jsonData[faceMode][classname]!== null){
+    //   console.log(jsonData[faceMode][classname]);
+    //   let stuff = (jsonData[faceMode][classname]).toString();
+    //   let stuffs = stuff.split("\\");
+    //   let things = "";
 
-      if(stuffs.length>0){
-      for(var k=0; k<stuffs.length; k++){
-        // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
-        let addon = stuffs[k] + "<br><br><br>";
-        things += addon;
-      }
-      console.log("split success");
+    //   if(stuffs.length>0){
+    //   for(var k=0; k<stuffs.length; k++){
+    //     // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
+    //     let addon = stuffs[k] + "<br><br><br>";
+    //     things += addon;
+    //   }
+    //   console.log("split success");
       
-    }
-     console.log(things); 
-    chatboxContent.html(things);
-    }
+    // }
+    //  console.log(things); 
+    // chatboxContent.html(things);
+    // }
 
     console.log('button clicked!');
     let a = document.getElementById("chatbox");
@@ -255,12 +256,18 @@ async function setup() {
     faces[i] = createImg("300ppi/faces"+(2*(i+1)).toString()+".png")
     faces[i].parent(lensContainer);
     faces[i].style("position","absolute");
-    faces[i].style("left","25%");
-    faces[i].style("width","50%");
-    faces[i].style("bottom","0");
+    faces[i].style("left","30%");
+    faces[i].style("width","40%");
+    faces[i].style("bottom","5%");
     if(i === faceMode){faces[i].show();}
     else{faces[i].hide();}
   }
+
+  lensName = createDiv(jsonData[0].subject);
+  lensName.parent(lensContainer);
+  lensName.style("width","100%");
+  lensName.style("bottom","5%");
+  
 
   chatboxContainer = createDiv();
   chatboxContainer.id("chatbox-container")
@@ -286,7 +293,8 @@ async function setup() {
    if(faceMode>faces.length-1){faceMode=0;}
    else if(faceMode<0){faceMode=faces.length-1;}
    faces[faceMode].show();
-
+  
+   lensName.html(jsonData[faceMode].subject);
    changeContent();
   });
 
