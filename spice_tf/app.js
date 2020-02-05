@@ -177,11 +177,7 @@ async function setup() {
   a.classList.add("contract");
   chatbox.mousePressed(trigger);
 
-  chatboxClose = createDiv("X");
-  chatboxClose.style("z-index","6");
-  // chatboxClose.style("position","absolute");
-  chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10 + canvasPadding);
-  console.log(chatbox.position());
+
   // chatboxClose.hide();
 
 
@@ -219,6 +215,11 @@ async function setup() {
   chatboxContainer.size(canvas.width,h);
   chatboxContainer.position(w/2-canvas.width/2,0);
   chatboxContainer.hide();
+
+  chatboxClose = createDiv("X");
+  chatboxClose.style("z-index","6");
+  chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10 + canvasPadding);
+  console.log(chatbox.position());
 
 
   titleContainer = createDiv();
