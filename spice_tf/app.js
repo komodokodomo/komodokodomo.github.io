@@ -258,7 +258,7 @@ async function setup() {
     faces[i].parent(lensContainer);
     faces[i].style("position","absolute");
     faces[i].style("left","50%");
-    faces[i].style("height","40%");
+    faces[i].style("height","50%");
     faces[i].style("transform", "translate(-50%)");
     faces[i].style("bottom","0%");
     if(i === faceMode){faces[i].show();}
