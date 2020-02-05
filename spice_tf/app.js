@@ -189,7 +189,7 @@ function closeContent(){
 }
 
 function changeContent(){
-  if(jsonData[faceMode][classname]!== null){
+  if(jsonData[faceMode][classname]!== null || jsonData[faceMode][classname]!== undefined){
     console.log(jsonData[faceMode][classname]);
     // let stuff = (jsonData[faceMode][classname]).toString();
     let stuff = jsonData[faceMode][classname];
