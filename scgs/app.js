@@ -287,7 +287,9 @@ async function setup() {
    console.log(faceMode);
   
    lensName.html(jsonData[faceMode].subject);
+   if(chatboxExpanded){
    changeContent();
+  }
   });
 
   canvasContainer = createDiv();
