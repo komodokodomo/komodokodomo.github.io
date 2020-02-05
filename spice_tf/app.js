@@ -85,7 +85,7 @@ if(!chatboxExpanded){
   predict();
 }
 function untrigger() { 
-    chatboxExpanded = false;
+    setTimeout(function(){chatboxExpanded = false;},1000);
     console.log('close chatbox');
     let a = document.getElementById("chatbox");
     a.classList.remove("expand");
