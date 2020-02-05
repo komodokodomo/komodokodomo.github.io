@@ -113,6 +113,7 @@ function trigger() {
     // chatboxContent.html(jsonData[faceMode].classname);
 
     if(jsonData[faceMode].classname!== null){
+      console.log(jsonData[lensNumber].classname);
       let stuff = (jsonData[lensNumber].classname).toString();
       let stuffs = stuff.split("\\");
       let things = "";
