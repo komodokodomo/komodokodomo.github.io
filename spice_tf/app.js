@@ -49,7 +49,7 @@ const videoWidth = 1920,videoHeight = 1080;
 let objects = [];
 
 
-function preload(){
+async function preload(){
   jsonData = loadJSON(infoURL);
 }
 
@@ -212,12 +212,13 @@ function changeContent(){
 
 async function setup() {
   await init();
+  console.log( await jsonData);
+  
 
   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
     mobile = true;
    }
 
-  console.log(jsonData);
   jsonDataLength = Object.keys(jsonData).length;
   
   w = window.innerWidth;
