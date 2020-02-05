@@ -115,7 +115,7 @@ function trigger() {
     // console.log(jsonData[faceMode][classname]);
     // console.log(classname);
 
-    if(jsonData[faceMode][classname]== null){
+    if(jsonData[faceMode][classname]!== null){
       console.log(jsonData[faceMode][classname]);
       let stuff = (jsonData[faceMode][classname]).toString();
       let stuffs = stuff.split("\\");
