@@ -25,7 +25,7 @@ let canvasPadding = 40;
 
 let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
-let canvas,video,img,chatbox,chatboxExpand,chatboxContainer;
+let canvas,video,img,chatbox,chatboxClose,chatboxExpand,chatboxContainer;
 
 let faces = [];
 let faceMode = 0;
@@ -88,6 +88,7 @@ function trigger() {
     let a = document.getElementById("chatbox");
     a.classList.remove("contract");
     a.classList.add("expand");
+    chatboxClose.show();
   }  
   else{
     console.log('not confident enough!'); 
@@ -171,10 +172,18 @@ async function setup() {
   chatbox = createDiv();
   chatbox.parent(chatboxContainer);
   chatbox.class("speech-bubble");
-  chatbox.id("chatbox")
+  chatbox.id("chatbox");
   let a = document.getElementById("chatbox");
   a.classList.add("contract");
   chatbox.mousePressed(trigger);
+
+  chatboxClose = createDiv("X");
+  chatboxClose.parent(chatbox);
+  chatboxClose.style("z-index","6");
+  chatboxClose.style("position","absolute");
+  chatboxClose.style("top","5%");
+  chatboxClose.style("right","5%");
+  chatboxClose.hide();
 
 
   var myElement = document.getElementById('chatbox-container');
