@@ -257,8 +257,9 @@ async function setup() {
     faces[i] = createImg("300ppi/faces"+(2*(i+1)).toString()+".png")
     faces[i].parent(lensContainer);
     faces[i].style("position","absolute");
-    faces[i].style("left","30%");
-    faces[i].style("width","40%");
+    faces[i].style("left","50%");
+    faces[i].style("height","40%");
+    faces[i].style("transform", "translate(-50%)");
     faces[i].style("bottom","0%");
     if(i === faceMode){faces[i].show();}
     else{faces[i].hide();}
