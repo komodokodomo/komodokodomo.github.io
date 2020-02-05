@@ -66,7 +66,7 @@ async function predict() {
   let highestProb = 0.0;
   let highestClass;
   if(!chatboxExpanded){
-    
+
   for (let i = 0; i < maxPredictions; i++) {
       // debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       if(highestProb<prediction[i].probability.toFixed(2)){highestProb=prediction[i].probability.toFixed(2);highestClass = i;}
@@ -112,7 +112,9 @@ function trigger() {
     chatboxExpanded = true;
     chatbox.html("");
     // chatboxContent.html(jsonData[faceMode].classname);
-    console.log(jsonData[lensNumber].classname);
+    // console.log(jsonData[lensNumber].classname);
+    console.log(classname);
+
     // if(jsonData[faceMode].classname!== null){
     //   console.log(jsonData[lensNumber].classname);
     //   let stuff = (jsonData[lensNumber].classname).toString();
