@@ -274,14 +274,15 @@ async function setup() {
 
   var myElement = document.getElementById('chatbox-container');
   var mc = new Hammer(myElement);
-  mc.on("swipeleft swiperight tap press", function(ev) {
-   console.log(ev.type +" gesture detected.");
+  mc.on("swipeleft swiperight", function(ev) {
+   console.log(ev.type);
    faces[faceMode].hide();
    if(ev.type == "swipeleft"){faceMode++;}
    else if(ev.type == "swiperight"){faceMode--;}
    if(faceMode>faces.length-1){faceMode=0;}
    else if(faceMode<0){faceMode=faces.length-1;}
    faces[faceMode].show();
+   console.log(faceMode);
   
    lensName.html(jsonData[faceMode].subject);
    changeContent();
