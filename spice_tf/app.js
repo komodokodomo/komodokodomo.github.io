@@ -88,7 +88,10 @@ function trigger() {
     let a = document.getElementById("chatbox");
     a.classList.remove("contract");
     a.classList.add("expand");
-    chatboxClose.show();
+
+    let b = document.getElementById("chatbox-close");
+    b.classList.remove("hideX");
+    b.classList.add("showX");
   }  
   else{
     console.log('not confident enough!'); 
@@ -217,9 +220,12 @@ async function setup() {
   chatboxContainer.hide();
 
   chatboxClose = createDiv("X");
+  chatboxClose.id("chatbox-close");
+  chatboxClose.class("hideX");
+  chatboxClose.parent(chatboxContainer);
   chatboxClose.style("z-index","6");
   chatboxClose.style("font-weight","bold");
-  chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10);
+  // chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10+canvasPadding/2);
 
 
   titleContainer = createDiv();
@@ -451,7 +457,7 @@ function windowResized(){
       chatboxContainer.size(canvas.width,h);
       chatboxContainer.position(w/2-canvas.width/2,0);
 
-      chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10);
+      // chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10+canvasPadding/2);
 
       // chatbox.size(canvas.width,h/8);
     // chatbox.position(w/2-canvas.width/2,canvasPadding/2);

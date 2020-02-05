@@ -141,6 +141,18 @@ border: 3px solid black;
   .close:after {
     transform: rotate(-45deg);
   }
+
+  .hideX{
+    right : 40px;
+    top: calc(10% + 40px); 
+    opacity: 0.0;
+  }
+  .showX{
+    right : 40px;
+    top: calc(60% + 40px);
+    opacity: 1.0;
+    transition: all 1s; 
+  }
   
   .speech-bubble{
     z-index: 5;
