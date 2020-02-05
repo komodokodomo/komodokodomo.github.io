@@ -1,6 +1,8 @@
 
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
+const infoURL = 'https://gds-esd.tk/sheet/1V_naAwK3rQAWowSV0ny6SdjXwclEBmSw7J-wMMCOrBE/1';
+
 
 let model, maxPredictions, classPrediction,debugPrediction;
 
@@ -46,8 +48,7 @@ let objects = [];
 
 
 function preload(){
-  let url = 'https://api.sheety.co/b440651f-ff2f-4d19-8698-6ae801475966';
-  jsonData = loadJSON(url);
+  jsonData = loadJSON(infoURL);
 }
 
 async function init() {
