@@ -258,7 +258,7 @@ async function setup() {
     faces[i].style("position","absolute");
     faces[i].style("left","30%");
     faces[i].style("width","40%");
-    faces[i].style("bottom","5%");
+    faces[i].style("bottom","10%");
     if(i === faceMode){faces[i].show();}
     else{faces[i].hide();}
   }
@@ -267,7 +267,7 @@ async function setup() {
   lensName.parent(lensContainer);
   lensName.style("position","absolute");
   lensName.style("width","100%");
-  lensName.style("height","5%");
+  lensName.style("height","10%");
   lensName.style("bottom","0%");
   lensName.style("font-weight","bold");
   lensName.style("display", "flex");
