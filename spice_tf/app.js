@@ -218,8 +218,8 @@ async function setup() {
 
   chatboxClose = createDiv("X");
   chatboxClose.style("z-index","6");
+  chatboxClose.style("font-weight","bold");
   chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10 + canvasPadding);
-  console.log(chatbox.position());
 
 
   titleContainer = createDiv();
