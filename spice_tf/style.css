@@ -143,9 +143,9 @@ border: 3px solid black;
   } */
 
   #chatbox-content.up {
-    top:calc(10% + 80px);
-    left:20px;
-    width:calc(100% - 40px);    
+    top:calc(10% + 60px);
+    left:30px;
+    width:calc(100% - 60px);    
     height: calc(50% - 20px);
     overflow: auto;
     transition: all 1s; 
@@ -153,8 +153,8 @@ border: 3px solid black;
 
   #chatbox-content.down {
     top:calc(60% + 40px);
-    left:20px;
-    width:calc(100% - 40px);    
+    left:30px;
+    width:calc(100% - 60px);    
     height: 0;
     overflow: auto;
   }
