@@ -25,7 +25,7 @@ let canvasPadding = 40;
 
 let titleContainer, canvasContainer, lensContainer;
 let lensList,lensNumber, contentText, contentClose;
-let canvas,video,img,chatbox,chatboxClose,chatboxExpand,chatboxContainer;
+let canvas,video,img,chatbox,chatboxClose,chatboxExpand,chatboxExpanded = false,chatboxContainer;
 
 let faces = [];
 let faceMode = 0;
@@ -70,7 +70,7 @@ async function predict() {
       classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
 
-  // console.log(prediction[highestClass].className + ": " + prediction[highestClass].probability.toFixed(2));
+if(!chatboxExpanded){
   if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
     chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\>Click to find out more");
     chatboxExpand = true;
@@ -79,11 +79,14 @@ async function predict() {
   chatbox.html("Hmmm is it a " + prediction[highestClass].className + "...");
   chatboxExpand = false;
   }
+}
   predict();
 }
 
 function trigger() { 
   if(chatboxExpand){
+    chatboxExpanded = true;
+    chatbox.html("");
     console.log('button clicked!');
     let a = document.getElementById("chatbox");
     a.classList.remove("contract");

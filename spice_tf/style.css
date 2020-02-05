@@ -149,7 +149,7 @@ border: 3px solid black;
   }
   .showX{
     right : 20px;
-    top: calc(10% + 20px);
+    top: calc(10% + 40px);
     opacity: 1.0;
     transition: all 1s; 
   }
