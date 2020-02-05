@@ -144,6 +144,7 @@ border: 3px solid black;
   
   .speech-bubble{
     z-index: 5;
+    overflow : auto;
   }
 
   .speech-bubble.contract {
