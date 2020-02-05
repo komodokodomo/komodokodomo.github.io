@@ -75,6 +75,7 @@ async function predict() {
 
 
   classname = prediction[highestClass].className;
+  if(jsonData[faceMode][classname]!== null){
   if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
     chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\>Click to find out more");
     chatboxExpand = true;
@@ -82,6 +83,7 @@ async function predict() {
   else if(parseFloat(prediction[highestClass].probability.toFixed(2))<=0.95){
   chatbox.html("Hmmm is it a " + prediction[highestClass].className + "...");
   chatboxExpand = false;
+  }
   }
 }
   predict();
@@ -130,9 +132,7 @@ function trigger() {
       console.log("split success");
       
     }
-    //  let testing = "<a href=\""+ stuffs[0].split("(")[1].split(")")[0] + "\" target=\"content-frame\">" + stuffs[0].split("(")[0] + "</a>";
      console.log(things); 
-    //  stuff = stuff.replace('\\','<br><br>');
     chatboxContent.html(things);
     }
 
