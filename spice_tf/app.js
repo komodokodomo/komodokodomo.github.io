@@ -450,7 +450,7 @@ function windowResized(){
       chatboxContainer.size(canvas.width,h);
       chatboxContainer.position(w/2-canvas.width/2,0);
 
-      chatboxClose.position(chatbox.position()[0],chatbox.position()[1]);
+      chatboxClose.position(w/2+canvas.width/2-canvasPadding/2,h/10 + canvasPadding);
 
       // chatbox.size(canvas.width,h/8);
     // chatbox.position(w/2-canvas.width/2,canvasPadding/2);
