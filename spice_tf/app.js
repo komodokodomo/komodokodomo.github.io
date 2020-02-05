@@ -447,7 +447,7 @@ loginWrapperUsername.parent(loginWrapperInput);
 
 
 loginWrapperInputUsername = createInput();
-// loginWrapperInputUsername.style("background","#EBF2FE");
+loginWrapperInputUsername.style("background","lightgrey");
 loginWrapperInputUsername.style("padding","10px");
 loginWrapperInputUsername.style("width","100%");
 loginWrapperInputUsername.style("border-style","none");
@@ -460,7 +460,7 @@ loginWrapperPassword.class("field-label");
 
 loginWrapperInputPassword = createInput();
 loginWrapperInputPassword.parent(loginWrapperInput);
-// loginWrapperInputPassword.style("background","#EBF2FE");
+loginWrapperInputPassword.style("background","lightgrey");
 loginWrapperInputPassword.style("padding","10px");
 loginWrapperInputPassword.style("width","100%");
 loginWrapperInputPassword.style("border-style","none");
