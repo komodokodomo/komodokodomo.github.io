@@ -4,6 +4,7 @@ const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
 
 let model, maxPredictions, classPrediction,debugPrediction;
 
+let classname;
 
 var classToExplore = "";
 var jsonDataIndex;
@@ -65,12 +66,13 @@ async function predict() {
   let highestClass;
   
   for (let i = 0; i < maxPredictions; i++) {
-      debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
+      // debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       if(highestProb<prediction[i].probability.toFixed(2)){highestProb=prediction[i].probability.toFixed(2);highestClass = i;}
-      classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+      // classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
 
 if(!chatboxExpanded){
+  classname = prediction[highestClass].className;
   if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
     chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\>Click to find out more");
     chatboxExpand = true;
@@ -101,6 +103,7 @@ function trigger() {
     c.classList.add("up");
 
     let d = document.getElementById("chatbox-content");
+    chatboxContent.html(classname);
     d.classList.remove("hideX");
     d.classList.add("showX");
   }  
