@@ -211,7 +211,8 @@ function closeContent(){
 function changeContent(){
   if(jsonData[faceMode][classname]!== null){
     console.log(jsonData[faceMode][classname]);
-    let stuff = (jsonData[faceMode][classname]).toString();
+    // let stuff = (jsonData[faceMode][classname]).toString();
+    let stuff = jsonData[faceMode][classname];
     let stuffs = stuff.split("\\");
     let things = "";
 
