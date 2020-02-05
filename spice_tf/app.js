@@ -77,7 +77,7 @@ async function predict() {
       // classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
 
-
+  console.log(debugPrediction);
 
   classname = prediction[highestClass].className;
   if(jsonData[faceMode][classname]=== undefined || jsonData[faceMode][classname]=== null){}
