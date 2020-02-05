@@ -182,7 +182,7 @@ async function setup() {
   chatboxClose.style("z-index","6");
   // chatboxClose.style("position","absolute");
   chatboxClose.position(chatbox.position()[0],chatbox.position()[1]);
-  chatboxClose.hide();
+  // chatboxClose.hide();
 
 
   var myElement = document.getElementById('chatbox-container');
