@@ -100,7 +100,7 @@ function untrigger() {
     c.classList.add("down");
 
     let d = document.getElementById("chatbox-title");
-    chatboxTitle.html("");
+    // chatboxTitle.html("");
     d.classList.remove("showX");
     d.classList.add("hideX");
 
