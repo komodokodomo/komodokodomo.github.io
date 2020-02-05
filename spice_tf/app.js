@@ -180,7 +180,7 @@ async function setup() {
   chatboxClose = createDiv("X");
   chatboxClose.style("z-index","6");
   // chatboxClose.style("position","absolute");
-  chatboxClose.position(chatbox.position()[0],chatbox.position()[1]);
+  chatboxClose.position(chatbox.position().x,chatbox.position().y);
   console.log(chatbox.position());
   // chatboxClose.hide();
 
