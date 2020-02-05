@@ -110,6 +110,8 @@ function trigger() {
   if(chatboxExpand){
     chatboxExpanded = true;
     chatbox.html("");
+    chatboxContent.html(jsonData[faceMode].classname);
+
     console.log('button clicked!');
     let a = document.getElementById("chatbox");
     a.classList.remove("contract");
