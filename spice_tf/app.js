@@ -65,14 +65,15 @@ async function predict() {
   debugPrediction = "";
   let highestProb = 0.0;
   let highestClass;
-  
+  if(!chatboxExpanded){
+    
   for (let i = 0; i < maxPredictions; i++) {
       // debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
       if(highestProb<prediction[i].probability.toFixed(2)){highestProb=prediction[i].probability.toFixed(2);highestClass = i;}
       // classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
 
-if(!chatboxExpanded){
+
   classname = prediction[highestClass].className;
   if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
     chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\>Click to find out more");
