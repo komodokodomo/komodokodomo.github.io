@@ -75,7 +75,8 @@ async function predict() {
 
 
   classname = prediction[highestClass].className;
-  if(jsonData[faceMode][classname]!== undefined || jsonData[faceMode][classname]!== null){
+  if(jsonData[faceMode][classname]=== undefined || jsonData[faceMode][classname]=== null){}
+  else{
   if(parseFloat(prediction[highestClass].probability.toFixed(2))>0.95){
     chatbox.html(" I think its a "+prediction[highestClass].className + "\<br\>Click to find out more");
     chatboxExpand = true;
