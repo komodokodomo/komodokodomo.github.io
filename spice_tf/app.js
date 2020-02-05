@@ -96,7 +96,9 @@ function trigger() {
     b.classList.remove("hideX");
     b.classList.add("showX");
 
-    chatboxContent.show();
+    let c = document.getElementById("chatbox-content");
+    c.classList.remove("down");
+    c.classList.add("up");
   }  
   else{
     console.log('not confident enough!'); 
@@ -236,7 +238,7 @@ async function setup() {
   chatboxContent.parent(chatboxContainer);
   chatboxContent.style("z-index","6");
   chatboxContent.style("position","absolute");
-  chatboxContent.hide();
+  chatboxContent.class("down");
 
   titleContainer = createDiv();
   titleContainer.size(w,h/10);

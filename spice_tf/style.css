@@ -116,7 +116,7 @@ border: 3px solid black;
 
 
 
-  .close {
+  /* .close {
     position: absolute;
     right: 32px;
     top: 32px;
@@ -140,13 +140,22 @@ border: 3px solid black;
   }
   .close:after {
     transform: rotate(-45deg);
+  } */
+
+  #chatbox-content.up {
+    top:calc(10% + 80px);
+    left:20px;
+    width:calc(100% - 40px);    
+    height: calc(50% - 20px);
+    overflow: auto;
+    transition: all 1s; 
   }
 
-  #chatbox-content {
-    top:calc(10% + 80px);
-    left:40px;
-    width:calc(100% - 80px);    
-    height: calc(50% - 40px);
+  #chatbox-content.down {
+    top:calc(60% + 40px);
+    left:20px;
+    width:calc(100% - 40px);    
+    height: 0;
     overflow: auto;
   }
 
