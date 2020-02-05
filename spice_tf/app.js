@@ -59,6 +59,9 @@ async function init() {
 
   model = await tmImage.load(modelURL, metadataURL);
   maxPredictions = model.getTotalClasses();
+  for (let i = 0; i < maxPredictions; i++) {
+    lerpProb[i] = 0.0;
+  }
 }
 
 async function predict() {
