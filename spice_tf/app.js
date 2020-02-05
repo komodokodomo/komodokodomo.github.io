@@ -74,9 +74,11 @@ async function predict() {
 
   for (let i = 0; i < maxPredictions; i++) {
       // debugPrediction = debugPrediction + prediction[i].probability.toFixed(2) +', ';
-      if(highestProb<prediction[i].probability.toFixed(2)){highestProb=prediction[i].probability.toFixed(2);highestClass = i;}
       lerpProb[i] = lerp(lerpProb[i],prediction[i].probability,0.5);
-      debugPrediction = debugPrediction + lerpProb[i].toFixed(2) +', ';
+      // debugPrediction = debugPrediction + lerpProb[i].toFixed(2) +', ';
+      // if(highestProb<prediction[i].probability.toFixed(2)){highestProb=prediction[i].probability.toFixed(2);highestClass = i;}
+      if(highestProb<lerpProb[i]){highestProb=lerpProb[i];highestClass = i;}
+
       // classPrediction = classPrediction + prediction[i].className + ": " + prediction[i].probability.toFixed(2);
   }
 
