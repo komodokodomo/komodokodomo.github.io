@@ -34,6 +34,8 @@ let lensList,lensNumber, lensName, contentText, contentClose;
 let canvas,video,img,chatbox,chatboxClose,chatboxContent,chatboxTitle,chatboxExpand,chatboxExpanded = false,chatboxContainer;
 
 let faces = [];
+let left,right;
+
 let faceMode = 0;
 
 
@@ -248,6 +250,20 @@ async function setup() {
     if(i === faceMode){faces[i].show();}
     else{faces[i].hide();}
   }
+
+  left = createImg("300ppi/left.png");
+  left.parent(lensContainer);
+  left.style("left","5%");
+  left.style("bottom","45%");
+  left.style("width","30%");
+
+  right = createImg("300ppi/right.png");
+  right.parent(lensContainer);
+  right.style("right","5%");
+  right.style("bottom","45%");
+  right.style("width","30%");
+
+
 
   lensName = createDiv(jsonData[0].subject);
   lensName.parent(lensContainer);
