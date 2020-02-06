@@ -237,7 +237,7 @@ async function setup() {
   lensContainer.hide();
 
   for(let i = 0; i<3; i++){
-    faces[i] = createImg("https://cors-anywhere.herokuapp.com/"+jsonData[i].Image);
+    faces[i] = createImg("https://cors-anywhere.herokuapp.com/"+jsonData[i].Image, i.toString());
     faces[i].parent(lensContainer);
     faces[i].style("position","absolute");
     faces[i].style("left","50%");
