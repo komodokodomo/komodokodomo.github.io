@@ -120,13 +120,13 @@ function untrigger() {
     d.classList.add("hideX");
 
   }  
+
 function trigger() { 
   if(chatboxExpand){
     chatboxExpanded = true;
     chatbox.html("");
 
     changeContent();
-
 
     console.log('button clicked!');
     let a = document.getElementById("chatbox");
