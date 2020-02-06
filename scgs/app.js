@@ -39,7 +39,8 @@ let faceMode = 0;
 let mobile = false;
 let w,h,density;
 const constraints = {
-  video: { facingMode: { exact: "environment" } },
+  // video: { facingMode: { exact: "environment" } },
+  video: { facingMode: "environment"  },
   audio: false
 };
 const videoWidth = 1920,videoHeight = 1080;
