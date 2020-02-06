@@ -235,7 +235,7 @@ async function setup() {
   lensContainer.hide();
 
   for(let i = 0; i<3; i++){
-    faces[i] = createImg("300ppi/faces"+(2*(i+1)).toString()+".png")
+    faces[i] = createImg("https://cors-anywhere.herokuapp.com/"+jsonData[i].Image);
     faces[i].parent(lensContainer);
     faces[i].style("position","absolute");
     faces[i].style("left","50%");
@@ -443,7 +443,7 @@ loginWrapper.size(w*0.6,h*0.8);
 loginWrapper.position(w*0.2,h*0.1);
 
 
-loginWrapperTitle = createImg('https://drive.google.com/uc?export=view&id=1JWTsU_lZpkKqqLC_KNmzAzF0PvktLfrn','SLS');
+loginWrapperTitle = createImg('https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1JWTsU_lZpkKqqLC_KNmzAzF0PvktLfrn','SLS');
 loginWrapperTitle.parent(loginWrapper);
 loginWrapperTitle.style("width","inherit");
 loginWrapperTitle.style("margin","0rem 0rem 1rem 0rem");
