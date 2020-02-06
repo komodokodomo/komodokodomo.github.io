@@ -9,7 +9,7 @@ let prevProb = [];
 let lerpProb = [];
 
 let classname;
-let setuped = false;
+// let setuped = false;
 
 var classToExplore = "";
 var jsonDataIndex;
@@ -516,7 +516,7 @@ video.hide();
   
 img = document.getElementById('canvas'); 
 
-setuped = true;
+// setuped = true;
 predict();
 
 }
@@ -557,7 +557,7 @@ else{
 }
 
 function windowResized(){
-  if(setuped){
+  // if(setuped){
     w = window.innerWidth;
     h = window.innerHeight;
 
@@ -587,7 +587,7 @@ function windowResized(){
 
     lensContainer.size(w,4*h/10);
     lensContainer.position(0,6*h/10);
-  }
+  // }
 }
 
 
