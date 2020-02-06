@@ -276,23 +276,23 @@ async function setup() {
 
 
   var myElement = document.getElementById('chatbox-container');
-  // var mc = new Hammer(myElement);
-  // mc.on("swipeleft swiperight", function(ev) {
-  //  console.log(ev.type);
-  //  faces[faceMode].hide();
-  //  if(ev.type == "swipeleft"){faceMode++;}
-  //  else if(ev.type == "swiperight"){faceMode--;}
+  var mc = new Hammer(myElement);
+  mc.on("swipeleft swiperight", function(ev) {
+   console.log(ev.type);
+   faces[faceMode].hide();
+   if(ev.type == "swipeleft"){faceMode++;}
+   else if(ev.type == "swiperight"){faceMode--;}
 
-  //  if(faceMode>faces.length-1){faceMode=0;}
-  //  if(faceMode<0){faceMode=faces.length-1;}
-  //  faces[faceMode].show();
-  //  console.log(faceMode);
+   if(faceMode>faces.length-1){faceMode=0;}
+   if(faceMode<0){faceMode=faces.length-1;}
+   faces[faceMode].show();
+   console.log(faceMode);
   
-  //  lensName.html(jsonData[faceMode].subject);
-  //  if(chatboxExpanded){
-  //  changeContent();
-  // }
-  // });
+   lensName.html(jsonData[faceMode].subject);
+   if(chatboxExpanded){
+   changeContent();
+  }
+  });
 
   canvasContainer = createDiv();
   canvasContainer.size(w,h/2);
