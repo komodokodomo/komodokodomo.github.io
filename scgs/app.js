@@ -53,6 +53,12 @@ let objects = [];
 
 async function preload(){
   jsonData = loadJSON(infoURL);
+  loginWrapperTitle = createImg('300ppi/logo.png','SLS');
+
+  for(let i = 0; i<3; i++){
+    faces[i] = createImg("300ppi/faces"+((i+1)*2).toString()+".png", i.toString());
+  }
+
 }
 
 async function init() {
@@ -238,7 +244,7 @@ async function setup() {
 
   for(let i = 0; i<3; i++){
     // faces[i] = createImg("https://cors-anywhere.herokuapp.com/"+jsonData[i].Image, i.toString());
-    faces[i] = createImg("300ppi/faces"+((i+1)*2).toString()+".png", i.toString());
+    // faces[i] = createImg("300ppi/faces"+((i+1)*2).toString()+".png", i.toString());
     faces[i].parent(lensContainer);
     faces[i].style("position","absolute");
     faces[i].style("left","50%");
@@ -446,7 +452,8 @@ loginWrapper.size(w*0.6,h*0.8);
 loginWrapper.position(w*0.2,h*0.1);
 
 
-loginWrapperTitle = createImg('https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1JWTsU_lZpkKqqLC_KNmzAzF0PvktLfrn','SLS');
+// loginWrapperTitle = createImg('https://cors-anywhere.herokuapp.com/https://drive.google.com/uc?export=view&id=1JWTsU_lZpkKqqLC_KNmzAzF0PvktLfrn','SLS');
+// loginWrapperTitle = createImg('300ppi/logo.png','SLS');
 loginWrapperTitle.parent(loginWrapper);
 loginWrapperTitle.style("width","inherit");
 loginWrapperTitle.style("margin","0rem 0rem 1rem 0rem");
