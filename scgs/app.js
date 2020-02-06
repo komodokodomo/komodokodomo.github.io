@@ -443,7 +443,7 @@ loginWrapper.size(w*0.6,h*0.8);
 loginWrapper.position(w*0.2,h*0.1);
 
 
-loginWrapperTitle = createImg('logo.png','SLS');
+loginWrapperTitle = createImg('https://drive.google.com/uc?export=view&id=1JWTsU_lZpkKqqLC_KNmzAzF0PvktLfrn','SLS');
 loginWrapperTitle.parent(loginWrapper);
 loginWrapperTitle.style("width","inherit");
 loginWrapperTitle.style("margin","0rem 0rem 1rem 0rem");
