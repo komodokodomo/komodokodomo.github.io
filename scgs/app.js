@@ -256,14 +256,14 @@ async function setup() {
   left.style("position","absolute");
   left.style("left","5%");
   left.style("bottom","20%");
-  left.style("width","30%");
+  left.style("width","23%");
 
   right = createImg("300ppi/right.png");
   right.parent(lensContainer);
   right.style("position","absolute");
   right.style("right","5%");
   right.style("bottom","20%");
-  right.style("width","30%");
+  right.style("width","23%");
 
 
 
