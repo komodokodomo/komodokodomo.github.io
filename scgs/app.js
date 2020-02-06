@@ -53,8 +53,6 @@ let objects = [];
 
 async function preload(){
   jsonData = loadJSON(infoURL);
-  loginWrapperTitle = createImg('300ppi/logo.png','SLS');
-
 }
 
 async function init() {
