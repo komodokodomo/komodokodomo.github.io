@@ -265,7 +265,7 @@ async function setup() {
   right.style("bottom","15%");
   right.style("width","23%");
 
-  leftName = createDiv("left");
+  leftName = createDiv(jsonData[1].subject);
   leftName.parent(lensContainer);
   leftName.style("position","absolute");
   leftName.style("left","5%");
@@ -273,7 +273,7 @@ async function setup() {
   leftName.style("bottom","25%");
   leftName.style("width","23%");
 
-  rightName = createDiv("right");
+  rightName = createDiv(jsonData[2].subject);
   rightName.parent(lensContainer);
   rightName.style("position","absolute");
   rightName.style("text-align","center");
@@ -322,8 +322,21 @@ async function setup() {
    if(faceMode<0){faceMode=faces.length-1;}
    faces[faceMode].show();
    console.log(faceMode);
+
+   let leftNum = faceMode + 1;
+   if(leftNum>faces.length-1){leftNum=0;}
+   if(leftNum<0){leftNum=faces.length-1;}
+
+   let rightNum = faceMode + 1;
+   if(rightNum>faces.length-1){rightNum=0;}
+   if(rightNum<0){rightNum=faces.length-1;}
+
   
    lensName.html(jsonData[faceMode].subject);
+
+   leftName.html(jsonData[leftNum].subject);
+   rightName.html(jsonData[rightNum].subject);
+
    if(chatboxExpanded){
    changeContent();
   }
