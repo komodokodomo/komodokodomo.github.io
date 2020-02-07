@@ -327,7 +327,7 @@ async function setup() {
    if(leftNum>faces.length-1){leftNum=0;}
    if(leftNum<0){leftNum=faces.length-1;}
 
-   let rightNum = faceMode + 1;
+   let rightNum = faceMode - 1;
    if(rightNum>faces.length-1){rightNum=0;}
    if(rightNum<0){rightNum=faces.length-1;}
 
