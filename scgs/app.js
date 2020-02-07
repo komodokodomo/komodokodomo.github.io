@@ -34,7 +34,7 @@ let lensList,lensNumber, lensName, contentText, contentClose;
 let canvas,video,img,chatbox,chatboxClose,chatboxContent,chatboxTitle,chatboxExpand,chatboxExpanded = false,chatboxContainer;
 
 let faces = [];
-let left,right;
+let left,right,leftName,rightName;
 
 let faceMode = 0;
 
@@ -264,6 +264,20 @@ async function setup() {
   right.style("right","5%");
   right.style("bottom","15%");
   right.style("width","23%");
+
+  leftName = createDiv("left");
+  leftName.parent(lensContainer);
+  leftName.style("position","absolute");
+  leftName.style("left","5%");
+  leftName.style("bottom","15%");
+  leftName.style("width","23%");
+
+  rightName = createDiv("right");
+  rightName.parent(lensContainer);
+  rightName.style("position","absolute");
+  rightName.style("right","5%");
+  rightName.style("bottom","15%");
+  rightName.style("width","23%");
 
 
 
