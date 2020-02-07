@@ -273,6 +273,7 @@ async function setup() {
   leftName.style("bottom","25%");
   leftName.style("width","23%");
   leftName.style("font-weight","bold");
+  leftName.style("font-size","0.7rem");
 
   rightName = createDiv(jsonData[2].subject);
   rightName.parent(lensContainer);
@@ -282,6 +283,8 @@ async function setup() {
   rightName.style("bottom","25%");
   rightName.style("width","23%");
   rightName.style("font-weight","bold");
+  rightName.style("font-size","0.7rem");
+
 
 
 
