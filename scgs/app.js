@@ -269,14 +269,16 @@ async function setup() {
   leftName.parent(lensContainer);
   leftName.style("position","absolute");
   leftName.style("left","5%");
-  leftName.style("bottom","15%");
+  leftName.style("text-align","center");
+  leftName.style("bottom","25%");
   leftName.style("width","23%");
 
   rightName = createDiv("right");
   rightName.parent(lensContainer);
   rightName.style("position","absolute");
+  rightName.style("text-align","center");
   rightName.style("right","5%");
-  rightName.style("bottom","15%");
+  rightName.style("bottom","25%");
   rightName.style("width","23%");
 
 
