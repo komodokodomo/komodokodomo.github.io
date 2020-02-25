@@ -25,7 +25,7 @@ let enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
 
 
 function preload(){
-  model = tf.loadGraphModel(MODEL_URL);
+  model = tf.loadLayersModel(MODEL_URL);
 }
 
 
