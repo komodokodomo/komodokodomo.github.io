@@ -24,8 +24,12 @@ let enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
 });
 
 
+function preload(){
+  model = tf.loadGraphModel(MODEL_URL);
+}
 
-async function setup(){
+
+function setup(){
 
 w = window.innerWidth;
 h = window.innerHeight;
@@ -36,7 +40,6 @@ video = createCapture(constraints);
 video.size(videoWidth, videoHeight);
 video.hide();
 
-model = await tf.loadGraphModel(MODEL_URL);
 sample = document.getElementById('canvas');
 predict();
 
