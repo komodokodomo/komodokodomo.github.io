@@ -41,7 +41,6 @@ video.size(videoWidth, videoHeight);
 video.hide();
 
 model = await init();
-sample = document.getElementById('canvas');
 predict();
 
 }
@@ -71,6 +70,7 @@ function draw(){
 }
 
 async function predict(){
+  sample = document.getElementById('canvas');
   let results = await model.predict(tf.browser.fromPixels(sample));
   console.log(results);
   predict();
