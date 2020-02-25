@@ -24,12 +24,12 @@ let enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(
 });
 
 
-function preload(){
+async function init(){
   model = tf.loadLayersModel(MODEL_URL);
 }
 
 
-function setup(){
+async function setup(){
 
 w = window.innerWidth;
 h = window.innerHeight;
@@ -40,6 +40,7 @@ video = createCapture(constraints);
 video.size(videoWidth, videoHeight);
 video.hide();
 
+model = await init();
 sample = document.getElementById('canvas');
 predict();
 
