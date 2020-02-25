@@ -6,14 +6,14 @@
          "class_name":"Sequential",
          "config":{
             "name":"mobilenetv2",
-            "batch_input_shape": [
+            "layers":[
+               {
+               	 "batch_input_shape": [
       			  null,
 			      1280,
 			      720,
 			      1
 			    ],
-            "layers":[
-               {
                   "class_name":"Dropout",
                   "config":{
                      "name":"dropout_1",
