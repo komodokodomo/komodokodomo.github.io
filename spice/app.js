@@ -10,22 +10,9 @@ const videoHeight = 720;
 let canvas,w,h;
 let model,sample;
 
-let enumeratorPromise = navigator.mediaDevices.enumerateDevices().then(function(devices) {
-  devices.forEach(function(device) {
-    if(device.kind == "videoinput"){
-      cameras += device.label;
-      cameras += "***";  
-    }
-  });
-  console.log(cameras);
-})
-.catch(function(err) {
-  console.log(err.name + ": " + err.message);
-});
-
 
 async function init(){
-  model = tf.loadLayersModel(MODEL_URL);
+  model = await tf.loadLayersModel(MODEL_URL);
 }
 
 
