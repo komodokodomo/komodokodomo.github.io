@@ -8,12 +8,6 @@
             "name":"mobilenetv2",
             "layers":[
                {
-               	 "batch_input_shape": [
-      			  null,
-			      1280,
-			      720,
-			      1
-			    ],
                   "class_name":"Dropout",
                   "config":{
                      "name":"dropout_1",

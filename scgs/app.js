@@ -1,4 +1,14 @@
 
+// indent code properly
+// align braces {}
+// throw HTML elt in .html file
+// group related variables together 
+// naming conventions: add dataType to name e.g. subject vs subjectArr
+// remove commented code meant for test and console.log
+// { "key": value } vs {"key":value}
+
+
+
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
 const infoURL = 'https://cors-anywhere.herokuapp.com/https://gds-esd.tk/sheet/1V_naAwK3rQAWowSV0ny6SdjXwclEBmSw7J-wMMCOrBE/1';
@@ -193,7 +203,7 @@ function closeContent(){
 }
 
 function changeContent(){
-  if(jsonData[faceMode][classname]!== null || jsonData[faceMode][classname]!== undefined){
+  if (jsonData[faceMode][classname] !== null || jsonData[faceMode][classname] !== undefined) {
     console.log(jsonData[faceMode][classname]);
     // let stuff = (jsonData[faceMode][classname]).toString();
     let stuff = jsonData[faceMode][classname];
@@ -201,7 +211,7 @@ function changeContent(){
     let things = "";
 
     if(stuffs.length>0){
-    for(var k=0; k<stuffs.length; k++){
+    for(var k=0; k < stuffs.length; k++){
       // let addon = "<a href=\""+ stuffs[k].split("(")[1].split(")")[0] + "\" target=\"content-frame\" onclick=\"loadIFRAME(event, this)\">" + stuffs[k].split("(")[0] + "</a><br><br><br>";
       let addon = stuffs[k] + "<br><br><br>";
       things += addon;

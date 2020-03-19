@@ -13,6 +13,7 @@ let model,sample;
 
 async function init(){
   model = await tf.loadLayersModel(MODEL_URL);
+  console.log("model loaded");
 }
 
 
