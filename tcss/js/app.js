@@ -15,7 +15,7 @@ function preload(){
     for( var i = 1; i <= 5; i++ ){
         let buf = [];
         for( var j = 0; j < 4; j++ ){
-            buf[j] = loadImage("img/faces" + (i*j).toString() + ".png");
+            buf[j] = createImg("img/faces" + (i*j).toString() + ".png");
         }
         images[i].push(buf);
     }
