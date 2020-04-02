@@ -20,7 +20,7 @@ var APP_STATE = {
 var P5_SOUND = {
     mic: null,
     micLevel: null,
-    micThresholdLevel: 0.3,
+    micThresholdLevel: 0.1,
     micThresholdCross: false
 }
 
