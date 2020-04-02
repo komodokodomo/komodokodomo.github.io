@@ -22,11 +22,11 @@ function preload(){
     for( var i = 0; i < 6; i++ ){
         let buf = [];
         for( var j = 0; j < 4; j++ ){
-            buf[j] = createImg("img/" + ((i*4)+j).toString() + ".png");
+            buf[j] = loadImage("img/" + ((i*4)+j).toString() + ".png");
         }
         DOM_EL.images.push(buf);
     }
-    DOM_EL.images.hide();
+    // DOM_EL.images.hide();
     console.log(DOM_EL.images);
 }
 
