@@ -3,6 +3,9 @@ var DOM_EL = {
     loginContainer: null,
     loginInput: null,
     loginButton: null,
+}
+
+var CANVAS_EL = {
     images: []
 }
 
@@ -19,23 +22,27 @@ const assignElementReferences = function() {
 
 function preload(){
     assignElementReferences();
+
+    userStartAudio().then(function() {  
+        console.log("audio ready");
+    });
+    
     for( var i = 0; i < 6; i++ ){
         let buf = [];
         for( var j = 0; j < 4; j++ ){
             buf[j] = loadImage("img/" + ((i*4)+j).toString() + ".png");
         }
-        DOM_EL.images.push(buf);
+        CANVAS_EL.images.push(buf);
     }
     // DOM_EL.images.hide();
-    console.log(DOM_EL.images);
+    console.log(CANVAS_EL.images);
 }
 
 function setup(){
-canvas = createCanvas();
+APP_STATE.windowWidth = window.innerWidth;
+APP_STATE.windowHeight = window.innerHeight;
+canvas = createCanvas( APP_STATE.windowWidth, APP_STATE.windowHeight);
 canvas.id("canvas");
-    userStartAudio().then(function() {  
-        console.log("audio ready");
-    });
 }
 
 function draw(){
@@ -44,7 +51,7 @@ function draw(){
 function windowResized(){
     APP_STATE.windowWidth = window.innerWidth;
     APP_STATE.windowHeight = window.innerHeight;
-    // resizeCanvas(w, h);
+    resizeCanvas(APP_STATE.windowWidth, APP_STATE.windowHeight);
 }
 
 class Avatar {  //own avatar and other people's avatars
