@@ -12,7 +12,7 @@ var APP_STATE = {
 }
 
 function preload(){
-    for( var i = 1; i <= 5; i++ ){
+    for( var i = 0; i < 6; i++ ){
         let buf = [];
         for( var j = 0; j < 4; j++ ){
             buf[j] = createImg("img/" + (i*j).toString() + ".png");
