@@ -21,7 +21,7 @@ var P5_SOUND = {
     mic: null,
     micLevel: null,
     micThresholdLevel: 0.3,
-    micThresholdCross: false;
+    micThresholdCross: false
 }
 
 function preload(){
