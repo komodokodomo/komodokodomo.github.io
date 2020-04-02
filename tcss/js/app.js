@@ -11,7 +11,14 @@ var APP_STATE = {
     windowHeight: null
 }
 
+const assignElementReferences = function() {
+    DOM_EL.loginContainer = document.getElementById("login-container");
+    DOM_EL.loginInput = document.getElementById("login-input");
+    DOM_EL.loginButton = document.getElementById("login-button");
+}
+
 function preload(){
+    assignElementReferences();
     for( var i = 0; i < 6; i++ ){
         let buf = [];
         for( var j = 0; j < 4; j++ ){
@@ -19,6 +26,7 @@ function preload(){
         }
         DOM_EL.images.push(buf);
     }
+    DOM_EL.images.hide();
     console.log(DOM_EL.images);
 }
 
