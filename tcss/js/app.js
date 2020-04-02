@@ -19,7 +19,9 @@ var APP_STATE = {
 
 var P5_SOUND = {
     mic: null,
-    micLevel: null
+    micLevel: null,
+    micThresholdLevel: 0.3,
+    micThresholdCross: false;
 }
 
 function preload(){
@@ -31,7 +33,14 @@ function preload(){
         P5_SOUND.mic.connect();
         setInterval(function(){
             P5_SOUND.micLevel = P5_SOUND.mic.getLevel();
-            console.log(P5_SOUND.micLevel);    
+            if( P5_SOUND.micLevel < P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === false){
+            } else if ( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === false){
+                P5_SOUND.micThresholdCross = true;
+            } else if ( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === true){
+            } else if ( P5_SOUND.micLevel < P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === true){
+                P5_SOUND.micThresholdCross = false;
+                console.log("move mouth");
+            }
         },50);
     });
 
