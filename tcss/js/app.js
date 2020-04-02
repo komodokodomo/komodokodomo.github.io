@@ -4,7 +4,8 @@ var DOM_EL = {
     loginInput: null,
     loginButton: null,
     slider: null,
-    images: []
+    images: [],
+    sliderImages: []
 }
 
 // var CANVAS_EL = {
@@ -34,16 +35,10 @@ function preload(){
         },50);
     });
 
-    for( var i = 0; i < 6; i++ ){
-        let buf = [];
-        for( var j = 0; j < 4; j++ ){
-            buf[j] = createImg("img/" + ((i*4)+j).toString() + ".png");
-            buf[j].hide();
-        }
-        DOM_EL.images.push(buf);
+    for( let i = 0; i < 24; i++ ){
+        DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
+        DOM_EL.images[i].hide();
     }
-    // DOM_EL.images.hide();
-    console.log(DOM_EL.images);
 }
 
 function setup(){
@@ -61,11 +56,16 @@ DOM_EL.loginButton = createButton();
 DOM_EL.slider = createDiv();
 DOM_EL.slider.class("my-slider");
 
+for( let j = 0; j < 6; j++ ){
+    DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
+    DOM_EL.sliderImages[j].hide();
+    DOM_EL.sliderImages[j].parent(slider);
+}
+
 slider = tns({
     container: '.my-slider',
     items: 3,
     slideBy: 'page',
-    // autoplay: true
 });
 
 DOM_EL.loginInput.parent(DOM_EL.loginContainer);
