@@ -17,7 +17,7 @@ function preload(){
         for( var j = 0; j < 4; j++ ){
             buf[j] = createImg("img/" + (i*j).toString() + ".png");
         }
-        DOM_EL.images[i].push(buf);
+        DOM_EL.images.push(buf);
     }
     console.log(images);
 }
