@@ -25,6 +25,8 @@ function preload(){
 
     userStartAudio().then(function() {  
         console.log("audio ready");
+        P5_SOUND.mic = new p5.AudioIn();
+        P5_SOUND.mic.start();
         P5_SOUND.mic.connect();
         setInterval(function(){
             P5_SOUND.micLevel = P5_SOUND.mic.getLevel();
