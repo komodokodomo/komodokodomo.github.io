@@ -3,6 +3,7 @@ var DOM_EL = {
     loginContainer: null,
     loginInput: null,
     loginButton: null,
+    slider: null
 }
 
 var CANVAS_EL = {
@@ -14,14 +15,7 @@ var APP_STATE = {
     windowHeight: null
 }
 
-// const assignElementReferences = function() {
-//     DOM_EL.loginContainer = document.getElementById("login-container");
-//     DOM_EL.loginInput = document.getElementById("login-input");
-//     DOM_EL.loginButton = document.getElementById("login-button");
-// }
-
 function preload(){
-    // assignElementReferences();
 
     userStartAudio().then(function() {  
         console.log("audio ready");
@@ -30,7 +24,7 @@ function preload(){
     for( var i = 0; i < 6; i++ ){
         let buf = [];
         for( var j = 0; j < 4; j++ ){
-            buf[j] = loadImage("img/" + ((i*4)+j).toString() + ".png");
+            buf[j] = createImg("img/" + ((i*4)+j).toString() + ".png");
         }
         CANVAS_EL.images.push(buf);
     }
@@ -45,10 +39,21 @@ DOM_EL.canvas = createCanvas( APP_STATE.windowWidth, APP_STATE.windowHeight);
 DOM_EL.canvas.id("canvas");
 
 DOM_EL.loginContainer = createDiv();
+DOM_EL.loginContainer.position(0,0);
+DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
+
 DOM_EL.loginInput = createInput();
 DOM_EL.loginButton = createButton();
+DOM_EL.slider = createDiv();
+DOM_EL.slider.class("my-slider");
 
-DOM_EL.loginContainer.parent(DOM_EL.canvas);
+slider = tns({
+    container: '.my-slider',
+    items: 3,
+    slideBy: 'page',
+    autoplay: true
+});
+
 DOM_EL.loginInput.parent(DOM_EL.loginContainer);
 DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 }
