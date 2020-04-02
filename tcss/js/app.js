@@ -59,7 +59,7 @@ DOM_EL.slider.class("my-slider");
 for( let j = 0; j < 6; j++ ){
     DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
     DOM_EL.sliderImages[j].hide();
-    DOM_EL.sliderImages[j].parent(slider);
+    DOM_EL.sliderImages[j].parent(DOM_EL.slider);
 }
 
 slider = tns({
