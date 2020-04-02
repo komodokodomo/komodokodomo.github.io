@@ -4,10 +4,11 @@ var DOM_EL = {
     loginInput: null,
     loginButton: null,
     slider: null
+    images: []
 }
 
 var CANVAS_EL = {
-    images: []
+    // images: []
 }
 
 var APP_STATE = {
@@ -25,11 +26,12 @@ function preload(){
         let buf = [];
         for( var j = 0; j < 4; j++ ){
             buf[j] = createImg("img/" + ((i*4)+j).toString() + ".png");
+            buf[j].hide();
         }
-        CANVAS_EL.images.push(buf);
+        DOM_EL.images.push(buf);
     }
     // DOM_EL.images.hide();
-    console.log(CANVAS_EL.images);
+    console.log(DOM_EL.images);
 }
 
 function setup(){
@@ -51,7 +53,7 @@ slider = tns({
     container: '.my-slider',
     items: 3,
     slideBy: 'page',
-    autoplay: true
+    // autoplay: true
 });
 
 DOM_EL.loginInput.parent(DOM_EL.loginContainer);
