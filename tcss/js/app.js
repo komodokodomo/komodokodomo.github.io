@@ -1,23 +1,39 @@
 var DOM_EL = {
+    canvas: null;
     loginContainer: null,
     loginInput: null,
     loginButton: null,
+    images: []
+}
+
+var APP_STATE = {
+    windowWidth = null,
+    windowHeight = null;
 }
 
 function preload(){
-    for( var i = 0; i < 5; i++ ){
+    for( var i = 1; i <= 5; i++ ){
+        let buf = [];
         for( var j = 0; j < 4; j++ ){
-            //load images for choosing
+            buf[j] = loadImage("img/faces" + (i*j).toString() + ".png");
         }
+        images[i].push(buf);
     }
+    console.log(images);
 }
 
 function setup(){
-
+canvas = createCanvas();
+canvas.id("canvas");
 }
 
 function draw(){
+}
 
+function windowResized(){
+    APP_STATE.windowWidth = window.innerWidth;
+    APP_STATE.windowHeight = window.innerHeight;
+    // resizeCanvas(w, h);
 }
 
 export class Avatar {  //own avatar and other people's avatars
