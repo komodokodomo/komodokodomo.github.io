@@ -36,7 +36,7 @@ function windowResized(){
     // resizeCanvas(w, h);
 }
 
-export class Avatar {  //own avatar and other people's avatars
+class Avatar {  //own avatar and other people's avatars
     constructor(spriteNum) {
       this.posX = random(width);
       this.posY = random(height);
