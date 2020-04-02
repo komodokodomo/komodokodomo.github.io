@@ -14,19 +14,19 @@ var APP_STATE = {
     windowHeight: null
 }
 
-const assignElementReferences = function() {
-    DOM_EL.loginContainer = document.getElementById("login-container");
-    DOM_EL.loginInput = document.getElementById("login-input");
-    DOM_EL.loginButton = document.getElementById("login-button");
-}
+// const assignElementReferences = function() {
+//     DOM_EL.loginContainer = document.getElementById("login-container");
+//     DOM_EL.loginInput = document.getElementById("login-input");
+//     DOM_EL.loginButton = document.getElementById("login-button");
+// }
 
 function preload(){
-    assignElementReferences();
+    // assignElementReferences();
 
     userStartAudio().then(function() {  
         console.log("audio ready");
     });
-    
+
     for( var i = 0; i < 6; i++ ){
         let buf = [];
         for( var j = 0; j < 4; j++ ){
@@ -41,8 +41,16 @@ function preload(){
 function setup(){
 APP_STATE.windowWidth = window.innerWidth;
 APP_STATE.windowHeight = window.innerHeight;
-canvas = createCanvas( APP_STATE.windowWidth, APP_STATE.windowHeight);
-canvas.id("canvas");
+DOM_EL.canvas = createCanvas( APP_STATE.windowWidth, APP_STATE.windowHeight);
+DOM_EL.canvas.id("canvas");
+
+DOM_EL.loginContainer = createDiv();
+DOM_EL.loginInput = createInput();
+DOM_EL.loginButton = createButton();
+
+DOM_EL.loginContainer.parent(DOM_EL.canvas);
+DOM_EL.loginInput.parent(DOM_EL.loginContainer);
+DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 }
 
 function draw(){
