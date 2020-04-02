@@ -8,7 +8,7 @@ var DOM_EL = {
 
 var APP_STATE = {
     windowWidth = null,
-    windowHeight = null;
+    windowHeight = null
 }
 
 function preload(){
