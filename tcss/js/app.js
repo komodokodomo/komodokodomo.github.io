@@ -3,7 +3,7 @@ var DOM_EL = {
     loginContainer: null,
     loginInput: null,
     loginButton: null,
-    slider: null
+    slider: null,
     images: []
 }
 
