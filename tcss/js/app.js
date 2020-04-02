@@ -13,13 +13,23 @@ var CANVAS_EL = {
 
 var APP_STATE = {
     windowWidth: null,
-    windowHeight: null
+    windowHeight: null,
+}
+
+var P5_SOUND = {
+    mic: null,
+    micLevel: null
 }
 
 function preload(){
 
     userStartAudio().then(function() {  
         console.log("audio ready");
+        P5_SOUND.mic.connect();
+        setInterval(function(){
+            P5_SOUND.micLevel = P5_SOUND.mic.getLevel();
+            console.log(P5_SOUND.micLevel);    
+        },50);
     });
 
     for( var i = 0; i < 6; i++ ){
