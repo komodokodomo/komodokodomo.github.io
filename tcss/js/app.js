@@ -12,14 +12,14 @@ var APP_STATE = {
 }
 
 function preload(){
-    for( var i = 0; i < 6; i++ ){
+    for( var i = 1; i <= 6; i++ ){
         let buf = [];
         for( var j = 0; j < 4; j++ ){
             buf[j] = createImg("img/" + (i*j).toString() + ".png");
         }
         DOM_EL.images.push(buf);
     }
-    console.log(images);
+    console.log(DOM_EL.images);
 }
 
 function setup(){
