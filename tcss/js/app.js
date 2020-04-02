@@ -7,9 +7,9 @@ var DOM_EL = {
     images: []
 }
 
-var CANVAS_EL = {
+// var CANVAS_EL = {
     // images: []
-}
+// }
 
 var APP_STATE = {
     windowWidth: null,
