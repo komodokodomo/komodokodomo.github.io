@@ -1,5 +1,5 @@
 var DOM_EL = {
-    canvas: null;
+    canvas: null,
     loginContainer: null,
     loginInput: null,
     loginButton: null,
