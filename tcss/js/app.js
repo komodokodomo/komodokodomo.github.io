@@ -25,6 +25,9 @@ function preload(){
 function setup(){
 canvas = createCanvas();
 canvas.id("canvas");
+    userStartAudio().then(function() {  
+        console.log("audio ready");
+    });
 }
 
 function draw(){
