@@ -101,9 +101,8 @@ DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 }
 
 function nickname(){
-    // APP_STATE.nickname = this.value;
-    // console.log(APP_STATE.nickname);
-    console.log(this.value);
+    APP_STATE.nickname = this.value();
+    console.log(APP_STATE.nickname);
 }
 
 function login(){
