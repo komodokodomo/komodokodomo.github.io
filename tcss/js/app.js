@@ -87,6 +87,7 @@ DOM_EL.loginSlider = tns({
     items: 1,
     slideBy: 'page',
     nav: false,
+    controls: false,
     autoHeight: true,
     // autoWidth: true
 });
