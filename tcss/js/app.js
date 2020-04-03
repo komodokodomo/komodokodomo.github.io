@@ -116,8 +116,8 @@ class Avatar {  //own avatar and other people's avatars
       this.posX = random(width);
       this.posY = random(height);
       this.spriteNum = spriteNum;
-      this.spriteDefault = sprite[spriteNum*i];
-      this.spriteTalkOne = sprite[spriteNum;
+      this.spriteDefault = sprite[spriteNum];
+      this.spriteTalkOne = sprite[spriteNum];
       this.spriteTalkTwo = sprite[spriteNum][2];
       this.spriteAway = sprite[spriteNum][3];
       this.lastRecordedActivity = null;
