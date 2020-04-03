@@ -5,6 +5,7 @@ var DOM_EL = {
     loginButton: null,
     slider: null,
     images: [],
+    sliderContainer: [],
     sliderImages: []
 }
 
@@ -24,6 +25,7 @@ var P5_SOUND = {
     micThresholdCross: false
 }
 
+
 function preload(){
 
     userStartAudio().then(function() {  
@@ -33,13 +35,19 @@ function preload(){
         P5_SOUND.mic.connect();
         setInterval(function(){
             P5_SOUND.micLevel = P5_SOUND.mic.getLevel();
-            if( P5_SOUND.micLevel < P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === false){
-            } else if ( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === false){
+            // if( P5_SOUND.micLevel < P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === false){
+            // } else if ( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === false){
+            //     P5_SOUND.micThresholdCross = true;
+            // } else if ( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === true){
+            // } else if ( P5_SOUND.micLevel < P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === true){
+            //     P5_SOUND.micThresholdCross = false;
+            //     console.log("move mouth");
+            // }
+            if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
                 P5_SOUND.micThresholdCross = true;
-            } else if ( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === true){
-            } else if ( P5_SOUND.micLevel < P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === true){
+            }
+            else{
                 P5_SOUND.micThresholdCross = false;
-                console.log("move mouth");
             }
         },50);
     });
@@ -66,8 +74,11 @@ DOM_EL.slider = createDiv();
 DOM_EL.slider.class("my-slider");
 
 for( let j = 0; j < 6; j++ ){
+    // DOM_EL.sliderContainer[j] = createDiv();
+    // DOM_EL.sliderContainer[j].parent(DOM_EL.slider);
+
     DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
-    DOM_EL.sliderImages[j].hide();
+    // DOM_EL.sliderImages[j].hide();
     DOM_EL.sliderImages[j].parent(DOM_EL.slider);
 }
 
@@ -82,6 +93,16 @@ DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 }
 
 function draw(){
+    if(KeyIsDown(LEFT_ARROW)){
+        posX--;
+    }else if(KeyIsDown(RIGHT_ARROW)){
+        posX++;
+    }else if(KeyIsDown(UP_ARROW)){
+        posY++;
+    }else if(KeyIsDown(RIGHT_ARROW)){
+        posY--;
+    }
+    
 }
 
 function windowResized(){
@@ -94,8 +115,9 @@ class Avatar {  //own avatar and other people's avatars
     constructor(spriteNum) {
       this.posX = random(width);
       this.posY = random(height);
-      this.spriteDefault = sprite[spriteNum][0];
-      this.spriteTalkOne = sprite[spriteNum][1];
+      this.spriteNum = spriteNum;
+      this.spriteDefault = sprite[spriteNum*i];
+      this.spriteTalkOne = sprite[spriteNum;
       this.spriteTalkTwo = sprite[spriteNum][2];
       this.spriteAway = sprite[spriteNum][3];
       this.lastRecordedActivity = null;
