@@ -67,7 +67,7 @@ DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
 
 DOM_EL.loginSliderContainer = createDiv();
 DOM_EL.loginSliderContainer.id("login-slider-container");
-DOM_EL.loginSliderContainer.parent(loginContainer);
+DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
 DOM_EL.loginSlider = createDiv();
 DOM_EL.loginSlider.parent(DOM_EL.loginSliderContainer);
