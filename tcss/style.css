@@ -2,3 +2,9 @@
 width: 100%;
 height: 100%;
 }
+
+#login-slider-container{
+    top: 15vw;
+    width: 85vw;
+    height: 85vw;   
+}

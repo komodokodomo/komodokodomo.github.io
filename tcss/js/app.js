@@ -3,15 +3,12 @@ var DOM_EL = {
     loginContainer: null,
     loginInput: null,
     loginButton: null,
-    slider: null,
-    images: [],
-    sliderContainer: [],
-    sliderImages: []
+    loginSliderContainer: null,
+    sliderImages: [],
+    loginSlider: null,
+    images: []
 }
 
-// var CANVAS_EL = {
-    // images: []
-// }
 
 var APP_STATE = {
     windowWidth: null,
@@ -68,27 +65,28 @@ DOM_EL.loginContainer = createDiv();
 DOM_EL.loginContainer.position(0,0);
 DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
 
-DOM_EL.loginInput = createInput();
-DOM_EL.loginButton = createButton();
-DOM_EL.slider = createDiv();
-DOM_EL.slider.parent(DOM_EL.loginContainer);
-DOM_EL.slider.class("my-slider");
+DOM_EL.loginSliderContainer = createDiv();
+DOM_EL.loginSliderContainer.id("login-slider-container");
+DOM_EL.loginSliderContainer.parent(loginContainer);
 
-for( let j = 0; j < 6; j++ ){
-    // DOM_EL.sliderContainer[j] = createDiv();
-    // DOM_EL.sliderContainer[j].parent(DOM_EL.slider);
+DOM_EL.loginSlider = createDiv();
+DOM_EL.loginSlider.parent(DOM_EL.loginSliderContainer);
+DOM_EL.loginSlider.class("my-slider");
 
-    DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
-    // DOM_EL.sliderImages[j].hide();
-    DOM_EL.sliderImages[j].parent(DOM_EL.slider);
-}
-
-slider = tns({
+DOM_EL.loginSlider = tns({
     container: '.my-slider',
     items: 1,
     slideBy: 'page',
     nav: false
 });
+
+for( let j = 0; j < 6; j++ ){
+    DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
+    DOM_EL.sliderImages[j].parent(DOM_EL.loginSlider);
+}
+
+DOM_EL.loginInput = createInput();
+DOM_EL.loginButton = createButton();
 
 DOM_EL.loginInput.parent(DOM_EL.loginContainer);
 DOM_EL.loginButton.parent(DOM_EL.loginContainer);
