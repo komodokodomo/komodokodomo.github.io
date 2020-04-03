@@ -88,7 +88,7 @@ DOM_EL.loginSlider = tns({
     slideBy: 'page',
     nav: false,
     autoHeight: true,
-    autoWidth: true
+    // autoWidth: true
 });
 
 DOM_EL.loginInput = createInput();
