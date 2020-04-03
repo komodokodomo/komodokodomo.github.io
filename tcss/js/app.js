@@ -73,17 +73,17 @@ DOM_EL.loginSlider = createDiv();
 DOM_EL.loginSlider.parent(DOM_EL.loginSliderContainer);
 DOM_EL.loginSlider.class("my-slider");
 
+for( let j = 0; j < 6; j++ ){
+    DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
+    DOM_EL.sliderImages[j].parent(DOM_EL.loginSlider);
+}
+
 DOM_EL.loginSlider = tns({
     container: '.my-slider',
     items: 1,
     slideBy: 'page',
     nav: false
 });
-
-for( let j = 0; j < 6; j++ ){
-    DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
-    DOM_EL.sliderImages[j].parent(DOM_EL.loginSlider);
-}
 
 DOM_EL.loginInput = createInput();
 DOM_EL.loginButton = createButton();
