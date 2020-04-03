@@ -93,13 +93,13 @@ DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 }
 
 function draw(){
-    if(KeyIsDown(LEFT_ARROW)){
+    if(keyIsDown(LEFT_ARROW)){
         posX--;
-    }else if(KeyIsDown(RIGHT_ARROW)){
+    }else if(keyIsDown(RIGHT_ARROW)){
         posX++;
-    }else if(KeyIsDown(UP_ARROW)){
+    }else if(keyIsDown(UP_ARROW)){
         posY++;
-    }else if(KeyIsDown(RIGHT_ARROW)){
+    }else if(keyIsDown(RIGHT_ARROW)){
         posY--;
     }
     
