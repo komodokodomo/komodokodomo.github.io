@@ -71,7 +71,7 @@ DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
 DOM_EL.loginInput = createInput();
 DOM_EL.loginButton = createButton();
 DOM_EL.slider = createDiv();
-DOM_EL.slider.parent(loginContainer);
+DOM_EL.slider.parent(DOM_EL.loginContainer);
 DOM_EL.slider.class("my-slider");
 
 for( let j = 0; j < 6; j++ ){
