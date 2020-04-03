@@ -71,6 +71,7 @@ DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
 DOM_EL.loginSlider = createDiv();
 DOM_EL.loginSlider.class("slider");
+DOM_EL.loginSlider.id("login-slider");
 DOM_EL.loginSlider.parent(DOM_EL.loginSliderContainer);
 
 for( let j = 0; j < 6; j++ ){
