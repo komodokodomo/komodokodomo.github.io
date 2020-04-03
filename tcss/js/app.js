@@ -67,16 +67,17 @@ DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
 
 DOM_EL.loginSliderContainer = createDiv();
 DOM_EL.loginSliderContainer.id("login-slider-container");
+DOM_EL.loginSliderContainer.class("slider");
 DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
-DOM_EL.loginSlider = createDiv();
-DOM_EL.loginSlider.class("slider");
-DOM_EL.loginSlider.id("login-slider");
-DOM_EL.loginSlider.parent(DOM_EL.loginSliderContainer);
+// DOM_EL.loginSlider = createDiv();
+// DOM_EL.loginSlider.class("slider");
+// DOM_EL.loginSlider.id("login-slider");
+// DOM_EL.loginSlider.parent(DOM_EL.loginSliderContainer);
 
 for( let j = 0; j < 6; j++ ){
     DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
-    DOM_EL.sliderImages[j].parent(DOM_EL.loginSlider);
+    DOM_EL.sliderImages[j].parent(DOM_EL.loginSliderContainer);
 }
 
 DOM_EL.loginSlider = tns({
