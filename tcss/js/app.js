@@ -70,8 +70,8 @@ DOM_EL.loginSliderContainer.id("login-slider-container");
 DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
 DOM_EL.loginSlider = createDiv();
+DOM_EL.loginSlider.class("slider");
 DOM_EL.loginSlider.parent(DOM_EL.loginSliderContainer);
-DOM_EL.loginSlider.id("login-slider");
 
 for( let j = 0; j < 6; j++ ){
     DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
@@ -79,7 +79,7 @@ for( let j = 0; j < 6; j++ ){
 }
 
 DOM_EL.loginSlider = tns({
-    container: 'login-slider',
+    container: '.slider',
     items: 1,
     slideBy: 'page',
     nav: false
