@@ -13,7 +13,8 @@ var DOM_EL = {
 var APP_STATE = {
     windowWidth: null,
     windowHeight: null,
-    nickname: null
+    nickname: null,
+    loginSuccess: false
 }
 
 var P5_SOUND = {
@@ -85,7 +86,9 @@ DOM_EL.loginSlider = tns({
     container: '.slider',
     items: 1,
     slideBy: 'page',
-    nav: false
+    nav: false,
+    autoHeight: true,
+    autoWidth: true
 });
 
 DOM_EL.loginInput = createInput();
@@ -108,6 +111,7 @@ function nickname(){
 function login(){
     console.log("enter socketIO server here");
     console.log("Feed in char number + nickname to both local cache and server");
+    APP_STATE.loginSuccess = true;
 }
 
 function draw(){
