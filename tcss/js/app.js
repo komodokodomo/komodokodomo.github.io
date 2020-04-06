@@ -96,26 +96,22 @@ function login(){
     console.log("Feed in char number + nickname to both local cache and server");
     APP_STATE.loginSuccess = true;
     AVATAR.own = new Avatar(0);
+    setInterval(function(){
+        AVATAR.own.update();
+    },50);
+    
 }
 
 function draw(){
     if(APP_STATE.loginSuccess){
         if(keyIsDown(LEFT_ARROW)){
             AVATAR.own.posX -= 5;
-            console.log("X--");
-            AVATAR.own.update();
         }else if(keyIsDown(RIGHT_ARROW)){
             AVATAR.own.posX += 5;
-            console.log("X++");
-            AVATAR.own.update();
         }else if(keyIsDown(UP_ARROW)){
             AVATAR.own.posY -= 5;
-            console.log("Y--");
-            AVATAR.own.update();
         }else if(keyIsDown(DOWN_ARROW)){
             AVATAR.own.posY += 5;
-            console.log("Y++");
-            AVATAR.own.update();
         }
     }
     
