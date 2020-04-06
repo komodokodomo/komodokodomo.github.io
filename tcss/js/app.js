@@ -72,7 +72,7 @@ function setup(){
     DOM_EL.loginInstruction.parent(DOM_EL.loginContainer);
 
     DOM_EL.loginSliderContainer = createDiv();
-    DOM_EL.loginSliderContainer.id("login-slider-container");
+    DOM_EL.loginSliderContainer.id("loginslidercontainer");
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
     DOM_EL.loginInput = createInput();
@@ -86,8 +86,7 @@ function setup(){
     DOM_EL.loginInput.parent(DOM_EL.loginContainer);
     DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 
-    var mc = new Hammer(DOM_EL.loginSliderContainer);
-
+    var mc = new Hammer(loginslidercontainer);
     mc.on("panleft panright tap press", function(ev) {
         console.log(ev.type +" gesture detected.");
     });
