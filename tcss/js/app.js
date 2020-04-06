@@ -1,12 +1,12 @@
 var DOM_EL = {
     canvas: null,
     loginContainer: null,
-    loginInput: null,
-    loginButton: null,
+    loginTitle: null,
+    loginInstruction: null,
     loginSliderContainer: null,
-    sliderImages: [],
-    loginSlider: null,
-    images: []
+    images: [],
+    loginInput: null,
+    loginButton: null
 }
 
 var APP_STATE = {
@@ -47,7 +47,7 @@ function preload(){
     });
 
     for( let i = 0; i < 24; i++ ){
-        DOM_EL.images[i] = loadImage("img/" + i.toString() + ".png");
+        DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
     }
 }
 
@@ -62,9 +62,16 @@ function setup(){
     DOM_EL.loginContainer.id("login-container");
     DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
 
+    DOM_EL.loginTitle = createDiv("VROOM");
+    DOM_EL.loginTitle.id("login-title");
+    DOM_EL.loginTitle.parent(DOM_EL.loginContainer);
+
+    DOM_EL.loginInstruction = createDiv("swipe to customise your character");
+    DOM_EL.loginInstruction.id("login-instruction");
+    DOM_EL.loginInstruction.parent(DOM_EL.loginContainer);
+
     DOM_EL.loginSliderContainer = createDiv();
     DOM_EL.loginSliderContainer.id("login-slider-container");
-    DOM_EL.loginSliderContainer.class("slider");
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
     DOM_EL.loginInput = createInput();
@@ -77,6 +84,12 @@ function setup(){
 
     DOM_EL.loginInput.parent(DOM_EL.loginContainer);
     DOM_EL.loginButton.parent(DOM_EL.loginContainer);
+
+    var mc = new Hammer(login-slider-container);
+
+    mc.on("panleft panright tap press", function(ev) {
+        console.log(ev.type +" gesture detected.");
+    });
 }
 
 function nickname(){
@@ -108,7 +121,6 @@ function draw(){
             AVATAR.own.posY += 5;
         }
     }
-    
 }
 
 function windowResized(){
