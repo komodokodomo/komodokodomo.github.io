@@ -135,7 +135,7 @@ class Avatar {  //own avatar and other people's avatars
       this.scaleY = random(0.9,1.1);
       this.spriteNum = spriteNum;
       this.spriteNumModifier = 0;
-      this.lastRecordedActivity = null;
+      this.lastRecordedActivity = 0;
       this.talkToggleTimer = null;
     //   this.timeoutFunc = null;
     }
