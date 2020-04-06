@@ -65,6 +65,7 @@ DOM_EL.canvas.id("canvas");
 
 DOM_EL.loginContainer = createDiv();
 DOM_EL.loginContainer.position(0,0);
+DOM_EL.loginContainer.id("login-container");
 DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
 
 DOM_EL.loginSliderContainer = createDiv();
