@@ -14,7 +14,6 @@ var APP_STATE = {
     windowHeight: null,
     nickname: null,
     loginSuccess: false,
-    avatarCreated: false
 }
 
 var AVATAR ={
@@ -39,14 +38,6 @@ function preload(){
         P5_SOUND.mic.connect();
         setInterval(function(){
             P5_SOUND.micLevel = P5_SOUND.mic.getLevel();
-            // if( P5_SOUND.micLevel < P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === false){
-            // } else if ( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === false){
-            //     P5_SOUND.micThresholdCross = true;
-            // } else if ( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === true){
-            // } else if ( P5_SOUND.micLevel < P5_SOUND.micThresholdLevel && P5_SOUND.micThresholdCross === true){
-            //     P5_SOUND.micThresholdCross = false;
-            //     console.log("move mouth");
-            // }
             if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
                 P5_SOUND.micThresholdCross = true;
             }
@@ -107,7 +98,7 @@ function login(){
 }
 
 function draw(){
-    if(APP_STATE.avatarCreated){
+    if(APP_STATE.loginSuccess){
         if(keyIsDown(LEFT_ARROW)){
             AVATAR.own.posX--;
             console.log("X--");
