@@ -36,7 +36,7 @@ function preload(){
         P5_SOUND.mic = new p5.AudioIn();
         P5_SOUND.mic.start();
         setInterval(function(){
-            P5_SOUND.micLevel = P5_SOUND.mic.getLevel();
+            P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
             if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
                 P5_SOUND.micThresholdCross = true;
             }
@@ -132,7 +132,6 @@ class Avatar {  //own avatar and other people's avatars
   
 
     update(){ //(X,Y,MIC,)
-        // this.resetTimer();
         clear();
         // if( P5_SOUND.micThresholdCross === true && millis() - this.lastRecordedActivity < 30000){
         if( P5_SOUND.micThresholdCross === true ) {
