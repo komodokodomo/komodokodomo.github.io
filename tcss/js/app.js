@@ -107,7 +107,7 @@ function login(){
 }
 
 function draw(){
-    if(avatarCreated){
+    if(APP_STATE.avatarCreated){
         if(keyIsDown(LEFT_ARROW)){
             AVATAR.own.posX--;
         }else if(keyIsDown(RIGHT_ARROW)){
@@ -135,10 +135,6 @@ class Avatar {  //own avatar and other people's avatars
       this.scaleY = random(0.9,1.1);
       this.spriteNum = spriteNum;
       this.spriteNumModifier = 0;
-    //   this.spriteDefault = sprite[spriteNum*4];
-    //   this.spriteTalkOne = sprite[spriteNum*4 + 1];
-    //   this.spriteTalkTwo = sprite[spriteNum*4 + 2];
-    //   this.spriteAway = sprite[spriteNum*4 + 3];
       this.lastRecordedActivity = null;
       this.talkToggleTimer = null;
     }
