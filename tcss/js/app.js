@@ -157,7 +157,7 @@ class Avatar {  //own avatar and other people's avatars
         // if( P5_SOUND.micThresholdCross === true ) {
             console.log("audio detected, toggle faces");
             this.lastRecordedActivity = millis();
-            if(millis() - talkToggleTimer > 300){
+            if(millis() - this.talkToggleTimer > 300){
                 this.talkToggleTimer = millis();
                 if(this.spriteNumModifier === 1){
                     this.spriteNumModifier = 2;
