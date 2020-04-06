@@ -48,6 +48,7 @@ function preload(){
 
     for( let i = 0; i < 24; i++ ){
         DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
+        DOM_EL.images[i].hide();
     }
 }
 
@@ -167,6 +168,8 @@ class Avatar {  //own avatar and other people's avatars
             console.log("no audio detected, show default face");
             this.spriteNumModifier = 0;
         }
-        image(DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier],this.posX, this.posY);         
+        DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].show();
+        DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].position(this.posX, this.posY);
+        // image(DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier],this.posX, this.posY);         
     }
   }
