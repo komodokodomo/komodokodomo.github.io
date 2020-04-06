@@ -57,8 +57,7 @@ function preload(){
     });
 
     for( let i = 0; i < 24; i++ ){
-        DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
-        DOM_EL.images[i].hide();
+        DOM_EL.images[i] = loadImage("img/" + i.toString() + ".png");
     }
 }
 
@@ -79,10 +78,10 @@ DOM_EL.loginSliderContainer.class("slider");
 DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
 
-for( let j = 0; j < 6; j++ ){
-    DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
-    DOM_EL.sliderImages[j].parent(DOM_EL.loginSliderContainer);
-}
+// for( let j = 0; j < 6; j++ ){
+//     DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
+//     DOM_EL.sliderImages[j].parent(DOM_EL.loginSliderContainer);
+// }
 
 DOM_EL.loginInput = createInput();
 DOM_EL.loginInput.id("login-input");
@@ -132,49 +131,43 @@ class Avatar {  //own avatar and other people's avatars
     constructor(spriteNum) {
       this.posX = random(width);
       this.posY = random(height);
+      this.scaleX = random(0.9,1.1);
+      this.scaleY = random(0.9,1.1);
       this.spriteNum = spriteNum;
-      this.spriteDefault = sprite[spriteNum];
-      this.spriteTalkOne = sprite[spriteNum];
-      this.spriteTalkTwo = sprite[spriteNum][2];
-      this.spriteAway = sprite[spriteNum][3];
+      this.spriteNumModifier = 0;
+    //   this.spriteDefault = sprite[spriteNum*4];
+    //   this.spriteTalkOne = sprite[spriteNum*4 + 1];
+    //   this.spriteTalkTwo = sprite[spriteNum*4 + 2];
+    //   this.spriteAway = sprite[spriteNum*4 + 3];
       this.lastRecordedActivity = null;
       this.talkToggleTimer = null;
     }
   
     move(a,b) {
-      this.posX = a;
-      this.posY = b;
-      jitter();
+      posX = a;
+      posY = b;
     }
   
-    jitter() {
-      //randomize scaleX
-      //randomise scaleY
-    }
 
-    AFK(){
-      //if no movement, chat, or audio signal received for 60seconds.
-      //change to spriteAway;
-      //if anything detected, change back to default
-      jitter();
+    update(){
+        if( P5_SOUND.micThresholdCross === true && millis() - lastRecordedActivity < 30000){
+            lastRecordedActivity = millis();
+            if(millis() - talkToggleTimer > 300){
+                talkToggleTimer = millis();
+                if(spriteNumModifier === 1){
+                    spriteNumModifier = 2;
+                }
+                else{
+                    spriteNumModifier = 1;
+                }
+            }
+        }
+        else if( P5_SOUND.micThresholdCross === false && millis() - lastRecordedActivity > 30000){
+            spriteNumModifier = 3;
+        }
+        else{
+            spriteNumModifier = 0;
+        }
+        image(DOM_EL.images[spriteNum*4 + spriteNumModifier],posX, posY);         
     }
-
-    talk(){
-      //toggle between spriteTalkOne and spriteTalkTwo
-      if(millis() - talkToggleTimer > 300){
-        talkToggleTimer = millis();
-        //if current image is 1 change to 2,
-        //else change to 1.
-      }
-      jitter();
-    }
-
-    resetTimer(){
-      lastRecordedActivity = millis();
-    }
-
-    display(){
-      image()
-    }
-
   }

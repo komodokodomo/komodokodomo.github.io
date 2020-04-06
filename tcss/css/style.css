@@ -22,6 +22,7 @@ body {
 }
     
 #login-slider-container{
+    position: absolute;
     top: 15vw;
     width: 60vw;
     left: 20vw;
@@ -34,5 +35,8 @@ body {
     
 #login-button{
     width: 85vw;
-    height: 3rem;   
+    height: 3rem;  
+    border-width: 5px; 
+    border-color: black;
+    fill: cornsilk;
 }
