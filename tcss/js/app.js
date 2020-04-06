@@ -103,15 +103,19 @@ function draw(){
         if(keyIsDown(LEFT_ARROW)){
             AVATAR.own.posX--;
             console.log("X--");
+            AVATAR.own.update();
         }else if(keyIsDown(RIGHT_ARROW)){
             AVATAR.own.posX++;
             console.log("X++");
+            AVATAR.own.update();
         }else if(keyIsDown(UP_ARROW)){
             AVATAR.own.posY++;
             console.log("Y++");
+            AVATAR.own.update();
         }else if(keyIsDown(DOWN_ARROW)){
             AVATAR.own.posY--;
             console.log("Y--");
+            AVATAR.own.update();
         }
     }
     
@@ -123,7 +127,7 @@ function windowResized(){
     resizeCanvas(APP_STATE.windowWidth, APP_STATE.windowHeight);
 }
 
-class Avatar {  //own avatar and other people's avatars
+class Avatar {  //own avatar and other people's avatars 
     constructor(spriteNum) {
       this.posX = random(width);
       this.posY = random(height);
@@ -133,16 +137,24 @@ class Avatar {  //own avatar and other people's avatars
       this.spriteNumModifier = 0;
       this.lastRecordedActivity = null;
       this.talkToggleTimer = null;
+      this.timeoutFunc = null;
     }
   
-    move(a,b) {
-      posX = a;
-      posY = b;
+    resetTimer() {
+        clearTimeout(timeoutFunc);
+        timeoutFunc = setTimeout(function(){ 
+            spriteNumModifier = 3; 
+            image(DOM_EL.images[spriteNum*4 + spriteNumModifier],posX, posY);
+            console.log("no activity detected, show AFK face");
+        }
+        , 30000);
     }
-  
-
-    update(){
-        if( P5_SOUND.micThresholdCross === true && millis() - lastRecordedActivity < 30000){
+      
+    update(){ //(X,Y,MIC,)
+        resetTimer();
+        // if( P5_SOUND.micThresholdCross === true && millis() - lastRecordedActivity < 30000){
+        if( P5_SOUND.micThresholdCross === true ) {
+            console.log("audio detected, toggle faces");
             lastRecordedActivity = millis();
             if(millis() - talkToggleTimer > 300){
                 talkToggleTimer = millis();
@@ -154,10 +166,11 @@ class Avatar {  //own avatar and other people's avatars
                 }
             }
         }
-        else if( P5_SOUND.micThresholdCross === false && millis() - lastRecordedActivity > 30000){
-            spriteNumModifier = 3;
-        }
+        // else if( P5_SOUND.micThresholdCross === false && millis() - lastRecordedActivity > 30000){
+        //     spriteNumModifier = 3;
+        // }
         else{
+            console.log("no audio detected, show default face");
             spriteNumModifier = 0;
         }
         image(DOM_EL.images[spriteNum*4 + spriteNumModifier],posX, posY);         
