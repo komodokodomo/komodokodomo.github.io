@@ -97,7 +97,7 @@ DOM_EL.loginInput = createInput();
 DOM_EL.loginInput.id("login-input");
 DOM_EL.loginInput.input(nickname);
 
-DOM_EL.loginButton = createButton("login");
+DOM_EL.loginButton = createButton("JOIN!");
 DOM_EL.loginButton.id("login-button");
 DOM_EL.loginButton.mousePressed(login);
 
