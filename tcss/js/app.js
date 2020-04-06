@@ -159,7 +159,7 @@ class Avatar {  //own avatar and other people's avatars
             this.lastRecordedActivity = millis();
             if(millis() - this.talkToggleTimer > 300){
                 this.talkToggleTimer = millis();
-                if(this.spriteNumModifier === 1){
+                if(this.spriteNumModifier == 1){
                     this.spriteNumModifier = 2;
                 }
                 else{
