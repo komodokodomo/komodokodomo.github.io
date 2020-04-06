@@ -86,7 +86,7 @@ function setup(){
     DOM_EL.loginInput.parent(DOM_EL.loginContainer);
     DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 
-    var mc = new Hammer(login-slider-container);
+    var mc = new Hammer("login-slider-container");
 
     mc.on("panleft panright tap press", function(ev) {
         console.log(ev.type +" gesture detected.");
