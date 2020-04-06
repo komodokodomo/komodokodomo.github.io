@@ -9,12 +9,17 @@ var DOM_EL = {
     images: []
 }
 
-
 var APP_STATE = {
     windowWidth: null,
     windowHeight: null,
     nickname: null,
-    loginSuccess: false
+    loginSuccess: false,
+    avatarCreated: false
+}
+
+var AVATAR ={
+    own: null;
+    others: [];
 }
 
 var P5_SOUND = {
@@ -73,25 +78,11 @@ DOM_EL.loginSliderContainer.id("login-slider-container");
 DOM_EL.loginSliderContainer.class("slider");
 DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
-// DOM_EL.loginSlider = createDiv();
-// DOM_EL.loginSlider.class("slider");
-// DOM_EL.loginSlider.id("login-slider");
-// DOM_EL.loginSlider.parent(DOM_EL.loginSliderContainer);
 
 for( let j = 0; j < 6; j++ ){
     DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
     DOM_EL.sliderImages[j].parent(DOM_EL.loginSliderContainer);
 }
-
-DOM_EL.loginSlider = tns({
-    container: '.slider',
-    items: 1,
-    slideBy: 'page',
-    nav: false,
-    controls: false,
-    // autoHeight: true,
-    // autoWidth: true
-});
 
 DOM_EL.loginInput = createInput();
 DOM_EL.loginInput.id("login-input");
@@ -117,14 +108,16 @@ function login(){
 }
 
 function draw(){
-    if(keyIsDown(LEFT_ARROW)){
-        posX--;
-    }else if(keyIsDown(RIGHT_ARROW)){
-        posX++;
-    }else if(keyIsDown(UP_ARROW)){
-        posY++;
-    }else if(keyIsDown(RIGHT_ARROW)){
-        posY--;
+    if(avatarCreated){
+        if(keyIsDown(LEFT_ARROW)){
+            AVATAR.own.posX--;
+        }else if(keyIsDown(RIGHT_ARROW)){
+            AVATAR.own.posX++;
+        }else if(keyIsDown(UP_ARROW)){
+            AVATAR.own.posY++;
+        }else if(keyIsDown(RIGHT_ARROW)){
+            AVATAR.own.posY--;
+        }
     }
     
 }
@@ -145,6 +138,7 @@ class Avatar {  //own avatar and other people's avatars
       this.spriteTalkTwo = sprite[spriteNum][2];
       this.spriteAway = sprite[spriteNum][3];
       this.lastRecordedActivity = null;
+      this.talkToggleTimer = null;
     }
   
     move(a,b) {
@@ -167,6 +161,11 @@ class Avatar {  //own avatar and other people's avatars
 
     talk(){
       //toggle between spriteTalkOne and spriteTalkTwo
+      if(millis() - talkToggleTimer > 300){
+        talkToggleTimer = millis();
+        //if current image is 1 change to 2,
+        //else change to 1.
+      }
       jitter();
     }
 
