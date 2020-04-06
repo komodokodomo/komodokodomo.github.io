@@ -109,12 +109,12 @@ function draw(){
             console.log("X++");
             AVATAR.own.update();
         }else if(keyIsDown(UP_ARROW)){
-            AVATAR.own.posY++;
-            console.log("Y++");
-            AVATAR.own.update();
-        }else if(keyIsDown(DOWN_ARROW)){
             AVATAR.own.posY--;
             console.log("Y--");
+            AVATAR.own.update();
+        }else if(keyIsDown(DOWN_ARROW)){
+            AVATAR.own.posY++;
+            console.log("Y++");
             AVATAR.own.update();
         }
     }
