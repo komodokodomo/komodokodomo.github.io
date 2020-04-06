@@ -174,6 +174,6 @@ class Avatar {  //own avatar and other people's avatars
             console.log("no audio detected, show default face");
             this.spriteNumModifier = 0;
         }
-        image(DOM_EL.images[spriteNum*4 + spriteNumModifier],this.posX, this.posY);         
+        image(DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier],this.posX, this.posY);         
     }
   }
