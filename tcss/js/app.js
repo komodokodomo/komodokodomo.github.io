@@ -95,6 +95,7 @@ function login(){
     console.log("enter socketIO server here");
     console.log("Feed in char number + nickname to both local cache and server");
     APP_STATE.loginSuccess = true;
+    AVATAR.own = new Avatar(0);
 }
 
 function draw(){
