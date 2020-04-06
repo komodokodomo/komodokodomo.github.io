@@ -4,16 +4,13 @@
 }
 
 #login-container{
-    display: flex;
-    justify-content: center;  
+    display: block;
 }
     
 #login-slider-container{
-    display: flex;
     top: 15vw;
-    width: 85vw;
-    height: 85vw;
-    justify-content: center;   
+    width: 60vw;
+    left: 20vw;
 }
     
 #login-input{
