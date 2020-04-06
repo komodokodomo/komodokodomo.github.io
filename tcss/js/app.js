@@ -52,37 +52,31 @@ function preload(){
 }
 
 function setup(){
-APP_STATE.windowWidth = window.innerWidth;
-APP_STATE.windowHeight = window.innerHeight;
-DOM_EL.canvas = createCanvas( APP_STATE.windowWidth, APP_STATE.windowHeight);
-DOM_EL.canvas.id("canvas");
+    APP_STATE.windowWidth = window.innerWidth;
+    APP_STATE.windowHeight = window.innerHeight;
+    DOM_EL.canvas = createCanvas( APP_STATE.windowWidth, APP_STATE.windowHeight);
+    DOM_EL.canvas.id("canvas");
 
-DOM_EL.loginContainer = createDiv();
-DOM_EL.loginContainer.position(0,0);
-DOM_EL.loginContainer.id("login-container");
-DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
+    DOM_EL.loginContainer = createDiv();
+    DOM_EL.loginContainer.position(0,0);
+    DOM_EL.loginContainer.id("login-container");
+    DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
 
-DOM_EL.loginSliderContainer = createDiv();
-DOM_EL.loginSliderContainer.id("login-slider-container");
-DOM_EL.loginSliderContainer.class("slider");
-DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
+    DOM_EL.loginSliderContainer = createDiv();
+    DOM_EL.loginSliderContainer.id("login-slider-container");
+    DOM_EL.loginSliderContainer.class("slider");
+    DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
+    DOM_EL.loginInput = createInput();
+    DOM_EL.loginInput.id("login-input");
+    DOM_EL.loginInput.input(nickname);
 
-// for( let j = 0; j < 6; j++ ){
-//     DOM_EL.sliderImages[j] = createImg("img/" + (j*4).toString() + ".png");
-//     DOM_EL.sliderImages[j].parent(DOM_EL.loginSliderContainer);
-// }
+    DOM_EL.loginButton = createButton("JOIN!");
+    DOM_EL.loginButton.id("login-button");
+    DOM_EL.loginButton.mousePressed(login);
 
-DOM_EL.loginInput = createInput();
-DOM_EL.loginInput.id("login-input");
-DOM_EL.loginInput.input(nickname);
-
-DOM_EL.loginButton = createButton("JOIN!");
-DOM_EL.loginButton.id("login-button");
-DOM_EL.loginButton.mousePressed(login);
-
-DOM_EL.loginInput.parent(DOM_EL.loginContainer);
-DOM_EL.loginButton.parent(DOM_EL.loginContainer);
+    DOM_EL.loginInput.parent(DOM_EL.loginContainer);
+    DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 }
 
 function nickname(){
@@ -136,21 +130,12 @@ class Avatar {  //own avatar and other people's avatars
     //   this.timeoutFunc = null;
     }
   
-    // resetTimer() {
-    //     clearTimeout(timeoutFunc);
-    //     timeoutFunc = setTimeout(function(){ 
-    //         spriteNumModifier = 3; 
-    //         image(DOM_EL.images[spriteNum*4 + spriteNumModifier],posX, posY);
-    //         console.log("no activity detected, show AFK face");
-    //     }
-    //     , 30000);
-    // }
-      
+
     update(){ //(X,Y,MIC,)
         // this.resetTimer();
         clear();
-        if( P5_SOUND.micThresholdCross === true && millis() - this.lastRecordedActivity < 30000){
-        // if( P5_SOUND.micThresholdCross === true ) {
+        // if( P5_SOUND.micThresholdCross === true && millis() - this.lastRecordedActivity < 30000){
+        if( P5_SOUND.micThresholdCross === true ) {
             console.log("audio detected, toggle faces");
             this.lastRecordedActivity = millis();
             if(millis() - this.talkToggleTimer > 300){
