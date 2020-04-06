@@ -99,7 +99,8 @@ function login(){
     setInterval(function(){
         AVATAR.own.update();
     },50);
-    
+    DOM_EL.loginInput.hide();
+    DOM_EL.loginButton.hide();
 }
 
 function draw(){
