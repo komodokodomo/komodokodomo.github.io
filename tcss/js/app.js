@@ -152,28 +152,28 @@ class Avatar {  //own avatar and other people's avatars
       
     update(){ //(X,Y,MIC,)
         // this.resetTimer();
-        if( P5_SOUND.micThresholdCross === true && millis() - lastRecordedActivity < 30000){
+        if( P5_SOUND.micThresholdCross === true && millis() - this.lastRecordedActivity < 30000){
         // if( P5_SOUND.micThresholdCross === true ) {
             console.log("audio detected, toggle faces");
-            lastRecordedActivity = millis();
+            this.lastRecordedActivity = millis();
             if(millis() - talkToggleTimer > 300){
-                talkToggleTimer = millis();
-                if(spriteNumModifier === 1){
-                    spriteNumModifier = 2;
+                this.talkToggleTimer = millis();
+                if(this.spriteNumModifier === 1){
+                    this.spriteNumModifier = 2;
                 }
                 else{
-                    spriteNumModifier = 1;
+                    this.spriteNumModifier = 1;
                 }
             }
         }
-        else if( P5_SOUND.micThresholdCross === false && millis() - lastRecordedActivity > 30000){
-            spriteNumModifier = 3;
+        else if( P5_SOUND.micThresholdCross === false && millis() - this.lastRecordedActivity > 30000){
+            this.spriteNumModifier = 3;
             console.log("no activity detected, show AFK face");
         }
         else{
             console.log("no audio detected, show default face");
-            spriteNumModifier = 0;
+            this.spriteNumModifier = 0;
         }
-        image(DOM_EL.images[spriteNum*4 + spriteNumModifier],posX, posY);         
+        image(DOM_EL.images[spriteNum*4 + spriteNumModifier],this.posX, this.posY);         
     }
   }
