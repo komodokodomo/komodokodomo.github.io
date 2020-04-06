@@ -110,12 +110,16 @@ function draw(){
     if(APP_STATE.avatarCreated){
         if(keyIsDown(LEFT_ARROW)){
             AVATAR.own.posX--;
+            console.log("X--");
         }else if(keyIsDown(RIGHT_ARROW)){
             AVATAR.own.posX++;
+            console.log("X++");
         }else if(keyIsDown(UP_ARROW)){
             AVATAR.own.posY++;
+            console.log("Y++");
         }else if(keyIsDown(RIGHT_ARROW)){
             AVATAR.own.posY--;
+            console.log("Y--");
         }
     }
     
