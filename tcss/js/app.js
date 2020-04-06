@@ -18,8 +18,8 @@ var APP_STATE = {
 }
 
 var AVATAR ={
-    own: null;
-    others: [];
+    own: null,
+    others: []
 }
 
 var P5_SOUND = {
