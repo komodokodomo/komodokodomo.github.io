@@ -109,7 +109,7 @@ function draw(){
         }else if(keyIsDown(UP_ARROW)){
             AVATAR.own.posY++;
             console.log("Y++");
-        }else if(keyIsDown(RIGHT_ARROW)){
+        }else if(keyIsDown(DOWN_ARROW)){
             AVATAR.own.posY--;
             console.log("Y--");
         }
