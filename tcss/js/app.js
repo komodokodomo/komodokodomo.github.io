@@ -137,23 +137,23 @@ class Avatar {  //own avatar and other people's avatars
       this.spriteNumModifier = 0;
       this.lastRecordedActivity = null;
       this.talkToggleTimer = null;
-      this.timeoutFunc = null;
+    //   this.timeoutFunc = null;
     }
   
-    resetTimer() {
-        clearTimeout(timeoutFunc);
-        timeoutFunc = setTimeout(function(){ 
-            spriteNumModifier = 3; 
-            image(DOM_EL.images[spriteNum*4 + spriteNumModifier],posX, posY);
-            console.log("no activity detected, show AFK face");
-        }
-        , 30000);
-    }
+    // resetTimer() {
+    //     clearTimeout(timeoutFunc);
+    //     timeoutFunc = setTimeout(function(){ 
+    //         spriteNumModifier = 3; 
+    //         image(DOM_EL.images[spriteNum*4 + spriteNumModifier],posX, posY);
+    //         console.log("no activity detected, show AFK face");
+    //     }
+    //     , 30000);
+    // }
       
     update(){ //(X,Y,MIC,)
-        this.resetTimer();
-        // if( P5_SOUND.micThresholdCross === true && millis() - lastRecordedActivity < 30000){
-        if( P5_SOUND.micThresholdCross === true ) {
+        // this.resetTimer();
+        if( P5_SOUND.micThresholdCross === true && millis() - lastRecordedActivity < 30000){
+        // if( P5_SOUND.micThresholdCross === true ) {
             console.log("audio detected, toggle faces");
             lastRecordedActivity = millis();
             if(millis() - talkToggleTimer > 300){
@@ -166,9 +166,10 @@ class Avatar {  //own avatar and other people's avatars
                 }
             }
         }
-        // else if( P5_SOUND.micThresholdCross === false && millis() - lastRecordedActivity > 30000){
-        //     spriteNumModifier = 3;
-        // }
+        else if( P5_SOUND.micThresholdCross === false && millis() - lastRecordedActivity > 30000){
+            spriteNumModifier = 3;
+            console.log("no activity detected, show AFK face");
+        }
         else{
             console.log("no audio detected, show default face");
             spriteNumModifier = 0;
