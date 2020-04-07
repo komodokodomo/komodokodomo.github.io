@@ -25,19 +25,22 @@ body {
 #login-title{
     font-weight: 900;
     font-size: 3rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* #login-instruction{
-    font-weight: 900;
-    font-size: 3rem;
-} */
+#login-instruction{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
     
 #slider{
-    /* position: absolute; */
-    top: 15vh;
-    /* width: 80vw; */
+    /* top: 15vh; */
     height: 40vh;
-    /* left: 20vw; */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .slider-image{
