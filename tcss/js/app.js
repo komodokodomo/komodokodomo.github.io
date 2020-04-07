@@ -103,7 +103,7 @@ function setup(){
 
     DOM_EL.loginSliderArrowRight = createImg('img/right.png');
     DOM_EL.loginSliderArrowRight.id("login-slider-arrow-right");
-    DOM_EL.loginSliderArrowRight.parent(DOM_EL.loginContainer);
+    DOM_EL.loginSliderArrowRight.parent(DOM_EL.loginSliderRightContainer);
 
     DOM_EL.loginInstruction = createDiv("swipe to customise your character");
     DOM_EL.loginInstruction.id("login-instruction");
