@@ -38,7 +38,8 @@ body {
     
 #slider{
     /* top: 15vh; */
-    height: 40vh;
+    width: 60vw;
+    max-height: 40vh;
     margin-left: auto;
     margin-right: auto;
 }
