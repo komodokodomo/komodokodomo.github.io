@@ -34,9 +34,14 @@ body {
     
 #slider{
     position: absolute;
-    top: 15vw;
-    width: 60vw;
-    left: 20vw;
+    top: 15vh;
+    /* width: 80vw; */
+    height: 40vh;
+    /* left: 20vw; */
+}
+
+.slider-image{
+    object-fit: contain;
 }
     
 #login-input, #login-button{
