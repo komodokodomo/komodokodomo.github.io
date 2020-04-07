@@ -90,7 +90,7 @@ function setup(){
         DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
         DOM_EL.images[i].hide();
         if( i % 4 === 0 ){
-            DOM_EL.images[i].parent(DOM_EL.loginSliderContainer);
+            DOM_EL.images[i].parent(DOM_EL.loginSliderImageContainer);
             DOM_EL.images[i].class("slider-image");
         }
     }
