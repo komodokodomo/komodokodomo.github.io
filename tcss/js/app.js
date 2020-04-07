@@ -74,7 +74,7 @@ function setup(){
     DOM_EL.loginSliderContainer.id("slider");
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
-    DOM_EL.loginSliderArrowLeft = createImage('img/left.png');
+    DOM_EL.loginSliderArrowLeft = createImg('img/left.png');
     DOM_EL.loginSliderArrowLeft.id("login-slider-arrow-left");
     DOM_EL.loginSliderArrowLeft.parent(DOM_EL.loginContainer);
 
@@ -89,7 +89,7 @@ function setup(){
 
     DOM_EL.images[0].show();
 
-    DOM_EL.loginSliderArrowRight = createImage('img/right.png');
+    DOM_EL.loginSliderArrowRight = createImg('img/right.png');
     DOM_EL.loginSliderArrowRight.id("login-slider-arrow-right");
     DOM_EL.loginSliderArrowRight.parent(DOM_EL.loginContainer);
 
