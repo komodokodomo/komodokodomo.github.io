@@ -27,10 +27,10 @@ body {
     font-size: 3rem;
 }
 
-/* #login-instructions{
+#login-instruction{
     font-weight: 900;
     font-size: 3rem;
-} */
+}
     
 #slider{
     position: absolute;
