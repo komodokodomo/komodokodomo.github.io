@@ -4,6 +4,9 @@ var DOM_EL = {
     loginTitle: null,
     loginInstruction: null,
     loginSliderContainer: null,
+    loginSliderImageContainer: null,
+    loginSliderLeftContainer: null,
+    loginSliderRightContainer: null,
     loginSliderArrowLeft: null,
     loginSliderArrowRight: null,
     images: [],
@@ -70,9 +73,18 @@ function setup(){
     DOM_EL.loginSliderContainer.id("slider");
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
+    DOM_EL.loginSliderLeftContainer = createDiv();
+    DOM_EL.loginSliderLeftContainer.id("login-slider-left-container");
+    DOM_EL.loginSliderLeftContainer.parent(DOM_EL.loginSliderContainer);
+
     DOM_EL.loginSliderArrowLeft = createImg('img/left.png');
     DOM_EL.loginSliderArrowLeft.id("login-slider-arrow-left");
-    DOM_EL.loginSliderArrowLeft.parent(DOM_EL.loginContainer);
+    DOM_EL.loginSliderArrowLeft.parent(DOM_EL.loginSliderLeftContainer);
+
+    DOM_EL.loginSliderImageContainer = createDiv();
+    DOM_EL.loginSliderImageContainer.id("login-slider-image-container");
+    DOM_EL.loginSliderImageContainer.parent(DOM_EL.loginSliderContainer);
+
 
     for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
         DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
@@ -84,6 +96,10 @@ function setup(){
     }
 
     DOM_EL.images[0].show();
+
+    DOM_EL.loginSliderRightContainer = createDiv();
+    DOM_EL.loginSliderRightContainer.id("login-slider-right-container");
+    DOM_EL.loginSliderRightContainer.parent(DOM_EL.loginSliderContainer);
 
     DOM_EL.loginSliderArrowRight = createImg('img/right.png');
     DOM_EL.loginSliderArrowRight.id("login-slider-arrow-right");
