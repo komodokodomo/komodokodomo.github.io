@@ -63,17 +63,17 @@ function setup(){
     DOM_EL.loginTitle = createDiv("VROOM");
     DOM_EL.loginTitle.id("login-title");
     DOM_EL.loginTitle.parent(DOM_EL.loginContainer);
-    DOM_EL.loginTitle.center('horizontal');
+    // DOM_EL.loginTitle.center('horizontal');
 
     DOM_EL.loginInstruction = createDiv("swipe to customise your character");
     DOM_EL.loginInstruction.id("login-instruction");
     DOM_EL.loginInstruction.parent(DOM_EL.loginContainer);
-    DOM_EL.loginInstruction.center('horizontal');
+    // DOM_EL.loginInstruction.center('horizontal');
 
     DOM_EL.loginSliderContainer = createDiv();
     DOM_EL.loginSliderContainer.id("slider");
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
-    DOM_EL.loginSliderContainer.center('horizontal');
+    // DOM_EL.loginSliderContainer.center('horizontal');
 
     for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
         DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
@@ -81,7 +81,7 @@ function setup(){
         if( i % 4 === 0 ){
             DOM_EL.images[i].parent(DOM_EL.loginSliderContainer);
             DOM_EL.images[i].class("slider-image");
-            DOM_EL.images[i].center();
+            // DOM_EL.images[i].center();
         }
     }
 
