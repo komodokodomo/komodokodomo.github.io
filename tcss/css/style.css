@@ -35,6 +35,11 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+#login-slider-left, #login-slider-right{
+    display: inline-block;
+    width: 20%;
+}
     
 #slider{
     /* top: 15vh; */
