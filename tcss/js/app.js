@@ -66,10 +66,6 @@ function setup(){
     DOM_EL.loginTitle.id("login-title");
     DOM_EL.loginTitle.parent(DOM_EL.loginContainer);
 
-    DOM_EL.loginInstruction = createDiv("swipe to customise your character");
-    DOM_EL.loginInstruction.id("login-instruction");
-    DOM_EL.loginInstruction.parent(DOM_EL.loginContainer);
-
     DOM_EL.loginSliderContainer = createDiv();
     DOM_EL.loginSliderContainer.id("slider");
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
@@ -92,6 +88,10 @@ function setup(){
     DOM_EL.loginSliderArrowRight = createImg('img/right.png');
     DOM_EL.loginSliderArrowRight.id("login-slider-arrow-right");
     DOM_EL.loginSliderArrowRight.parent(DOM_EL.loginContainer);
+
+    DOM_EL.loginInstruction = createDiv("swipe to customise your character");
+    DOM_EL.loginInstruction.id("login-instruction");
+    DOM_EL.loginInstruction.parent(DOM_EL.loginContainer);
 
     DOM_EL.loginInput = createInput();
     DOM_EL.loginInput.id("login-input");
