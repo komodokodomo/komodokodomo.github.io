@@ -27,13 +27,13 @@ body {
     font-size: 3rem;
 }
 
-#login-instruction{
+/* #login-instruction{
     font-weight: 900;
     font-size: 3rem;
-}
+} */
     
 #slider{
-    position: absolute;
+    /* position: absolute; */
     top: 15vh;
     /* width: 80vw; */
     height: 40vh;
