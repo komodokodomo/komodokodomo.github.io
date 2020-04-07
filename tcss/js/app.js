@@ -89,11 +89,11 @@ function setup(){
     DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 
     var mc = new Hammer(slider);
-    mc.on("panleft panright tap press", function(ev) {
+    mc.on("swipeleft swiperight tap press", function(ev) {
         console.log(ev.type +" gesture detected.");
-        if(ev.type === "panleft") {
+        if(ev.type === "swipeleft") {
             APP_STATE.spriteNum++;
-        } else if(ev.type === "panright") {
+        } else if(ev.type === "swiperight") {
             APP_STATE.spriteNum--;   
         }
         APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
