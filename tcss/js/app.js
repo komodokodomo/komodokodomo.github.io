@@ -134,6 +134,8 @@ function login(){
     },50);
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
+    DOM_EL.loginInstruction.hide();
+    DOM_EL.loginTitle.hide();
 }
 
 function draw(){
