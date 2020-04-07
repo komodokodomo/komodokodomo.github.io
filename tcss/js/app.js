@@ -4,7 +4,6 @@ var DOM_EL = {
     loginTitle: null,
     loginInstruction: null,
     loginSliderContainer: null,
-    loginSliderContainerProxy: null,
     images: [],
     loginInput: null,
     loginButton: null
@@ -15,6 +14,8 @@ var APP_STATE = {
     windowHeight: null,
     nickname: null,
     loginSuccess: false,
+    spriteNum: 0,
+    numSprites: 6
 }
 
 var AVATAR ={
@@ -73,8 +74,7 @@ function setup(){
     DOM_EL.loginInstruction.parent(DOM_EL.loginContainer);
 
     DOM_EL.loginSliderContainer = createDiv();
-    DOM_EL.loginSliderContainer.id("loginslidercontainer");
-    DOM_EL.loginSliderContainerProxy = document.getElementById("loginslidercontainer");
+    DOM_EL.loginSliderContainer.id("slider");
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
 
     DOM_EL.loginInput = createInput();
@@ -88,15 +88,22 @@ function setup(){
     DOM_EL.loginInput.parent(DOM_EL.loginContainer);
     DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 
-    var mc = new Hammer(loginSliderContainerProxy);
+    var mc = new Hammer(slider);
     mc.on("panleft panright tap press", function(ev) {
         console.log(ev.type +" gesture detected.");
+        if(ev.type === "panleft") {
+            APP_STATE.spriteNum++;
+        } else if(ev.type === "panright") {
+            APP_STATE.spriteNum--;   
+        }
+        APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
+        console.log(APP_STATE.spriteNum);
     });
 }
 
 const overflow = function(i){
-    if (i < 0) { i = i%(APP_STATE.numLenses - 1) + APP_STATE.numLenses; }
-    else if (i > APP_STATE.numLenses - 1) { i = i%(APP_STATE.numLenses - 1) - 1; }
+    if (i < 0) { i = i%(APP_STATE.numSprites - 1) + APP_STATE.numSprites; }
+    else if (i > APP_STATE.numSprites - 1) { i = i%(APP_STATE.numSprites - 1) - 1; }
     return i;
   }
 
