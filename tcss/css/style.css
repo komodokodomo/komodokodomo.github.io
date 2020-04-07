@@ -36,7 +36,7 @@ body {
     margin-right: auto;
 }
 
-#login-slider-left, #login-slider-right{
+#login-slider-arrow-left, #login-slider-arrow-right{
     display: inline-block;
     width: 20%;
 }
