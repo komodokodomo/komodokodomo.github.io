@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    font-family: 'Courier New', Courier, monospace;
   }
 
 body {
@@ -28,15 +29,17 @@ body {
     left: 20vw;
 }
     
-#login-input{
+#login-input, #login-button{
     width: 85vw;
     height: 3rem;   
+    border-width: 1rem; 
+    border-color: black;
 }
     
-#login-button{
+/* #login-button{
     width: 85vw;
     height: 3rem;  
-    border-width: 5px; 
+    border-width: 1rem; 
     border-color: black;
     fill: cornsilk;
-}
+} */

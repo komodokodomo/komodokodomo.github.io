@@ -89,12 +89,12 @@ function setup(){
     DOM_EL.loginInput = createInput();
     DOM_EL.loginInput.id("login-input");
     DOM_EL.loginInput.input(nickname);
-    DOM_EL.loginInput.center('horizontal');
+    // DOM_EL.loginInput.center('horizontal');
 
     DOM_EL.loginButton = createButton("JOIN!");
     DOM_EL.loginButton.id("login-button");
     DOM_EL.loginButton.mousePressed(login);
-    DOM_EL.loginButton.center('horizontal');
+    // DOM_EL.loginButton.center('horizontal');
 
     DOM_EL.loginInput.parent(DOM_EL.loginContainer);
     DOM_EL.loginButton.parent(DOM_EL.loginContainer);
