@@ -42,7 +42,7 @@ body {
 #login-input, #login-button{
     width: 85vw;
     height: 3rem;   
-    border-width: 1rem; 
+    border-width: 0.3rem; 
     border-color: black;
     text-align: center; 
 }
