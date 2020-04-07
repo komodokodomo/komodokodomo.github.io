@@ -47,11 +47,6 @@ function preload(){
             }
         },50);
     });
-
-    for( let i = 0; i < 24; i++ ){
-        DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
-        DOM_EL.images[i].hide();
-    }
 }
 
 function setup(){
@@ -79,6 +74,16 @@ function setup(){
     DOM_EL.loginSliderContainer.id("slider");
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
     DOM_EL.loginSliderContainer.center('horizontal');
+
+    for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
+        DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
+        DOM_EL.images[i].hide();
+        if( (i+1) % 4 === 0 ){
+            DOM_EL.images[i].parent(DOM_EL.loginSliderContainer);
+        }
+    }
+
+    DOM_EL.images[0].show();
 
     DOM_EL.loginInput = createInput();
     DOM_EL.loginInput.id("login-input");
