@@ -78,7 +78,7 @@ function setup(){
     for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
         DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
         DOM_EL.images[i].hide();
-        if( (i+1) % 4 === 0 ){
+        if( i % 4 === 0 ){
             DOM_EL.images[i].parent(DOM_EL.loginSliderContainer);
         }
     }
