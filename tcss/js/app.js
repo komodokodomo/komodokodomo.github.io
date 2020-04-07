@@ -63,17 +63,14 @@ function setup(){
     DOM_EL.loginTitle = createDiv("VROOM");
     DOM_EL.loginTitle.id("login-title");
     DOM_EL.loginTitle.parent(DOM_EL.loginContainer);
-    // DOM_EL.loginTitle.center('horizontal');
 
     DOM_EL.loginInstruction = createDiv("swipe to customise your character");
     DOM_EL.loginInstruction.id("login-instruction");
     DOM_EL.loginInstruction.parent(DOM_EL.loginContainer);
-    // DOM_EL.loginInstruction.center('horizontal');
 
     DOM_EL.loginSliderContainer = createDiv();
     DOM_EL.loginSliderContainer.id("slider");
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
-    // DOM_EL.loginSliderContainer.center('horizontal');
 
     for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
         DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
@@ -81,7 +78,6 @@ function setup(){
         if( i % 4 === 0 ){
             DOM_EL.images[i].parent(DOM_EL.loginSliderContainer);
             DOM_EL.images[i].class("slider-image");
-            // DOM_EL.images[i].center();
         }
     }
 
@@ -90,12 +86,10 @@ function setup(){
     DOM_EL.loginInput = createInput();
     DOM_EL.loginInput.id("login-input");
     DOM_EL.loginInput.input(nickname);
-    // DOM_EL.loginInput.center('horizontal');
 
     DOM_EL.loginButton = createButton("JOIN!");
     DOM_EL.loginButton.id("login-button");
     DOM_EL.loginButton.mousePressed(login);
-    // DOM_EL.loginButton.center('horizontal');
 
     DOM_EL.loginInput.parent(DOM_EL.loginContainer);
     DOM_EL.loginButton.parent(DOM_EL.loginContainer);
@@ -128,7 +122,7 @@ function login(){
     console.log("enter socketIO server here");
     console.log("Feed in char number + nickname to both local cache and server");
     APP_STATE.loginSuccess = true;
-    AVATAR.own = new Avatar(0);
+    AVATAR.own = new Avatar(APP_STATE.spriteNum);
     setInterval(function(){
         AVATAR.own.update();
     },50);
@@ -168,7 +162,6 @@ class Avatar {  //own avatar and other people's avatars
       this.spriteNumModifier = 0;
       this.lastRecordedActivity = 0;
       this.talkToggleTimer = null;
-    //   this.timeoutFunc = null;
     }
   
 
