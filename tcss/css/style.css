@@ -76,7 +76,7 @@ body {
     translate: -50%;
 }
 
-.shift-right,.shift-left {
+.class_right,.class_left {
     opacity: 0;
     transition: ease-out;
     transition-duration: 240ms;
