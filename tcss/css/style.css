@@ -76,17 +76,23 @@ body {
     translate: -50%;
 }
 
-.right,.left {
+/* .right,.left {
     opacity: 0;
     transition: ease-out;
     transition-duration: 240ms;
-}
+} */
 
 .right{
+    opacity: 0;
+    transition: ease-out;
+    transition-duration: 240ms;
     translate: 0%;
 }
 
 .left{
+    opacity: 0;
+    transition: ease-out;
+    transition-duration: 240ms;
     translate: -100%;
 }
     
