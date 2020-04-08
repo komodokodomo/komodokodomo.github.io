@@ -175,8 +175,8 @@ function setup(){
 }
 
 const overflow = function(i){
-    if (i < 0) { i = i%(APP_STATE.numSprites - 1) + APP_STATE.numSprites; }
-    else if (i > APP_STATE.numSprites - 1) { i = i%(APP_STATE.numSprites - 1) - 1; }
+    if (i < 0) { i = APP_STATE.numSprites -1; }
+    else if (i > APP_STATE.numSprites - 1) { i = 0; }
     return i;
   }
 
