@@ -96,7 +96,7 @@ function setup(){
     DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
     DOM_EL.loginSliderContainer.position(0,APP_STATE.windowHeight/10);
     DOM_EL.loginSliderContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight*4/10);
-    
+
     for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
         DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
         DOM_EL.images[i].hide();
@@ -134,8 +134,8 @@ function setup(){
     DOM_EL.loginButton.id("login-button");
     DOM_EL.loginButton.mousePressed(login);
     DOM_EL.loginButton.center("horizontal");
-    DOM_EL.loginButton.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*7.3/10);
-    DOM_EL.loginButton.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
+    DOM_EL.loginButton.position(APP_STATE.windowWidth*3/10,APP_STATE.windowHeight*7.3/10);
+    DOM_EL.loginButton.size(APP_STATE.windowWidth*4/10,APP_STATE.windowHeight*1/10);
 
     DOM_EL.loginInput.parent(DOM_EL.loginContainer);
     DOM_EL.loginButton.parent(DOM_EL.loginContainer);
@@ -221,8 +221,8 @@ function windowResized(){
     DOM_EL.loginInput.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*6/10);
     DOM_EL.loginInput.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
 
-    DOM_EL.loginButton.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*7.3/10);
-    DOM_EL.loginButton.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
+    DOM_EL.loginButton.position(APP_STATE.windowWidth*3/10,APP_STATE.windowHeight*7.3/10);
+    DOM_EL.loginButton.size(APP_STATE.windowWidth*4/10,APP_STATE.windowHeight*1/10);
 
 }
 
