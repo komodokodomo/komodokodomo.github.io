@@ -154,18 +154,19 @@ function setup(){
         } else if(ev.type === "swiperight") {
             DOM_EL.images[APP_STATE.spriteNum].addClass("class_right");
             setTimeout(function(){
-                DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].hide();
+                let temp = overflow(APP_STATE.spriteNum - 1);
+                DOM_EL.images[temp * 4].hide();
                 // while (DOM_EL.shiftRight.length){
                 //     DOM_EL.shiftRight[0].classList.remove("right");
                 // }
-                DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].removeClass("class_right");
+                DOM_EL.images[temp * 4].removeClass("class_right");
             }
             ,250);
             APP_STATE.spriteNum--;  
             APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);  
             DOM_EL.images[APP_STATE.spriteNum*4].show();
         }
-        APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
+        // APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
         console.log(APP_STATE.spriteNum);
     });
 }
