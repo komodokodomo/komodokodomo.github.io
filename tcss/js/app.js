@@ -125,12 +125,14 @@ function setup(){
     DOM_EL.loginInput = createInput();
     DOM_EL.loginInput.id("login-input");
     DOM_EL.loginInput.input(nickname);
+    DOM_EL.loginInput.center("horizontal");
     DOM_EL.loginInput.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*6/10);
     DOM_EL.loginInput.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
 
     DOM_EL.loginButton = createButton("JOIN!");
     DOM_EL.loginButton.id("login-button");
     DOM_EL.loginButton.mousePressed(login);
+    DOM_EL.loginButton.center("horizontal");
     DOM_EL.loginButton.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*7/10);
     DOM_EL.loginButton.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
 
