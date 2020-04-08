@@ -78,7 +78,7 @@ body {
 
 .shift-right,.shift-left {
     opacity: 0;
-    transition: linear;
+    transition: ease-out;
     transition-duration: 250ms;
 }
 
