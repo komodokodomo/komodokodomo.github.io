@@ -127,6 +127,7 @@ function setup(){
     DOM_EL.loginInput.id("login-input");
     DOM_EL.loginInput.input(nickname);
     DOM_EL.loginInput.center("horizontal");
+    DOM_EL.loginInput.attribute("placeholder", "ENTER NICKNAME");
     DOM_EL.loginInput.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*6/10);
     DOM_EL.loginInput.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
 
