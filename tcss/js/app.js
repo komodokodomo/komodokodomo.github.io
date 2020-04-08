@@ -143,8 +143,20 @@ function setup(){
     mc.on("swipeleft swiperight tap press", function(ev) {
         console.log(ev.type +" gesture detected.");
         if(ev.type === "swipeleft") {
+            DOM_EL.images[APP_STATE.spriteNum].addClass("shift-left");
+            setTimeout(function(){
+                DOM_EL.images[APP_STATE.spriteNum].removeClass("shift-left");
+                DOM_EL.images[APP_STATE.spriteNum].hide();
+            }
+            ,300);
             APP_STATE.spriteNum++;
         } else if(ev.type === "swiperight") {
+            DOM_EL.images[APP_STATE.spriteNum].addClass("shift-right");
+            setTimeout(function(){
+                DOM_EL.images[APP_STATE.spriteNum].removeClass("shift-right");
+                DOM_EL.images[APP_STATE.spriteNum].hide();
+            }
+            ,300);
             APP_STATE.spriteNum--;   
         }
         APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
