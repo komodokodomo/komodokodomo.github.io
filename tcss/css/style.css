@@ -79,14 +79,14 @@ body {
 .shift-right,.shift-left {
     opacity: 0;
     transition: ease-out;
-    transition-duration: 250ms;
+    transition-duration: 240ms;
 }
 
-.right{
+.class_right{
     translate: 0%;
 }
 
-.left{
+.class_left{
     translate: -100%;
 }
     
