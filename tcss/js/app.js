@@ -149,7 +149,8 @@ function setup(){
                 DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].hide();
             }
             ,300);
-            APP_STATE.spriteNum = overflow(APP_STATE.spriteNum++);  
+            APP_STATE.spriteNum++;  
+            APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
             console.log(APP_STATE.spriteNum);
             DOM_EL.images[APP_STATE.spriteNum*4].show();
         } else if(ev.type === "swiperight") {
@@ -159,7 +160,8 @@ function setup(){
                 DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].hide();
             }
             ,300);
-            APP_STATE.spriteNum = overflow(APP_STATE.spriteNum--);   
+            APP_STATE.spriteNum--;  
+            APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);  
             DOM_EL.images[APP_STATE.spriteNum].show();
         }
         APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
