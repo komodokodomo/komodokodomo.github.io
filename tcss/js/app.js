@@ -107,8 +107,8 @@ function setup(){
     DOM_EL.loginSliderArrowRight.id("login-slider-arrow-right");
     DOM_EL.loginSliderArrowRight.parent(DOM_EL.loginSliderRightContainer);
 
-    DOM_EL.shiftRight = document.getElementsByClassName("shift-right");
-    DOM_EL.shiftLeft = document.getElementsByClassName("shift-left");
+    DOM_EL.shiftRight = document.getElementsByClassName("right");
+    DOM_EL.shiftLeft = document.getElementsByClassName("left");
 
     DOM_EL.loginInstruction = createDiv("swipe to customise your character");
     DOM_EL.loginInstruction.id("login-instruction");
@@ -138,11 +138,11 @@ function setup(){
     mc.on("swipeleft swiperight tap press", function(ev) {
         console.log(ev.type +" gesture detected.");
         if(ev.type === "swipeleft") {
-            DOM_EL.images[APP_STATE.spriteNum*4].addClass("shift-left");
+            DOM_EL.images[APP_STATE.spriteNum*4].addClass("left");
             setTimeout(function(){
                 DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].hide();
                 while (DOM_EL.shiftLeft.length){
-                    DOM_EL.shiftLeft[0].classList.remove("shift-left");
+                    DOM_EL.shiftLeft[0].classList.remove("left");
                 }
                 // DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].removeClass("shift-left");
             }
@@ -152,11 +152,11 @@ function setup(){
             console.log(APP_STATE.spriteNum);
             DOM_EL.images[APP_STATE.spriteNum*4].show();
         } else if(ev.type === "swiperight") {
-            DOM_EL.images[APP_STATE.spriteNum].addClass("shift-right");
+            DOM_EL.images[APP_STATE.spriteNum].addClass("right");
             setTimeout(function(){
                 DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].hide();
                 while (DOM_EL.shiftRight.length){
-                    DOM_EL.shiftRight[0].classList.remove("shift-right");
+                    DOM_EL.shiftRight[0].classList.remove("right");
                 }
                 // DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].removeClass("shift-right");
             }

@@ -82,11 +82,11 @@ body {
     transition-duration: 250ms;
 }
 
-.shift-right{
+.right{
     translate: 0%;
 }
 
-.shift-left{
+.left{
     translate: -100%;
 }
     
