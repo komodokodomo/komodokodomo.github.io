@@ -136,7 +136,6 @@ function setup(){
 
     var mc = new Hammer(slider);
     mc.on("swipeleft swiperight tap press", function(ev) {
-        console.log(ev.type +" gesture detected.");
         if(ev.type == "swipeleft") {
             DOM_EL.images[APP_STATE.spriteNum*4].addClass("left");
             setTimeout(function(){
@@ -162,7 +161,7 @@ function setup(){
                 // while (DOM_EL.shiftRight.length){
                 //     DOM_EL.shiftRight[0].classList.remove("right");
                 // }
-                DOM_EL.images[temp2 * 4].removeClass("right");
+                DOM_EL.images[APP_STATE.spriteNum * 4].removeClass("right");
             }
             ,300);
             APP_STATE.spriteNum--;  
@@ -172,6 +171,10 @@ function setup(){
         // APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
         // console.log(APP_STATE.spriteNum);
     });
+}
+
+async function removeClasses(){
+
 }
 
 const overflow = function(i){
