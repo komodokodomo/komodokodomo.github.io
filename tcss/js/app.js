@@ -140,11 +140,12 @@ function setup(){
         if(ev.type === "swipeleft") {
             DOM_EL.images[APP_STATE.spriteNum*4].addClass("left");
             setTimeout(function(){
-                DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].hide();
+                let temp = overflow(APP_STATE.spriteNum - 1);
+                DOM_EL.images[temp * 4].hide();
                 // while (DOM_EL.shiftLeft.length){
                 //     DOM_EL.shiftLeft[0].classList.remove("left");
                 // }
-                DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].removeClass("left");
+                DOM_EL.images[temp * 4].removeClass("left");
             }
             ,250);
             APP_STATE.spriteNum++;  
