@@ -3,7 +3,6 @@ var DOM_EL = {
     loginContainer: null,
     loginTitle: null,
     loginInstruction: null,
-    loginSliderContainer: null,
     loginSliderImageContainer: null,
     loginSliderLeftContainer: null,
     loginSliderRightContainer: null,
@@ -11,7 +10,9 @@ var DOM_EL = {
     loginSliderArrowRight: null,
     images: [],
     loginInput: null,
-    loginButton: null
+    loginButton: null,
+    shiftLeft: null,
+    shiftRight: null
 }
 
 var APP_STATE = {
@@ -71,30 +72,21 @@ function setup(){
     DOM_EL.loginTitle.parent(DOM_EL.loginContainer);
     DOM_EL.loginTitle.position(0,0);
     DOM_EL.loginTitle.size(APP_STATE.windowWidth,APP_STATE.windowHeight/10);
-    
-    // DOM_EL.loginSliderContainer = createDiv();
-    // DOM_EL.loginSliderContainer.id("slider");
-    // DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
-    // DOM_EL.loginSliderContainer.position(0,APP_STATE.windowHeight/10);
-    // DOM_EL.loginSliderContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight*4/10);
 
     DOM_EL.loginSliderLeftContainer = createDiv();
     DOM_EL.loginSliderLeftContainer.id("login-slider-left-container");
     DOM_EL.loginSliderLeftContainer.position(0,APP_STATE.windowHeight/10);
     DOM_EL.loginSliderLeftContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
-    // DOM_EL.loginSliderLeftContainer.parent(DOM_EL.loginSliderContainer);
 
     DOM_EL.loginSliderImageContainer = createDiv();
     DOM_EL.loginSliderImageContainer.id("slider");
     DOM_EL.loginSliderImageContainer.position(APP_STATE.windowWidth/5,APP_STATE.windowHeight/10);
     DOM_EL.loginSliderImageContainer.size(APP_STATE.windowWidth*3/5,APP_STATE.windowHeight*4/10);
-    // DOM_EL.loginSliderImageContainer.parent(DOM_EL.loginSliderContainer);
 
     DOM_EL.loginSliderRightContainer = createDiv();
     DOM_EL.loginSliderRightContainer.id("login-slider-right-container");
     DOM_EL.loginSliderRightContainer.position(APP_STATE.windowWidth*4/5,APP_STATE.windowHeight/10);
     DOM_EL.loginSliderRightContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
-    // DOM_EL.loginSliderRightContainer.parent(DOM_EL.loginSliderContainer);
 
     for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
         DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
@@ -114,6 +106,9 @@ function setup(){
     DOM_EL.loginSliderArrowRight = createImg('img/right.png');
     DOM_EL.loginSliderArrowRight.id("login-slider-arrow-right");
     DOM_EL.loginSliderArrowRight.parent(DOM_EL.loginSliderRightContainer);
+
+    DOM_EL.shiftRight = document.getElementsByClassName("shift-right");
+    DOM_EL.shiftLeft = document.getElementsByClassName("shift-left");
 
     DOM_EL.loginInstruction = createDiv("swipe to customise your character");
     DOM_EL.loginInstruction.id("login-instruction");
@@ -146,7 +141,10 @@ function setup(){
             DOM_EL.images[APP_STATE.spriteNum*4].addClass("shift-left");
             setTimeout(function(){
                 DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].hide();
-                DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].removeClass("shift-left");
+                while (DOM_EL.shiftLeft.length){
+                    DOM_EL.shiftLeft[0].classList.remove("shift-left");
+                }
+                // DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].removeClass("shift-left");
             }
             ,250);
             APP_STATE.spriteNum++;  
@@ -157,7 +155,10 @@ function setup(){
             DOM_EL.images[APP_STATE.spriteNum].addClass("shift-right");
             setTimeout(function(){
                 DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].hide();
-                DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].removeClass("shift-right");
+                while (DOM_EL.shiftRight.length){
+                    DOM_EL.shiftRight[0].classList.remove("shift-right");
+                }
+                // DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].removeClass("shift-right");
             }
             ,250);
             APP_STATE.spriteNum--;  
