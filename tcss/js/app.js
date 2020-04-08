@@ -118,8 +118,8 @@ function setup(){
     DOM_EL.loginInstruction = createDiv("swipe to customise your character");
     DOM_EL.loginInstruction.id("login-instruction");
     DOM_EL.loginInstruction.parent(DOM_EL.loginContainer);
-    DOM_EL.loginInstruction.position(0,APP_STATE.windowHeight/10);
-    DOM_EL.loginInstruction.size(APP_STATE.windowWidth,APP_STATE.windowHeight*1/10);
+    DOM_EL.loginInstruction.position( 0 , APP_STATE.windowHeight * 5 / 10 );
+    DOM_EL.loginInstruction.size( APP_STATE.windowWidth, APP_STATE.windowHeight * 1 / 10 );
 
 
     DOM_EL.loginInput = createInput();
@@ -210,6 +210,9 @@ function windowResized(){
 
     DOM_EL.loginSliderRightContainer.position(APP_STATE.windowWidth*4/5,APP_STATE.windowHeight/10);
     DOM_EL.loginSliderRightContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
+
+    DOM_EL.loginInstruction.position( 0 , APP_STATE.windowHeight * 5 / 10 );
+    DOM_EL.loginInstruction.size( APP_STATE.windowWidth, APP_STATE.windowHeight * 1 / 10 );
 
     DOM_EL.loginInput.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*5/10);
     DOM_EL.loginInput.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
