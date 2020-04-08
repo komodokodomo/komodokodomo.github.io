@@ -36,9 +36,20 @@ body {
     margin-right: auto;
 }
 
-#login-slider-arrow-left, #login-slider-arrow-right{
-    display: inline-block;
+#login-slider-image-container{
+    height: 100%;
+}
+
+#login-slider-arrow-left{
+    position: absolute;
     width: 20%;
+    left: 0%;
+}
+
+#login-slider-arrow-right{
+    position: absolute;
+    width: 20%;
+    right: 0%;
 }
     
 #slider{
