@@ -22,12 +22,10 @@ body {
     height: 100%;
 }
 
-#login-title{
+#login-title {
     font-weight: 900;
     font-size: 3rem;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
 }
 
 #login-instruction{
