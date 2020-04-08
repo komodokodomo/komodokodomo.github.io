@@ -69,11 +69,11 @@ body {
 
 
 .slider-image {
-    object-fit: contain;
+    position: absolute;
+    left: 50%;
     max-width: 100%;
     max-height: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    translate: -50%;
 }
     
 #login-input, #login-button{
