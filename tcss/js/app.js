@@ -214,10 +214,10 @@ function windowResized(){
     DOM_EL.loginInstruction.position( 0 , APP_STATE.windowHeight * 5 / 10 );
     DOM_EL.loginInstruction.size( APP_STATE.windowWidth, APP_STATE.windowHeight * 1 / 10 );
 
-    DOM_EL.loginInput.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*5/10);
+    DOM_EL.loginInput.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*6/10);
     DOM_EL.loginInput.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
 
-    DOM_EL.loginButton.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*6/10);
+    DOM_EL.loginButton.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*7/10);
     DOM_EL.loginButton.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
 
 }
