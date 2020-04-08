@@ -36,6 +36,16 @@ body {
     margin-right: auto;
 }
 
+#slider{
+    /* top: 15vh; */
+    width: 60vw;
+    /* max-width: 60vmin; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 #login-slider-image-container{
     height: 100%;
 }
@@ -52,15 +62,7 @@ body {
     right: 0%;
 }
     
-#slider{
-    /* top: 15vh; */
-    width: 60vw;
-    /* max-width: 60vmin; */
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
+
 
 .slider-image{
     object-fit: contain;

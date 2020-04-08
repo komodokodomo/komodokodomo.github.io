@@ -79,15 +79,19 @@ function setup(){
 
     DOM_EL.loginSliderLeftContainer = createDiv();
     DOM_EL.loginSliderLeftContainer.id("login-slider-left-container");
-    DOM_EL.loginSliderLeftContainer.parent(DOM_EL.loginSliderContainer);
-
-    DOM_EL.loginSliderArrowLeft = createImg('img/left.png');
-    DOM_EL.loginSliderArrowLeft.id("login-slider-arrow-left");
-    DOM_EL.loginSliderArrowLeft.parent(DOM_EL.loginSliderLeftContainer);
+    DOM_EL.loginSliderLeftContainer.position(0,APP_STATE.windowHeight/10);
+    DOM_EL.loginSliderLeftContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
+    // DOM_EL.loginSliderLeftContainer.parent(DOM_EL.loginSliderContainer);
 
     DOM_EL.loginSliderImageContainer = createDiv();
     DOM_EL.loginSliderImageContainer.id("login-slider-image-container");
     DOM_EL.loginSliderImageContainer.parent(DOM_EL.loginSliderContainer);
+
+    DOM_EL.loginSliderRightContainer = createDiv();
+    DOM_EL.loginSliderRightContainer.id("login-slider-right-container");
+    DOM_EL.loginSliderRightContainer.position(APP_STATE.windowWidth*4/5,APP_STATE.windowHeight/10);
+    DOM_EL.loginSliderRightContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
+    // DOM_EL.loginSliderRightContainer.parent(DOM_EL.loginSliderContainer);
 
 
     for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
@@ -101,9 +105,9 @@ function setup(){
 
     DOM_EL.images[0].show();
 
-    DOM_EL.loginSliderRightContainer = createDiv();
-    DOM_EL.loginSliderRightContainer.id("login-slider-right-container");
-    DOM_EL.loginSliderRightContainer.parent(DOM_EL.loginSliderContainer);
+    DOM_EL.loginSliderArrowLeft = createImg('img/left.png');
+    DOM_EL.loginSliderArrowLeft.id("login-slider-arrow-left");
+    DOM_EL.loginSliderArrowLeft.parent(DOM_EL.loginSliderLeftContainer);
 
     DOM_EL.loginSliderArrowRight = createImg('img/right.png');
     DOM_EL.loginSliderArrowRight.id("login-slider-arrow-right");
