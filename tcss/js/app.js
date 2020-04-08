@@ -140,7 +140,7 @@ function setup(){
         if(ev.type === "swipeleft") {
             DOM_EL.images[APP_STATE.spriteNum*4].addClass("class_left");
             setTimeout(function(){
-                DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].hide();
+                DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].hide();
                 // while (DOM_EL.shiftLeft.length){
                 //     DOM_EL.shiftLeft[0].classList.remove("left");
                 // }
@@ -154,7 +154,7 @@ function setup(){
         } else if(ev.type === "swiperight") {
             DOM_EL.images[APP_STATE.spriteNum].addClass("class_right");
             setTimeout(function(){
-                let temp = overflow(APP_STATE.spriteNum - 1);
+                let temp = overflow(APP_STATE.spriteNum + 1);
                 DOM_EL.images[temp * 4].hide();
                 // while (DOM_EL.shiftRight.length){
                 //     DOM_EL.shiftRight[0].classList.remove("right");
