@@ -138,13 +138,13 @@ function setup(){
     mc.on("swipeleft swiperight tap press", function(ev) {
         console.log(ev.type +" gesture detected.");
         if(ev.type === "swipeleft") {
-            DOM_EL.images[APP_STATE.spriteNum*4].addClass("class_left");
+            DOM_EL.images[APP_STATE.spriteNum*4].addClass("left");
             setTimeout(function(){
                 DOM_EL.images[overflow(APP_STATE.spriteNum - 1) * 4].hide();
                 // while (DOM_EL.shiftLeft.length){
                 //     DOM_EL.shiftLeft[0].classList.remove("left");
                 // }
-                DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].removeClass("class_left");
+                DOM_EL.images[overflow(APP_STATE.spriteNum + 1) * 4].removeClass("left");
             }
             ,250);
             APP_STATE.spriteNum++;  
@@ -152,14 +152,14 @@ function setup(){
             DOM_EL.images[APP_STATE.spriteNum*4].show();
 
         } else if(ev.type === "swiperight") {
-            DOM_EL.images[APP_STATE.spriteNum].addClass("class_right");
+            DOM_EL.images[APP_STATE.spriteNum].addClass("right");
             setTimeout(function(){
                 let temp = overflow(APP_STATE.spriteNum + 1);
                 DOM_EL.images[temp * 4].hide();
                 // while (DOM_EL.shiftRight.length){
                 //     DOM_EL.shiftRight[0].classList.remove("right");
                 // }
-                DOM_EL.images[temp * 4].removeClass("class_right");
+                DOM_EL.images[temp * 4].removeClass("right");
             }
             ,250);
             APP_STATE.spriteNum--;  

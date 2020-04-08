@@ -76,17 +76,17 @@ body {
     translate: -50%;
 }
 
-.class_right,.class_left {
+.right,.left {
     opacity: 0;
     transition: ease-out;
     transition-duration: 240ms;
 }
 
-.class_right{
+.right{
     translate: 0%;
 }
 
-.class_left{
+.left{
     translate: -100%;
 }
     
