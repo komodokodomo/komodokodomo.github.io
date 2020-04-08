@@ -145,16 +145,16 @@ function setup(){
         if(ev.type === "swipeleft") {
             DOM_EL.images[APP_STATE.spriteNum].addClass("shift-left");
             setTimeout(function(){
-                DOM_EL.images[APP_STATE.spriteNum].removeClass("shift-left");
-                DOM_EL.images[APP_STATE.spriteNum].hide();
+                DOM_EL.images[overflow(APP_STATE.spriteNum - 1)].removeClass("shift-left");
+                DOM_EL.images[overflow(APP_STATE.spriteNum - 1)].hide();
             }
             ,300);
             APP_STATE.spriteNum++;
         } else if(ev.type === "swiperight") {
             DOM_EL.images[APP_STATE.spriteNum].addClass("shift-right");
             setTimeout(function(){
-                DOM_EL.images[APP_STATE.spriteNum].removeClass("shift-right");
-                DOM_EL.images[APP_STATE.spriteNum].hide();
+                DOM_EL.images[overflow(APP_STATE.spriteNum + 1)].removeClass("shift-right");
+                DOM_EL.images[overflow(APP_STATE.spriteNum + 1)].hide();
             }
             ,300);
             APP_STATE.spriteNum--;   
