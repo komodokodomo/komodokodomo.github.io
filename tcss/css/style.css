@@ -40,13 +40,13 @@ body {
     height: 100%;
 }
 
-#login-slider-arrow-left{
+#login-slider-left-container{
     position: absolute;
     width: 20%;
     left: 0%;
 }
 
-#login-slider-arrow-right{
+#login-slider-right-container{
     position: absolute;
     width: 20%;
     right: 0%;
