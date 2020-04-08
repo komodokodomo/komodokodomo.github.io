@@ -63,6 +63,7 @@ function setup(){
     DOM_EL.loginContainer = createDiv();
     DOM_EL.loginContainer.position(0,0);
     DOM_EL.loginContainer.id("login-container");
+    DOM_EL.loginContainer.position(0,0);
     DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
 
     DOM_EL.loginTitle = createDiv("VROOM");
@@ -195,6 +196,9 @@ function windowResized(){
     APP_STATE.windowWidth = window.innerWidth;
     APP_STATE.windowHeight = window.innerHeight;
     resizeCanvas(APP_STATE.windowWidth, APP_STATE.windowHeight);
+
+    DOM_EL.loginContainer.position(0,0);
+    DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
 
     DOM_EL.loginTitle.position(0,0);
     DOM_EL.loginTitle.size(APP_STATE.windowWidth,APP_STATE.windowHeight/10);
