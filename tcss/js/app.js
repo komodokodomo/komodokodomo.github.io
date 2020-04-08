@@ -137,10 +137,11 @@ function setup(){
     var mc = new Hammer(slider);
     mc.on("swipeleft swiperight tap press", function(ev) {
         console.log(ev.type +" gesture detected.");
-        if(ev.type === "swipeleft") {
+        if(ev.type == "swipeleft") {
             DOM_EL.images[APP_STATE.spriteNum*4].addClass("left");
             setTimeout(function(){
                 let temp = overflow(APP_STATE.spriteNum - 1);
+                console.log(temp);
                 DOM_EL.images[temp * 4].hide();
                 // while (DOM_EL.shiftLeft.length){
                 //     DOM_EL.shiftLeft[0].classList.remove("left");
@@ -152,10 +153,11 @@ function setup(){
             APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
             DOM_EL.images[APP_STATE.spriteNum*4].show();
 
-        } else if(ev.type === "swiperight") {
+        } else if(ev.type == "swiperight") {
             DOM_EL.images[APP_STATE.spriteNum].addClass("right");
             setTimeout(function(){
                 let temp = overflow(APP_STATE.spriteNum + 1);
+                console.log(temp);
                 DOM_EL.images[temp * 4].hide();
                 // while (DOM_EL.shiftRight.length){
                 //     DOM_EL.shiftRight[0].classList.remove("right");
@@ -168,7 +170,7 @@ function setup(){
             DOM_EL.images[APP_STATE.spriteNum*4].show();
         }
         // APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
-        console.log(APP_STATE.spriteNum);
+        // console.log(APP_STATE.spriteNum);
     });
 }
 
