@@ -87,6 +87,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1rem;
+    box-sizing:border-box;
 }
     
 #login-button{

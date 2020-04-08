@@ -133,7 +133,7 @@ function setup(){
     DOM_EL.loginButton.id("login-button");
     DOM_EL.loginButton.mousePressed(login);
     DOM_EL.loginButton.center("horizontal");
-    DOM_EL.loginButton.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*7/10);
+    DOM_EL.loginButton.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*7.5/10);
     DOM_EL.loginButton.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
 
     DOM_EL.loginInput.parent(DOM_EL.loginContainer);
@@ -217,7 +217,7 @@ function windowResized(){
     DOM_EL.loginInput.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*6/10);
     DOM_EL.loginInput.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
 
-    DOM_EL.loginButton.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*7/10);
+    DOM_EL.loginButton.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*7.5/10);
     DOM_EL.loginButton.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
 
 }
