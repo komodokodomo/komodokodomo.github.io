@@ -72,11 +72,6 @@ function setup(){
     DOM_EL.loginTitle.position(0,0);
     DOM_EL.loginTitle.size(APP_STATE.windowWidth,APP_STATE.windowHeight/10);
 
-    DOM_EL.loginSliderContainer = createDiv();
-    DOM_EL.loginSliderContainer.id("slider");
-    DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
-    DOM_EL.loginSliderContainer.position(0,APP_STATE.windowHeight/10);
-    DOM_EL.loginSliderContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight*4/10);
 
     DOM_EL.loginSliderLeftContainer = createDiv();
     DOM_EL.loginSliderLeftContainer.id("login-slider-left-container");
@@ -96,7 +91,12 @@ function setup(){
     DOM_EL.loginSliderRightContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
     // DOM_EL.loginSliderRightContainer.parent(DOM_EL.loginSliderContainer);
 
-
+    DOM_EL.loginSliderContainer = createDiv();
+    DOM_EL.loginSliderContainer.id("slider");
+    DOM_EL.loginSliderContainer.parent(DOM_EL.loginContainer);
+    DOM_EL.loginSliderContainer.position(0,APP_STATE.windowHeight/10);
+    DOM_EL.loginSliderContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight*4/10);
+    
     for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
         DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
         DOM_EL.images[i].hide();
