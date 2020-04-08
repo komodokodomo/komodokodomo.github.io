@@ -161,7 +161,7 @@ function setup(){
                 // while (DOM_EL.shiftRight.length){
                 //     DOM_EL.shiftRight[0].classList.remove("right");
                 // }
-                DOM_EL.images[APP_STATE.spriteNum * 4].removeClass("right");
+                DOM_EL.images[temp2 * 4].removeClass("right");
             }
             ,300);
             APP_STATE.spriteNum--;  
