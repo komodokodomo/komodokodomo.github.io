@@ -85,7 +85,9 @@ function setup(){
 
     DOM_EL.loginSliderImageContainer = createDiv();
     DOM_EL.loginSliderImageContainer.id("login-slider-image-container");
-    DOM_EL.loginSliderImageContainer.parent(DOM_EL.loginSliderContainer);
+    DOM_EL.loginSliderImageContainer.position(APP_STATE.windowWidth/5,APP_STATE.windowHeight/10);
+    DOM_EL.loginSliderImageContainer.size(APP_STATE.windowWidth*3/5,APP_STATE.windowHeight*4/10);
+    // DOM_EL.loginSliderImageContainer.parent(DOM_EL.loginSliderContainer);
 
     DOM_EL.loginSliderRightContainer = createDiv();
     DOM_EL.loginSliderRightContainer.id("login-slider-right-container");
