@@ -146,9 +146,9 @@ function setup(){
                 //     DOM_EL.shiftLeft[0].classList.remove("left");
                 // }
                 DOM_EL.images[temp * 4].removeClass("left");
-                console.log("timeout: " + temp*4);
+                // console.log("timeout: " + temp*4);
             }
-            ,300);
+            ,150);
             APP_STATE.spriteNum++;  
             APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
             DOM_EL.images[APP_STATE.spriteNum*4].show();
@@ -162,21 +162,18 @@ function setup(){
                 //     DOM_EL.shiftRight[0].classList.remove("right");
                 // }
                 DOM_EL.images[temp2 * 4].removeClass("right");
-                console.log("timeout: " + temp2*4);
+                // console.log("timeout: " + temp2*4);
             }
-            ,300);
+            ,150);
             APP_STATE.spriteNum--;  
             APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);  
             DOM_EL.images[APP_STATE.spriteNum*4].show();
         }
         // APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
-        console.log("current: " + APP_STATE.spriteNum * 4);
+        // console.log("current: " + APP_STATE.spriteNum * 4);
     });
 }
 
-async function removeClasses(){
-
-}
 
 const overflow = function(i){
     if (i < 0) { i = APP_STATE.numSprites -1; }

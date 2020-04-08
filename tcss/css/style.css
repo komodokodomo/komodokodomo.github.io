@@ -86,14 +86,14 @@ body {
 .right{
     opacity: 0;
     transition: ease-out;
-    transition-duration: 100ms;
+    transition-duration: 150ms;
     translate: 0%;
 }
 
 .left{
     opacity: 0;
     transition: ease-out;
-    transition-duration: 100ms;
+    transition-duration: 150ms;
     translate: -100%;
 }
     
