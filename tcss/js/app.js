@@ -309,7 +309,7 @@ class Avatar {  //own avatar and other people's avatars
         
         text(this.name,
              this.posX,
-             this.posY + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
+             this.posY + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
              APP_STATE.windowWidth * this.scaleMultiplier /10);
     }
   }
