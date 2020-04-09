@@ -285,7 +285,7 @@ class Avatar {  //own avatar and other people's avatars
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX, 
                 this.posY, 
-                APP_STATE.windowWidth/10,
-                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );         
+                APP_STATE.windowWidth * random(0.9,1.1) /10,
+                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * random(0.9,1.1) * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );         
     }
   }
