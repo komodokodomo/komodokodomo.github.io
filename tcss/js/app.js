@@ -11,8 +11,6 @@ var DOM_EL = {
     images: [],
     loginInput: null,
     loginButton: null
-    // shiftLeft: null,
-    // shiftRight: null
 }
 
 var CANVAS_EL = {
@@ -115,9 +113,6 @@ function setup(){
     DOM_EL.loginSliderArrowRight.id("login-slider-arrow-right");
     DOM_EL.loginSliderArrowRight.parent(DOM_EL.loginSliderRightContainer);
 
-    // DOM_EL.shiftRight = document.getElementsByClassName("right");
-    // DOM_EL.shiftLeft = document.getElementsByClassName("left");
-
     DOM_EL.loginInstruction = createDiv("swipe to customise your character");
     DOM_EL.loginInstruction.id("login-instruction");
     DOM_EL.loginInstruction.parent(DOM_EL.loginContainer);
@@ -180,12 +175,9 @@ const overflow = function(i){
 
 function nickname(){
     APP_STATE.nickname = this.value();
-    console.log(APP_STATE.nickname);
 }
 
 function login(){
-    console.log("enter socketIO server here");
-    console.log("Feed in char number + nickname to both local cache and server");
     APP_STATE.loginSuccess = true;
     if(APP_STATE.nickname === null){
         AVATAR.own = new Avatar(APP_STATE.spriteNum);
@@ -197,10 +189,6 @@ function login(){
     setInterval(function(){
         AVATAR.own.update();
     },50);
-
-    // setTimeout(function(){
-    //     console.log("obtaining users");
-    // },250);
     
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
@@ -235,9 +223,6 @@ function windowResized(){
 
     DOM_EL.loginTitle.position(0,0);
     DOM_EL.loginTitle.size(APP_STATE.windowWidth,APP_STATE.windowHeight/10);
-
-    // DOM_EL.loginSliderContainer.position(0,APP_STATE.windowHeight/10);
-    // DOM_EL.loginSliderContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight*4/10);
 
     DOM_EL.loginSliderLeftContainer.position(0,APP_STATE.windowHeight/10);
     DOM_EL.loginSliderLeftContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
@@ -276,9 +261,8 @@ class Avatar {  //own avatar and other people's avatars
     }
   
 
-    update(){ //(X,Y,MIC,)
+    update(){ 
         clear();
-        // if( P5_SOUND.micThresholdCross === true && millis() - this.lastRecordedActivity < 30000){
         if( P5_SOUND.micThresholdCross === true ) {
             this.lastRecordedActivity = millis();
             this.updateServer = true;
@@ -328,7 +312,6 @@ class Avatar {  //own avatar and other people's avatars
              APP_STATE.windowWidth * this.scaleMultiplier /10);
         
         if(this.updateServer){
-            console.log("update server");
             this.updateServer = false;
             socket.emit("update",{ name: this.name, X: this.posX , Y: this.posY, talking: this.micThresholdCross ,away: this.AFK });
         }
