@@ -37,7 +37,7 @@ var AVATAR ={
 var P5_SOUND = {
     mic: null,
     micLevel: null,
-    micThresholdLevel: 0.01,
+    micThresholdLevel: 0.05,
     micThresholdCross: false
 }
 
@@ -326,7 +326,8 @@ class Avatar {  //own avatar and other people's avatars
              APP_STATE.windowWidth * this.scaleMultiplier /10);
         
         if(this.updateServer){
-            socket.emit("update",this);
+            console.log("update server");
+            // socket.emit("update",this);
         }
     }
   }
