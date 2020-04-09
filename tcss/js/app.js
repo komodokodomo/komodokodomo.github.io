@@ -198,10 +198,9 @@ function login(){
         AVATAR.own.update();
     },50);
 
-    setTimeout(function(){
-        socket.emit('getuser');
-        console.log("obtaining users");
-    },250);
+    // setTimeout(function(){
+    //     console.log("obtaining users");
+    // },250);
     
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
@@ -330,6 +329,7 @@ class Avatar {  //own avatar and other people's avatars
     socket = io('cotf.cf', {});
     socket.on('connect', function() {
         socket.emit('hello',AVATAR.own);
+        socket.emit('getuser');
         console.log("connected to server");		 
     });
     socket.on('someone-joined', function(msg) {
