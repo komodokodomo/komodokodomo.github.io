@@ -15,6 +15,10 @@ var DOM_EL = {
     // shiftRight: null
 }
 
+var CANVAS_EL = {
+    images: null
+}
+
 
 var APP_STATE = {
     windowWidth: null,
@@ -54,6 +58,9 @@ function preload(){
             }
         },50);
     });
+    for( let i = 0; i < APP_STATE.numSprites; i++ ){
+        CANVAS_EL.images[i] = loadImage("img/" + i.toString() + ".png");
+    }
 }
 
 function setup(){
@@ -278,8 +285,8 @@ class Avatar {  //own avatar and other people's avatars
             console.log("no audio detected, show default face");
             this.spriteNumModifier = 0;
         }
-        DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].show();
-        DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].position(this.posX, this.posY);
-        // image(DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier],this.posX, this.posY);         
+        // DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].show();
+        // DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].position(this.posX, this.posY);
+        image(CANBAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],this.posX, this.posY);         
     }
   }
