@@ -319,7 +319,7 @@ class Avatar {  //own avatar and other people's avatars
   function startCon(){
     socket = io('cotf.cf', {});
     socket.on('connect', function() {
-        socket.emit('hello',APP_STATE.own);
+        socket.emit('hello',AVATAR.own);
         console.log("connected");		 
     });
     socket.on('someone-joined', function(msg) {
