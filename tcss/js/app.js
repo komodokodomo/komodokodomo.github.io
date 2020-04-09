@@ -197,8 +197,11 @@ function login(){
     setInterval(function(){
         AVATAR.own.update();
     },50);
-    socket.emit('getuser');
 
+    setTimeout(function(){
+        socket.emit('getuser');
+    },250);
+    
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
     DOM_EL.loginInstruction.hide();
