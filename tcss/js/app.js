@@ -193,7 +193,8 @@ function login(){
     else{
         AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname);
     }
-    setInterval(function(){
+    startCon();  
+        setInterval(function(){
         AVATAR.own.update();
     },50);
     DOM_EL.loginInput.hide();
@@ -313,3 +314,21 @@ class Avatar {  //own avatar and other people's avatars
              APP_STATE.windowWidth * this.scaleMultiplier /10);
     }
   }
+
+
+  function startCon(){
+    socket = io('cotf.cf', {});
+    socket.on('connect', function() {
+        socket.emit('hello',APP_STATE.own);
+        console.log("connected");		 
+    });
+    socket.on('someone-joined', function(msg) {
+        console.log(msg);	
+    });
+    socket.on('someone-change', function(msg) {
+        console.log(msg);		 		 
+    });
+    socket.on('someone-left', function(msg) {
+        console.log(msg);	
+    });
+}
