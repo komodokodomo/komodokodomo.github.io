@@ -58,7 +58,7 @@ function preload(){
             }
         },50);
     });
-    for( let i = 0; i < APP_STATE.numSprites; i++ ){
+    for( let i = 0; i < APP_STATE.numSprites * 4; i++ ){
         CANVAS_EL.images[i] = loadImage("img/" + i.toString() + ".png");
     }
 }
