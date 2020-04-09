@@ -272,6 +272,7 @@ class Avatar {  //own avatar and other people's avatars
       this.talkToggleTimer = null;
       this.name = name;
       this.updateServer = false;
+      this.AFK = false;
     }
   
 
@@ -291,8 +292,10 @@ class Avatar {  //own avatar and other people's avatars
                 }
             }
         }
-        else if( P5_SOUND.micThresholdCross === false && millis() - this.lastRecordedActivity > 30000){
+        else if( P5_SOUND.micThresholdCross === false && millis() - this.lastRecordedActivity > 30000 && this.AFK === false){
             this.spriteNumModifier = 3;
+            this.AFK = true;
+            this.updateServer = true;
         }
         else{
             this.spriteNumModifier = 0;
@@ -321,6 +324,10 @@ class Avatar {  //own avatar and other people's avatars
              this.posX,
              this.posY + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
              APP_STATE.windowWidth * this.scaleMultiplier /10);
+        
+        if(this.updateServer){
+            socket.emit("update",this);
+        }
     }
   }
   
