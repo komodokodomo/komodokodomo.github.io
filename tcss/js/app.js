@@ -287,6 +287,6 @@ class Avatar {  //own avatar and other people's avatars
         }
         // DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].show();
         // DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].position(this.posX, this.posY);
-        image(CANBAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],this.posX, this.posY);         
+        image(CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],this.posX, this.posY);         
     }
   }
