@@ -37,7 +37,7 @@ var AVATAR ={
 var P5_SOUND = {
     mic: null,
     micLevel: null,
-    micThresholdLevel: 0.05,
+    micThresholdLevel: 0.02,
     micThresholdCross: false
 }
 
@@ -339,7 +339,7 @@ class Avatar {  //own avatar and other people's avatars
   function startCon(){
     socket = io('cotf.cf', {});
     socket.on('connect', function() {
-        socket.emit('hello',AVATAR.own);
+        socket.emit('hello',{ name: AVATAR.own.name, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: AVATAR.own.micThresholdCross ,away: AVATAR.own.AFK });
         socket.emit('getuser');
         console.log("connected to server");		 
     });
