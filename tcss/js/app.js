@@ -299,7 +299,7 @@ class Avatar {  //own avatar and other people's avatars
         this.prevX = this.posX;
         this.prevY = this.posY;
 
-        textAlign(CENTER);
+        textAlign(CENTER,CENTER);
 
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX, 
