@@ -187,7 +187,12 @@ function login(){
     console.log("enter socketIO server here");
     console.log("Feed in char number + nickname to both local cache and server");
     APP_STATE.loginSuccess = true;
-    AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname);
+    if(APP_STATE.nickname === null){
+        AVATAR.own = new Avatar(APP_STATE.spriteNum);
+    }
+    else{
+        AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname);
+    }
     setInterval(function(){
         AVATAR.own.update();
     },50);
