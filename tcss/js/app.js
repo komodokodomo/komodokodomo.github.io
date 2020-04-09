@@ -294,6 +294,8 @@ class Avatar {  //own avatar and other people's avatars
         this.prevX = this.posX;
         this.prevY = this.posY;
 
+        textAlign(CENTER);
+
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX, 
                 this.posY, 
@@ -303,7 +305,6 @@ class Avatar {  //own avatar and other people's avatars
         text(this.name,
              this.posX,
              this.posY + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
-             APP_STATE.windowWidth * this.scaleMultiplier /10,
-             50);
+             APP_STATE.windowWidth * this.scaleMultiplier /10);
     }
   }
