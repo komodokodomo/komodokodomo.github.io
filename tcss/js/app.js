@@ -285,9 +285,13 @@ class Avatar {  //own avatar and other people's avatars
         }
         if( abs(this.prevX - this.posX) > 0 || abs(this.prevY - this.posY) > 0 ){
             this.scaleMultiplier = random(0.95,1.05);
-        } else{
+        } 
+        else{
             this.scaleMultiplier = 1;
         }
+        this.prevX = this.posX;
+        this.prevY = this.posY;
+
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX, 
                 this.posY, 
