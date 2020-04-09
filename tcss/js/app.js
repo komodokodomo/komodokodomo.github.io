@@ -233,8 +233,8 @@ function windowResized(){
     DOM_EL.loginTitle.position(0,0);
     DOM_EL.loginTitle.size(APP_STATE.windowWidth,APP_STATE.windowHeight/10);
 
-    DOM_EL.loginSliderContainer.position(0,APP_STATE.windowHeight/10);
-    DOM_EL.loginSliderContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight*4/10);
+    // DOM_EL.loginSliderContainer.position(0,APP_STATE.windowHeight/10);
+    // DOM_EL.loginSliderContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight*4/10);
 
     DOM_EL.loginSliderLeftContainer.position(0,APP_STATE.windowHeight/10);
     DOM_EL.loginSliderLeftContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
