@@ -252,8 +252,9 @@ class Avatar {  //own avatar and other people's avatars
     constructor(spriteNum) {
       this.posX = random(width);
       this.posY = random(height);
-      this.scaleX = random(0.9,1.1);
-      this.scaleY = random(0.9,1.1);
+      this.prevX = this.posX;
+      this.prevY = this.posY;
+      this.scaleMultiplier = null;
       this.spriteNum = spriteNum;
       this.spriteNumModifier = 0;
       this.lastRecordedActivity = 0;
@@ -282,10 +283,15 @@ class Avatar {  //own avatar and other people's avatars
         else{
             this.spriteNumModifier = 0;
         }
+        if( abs(this.prevX - this.posX) > 0 || abs(this.prevY - this.posY) > 0 ){
+            this.scaleMultiplier = random(0.95,1.05);
+        } else{
+            this.scaleMultiplier = 1;
+        }
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX, 
                 this.posY, 
-                APP_STATE.windowWidth * random(0.9,1.1) /10,
-                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * random(0.9,1.1) * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );         
+                APP_STATE.windowWidth * this.scaleMultiplier /10,
+                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );         
     }
   }
