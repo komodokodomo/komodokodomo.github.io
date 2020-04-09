@@ -285,6 +285,7 @@ class Avatar {  //own avatar and other people's avatars
         }
         if( abs(this.prevX - this.posX) > 0 || abs(this.prevY - this.posY) > 0 ){
             this.scaleMultiplier = random(0.95,1.05);
+            this.lastRecordedActivity = millis();
         } 
         else{
             this.scaleMultiplier = 1;
