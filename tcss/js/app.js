@@ -194,9 +194,11 @@ function login(){
         AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname);
     }
     startCon();  
-        setInterval(function(){
+    setInterval(function(){
         AVATAR.own.update();
     },50);
+    socket.emit('getuser');
+
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
     DOM_EL.loginInstruction.hide();
@@ -324,8 +326,7 @@ class Avatar {  //own avatar and other people's avatars
     socket = io('cotf.cf', {});
     socket.on('connect', function() {
         socket.emit('hello',AVATAR.own);
-        socket.emit('getuser');
-        console.log("connected");		 
+        console.log("connected to server");		 
     });
     socket.on('someone-joined', function(msg) {
         console.log(msg);	
