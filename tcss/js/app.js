@@ -266,6 +266,7 @@ class Avatar {  //own avatar and other people's avatars
       this.lastRecordedActivity = 0;
       this.talkToggleTimer = null;
       this.name = name;
+      this.updateServer = false;
     }
   
 
@@ -274,6 +275,7 @@ class Avatar {  //own avatar and other people's avatars
         // if( P5_SOUND.micThresholdCross === true && millis() - this.lastRecordedActivity < 30000){
         if( P5_SOUND.micThresholdCross === true ) {
             this.lastRecordedActivity = millis();
+            this.updateServer = true;
             if(millis() - this.talkToggleTimer > 300){
                 this.talkToggleTimer = millis();
                 if(this.spriteNumModifier == 1){
@@ -293,6 +295,8 @@ class Avatar {  //own avatar and other people's avatars
         if( abs(this.prevX - this.posX) > 0 || abs(this.prevY - this.posY) > 0 ){
             this.scaleMultiplier = random(0.95,1.05);
             this.lastRecordedActivity = millis();
+            this.updateServer = true;
+            socket.emit('change',this);
         } 
         else{
             this.scaleMultiplier = 1;
@@ -300,7 +304,7 @@ class Avatar {  //own avatar and other people's avatars
         this.prevX = this.posX;
         this.prevY = this.posY;
 
-        textAlign(CENTER,CENTER);
+        textAlign(CENTER);
 
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX, 
@@ -314,12 +318,13 @@ class Avatar {  //own avatar and other people's avatars
              APP_STATE.windowWidth * this.scaleMultiplier /10);
     }
   }
-
+  
 
   function startCon(){
     socket = io('cotf.cf', {});
     socket.on('connect', function() {
         socket.emit('hello',AVATAR.own);
+        socket.emit('getuser');
         console.log("connected");		 
     });
     socket.on('someone-joined', function(msg) {
@@ -329,6 +334,9 @@ class Avatar {  //own avatar and other people's avatars
         console.log(msg);		 		 
     });
     socket.on('someone-left', function(msg) {
+        console.log(msg);	
+    });
+    socket.on('userlist', function(msg) {
         console.log(msg);	
     });
 }
