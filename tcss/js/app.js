@@ -300,6 +300,7 @@ class Avatar {  //own avatar and other people's avatars
         else{
             this.spriteNumModifier = 0;
         }
+        
         if( abs(this.prevX - this.posX) > 0 || abs(this.prevY - this.posY) > 0 ){
             this.scaleMultiplier = random(0.95,1.05);
             this.lastRecordedActivity = millis();
@@ -309,6 +310,7 @@ class Avatar {  //own avatar and other people's avatars
         else{
             this.scaleMultiplier = 1;
         }
+
         this.prevX = this.posX;
         this.prevY = this.posY;
 
@@ -327,6 +329,7 @@ class Avatar {  //own avatar and other people's avatars
         
         if(this.updateServer){
             console.log("update server");
+            this.updateServer = false;
             // socket.emit("update",this);
         }
     }
