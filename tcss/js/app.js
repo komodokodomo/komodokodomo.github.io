@@ -265,7 +265,6 @@ class Avatar {  //own avatar and other people's avatars
         clear();
         // if( P5_SOUND.micThresholdCross === true && millis() - this.lastRecordedActivity < 30000){
         if( P5_SOUND.micThresholdCross === true ) {
-            console.log("audio detected, toggle faces");
             this.lastRecordedActivity = millis();
             if(millis() - this.talkToggleTimer > 300){
                 this.talkToggleTimer = millis();
@@ -279,14 +278,14 @@ class Avatar {  //own avatar and other people's avatars
         }
         else if( P5_SOUND.micThresholdCross === false && millis() - this.lastRecordedActivity > 30000){
             this.spriteNumModifier = 3;
-            console.log("no activity detected, show AFK face");
         }
         else{
-            console.log("no audio detected, show default face");
             this.spriteNumModifier = 0;
         }
-        // DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].show();
-        // DOM_EL.images[this.spriteNum*4 + this.spriteNumModifier].position(this.posX, this.posY);
-        image(CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],this.posX, this.posY);         
+        image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
+                this.posX, 
+                this.posY, 
+                APP_STATE.windowWidth/10,
+                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );         
     }
   }
