@@ -330,7 +330,7 @@ class Avatar {  //own avatar and other people's avatars
         if(this.updateServer){
             console.log("update server");
             this.updateServer = false;
-            // socket.emit("update",this);
+            socket.emit("update",{ name: this.name, X: this.posX , Y: this.posY, talking: this.micThresholdCross ,away: this.AFK });
         }
     }
   }
