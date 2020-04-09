@@ -187,7 +187,7 @@ function login(){
     console.log("enter socketIO server here");
     console.log("Feed in char number + nickname to both local cache and server");
     APP_STATE.loginSuccess = true;
-    AVATAR.own = new Avatar(APP_STATE.spriteNum);
+    AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname);
     setInterval(function(){
         AVATAR.own.update();
     },50);
@@ -249,7 +249,7 @@ function windowResized(){
 }
 
 class Avatar {  //own avatar and other people's avatars 
-    constructor(spriteNum) {
+    constructor(spriteNum , name = "anonymous") {
       this.posX = random(width);
       this.posY = random(height);
       this.prevX = this.posX;
@@ -259,6 +259,7 @@ class Avatar {  //own avatar and other people's avatars
       this.spriteNumModifier = 0;
       this.lastRecordedActivity = 0;
       this.talkToggleTimer = null;
+      this.name = name;
     }
   
 
@@ -297,6 +298,12 @@ class Avatar {  //own avatar and other people's avatars
                 this.posX, 
                 this.posY, 
                 APP_STATE.windowWidth * this.scaleMultiplier /10,
-                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );         
+                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );    
+        
+        text(this.name,
+             this.posX,
+             this.posY + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
+             APP_STATE.windowWidth * this.scaleMultiplier /10,
+             50);
     }
   }
