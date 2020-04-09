@@ -200,6 +200,7 @@ function login(){
 
     setTimeout(function(){
         socket.emit('getuser');
+        console.log("obtaining users");
     },250);
     
     DOM_EL.loginInput.hide();
