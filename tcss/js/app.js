@@ -16,7 +16,7 @@ var DOM_EL = {
 }
 
 var CANVAS_EL = {
-    images: null
+    images: []
 }
 
 
