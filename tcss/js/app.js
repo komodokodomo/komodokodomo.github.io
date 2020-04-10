@@ -289,7 +289,6 @@ class Avatar {  //own avatar and other people's avatars
             this.scaleMultiplier = random(0.95,1.05);
             this.lastRecordedActivity = millis();
             this.updateServer = true;
-            socket.emit('change',this);
         } 
         else{
             this.scaleMultiplier = 1;
