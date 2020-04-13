@@ -17,7 +17,6 @@ var CANVAS_EL = {
     images: []
 }
 
-
 var APP_STATE = {
     windowWidth: null,
     windowHeight: null,
@@ -47,16 +46,7 @@ function preload(){
         console.log("audio ready");
         P5_SOUND.mic = new p5.AudioIn();
         P5_SOUND.mic.start();
-        // setInterval(function(){
-        //     P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
-        //     if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
-        //         P5_SOUND.micThresholdCross = true;
-        //         APP_STATE.redraw = true;
-        //     }
-        //     else{
-        //         P5_SOUND.micThresholdCross = false;
-        //     }
-        // },50);
+
     });
     for( let i = 0; i < APP_STATE.numSprites * 4; i++ ){
         CANVAS_EL.images[i] = loadImage("img/" + i.toString() + ".png");
@@ -189,10 +179,6 @@ function login(){
     }
     AVATAR.own.lastRecordedActivity = millis();
     startCon();  
-    // setInterval(function(){
-    //     // clear();
-        
-    // },50);
     
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
@@ -215,25 +201,25 @@ function draw(){
             P5_SOUND.micThresholdCross = false;
         }
 
+        if(keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW)){
+            APP_STATE.redraw = true;
+        }
+
         if(keyIsDown(LEFT_ARROW)){
             AVATAR.own.posX -= 5;
-            APP_STATE.redraw = true;
         }else if(keyIsDown(RIGHT_ARROW)){
             AVATAR.own.posX += 5;
-            APP_STATE.redraw = true;
         }else if(keyIsDown(UP_ARROW)){
             AVATAR.own.posY -= 5;
-            APP_STATE.redraw = true;
         }else if(keyIsDown(DOWN_ARROW)){
             AVATAR.own.posY += 5;
-            APP_STATE.redraw = true;
         }
     }
     if( APP_STATE.redraw == true){
         AVATAR.own.update();
         APP_STATE.redraw = false;
         clear();
-        AVATAR.own.draw();
+        // AVATAR.own.draw();
         for(let i = 0; i<AVATAR.others.length; i++){
             AVATAR.others[i].draw();
         }
@@ -273,6 +259,7 @@ function windowResized(){
 
 class Avatar {  //own avatar and other people's avatars 
     constructor(spriteNum , name = "anonymous", px, py) {
+      this.name = name;
       this.posX = px;
       this.posY = py;
       this.prevX = this.posX;
@@ -282,7 +269,6 @@ class Avatar {  //own avatar and other people's avatars
       this.spriteNumModifier = 0;
       this.lastRecordedActivity = 0;
       this.talkToggleTimer = null;
-      this.name = name;
       this.updateServer = false;
       this.AFK = false;
     }
@@ -292,8 +278,6 @@ class Avatar {  //own avatar and other people's avatars
         this.posY = py;
         if( talking == true ) {
             this.lastRecordedActivity = millis();
-            // this.AFK = false;
-            // this.updateServer = true;
             if(millis() - this.talkToggleTimer > 300){
                 this.talkToggleTimer = millis();
                 if(this.spriteNumModifier == 1){
@@ -306,10 +290,6 @@ class Avatar {  //own avatar and other people's avatars
         }  
         else if( away ){
             this.spriteNumModifier = 3;
-            // if( this.AFK === false ){
-            //     this.AFK = true;
-            //     this.updateServer = true;
-            // }
         }
         else{
             this.spriteNumModifier = 0;
@@ -326,19 +306,6 @@ class Avatar {  //own avatar and other people's avatars
 
         this.prevX = this.posX;
         this.prevY = this.posY;
-
-        // textAlign(CENTER);
-
-        // image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
-        //         this.posX, 
-        //         this.posY, 
-        //         APP_STATE.windowWidth * this.scaleMultiplier /10,
-        //         CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );    
-        
-        // text(this.name,
-        //      this.posX,
-        //      this.posY + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
-        //      APP_STATE.windowWidth * this.scaleMultiplier /10);
     }
 
     update(){ 
