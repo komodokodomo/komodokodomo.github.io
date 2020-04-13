@@ -322,7 +322,7 @@ class Avatar {  //own avatar and other people's avatars
 //     draw(){
 
 //     }
-//   }
+  }
   
 
   function startCon(){
