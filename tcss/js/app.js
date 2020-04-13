@@ -17,6 +17,10 @@ var CANVAS_EL = {
     images: []
 }
 
+var UTIL = {
+    updateServerTimer: 0
+}
+
 var APP_STATE = {
     windowWidth: null,
     windowHeight: null,
@@ -24,7 +28,10 @@ var APP_STATE = {
     loginSuccess: false,
     spriteNum: 0,
     numSprites: 6,
-    redraw: false
+    lastRecordedActivity,
+    AFK: false,
+    updateServer: false,
+    micThresholdCross: false
 }
 
 var AVATAR ={
@@ -36,7 +43,6 @@ var P5_SOUND = {
     mic: null,
     micLevel: null,
     micThresholdLevel: 0.02,
-    micThresholdCross: false
 }
 
 
@@ -177,7 +183,7 @@ function login(){
     else{
         AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname, random(width), random(height));
     }
-    AVATAR.own.lastRecordedActivity = millis();
+    APP_STATE.lastRecordedActivity = millis();
     startCon();  
     
     DOM_EL.loginInput.hide();
@@ -194,17 +200,18 @@ function draw(){
 
         P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
         if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
-            P5_SOUND.micThresholdCross = true;
-            APP_STATE.redraw = true;
+            APP_STATE.micThresholdCross = true;
+            APP_STATE.updateServer = true;
+            APP_STATE.lastRecordedActivity = millis();
         }
         else{
-            P5_SOUND.micThresholdCross = false;
+            APP_STATE.micThresholdCross = false;
         }
 
         if(keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW)){
-            APP_STATE.redraw = true;
+            APP_STATE.updateServer = true;
+            APP_STATE.lastRecordedActivity = millis();
         }
-
         if(keyIsDown(LEFT_ARROW)){
             AVATAR.own.posX -= 5;
         }else if(keyIsDown(RIGHT_ARROW)){
@@ -214,48 +221,24 @@ function draw(){
         }else if(keyIsDown(DOWN_ARROW)){
             AVATAR.own.posY += 5;
         }
-    }
-    if( APP_STATE.redraw == true){
-        AVATAR.own.update();
-        clear();
-        AVATAR.own.draw();
-        for(let i = 0; i<AVATAR.others.length; i++){
-            AVATAR.others[i].draw();
+
+        if( millis() - APP_STATE.lastRecordedActivity > 30000){
+            APP_STATE.AFK = true;
         }
-        APP_STATE.redraw = false;
+        else{
+            APP_STATE.AFK = false;
+        }
+    }
+    if( APP_STATE.updateServer == true){
+        if(millis() - UTIL.updateServerTimer > 50){
+            UTIL.updateServerTimer = millis();
+            AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
+            socket.emit("update",{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: APP_STATE.micThresholdCross ,away: APP_STATE.AFK });   
+            APP_STATE.updateServer = false;     
+        }
     }
 }
 
-function windowResized(){
-    APP_STATE.windowWidth = window.innerWidth;
-    APP_STATE.windowHeight = window.innerHeight;
-    resizeCanvas(APP_STATE.windowWidth, APP_STATE.windowHeight);
-
-    DOM_EL.loginContainer.position(0,0);
-    DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
-
-    DOM_EL.loginTitle.position(0,0);
-    DOM_EL.loginTitle.size(APP_STATE.windowWidth,APP_STATE.windowHeight/10);
-
-    DOM_EL.loginSliderLeftContainer.position(0,APP_STATE.windowHeight/10);
-    DOM_EL.loginSliderLeftContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
-
-    DOM_EL.loginSliderImageContainer.position(APP_STATE.windowWidth/5,APP_STATE.windowHeight/10);
-    DOM_EL.loginSliderImageContainer.size(APP_STATE.windowWidth*3/5,APP_STATE.windowHeight*4/10);
-
-    DOM_EL.loginSliderRightContainer.position(APP_STATE.windowWidth*4/5,APP_STATE.windowHeight/10);
-    DOM_EL.loginSliderRightContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
-
-    DOM_EL.loginInstruction.position( 0 , APP_STATE.windowHeight * 5.1 / 10 );
-    DOM_EL.loginInstruction.size( APP_STATE.windowWidth, APP_STATE.windowHeight * 1 / 10 );
-
-    DOM_EL.loginInput.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*6/10);
-    DOM_EL.loginInput.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
-
-    DOM_EL.loginButton.position(APP_STATE.windowWidth*3/10,APP_STATE.windowHeight*7.3/10);
-    DOM_EL.loginButton.size(APP_STATE.windowWidth*4/10,APP_STATE.windowHeight*1/10);
-
-}
 
 class Avatar {  //own avatar and other people's avatars 
     constructor(spriteNum , name = "anonymous", px, py) {
@@ -267,17 +250,14 @@ class Avatar {  //own avatar and other people's avatars
       this.scaleMultiplier = null;
       this.spriteNum = spriteNum;
       this.spriteNumModifier = 0;
-      this.lastRecordedActivity = 0;
       this.talkToggleTimer = null;
-      this.updateServer = false;
       this.AFK = false;
     }
   
-    updateOthers(px, py, talking, away){
+    update(px, py, talking, away){
         this.posX = px;
         this.posY = py;
         if( talking == true ) {
-            this.lastRecordedActivity = millis();
             if(millis() - this.talkToggleTimer > 300){
                 this.talkToggleTimer = millis();
                 if(this.spriteNumModifier == 1){
@@ -296,7 +276,6 @@ class Avatar {  //own avatar and other people's avatars
         }
         if( abs(this.prevX - this.posX) > 0 || abs(this.prevY - this.posY) > 0 ){
             this.scaleMultiplier = random(0.95,1.05);
-            this.lastRecordedActivity = millis();
             this.AFK = false;
             this.updateServer = true;
         } 
@@ -308,53 +287,7 @@ class Avatar {  //own avatar and other people's avatars
         this.prevY = this.posY;
     }
 
-    update(){ 
-        // clear();
-        if( P5_SOUND.micThresholdCross === true ) {
-            this.lastRecordedActivity = millis();
-            this.AFK = false;
-            this.updateServer = true;
-            if(millis() - this.talkToggleTimer > 300){
-                this.talkToggleTimer = millis();
-                if(this.spriteNumModifier == 1){
-                    this.spriteNumModifier = 2;
-                }
-                else{
-                    this.spriteNumModifier = 1;
-                }
-            }
-        }
-        else if( P5_SOUND.micThresholdCross === false && millis() - this.lastRecordedActivity > 30000 ){
-            this.spriteNumModifier = 3;
-            if( this.AFK === false ){
-                this.AFK = true;
-                this.updateServer = true;
-            }
-        }
-        else{
-            this.spriteNumModifier = 0;
-        }
-        
-        if( abs(this.prevX - this.posX) > 0 || abs(this.prevY - this.posY) > 0 ){
-            this.scaleMultiplier = random(0.95,1.05);
-            this.lastRecordedActivity = millis();
-            this.AFK = false;
-            this.updateServer = true;
-        } 
-        else{
-            this.scaleMultiplier = 1;
-        }
 
-        this.prevX = this.posX;
-        this.prevY = this.posY;
-
-        if(this.updateServer){
-            this.updateServer = false;
-            socket.emit("update",{ name: this.name, num: this.spriteNum, X: this.posX , Y: this.posY, talking: APP_STATE.micThresholdCross ,away: this.AFK });
-        }
-
-        
-    }
     draw(){
         textAlign(CENTER);
 
@@ -391,7 +324,7 @@ class Avatar {  //own avatar and other people's avatars
     socket.on('someone-change', function(msg) {
         for(let i = 0; i < AVATAR.others.length; i++){
             if(AVATAR.others[i].name === msg.name){
-                    AVATAR.others[i].updateOthers(msg.X, msg.Y, msg.talking, msg.away);
+                    AVATAR.others[i].update(msg.X, msg.Y, msg.talking, msg.away);
                 }
             }
         APP_STATE.redraw = true;
@@ -422,4 +355,36 @@ class Avatar {  //own avatar and other people's avatars
         APP_STATE.redraw = true;
         console.log(AVATAR.others);
     });
+}
+
+
+function windowResized(){
+    APP_STATE.windowWidth = window.innerWidth;
+    APP_STATE.windowHeight = window.innerHeight;
+    resizeCanvas(APP_STATE.windowWidth, APP_STATE.windowHeight);
+
+    DOM_EL.loginContainer.position(0,0);
+    DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
+
+    DOM_EL.loginTitle.position(0,0);
+    DOM_EL.loginTitle.size(APP_STATE.windowWidth,APP_STATE.windowHeight/10);
+
+    DOM_EL.loginSliderLeftContainer.position(0,APP_STATE.windowHeight/10);
+    DOM_EL.loginSliderLeftContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
+
+    DOM_EL.loginSliderImageContainer.position(APP_STATE.windowWidth/5,APP_STATE.windowHeight/10);
+    DOM_EL.loginSliderImageContainer.size(APP_STATE.windowWidth*3/5,APP_STATE.windowHeight*4/10);
+
+    DOM_EL.loginSliderRightContainer.position(APP_STATE.windowWidth*4/5,APP_STATE.windowHeight/10);
+    DOM_EL.loginSliderRightContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
+
+    DOM_EL.loginInstruction.position( 0 , APP_STATE.windowHeight * 5.1 / 10 );
+    DOM_EL.loginInstruction.size( APP_STATE.windowWidth, APP_STATE.windowHeight * 1 / 10 );
+
+    DOM_EL.loginInput.position(APP_STATE.windowWidth*2/10,APP_STATE.windowHeight*6/10);
+    DOM_EL.loginInput.size(APP_STATE.windowWidth*6/10,APP_STATE.windowHeight*1/10);
+
+    DOM_EL.loginButton.position(APP_STATE.windowWidth*3/10,APP_STATE.windowHeight*7.3/10);
+    DOM_EL.loginButton.size(APP_STATE.windowWidth*4/10,APP_STATE.windowHeight*1/10);
+
 }
