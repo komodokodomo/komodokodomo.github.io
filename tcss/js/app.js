@@ -47,16 +47,16 @@ function preload(){
         console.log("audio ready");
         P5_SOUND.mic = new p5.AudioIn();
         P5_SOUND.mic.start();
-        setInterval(function(){
-            P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
-            if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
-                P5_SOUND.micThresholdCross = true;
-                APP_STATE.redraw = true;
-            }
-            else{
-                P5_SOUND.micThresholdCross = false;
-            }
-        },50);
+        // setInterval(function(){
+        //     P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
+        //     if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
+        //         P5_SOUND.micThresholdCross = true;
+        //         APP_STATE.redraw = true;
+        //     }
+        //     else{
+        //         P5_SOUND.micThresholdCross = false;
+        //     }
+        // },50);
     });
     for( let i = 0; i < APP_STATE.numSprites * 4; i++ ){
         CANVAS_EL.images[i] = loadImage("img/" + i.toString() + ".png");
@@ -189,10 +189,10 @@ function login(){
     }
     AVATAR.own.lastRecordedActivity = millis();
     startCon();  
-    setInterval(function(){
-        // clear();
-        AVATAR.own.update();
-    },50);
+    // setInterval(function(){
+    //     // clear();
+        
+    // },50);
     
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
@@ -205,6 +205,16 @@ function login(){
 
 function draw(){
     if(APP_STATE.loginSuccess){
+
+        P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
+        if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
+            P5_SOUND.micThresholdCross = true;
+            APP_STATE.redraw = true;
+        }
+        else{
+            P5_SOUND.micThresholdCross = false;
+        }
+
         if(keyIsDown(LEFT_ARROW)){
             AVATAR.own.posX -= 5;
             APP_STATE.redraw = true;
@@ -220,6 +230,7 @@ function draw(){
         }
     }
     if( APP_STATE.redraw == true){
+        AVATAR.own.update();
         APP_STATE.redraw = false;
         clear();
         AVATAR.own.draw();
@@ -370,19 +381,6 @@ class Avatar {  //own avatar and other people's avatars
         this.prevX = this.posX;
         this.prevY = this.posY;
 
-        // textAlign(CENTER);
-
-        // image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
-        //         this.posX, 
-        //         this.posY, 
-        //         APP_STATE.windowWidth * this.scaleMultiplier /10,
-        //         CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );    
-        
-        // text(this.name,
-        //      this.posX,
-        //      this.posY + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
-        //      APP_STATE.windowWidth * this.scaleMultiplier /10);
-        
         if(this.updateServer){
             this.updateServer = false;
             socket.emit("update",{ name: this.name, num: this.spriteNum, X: this.posX , Y: this.posY, talking: this.micThresholdCross ,away: this.AFK });
@@ -422,20 +420,18 @@ class Avatar {  //own avatar and other people's avatars
     });
 
     socket.on('someone-change', function(msg) {
-        APP_STATE.redraw = true;
         for(let i = 0; i < AVATAR.others.length; i++){
             if(AVATAR.others[i].name === msg.name){
                     AVATAR.others[i].updateOthers(msg.X, msg.Y, msg.talking, msg.away);
                 }
             }
         
-        
+        APP_STATE.redraw = true;
         console.log("activity detected: ");
         console.log(AVATAR.others);
     });
 
     socket.on('someone-left', function(msg) {
-    APP_STATE.redraw = true;
     console.log(msg);	
     let listCopy = AVATAR.others;
     for(let i = 0; i < AVATAR.others.length; i++){
@@ -444,6 +440,7 @@ class Avatar {  //own avatar and other people's avatars
         }
     }
     AVATAR.others = listCopy;
+    APP_STATE.redraw = true;
     console.log("someone left: ");
     console.log(AVATAR.others)
     });
