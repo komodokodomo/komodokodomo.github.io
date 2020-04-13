@@ -178,10 +178,10 @@ function nickname(){
 function login(){
     APP_STATE.loginSuccess = true;
     if(APP_STATE.nickname === null){
-        AVATAR.own = new Avatar(APP_STATE.spriteNum, random(width), random(height));
+        AVATAR.own = new Avatar(APP_STATE.spriteNum, random(1.0), random(1.0));
     }
     else{
-        AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname, random(width), random(height));
+        AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname, random(1.0), random(1.0));
     }
     APP_STATE.lastRecordedActivity = millis();
     startCon();  
