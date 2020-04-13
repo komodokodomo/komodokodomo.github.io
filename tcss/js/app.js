@@ -188,7 +188,11 @@ function login(){
     AVATAR.own.lastRecordedActivity = millis();
     startCon();  
     setInterval(function(){
+        clear();
         AVATAR.own.update();
+        for(let i = 0; i< AVATAR.others.length; i++){
+            AVATAR.others[i].update();
+        }
     },50);
     
     DOM_EL.loginInput.hide();
@@ -263,7 +267,7 @@ class Avatar {  //own avatar and other people's avatars
   
 
     update(){ 
-        clear();
+        // clear();
         if( P5_SOUND.micThresholdCross === true ) {
             this.lastRecordedActivity = millis();
             this.AFK = false;
