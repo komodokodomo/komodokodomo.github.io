@@ -213,14 +213,20 @@ function draw(){
             APP_STATE.lastRecordedActivity = millis();
         }
         if(keyIsDown(LEFT_ARROW)){
-            AVATAR.own.posX -= 5;
+            AVATAR.own.posX -= 0.05;
         }else if(keyIsDown(RIGHT_ARROW)){
-            AVATAR.own.posX += 5;
+            AVATAR.own.posX += 0.05;
         }else if(keyIsDown(UP_ARROW)){
-            AVATAR.own.posY -= 5;
+            AVATAR.own.posY -= 0.05;
         }else if(keyIsDown(DOWN_ARROW)){
-            AVATAR.own.posY += 5;
+            AVATAR.own.posY += 0.05;
         }
+
+        if(AVATAR.own.posY > 1){AVATAR.own.posY = 0;}
+        else if(AVATAR.own.posY < 0){AVATAR.own.posY = 1;}
+
+        if(AVATAR.own.posX > 1){AVATAR.own.posX = 0;}
+        else if(AVATAR.own.posX < 0){AVATAR.own.posX = 1;}
 
         if( millis() - APP_STATE.lastRecordedActivity > 30000){
             APP_STATE.AFK = true;
