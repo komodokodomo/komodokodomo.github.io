@@ -217,12 +217,12 @@ function draw(){
     }
     if( APP_STATE.redraw == true){
         AVATAR.own.update();
-        APP_STATE.redraw = false;
         clear();
         AVATAR.own.draw();
         for(let i = 0; i<AVATAR.others.length; i++){
             AVATAR.others[i].draw();
         }
+        APP_STATE.redraw = false;
     }
 }
 
