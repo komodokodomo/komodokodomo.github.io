@@ -208,7 +208,7 @@ function draw(){
         clear();
         AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
         for(let i = 0; i< AVATAR.others.length; i++){
-            AVATAR.others[i].update();
+            AVATAR.others[i].update(AVATAR.others[i].posX, AVATAR.others[i].posY, AVATAR.others[i].talk, AVATAR.others[i].AFK );
         }
         //update and draw other avatars
 
@@ -273,6 +273,7 @@ class Avatar {  //own avatar and other people's avatars
       this.spriteNumModifier = 0;
       this.talkToggleTimer = null;
       this.AFK = false;
+      this.talk = false;
     }
   
     update(px, py, talking, away){
@@ -342,7 +343,10 @@ class Avatar {  //own avatar and other people's avatars
     socket.on('someone-change', function(msg) {
         for(let i = 0; i < AVATAR.others.length; i++){
             if(AVATAR.others[i].name === msg.name){
-                    AVATAR.others[i].update(msg.X, msg.Y, msg.talking, msg.away);
+                    AVATAR.others[i].posX = msg.X;
+                    AVATAR.others[i].posY = msg.Y;
+                    AVATAR.others[i].talk = msg.talking;
+                    AVATAR.others[i].AFK = msg.away;
                 }
             }
         console.log("activity detected: ");
