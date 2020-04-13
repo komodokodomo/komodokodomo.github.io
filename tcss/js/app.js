@@ -219,7 +219,7 @@ function draw(){
         AVATAR.own.update();
         APP_STATE.redraw = false;
         clear();
-        // AVATAR.own.draw();
+        AVATAR.own.draw();
         for(let i = 0; i<AVATAR.others.length; i++){
             AVATAR.others[i].draw();
         }
@@ -352,6 +352,8 @@ class Avatar {  //own avatar and other people's avatars
             this.updateServer = false;
             socket.emit("update",{ name: this.name, num: this.spriteNum, X: this.posX , Y: this.posY, talking: this.micThresholdCross ,away: this.AFK });
         }
+
+        
     }
     draw(){
         textAlign(CENTER);
@@ -392,7 +394,6 @@ class Avatar {  //own avatar and other people's avatars
                     AVATAR.others[i].updateOthers(msg.X, msg.Y, msg.talking, msg.away);
                 }
             }
-        
         APP_STATE.redraw = true;
         console.log("activity detected: ");
         console.log(AVATAR.others);
