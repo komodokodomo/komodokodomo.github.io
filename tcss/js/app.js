@@ -62,7 +62,14 @@ function preload(){
 function setup(){
     APP_STATE.windowWidth = window.innerWidth;
     APP_STATE.windowHeight = window.innerHeight;
-    DOM_EL.canvas = createCanvas( APP_STATE.windowWidth, APP_STATE.windowHeight);
+
+    if(APP_STATE.windowWidth < APP_STATE.windowHeight){
+        DOM_EL.canvas = createCanvas( APP_STATE.windowWidth, APP_STATE.windowWidth);
+    }
+    else{
+        DOM_EL.canvas = createCanvas( APP_STATE.windowHeight, APP_STATE.windowHeight);
+    }
+
     DOM_EL.canvas.id("canvas");
 
     DOM_EL.loginContainer = createDiv();
