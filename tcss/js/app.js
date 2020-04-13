@@ -180,10 +180,10 @@ function nickname(){
 function login(){
     APP_STATE.loginSuccess = true;
     if(APP_STATE.nickname === null){
-        AVATAR.own = new Avatar(APP_STATE.spriteNum);
+        AVATAR.own = new Avatar(APP_STATE.spriteNum, random(width), random(height));
     }
     else{
-        AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname);
+        AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname, random(width), random(height));
     }
     AVATAR.own.lastRecordedActivity = millis();
     startCon();  
@@ -250,9 +250,9 @@ function windowResized(){
 }
 
 class Avatar {  //own avatar and other people's avatars 
-    constructor(spriteNum , name = "anonymous") {
-      this.posX = random(width);
-      this.posY = random(height);
+    constructor(spriteNum , name = "anonymous", px, py) {
+      this.posX = px;
+      this.posY = py;
       this.prevX = this.posX;
       this.prevY = this.posY;
       this.scaleMultiplier = null;
@@ -337,9 +337,9 @@ class Avatar {  //own avatar and other people's avatars
     });
 
     socket.on('someone-joined', function(msg) {
-        AVATAR.others.push(msg);
+        // AVATAR.others.push(msg);
         console.log("someone joined: ");	
-        console.log(AVATAR.others);	
+        console.log(msg);	
     });
 
     socket.on('someone-change', function(msg) {
@@ -369,9 +369,9 @@ class Avatar {  //own avatar and other people's avatars
     socket.on('userlist', function(msg) {
         console.log("userlist fetched: ");
         for(let i = 0; i < msg.length; i++){
-            AVATAR.others[i] = new Avatar( msg[i].num, msg[i].name );
+            AVATAR.others.push(new Avatar( msg[i].num, msg[i].name, msg[i].X, msg[i].Y) );
         }
-        AVATAR.others = msg;
+        // AVATAR.others = msg;
         console.log(AVATAR.others);
     });
 }
