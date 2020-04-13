@@ -206,7 +206,7 @@ function draw(){
     if(APP_STATE.loginSuccess){
 
         clear();
-        AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
+        // AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
         for(let i = 0; i< AVATAR.others.length; i++){
             AVATAR.others[i].update(AVATAR.others[i].posX, AVATAR.others[i].posY, AVATAR.others[i].talk, AVATAR.others[i].AFK );
         }
@@ -227,13 +227,13 @@ function draw(){
             APP_STATE.lastRecordedActivity = millis();
         }
         if(keyIsDown(LEFT_ARROW)){
-            AVATAR.own.posX -= 0.05;
+            AVATAR.own.posX -= 0.01;
         }else if(keyIsDown(RIGHT_ARROW)){
-            AVATAR.own.posX += 0.05;
+            AVATAR.own.posX += 0.01;
         }else if(keyIsDown(UP_ARROW)){
-            AVATAR.own.posY -= 0.05;
+            AVATAR.own.posY -= 0.01;
         }else if(keyIsDown(DOWN_ARROW)){
-            AVATAR.own.posY += 0.05;
+            AVATAR.own.posY += 0.01;
         }
 
         if(AVATAR.own.posY > 1){AVATAR.own.posY = 0;}
