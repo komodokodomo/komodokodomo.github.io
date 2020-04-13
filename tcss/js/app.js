@@ -243,6 +243,7 @@ function draw(){
         }
     }
     if( APP_STATE.updateServer == true){
+        AVATAR.own.draw();
         if(millis() - UTIL.updateServerTimer > 50){
             UTIL.updateServerTimer = millis();
             AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
