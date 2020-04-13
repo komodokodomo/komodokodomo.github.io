@@ -398,7 +398,7 @@ class Avatar {  //own avatar and other people's avatars
                     AVATAR.others[i].updateOthers(msg.X, msg.Y, msg.talking, msg.away);
                 }
             }
-        }
+        
         
         console.log("activity detected: ");
         console.log(AVATAR.others);
