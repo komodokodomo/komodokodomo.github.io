@@ -333,11 +333,19 @@ class Avatar {  //own avatar and other people's avatars
     });
 
     socket.on('someone-joined', function(msg) {
-        console.log(msg);	
+        AVATAR.others.push(msg);
+        console.log("someone joined: ");	
+        console.log(AVATAR.others);	
     });
 
     socket.on('someone-change', function(msg) {
-        console.log(msg);		 		 
+        for(let i = 0; i < AVATAR.others.length; i++){
+            if(AVATAR.others[i].name === msg.name){
+                AVATAR.others[i] = msg;
+            }
+        }
+        console.log("activity detected: ");
+        console.log(AVATAR.others);
     });
 
     socket.on('someone-left', function(msg) {
@@ -349,10 +357,13 @@ class Avatar {  //own avatar and other people's avatars
         }
     }
     AVATAR.others = listCopy;
+    console.log("someone left: ");
     console.log(AVATAR.others)
     });
 
+
     socket.on('userlist', function(msg) {
+        console.log("userlist fetched: ");
         AVATAR.others = msg;
         console.log(AVATAR.others);
     });
