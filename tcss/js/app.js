@@ -314,18 +314,18 @@ class Avatar {  //own avatar and other people's avatars
         this.prevX = this.posX;
         this.prevY = this.posY;
 
-        textAlign(CENTER);
+
         imageMode(CENTER);
-
-        fill(0);
-        noStroke();
-
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX * width, 
                 this.posY * width, 
                 width * this.scaleMultiplier /10,
                 CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * width/10 / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );    
         
+        imageMode(CORNER);
+        textAlign(CENTER);
+        fill(0);
+        noStroke();
         text(this.name,
              this.posX * width,
              this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * width/10 / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
