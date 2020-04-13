@@ -328,7 +328,7 @@ class Avatar {  //own avatar and other people's avatars
         noStroke();
         text(this.name,
              this.posX * width,
-             this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (width/20) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
+             this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (width/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
              width * this.scaleMultiplier /10);
     }
 
