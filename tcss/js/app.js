@@ -276,10 +276,12 @@ class Avatar {  //own avatar and other people's avatars
                 }
             }
         }
-        else if( P5_SOUND.micThresholdCross === false && millis() - this.lastRecordedActivity > 30000 && this.AFK === false){
+        else if( P5_SOUND.micThresholdCross === false && millis() - this.lastRecordedActivity > 30000 ){
             this.spriteNumModifier = 3;
-            this.AFK = true;
-            this.updateServer = true;
+            if( this.AFK === false ){
+                this.AFK = true;
+                this.updateServer = true;
+            }
         }
         else{
             this.spriteNumModifier = 0;
