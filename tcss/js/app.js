@@ -247,8 +247,9 @@ function draw(){
         if(AVATAR.own.posX > 1){AVATAR.own.posX = 0;}
         else if(AVATAR.own.posX < 0){AVATAR.own.posX = 1;}
 
-        if( millis() - APP_STATE.lastRecordedActivity > 30000){
+        if( millis() - APP_STATE.lastRecordedActivity > 30000 && APP_STATE.AFK == false;){
             APP_STATE.AFK = true;
+            APP_STATE.updateServer = true;
         }
         else{
             APP_STATE.AFK = false;
