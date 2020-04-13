@@ -221,6 +221,7 @@ function draw(){
         if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
             APP_STATE.micThresholdCross = true;
             APP_STATE.updateServer = true;
+            APP_STATE.AFK = false;
             APP_STATE.lastRecordedActivity = millis();
         }
         else{
@@ -229,6 +230,7 @@ function draw(){
 
         if(keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW)){
             APP_STATE.updateServer = true;
+            APP_STATE.AFK = false;
             APP_STATE.lastRecordedActivity = millis();
         }
         if(keyIsDown(LEFT_ARROW)){
@@ -247,14 +249,13 @@ function draw(){
         if(AVATAR.own.posX > 1){AVATAR.own.posX = 0;}
         else if(AVATAR.own.posX < 0){AVATAR.own.posX = 1;}
 
-        if( millis() - APP_STATE.lastRecordedActivity > 30000 && APP_STATE.AFK == false){
+        if( millis() - APP_STATE.lastRecordedActivity > 30000){
+            if(APP_STATE.AFK == false){
             APP_STATE.AFK = true;
             APP_STATE.updateServer = true;
+            }
         }
-        else{
-            APP_STATE.AFK = false;
-        }
-    
+
         if( APP_STATE.updateServer == true){
 
             if(millis() - UTIL.updateServerTimer > 30){
@@ -327,7 +328,7 @@ class Avatar {  //own avatar and other people's avatars
         fill(0);
         noStroke();
         text(this.name,
-             this.posX * width,
+             this.posX * width - width * this.scaleMultiplier/20,
              this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (width/20) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
              width * this.scaleMultiplier /10);
     }
