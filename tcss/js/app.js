@@ -388,6 +388,7 @@ class Avatar {  //own avatar and other people's avatars
 
     socket.on('someone-joined', function(msg) {
         // AVATAR.others.push(msg);
+        AVATAR.others.push(new Avatar( msg[i].num, msg[i].name, msg[i].X, msg[i].Y) );
         console.log("someone joined: ");	
         console.log(msg);	
     });
