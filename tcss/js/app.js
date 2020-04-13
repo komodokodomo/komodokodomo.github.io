@@ -323,7 +323,7 @@ class Avatar {  //own avatar and other people's avatars
                 CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (width/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );    
         
         // rectMode(CENTER);
-        // textAlign(CENTER);
+        textAlign(CENTER);
         fill(0);
         noStroke();
         text(this.name,
