@@ -243,6 +243,7 @@ function draw(){
         }
     }
     if( APP_STATE.updateServer == true){
+        clear();
         AVATAR.own.draw();
         if(millis() - UTIL.updateServerTimer > 50){
             UTIL.updateServerTimer = millis();
@@ -308,13 +309,13 @@ class Avatar {  //own avatar and other people's avatars
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX * width, 
                 this.posY * width, 
-                APP_STATE.windowWidth * this.scaleMultiplier /10,
-                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );    
+                width * this.scaleMultiplier /10,
+                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * width/10 / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );    
         
         text(this.name,
              this.posX * width,
-             this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
-             APP_STATE.windowWidth * this.scaleMultiplier /10);
+             this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * width/10 / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
+             width * this.scaleMultiplier /10);
     }
   }
   
