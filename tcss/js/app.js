@@ -325,21 +325,35 @@ class Avatar {  //own avatar and other people's avatars
 
   function startCon(){
     socket = io('cotf.cf', {});
+
     socket.on('connect', function() {
         socket.emit('hello',{ name: AVATAR.own.name, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: AVATAR.own.micThresholdCross ,away: AVATAR.own.AFK });
         socket.emit('getuser');
         console.log("connected to server");		 
     });
+
     socket.on('someone-joined', function(msg) {
         console.log(msg);	
     });
+
     socket.on('someone-change', function(msg) {
         console.log(msg);		 		 
     });
+
     socket.on('someone-left', function(msg) {
-        console.log(msg);	
+    console.log(msg);	
+    let listCopy = AVATAR.others;
+    for(let i = 0; i < AVATAR.others.length; i++){
+        if(AVATAR.others[i].name === msg){
+        listCopy.splice(i,1);
+        }
+    }
+    AVATAR.others = listCopy;
+    console.log(AVATAR.others)
     });
+
     socket.on('userlist', function(msg) {
-        console.log(msg);	
+        AVATAR.others = msg;
+        console.log(AVATAR.others);
     });
 }
