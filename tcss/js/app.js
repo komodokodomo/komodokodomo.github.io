@@ -256,7 +256,7 @@ function draw(){
     
         if( APP_STATE.updateServer == true){
 
-            if(millis() - UTIL.updateServerTimer > 50){
+            if(millis() - UTIL.updateServerTimer > 30){
                 UTIL.updateServerTimer = millis();
                 socket.emit("update",{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: APP_STATE.micThresholdCross ,away: APP_STATE.AFK });   
                 console.log("own: " + AVATAR.own.posX + ", " + AVATAR.own.posY);
@@ -319,7 +319,7 @@ class Avatar {  //own avatar and other people's avatars
 
         fill(0);
         noStroke();
-        
+
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX * width, 
                 this.posY * width, 
