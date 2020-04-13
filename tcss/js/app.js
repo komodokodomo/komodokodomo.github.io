@@ -185,6 +185,7 @@ function login(){
     else{
         AVATAR.own = new Avatar(APP_STATE.spriteNum, APP_STATE.nickname);
     }
+    AVATAR.own.lastRecordedActivity = millis();
     startCon();  
     setInterval(function(){
         AVATAR.own.update();
@@ -265,6 +266,7 @@ class Avatar {  //own avatar and other people's avatars
         clear();
         if( P5_SOUND.micThresholdCross === true ) {
             this.lastRecordedActivity = millis();
+            this.AFK = false;
             this.updateServer = true;
             if(millis() - this.talkToggleTimer > 300){
                 this.talkToggleTimer = millis();
@@ -290,6 +292,7 @@ class Avatar {  //own avatar and other people's avatars
         if( abs(this.prevX - this.posX) > 0 || abs(this.prevY - this.posY) > 0 ){
             this.scaleMultiplier = random(0.95,1.05);
             this.lastRecordedActivity = millis();
+            this.AFK = false;
             this.updateServer = true;
         } 
         else{
