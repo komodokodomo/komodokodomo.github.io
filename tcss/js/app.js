@@ -370,7 +370,13 @@ class Avatar {  //own avatar and other people's avatars
 function windowResized(){
     APP_STATE.windowWidth = window.innerWidth;
     APP_STATE.windowHeight = window.innerHeight;
-    resizeCanvas(APP_STATE.windowWidth, APP_STATE.windowHeight);
+
+    if(APP_STATE.windowWidth < APP_STATE.windowHeight){
+        resizeCanvas( APP_STATE.windowWidth, APP_STATE.windowWidth);
+    }
+    else{
+        resizeCanvas( APP_STATE.windowHeight, APP_STATE.windowHeight);
+    }
 
     DOM_EL.loginContainer.position(0,0);
     DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
