@@ -190,9 +190,6 @@ function login(){
     setInterval(function(){
         clear();
         AVATAR.own.update();
-        for(let i = 0; i< AVATAR.others.length; i++){
-            AVATAR.others[i].update();
-        }
     },50);
     
     DOM_EL.loginInput.hide();
@@ -265,6 +262,59 @@ class Avatar {  //own avatar and other people's avatars
       this.AFK = false;
     }
   
+    updateOthers(px, py, talking, away){
+        this.posX = px;
+        this.posY = py;
+        if( talking == true ) {
+            this.lastRecordedActivity = millis();
+            // this.AFK = false;
+            // this.updateServer = true;
+            if(millis() - this.talkToggleTimer > 300){
+                this.talkToggleTimer = millis();
+                if(this.spriteNumModifier == 1){
+                    this.spriteNumModifier = 2;
+                }
+                else{
+                    this.spriteNumModifier = 1;
+                }
+            }
+        }  
+        else if( away ){
+            this.spriteNumModifier = 3;
+            // if( this.AFK === false ){
+            //     this.AFK = true;
+            //     this.updateServer = true;
+            // }
+        }
+        else{
+            this.spriteNumModifier = 0;
+        }
+        if( abs(this.prevX - this.posX) > 0 || abs(this.prevY - this.posY) > 0 ){
+            this.scaleMultiplier = random(0.95,1.05);
+            this.lastRecordedActivity = millis();
+            this.AFK = false;
+            this.updateServer = true;
+        } 
+        else{
+            this.scaleMultiplier = 1;
+        }
+
+        this.prevX = this.posX;
+        this.prevY = this.posY;
+
+        textAlign(CENTER);
+
+        image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
+                this.posX, 
+                this.posY, 
+                APP_STATE.windowWidth * this.scaleMultiplier /10,
+                CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );    
+        
+        text(this.name,
+             this.posX,
+             this.posY + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
+             APP_STATE.windowWidth * this.scaleMultiplier /10);
+    }
 
     update(){ 
         // clear();
@@ -345,9 +395,11 @@ class Avatar {  //own avatar and other people's avatars
     socket.on('someone-change', function(msg) {
         for(let i = 0; i < AVATAR.others.length; i++){
             if(AVATAR.others[i].name === msg.name){
-                AVATAR.others[i] = msg;
+                    AVATAR.others[i].updateOthers(msg.X, msg.Y, msg.talking, msg.away);
+                }
             }
         }
+        
         console.log("activity detected: ");
         console.log(AVATAR.others);
     });
