@@ -1,4 +1,3 @@
-import { rejects } from "assert"
 
 var DOM_EL = {
     canvas: null,
