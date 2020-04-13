@@ -215,7 +215,6 @@ function draw(){
         for(let i = 0; i< AVATAR.others.length; i++){
             AVATAR.others[i].update(AVATAR.others[i].posX, AVATAR.others[i].posY, AVATAR.others[i].talk, AVATAR.others[i].AFK );
         }
-        //update and draw other avatars
 
         P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
         if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
@@ -353,7 +352,7 @@ class Avatar {  //own avatar and other people's avatars
 
     socket.on('someone-change', function(msg) {
         for(let i = 0; i < AVATAR.others.length; i++){
-            if(AVATAR.others[i].name === msg.name){
+            if(AVATAR.others[i].name == msg.name){
                     AVATAR.others[i].posX = msg.X;
                     AVATAR.others[i].posY = msg.Y;
                     AVATAR.others[i].talk = msg.talking;
