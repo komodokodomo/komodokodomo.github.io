@@ -254,6 +254,7 @@ function draw(){
             if(millis() - UTIL.updateServerTimer > 50){
                 UTIL.updateServerTimer = millis();
                 socket.emit("update",{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: APP_STATE.micThresholdCross ,away: APP_STATE.AFK });   
+                console.log("own: " + AVATAR.own.posX + ", " + AVATAR.own.posY);
                 APP_STATE.updateServer = false;     
             }
         }
