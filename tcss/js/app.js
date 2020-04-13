@@ -205,6 +205,10 @@ function login(){
 function draw(){
     if(APP_STATE.loginSuccess){
 
+        clear();
+        AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
+        //update and draw other avatars
+
         P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
         if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
             APP_STATE.micThresholdCross = true;
@@ -241,15 +245,14 @@ function draw(){
         else{
             APP_STATE.AFK = false;
         }
-    }
-    if( APP_STATE.updateServer == true){
-        clear();
-        AVATAR.own.draw();
-        if(millis() - UTIL.updateServerTimer > 50){
-            UTIL.updateServerTimer = millis();
-            AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
-            socket.emit("update",{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: APP_STATE.micThresholdCross ,away: APP_STATE.AFK });   
-            APP_STATE.updateServer = false;     
+    
+        if( APP_STATE.updateServer == true){
+
+            if(millis() - UTIL.updateServerTimer > 50){
+                UTIL.updateServerTimer = millis();
+                socket.emit("update",{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: APP_STATE.micThresholdCross ,away: APP_STATE.AFK });   
+                APP_STATE.updateServer = false;     
+            }
         }
     }
 }
@@ -300,10 +303,7 @@ class Avatar {  //own avatar and other people's avatars
 
         this.prevX = this.posX;
         this.prevY = this.posY;
-    }
 
-
-    draw(){
         textAlign(CENTER);
 
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
@@ -317,7 +317,12 @@ class Avatar {  //own avatar and other people's avatars
              this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * width/10 / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
              width * this.scaleMultiplier /10);
     }
-  }
+
+
+//     draw(){
+
+//     }
+//   }
   
 
   function startCon(){
