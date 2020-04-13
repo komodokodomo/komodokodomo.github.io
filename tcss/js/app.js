@@ -365,7 +365,7 @@ class Avatar {  //own avatar and other people's avatars
     socket.on('userlist', function(msg) {
         console.log("userlist fetched: ");
         for(let i = 0; i < msg.length; i++){
-            AVATAR.others[i] = new AVATAR( msg[i].num, msg[i].name );
+            AVATAR.others[i] = new Avatar( msg[i].num, msg[i].name );
         }
         AVATAR.others = msg;
         console.log(AVATAR.others);
