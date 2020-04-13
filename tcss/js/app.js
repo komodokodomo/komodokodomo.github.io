@@ -207,6 +207,9 @@ function draw(){
 
         clear();
         AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
+        for(let i = 0; i< AVATAR.others.length; i++){
+            AVATAR.others[i].update();
+        }
         //update and draw other avatars
 
         P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
@@ -319,9 +322,6 @@ class Avatar {  //own avatar and other people's avatars
     }
 
 
-//     draw(){
-
-//     }
   }
   
 
@@ -346,6 +346,8 @@ class Avatar {  //own avatar and other people's avatars
                 }
             }
         console.log("activity detected: ");
+        console.log(msg);
+        console.log("updated array: ");
         console.log(AVATAR.others);
     });
 
