@@ -188,7 +188,7 @@ function login(){
     AVATAR.own.lastRecordedActivity = millis();
     startCon();  
     setInterval(function(){
-        clear();
+        // clear();
         AVATAR.own.update();
     },50);
     
