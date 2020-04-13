@@ -211,7 +211,7 @@ function draw(){
         noFill();
         strokeWeight(5);
         stroke(0);
-        rect(width/2,height/2,width,height);
+        rect(0,0,width,height);
         for(let i = 0; i< AVATAR.others.length; i++){
             AVATAR.others[i].update(AVATAR.others[i].posX, AVATAR.others[i].posY, AVATAR.others[i].talk, AVATAR.others[i].AFK );
         }
@@ -328,7 +328,7 @@ class Avatar {  //own avatar and other people's avatars
         noStroke();
         text(this.name,
              this.posX * width,
-             this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (width/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
+             this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (width/20) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
              width * this.scaleMultiplier /10);
     }
 
