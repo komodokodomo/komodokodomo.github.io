@@ -28,7 +28,7 @@ var APP_STATE = {
     loginSuccess: false,
     spriteNum: 0,
     numSprites: 6,
-    lastRecordedActivity,
+    lastRecordedActivity: 0,
     AFK: false,
     updateServer: false,
     micThresholdCross: false
@@ -316,7 +316,6 @@ class Avatar {  //own avatar and other people's avatars
 
     socket.on('someone-joined', function(msg) {
         AVATAR.others.push(new Avatar( msg.num, msg.name, msg.X, msg.Y) );
-        APP_STATE.redraw = true;
         console.log("someone joined: ");	
         console.log(msg);	
     });
@@ -327,7 +326,6 @@ class Avatar {  //own avatar and other people's avatars
                     AVATAR.others[i].update(msg.X, msg.Y, msg.talking, msg.away);
                 }
             }
-        APP_STATE.redraw = true;
         console.log("activity detected: ");
         console.log(AVATAR.others);
     });
@@ -341,7 +339,6 @@ class Avatar {  //own avatar and other people's avatars
         }
     }
     AVATAR.others = listCopy;
-    APP_STATE.redraw = true;
     console.log("someone left: ");
     console.log(AVATAR.others)
     });
@@ -352,7 +349,6 @@ class Avatar {  //own avatar and other people's avatars
         for(let i = 0; i < msg.length; i++){
             AVATAR.others.push(new Avatar( msg[i].num, msg[i].name, msg[i].X, msg[i].Y) );
         }
-        APP_STATE.redraw = true;
         console.log(AVATAR.others);
     });
 }
