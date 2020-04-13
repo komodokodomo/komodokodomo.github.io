@@ -64,10 +64,10 @@ function setup(){
     APP_STATE.windowHeight = window.innerHeight;
 
     if(APP_STATE.windowWidth < APP_STATE.windowHeight){
-        DOM_EL.canvas = createCanvas( APP_STATE.windowWidth, APP_STATE.windowWidth);
+        DOM_EL.canvas = createCanvas( APP_STATE.windowWidth * 4 / 5, APP_STATE.windowWidth * 4 / 5);
     }
     else{
-        DOM_EL.canvas = createCanvas( APP_STATE.windowHeight, APP_STATE.windowHeight);
+        DOM_EL.canvas = createCanvas( APP_STATE.windowHeight * 4 / 5, APP_STATE.windowHeight * 4 / 5);
     }
 
     DOM_EL.canvas.id("canvas");
@@ -305,14 +305,14 @@ class Avatar {  //own avatar and other people's avatars
         textAlign(CENTER);
 
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
-                this.posX, 
-                this.posY, 
+                this.posX * width, 
+                this.posY * width, 
                 APP_STATE.windowWidth * this.scaleMultiplier /10,
                 CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width );    
         
         text(this.name,
-             this.posX,
-             this.posY + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
+             this.posX * width,
+             this.posY * width + CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].height * this.scaleMultiplier * (APP_STATE.windowWidth/10) / CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier].width, 
              APP_STATE.windowWidth * this.scaleMultiplier /10);
     }
   }
@@ -372,10 +372,10 @@ function windowResized(){
     APP_STATE.windowHeight = window.innerHeight;
 
     if(APP_STATE.windowWidth < APP_STATE.windowHeight){
-        resizeCanvas( APP_STATE.windowWidth, APP_STATE.windowWidth);
+        resizeCanvas( APP_STATE.windowWidth * 4 / 5, APP_STATE.windowWidth * 4 / 5);
     }
     else{
-        resizeCanvas( APP_STATE.windowHeight, APP_STATE.windowHeight);
+        resizeCanvas( APP_STATE.windowHeight * 4 / 5, APP_STATE.windowHeight * 4 / 5);
     }
 
     DOM_EL.loginContainer.position(0,0);
