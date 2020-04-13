@@ -209,7 +209,7 @@ function draw(){
         clear();
         // AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
         noFill();
-        strokeWeight(3);
+        strokeWeight(5);
         stroke(0);
         rect(0,0,width,height);
         for(let i = 0; i< AVATAR.others.length; i++){
@@ -315,7 +315,11 @@ class Avatar {  //own avatar and other people's avatars
         this.prevY = this.posY;
 
         textAlign(CENTER);
+        imageMode(CENTER);
 
+        fill(0);
+        noStroke();
+        
         image(  CANVAS_EL.images[this.spriteNum*4 + this.spriteNumModifier],
                 this.posX * width, 
                 this.posY * width, 
