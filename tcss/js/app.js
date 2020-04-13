@@ -350,7 +350,7 @@ class Avatar {  //own avatar and other people's avatars
 
         if(this.updateServer){
             this.updateServer = false;
-            socket.emit("update",{ name: this.name, num: this.spriteNum, X: this.posX , Y: this.posY, talking: this.micThresholdCross ,away: this.AFK });
+            socket.emit("update",{ name: this.name, num: this.spriteNum, X: this.posX , Y: this.posY, talking: APP_STATE.micThresholdCross ,away: this.AFK });
         }
 
         
@@ -376,7 +376,7 @@ class Avatar {  //own avatar and other people's avatars
     socket = io('cotf.cf', {});
 
     socket.on('connect', function() {
-        socket.emit('hello',{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: AVATAR.own.micThresholdCross ,away: AVATAR.own.AFK });
+        socket.emit('hello',{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: APP_STATE.micThresholdCross ,away: AVATAR.own.AFK });
         socket.emit('getuser');
         console.log("connected to server");		 
     });
