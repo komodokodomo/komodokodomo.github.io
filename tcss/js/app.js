@@ -185,6 +185,7 @@ function setup(){
     DOM_EL.chatInput = createInput("");
     DOM_EL.chatInput.parent(DOM_EL.chatInputContainer);
     DOM_EL.chatInput.id("chat-input");
+    DOM_EL.chatInput.attribute("placeholder", "Type here to chat...");
 
     DOM_EL.chatInputButton = createButton("Send");
     DOM_EL.chatInputButton.parent(DOM_EL.chatInputContainer);
