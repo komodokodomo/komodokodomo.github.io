@@ -197,7 +197,7 @@ function login(){
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
     DOM_EL.loginInstruction.hide();
-    DOM_EL.loginTitle.hide();
+    // DOM_EL.loginTitle.hide();
     DOM_EL.loginSliderImageContainer.hide();
     DOM_EL.loginSliderLeftContainer.hide();
     DOM_EL.loginSliderRightContainer.hide();
