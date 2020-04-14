@@ -73,9 +73,11 @@ function setup(){
 
     if(APP_STATE.windowWidth < APP_STATE.windowHeight){
         DOM_EL.canvas = createCanvas( APP_STATE.windowWidth * 4 / 5, APP_STATE.windowWidth * 4 / 5);
+        DOM_EL.canvas.position(APP_STATE.windowWidth/10,APP_STATE.windowWidth/10);
     }
     else{
         DOM_EL.canvas = createCanvas( APP_STATE.windowHeight * 4 / 5, APP_STATE.windowHeight * 4 / 5);
+        DOM_EL.canvas.position(APP_STATE.windowHeight/10,APP_STATE.windowHeight/10);
     }
 
     DOM_EL.canvas.id("canvas");
@@ -430,9 +432,11 @@ function windowResized(){
 
     if(APP_STATE.windowWidth < APP_STATE.windowHeight){
         resizeCanvas( APP_STATE.windowWidth * 4 / 5, APP_STATE.windowWidth * 4 / 5);
+        DOM_EL.canvas.position(APP_STATE.windowWidth/10,APP_STATE.windowWidth/10);
     }
     else{
         resizeCanvas( APP_STATE.windowHeight * 4 / 5, APP_STATE.windowHeight * 4 / 5);
+        DOM_EL.canvas.position(APP_STATE.windowHeight/10,APP_STATE.windowHeight/10);
     }
 
     DOM_EL.loginContainer.position(0,0);
