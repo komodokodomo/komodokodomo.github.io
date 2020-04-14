@@ -9,9 +9,16 @@ var DOM_EL = {
     loginSliderRightContainer: null,
     loginSliderArrowLeft: null,
     loginSliderArrowRight: null,
-    images: [],
+    loginImages: [],
     loginInput: null,
-    loginButton: null
+    loginButton: null,
+    chatContainer: null,
+    chatTitle: null,
+    chatUsername: null,
+    chatLog: null,
+    chatInputContainer: null,
+    chatInput: null,
+    chatInputButton: null
 }
 
 var CANVAS_EL = {
@@ -101,15 +108,15 @@ function setup(){
     DOM_EL.loginSliderRightContainer.size(APP_STATE.windowWidth/5,APP_STATE.windowHeight*4/10);
 
     for( let i = 0; i < (APP_STATE.numSprites)*4; i++ ){
-        DOM_EL.images[i] = createImg("img/" + i.toString() + ".png");
-        DOM_EL.images[i].hide();
+        DOM_EL.loginImages[i] = createImg("img/" + i.toString() + ".png");
+        DOM_EL.loginImages[i].hide();
         if( i % 4 === 0 ){
-            DOM_EL.images[i].parent(DOM_EL.loginSliderImageContainer);
-            DOM_EL.images[i].class("slider-image");
+            DOM_EL.loginImages[i].parent(DOM_EL.loginSliderImageContainer);
+            DOM_EL.loginImages[i].class("slider-image");
         }
     }
 
-    DOM_EL.images[0].show();
+    DOM_EL.loginImages[0].show();
 
     DOM_EL.loginSliderArrowLeft = createImg('img/left.png');
     DOM_EL.loginSliderArrowLeft.id("login-slider-arrow-left");
@@ -143,31 +150,58 @@ function setup(){
     DOM_EL.loginInput.parent(DOM_EL.loginContainer);
     DOM_EL.loginButton.parent(DOM_EL.loginContainer);
 
+    DOM_EL.chatContainer = createDiv();
+    DOM_EL.chatContainer.id("chat-container");
+    DOM_EL.chatContainer.hide();
+
+    DOM_EL.chatTitle = createElement('h2', "Chat");
+    DOM_EL.chatTitle.parent(DOM_EL.chatContainer);
+
+    DOM_EL.chatUsername = createSpan();
+    DOM_EL.chatUsername.parent(DOM_EL.chatContainer);
+
+    DOM_EL.chatLog = createElement("ul");
+    DOM_EL.chatLog.parent(DOM_EL.chatContainer);
+    DOM_EL.chatLog.id("chat-log");
+
+    DOM_EL.chatInputContainer = createDiv();
+    DOM_EL.chatInputContainer.parent(DOM_EL.chatContainer);
+    DOM_EL.chatInputContainer.id("chat-input-container");
+
+    DOM_EL.chatInput = createInput("");
+    DOM_EL.chatInput.parent(DOM_EL.chatInputContainer);
+    DOM_EL.chatInput.id("chat-input");
+
+    DOM_EL.chatInputButton = createButton("Send");
+    DOM_EL.chatInputButton.parent(DOM_EL.chatInputContainer);
+    DOM_EL.chatInputButton.id("chat-input-button");
+
+
     var mc = new Hammer(slider);
     mc.on("swipeleft swiperight tap press", function(ev) {
         if(ev.type == "swipeleft") {
-            DOM_EL.images[APP_STATE.spriteNum*4].addClass("left");
+            DOM_EL.loginImages[APP_STATE.spriteNum*4].addClass("left");
             setTimeout(function(){
                 let temp = overflow(APP_STATE.spriteNum - 1);
-                DOM_EL.images[temp * 4].hide();
-                DOM_EL.images[temp * 4].removeClass("left");
+                DOM_EL.loginImages[temp * 4].hide();
+                DOM_EL.loginImages[temp * 4].removeClass("left");
             }
             ,150);
             APP_STATE.spriteNum++;  
             APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);
-            DOM_EL.images[APP_STATE.spriteNum*4].show();
+            DOM_EL.loginImages[APP_STATE.spriteNum*4].show();
 
         } else if(ev.type == "swiperight") {
-            DOM_EL.images[APP_STATE.spriteNum*4].addClass("right");
+            DOM_EL.loginImages[APP_STATE.spriteNum*4].addClass("right");
             setTimeout(function(){
                 let temp = overflow(APP_STATE.spriteNum + 1);
-                DOM_EL.images[temp * 4].hide();
-                DOM_EL.images[temp * 4].removeClass("right");
+                DOM_EL.loginImages[temp * 4].hide();
+                DOM_EL.loginImages[temp * 4].removeClass("right");
             }
             ,150);
             APP_STATE.spriteNum--;  
             APP_STATE.spriteNum = overflow(APP_STATE.spriteNum);  
-            DOM_EL.images[APP_STATE.spriteNum*4].show();
+            DOM_EL.loginImages[APP_STATE.spriteNum*4].show();
         }
     });
 }
