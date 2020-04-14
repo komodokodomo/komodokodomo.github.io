@@ -160,7 +160,7 @@ function setup(){
         DOM_EL.chatContainer.size( APP_STATE.windowWidth *4 / 5, APP_STATE.windowHeight - APP_STATE.windowWidth);
     }
     else{
-        DOM_EL.chatContainer.position( APP_STATE.windowHeight * 9 / 10 ,APP_STATE.windowWidth / 10 );
+        DOM_EL.chatContainer.position( APP_STATE.windowHeight * 9 / 10 ,APP_STATE.windowHeight / 10 );
         DOM_EL.chatContainer.size( APP_STATE.windowWidth - APP_STATE.windowHeight, APP_STATE.windowHeight * 4 / 5);
     }
 
