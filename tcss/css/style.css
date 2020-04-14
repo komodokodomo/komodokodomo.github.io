@@ -118,13 +118,14 @@ body {
     background: lightgray;
 }
 
-#chat-title, #chat-log, #chat-username{
+#chat-title, #chat-username{
     margin: 1rem 0 0 1rem;
 }
 
 #chat-log{
     margin: 1rem;
     height: 100%;
+    bottom: 1.5rem;
 }
 
 
@@ -138,6 +139,8 @@ body {
     position: absolute;
     width: 70%;
     bottom: 0%;
+    height: 1.5rem;
+    box-sizing:border-box;
 }
 
 #chat-input-button{
@@ -145,4 +148,5 @@ body {
     width: 30%;
     right: 0%;
     bottom: 0%;
+    height: 1.5rem;
 }
