@@ -87,6 +87,8 @@ function setup(){
     DOM_EL.loginContainer.id("login-container");
     DOM_EL.loginContainer.position(0,0);
     DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
+    DOM_EL.loginContainer.style("border-width","5px");
+    DOM_EL.loginContainer.style("border","black");
 
     DOM_EL.loginTitle = createDiv("VROOM");
     DOM_EL.loginTitle.id("login-title");
