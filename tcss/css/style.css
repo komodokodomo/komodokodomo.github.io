@@ -115,6 +115,7 @@ body {
 #chat-container{
     border-width: 5px;
     border-color: black;
+    background: lightgray;
 }
 
 #chat-title, #chat-log, #chat-username{
@@ -128,11 +129,12 @@ body {
 }
 
 #chat-input{
-    /* position: absolute; */
+    position: absolute;
     width: 70%;
 }
 
 #chat-input-button{
-    /* position: absolute; */
+    position: absolute;
     width: 30%;
+    right: 0%;
 }
