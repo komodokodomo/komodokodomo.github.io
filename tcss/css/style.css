@@ -133,9 +133,25 @@ body {
     margin: 1rem;
     height: 100%;
     background: white;
-    /* bottom: 1.5rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
+li {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    border-bottom: 1px solid #f2f2f2;
+  }
+
+  .username {
+    color: #666;
+    font-size: 0.75rem;
+    margin: 0 0 0.15rem 0;
+  }
 
 #chat-input-container{
     /* position: absolute; */
@@ -161,3 +177,5 @@ body {
     /* bottom: 0%; */
     height: 1.5rem;
 }
+
+

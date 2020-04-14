@@ -258,6 +258,8 @@ function login(){
 }
 
 function chat(){
+    APP_STATE.chatContent = ""
+
     let listEl = createElement('li');
     let usernameSpanEl = createSpan();
     let textSpanEl = createSpan();
