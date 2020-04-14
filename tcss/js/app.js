@@ -260,7 +260,7 @@ function draw(){
         // AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
         noFill();
         strokeWeight(5);
-        stroke(0);
+        stroke("#f2f2f2");
         rect(0,0,width,height);
         for(let i = 0; i< AVATAR.others.length; i++){
             AVATAR.others[i].update(AVATAR.others[i].posX, AVATAR.others[i].posY, AVATAR.others[i].talk, AVATAR.others[i].AFK );
