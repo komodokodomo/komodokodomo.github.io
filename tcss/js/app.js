@@ -259,7 +259,7 @@ function draw(){
         clear();
         // AVATAR.own.update(AVATAR.own.posX, AVATAR.own.posY, APP_STATE.micThresholdCross, APP_STATE.AFK);
         noFill();
-        strokeWeight(5);
+        strokeWeight(7);
         stroke("#f2f2f2");
         rect(0,0,width,height);
         for(let i = 0; i< AVATAR.others.length; i++){
