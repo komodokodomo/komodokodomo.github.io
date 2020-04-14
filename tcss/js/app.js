@@ -51,7 +51,7 @@ var AVATAR ={
 var P5_SOUND = {
     mic: null,
     micLevel: null,
-    micThresholdLevel: 0.2,
+    micThresholdLevel: 0.03,
 }
 
 
