@@ -258,19 +258,19 @@ function login(){
 }
 
 function chat(){
-    let listEl = document.createElement('li');
-    let usernameSpanEl = document.createElement('span');
-    let textSpanEl = document.createElement('span');
+    let listEl = createElement('li');
+    let usernameSpanEl = createSpan();
+    let textSpanEl = createSpan();
   
-    usernameSpanEl.classList.add('username');
-    usernameSpanEl.innerText = APP_STATE.nickname;
-    textSpanEl.classList.add('text');
-    textSpanEl.innerText = APP_STATE.chatContent;
+    usernameSpanEl.addClass('username');
+    usernameSpanEl.html(APP_STATE.nickname);
+    textSpanEl.addClass('text');
+    textSpanEl.html(APP_STATE.chatContent);
 
-    listEl.appendChild(usernameSpanEl);
-    listEl.appendChild(textSpanEl);
+    listEl.child(usernameSpanEl);
+    listEl.child(textSpanEl);
   
-    DOM_EL.chatLog.appendChild(listEl);
+    DOM_EL.chatLog.child(listEl);
 }
 
 function typing(){
