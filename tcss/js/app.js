@@ -245,6 +245,7 @@ function login(){
     DOM_EL.loginSliderImageContainer.hide();
     DOM_EL.loginSliderLeftContainer.hide();
     DOM_EL.loginSliderRightContainer.hide();
+    DOM_EL.chatContainer.show();
 }
 
 function draw(){
