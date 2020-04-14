@@ -248,7 +248,7 @@ function login(){
     DOM_EL.loginSliderLeftContainer.hide();
     DOM_EL.loginSliderRightContainer.hide();
     DOM_EL.chatContainer.show();
-    DOM_EL.chatUsername.html(APP_STATE.nickname);
+    DOM_EL.chatUsername.html("You are " + APP_STATE.nickname);
 }
 
 function draw(){
