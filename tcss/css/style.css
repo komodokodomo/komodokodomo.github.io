@@ -112,7 +112,15 @@ body {
     fill: lightgrey;
 }
 
+#chat-container{
+    border-width: 5px;
+    border-color: black;
+}
 
 #chat-title, #chat-log, #chat-username{
-margin: 1rem 0 0 1rem;
+    margin: 1rem 0 0 1rem;
+}
+
+#chat-input-container{
+    width: 100%;
 }
