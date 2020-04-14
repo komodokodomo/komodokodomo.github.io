@@ -174,7 +174,7 @@ function setup(){
 
 
 const overflow = function(i){
-    if (i < 0) { i = APP_STATE.numSprites -1; }
+    if (i < 0) { i = APP_STATE.numSprites - 1; }
     else if (i > APP_STATE.numSprites - 1) { i = 0; }
     return i;
   }
@@ -234,11 +234,11 @@ function draw(){
         }
         if(keyIsDown(LEFT_ARROW)){
             AVATAR.own.posX -= 0.01;
-        }else if(keyIsDown(RIGHT_ARROW)){
+        }if(keyIsDown(RIGHT_ARROW)){
             AVATAR.own.posX += 0.01;
-        }else if(keyIsDown(UP_ARROW)){
+        }if(keyIsDown(UP_ARROW)){
             AVATAR.own.posY -= 0.01;
-        }else if(keyIsDown(DOWN_ARROW)){
+        }if(keyIsDown(DOWN_ARROW)){
             AVATAR.own.posY += 0.01;
         }
 
@@ -381,8 +381,9 @@ class Avatar {  //own avatar and other people's avatars
 
     socket.on('userlist', function(msg) {
         console.log("userlist fetched: ");
-        for(let i = 0; i < msg.length; i++){
+        for(let i = 0; i < msg.length; i++){      
             AVATAR.others.push(new Avatar( msg[i].num, msg[i].name, msg[i].X, msg[i].Y) );
+        }
         }
         console.log(AVATAR.others);
     });
