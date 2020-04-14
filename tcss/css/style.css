@@ -113,6 +113,8 @@ body {
 }
 
 #chat-container{
+    display: flex;
+    flex-direction: column;
     border-width: 5px;
     border-color: black;
     background: lightgray;
@@ -130,23 +132,23 @@ body {
 
 
 #chat-input-container{
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
-    bottom: 0%;
+    /* bottom: 0%; */
 }
 
 #chat-input{
-    position: absolute;
+    /* position: absolute; */
     width: 70%;
-    bottom: 0%;
+    /* bottom: 0%; */
     height: 1.5rem;
     box-sizing:border-box;
 }
 
 #chat-input-button{
-    position: absolute;
+    /* position: absolute; */
     width: 30%;
-    right: 0%;
-    bottom: 0%;
+    /* right: 0%; */
+    /* bottom: 0%; */
     height: 1.5rem;
 }
