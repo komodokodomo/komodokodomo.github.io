@@ -469,21 +469,19 @@ class Avatar {  //own avatar and other people's avatars
 
     socket.on('chat-received', function(msg) {
 
-        console.log(msg);
-
-        // let listEl = createElement('li');
-        // let usernameSpanEl = createSpan();
-        // let textSpanEl = createSpan();
+        let listEl = createElement('li');
+        let usernameSpanEl = createSpan();
+        let textSpanEl = createSpan();
       
-        // usernameSpanEl.addClass('username');
-        // usernameSpanEl.html(msg.payload.name);
-        // textSpanEl.addClass('text');
-        // textSpanEl.html(msg.payload.content);
+        usernameSpanEl.addClass('username');
+        usernameSpanEl.html(msg.name);
+        textSpanEl.addClass('text');
+        textSpanEl.html(msg.content);
     
-        // listEl.child(usernameSpanEl);
-        // listEl.child(textSpanEl);
+        listEl.child(usernameSpanEl);
+        listEl.child(textSpanEl);
       
-        // DOM_EL.chatLog.child(listEl);
+        DOM_EL.chatLog.child(listEl);
     });
 }
 
