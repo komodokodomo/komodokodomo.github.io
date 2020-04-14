@@ -273,7 +273,7 @@ function chat(){
     DOM_EL.chatLog.child(listEl);
 
     APP_STATE.chatContent = "";
-    document.getElementById("chat-input").reset();
+    DOM_EL.chatInput.value('');
 }
 
 function typing(){
