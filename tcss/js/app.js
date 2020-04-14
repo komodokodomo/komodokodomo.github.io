@@ -442,11 +442,16 @@ function windowResized(){
     if(APP_STATE.windowWidth < APP_STATE.windowHeight){
         resizeCanvas( APP_STATE.windowWidth * 4 / 5, APP_STATE.windowWidth * 4 / 5);
         DOM_EL.canvas.position(APP_STATE.windowWidth/10,APP_STATE.windowWidth/10);
+        DOM_EL.chatContainer.position( APP_STATE.windowWidth / 10 ,APP_STATE.windowWidth *9 / 10 );
+        DOM_EL.chatContainer.size( APP_STATE.windowWidth *4 / 5, APP_STATE.windowHeight - APP_STATE.windowWidth);
     }
     else{
         resizeCanvas( APP_STATE.windowHeight * 4 / 5, APP_STATE.windowHeight * 4 / 5);
         DOM_EL.canvas.position(APP_STATE.windowHeight/10,APP_STATE.windowHeight/10);
+        DOM_EL.chatContainer.position( APP_STATE.windowHeight * 9 / 10 ,APP_STATE.windowHeight / 10 );
+        DOM_EL.chatContainer.size( APP_STATE.windowWidth - APP_STATE.windowHeight, APP_STATE.windowHeight * 4 / 5);
     }
+
 
     DOM_EL.loginContainer.position(0,0);
     DOM_EL.loginContainer.size(APP_STATE.windowWidth,APP_STATE.windowHeight);
