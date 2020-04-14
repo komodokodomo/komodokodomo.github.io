@@ -418,7 +418,7 @@ class Avatar {  //own avatar and other people's avatars
         for(let i = 0; i < msg.length; i++){      
             AVATAR.others.push(new Avatar( msg[i].num, msg[i].name, msg[i].X, msg[i].Y) );
         }
-        }
+        
         console.log(AVATAR.others);
     });
 }
