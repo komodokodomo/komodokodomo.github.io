@@ -79,11 +79,6 @@ body {
     translate: -50%;
 }
 
-/* .right,.left {
-    opacity: 0;
-    transition: ease-out;
-    transition-duration: 240ms;
-} */
 
 .right{
     opacity: 0;
@@ -114,7 +109,10 @@ body {
 }
     
 #login-button{
-    /* font-family: 'Courier New', Courier, monospace;
-    font-weight: 900; */
     fill: lightgrey;
+}
+
+
+#chat-title, #chat-log, #chat-username{
+margin: 1rem 0 0 1rem;
 }

@@ -166,9 +166,11 @@ function setup(){
 
     DOM_EL.chatTitle = createElement('h2', "Chat");
     DOM_EL.chatTitle.parent(DOM_EL.chatContainer);
+    DOM_EL.chatTitle.id("chat-title");
 
     DOM_EL.chatUsername = createSpan();
     DOM_EL.chatUsername.parent(DOM_EL.chatContainer);
+    DOM_EL.chatUsername.id("chat-username");
 
     DOM_EL.chatLog = createElement("ul");
     DOM_EL.chatLog.parent(DOM_EL.chatContainer);
