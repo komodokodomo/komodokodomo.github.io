@@ -258,24 +258,26 @@ function login(){
 }
 
 function chat(){
-    let listEl = createElement('li');
-    let usernameSpanEl = createSpan();
-    let textSpanEl = createSpan();
-  
-    usernameSpanEl.addClass('username');
-    usernameSpanEl.html(APP_STATE.nickname);
-    textSpanEl.addClass('text');
-    textSpanEl.html(APP_STATE.chatContent);
+    if(APP_STATE.chatContent.length>0){
+        let listEl = createElement('li');
+        let usernameSpanEl = createSpan();
+        let textSpanEl = createSpan();
+    
+        usernameSpanEl.addClass('username');
+        usernameSpanEl.html(APP_STATE.nickname);
+        textSpanEl.addClass('text');
+        textSpanEl.html(APP_STATE.chatContent);
 
-    listEl.child(usernameSpanEl);
-    listEl.child(textSpanEl);
-  
-    DOM_EL.chatLog.child(listEl);
+        listEl.child(usernameSpanEl);
+        listEl.child(textSpanEl);
+    
+        DOM_EL.chatLog.child(listEl);
 
-    socket.emit("chat-event",{name: APP_STATE.nickname,content: APP_STATE.chatContent});
+        socket.emit("chat-event",{name: APP_STATE.nickname,content: APP_STATE.chatContent});
 
-    APP_STATE.chatContent = "";
-    DOM_EL.chatInput.value('');
+        APP_STATE.chatContent = "";
+        DOM_EL.chatInput.value('');
+    }
 }
 
 function typing(){
@@ -319,6 +321,9 @@ function draw(){
             AVATAR.own.posY -= 0.01;
         }if(keyIsDown(DOWN_ARROW)){
             AVATAR.own.posY += 0.01;
+        }
+        if(keyIsDown(ENTER)){
+            chat();
         }
 
         if(AVATAR.own.posY > 1){AVATAR.own.posY = 0;}
