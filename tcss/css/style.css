@@ -126,3 +126,13 @@ body {
     width: 100%;
     bottom: 0%;
 }
+
+#chat-input{
+    /* position: absolute; */
+    width: 70%;
+}
+
+#chat-input-button{
+    /* position: absolute; */
+    width: 30%;
+}
