@@ -258,8 +258,6 @@ function login(){
 }
 
 function chat(){
-    APP_STATE.chatContent = ""
-
     let listEl = createElement('li');
     let usernameSpanEl = createSpan();
     let textSpanEl = createSpan();
@@ -273,6 +271,9 @@ function chat(){
     listEl.child(textSpanEl);
   
     DOM_EL.chatLog.child(listEl);
+
+    APP_STATE.chatContent = "";
+    document.getElementById("chat-input").reset();
 }
 
 function typing(){
