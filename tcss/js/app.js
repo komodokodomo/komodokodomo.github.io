@@ -272,7 +272,7 @@ function chat(){
   
     DOM_EL.chatLog.child(listEl);
 
-    socket.emit("chat-event",APP_STATE.nickname,APP_STATE.chatContent);
+    socket.emit("chat-event",{name: APP_STATE.nickname,content: APP_STATE.chatContent});
 
     APP_STATE.chatContent = "";
     DOM_EL.chatInput.value('');
