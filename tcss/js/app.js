@@ -273,6 +273,8 @@ function chat(){
     
         DOM_EL.chatLog.child(listEl);
 
+        listEl.elt.scrollIntoView();
+
         socket.emit("chat-event",{name: APP_STATE.nickname,content: APP_STATE.chatContent});
 
         APP_STATE.chatContent = "";
@@ -491,6 +493,7 @@ class Avatar {  //own avatar and other people's avatars
         listEl.child(textSpanEl);
       
         DOM_EL.chatLog.child(listEl);
+        listEl.elt.scrollIntoView();
     });
 }
 
