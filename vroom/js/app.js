@@ -98,7 +98,7 @@ function createAudio(stream) {
     var audio = document.body.createElement('audio');
     container.appendChild(audio);
     audio.autoplay = true;
-    audio.controls = false;
+    // audio.controls = false;
     audio.src = URL.createObjectURL(stream);
     } catch (error) {
         console.error(error);
