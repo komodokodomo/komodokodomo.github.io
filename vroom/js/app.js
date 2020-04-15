@@ -94,12 +94,9 @@ function addUser(name){
 
 function createAudio(stream) {
     try {
-    //stream some audio here
-    var container = document.createElement('div');
-    var audio = document.createElement('audio');
-
+    var container = document.body.createElement('div');
+    var audio = document.body.createElement('audio');
     container.appendChild(audio);
-    // document.getElementById('participants').appendChild(container);
     audio.autoplay = true;
     audio.controls = false;
     audio.src = URL.createObjectURL(stream);
