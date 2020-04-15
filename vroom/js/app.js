@@ -95,11 +95,10 @@ function addUser(name){
 function createAudio(stream) {
     try {
     var container = createDiv();
-    var audio = createElement('audio');
+    var audio = createAudio(URL.createObjectURL(stream));
     container.child(audio);
-    audio.attribute("autoplay","true");
-    audio.attribute("controls","false");
-    audio.attribute("src",URL.createObjectURL(stream));
+    audio.autoplay(true);
+    // audio.attribute("controls","false");
     // audio.autoplay = true;
     // audio.controls = false;
     // audio.src = URL.createObjectURL(stream);
