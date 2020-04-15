@@ -81,11 +81,9 @@ function register() {
     
 function addUser(name){
     try {
-        // var name = document.getElementById('add').value;
-        // document.getElementById('add').value = "";    
-
         var call = peer.call("VROOM_"+ name, myStream);
         call.on('stream', function(remoteStream) {
+            console.log("call received")
             createAudio(remoteStream);
         });    
     } catch (error) {
@@ -494,6 +492,7 @@ class Avatar {  //own avatar and other people's avatars
         console.log(msg);
         if(msg.name !== APP_STATE.nickname){
             addUser(msg.name);	
+            console.log("creating webRTC connection with: " + msg.name);
         }
     });
 
