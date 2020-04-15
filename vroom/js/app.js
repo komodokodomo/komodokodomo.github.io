@@ -109,18 +109,20 @@ function createAudio(stream) {
 
 function preload(){
 
-    userStartAudio().then(function() {  
-        console.log("audio ready");
-        P5_SOUND.mic = new p5.AudioIn();
-        P5_SOUND.mic.start();
-
-    });
     for( let i = 0; i < APP_STATE.numSprites * 4; i++ ){
         CANVAS_EL.images[i] = loadImage("img/" + i.toString() + ".png");
     }
 }
 
 function setup(){
+    
+    userStartAudio().then(function() {  
+        console.log("audio ready");
+        P5_SOUND.mic = new p5.AudioIn();
+        P5_SOUND.mic.start();
+
+    });
+
     APP_STATE.windowWidth = window.innerWidth;
     APP_STATE.windowHeight = window.innerHeight;
 
