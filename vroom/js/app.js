@@ -95,7 +95,7 @@ function createAudio(stream) {
     try {
     //stream some audio here
     var container = document.createElement('div');
-    var audio = document.createElement('video');
+    var audio = document.createElement('audio');
 
     container.appendChild(audio);
     // document.getElementById('participants').appendChild(container);
