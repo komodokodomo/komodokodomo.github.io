@@ -492,7 +492,9 @@ class Avatar {  //own avatar and other people's avatars
         AVATAR.others.push(new Avatar( msg.num, msg.name, msg.X, msg.Y) );
         console.log("someone joined: ");	
         console.log(msg);
-        addUser(msg.name);	
+        if(msg.name !== APP_STATE.nickname{
+            addUser(msg.name);	
+        }
     });
 
     socket.on('someone-change', function(msg) {
