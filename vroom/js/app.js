@@ -54,6 +54,60 @@ var P5_SOUND = {
     micThresholdLevel: 0.03,
 }
 
+var peer;
+var myStream;
+
+function register() {
+    try {
+        peer = new Peer("VROOM_" + APP_STATE.nickname);   
+        navigator.getUserMedia({video: false, audio: true}, function(stream) {
+            myStream = stream;
+
+            peer.on('call', function(call) {
+                call.answer(myStream); 
+                call.on('stream', function(remoteStream) {
+                    createAudio(remoteStream);
+                });
+            });
+
+        }, function(err) {
+            console.log('Failed to get local stream' ,err);
+        });
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+    
+function addUser(name){
+    try {
+        // var name = document.getElementById('add').value;
+        // document.getElementById('add').value = "";    
+
+        var call = peer.call("VROOM_"+ name, myStream);
+        call.on('stream', function(remoteStream) {
+            createAudio(remoteStream);
+        });    
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function createAudio(stream) {
+    try {
+    //stream some audio here
+    var container = document.createElement('div');
+    var audio = document.createElement('video');
+
+    container.appendChild(audio);
+    // document.getElementById('participants').appendChild(container);
+    audio.autoplay = true;
+    audio.controls = false;
+    audio.src = URL.createObjectURL(stream);
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 function preload(){
 
@@ -432,12 +486,14 @@ class Avatar {  //own avatar and other people's avatars
     socket.on('connect', function() {
         socket.emit('hello',{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: APP_STATE.micThresholdCross ,away: AVATAR.own.AFK });
         socket.emit('fetch-userlist');
+        register();
     });
 
     socket.on('someone-joined', function(msg) {
         AVATAR.others.push(new Avatar( msg.num, msg.name, msg.X, msg.Y) );
         console.log("someone joined: ");	
-        console.log(msg);	
+        console.log(msg);
+        addUser(msg.name);	
     });
 
     socket.on('someone-change', function(msg) {
