@@ -65,6 +65,7 @@ function register() {
 
             peer.on('call', function(call) {
                 call.answer(myStream); 
+                console.log("call received");
                 call.on('stream', function(remoteStream) {
                     createAudio(remoteStream);
                 });
@@ -83,7 +84,7 @@ function addUser(name){
     try {
         var call = peer.call("VROOM_"+ name, myStream);
         call.on('stream', function(remoteStream) {
-            console.log("call received")
+            console.log("call replied")
             createAudio(remoteStream);
         });    
     } catch (error) {
@@ -115,7 +116,7 @@ function preload(){
 }
 
 function setup(){
-    
+
     userStartAudio().then(function() {  
         console.log("audio ready");
         P5_SOUND.mic = new p5.AudioIn();
