@@ -277,6 +277,10 @@ function chat(){
 
         APP_STATE.chatContent = "";
         DOM_EL.chatInput.value('');
+
+        APP_STATE.updateServer = true;
+        APP_STATE.AFK = false;
+        APP_STATE.lastRecordedActivity = millis();
     }
 }
 
@@ -308,7 +312,7 @@ function draw(){
             APP_STATE.micThresholdCross = false;
         }
 
-        if(keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW)){
+        if(keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW) || keyIsDown(ENTER)){
             APP_STATE.updateServer = true;
             APP_STATE.AFK = false;
             APP_STATE.lastRecordedActivity = millis();
