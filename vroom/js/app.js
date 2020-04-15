@@ -51,7 +51,7 @@ var AVATAR ={
 var P5_SOUND = {
     mic: null,
     micLevel: null,
-    micThresholdLevel: 0.03,
+    micThresholdLevel: 0.05,
 }
 
 var peer;
@@ -404,7 +404,6 @@ function draw(){
             if(millis() - UTIL.updateServerTimer > 30){
                 UTIL.updateServerTimer = millis();
                 socket.emit("update",{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: APP_STATE.micThresholdCross ,away: APP_STATE.AFK });   
-                console.log("own: " + AVATAR.own.posX + ", " + AVATAR.own.posY);
                 APP_STATE.updateServer = false;     
             }
         }
@@ -505,10 +504,10 @@ class Avatar {  //own avatar and other people's avatars
                     AVATAR.others[i].AFK = msg.away;
                 }
             }
-        console.log("activity detected: ");
-        console.log(msg);
-        console.log("updated array: ");
-        console.log(AVATAR.others);
+        // console.log("activity detected: ");
+        // console.log(msg);
+        // console.log("updated array: ");
+        // console.log(AVATAR.others);
     });
 
     socket.on('someone-left', function(msg) {
