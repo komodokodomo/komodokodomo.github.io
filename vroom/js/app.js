@@ -71,7 +71,7 @@ var myStream;
 
 function register() {
     try {
-        peer = new Peer("VROOM_" + APP_STATE.nickname, {key: 'lwjd5qra8257b9', debug: 2});   
+        peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
         navigator.getUserMedia({video: false, audio: true}, function(stream) {
             myStream = stream;
 
