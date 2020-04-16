@@ -133,13 +133,14 @@ function addUser(name){
 function createAudio(stream) {
     try {
     // var container = createDiv();
-    console.log(URL.createObjectURL(stream));
     // var audio = createAudio(URL.createObjectURL(stream));
-    var audio = createAudio();
-    audio.elt.srcObject = stream;
-    audio.id("test");
+    var AUDIOSTREAM = createAudio();
+    AUDIOSTREAM.elt.srcObject = stream;
+    AUDIOSTREAM.id("test");
     // container.child(audio);
-    audio.autoplay(true);
+    AUDIOSTREAM.autoplay(true);
+    console.log(AUDIOSTREAM);
+
     // audio.attribute("controls","false");
     // audio.autoplay = true;
     // audio.controls = false;
