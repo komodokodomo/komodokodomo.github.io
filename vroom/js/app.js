@@ -314,6 +314,7 @@ function login(){
     }
     APP_STATE.lastRecordedActivity = millis();
     startCon();  
+    register();
     
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
@@ -500,7 +501,6 @@ class Avatar {  //own avatar and other people's avatars
     socket.on('connect', function() {
         socket.emit('hello',{ name: AVATAR.own.name, num: AVATAR.own.spriteNum, X: AVATAR.own.posX , Y: AVATAR.own.posY, talking: APP_STATE.micThresholdCross ,away: AVATAR.own.AFK });
         socket.emit('fetch-userlist');
-        register();
     });
 
     socket.on('someone-joined', function(msg) {
