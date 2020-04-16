@@ -74,6 +74,7 @@ async function register() {
   
     try {
       stream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});
+      console.log(stream);
       peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
