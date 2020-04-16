@@ -72,7 +72,7 @@ var myStream;
 function register() {
     try {
         peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
-        navigator.getUserMedia({video: false, audio: true}, function(stream) {
+        navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
             myStream = stream;
 
             peer.on('call', function(call) {
@@ -110,7 +110,7 @@ function addUser(name){
 function createAudio(stream) {
     try {
     // var container = createDiv();
-    console.log(URL.createObjectURL(stream))
+    console.log(URL.createObjectURL(stream));
     var audio = createAudio(URL.createObjectURL(stream));
     audio.id("test");
     // container.child(audio);
