@@ -74,7 +74,7 @@ async function register() {
     try {
       myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});
       console.log(myStream);
-      peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
+      peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 3});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
         call.answer(myStream); 
@@ -120,7 +120,7 @@ async function register() {
     
 function addUser(name){
     try {
-        var call = peer.call("VROOM_"+ name, myStream);
+        var call = peer.call("COTF_"+ name, myStream);
         call.on('stream', function(remoteStream) {
             console.log("call replied by " + call.peer)
             createAudio(remoteStream);
