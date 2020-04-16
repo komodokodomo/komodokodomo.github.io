@@ -70,29 +70,11 @@ var myStream;
 //   });
 
 function register() {
-    // try {
-    //     peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
-    //     navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
-    //         myStream = stream;
+    try {
+        peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
+        // navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
+            // myStream = stream;
 
-    //         peer.on('call', function(call) {
-    //             // Answer the call, providing our mediaStream
-    //             call.answer(myStream); 
-    //             console.log("call received from " + call.peer);
-    //             call.on('stream', function(remoteStream) {
-    //                 // `stream` is the MediaStream of the remote peer.
-    //                 // Here you'd add it to an HTML video/canvas element.
-    //                 createAudio(remoteStream);
-    //             });
-    //         });
-
-    //     }, function(err) {
-    //         console.log('Failed to get local stream' ,err);
-    //     });
-
-    // } catch (error) {
-    //     console.error(error);
-    // }
             peer.on('call', function(call) {
                 // Answer the call, providing our mediaStream
                 call.answer(P5_SOUND.mic); 
@@ -103,6 +85,14 @@ function register() {
                     createAudio(remoteStream);
                 });
             });
+
+        // }, function(err) {
+        //     console.log('Failed to get local stream' ,err);
+        // });
+
+    } catch (error) {
+        console.error(error);
+    }
 }
     
 function addUser(name){
