@@ -76,9 +76,12 @@ function register() {
             myStream = stream;
 
             peer.on('call', function(call) {
+                // Answer the call, providing our mediaStream
                 call.answer(myStream); 
-                console.log("call received");
+                console.log("call received from " + call.peer);
                 call.on('stream', function(remoteStream) {
+                    // `stream` is the MediaStream of the remote peer.
+                    // Here you'd add it to an HTML video/canvas element.
                     createAudio(remoteStream);
                 });
             });
@@ -96,7 +99,7 @@ function addUser(name){
     try {
         var call = peer.call("VROOM_"+ name, myStream);
         call.on('stream', function(remoteStream) {
-            console.log("call replied")
+            console.log("call replied by " + call.peer)
             createAudio(remoteStream);
         });    
     } catch (error) {
