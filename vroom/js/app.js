@@ -78,7 +78,7 @@ async function register() {
       peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
-        call.answer(myStream); 
+        call.answer(stream); 
         console.log("call received from " + call.peer);
         call.on('stream', function(remoteStream) {
             // `stream` is the MediaStream of the remote peer.
