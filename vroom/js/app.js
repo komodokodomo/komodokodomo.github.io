@@ -69,31 +69,54 @@ var myStream;
     // Here you'd add it to an HTML video/canvas element.
 //   });
 
-function register() {
+async function register() {
+    let stream = null;
+  
     try {
-        peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
-        navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
-            myStream = stream;
-
-            peer.on('call', function(call) {
-                // Answer the call, providing our mediaStream
-                call.answer(myStream); 
-                console.log("call received from " + call.peer);
-                call.on('stream', function(remoteStream) {
-                    // `stream` is the MediaStream of the remote peer.
-                    // Here you'd add it to an HTML video/canvas element.
-                    createAudio(remoteStream);
-                });
-            });
-
-        }, function(err) {
-            console.log('Failed to get local stream' ,err);
+      stream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});
+      peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
+      peer.on('call', function(call) {
+        // Answer the call, providing our mediaStream
+        call.answer(myStream); 
+        console.log("call received from " + call.peer);
+        call.on('stream', function(remoteStream) {
+            // `stream` is the MediaStream of the remote peer.
+            // Here you'd add it to an HTML video/canvas element.
+            createAudio(remoteStream);
         });
-
-    } catch (error) {
+    });
+      /* use the stream */
+    } catch(err) {
         console.error(error);
+      /* handle the error */
     }
-}
+  }
+
+// function register() {
+//     try {
+//         peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
+//         navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
+//             myStream = stream;
+
+//             peer.on('call', function(call) {
+//                 // Answer the call, providing our mediaStream
+//                 call.answer(myStream); 
+//                 console.log("call received from " + call.peer);
+//                 call.on('stream', function(remoteStream) {
+//                     // `stream` is the MediaStream of the remote peer.
+//                     // Here you'd add it to an HTML video/canvas element.
+//                     createAudio(remoteStream);
+//                 });
+//             });
+
+//         }, function(err) {
+//             console.log('Failed to get local stream' ,err);
+//         });
+
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
     
 function addUser(name){
     try {
@@ -316,7 +339,7 @@ function login(){
     }
     APP_STATE.lastRecordedActivity = millis();
     startCon();  
-    register();
+    await register();
     
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
