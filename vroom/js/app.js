@@ -57,6 +57,18 @@ var P5_SOUND = {
 var peer;
 var myStream;
 
+// var call = peer.call('dest-peer-id', mediaStream);
+
+// peer.on('call', function(call) {
+//     // Answer the call, providing our mediaStream
+//     call.answer(mediaStream);
+//   });
+
+// call.on('stream', function(stream) {
+    // `stream` is the MediaStream of the remote peer.
+    // Here you'd add it to an HTML video/canvas element.
+//   });
+
 function register() {
     try {
         peer = new Peer("VROOM_" + APP_STATE.nickname, {key: 'lwjd5qra8257b9'});   
