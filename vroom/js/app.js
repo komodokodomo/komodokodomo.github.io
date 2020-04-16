@@ -339,7 +339,7 @@ function login(){
     }
     APP_STATE.lastRecordedActivity = millis();
     startCon();  
-    await register();
+    register();
     
     DOM_EL.loginInput.hide();
     DOM_EL.loginButton.hide();
