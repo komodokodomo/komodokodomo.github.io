@@ -109,9 +109,10 @@ function addUser(name){
 
 function createAudio(stream) {
     try {
-    var container = createDiv();
+    // var container = createDiv();
     var audio = createAudio(URL.createObjectURL(stream));
-    container.child(audio);
+    audio.id("test");
+    // container.child(audio);
     audio.autoplay(true);
     // audio.attribute("controls","false");
     // audio.autoplay = true;
