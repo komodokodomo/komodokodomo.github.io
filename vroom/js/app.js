@@ -134,7 +134,9 @@ function createAudio(stream) {
     try {
     // var container = createDiv();
     console.log(URL.createObjectURL(stream));
-    var audio = createAudio(URL.createObjectURL(stream));
+    // var audio = createAudio(URL.createObjectURL(stream));
+    var audio = createAudio();
+    audio.elt.srcObject = stream;
     audio.id("test");
     // container.child(audio);
     audio.autoplay(true);
