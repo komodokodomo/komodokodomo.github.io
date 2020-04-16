@@ -72,12 +72,12 @@ var myStream;
 function register() {
     try {
         peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
-        // navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
-            // myStream = stream;
+        navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
+            myStream = stream;
 
             peer.on('call', function(call) {
                 // Answer the call, providing our mediaStream
-                call.answer(P5_SOUND.mic); 
+                call.answer(myStream); 
                 console.log("call received from " + call.peer);
                 call.on('stream', function(remoteStream) {
                     // `stream` is the MediaStream of the remote peer.
@@ -86,9 +86,9 @@ function register() {
                 });
             });
 
-        // }, function(err) {
-        //     console.log('Failed to get local stream' ,err);
-        // });
+        }, function(err) {
+            console.log('Failed to get local stream' ,err);
+        });
 
     } catch (error) {
         console.error(error);
