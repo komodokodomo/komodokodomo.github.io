@@ -70,15 +70,14 @@ var myStream;
 //   });
 
 async function register() {
-    let stream = null;
   
     try {
-      stream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});
+      myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});
       console.log(stream);
       peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
-        call.answer(stream); 
+        call.answer(myStream); 
         console.log("call received from " + call.peer);
         call.on('stream', function(remoteStream) {
             // `stream` is the MediaStream of the remote peer.
