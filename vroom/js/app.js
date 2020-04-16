@@ -110,6 +110,7 @@ function addUser(name){
 function createAudio(stream) {
     try {
     // var container = createDiv();
+    console.log(URL.createObjectURL(stream))
     var audio = createAudio(URL.createObjectURL(stream));
     audio.id("test");
     // container.child(audio);
