@@ -93,7 +93,7 @@ function register() {
     // } catch (error) {
     //     console.error(error);
     // }
-                peer.on('call', function(call) {
+            peer.on('call', function(call) {
                 // Answer the call, providing our mediaStream
                 call.answer(P5_SOUND.mic); 
                 console.log("call received from " + call.peer);
@@ -103,10 +103,6 @@ function register() {
                     createAudio(remoteStream);
                 });
             });
-
-        }, function(err) {
-            console.log('Failed to get local stream' ,err);
-        });
 }
     
 function addUser(name){
