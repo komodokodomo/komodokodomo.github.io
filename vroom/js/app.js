@@ -134,11 +134,11 @@ function createAudio(stream) {
     try {
     // var container = createDiv();
     // var audio = createAudio(URL.createObjectURL(stream));
-    var AUDIOSTREAM = createAudio();
-    AUDIOSTREAM.elt.srcObject = stream;
-    AUDIOSTREAM.id("test");
+    var AUDIOSTREAM = document.createElement("AUDIO");
+    AUDIOSTREAM.srcObject = stream;
+    // AUDIOSTREAM.id("test");
     // container.child(audio);
-    AUDIOSTREAM.autoplay(true);
+    AUDIOSTREAM.autoplay;
     console.log(AUDIOSTREAM);
 
     // audio.attribute("controls","false");
