@@ -87,7 +87,7 @@ async function register() {
     });
       /* use the stream */
     } catch(err) {
-        console.error(error);
+        console.error(err);
       /* handle the error */
     }
   }
