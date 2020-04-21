@@ -63,13 +63,12 @@ async function register() {
     try {
       myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});
       console.log(myStream);
-      peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 3});   
+      peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 2});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
         call.answer(myStream); 
         console.log("call received from " + call.peer);
         call.on('stream', function(remoteStream) {
-
             createAudio(remoteStream);
         });
     });
@@ -96,15 +95,16 @@ function addUser(name){
 function createAudio(stream) {
     try {
 
-    var container = document.createElement('div');
-    // var container = createDiv();
+    // var container = document.createElement('div');
+    var container = createDiv();
+    container.id("audio-container");
     // var audio = createAudio(URL.createObjectURL(stream));
-    var AUDIOSTREAM = document.createElement("AUDIO");
-    container.appendChild(AUDIOSTREAM);
-    AUDIOSTREAM.srcObject = stream;
-    AUDIOSTREAM.controls("controls");
+    var AUDIOSTREAM = createElement("audio");
+    container.child(AUDIOSTREAM);
+    AUDIOSTREAM.elt.srcObject = stream;
+    AUDIOSTREAM.elt.controls("controls");
     // container.child(audio);
-    AUDIOSTREAM.autoplay;
+    AUDIOSTREAM.elt.autoplay;
     console.log(AUDIOSTREAM);
 
     // audio.attribute("controls","false");
