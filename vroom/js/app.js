@@ -88,7 +88,7 @@ function addUser(name){
         var call = peer.call("COTF_"+ name, myStream);
         call.on('stream', function(remoteStream) {
             console.log("call replied by " + call.peer)
-            createAudio(remoteStream);
+            makeAudio(remoteStream);
         });    
     } catch (error) {
         console.error(error);
