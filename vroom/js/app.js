@@ -57,7 +57,7 @@ var P5_SOUND = {
 }
 
 var peer;
-var myStream;
+var myStream,streamObtained = false;
 
 
 async function register() {
@@ -66,6 +66,7 @@ async function register() {
       myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});
       console.log("local stream: ");
       console.log(myStream);
+      streamObtained = true;
       peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 2});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
@@ -398,7 +399,9 @@ function draw(){
         else if(AVATAR.own.posX < 0){AVATAR.own.posX = 1;}
 
         if(AVATAR.own.posY>0.5){
-            console.log(myStream.getTracks());
+            if(streamObtained){
+                console.log(myStream.getTracks());
+            }
             // myStream.getAudioTracks()[0].enabled = true;
         }
         else{
