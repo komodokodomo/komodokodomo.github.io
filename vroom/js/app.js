@@ -67,7 +67,7 @@ async function register() {
       console.log("local stream: ");
       console.log(myStream);
       streamObtained = true;
-      peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 2});   
+      peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 3});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
         call.answer(myStream); 
@@ -89,6 +89,7 @@ async function register() {
 function addUser(name){
     try {
         var call = peer.call("COTF_"+ name, myStream);
+        // peer.call('id', {sdpTransform:(sdp)=>{ ...transforming...  return newSdp;}});
         call.on('stream', function(remoteStream) {
             console.log("call replied by " + call.peer)
             makeAudio(remoteStream);
