@@ -69,7 +69,7 @@ async function register() {
         call.answer(myStream); 
         console.log("call received from " + call.peer);
         call.on('stream', function(remoteStream) {
-            createAudio(remoteStream);
+            makeAudio(remoteStream);
         });
     });
       /* use the stream */
@@ -92,7 +92,7 @@ function addUser(name){
     }
 }
 
-function createAudio(stream) {
+function makeAudio(stream) {
     try {
 
     // var container = document.createElement('div');
