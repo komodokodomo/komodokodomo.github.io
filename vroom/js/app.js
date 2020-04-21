@@ -57,17 +57,6 @@ var P5_SOUND = {
 var peer;
 var myStream;
 
-// var call = peer.call('dest-peer-id', mediaStream);
-
-// peer.on('call', function(call) {
-//     // Answer the call, providing our mediaStream
-//     call.answer(mediaStream);
-//   });
-
-// call.on('stream', function(stream) {
-    // `stream` is the MediaStream of the remote peer.
-    // Here you'd add it to an HTML video/canvas element.
-//   });
 
 async function register() {
   
@@ -80,8 +69,7 @@ async function register() {
         call.answer(myStream); 
         console.log("call received from " + call.peer);
         call.on('stream', function(remoteStream) {
-            // `stream` is the MediaStream of the remote peer.
-            // Here you'd add it to an HTML video/canvas element.
+
             createAudio(remoteStream);
         });
     });
@@ -92,31 +80,6 @@ async function register() {
     }
   }
 
-// function register() {
-//     try {
-//         peer = new Peer("VROOM_" + APP_STATE.nickname, {debug: 2});   
-//         navigator.mediaDevices.getUserMedia({video: false, audio: true}, function(stream) {
-//             myStream = stream;
-
-//             peer.on('call', function(call) {
-//                 // Answer the call, providing our mediaStream
-//                 call.answer(myStream); 
-//                 console.log("call received from " + call.peer);
-//                 call.on('stream', function(remoteStream) {
-//                     // `stream` is the MediaStream of the remote peer.
-//                     // Here you'd add it to an HTML video/canvas element.
-//                     createAudio(remoteStream);
-//                 });
-//             });
-
-//         }, function(err) {
-//             console.log('Failed to get local stream' ,err);
-//         });
-
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
     
 function addUser(name){
     try {
@@ -132,11 +95,14 @@ function addUser(name){
 
 function createAudio(stream) {
     try {
+
+    var container = document.createElement('div');
     // var container = createDiv();
     // var audio = createAudio(URL.createObjectURL(stream));
     var AUDIOSTREAM = document.createElement("AUDIO");
+    container.appendChild(AUDIOSTREAM);
     AUDIOSTREAM.srcObject = stream;
-    // AUDIOSTREAM.id("test");
+    AUDIOSTREAM.controls("controls");
     // container.child(audio);
     AUDIOSTREAM.autoplay;
     console.log(AUDIOSTREAM);
