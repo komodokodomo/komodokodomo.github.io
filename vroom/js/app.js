@@ -489,12 +489,12 @@ class Avatar {  //own avatar and other people's avatars
     });
 
     socket.on('someone-joined', function(msg) {
+        if(msg.name !== APP_STATE.nickname){
         AVATAR.others.push(new Avatar( msg.num, msg.name, msg.X, msg.Y) );
         console.log("someone joined: ");	
         console.log(msg);
-        if(msg.name !== APP_STATE.nickname){
-            addUser(msg.name);	
-            console.log("creating webRTC connection with: " + msg.name);
+        addUser(msg.name);	
+        console.log("creating webRTC connection with: " + msg.name);
         }
     });
 
