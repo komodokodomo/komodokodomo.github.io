@@ -62,14 +62,16 @@ async function register() {
   
     try {
       myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});
-      console.log("local stream: " + myStream);
+      console.log("local stream: ");
+      console.log(myStream);
       peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 2});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
         call.answer(myStream); 
         console.log("call received from " + call.peer);
         call.on('stream', function(remoteStream) {
-            console.log("remote stream: "+remoteStream);
+            console.log("remote stream: ");
+            console.log(remoteStream);
             makeAudio(remoteStream);
         });
     });
@@ -98,7 +100,7 @@ function makeAudio(stream) {
     // var container = document.createElement('div');
     var container = createDiv();
     container.id("audio-container");
-    var AUDIOSTREAM = createAudio();
+    var AUDIOSTREAM = createAudio(stream);
     // var AUDIOSTREAM = createAudio(URL.createObjectURL(stream));
     container.child(AUDIOSTREAM);
     AUDIOSTREAM.elt.srcObject = stream;
