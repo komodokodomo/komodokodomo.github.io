@@ -360,8 +360,8 @@ function draw(){
         for(let i = 0; i< AVATAR.others.length; i++){
             AVATAR.others[i].update(AVATAR.others[i].posX, AVATAR.others[i].posY, AVATAR.others[i].talk, AVATAR.others[i].AFK );
         }
-        text("talking zone",width/2,height/4);
-        text("mute zone",width/2,3*height/4);
+        text("muted zone",width/2,height/4);
+        text("talking zone",width/2,3*height/4);
 
         P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
         if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
