@@ -1,3 +1,5 @@
+//ADD in PTT Speakers corner.
+
 
 var DOM_EL = {
     canvas: null,
@@ -357,6 +359,8 @@ function draw(){
         for(let i = 0; i< AVATAR.others.length; i++){
             AVATAR.others[i].update(AVATAR.others[i].posX, AVATAR.others[i].posY, AVATAR.others[i].talk, AVATAR.others[i].AFK );
         }
+        text("talking zone",width/2,height/4);
+        text("mute zone",width/2,3*height/4);
 
         P5_SOUND.micLevel = lerp(P5_SOUND.micLevel,P5_SOUND.mic.getLevel(),0.5);
         if( P5_SOUND.micLevel > P5_SOUND.micThresholdLevel ){
@@ -392,6 +396,14 @@ function draw(){
 
         if(AVATAR.own.posX > 1){AVATAR.own.posX = 0;}
         else if(AVATAR.own.posX < 0){AVATAR.own.posX = 1;}
+
+        if(AVATAR.own.posY>0.5){
+            myStream.getAudioTracks()[0].enabled = true;
+        }
+        else{
+            myStream.getAudioTracks()[0].enabled = false;
+        }
+
 
         if( millis() - APP_STATE.lastRecordedActivity > 30000){
             if(APP_STATE.AFK == false){
@@ -507,10 +519,6 @@ class Avatar {  //own avatar and other people's avatars
                     AVATAR.others[i].AFK = msg.away;
                 }
             }
-        // console.log("activity detected: ");
-        // console.log(msg);
-        // console.log("updated array: ");
-        // console.log(AVATAR.others);
     });
 
     socket.on('someone-left', function(msg) {
