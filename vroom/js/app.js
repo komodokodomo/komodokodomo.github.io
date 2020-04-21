@@ -97,22 +97,11 @@ function addUser(name){
 
 function makeAudio(stream) {
     try {
-    var container = document.createElement('div');
-    // var container = createDiv();
-    // container.id("audio-container");
-    var AUDIOSTREAM = document.createElement('audio');
-    // var AUDIOSTREAM = createAudio(URL.createObjectURL(stream));
-    container.appendChild(AUDIOSTREAM);
-    AUDIOSTREAM.srcObject = stream;
-    // AUDIOSTREAM.elt.controls("controls");
-    // container.child(audio);
-    // AUDIOSTREAM.autoplay(true);
-    // console.log(AUDIOSTREAM);
-
-    // audio.attribute("controls","false");
-    AUDIOSTREAM.autoplay = true;
-    // audio.controls = false;
-    // audio.src = URL.createObjectURL(stream);
+        var container = document.createElement('div');
+        var AUDIOSTREAM = document.createElement('audio');
+        container.appendChild(AUDIOSTREAM);
+        AUDIOSTREAM.srcObject = stream;
+        AUDIOSTREAM.autoplay = true;
     } catch (error) {
         console.error(error);
     }
