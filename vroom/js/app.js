@@ -99,12 +99,12 @@ function createAudio(stream) {
     var container = createDiv();
     container.id("audio-container");
     // var audio = createAudio(URL.createObjectURL(stream));
-    var AUDIOSTREAM = createElement("audio");
+    var AUDIOSTREAM = createAudio(URL.createObjectURL(stream));
     container.child(AUDIOSTREAM);
-    AUDIOSTREAM.elt.srcObject = stream;
-    AUDIOSTREAM.elt.controls("controls");
+    // AUDIOSTREAM.elt.srcObject = stream;
+    // AUDIOSTREAM.elt.controls("controls");
     // container.child(audio);
-    AUDIOSTREAM.elt.autoplay;
+    AUDIOSTREAM.autoplay(true);
     console.log(AUDIOSTREAM);
 
     // audio.attribute("controls","false");
