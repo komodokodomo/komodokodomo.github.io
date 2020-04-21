@@ -62,13 +62,14 @@ async function register() {
   
     try {
       myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});
-      console.log(myStream);
+      console.log("local stream: " + myStream);
       peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 2});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
         call.answer(myStream); 
         console.log("call received from " + call.peer);
         call.on('stream', function(remoteStream) {
+            console.log("remote stream: "+remoteStream);
             makeAudio(remoteStream);
         });
     });
