@@ -397,17 +397,14 @@ function draw(){
 
         if(AVATAR.own.posX > 1){AVATAR.own.posX = 0;}
         else if(AVATAR.own.posX < 0){AVATAR.own.posX = 1;}
-
-        if(AVATAR.own.posY>0.5){
-            if(streamObtained){
-                console.log(myStream.getTracks());
+        if(streamObtained){
+        if(AVATAR.own.posY>0.5){   
+                myStream.getAudioTracks()[0].enabled = true;
             }
-            // myStream.getAudioTracks()[0].enabled = true;
+            else{
+                myStream.getAudioTracks()[0].enabled = false;
+            }
         }
-        else{
-            // myStream.getAudioTracks()[0].enabled = false;
-        }
-
 
         if( millis() - APP_STATE.lastRecordedActivity > 30000){
             if(APP_STATE.AFK == false){
