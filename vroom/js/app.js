@@ -57,13 +57,14 @@ var P5_SOUND = {
 }
 
 var peer;
-var myStream,streamObtained = false;
+var myStream;
+var streamObtained = false;
 
 
 async function register() {
   
     try {
-      myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true, echoCancellation: true});
+      myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true, echoCancellation: true, autoGainControl: true});
       console.log("local stream: ");
       console.log(myStream);
       streamObtained = true;
@@ -107,7 +108,7 @@ async function register() {
             // Add a new b line
             console.debug("Adding new b line before line", line);
             var newLines = lines.slice(0, line);
-            newLines.push("b=AS:"+ 12000);
+            newLines.push("b=AS:"+ 16000);
             newLines = newLines.concat(lines.slice(line, lines.length));
             return newLines.join("\n");
             }}); 
@@ -164,7 +165,7 @@ function addUser(name){
             // Add a new b line
             console.debug("Adding new b line before line", line);
             var newLines = lines.slice(0, line);
-            newLines.push("b=AS:"+ 12000);
+            newLines.push("b=AS:"+ 16000);
             newLines = newLines.concat(lines.slice(line, lines.length));
             return newLines.join("\n");
             }});
