@@ -90,6 +90,7 @@ function addUser(name){
     try {
         // var call = peer.call("COTF_"+ name, myStream);
         var call = peer.call("COTF_"+ name, myStream, {sdpTransform:(sdp)=>{
+            console.log("orignal sdp: " + sdp);
             var lines = sdp.split("\n");
             var line = -1;
             for (var i = 0; i<lines.length; i++) {
