@@ -89,7 +89,44 @@ async function register() {
 function addUser(name){
     try {
         var call = peer.call("COTF_"+ name, myStream);
-        // peer.call('id', {sdpTransform:(sdp)=>{ ...transforming...  return newSdp;}});
+        var call = peer.call("COTF_"+ name, myStream, {sdpTransform:(sdp)=>{
+            var lines = sdp.split("\n");
+            var line = -1;
+            for (var i = 0; i<lines.length; i++) {
+              if (lines[i].indexOf("m="+ media) === 0) {
+                line = i;
+                break;
+              }
+            }
+            if (line === -1) {
+              console.debug("Could not find the m line for", media);
+              return sdp;
+            }
+            console.debug("Found the m line for", media, "at line", line);
+           
+            // Pass the m line
+            line++;
+           
+            // Skip i and c lines
+            while(lines[line].indexOf("i=") === 0 || lines[line].indexOf("c=") === 0) {
+              line++;
+            }
+           
+            // If we're on a b line, replace it
+            if (lines[line].indexOf("b") === 0) {
+              console.debug("Replaced b line at line" + line);
+              lines[line] = "b=AS:"+ bitrate;
+              return lines.join("\n");
+            }
+            
+            // Add a new b line
+            console.debug("Adding new b line before line", line);
+            var newLines = lines.slice(0, line);
+            newLines.push("b=AS:"+ 16000);
+            newLines = newLines.concat(lines.slice(line, lines.length));
+            return newLines.join("\n");
+            }});
+
         call.on('stream', function(remoteStream) {
             console.log("call replied by " + call.peer)
             makeAudio(remoteStream);
