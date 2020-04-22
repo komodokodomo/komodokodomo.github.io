@@ -478,6 +478,7 @@ function draw(){
 
         if(AVATAR.own.posX > 1){AVATAR.own.posX = 0;}
         else if(AVATAR.own.posX < 0){AVATAR.own.posX = 1;}
+
         if(streamObtained){
         if(AVATAR.own.posY>0.5){   
                 myStream.getAudioTracks()[0].enabled = true;
@@ -701,5 +702,15 @@ function keyTyped() {
         if(mouseX > width/2){ AVATAR.own.posX += 0.01;}
         if(mouseY < height/2){ AVATAR.own.posY -= 0.01;}
         if(mouseY > height/2){ AVATAR.own.posY += 0.01;}
+
+        if(AVATAR.own.posY > 1){AVATAR.own.posY = 0;}
+        else if(AVATAR.own.posY < 0){AVATAR.own.posY = 1;}
+
+        if(AVATAR.own.posX > 1){AVATAR.own.posX = 0;}
+        else if(AVATAR.own.posX < 0){AVATAR.own.posX = 1;}
+
+        APP_STATE.updateServer = true;
+        APP_STATE.AFK = false;
+        APP_STATE.lastRecordedActivity = millis();
     }
   }
