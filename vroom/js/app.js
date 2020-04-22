@@ -698,10 +698,9 @@ function keyTyped() {
 
   function canvasTouched() {
     if(APP_STATE.loginSuccess){
-        if(mouseX < width/2){ AVATAR.own.posX -= 0.01;}
-        if(mouseX > width/2){ AVATAR.own.posX += 0.01;}
-        if(mouseY < height/2){ AVATAR.own.posY -= 0.01;}
-        if(mouseY > height/2){ AVATAR.own.posY += 0.01;}
+        AVATAR.own.posX = lerp(mouseX/width,AVATAR.own.posX,0.3);
+        AVATAR.own.posY = lerp(mouseY/height,AVATAR.own.posY,0.3);
+
 
         if(AVATAR.own.posY > 1){AVATAR.own.posY = 0;}
         else if(AVATAR.own.posY < 0){AVATAR.own.posY = 1;}
