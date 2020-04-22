@@ -70,7 +70,44 @@ async function register() {
       peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 3});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
-        call.answer(myStream); 
+        call.answer(myStream,{sdpTransform:(sdp)=>{
+            console.log("orignal sdp: " + sdp);
+            var lines = sdp.split("\n");
+            var line = -1;
+            for (var i = 0; i<lines.length; i++) {
+              if (lines[i].indexOf("m=audio") === 0) {
+                line = i;
+                break;
+              }
+            }
+            if (line === -1) {
+              console.debug("Could not find the m line for audio");
+              return sdp;
+            }
+            console.debug("Found the m line for audio at line", line);
+           
+            // Pass the m line
+            line++;
+           
+            // Skip i and c lines
+            while(lines[line].indexOf("i=") === 0 || lines[line].indexOf("c=") === 0) {
+              line++;
+            }
+           
+            // If we're on a b line, replace it
+            if (lines[line].indexOf("b") === 0) {
+              console.debug("Replaced b line at line" + line);
+              lines[line] = "b=AS:"+ bitrate;
+              return lines.join("\n");
+            }
+            
+            // Add a new b line
+            console.debug("Adding new b line before line", line);
+            var newLines = lines.slice(0, line);
+            newLines.push("b=AS:"+ 16000);
+            newLines = newLines.concat(lines.slice(line, lines.length));
+            return newLines.join("\n");
+            }}); 
         console.log("call received from " + call.peer);
         call.on('stream', function(remoteStream) {
             console.log("remote stream: ");
