@@ -64,7 +64,8 @@ var streamObtained = false;
 async function register() {
   
     try {
-      myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true, echoCancellation: true, autoGainControl: true});
+      myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true});      
+      //   myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true, echoCancellation: true, autoGainControl: true});
       console.log("local stream: ");
       console.log(myStream);
       streamObtained = true;
@@ -74,7 +75,7 @@ async function register() {
         // call.answer(myStream);
         call.answer(myStream,{ sdpTransform :(sdp)=>{
             
-            console.log("orignal sdp: " + sdp);
+            // console.log("orignal sdp: " + sdp);
             var lines = sdp.split("\n");
             var line = -1;
 
@@ -132,7 +133,7 @@ function addUser(name){
     try {
         // var call = peer.call("COTF_"+ name, myStream);
         var call = peer.call("COTF_"+ name, myStream, {sdpTransform:(sdp)=>{
-            console.log("orignal sdp: " + sdp);
+            // console.log("orignal sdp: " + sdp);
             var lines = sdp.split("\n");
             var line = -1;
             for (var i = 0; i<lines.length; i++) {
