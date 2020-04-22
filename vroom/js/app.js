@@ -694,7 +694,7 @@ function keyTyped() {
     }
   }
 
-  function touchMoved(event) {
+  function touchMoved() {
     if(APP_STATE.loginSuccess){
         if(mouseX < width/2){ AVATAR.own.posX -= 0.01;}
         if(mouseX > width/2){ AVATAR.own.posX += 0.01;}
