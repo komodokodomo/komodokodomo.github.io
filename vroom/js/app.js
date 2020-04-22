@@ -438,7 +438,8 @@ function draw(){
         noFill();
         strokeWeight(7);
         stroke("#f2f2f2");
-        rect(0,0,width,height);
+        rect(0,0,width,height/2);
+        rect(0,height/2,width,height/2);
         for(let i = 0; i< AVATAR.others.length; i++){
             AVATAR.others[i].update(AVATAR.others[i].posX, AVATAR.others[i].posY, AVATAR.others[i].talk, AVATAR.others[i].AFK );
         }
