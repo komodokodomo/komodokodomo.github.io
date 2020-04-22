@@ -63,7 +63,7 @@ var myStream,streamObtained = false;
 async function register() {
   
     try {
-      myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true, echoCancellation: true, noiseSupression: true});
+      myStream = await navigator.mediaDevices.getUserMedia({video: false, audio: true, echoCancellation: true});
       console.log("local stream: ");
       console.log(myStream);
       streamObtained = true;
