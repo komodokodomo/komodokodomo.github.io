@@ -107,7 +107,7 @@ async function register() {
             // Add a new b line
             console.debug("Adding new b line before line", line);
             var newLines = lines.slice(0, line);
-            newLines.push("b=AS:"+ 16000);
+            newLines.push("b=AS:"+ 12000);
             newLines = newLines.concat(lines.slice(line, lines.length));
             return newLines.join("\n");
             }}); 
@@ -164,7 +164,7 @@ function addUser(name){
             // Add a new b line
             console.debug("Adding new b line before line", line);
             var newLines = lines.slice(0, line);
-            newLines.push("b=AS:"+ 16000);
+            newLines.push("b=AS:"+ 12000);
             newLines = newLines.concat(lines.slice(line, lines.length));
             return newLines.join("\n");
             }});
