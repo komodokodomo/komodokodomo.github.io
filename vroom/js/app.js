@@ -689,7 +689,8 @@ function keyTyped() {
     if (key === 't' && APP_STATE.loginSuccess) {
         if(document.activeElement != document.getElementById('chat-input')){
             document.getElementById("chat-input").focus();
-            DOM_EL.chatInput.value('');
+            setTimeout(function(){DOM_EL.chatInput.value('');},50);
         }
-    } 
+    }
+    return false; 
   }
