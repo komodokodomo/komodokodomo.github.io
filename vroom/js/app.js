@@ -584,10 +584,8 @@ class Avatar {  //own avatar and other people's avatars
     socket.on('someone-joined', function(msg) {
         if(msg.name !== APP_STATE.nickname){
         AVATAR.others.push(new Avatar( msg.num, msg.name, msg.X, msg.Y) );
-        console.log("someone joined: ");	
-        console.log(msg);
+        console.log(msg.name + " joined");	
         addUser(msg.name);	
-        console.log("creating webRTC connection with: " + msg.name);
         }
     });
 
@@ -603,7 +601,6 @@ class Avatar {  //own avatar and other people's avatars
     });
 
     socket.on('someone-left', function(msg) {
-    console.log(msg);	
     let listCopy = AVATAR.others;
     for(let i = 0; i < AVATAR.others.length; i++){
         if(AVATAR.others[i].name === msg){
@@ -611,8 +608,7 @@ class Avatar {  //own avatar and other people's avatars
         }
     }
     AVATAR.others = listCopy;
-    console.log("someone left: ");
-    console.log(AVATAR.others)
+    console.log(msg + " left");
     });
 
 
