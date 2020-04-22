@@ -88,21 +88,21 @@ async function register() {
     
 function addUser(name){
     try {
-        var call = peer.call("COTF_"+ name, myStream);
+        // var call = peer.call("COTF_"+ name, myStream);
         var call = peer.call("COTF_"+ name, myStream, {sdpTransform:(sdp)=>{
             var lines = sdp.split("\n");
             var line = -1;
             for (var i = 0; i<lines.length; i++) {
-              if (lines[i].indexOf("m="+ media) === 0) {
+              if (lines[i].indexOf("m=audio") === 0) {
                 line = i;
                 break;
               }
             }
             if (line === -1) {
-              console.debug("Could not find the m line for", media);
+              console.debug("Could not find the m line for audio");
               return sdp;
             }
-            console.debug("Found the m line for", media, "at line", line);
+            console.debug("Found the m line for audio at line", line);
            
             // Pass the m line
             line++;
