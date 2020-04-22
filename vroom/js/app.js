@@ -70,10 +70,13 @@ async function register() {
       peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 3});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
+        // call.answer(myStream);
         call.answer(myStream,{sdpTransform:(sdp)=>{
+            
             console.log("orignal sdp: " + sdp);
             var lines = sdp.split("\n");
             var line = -1;
+
             for (var i = 0; i<lines.length; i++) {
               if (lines[i].indexOf("m=audio") === 0) {
                 line = i;
@@ -108,6 +111,7 @@ async function register() {
             newLines = newLines.concat(lines.slice(line, lines.length));
             return newLines.join("\n");
             }}); 
+
         console.log("call received from " + call.peer);
         call.on('stream', function(remoteStream) {
             console.log("remote stream: ");
