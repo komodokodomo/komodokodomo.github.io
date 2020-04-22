@@ -461,7 +461,10 @@ function draw(){
             APP_STATE.updateServer = true;
         }
         else if (APP_STATE.micThresholdCrossed == false && P5_SOUND.micLevel < P5_SOUND.micThresholdLevel){
+            APP_STATE.micThresholdCross = false;
         }
+
+        APP_STATE.micThresholdCrossed = APP_STATE.micThresholdCross;
 
         if(keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW) || keyIsDown(ENTER)){
             APP_STATE.updateServer = true;
