@@ -690,7 +690,15 @@ function keyTyped() {
         if(document.activeElement != document.getElementById('chat-input')){
             document.getElementById("chat-input").focus();
             return false; 
-            // setTimeout(function(){DOM_EL.chatInput.value('');},50);
         }
+    }
+  }
+
+  function touchMoved(event) {
+    if(APP_STATE.loginSuccess){
+        if(mouseX < width/2){ AVATAR.own.posX -= 0.01;}
+        if(mouseX > width/2){ AVATAR.own.posX += 0.01;}
+        if(mouseY < height/2){ AVATAR.own.posY -= 0.01;}
+        if(mouseY > height/2){ AVATAR.own.posY += 0.01;}
     }
   }
