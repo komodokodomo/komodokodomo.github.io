@@ -685,8 +685,8 @@ function windowResized(){
 
 }
 
-function keyPressed() {
-    if (value === 84) {
+function keyTyped() {
+    if (value === 't' && APP_STATE.loginSuccess) {
         if(document.activeElement != document.getElementById('chat-input')){
             document.getElementById("chat-input").focus();
         }
