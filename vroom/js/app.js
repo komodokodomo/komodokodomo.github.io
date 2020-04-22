@@ -699,15 +699,15 @@ function keyTyped() {
 
   function canvasTouched() {
     if(APP_STATE.loginSuccess){
-        AVATAR.own.posX = lerp(mouseX/width,AVATAR.own.posX,0.15);
-        AVATAR.own.posY = lerp(mouseY/height,AVATAR.own.posY,0.15);
+        AVATAR.own.posX = lerp( AVATAR.own.posX, mouseX/width, 0.15);
+        AVATAR.own.posY = lerp( AVATAR.own.posY, mouseY/height, 0.15);
 
 
-        if(AVATAR.own.posY > 1){AVATAR.own.posY = 0;}
-        else if(AVATAR.own.posY < 0){AVATAR.own.posY = 1;}
+        if(AVATAR.own.posY > 1){ AVATAR.own.posY = 0;}
+        else if(AVATAR.own.posY < 0){ AVATAR.own.posY = 1;}
 
-        if(AVATAR.own.posX > 1){AVATAR.own.posX = 0;}
-        else if(AVATAR.own.posX < 0){AVATAR.own.posX = 1;}
+        if(AVATAR.own.posX > 1){ AVATAR.own.posX = 0;}
+        else if(AVATAR.own.posX < 0){ AVATAR.own.posX = 1;}
 
         APP_STATE.updateServer = true;
         APP_STATE.AFK = false;
