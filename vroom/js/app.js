@@ -42,6 +42,7 @@ var APP_STATE = {
     AFK: false,
     updateServer: false,
     micThresholdCross: false,
+    micThresholdCrossed: false,
     chatContent: ""
 }
 
@@ -455,8 +456,11 @@ function draw(){
             APP_STATE.AFK = false;
             APP_STATE.lastRecordedActivity = millis();
         }
-        else{
+        else if (APP_STATE.micThresholdCrossed == true && P5_SOUND.micLevel < P5_SOUND.micThresholdLevel){
             APP_STATE.micThresholdCross = false;
+            APP_STATE.updateServer = true;
+        }
+        else if (APP_STATE.micThresholdCrossed == false && P5_SOUND.micLevel < P5_SOUND.micThresholdLevel){
         }
 
         if(keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW) || keyIsDown(UP_ARROW) || keyIsDown(DOWN_ARROW) || keyIsDown(ENTER)){
