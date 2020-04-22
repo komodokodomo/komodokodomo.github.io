@@ -385,9 +385,10 @@ function login(){
     startCon();  
     register();
     
-    DOM_EL.loginInput.hide();
-    DOM_EL.loginButton.hide();
-    DOM_EL.loginInstruction.hide();
+    DOM_EL.loginContainer.hide();
+    // DOM_EL.loginInput.hide();
+    // DOM_EL.loginButton.hide();
+    // DOM_EL.loginInstruction.hide();
     // DOM_EL.loginTitle.hide();
     DOM_EL.loginSliderImageContainer.hide();
     DOM_EL.loginSliderLeftContainer.hide();
@@ -698,8 +699,8 @@ function keyTyped() {
 
   function canvasTouched() {
     if(APP_STATE.loginSuccess){
-        AVATAR.own.posX = lerp(mouseX/width,AVATAR.own.posX,0.3);
-        AVATAR.own.posY = lerp(mouseY/height,AVATAR.own.posY,0.3);
+        AVATAR.own.posX = lerp(mouseX/width,AVATAR.own.posX,0.15);
+        AVATAR.own.posY = lerp(mouseY/height,AVATAR.own.posY,0.15);
 
 
         if(AVATAR.own.posY > 1){AVATAR.own.posY = 0;}
