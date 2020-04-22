@@ -219,6 +219,7 @@ function setup(){
     }
 
     DOM_EL.canvas.id("canvas");
+    DOM_EL.canvas.touchMoved(canvasTouched);
 
     DOM_EL.loginContainer = createDiv();
     DOM_EL.loginContainer.position(0,0);
@@ -694,7 +695,7 @@ function keyTyped() {
     }
   }
 
-  function touchMoved() {
+  function canvasTouched() {
     if(APP_STATE.loginSuccess){
         if(mouseX < width/2){ AVATAR.own.posX -= 0.01;}
         if(mouseX > width/2){ AVATAR.own.posX += 0.01;}
