@@ -70,8 +70,8 @@ async function register() {
       peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 3});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
-        // call.answer(myStream);
-        call.answer(myStream,{sdpTransform:(sdp)=>{
+        // call.answer(myStream,sdpTransform);
+        call.answer(myStream,{ sdpTransform :(sdp)=>{
             
             console.log("orignal sdp: " + sdp);
             var lines = sdp.split("\n");
