@@ -684,3 +684,11 @@ function windowResized(){
     DOM_EL.loginButton.size(APP_STATE.windowWidth*4/10,APP_STATE.windowHeight*1/10);
 
 }
+
+function keyPressed() {
+    if (value === 84) {
+        if(document.activeElement != document.getElementById('chat-input')){
+            document.getElementById("chat-input").focus();
+        }
+    } 
+  }
