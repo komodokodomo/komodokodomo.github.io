@@ -67,7 +67,7 @@ async function register() {
       console.log("local stream: ");
       console.log(myStream);
       streamObtained = true;
-      peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 3});   
+      peer = new Peer("COTF_" + APP_STATE.nickname, {debug: 2});   
       peer.on('call', function(call) {
         // Answer the call, providing our mediaStream
         // call.answer(myStream);
