@@ -53,6 +53,8 @@ var APP_STATE = {
 
 function changeGatherEvent(){
     APP_STATE.mode = 0;
+    collectContainer.show();
+
     DOM_EL.menuCollectButton.class("selected");
     DOM_EL.menuTrainButton.removeClass("selected");
     DOM_EL.menuEmbedButton.removeClass("selected");
@@ -60,6 +62,7 @@ function changeGatherEvent(){
 
 function changeTrainEvent(){
     APP_STATE.mode = 1;
+    collectContainer.hide();
     DOM_EL.menuTrainButton.class("selected");
     DOM_EL.menuCollectButton.removeClass("selected");
     DOM_EL.menuEmbedButton.removeClass("selected");
@@ -67,6 +70,7 @@ function changeTrainEvent(){
 
 function changeEmbedEvent(){
     APP_STATE.mode = 2;
+    collectContainer.hide();
     DOM_EL.menuTrainButton.removeClass("selected");
     DOM_EL.menuCollectButton.removeClass("selected");
     DOM_EL.menuEmbedButton.class("selected");
@@ -153,7 +157,7 @@ function setup(){
 
     DOM_EL.canvas = createCanvas();
     DOM_EL.canvas.parent(DOM_EL.collectContainer);
-    
+
     DOM_EL.imageSampleContainer = createDiv();
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
