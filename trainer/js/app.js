@@ -139,15 +139,15 @@ function setup(){
     DOM_EL.classInput = createInput();
     DOM_EL.classInput.input(classInputEvent);
 
-    DOM_EL.classEdit = createButton();
+    DOM_EL.classEdit = createButton("edit");
     DOM_EL.classEdit.mousePressed(classEditEvent);
     DOM_EL.classEdit.parent(DOM_EL.classContainer);
 
-    DOM_EL.classAdd = createButton();
+    DOM_EL.classAdd = createButton("+");
     DOM_EL.classAdd.mousePressed(classAddEvent);
     DOM_EL.classAdd.parent(DOM_EL.classContainer);
 
-    DOM_EL.classRemove = createButton();
+    DOM_EL.classRemove = createButton("x");
     DOM_EL.classRemove.mousePressed(classRemoveEvent);
     DOM_EL.classRemove.parent(DOM_EL.classContainer);
 
