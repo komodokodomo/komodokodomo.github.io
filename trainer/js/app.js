@@ -141,6 +141,7 @@ function setup(){
     DOM_EL.classSelect.changed(selectEvent);
 
     DOM_EL.classInput = createInput();
+    DOM_EL.classInput.parent(DOM_EL.classContainer);
     DOM_EL.classInput.input(classInputEvent);
 
     DOM_EL.classEdit = createButton("edit");
