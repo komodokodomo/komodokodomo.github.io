@@ -137,8 +137,13 @@ function setup(){
 
     DOM_EL.classSelect = createSelect();
     DOM_EL.classSelect.parent(DOM_EL.classContainer);
+    DOM_EL.classSelect.option('opt1');
+    DOM_EL.classSelect.option('opt2');
+    DOM_EL.classSelect.option('opt3');
+    DOM_EL.classSelect.selected('opt2');
     // DOM_EL.classSelect.option("");
     DOM_EL.classSelect.changed(selectEvent);
+
 
     DOM_EL.classInput = createInput();
     DOM_EL.classInput.parent(DOM_EL.classContainer);
