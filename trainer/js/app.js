@@ -53,7 +53,7 @@ var APP_STATE = {
 
 function changeGatherEvent(){
     APP_STATE.mode = 0;
-    collectContainer.show();
+    DOM_EL.collectContainer.show();
 
     DOM_EL.menuCollectButton.class("selected");
     DOM_EL.menuTrainButton.removeClass("selected");
@@ -62,7 +62,7 @@ function changeGatherEvent(){
 
 function changeTrainEvent(){
     APP_STATE.mode = 1;
-    collectContainer.hide();
+    DOM_EL.collectContainer.hide();
     DOM_EL.menuTrainButton.class("selected");
     DOM_EL.menuCollectButton.removeClass("selected");
     DOM_EL.menuEmbedButton.removeClass("selected");
@@ -70,7 +70,7 @@ function changeTrainEvent(){
 
 function changeEmbedEvent(){
     APP_STATE.mode = 2;
-    collectContainer.hide();
+    DOM_EL.collectContainer.hide();
     DOM_EL.menuTrainButton.removeClass("selected");
     DOM_EL.menuCollectButton.removeClass("selected");
     DOM_EL.menuEmbedButton.class("selected");
