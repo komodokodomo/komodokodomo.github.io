@@ -152,7 +152,8 @@ function setup(){
     DOM_EL.classRemove.parent(DOM_EL.classContainer);
 
     DOM_EL.canvas = createCanvas();
-
+    DOM_EL.canvas.parent(DOM_EL.collectContainer);
+    
     DOM_EL.imageSampleContainer = createDiv();
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
