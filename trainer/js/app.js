@@ -157,10 +157,10 @@ function setup(){
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.imageSampleCounter = createDiv();
-    DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleCounter);
+    DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
 
     DOM_EL.imageSampleList = createElement("ol");
-    DOM_EL.imageSampleList.parent(DOM_EL.imageSampleCounter);
+    DOM_EL.imageSampleList.parent(DOM_EL.imageSampleContainer);
 
     DOM_EL.collectButtonContainer = createDiv();
     DOM_EL.collectButtonContainer.parent(DOM_EL.collectContainer);
