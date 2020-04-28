@@ -162,6 +162,8 @@ function classSubmitEvent(){
         option.text = APP_STATE.classInputString;
         x.add(option);
 
+        DOM_EL.classSelect.selected(APP_STATE.classInputString);
+        APP_STATE.selectedClass = APP_STATE.classInputString;
         DOM_EL.classInput.value("");
     }
 
