@@ -121,6 +121,8 @@ function classRemoveEvent(){
 
 function classSubmitEvent(){
     DOM_EL.classSubmit.hide();
+    DOM_EL.classInput.hide();
+    DOM_EL.classSelect.show();
 
     DOM_EL.classAdd.show();
     DOM_EL.classEdit.show();
