@@ -164,9 +164,9 @@ function classSubmitEvent(){
         let x = document.getElementById("class-select");
         let option = document.createElement("option");
         option.text = APP_STATE.classInputString;
+        x.add(option);
 
         DOM_EL.classInput.value("");
-        // x.add(option);
     }
     // switch on classRemoveAlert
     }
