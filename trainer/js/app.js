@@ -105,6 +105,7 @@ function preload(){
 
 function classAddEvent(){
     APP_STATE.addClass = true;
+    DOM_EL.classInput.value("");
 
     DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
@@ -120,7 +121,7 @@ function classAddEvent(){
 }
 function classEditEvent(){
     APP_STATE.editClass = true;
-    DOM_EL.classInput.value = APP_STATE.selectedClass;
+    DOM_EL.classInput.value(APP_STATE.selectedClass);
 
     DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
