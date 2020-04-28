@@ -135,34 +135,37 @@ function setup(){
     DOM_EL.classContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.classSelect = createSelect();
+    DOM_EL.classSelect.id("class-select");
     DOM_EL.classSelect.parent(DOM_EL.classContainer);
     DOM_EL.classSelect.option('opt1');
     DOM_EL.classSelect.option('opt2');
     DOM_EL.classSelect.option('opt3');
     DOM_EL.classSelect.selected('opt2');
-    // DOM_EL.classSelect.option("");
     DOM_EL.classSelect.changed(selectEvent);
 
-
     DOM_EL.classInput = createInput();
+    DOM_EL.classInput.id("class-input");
     DOM_EL.classInput.parent(DOM_EL.classContainer);
     DOM_EL.classInput.input(classInputEvent);
     DOM_EL.classInput.hide();
 
-
     DOM_EL.classEdit = createButton("edit");
+    DOM_EL.classEdit.id("class-edit-button");
     DOM_EL.classEdit.mousePressed(classEditEvent);
     DOM_EL.classEdit.parent(DOM_EL.classContainer);
 
     DOM_EL.classAdd = createButton("+");
+    DOM_EL.classAdd.id("class-add-button");
     DOM_EL.classAdd.mousePressed(classAddEvent);
     DOM_EL.classAdd.parent(DOM_EL.classContainer);
 
     DOM_EL.classRemove = createButton("x");
+    DOM_EL.classRemove.id("class-remove-button");
     DOM_EL.classRemove.mousePressed(classRemoveEvent);
     DOM_EL.classRemove.parent(DOM_EL.classContainer);
 
     DOM_EL.canvasContainer = createDiv();
+    DOM_EL.canvasContainer.id("canvas-container");
     DOM_EL.canvasContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.canvas = createCanvas();

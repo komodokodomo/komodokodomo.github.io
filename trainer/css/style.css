@@ -21,6 +21,22 @@ body {
   height: 5%;
 }
 
+#class-select, #class-input{
+  width: calc(200%/3);
+}
+
+#class-select{
+  text-align-last: center;
+}
+
+#class-input{
+  box-sizing:border-box;
+}
+
+#class-add-button, #class-edit-button, #class-remove-button{
+  width: calc(100%/9);
+}
+
 #canvas-container{
   display: flex;
   height: 80%;
