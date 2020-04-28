@@ -148,7 +148,7 @@ function classSubmitEvent(){
 
     if(APP_STATE.editClass = true){
         APP_STATE.editClass = false;
-        DOM_EL.classSelect.option(APP_STATE.classInputString);
+        DOM_EL.classSelect.option(APP_STATE.selectedClass ,APP_STATE.classInputString);
     }
 
     if(APP_STATE.addClass = true){
