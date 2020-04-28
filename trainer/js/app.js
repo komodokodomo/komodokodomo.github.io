@@ -172,15 +172,19 @@ function setup(){
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 
     DOM_EL.imageSampleContainer = createDiv();
+    DOM_EL.imageSampleContainer.id("image-sample-container");
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.imageSampleCounter = createDiv();
+    DOM_EL.imageSampleCounter.id("image-sample-counter");
     DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
 
     DOM_EL.imageSampleList = createElement("ol");
+    DOM_EL.imageSampleList.id("image-sample-list");
     DOM_EL.imageSampleList.parent(DOM_EL.imageSampleContainer);
 
     DOM_EL.collectButtonContainer = createDiv();
+    DOM_EL.collectButtonContainer.id("collect-button-container");
     DOM_EL.collectButtonContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.settingButton = createButton("settings");
