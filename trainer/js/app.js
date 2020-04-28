@@ -106,6 +106,7 @@ function preload(){
 function classAddEvent(){
     APP_STATE.addClass = true;
     DOM_EL.classInput.value("");
+    DOM_EL.classInput.elt.focus();
 
     DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
@@ -122,6 +123,7 @@ function classAddEvent(){
 function classEditEvent(){
     APP_STATE.editClass = true;
     DOM_EL.classInput.value(APP_STATE.selectedClass);
+    DOM_EL.classInput.elt.focus();
 
     DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
@@ -154,8 +156,8 @@ function classSubmitEvent(){
     }
 
     if(APP_STATE.addClass = true){
-        // DOM_EL.classInput.value = "";
-        document.getElementById("class-input").reset();
+        DOM_EL.classInput.value("");
+        // document.getElementById("class-input").reset();
         APP_STATE.addClass = false;
         let x = document.getElementById("class-select");
         let option = document.createElement("option");
