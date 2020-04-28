@@ -279,14 +279,14 @@ function setup(){
     DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
 
     DOM_EL.video = createCapture(videoConstraints);
-    DOM_EL.video.size(1280, 720);
+    // DOM_EL.video.size(1280, 720);
     DOM_EL.video.hide();
 }
 
 function draw(){
     clear();
-    background(0);
-    console.log("draw");
+    // background(0);
+    text("hello",0,0);
     image(DOM_EL.video,width/2,height/2);
 }
 
