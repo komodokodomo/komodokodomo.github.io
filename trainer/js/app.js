@@ -89,11 +89,13 @@ function preload(){
 }
 
 function classAddEvent(){
+    DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
     // switch on classInput
     // set focus to classInput
 }
 function classEditEvent(){
+    DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
     // switch on classInput
     // change classInput value to current className
@@ -107,8 +109,6 @@ function setup(){
 
     DOM_EL.menuContainer = createDiv();
     DOM_EL.menuContainer.id("menu-container");
-    // DOM_EL.menuContainer.position( 0, 0 );
-    // DOM_EL.menuContainer.size( window.innerWidth, window.innerHeight / 10 );
 
     DOM_EL.menuCollectButton = createButton("GATHER");
     DOM_EL.menuCollectButton.id("menu-collect-button");
@@ -129,8 +129,6 @@ function setup(){
     
     DOM_EL.collectContainer = createDiv();
     DOM_EL.collectContainer.id("collect-container");
-    // DOM_EL.collectContainer.position( 0, window.innerHeight / 10 );
-    // DOM_EL.collectContainer.size( window.innerWidth, window.innerHeight * 9 / 10 );
 
     DOM_EL.classContainer = createDiv();
     DOM_EL.classContainer.parent(DOM_EL.collectContainer);
@@ -148,6 +146,8 @@ function setup(){
     DOM_EL.classInput = createInput();
     DOM_EL.classInput.parent(DOM_EL.classContainer);
     DOM_EL.classInput.input(classInputEvent);
+    DOM_EL.classInput.hide();
+
 
     DOM_EL.classEdit = createButton("edit");
     DOM_EL.classEdit.mousePressed(classEditEvent);
