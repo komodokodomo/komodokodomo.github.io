@@ -287,7 +287,7 @@ function draw(){
     clear();
     // background(0);
     text("hello",0,0);
-    image(DOM_EL.video,width/2,height/2);
+    // image(DOM_EL.video,width/2,height/2);
 }
 
 function windowResized(){
