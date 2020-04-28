@@ -105,11 +105,12 @@ function preload(){
 
 function classAddEvent(){
     APP_STATE.addClass = true;
-    DOM_EL.classInput.value("");
-    DOM_EL.classInput.elt.focus();
 
     DOM_EL.classSelect.hide();
+
     DOM_EL.classInput.show();
+    DOM_EL.classInput.value("");
+    DOM_EL.classInput.elt.focus();
 
     DOM_EL.classAdd.hide();
     DOM_EL.classEdit.hide();
@@ -156,12 +157,13 @@ function classSubmitEvent(){
     }
 
     if(APP_STATE.addClass = true){
-        DOM_EL.classInput.value("");
         // document.getElementById("class-input").reset();
         APP_STATE.addClass = false;
         let x = document.getElementById("class-select");
         let option = document.createElement("option");
         option.text = APP_STATE.classInputString;
+        
+        DOM_EL.classInput.value("");
         // x.add(option);
     }
     // switch on classRemoveAlert
