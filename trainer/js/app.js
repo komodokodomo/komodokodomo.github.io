@@ -119,6 +119,15 @@ function classRemoveEvent(){
 // switch on classRemoveAlert
 }
 
+function classSubmitEvent(){
+    DOM_EL.classSubmit.hide();
+
+    DOM_EL.classAdd.show();
+    DOM_EL.classEdit.show();
+    DOM_EL.classRemove.show();
+    // switch on classRemoveAlert
+    }
+
 function setup(){
 
     DOM_EL.menuContainer = createDiv();
@@ -163,6 +172,12 @@ function setup(){
     DOM_EL.classInput.input(classInputEvent);
     DOM_EL.classInput.hide();
 
+    DOM_EL.classSubmit = createButton("save");
+    DOM_EL.classSubmit.id("class-submit-button");
+    DOM_EL.classSubmit.mousePressed(classSubmitEvent);
+    DOM_EL.classSubmit.parent(DOM_EL.classContainer);
+    DOM_EL.classSubmit.hide();
+
     DOM_EL.classEdit = createButton("edit");
     DOM_EL.classEdit.id("class-edit-button");
     DOM_EL.classEdit.mousePressed(classEditEvent);
@@ -178,11 +193,7 @@ function setup(){
     DOM_EL.classRemove.mousePressed(classRemoveEvent);
     DOM_EL.classRemove.parent(DOM_EL.classContainer);
 
-    DOM_EL.classSubmit = createButton("save");
-    DOM_EL.classSubmit.id("class-submit-button");
-    DOM_EL.classSubmit.mousePressed(classSubmitEvent);
-    DOM_EL.classSubmit.parent(DOM_EL.classContainer);
-    DOM_EL.classSubmit.hide();
+
 
 
     DOM_EL.canvasContainer = createDiv();
