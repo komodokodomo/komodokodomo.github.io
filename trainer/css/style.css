@@ -21,6 +21,13 @@ body {
   height: 5%;
 }
 
+#canvas-container{
+  display: flex;
+  height: 80%;
+  justify-content: center;
+  align-items: center;
+}
+
 #menu-collect-button, #menu-train-button, #menu-embed-button, #record-button, #setting-button, #upload-button{
   width: calc( 100% / 3 );
 }
