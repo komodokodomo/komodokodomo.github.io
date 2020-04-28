@@ -284,7 +284,7 @@ function setup(){
 }
 
 function draw(){
-    image(video,0,0);
+    image(DOM_EL.video,0,0);
 }
 
 function windowResized(){
