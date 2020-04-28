@@ -37,6 +37,10 @@ body {
   width: calc(100%/9);
 }
 
+#class-submit-button{
+  width: calc(100%/3);
+}
+
 #canvas-container{
   display: flex;
   height: 80%;

@@ -15,6 +15,7 @@ var DOM_EL = {
         classEdit: null,
         classAdd: null,
         classRemove: null,
+        classSubmit: null,
     
     canvasContainer: null,
         canvas: null,
@@ -91,12 +92,25 @@ function preload(){
 function classAddEvent(){
     DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
+
+    DOM_EL.classAdd.hide();
+    DOM_EL.classEdit.hide();
+    DOM_EL.classRemove.hide();
+
+    DOM_EL.classSubmit.show();
+
     // switch on classInput
     // set focus to classInput
 }
 function classEditEvent(){
     DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
+
+    DOM_EL.classAdd.hide();
+    DOM_EL.classEdit.hide();
+    DOM_EL.classRemove.hide();
+
+    DOM_EL.classSubmit.show();
     // switch on classInput
     // change classInput value to current className
     // set focus to classInput
@@ -163,6 +177,13 @@ function setup(){
     DOM_EL.classRemove.id("class-remove-button");
     DOM_EL.classRemove.mousePressed(classRemoveEvent);
     DOM_EL.classRemove.parent(DOM_EL.classContainer);
+
+    DOM_EL.classSubmit = createButton("save");
+    DOM_EL.classSubmit.id("class-submit-button");
+    DOM_EL.classSubmit.mousePressed(classSubmitEvent);
+    DOM_EL.classSubmit.parent(DOM_EL.classContainer);
+    DOM_EL.classSubmit.hide();
+
 
     DOM_EL.canvasContainer = createDiv();
     DOM_EL.canvasContainer.id("canvas-container");
