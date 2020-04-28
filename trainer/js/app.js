@@ -105,6 +105,7 @@ function preload(){
 
 function classAddEvent(){
     APP_STATE.addClass = true;
+    console.log("time to add class");
 
     DOM_EL.classSelect.hide();
 
@@ -123,11 +124,13 @@ function classAddEvent(){
 }
 function classEditEvent(){
     APP_STATE.editClass = true;
-    DOM_EL.classInput.value(APP_STATE.selectedClass);
-    DOM_EL.classInput.elt.focus();
+    console.log("time to edit class");
 
     DOM_EL.classSelect.hide();
+    
     DOM_EL.classInput.show();
+    DOM_EL.classInput.value(APP_STATE.selectedClass);
+    DOM_EL.classInput.elt.focus();
 
     DOM_EL.classAdd.hide();
     DOM_EL.classEdit.hide();
@@ -158,7 +161,7 @@ function classSubmitEvent(){
         DOM_EL.classInput.value("");
     }
 
-    if(APP_STATE.addClass = true){
+    else if(APP_STATE.addClass = true){
         // document.getElementById("class-input").reset();
         APP_STATE.addClass = false;
         let x = document.getElementById("class-select");
