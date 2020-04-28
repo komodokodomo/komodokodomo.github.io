@@ -153,7 +153,8 @@ function classSubmitEvent(){
     if(APP_STATE.addClass = true){
         DOM_EL.classInput.value = "";
         APP_STATE.addClass = false;
-        DOM_EL.classSelect.elt.add(APP_STATE.classInputString);
+        let x = document.getElementById("class-select");
+        x.add(APP_STATE.classInputString);
     }
     // switch on classRemoveAlert
     }
