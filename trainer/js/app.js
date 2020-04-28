@@ -127,7 +127,7 @@ function classEditEvent(){
     console.log("time to edit class");
 
     DOM_EL.classSelect.hide();
-    
+
     DOM_EL.classInput.show();
     DOM_EL.classInput.value(APP_STATE.selectedClass);
     DOM_EL.classInput.elt.focus();
@@ -146,22 +146,15 @@ function classRemoveEvent(){
 }
 
 function classSubmitEvent(){
-    DOM_EL.classSubmit.hide();
-    DOM_EL.classInput.hide();
-    DOM_EL.classSelect.show();
 
-    DOM_EL.classAdd.show();
-    DOM_EL.classEdit.show();
-    DOM_EL.classRemove.show();
-
-    if(APP_STATE.editClass = true){
+    if(APP_STATE.editClass == true){
         APP_STATE.editClass = false;
         DOM_EL.classSelect.option(APP_STATE.selectedClass ,APP_STATE.classInputString);
         APP_STATE.selectedClass = APP_STATE.classInputString;
         DOM_EL.classInput.value("");
     }
 
-    else if(APP_STATE.addClass = true){
+    else if(APP_STATE.addClass == true){
         // document.getElementById("class-input").reset();
         APP_STATE.addClass = false;
         let x = document.getElementById("class-select");
@@ -171,6 +164,14 @@ function classSubmitEvent(){
 
         DOM_EL.classInput.value("");
     }
+
+    DOM_EL.classSubmit.hide();
+    DOM_EL.classInput.hide();
+    DOM_EL.classSelect.show();
+
+    DOM_EL.classAdd.show();
+    DOM_EL.classEdit.show();
+    DOM_EL.classRemove.show();
     // switch on classRemoveAlert
     }
 
