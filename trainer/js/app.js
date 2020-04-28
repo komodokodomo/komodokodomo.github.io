@@ -286,11 +286,10 @@ function setup(){
 function draw(){
     clear();
     background(0);
-    image(DOM_EL.video,0,0);
+    image(DOM_EL.video,width/2,height/2);
 }
 
 function windowResized(){
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
 }
-
