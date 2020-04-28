@@ -15,12 +15,12 @@ body {
     display: inline-flex;
 }
 
-#menu-collect-button, #menu-train-button, #menu-embed-button{
+#menu-collect-button, #menu-train-button, #menu-embed-button, #record-button, #setting-button, #upload-button{
   width: calc( 100% / 3 );
 }
 
 
 #collect-container{
-    display: inline-flex;
+    display: block;
 }
 

@@ -179,13 +179,16 @@ function setup(){
     DOM_EL.collectButtonContainer = createDiv();
     DOM_EL.collectButtonContainer.parent(DOM_EL.collectContainer);
 
-    DOM_EL.recordButton = createButton();
-    DOM_EL.recordButton.parent(DOM_EL.collectButtonContainer);
-
-    DOM_EL.settingButton = createButton();
+    DOM_EL.settingButton = createButton("settings");
+    DOM_EL.settingButton.id("setting-button");
     DOM_EL.settingButton.parent(DOM_EL.collectButtonContainer);
 
-    DOM_EL.uploadButton = createButton();
+    DOM_EL.recordButton = createButton("record");
+    DOM_EL.recordButton.id("record-button");
+    DOM_EL.recordButton.parent(DOM_EL.collectButtonContainer);
+
+    DOM_EL.uploadButton = createButton("upload");
+    DOM_EL.uploadButton.id("upload-button");
     DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
 }
 
