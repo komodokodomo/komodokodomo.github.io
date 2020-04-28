@@ -60,7 +60,8 @@ var APP_STATE = {
     height: 0,
     editClass: false,
     addClass: false,
-    classInputString: null
+    classInputString: "",
+    selectedClass: ""
 }
 
 function changeGatherEvent(){
@@ -94,7 +95,7 @@ function classInputEvent(){
 }
 
 function selectEvent(){
-    let item = DOM_EL.classSelect.value();
+    APP_STATE.selectedClass = DOM_EL.classSelect.value();
 }
 
 function preload(){
