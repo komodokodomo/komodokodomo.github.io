@@ -119,6 +119,7 @@ function classAddEvent(){
 }
 function classEditEvent(){
     APP_STATE.editClass = true;
+    DOM_EL.classInput.value = APP_STATE.selectedClass;
 
     DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
