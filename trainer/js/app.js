@@ -153,7 +153,7 @@ function classSubmitEvent(){
 
     if(APP_STATE.addClass = true){
         // DOM_EL.classInput.value = "";
-        DOM_EL.classInput.elt.reset();
+        document.getElementById("class-input").reset();
         APP_STATE.addClass = false;
         let x = document.getElementById("class-select");
         let option = document.createElement("option");
