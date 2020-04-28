@@ -198,6 +198,7 @@ function setup(){
     DOM_EL.classSelect.option('opt2');
     DOM_EL.classSelect.option('opt3');
     DOM_EL.classSelect.selected('opt2');
+    APP_STATE.selectedClass = "opt2";
     DOM_EL.classSelect.changed(selectEvent);
 
     DOM_EL.classInput = createInput();
