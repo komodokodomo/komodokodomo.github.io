@@ -248,7 +248,7 @@ function setup(){
     DOM_EL.canvasContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.canvas = createCanvas();
-    DOM_EL.canvas.parent(DOM_EL.canvasContainer);
+    // DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 
     DOM_EL.imageSampleContainer = createDiv();
     DOM_EL.imageSampleContainer.id("image-sample-container");
