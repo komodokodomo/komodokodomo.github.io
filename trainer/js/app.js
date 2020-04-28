@@ -96,6 +96,7 @@ function classInputEvent(){
 
 function selectEvent(){
     APP_STATE.selectedClass = DOM_EL.classSelect.value();
+    console.log(APP_STATE.selectedClass);
 }
 
 function preload(){
