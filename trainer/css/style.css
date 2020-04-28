@@ -12,7 +12,13 @@ body {
 #menu-container{
     display: inline-flex;
     width: 100%;
-    height: 10%;
+    height: 5%;
+}
+
+#class-container{
+  display: inline-flex;
+  width: 100%;
+  height: 5%;
 }
 
 #menu-collect-button, #menu-train-button, #menu-embed-button, #record-button, #setting-button, #upload-button{

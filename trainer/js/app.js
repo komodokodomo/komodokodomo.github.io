@@ -131,6 +131,7 @@ function setup(){
     DOM_EL.collectContainer.id("collect-container");
 
     DOM_EL.classContainer = createDiv();
+    DOM_EL.classContainer.id("class-container");
     DOM_EL.classContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.classSelect = createSelect();
