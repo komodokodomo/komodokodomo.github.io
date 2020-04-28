@@ -278,8 +278,7 @@ function setup(){
 }
 
 function draw(){
-
-   
+    image(video,0,0);
 }
 
 function windowResized(){
