@@ -1,5 +1,6 @@
 var DOM_EL = {
     
+    video: null,
     ////////////////////MENU///////////////////////
     menuContainer: null,
         menuCollectButton: null,
@@ -43,13 +44,20 @@ var DOM_EL = {
     embedContainer: null,
 }
 
+var videoConstraints = {
+    video: { facingMode: { exact: "environment" } },
+    audio: false
+  };
+
 var UTIL = {
 
 }
 
 var APP_STATE = {
     mode : 0,            // either COLLECT or TRAIN or EMBED
-    class: 0
+    class: 0,
+    width: 0,
+    height: 0
 }
 
 function changeGatherEvent(){
@@ -195,9 +203,6 @@ function setup(){
     DOM_EL.classRemove.mousePressed(classRemoveEvent);
     DOM_EL.classRemove.parent(DOM_EL.classContainer);
 
-
-
-
     DOM_EL.canvasContainer = createDiv();
     DOM_EL.canvasContainer.id("canvas-container");
     DOM_EL.canvasContainer.parent(DOM_EL.collectContainer);
@@ -209,7 +214,7 @@ function setup(){
     DOM_EL.imageSampleContainer.id("image-sample-container");
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
-    DOM_EL.imageSampleCounter = createDiv();
+    DOM_EL.imageSampleCounter = createDiv("number of images");
     DOM_EL.imageSampleCounter.id("image-sample-counter");
     DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
 
@@ -232,12 +237,19 @@ function setup(){
     DOM_EL.uploadButton = createButton("upload");
     DOM_EL.uploadButton.id("upload-button");
     DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
+
+    DOM_EL.video = createCapture(videoConstraints);
+    DOM_EL.video.size(1280, 720);
+    DOM_EL.video.hide();
 }
 
 function draw(){
+
    
 }
 
 function windowResized(){
+    APP_STATE.width = window.innerWidth;
+    APP_STATE.height = window.innerHeight;
 }
 
