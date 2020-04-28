@@ -13,6 +13,8 @@ body {
 
 #menu-container{
     display: inline-flex;
+    width: 100%;
+    height: 10%;
 }
 
 #menu-collect-button, #menu-train-button, #menu-embed-button, #record-button, #setting-button, #upload-button{
@@ -22,5 +24,7 @@ body {
 
 #collect-container{
     display: block;
+    width: 100%;
+    height: 90%;
 }
 

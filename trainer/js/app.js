@@ -107,8 +107,8 @@ function setup(){
 
     DOM_EL.menuContainer = createDiv();
     DOM_EL.menuContainer.id("menu-container");
-    DOM_EL.menuContainer.position( 0, 0 );
-    DOM_EL.menuContainer.size( window.innerWidth, window.innerHeight / 10 );
+    // DOM_EL.menuContainer.position( 0, 0 );
+    // DOM_EL.menuContainer.size( window.innerWidth, window.innerHeight / 10 );
 
     DOM_EL.menuCollectButton = createButton("GATHER");
     DOM_EL.menuCollectButton.id("menu-collect-button");
@@ -129,8 +129,8 @@ function setup(){
     
     DOM_EL.collectContainer = createDiv();
     DOM_EL.collectContainer.id("collect-container");
-    DOM_EL.collectContainer.position( 0, window.innerHeight / 10 );
-    DOM_EL.collectContainer.size( window.innerWidth, window.innerHeight * 9 / 10 );
+    // DOM_EL.collectContainer.position( 0, window.innerHeight / 10 );
+    // DOM_EL.collectContainer.size( window.innerWidth, window.innerHeight * 9 / 10 );
 
     DOM_EL.classContainer = createDiv();
     DOM_EL.classContainer.parent(DOM_EL.collectContainer);
