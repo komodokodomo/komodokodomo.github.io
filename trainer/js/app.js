@@ -90,6 +90,7 @@ function changeEmbedEvent(){
 
 function classInputEvent(){
     APP_STATE.classInputString = this.value();
+    console.log(APP_STATE.classInputString);
 }
 
 function selectEvent(){
