@@ -57,7 +57,10 @@ var APP_STATE = {
     mode : 0,            // either COLLECT or TRAIN or EMBED
     class: 0,
     width: 0,
-    height: 0
+    height: 0,
+    editClass: false,
+    addClass: false,
+    classInputString: null
 }
 
 function changeGatherEvent(){
@@ -86,7 +89,7 @@ function changeEmbedEvent(){
 }
 
 function classInputEvent(){
-    console.log('you are typing: ', this.value());
+    APP_STATE.classInputString = this.value();
 }
 
 function selectEvent(){
@@ -98,6 +101,8 @@ function preload(){
 }
 
 function classAddEvent(){
+    APP_STATE.addClass = true;
+
     DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
 
@@ -111,6 +116,8 @@ function classAddEvent(){
     // set focus to classInput
 }
 function classEditEvent(){
+    APP_STATE.editClass = true;
+
     DOM_EL.classSelect.hide();
     DOM_EL.classInput.show();
 
@@ -135,6 +142,17 @@ function classSubmitEvent(){
     DOM_EL.classAdd.show();
     DOM_EL.classEdit.show();
     DOM_EL.classRemove.show();
+
+    if(APP_STATE.editClass = true){
+        APP_STATE.editClass = false;
+        DOM_EL.classSelect.option(APP_STATE.classInputString);
+    }
+
+    if(APP_STATE.addClass = true){
+        DOM_EL.classInput.value = "";
+        APP_STATE.addClass = false;
+        DOM_EL.classSelect.option(APP_STATE.classInputString);
+    }
     // switch on classRemoveAlert
     }
 
