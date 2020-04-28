@@ -286,6 +286,7 @@ function setup(){
 function draw(){
     clear();
     background(0);
+    console.log("draw");
     image(DOM_EL.video,width/2,height/2);
 }
 
