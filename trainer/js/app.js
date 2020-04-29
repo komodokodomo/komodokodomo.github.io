@@ -21,11 +21,9 @@ var DOM_EL = {
     canvasContainer: null,
         canvas: null,
 
-    imageSampleContainer: null,
-        imageSampleCounter: null,
-        imageSampleList: null,
-        //captured image will be listed here
-        //captured image will have child element to allow removal
+    imageSampleContainer: [],
+        imageSampleCounter: [],
+        imageSampleList: [],
 
     collectButtonContainer: null,
         recordButton: null,
@@ -61,7 +59,8 @@ var APP_STATE = {
     editClass: false,
     addClass: false,
     classInputString: "",
-    selectedClass: ""
+    selectedClass: "",
+    selectedClassNumber: null
 }
 
 function changeGatherEvent(){
@@ -102,6 +101,7 @@ function selectEvent(){
 function recordButtonEvent(){
     let l = createElement("li");
     let r = createDiv("X");
+    r.style("position", "absolute");
     r.hide();
     r.parent(l);
     let c = document.getElementById('p5Canvas');
@@ -119,7 +119,7 @@ function recordButtonEvent(){
 
     imageFoo.parent(l);
     // After you are done styling it, append it to the BODY element
-    l.parent(DOM_EL.imageSampleContainer);
+    l.parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
 
 }
 
@@ -142,9 +142,6 @@ function classAddEvent(){
     DOM_EL.classRemove.hide();
 
     DOM_EL.classSubmit.show();
-
-    // switch on classInput
-    // set focus to classInput
 }
 function classEditEvent(){
     APP_STATE.editClass = true;
@@ -161,9 +158,6 @@ function classEditEvent(){
     DOM_EL.classRemove.hide();
 
     DOM_EL.classSubmit.show();
-    // switch on classInput
-    // change classInput value to current className
-    // set focus to classInput
 }
 function classRemoveEvent(){
 // switch on classRemoveAlert
@@ -275,17 +269,32 @@ function setup(){
     DOM_EL.canvas.id("p5Canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 
-    DOM_EL.imageSampleContainer = createDiv();
-    DOM_EL.imageSampleContainer.id("image-sample-container");
-    DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
-    DOM_EL.imageSampleCounter = createDiv("number of images");
-    DOM_EL.imageSampleCounter.id("image-sample-counter");
-    DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
+    let x = document.getElementById("class-select").length;
 
-    DOM_EL.imageSampleList = createElement("ol");
-    DOM_EL.imageSampleList.id("image-sample-list");
-    DOM_EL.imageSampleList.parent(DOM_EL.imageSampleContainer);
+    for(let i = 0; i < x; i++){
+
+        DOM_EL.imageSampleContainer[i] = createDiv();
+        DOM_EL.imageSampleContainer[i].id("image-sample-container");
+        DOM_EL.imageSampleContainer[i].parent(DOM_EL.collectContainer);
+    
+        DOM_EL.imageSampleCounter[i] = createDiv("number of images");
+        DOM_EL.imageSampleCounter[i].id("image-sample-counter");
+        DOM_EL.imageSampleCounter[i].parent(DOM_EL.imageSampleContainer);
+
+        DOM_EL.imageSampleList[i] = createElement("ol");
+        DOM_EL.imageSampleList[i].id("image-sample-list");
+        DOM_EL.imageSampleList[i].parent(DOM_EL.imageSampleContainer);
+        
+        console.log(x.options[i].text);
+
+        if(x.options[i].text != APP_STATE.selectedClass){
+            DOM_EL.imageSampleContainer[i].hide();
+        }
+        else{
+            APP_STATE.selectedClassNumber = i;
+        }
+    }
 
     DOM_EL.collectButtonContainer = createDiv();
     DOM_EL.collectButtonContainer.id("collect-button-container");
@@ -312,9 +321,6 @@ function setup(){
 
 function draw(){
     clear();
-    // background(0);
-    // fill(0);
-    // text("hello",width/2,height/2);
     image(DOM_EL.video,width/2,height/2);
 }
 
