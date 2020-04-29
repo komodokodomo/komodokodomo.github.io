@@ -103,7 +103,8 @@ function selectEvent(){
     let x = document.getElementById("class-select").length;
     for(let i = 0; i < x; i++){  
         if(DOM_EL.classSelect.elt.options[i].text == APP_STATE.selectedClass){
-            APP_STATE.selectedClassNumber = i;        
+            APP_STATE.selectedClassNumber = i;
+            DOM_EL.imageSampleContainer[i].show();            
         }
     }
 }
