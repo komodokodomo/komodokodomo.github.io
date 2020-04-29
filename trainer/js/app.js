@@ -286,9 +286,9 @@ function setup(){
         DOM_EL.imageSampleList[i].id("image-sample-list");
         DOM_EL.imageSampleList[i].parent(DOM_EL.imageSampleContainer[innerHeight]);
         
-        console.log(x.options[i].text);
+        console.log(DOM_EL.classSelect.elt.options[i].text);
 
-        if(x.options[i].text != APP_STATE.selectedClass){
+        if(DOM_EL.classSelect.elt.options[i].text != APP_STATE.selectedClass){
             DOM_EL.imageSampleContainer[i].hide();
         }
         else{
