@@ -108,6 +108,7 @@ function recordButtonEvent(){
 
     l.mouseOver(function(){r.show();});
     l.mouseOut(function(){r.hide();});
+    r.mousePressed(function(){l.remove();});
     
     dataUrl = c.toDataURL();
     imageFoo = createImg(dataUrl);
