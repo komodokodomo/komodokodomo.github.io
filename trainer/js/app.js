@@ -179,115 +179,115 @@ function classSubmitEvent(){
 
 function setup(){
 
-    // DOM_EL.menuContainer = createDiv();
-    // DOM_EL.menuContainer.id("menu-container");
+    DOM_EL.menuContainer = createDiv();
+    DOM_EL.menuContainer.id("menu-container");
 
-    // DOM_EL.menuCollectButton = createButton("GATHER");
-    // DOM_EL.menuCollectButton.id("menu-collect-button");
-    // DOM_EL.menuCollectButton.class("selected");
-    // DOM_EL.menuCollectButton.parent(DOM_EL.menuContainer);
-    // DOM_EL.menuCollectButton.mousePressed(changeGatherEvent);
+    DOM_EL.menuCollectButton = createButton("GATHER");
+    DOM_EL.menuCollectButton.id("menu-collect-button");
+    DOM_EL.menuCollectButton.class("selected");
+    DOM_EL.menuCollectButton.parent(DOM_EL.menuContainer);
+    DOM_EL.menuCollectButton.mousePressed(changeGatherEvent);
 
-    // DOM_EL.menuTrainButton = createButton("TRAIN");
-    // DOM_EL.menuTrainButton.id("menu-train-button");
-    // DOM_EL.menuTrainButton.parent(DOM_EL.menuContainer);
-    // DOM_EL.menuTrainButton.mousePressed(changeTrainEvent);
+    DOM_EL.menuTrainButton = createButton("TRAIN");
+    DOM_EL.menuTrainButton.id("menu-train-button");
+    DOM_EL.menuTrainButton.parent(DOM_EL.menuContainer);
+    DOM_EL.menuTrainButton.mousePressed(changeTrainEvent);
 
-    // DOM_EL.menuEmbedButton = createButton("EMBED");
-    // DOM_EL.menuEmbedButton.id("menu-embed-button");
-    // DOM_EL.menuEmbedButton.parent(DOM_EL.menuContainer);
-    // DOM_EL.menuEmbedButton.mousePressed(changeEmbedEvent);
+    DOM_EL.menuEmbedButton = createButton("EMBED");
+    DOM_EL.menuEmbedButton.id("menu-embed-button");
+    DOM_EL.menuEmbedButton.parent(DOM_EL.menuContainer);
+    DOM_EL.menuEmbedButton.mousePressed(changeEmbedEvent);
 
     
-    // DOM_EL.collectContainer = createDiv();
-    // DOM_EL.collectContainer.id("collect-container");
+    DOM_EL.collectContainer = createDiv();
+    DOM_EL.collectContainer.id("collect-container");
 
-    // DOM_EL.classContainer = createDiv();
-    // DOM_EL.classContainer.id("class-container");
-    // DOM_EL.classContainer.parent(DOM_EL.collectContainer);
+    DOM_EL.classContainer = createDiv();
+    DOM_EL.classContainer.id("class-container");
+    DOM_EL.classContainer.parent(DOM_EL.collectContainer);
 
-    // DOM_EL.classSelect = createSelect();
-    // DOM_EL.classSelect.id("class-select");
-    // DOM_EL.classSelect.parent(DOM_EL.classContainer);
-    // DOM_EL.classSelect.option('opt1');
-    // DOM_EL.classSelect.option('opt2');
-    // DOM_EL.classSelect.option('opt3');
-    // DOM_EL.classSelect.selected('opt2');
-    // APP_STATE.selectedClass = "opt2";
-    // DOM_EL.classSelect.changed(selectEvent);
+    DOM_EL.classSelect = createSelect();
+    DOM_EL.classSelect.id("class-select");
+    DOM_EL.classSelect.parent(DOM_EL.classContainer);
+    DOM_EL.classSelect.option('opt1');
+    DOM_EL.classSelect.option('opt2');
+    DOM_EL.classSelect.option('opt3');
+    DOM_EL.classSelect.selected('opt2');
+    APP_STATE.selectedClass = "opt2";
+    DOM_EL.classSelect.changed(selectEvent);
 
-    // DOM_EL.classInput = createInput("");
-    // DOM_EL.classInput.id("class-input");
-    // DOM_EL.classInput.parent(DOM_EL.classContainer);
-    // DOM_EL.classInput.input(classInputEvent);
-    // DOM_EL.classInput.hide();
+    DOM_EL.classInput = createInput("");
+    DOM_EL.classInput.id("class-input");
+    DOM_EL.classInput.parent(DOM_EL.classContainer);
+    DOM_EL.classInput.input(classInputEvent);
+    DOM_EL.classInput.hide();
 
-    // DOM_EL.classSubmit = createButton("save");
-    // DOM_EL.classSubmit.id("class-submit-button");
-    // DOM_EL.classSubmit.mousePressed(classSubmitEvent);
-    // DOM_EL.classSubmit.parent(DOM_EL.classContainer);
-    // DOM_EL.classSubmit.hide();
+    DOM_EL.classSubmit = createButton("save");
+    DOM_EL.classSubmit.id("class-submit-button");
+    DOM_EL.classSubmit.mousePressed(classSubmitEvent);
+    DOM_EL.classSubmit.parent(DOM_EL.classContainer);
+    DOM_EL.classSubmit.hide();
 
-    // DOM_EL.classEdit = createButton("edit");
-    // DOM_EL.classEdit.id("class-edit-button");
-    // DOM_EL.classEdit.mousePressed(classEditEvent);
-    // DOM_EL.classEdit.parent(DOM_EL.classContainer);
+    DOM_EL.classEdit = createButton("edit");
+    DOM_EL.classEdit.id("class-edit-button");
+    DOM_EL.classEdit.mousePressed(classEditEvent);
+    DOM_EL.classEdit.parent(DOM_EL.classContainer);
 
-    // DOM_EL.classAdd = createButton("+");
-    // DOM_EL.classAdd.id("class-add-button");
-    // DOM_EL.classAdd.mousePressed(classAddEvent);
-    // DOM_EL.classAdd.parent(DOM_EL.classContainer);
+    DOM_EL.classAdd = createButton("+");
+    DOM_EL.classAdd.id("class-add-button");
+    DOM_EL.classAdd.mousePressed(classAddEvent);
+    DOM_EL.classAdd.parent(DOM_EL.classContainer);
 
-    // DOM_EL.classRemove = createButton("x");
-    // DOM_EL.classRemove.id("class-remove-button");
-    // DOM_EL.classRemove.mousePressed(classRemoveEvent);
-    // DOM_EL.classRemove.parent(DOM_EL.classContainer);
+    DOM_EL.classRemove = createButton("x");
+    DOM_EL.classRemove.id("class-remove-button");
+    DOM_EL.classRemove.mousePressed(classRemoveEvent);
+    DOM_EL.classRemove.parent(DOM_EL.classContainer);
 
-    // DOM_EL.canvasContainer = createDiv();
-    // DOM_EL.canvasContainer.id("canvas-container");
-    // DOM_EL.canvasContainer.parent(DOM_EL.collectContainer);
+    DOM_EL.canvasContainer = createDiv();
+    DOM_EL.canvasContainer.id("canvas-container");
+    DOM_EL.canvasContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.canvas = createCanvas(600,600);
-    // DOM_EL.canvas.parent(DOM_EL.canvasContainer);
+    DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 
-    // DOM_EL.imageSampleContainer = createDiv();
-    // DOM_EL.imageSampleContainer.id("image-sample-container");
-    // DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
+    DOM_EL.imageSampleContainer = createDiv();
+    DOM_EL.imageSampleContainer.id("image-sample-container");
+    DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
-    // DOM_EL.imageSampleCounter = createDiv("number of images");
-    // DOM_EL.imageSampleCounter.id("image-sample-counter");
-    // DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
+    DOM_EL.imageSampleCounter = createDiv("number of images");
+    DOM_EL.imageSampleCounter.id("image-sample-counter");
+    DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
 
-    // DOM_EL.imageSampleList = createElement("ol");
-    // DOM_EL.imageSampleList.id("image-sample-list");
-    // DOM_EL.imageSampleList.parent(DOM_EL.imageSampleContainer);
+    DOM_EL.imageSampleList = createElement("ol");
+    DOM_EL.imageSampleList.id("image-sample-list");
+    DOM_EL.imageSampleList.parent(DOM_EL.imageSampleContainer);
 
-    // DOM_EL.collectButtonContainer = createDiv();
-    // DOM_EL.collectButtonContainer.id("collect-button-container");
-    // DOM_EL.collectButtonContainer.parent(DOM_EL.collectContainer);
+    DOM_EL.collectButtonContainer = createDiv();
+    DOM_EL.collectButtonContainer.id("collect-button-container");
+    DOM_EL.collectButtonContainer.parent(DOM_EL.collectContainer);
 
-    // DOM_EL.settingButton = createButton("settings");
-    // DOM_EL.settingButton.id("setting-button");
-    // DOM_EL.settingButton.parent(DOM_EL.collectButtonContainer);
+    DOM_EL.settingButton = createButton("settings");
+    DOM_EL.settingButton.id("setting-button");
+    DOM_EL.settingButton.parent(DOM_EL.collectButtonContainer);
 
-    // DOM_EL.recordButton = createButton("record");
-    // DOM_EL.recordButton.id("record-button");
-    // DOM_EL.recordButton.parent(DOM_EL.collectButtonContainer);
+    DOM_EL.recordButton = createButton("record");
+    DOM_EL.recordButton.id("record-button");
+    DOM_EL.recordButton.parent(DOM_EL.collectButtonContainer);
 
-    // DOM_EL.uploadButton = createButton("upload");
-    // DOM_EL.uploadButton.id("upload-button");
-    // DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
+    DOM_EL.uploadButton = createButton("upload");
+    DOM_EL.uploadButton.id("upload-button");
+    DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
 
-    // DOM_EL.video = createCapture(videoConstraints);
-    // DOM_EL.video.hide();
+    DOM_EL.video = createCapture(videoConstraints);
+    DOM_EL.video.hide();
 }
 
 function draw(){
     clear();
     // background(0);
-    fill(0);
-    text("hello",width/2,height/2);
-    // image(DOM_EL.video,width/2,height/2);
+    // fill(0);
+    // text("hello",width/2,height/2);
+    image(DOM_EL.video,width/2,height/2);
 }
 
 function windowResized(){
