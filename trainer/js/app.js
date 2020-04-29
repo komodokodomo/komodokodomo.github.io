@@ -96,6 +96,16 @@ function classInputEvent(){
 function selectEvent(){
     APP_STATE.selectedClass = DOM_EL.classSelect.value();
     console.log(APP_STATE.selectedClass);
+
+
+    DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].hide();
+
+    let x = document.getElementById("class-select").length;
+    for(let i = 0; i < x; i++){  
+        if(DOM_EL.classSelect.elt.options[i].text == APP_STATE.selectedClass){
+            APP_STATE.selectedClassNumber = i;        
+        }
+    }
 }
 
 function recordButtonEvent(){
