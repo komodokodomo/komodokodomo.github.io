@@ -102,6 +102,7 @@ function selectEvent(){
 function recordButtonEvent(){
     let l = createElement("li");
     let r = createDiv("X");
+    r.hide();
     r.parent(l);
     let c = document.getElementById('p5Canvas');
 
