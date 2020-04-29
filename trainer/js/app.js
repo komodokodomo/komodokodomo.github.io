@@ -284,7 +284,7 @@ function setup(){
 
         DOM_EL.imageSampleList[i] = createElement("ol");
         DOM_EL.imageSampleList[i].id("image-sample-list");
-        DOM_EL.imageSampleList[i].parent(DOM_EL.imageSampleContainer);
+        DOM_EL.imageSampleList[i].parent(DOM_EL.imageSampleContainer[innerHeight]);
         
         console.log(x.options[i].text);
 
