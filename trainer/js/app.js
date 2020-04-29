@@ -280,6 +280,8 @@ function setup(){
 
     DOM_EL.video = createCapture(videoConstraints);
     DOM_EL.video.hide();
+
+    imageMode(CENTER);
 }
 
 function draw(){
