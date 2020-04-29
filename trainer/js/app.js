@@ -284,8 +284,8 @@ function setup(){
 
 function draw(){
     clear();
-    // background(0);
-    text("hello",0,0);
+    background(0);
+    text("hello",width/2,height/2);
     // image(DOM_EL.video,width/2,height/2);
 }
 
