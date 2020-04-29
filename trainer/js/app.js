@@ -130,7 +130,7 @@ function recordButtonEvent(){
 
     imageFoo.parent(l);
     // After you are done styling it, append it to the BODY element
-    l.parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
+    l.parent(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber]);
 
 }
 
