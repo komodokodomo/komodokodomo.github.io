@@ -247,7 +247,7 @@ function setup(){
     DOM_EL.canvasContainer.id("canvas-container");
     DOM_EL.canvasContainer.parent(DOM_EL.collectContainer);
 
-    DOM_EL.canvas = createCanvas();
+    DOM_EL.canvas = createCanvas(window.innerHeight/5, window.innerHeight/5);
     DOM_EL.canvas.id("p5Canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 

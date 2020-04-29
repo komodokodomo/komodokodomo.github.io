@@ -54,10 +54,6 @@ body {
   align-items: center;
 }
 
-#p5Canvas{
-  height:90%;
-}
-
 #image-sample-container{
   display: inline-flex;
   width: 100%;
