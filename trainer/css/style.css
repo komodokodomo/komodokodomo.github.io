@@ -58,14 +58,17 @@ li {
   align-items: center;
 }
 
-#image-sample-container{
+.image-sample-container{
   display: inline-flex;
   width: 100%;
   height: 20%;
   overflow-x: scroll;
 }
-#image-sample-counter{
+.image-sample-counter{
   width: 100%;
+}
+.image-sample-list{
+  padding: 1px;
 }
 
 
