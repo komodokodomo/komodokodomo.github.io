@@ -9,6 +9,10 @@ body {
     display: block;
   }
 
+li {
+  list-style-type: none;
+}
+
 #menu-container{
     display: inline-flex;
     width: 100%;
