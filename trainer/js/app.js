@@ -100,16 +100,25 @@ function selectEvent(){
 }
 
 function recordButtonEvent(){
-    let c = document.getElementById('p5Canvas'),
-    dataUrl = c.toDataURL(),
+    let l = createElement("li");
+    let r = createDiv("X");
+    r.parent(l);
+    let c = document.getElementById('p5Canvas');
+
+    l.mouseOver(function(){r.show();});
+    l.mouseOut(function(){r.hide();});
+    
+    dataUrl = c.toDataURL();
     imageFoo = createImg(dataUrl);
 
     // Style your image here
     imageFoo.elt.style.width = '100px';
     imageFoo.elt.style.height = '100px';
 
+    imageFoo.parent(l);
     // After you are done styling it, append it to the BODY element
-    imageFoo.parent(DOM_EL.imageSampleContainer);
+    l.parent(DOM_EL.imageSampleContainer);
+
 }
 
 function preload(){
