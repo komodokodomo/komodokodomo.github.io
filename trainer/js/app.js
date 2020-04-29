@@ -99,6 +99,19 @@ function selectEvent(){
     console.log(APP_STATE.selectedClass);
 }
 
+function recordButtonEvent(){
+    let c = document.getElementById('p5Canvas'),
+    dataUrl = c.toDataURL(),
+    imageFoo = createImg(dataUrl);
+
+    // Style your image here
+    imageFoo.elt.style.width = '100px';
+    imageFoo.elt.style.height = '100px';
+
+    // After you are done styling it, append it to the BODY element
+    imageFoo.parent(DOM_EL.imageSampleContainer);
+}
+
 function preload(){
 
 }
@@ -274,6 +287,7 @@ function setup(){
     DOM_EL.recordButton = createButton("record");
     DOM_EL.recordButton.id("record-button");
     DOM_EL.recordButton.parent(DOM_EL.collectButtonContainer);
+    DOM_EL.recordButton.mousePressed(recordButtonEvent);
 
     DOM_EL.uploadButton = createButton("upload");
     DOM_EL.uploadButton.id("upload-button");
