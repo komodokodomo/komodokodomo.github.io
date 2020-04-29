@@ -280,7 +280,7 @@ function setup(){
     
         DOM_EL.imageSampleCounter[i] = createDiv("number of images");
         DOM_EL.imageSampleCounter[i].id("image-sample-counter");
-        DOM_EL.imageSampleCounter[i].parent(DOM_EL.imageSampleContainer);
+        DOM_EL.imageSampleCounter[i].parent(DOM_EL.imageSampleContainer[i]);
 
         DOM_EL.imageSampleList[i] = createElement("ol");
         DOM_EL.imageSampleList[i].id("image-sample-list");
