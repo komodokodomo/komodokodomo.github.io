@@ -65,6 +65,18 @@ var APP_STATE = {
     selectedClassNumber: null
 }
 
+
+async function getMedia() {
+    let stream = null;
+  
+    try {
+      stream = await navigator.mediaDevices.getUserMedia(videoConstraints);
+      /* use the stream */
+    } catch(err) {
+      /* handle the error */
+    }
+  }
+
 function changeGatherEvent(){
     APP_STATE.mode = 0;
     DOM_EL.collectContainer.show();
@@ -280,6 +292,8 @@ function classSubmitEvent(){
     }
 
 function setup(){
+
+    getMedia();
 
     DOM_EL.menuContainer = createDiv();
     DOM_EL.menuContainer.id("menu-container");
