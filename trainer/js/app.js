@@ -131,7 +131,7 @@ function recordButtonEvent(){
     r.style("font-size", "3rem");
     r.style("color", "white");
     r.hide();
-    r.parent(l);
+    // r.parent(l);
 
     let c = document.getElementById('p5Canvas');
 
@@ -158,7 +158,7 @@ function recordButtonEvent(){
     // Style your image here
     // imageFoo.elt.style.width = '100px';
     // imageFoo.elt.style.height = '100px';
-
+    r.parent(imageFoo);
     imageFoo.parent(l);
     // After you are done styling it, append it to the BODY element
     l.parent(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber]);
