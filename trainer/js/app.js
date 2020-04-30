@@ -233,7 +233,7 @@ function classSubmitEvent(){
         // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].show();
 
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber] = createElement("ol");
-        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].class("image-sample-list");
+        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].id("image-sample-list");
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer);
 
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].style("display", "inline-flex");

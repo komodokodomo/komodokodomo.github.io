@@ -58,8 +58,9 @@ li {
   align-items: center;
 }
 
-.image-sample-container{
+#image-sample-container{
   display: inline-flex;
+  justify-content: center;
   width: 100%;
   height: calc(20% - 1.5rem);
   overflow-x: scroll;
