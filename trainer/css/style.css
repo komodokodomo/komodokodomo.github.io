@@ -85,6 +85,18 @@ li {
   align-items: center;
 }
 
+.sample-list-image{
+  width: 100px;
+  height: 100px;
+}
+
+.sample-list-remove{
+  position: absolute;
+  font-size: 3rem;
+  color: white;
+}
+
+
 .removed{
   opacity: 0;
   transition: linear;

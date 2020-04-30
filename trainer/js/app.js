@@ -136,11 +136,11 @@ function recordButtonEvent(){
     dataUrl = c.toDataURL();
     
     let i = createImg(dataUrl);
-    i.style("width", "100px");
-    i.style("height", "100px");
+    i.class("sample-list-image");
     i.parent(l);
 
     let r = createDiv("X");
+    r.class("sample-list-remove");
     r.style("position", "absolute");
     r.style("font-size", "3rem");
     r.style("color", "white");
