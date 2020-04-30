@@ -112,6 +112,8 @@ function selectEvent(){
             DOM_EL.imageSampleList[i].style("display", "inline-flex");              
         }
     }
+    DOM_EL.imageSampleCounter.html(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount.toString() + " Sample Images");
+
 }
 
 function recordButtonEvent(){
