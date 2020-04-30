@@ -417,7 +417,8 @@ function classSubmitEvent(){
 function draw(){
     clear();
 
-    image(DOM_EL.video,width/2,height/2,width,height);
+    // if(DOM_EL.video.width < DOM_EL.video.height && APP_STATE.width < APP_STATE.height)
+    image(DOM_EL.video,width/2,height/2,width,width*height/APP_STATE.width);
 }
 
 function windowResized(){
