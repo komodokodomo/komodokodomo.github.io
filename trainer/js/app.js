@@ -153,6 +153,13 @@ function recordButtonEvent(){
         l.class("removed"); 
         setTimeout(function(){
             l.remove();
+            let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
+            if(n > 0){
+                DOM_EL.imageSampleCounter.html(n.toString() + " Sample Images");
+            }
+            else{
+                DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
+            }
         },300);
     });
 
