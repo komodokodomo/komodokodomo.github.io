@@ -21,8 +21,10 @@ var DOM_EL = {
     canvasContainer: null,
         canvas: null,
 
-    imageSampleContainer: [],
-        imageSampleCounter: [],
+    // imageSampleContainer: [],
+    //     imageSampleCounter: [],
+    imageSampleContainer: null,
+    imageSampleCounter: null,
         imageSampleList: [],
 
     collectButtonContainer: null,
@@ -98,13 +100,16 @@ function selectEvent(){
     console.log(APP_STATE.selectedClass);
 
 
-    DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].hide();
+    // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].hide();
+    DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].hide();
+
 
     let x = document.getElementById("class-select").length;
     for(let i = 0; i < x; i++){  
         if(DOM_EL.classSelect.elt.options[i].text == APP_STATE.selectedClass){
             APP_STATE.selectedClassNumber = i;
-            DOM_EL.imageSampleContainer[i].show();            
+            // DOM_EL.imageSampleContainer[i].show();   
+            DOM_EL.imageSampleList[i].show();              
         }
     }
 }
@@ -189,7 +194,9 @@ function classSubmitEvent(){
     else if(APP_STATE.addClass == true){
 
         APP_STATE.addClass = false;
-        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].hide();
+        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].hide();
+        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].hide();
+
 
         let x = document.getElementById("class-select");
         let option = document.createElement("option");
@@ -201,19 +208,25 @@ function classSubmitEvent(){
         APP_STATE.selectedClassNumber = x.length - 1;
         DOM_EL.classInput.value("");
 
-        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber] = createDiv();
-        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].class("image-sample-container");
-        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].parent(DOM_EL.collectContainer);
+        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber] = createDiv();
+        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].class("image-sample-container");
+        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].parent(DOM_EL.collectContainer);
     
-        DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber] = createDiv("number of images");
-        DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].class("image-sample-counter");
-        DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
+        // DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber] = createDiv("number of images");
+        // DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].class("image-sample-counter");
+        // DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
+
+        // DOM_EL.imageSampleList[APP_STATE.selectedClassNumber] = createElement("ol");
+        // DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].class("image-sample-list");
+        // DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
+
+        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].show();
 
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber] = createElement("ol");
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].class("image-sample-list");
-        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
+        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer);
 
-        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].show();
+        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].show();
     }
 
     DOM_EL.classSubmit.hide();
@@ -305,17 +318,30 @@ function setup(){
 
     for(let i = 0; i < x; i++){
 
-        DOM_EL.imageSampleContainer[i] = createDiv();
-        DOM_EL.imageSampleContainer[i].class("image-sample-container");
-        DOM_EL.imageSampleContainer[i].parent(DOM_EL.collectContainer);
+        // DOM_EL.imageSampleContainer[i] = createDiv();
+        // DOM_EL.imageSampleContainer[i].class("image-sample-container");
+        // DOM_EL.imageSampleContainer[i].parent(DOM_EL.collectContainer);
     
-        DOM_EL.imageSampleCounter[i] = createDiv("number of images");
-        DOM_EL.imageSampleCounter[i].class("image-sample-counter");
-        DOM_EL.imageSampleCounter[i].parent(DOM_EL.imageSampleContainer[i]);
+        // DOM_EL.imageSampleCounter[i] = createDiv("number of images");
+        // DOM_EL.imageSampleCounter[i].class("image-sample-counter");
+        // DOM_EL.imageSampleCounter[i].parent(DOM_EL.imageSampleContainer[i]);
+
+        // DOM_EL.imageSampleList[i] = createElement("ol");
+        // DOM_EL.imageSampleList[i].class("image-sample-list");
+        // DOM_EL.imageSampleList[i].parent(DOM_EL.imageSampleContainer[i]);
+
+        DOM_EL.imageSampleContainer = createDiv();
+        DOM_EL.imageSampleContainer.class("image-sample-container");
+        DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
+    
+        DOM_EL.imageSampleCounter = createDiv("number of images");
+        DOM_EL.imageSampleCounter.class("image-sample-counter");
+        DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
 
         DOM_EL.imageSampleList[i] = createElement("ol");
         DOM_EL.imageSampleList[i].class("image-sample-list");
-        DOM_EL.imageSampleList[i].parent(DOM_EL.imageSampleContainer[i]);
+        DOM_EL.imageSampleList[i].parent(DOM_EL.imageSampleContainer);
+
         
         console.log(DOM_EL.classSelect.elt.options[i].text);
 
