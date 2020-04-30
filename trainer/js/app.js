@@ -126,20 +126,21 @@ function recordButtonEvent(){
     let l = createElement("li");
     let r = createDiv("X");
     r.style("position", "absolute");
-    // r.style("padding", "3px");
+    r.style("padding", "3px");
     r.style("font-size", "3rem");
     r.style("color", "white");
     r.hide();
     r.parent(l);
+
     let c = document.getElementById('p5Canvas');
 
     l.mouseOver(function(){r.show();});
     l.mouseOut(function(){r.hide();});
     l.style("padding-right", "3px");
     l.style("border-radius", "5px");
-    l.style("display", "flex");
-    l.style("justify-content", "center");
-    l.style("align-items", "center");
+    // l.style("display", "flex");
+    // l.style("justify-content", "center");
+    // l.style("align-items", "center");
 
     r.mousePressed(function(){
         l.class("removed"); 
