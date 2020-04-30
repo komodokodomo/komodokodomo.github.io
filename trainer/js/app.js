@@ -126,6 +126,7 @@ function recordButtonEvent(){
     l.mouseOver(function(){r.show();});
     l.mouseOut(function(){r.hide();});
     l.style("padding-right", "3px");
+    l.style("border-radius", "5px");
 
     r.mousePressed(function(){l.remove();});
     
@@ -320,9 +321,9 @@ function setup(){
     DOM_EL.imageSampleContainer.class("image-sample-container");
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
-    DOM_EL.imageSampleCounter = createDiv("number of images");
-    DOM_EL.imageSampleCounter.class("image-sample-counter");
-    DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
+    DOM_EL.imageSampleCounter = createDiv("___ number of images");
+    DOM_EL.imageSampleCounter.id("image-sample-counter");
+    // DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
 
     for(let i = 0; i < x; i++){
 
