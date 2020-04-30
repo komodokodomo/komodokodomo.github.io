@@ -189,6 +189,8 @@ function classSubmitEvent(){
     else if(APP_STATE.addClass == true){
 
         APP_STATE.addClass = false;
+        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].hide();
+
         let x = document.getElementById("class-select");
         let option = document.createElement("option");
         option.text = APP_STATE.classInputString;
@@ -210,7 +212,8 @@ function classSubmitEvent(){
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber] = createElement("ol");
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].class("image-sample-list");
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
-    
+
+        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].show();
     }
 
     DOM_EL.classSubmit.hide();
