@@ -348,17 +348,9 @@ function setup(){
     DOM_EL.canvas.id("p5Canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 
-    DOM_EL.imageSampleCounter = createDiv("");
+    DOM_EL.imageSampleCounter = createDiv("Press or hold on record to add sample images");
     DOM_EL.imageSampleCounter.id("image-sample-counter");
     DOM_EL.imageSampleCounter.parent(DOM_EL.collectContainer);
-
-    let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
-    if(n > 0){
-        DOM_EL.imageSampleCounter.html(n.toString() + " Sample Images");
-    }
-    else{
-        DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
-    }
 
     DOM_EL.imageSampleContainer = createDiv();
     DOM_EL.imageSampleContainer.class("image-sample-container");
