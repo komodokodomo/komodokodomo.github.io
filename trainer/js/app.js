@@ -346,7 +346,8 @@ function setup(){
         console.log(DOM_EL.classSelect.elt.options[i].text);
 
         if(DOM_EL.classSelect.elt.options[i].text != APP_STATE.selectedClass){
-            DOM_EL.imageSampleContainer[i].hide();
+            // DOM_EL.imageSampleContainer[i].hide();
+            DOM_EL.imageSampleList[i].hide();
         }
         else{
             APP_STATE.selectedClassNumber = i;
