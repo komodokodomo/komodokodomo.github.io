@@ -141,9 +141,7 @@ function recordButtonEvent(){
 
     let r = createDiv("X");
     r.class("sample-list-remove");
-    r.style("position", "absolute");
-    r.style("font-size", "3rem");
-    r.style("color", "white");
+
     r.hide();
     r.parent(l);
 
@@ -306,11 +304,11 @@ function setup(){
     DOM_EL.classSelect = createSelect();
     DOM_EL.classSelect.id("class-select");
     DOM_EL.classSelect.parent(DOM_EL.classContainer);
-    DOM_EL.classSelect.option('opt1');
-    DOM_EL.classSelect.option('opt2');
-    DOM_EL.classSelect.option('opt3');
-    DOM_EL.classSelect.selected('opt2');
-    APP_STATE.selectedClass = "opt2";
+    DOM_EL.classSelect.option('class1');
+    DOM_EL.classSelect.option('class2');
+    DOM_EL.classSelect.option('class3');
+    DOM_EL.classSelect.selected('class2');
+    APP_STATE.selectedClass = "class2";
     DOM_EL.classSelect.changed(selectEvent);
 
     DOM_EL.classInput = createInput("");
