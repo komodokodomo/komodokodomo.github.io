@@ -124,19 +124,7 @@ function selectEvent(){
 
 function recordButtonEvent(){
     let l = createElement("li");
-    let r = createDiv("X");
-    r.style("position", "absolute");
-    r.style("width", "100%");
-    r.style("height", "100%");
-    r.style("font-size", "3rem");
-    r.style("color", "white");
-    r.hide();
-    // r.parent(l);
 
-    let c = document.getElementById('p5Canvas');
-
-    l.mouseOver(function(){r.show();});
-    l.mouseOut(function(){r.hide();});
     l.style("padding-right", "3px");
     l.style("border-radius", "5px");
     // l.style("width", "100px");
@@ -145,23 +133,31 @@ function recordButtonEvent(){
     l.style("justify-content", "center");
     l.style("align-items", "center");
 
+    l.parent(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber]);
+
+    let c = document.getElementById('p5Canvas');
+
+    dataUrl = c.toDataURL();
+    imageFoo = createImg(dataUrl);
+    imageFoo.mouseOver(function(){r.show();});
+    imageFoo.mouseOut(function(){r.hide();});
+    imageFoo.parent(l);
+
+    let r = createDiv("X");
+    r.style("position", "absolute");
+    r.style("font-size", "3rem");
+    r.style("color", "white");
+    r.hide();
+    r.parent(imageFoo);
+    // r.parent(l);
+
     r.mousePressed(function(){
         l.class("removed"); 
         setTimeout(function(){
             l.remove();
         },300);
     });
-    
-    dataUrl = c.toDataURL();
-    imageFoo = createImg(dataUrl);
 
-    // Style your image here
-    // imageFoo.elt.style.width = '100px';
-    // imageFoo.elt.style.height = '100px';
-    r.parent(imageFoo);
-    imageFoo.parent(l);
-    // After you are done styling it, append it to the BODY element
-    l.parent(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber]);
 
     let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
     if(n > 0){
