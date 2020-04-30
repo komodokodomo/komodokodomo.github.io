@@ -139,6 +139,8 @@ function recordButtonEvent(){
     l.mouseOut(function(){r.hide();});
     l.style("padding-right", "3px");
     l.style("border-radius", "5px");
+    l.style("width", "100px");
+    l.style("height", "100px");
     // l.style("display", "flex");
     // l.style("justify-content", "center");
     // l.style("align-items", "center");
@@ -154,8 +156,8 @@ function recordButtonEvent(){
     imageFoo = createImg(dataUrl);
 
     // Style your image here
-    imageFoo.elt.style.width = '100px';
-    imageFoo.elt.style.height = '100px';
+    // imageFoo.elt.style.width = '100px';
+    // imageFoo.elt.style.height = '100px';
 
     imageFoo.parent(l);
     // After you are done styling it, append it to the BODY element
