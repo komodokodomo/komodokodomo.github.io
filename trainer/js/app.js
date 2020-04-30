@@ -21,8 +21,6 @@ var DOM_EL = {
     canvasContainer: null,
         canvas: null,
 
-    // imageSampleContainer: [],
-    //     imageSampleCounter: [],
     imageSampleContainer: null,
     imageSampleCounter: null,
         imageSampleList: [],
@@ -45,7 +43,8 @@ var DOM_EL = {
 }
 
 var videoConstraints = {
-    video: { facingMode: { exact: "environment" } },
+    // video: { facingMode: { exact: "environment" } },
+    video: true,
     audio: false
   };
 
@@ -110,7 +109,6 @@ function selectEvent(){
     console.log(APP_STATE.selectedClass);
 
 
-    // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].hide();
     DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].hide();
 
 
@@ -405,7 +403,9 @@ async function setup(){
     DOM_EL.uploadButton.id("upload-button");
     DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
 
-    DOM_EL.video = createCapture(videoConstraints);
+    DOM_EL.video = createCapture(videoConstraints, function(stream) {
+        console.log(stream);
+      });
     DOM_EL.video.elt.setAttribute('playsinline', '');
     DOM_EL.video.hide();
 
@@ -421,3 +421,8 @@ function windowResized(){
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
 }
+
+// const render = function() {
+//     DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, window.innerWidth, window.innerWidth);
+//     window.requestAnimationFrame(render);
+//   }
