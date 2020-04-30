@@ -127,8 +127,8 @@ function recordButtonEvent(){
 
     l.style("padding-right", "3px");
     l.style("border-radius", "5px");
-    // l.style("width", "100px");
-    // l.style("height", "100px");
+    l.style("width", "100px");
+    l.style("height", "100px");
     l.style("display", "flex");
     l.style("justify-content", "center");
     l.style("align-items", "center");
@@ -138,9 +138,9 @@ function recordButtonEvent(){
     let c = document.getElementById('p5Canvas');
 
     dataUrl = c.toDataURL();
-    imageFoo = createImg(dataUrl);
-    imageFoo.mouseOver(function(){r.show();});
-    imageFoo.mouseOut(function(){r.hide();});
+    let imageFoo = createImg(dataUrl);
+    imageFoo.style("width", "100px");
+    imageFoo.style("height", "100px");
     imageFoo.parent(l);
 
     let r = createDiv("X");
@@ -148,7 +148,10 @@ function recordButtonEvent(){
     r.style("font-size", "3rem");
     r.style("color", "white");
     r.hide();
-    r.parent(imageFoo);
+    r.parent(l);
+
+    l.mouseOver(function(){r.show();});
+    l.mouseOut(function(){r.hide();});
     // r.parent(l);
 
     r.mousePressed(function(){
