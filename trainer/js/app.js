@@ -316,6 +316,7 @@ function setup(){
 
     DOM_EL.imageSampleCounter = createDiv("___ number of images");
     DOM_EL.imageSampleCounter.id("image-sample-counter");
+    DOM_EL.imageSampleCounter.parent(DOM_EL.collectContainer);
 
     DOM_EL.imageSampleContainer = createDiv();
     DOM_EL.imageSampleContainer.class("image-sample-container");
