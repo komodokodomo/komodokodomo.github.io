@@ -416,7 +416,8 @@ function classSubmitEvent(){
 
 function draw(){
     clear();
-    image(DOM_EL.video,width/2,height/2);
+
+    image(DOM_EL.video,width/2,height/2,width,height);
 }
 
 function windowResized(){
