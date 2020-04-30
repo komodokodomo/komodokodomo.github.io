@@ -125,7 +125,7 @@ function selectEvent(){
 function recordButtonEvent(){
     let l = createElement("li");
 
-    l.style("padding-right", "3px");
+    // l.style("padding-right", "3px");
     l.style("border-radius", "5px");
     l.style("width", "100px");
     l.style("height", "100px");
