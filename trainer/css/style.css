@@ -68,6 +68,7 @@ li {
   width: 100%;
 }
 .image-sample-list{
+  display: inline-flex;
   padding: 1px;
 }
 

@@ -113,12 +113,15 @@ function recordButtonEvent(){
     let l = createElement("li");
     let r = createDiv("X");
     r.style("position", "absolute");
+    r.style("padding", "3px");
     r.hide();
     r.parent(l);
     let c = document.getElementById('p5Canvas');
 
     l.mouseOver(function(){r.show();});
     l.mouseOut(function(){r.hide();});
+    l.style("padding-right", "3px");
+
     r.mousePressed(function(){l.remove();});
     
     dataUrl = c.toDataURL();
