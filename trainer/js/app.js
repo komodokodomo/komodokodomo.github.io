@@ -410,6 +410,7 @@ function setup(){
     DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
 
     DOM_EL.video = createCapture(videoConstraints);
+    DOM_EL.video.elt.setAttribute('playsinline', '');
     DOM_EL.video.hide();
 
     imageMode(CENTER);
