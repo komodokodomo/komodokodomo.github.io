@@ -353,7 +353,7 @@ function setup(){
     DOM_EL.imageSampleCounter.parent(DOM_EL.collectContainer);
 
     DOM_EL.imageSampleContainer = createDiv();
-    DOM_EL.imageSampleContainer.class("image-sample-container");
+    DOM_EL.imageSampleContainer.id("image-sample-container");
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
     // DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
