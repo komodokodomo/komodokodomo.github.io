@@ -124,9 +124,10 @@ function selectEvent(){
 
 function recordButtonEvent(){
     let l = createElement("li");
-    let r = createP("X");
+    let r = createDiv("X");
     r.style("position", "absolute");
-    r.style("padding", "3px");
+    r.style("width", "100%");
+    r.style("height", "100%");
     r.style("font-size", "3rem");
     r.style("color", "white");
     r.hide();
