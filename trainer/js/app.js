@@ -135,7 +135,12 @@ function recordButtonEvent(){
     l.style("justify-content", "center");
     l.style("align-items", "center");
 
-    r.mousePressed(function(){l.remove();});
+    r.mousePressed(function(){
+        l.class("removed"); 
+        setTimeout(function(){
+            l.remove();
+        },300);
+    });
     
     dataUrl = c.toDataURL();
     imageFoo = createImg(dataUrl);

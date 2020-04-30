@@ -75,6 +75,12 @@ li {
   padding: 1px;
 }
 
+.removed{
+  opacity: 0;
+  transition: linear;
+  transition-duration: 300ms;
+}
+
 
 #collect-button-container{
   display: inline-flex;
