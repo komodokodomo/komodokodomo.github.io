@@ -78,7 +78,7 @@ li {
 .removed{
   opacity: 0;
   transition: linear;
-  transition-duration: 300ms;
+  transition-duration: 200ms;
 }
 
 
