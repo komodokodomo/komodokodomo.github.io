@@ -184,7 +184,7 @@ function classSubmitEvent(){
     }
 
     else if(APP_STATE.addClass == true){
-        // document.getElementById("class-input").reset();
+
         APP_STATE.addClass = false;
         let x = document.getElementById("class-select");
         let option = document.createElement("option");
@@ -193,7 +193,21 @@ function classSubmitEvent(){
 
         DOM_EL.classSelect.selected(APP_STATE.classInputString);
         APP_STATE.selectedClass = APP_STATE.classInputString;
+        APP_STATE.selectedClassNumber = x.length - 1;
         DOM_EL.classInput.value("");
+
+        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber] = createDiv();
+        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].class("image-sample-container");
+        DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].parent(DOM_EL.collectContainer);
+    
+        DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber] = createDiv("number of images");
+        DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].class("image-sample-counter");
+        DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[i]);
+
+        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber] = createElement("ol");
+        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].class("image-sample-list");
+        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[i]);
+    
     }
 
     DOM_EL.classSubmit.hide();
