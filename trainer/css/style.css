@@ -78,7 +78,7 @@ li {
 .sample-list{
   padding-right: 3px;
   border-radius: 5px;
-  position: relative
+  position: relative;
   width: 100px;
   height: 100px;
   display: flex;
