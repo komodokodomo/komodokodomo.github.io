@@ -232,6 +232,7 @@ function classSubmitEvent(){
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer);
 
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].style("display", "inline-flex");
+        DOM_EL.imageSampleCounter.html(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount.toString() + " Sample Images");
     }
 
     DOM_EL.classSubmit.hide();
