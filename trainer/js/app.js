@@ -290,6 +290,8 @@ function classSubmitEvent(){
  function setup(){
 
     // await setupCamera();
+    APP_STATE.width = window.innerWidth;
+    APP_STATE.height = window.innerHeight;
 
     DOM_EL.menuContainer = createDiv();
     DOM_EL.menuContainer.id("menu-container");
@@ -418,7 +420,7 @@ function draw(){
     clear();
 
     // if(DOM_EL.video.width < DOM_EL.video.height && APP_STATE.width < APP_STATE.height)
-    image(DOM_EL.video,width/2,height/2,width,width*height/APP_STATE.width);
+    image(DOM_EL.video,width/2,height/2,width,width*height/APP_STATE.height);
 }
 
 function windowResized(){
