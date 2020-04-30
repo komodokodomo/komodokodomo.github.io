@@ -65,6 +65,15 @@ var APP_STATE = {
     selectedClassNumber: null
 }
 
+const setupCamera = async function() {
+    return navigator.mediaDevices
+    .getUserMedia({ video: { facingMode: "environment" }, audio: false })
+    .then(stream => stream)
+    .catch(function(error) {
+      console.error("Oops. Something is broken.", error);
+    });
+  }
+
 
 function changeGatherEvent(){
     APP_STATE.mode = 0;
@@ -280,7 +289,9 @@ function classSubmitEvent(){
     // switch on classRemoveAlert
     }
 
-function setup(){
+async function setup(){
+
+    await setupCamera();
 
     DOM_EL.menuContainer = createDiv();
     DOM_EL.menuContainer.id("menu-container");
