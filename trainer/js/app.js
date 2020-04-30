@@ -205,11 +205,11 @@ function classSubmitEvent(){
     
         DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber] = createDiv("number of images");
         DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].class("image-sample-counter");
-        DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[i]);
+        DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
 
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber] = createElement("ol");
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].class("image-sample-list");
-        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[i]);
+        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
     
     }
 
