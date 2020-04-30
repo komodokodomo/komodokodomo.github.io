@@ -123,25 +123,22 @@ function selectEvent(){
 }
 
 function recordButtonEvent(){
-    let l = createElement("li");
+    // let l = createElement("li");
+    let l = createDiv();
 
-    // l.style("padding-right", "3px");
-    l.style("border-radius", "5px");
-    l.style("width", "100px");
-    l.style("height", "100px");
-    l.style("display", "flex");
-    l.style("justify-content", "center");
-    l.style("align-items", "center");
+
+    l.class("sample-list");
 
     l.parent(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber]);
 
     let c = document.getElementById('p5Canvas');
 
     dataUrl = c.toDataURL();
-    let imageFoo = createImg(dataUrl);
-    imageFoo.style("width", "100px");
-    imageFoo.style("height", "100px");
-    imageFoo.parent(l);
+    
+    let i = createImg(dataUrl);
+    i.style("width", "100px");
+    i.style("height", "100px");
+    i.parent(l);
 
     let r = createDiv("X");
     r.style("position", "absolute");

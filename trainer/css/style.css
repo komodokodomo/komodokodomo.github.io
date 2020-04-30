@@ -75,6 +75,16 @@ li {
   padding: 1px;
 }
 
+.sample-list{
+  padding-right: 3px;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .removed{
   opacity: 0;
   transition: linear;
