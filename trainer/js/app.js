@@ -109,7 +109,7 @@ function selectEvent(){
         if(DOM_EL.classSelect.elt.options[i].text == APP_STATE.selectedClass){
             APP_STATE.selectedClassNumber = i;
             // DOM_EL.imageSampleContainer[i].show();   
-            DOM_EL.imageSampleList[i].show();              
+            DOM_EL.imageSampleList[i].style("display", "inline-flex");              
         }
     }
 }
@@ -226,7 +226,7 @@ function classSubmitEvent(){
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].class("image-sample-list");
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer);
 
-        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].show();
+        DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].style("display", "inline-flex");
     }
 
     DOM_EL.classSubmit.hide();
