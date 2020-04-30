@@ -112,7 +112,13 @@ function selectEvent(){
             DOM_EL.imageSampleList[i].style("display", "inline-flex");              
         }
     }
-    DOM_EL.imageSampleCounter.html(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount.toString() + " Sample Images");
+    let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
+    if(n > 0){
+        DOM_EL.imageSampleCounter.html(n.toString() + " Sample Images");
+    }
+    else{
+        DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
+    }
 
 }
 
@@ -153,7 +159,13 @@ function recordButtonEvent(){
     // After you are done styling it, append it to the BODY element
     l.parent(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber]);
 
-    DOM_EL.imageSampleCounter.html(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount.toString() + " Sample Images");
+    let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
+    if(n > 0){
+        DOM_EL.imageSampleCounter.html(n.toString() + " Sample Images");
+    }
+    else{
+        DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
+    }
 
 }
 
@@ -242,7 +254,14 @@ function classSubmitEvent(){
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer);
 
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].style("display", "inline-flex");
-        DOM_EL.imageSampleCounter.html(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount.toString() + " Sample Images");
+        
+        let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
+        if(n > 0){
+            DOM_EL.imageSampleCounter.html(n.toString() + " Sample Images");
+        }
+        else{
+            DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
+        }
     }
 
     DOM_EL.classSubmit.hide();
