@@ -141,6 +141,8 @@ function recordButtonEvent(){
     // After you are done styling it, append it to the BODY element
     l.parent(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber]);
 
+    DOM_EL.imageSampleCounter.html(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount.toString() + " Sample Images");
+
 }
 
 function preload(){
@@ -314,7 +316,7 @@ function setup(){
     DOM_EL.canvas.id("p5Canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 
-    DOM_EL.imageSampleCounter = createDiv("___ number of images");
+    DOM_EL.imageSampleCounter = createDiv("0 sample images");
     DOM_EL.imageSampleCounter.id("image-sample-counter");
     DOM_EL.imageSampleCounter.parent(DOM_EL.collectContainer);
 
