@@ -403,9 +403,11 @@ function classSubmitEvent(){
     DOM_EL.uploadButton.id("upload-button");
     DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
 
-    DOM_EL.video = createCapture(videoConstraints, function(stream) {
-        console.log(stream);
-      });
+    // DOM_EL.video = createCapture(videoConstraints, function(stream) {
+    //     console.log(stream);
+    //   });
+
+    DOM_EL.video = createCapture(VIDEO);
     DOM_EL.video.elt.setAttribute('playsinline', '');
     DOM_EL.video.hide();
 
