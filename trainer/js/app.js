@@ -139,11 +139,11 @@ function recordButtonEvent(){
     l.mouseOut(function(){r.hide();});
     l.style("padding-right", "3px");
     l.style("border-radius", "5px");
-    l.style("width", "100px");
-    l.style("height", "100px");
-    // l.style("display", "flex");
-    // l.style("justify-content", "center");
-    // l.style("align-items", "center");
+    // l.style("width", "100px");
+    // l.style("height", "100px");
+    l.style("display", "flex");
+    l.style("justify-content", "center");
+    l.style("align-items", "center");
 
     r.mousePressed(function(){
         l.class("removed"); 
