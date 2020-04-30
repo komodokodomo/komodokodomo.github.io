@@ -314,17 +314,15 @@ function setup(){
     DOM_EL.canvas.id("p5Canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 
-
-    let x = document.getElementById("class-select").length;
+    DOM_EL.imageSampleCounter = createDiv("___ number of images");
+    DOM_EL.imageSampleCounter.id("image-sample-counter");
 
     DOM_EL.imageSampleContainer = createDiv();
     DOM_EL.imageSampleContainer.class("image-sample-container");
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
-    DOM_EL.imageSampleCounter = createDiv("___ number of images");
-    DOM_EL.imageSampleCounter.id("image-sample-counter");
     // DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
-
+    let x = document.getElementById("class-select").length;
     for(let i = 0; i < x; i++){
 
         // DOM_EL.imageSampleContainer[i] = createDiv();
