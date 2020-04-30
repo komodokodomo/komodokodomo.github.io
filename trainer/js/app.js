@@ -373,30 +373,14 @@ async function setup(){
     DOM_EL.imageSampleContainer.id("image-sample-container");
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
-    // DOM_EL.imageSampleCounter.parent(DOM_EL.imageSampleContainer);
     let x = document.getElementById("class-select").length;
     for(let i = 0; i < x; i++){
-
-        // DOM_EL.imageSampleContainer[i] = createDiv();
-        // DOM_EL.imageSampleContainer[i].class("image-sample-container");
-        // DOM_EL.imageSampleContainer[i].parent(DOM_EL.collectContainer);
-    
-        // DOM_EL.imageSampleCounter[i] = createDiv("number of images");
-        // DOM_EL.imageSampleCounter[i].class("image-sample-counter");
-        // DOM_EL.imageSampleCounter[i].parent(DOM_EL.imageSampleContainer[i]);
-
-        // DOM_EL.imageSampleList[i] = createElement("ol");
-        // DOM_EL.imageSampleList[i].class("image-sample-list");
-        // DOM_EL.imageSampleList[i].parent(DOM_EL.imageSampleContainer[i]);
 
         DOM_EL.imageSampleList[i] = createElement("ol");
         DOM_EL.imageSampleList[i].class("image-sample-list");
         DOM_EL.imageSampleList[i].parent(DOM_EL.imageSampleContainer);
 
-        console.log(DOM_EL.classSelect.elt.options[i].text);
-
         if(DOM_EL.classSelect.elt.options[i].text != APP_STATE.selectedClass){
-            // DOM_EL.imageSampleContainer[i].hide();
             DOM_EL.imageSampleList[i].hide();
         }
         else{
