@@ -420,7 +420,7 @@ function draw(){
     clear();
 
     // if(DOM_EL.video.width < DOM_EL.video.height && APP_STATE.width < APP_STATE.height)
-    image(DOM_EL.video,width/2,height/2,width, width * DOM_EL.video.width/ (DOM_EL.video.height));
+    image(DOM_EL.video,width/2,height/2,width, width * DOM_EL.video.height/ (DOM_EL.video.width));
 }
 
 function windowResized(){
