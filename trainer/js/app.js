@@ -331,42 +331,48 @@ function classSubmitEvent(){
     DOM_EL.classContainer = select("#class-container");
     // DOM_EL.classContainer.parent(DOM_EL.collectContainer);
 
-    DOM_EL.classSelect = createSelect();
-    DOM_EL.classSelect.id("class-select");
-    DOM_EL.classSelect.parent(DOM_EL.classContainer);
-    DOM_EL.classSelect.option('class1');
-    DOM_EL.classSelect.option('class2');
-    DOM_EL.classSelect.option('class3');
+    // DOM_EL.classSelect = createSelect();
+    // DOM_EL.classSelect.id("class-select");
+    // DOM_EL.classSelect.parent(DOM_EL.classContainer);
+    // DOM_EL.classSelect.option('class1');
+    // DOM_EL.classSelect.option('class2');
+    // DOM_EL.classSelect.option('class3');
+    DOM_EL.classSelect = select("#class-select");
     DOM_EL.classSelect.selected('class2');
     APP_STATE.selectedClass = "class2";
     DOM_EL.classSelect.changed(selectEvent);
 
-    DOM_EL.classInput = createInput("");
-    DOM_EL.classInput.id("class-input");
-    DOM_EL.classInput.parent(DOM_EL.classContainer);
+    // DOM_EL.classInput = createInput("");
+    // DOM_EL.classInput.id("class-input");
+    // DOM_EL.classInput.parent(DOM_EL.classContainer);
+    DOM_EL.classInput = select("#class-input");
     DOM_EL.classInput.input(classInputEvent);
     DOM_EL.classInput.hide();
 
-    DOM_EL.classSubmit = createButton("save");
-    DOM_EL.classSubmit.id("class-submit-button");
+    // DOM_EL.classSubmit = createButton("save");
+    // DOM_EL.classSubmit.id("class-submit-button");
+    // DOM_EL.classSubmit.parent(DOM_EL.classContainer);
+    DOM_EL.classSubmit = select("#class-submit-button");
     DOM_EL.classSubmit.mousePressed(classSubmitEvent);
-    DOM_EL.classSubmit.parent(DOM_EL.classContainer);
     DOM_EL.classSubmit.hide();
 
-    DOM_EL.classEdit = createButton("edit");
-    DOM_EL.classEdit.id("class-edit-button");
+    // DOM_EL.classEdit = createButton("edit");
+    // DOM_EL.classEdit.id("class-edit-button");
+    // DOM_EL.classEdit.parent(DOM_EL.classContainer);
+    DOM_EL.classEdit = select("#class-edit-button");
     DOM_EL.classEdit.mousePressed(classEditEvent);
-    DOM_EL.classEdit.parent(DOM_EL.classContainer);
 
-    DOM_EL.classAdd = createButton("+");
-    DOM_EL.classAdd.id("class-add-button");
+    // DOM_EL.classAdd = createButton("+");
+    // DOM_EL.classAdd.id("class-add-button");
+    // DOM_EL.classAdd.parent(DOM_EL.classContainer);
+    DOM_EL.classAdd = select("#class-add-button");
     DOM_EL.classAdd.mousePressed(classAddEvent);
-    DOM_EL.classAdd.parent(DOM_EL.classContainer);
 
-    DOM_EL.classRemove = createButton("x");
-    DOM_EL.classRemove.id("class-remove-button");
+    // DOM_EL.classRemove = createButton("x");
+    // DOM_EL.classRemove.id("class-remove-button");
+    // DOM_EL.classRemove.parent(DOM_EL.classContainer);
+    DOM_EL.classRemove = select("#class-remove-button");
     DOM_EL.classRemove.mousePressed(classRemoveEvent);
-    DOM_EL.classRemove.parent(DOM_EL.classContainer);
 
     // DOM_EL.canvasContainer = createDiv();
     // DOM_EL.canvasContainer.id("canvas-container");
