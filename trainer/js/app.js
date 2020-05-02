@@ -410,19 +410,19 @@ function classSubmitEvent(){
 
     // DOM_EL.settingButton = createButton("settings");
     // DOM_EL.settingButton.id("setting-button");
-    DOM_EL.settingButton.select("#setting-button");
+    DOM_EL.settingButton = select("#setting-button");
     // DOM_EL.settingButton.parent(DOM_EL.collectButtonContainer);
 
     // DOM_EL.recordButton = createButton("record");
     // DOM_EL.recordButton.id("record-button");
-    DOM_EL.recordButton.select("#record-button");
+    DOM_EL.recordButton = select("#record-button");
     // DOM_EL.recordButton.parent(DOM_EL.collectButtonContainer);
     DOM_EL.recordButton.mousePressed(recordButtonEvent);
 
     // DOM_EL.uploadButton = createButton("upload");
     // DOM_EL.uploadButton.id("upload-button");
     // DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
-    DOM_EL.uploadButton.select("#upload-button");
+    DOM_EL.uploadButton = select("#upload-button");
 
     // DOM_EL.video = createCapture(videoConstraints, function(stream) {
     //     console.log(stream);
