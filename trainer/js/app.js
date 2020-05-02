@@ -307,19 +307,19 @@ function classSubmitEvent(){
     // DOM_EL.menuCollectButton.id("menu-collect-button");
     DOM_EL.menuCollectButton = select("#menu-collect-button");
     DOM_EL.menuCollectButton.class("selected");
-    DOM_EL.menuCollectButton.parent(DOM_EL.menuContainer);
+    // DOM_EL.menuCollectButton.parent(DOM_EL.menuContainer);
     DOM_EL.menuCollectButton.mousePressed(changeGatherEvent);
 
     // DOM_EL.menuTrainButton = createButton("TRAIN");
     // DOM_EL.menuTrainButton.id("menu-train-button");
     DOM_EL.menuTrainButton = select("#menu-train-button");
-    DOM_EL.menuTrainButton.parent(DOM_EL.menuContainer);
+    // DOM_EL.menuTrainButton.parent(DOM_EL.menuContainer);
     DOM_EL.menuTrainButton.mousePressed(changeTrainEvent);
 
     // DOM_EL.menuEmbedButton = createButton("EMBED");
     // DOM_EL.menuEmbedButton.id("menu-embed-button");
     DOM_EL.menuEmbedButton = select("#menu-embed-button");
-    DOM_EL.menuEmbedButton.parent(DOM_EL.menuContainer);
+    // DOM_EL.menuEmbedButton.parent(DOM_EL.menuContainer);
     DOM_EL.menuEmbedButton.mousePressed(changeEmbedEvent);
 
     // DOM_EL.collectContainer = createDiv();
@@ -406,18 +406,21 @@ function classSubmitEvent(){
     DOM_EL.collectButtonContainer = select("#collect-button-container");
     DOM_EL.collectButtonContainer.parent(DOM_EL.collectContainer);
 
-    DOM_EL.settingButton = createButton("settings");
-    DOM_EL.settingButton.id("setting-button");
-    DOM_EL.settingButton.parent(DOM_EL.collectButtonContainer);
+    // DOM_EL.settingButton = createButton("settings");
+    // DOM_EL.settingButton.id("setting-button");
+    DOM_EL.settingButton.select("#setting-button");
+    // DOM_EL.settingButton.parent(DOM_EL.collectButtonContainer);
 
-    DOM_EL.recordButton = createButton("record");
-    DOM_EL.recordButton.id("record-button");
-    DOM_EL.recordButton.parent(DOM_EL.collectButtonContainer);
+    // DOM_EL.recordButton = createButton("record");
+    // DOM_EL.recordButton.id("record-button");
+    DOM_EL.recordButton.select("#record-button");
+    // DOM_EL.recordButton.parent(DOM_EL.collectButtonContainer);
     DOM_EL.recordButton.mousePressed(recordButtonEvent);
 
-    DOM_EL.uploadButton = createButton("upload");
-    DOM_EL.uploadButton.id("upload-button");
-    DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
+    // DOM_EL.uploadButton = createButton("upload");
+    // DOM_EL.uploadButton.id("upload-button");
+    // DOM_EL.uploadButton.parent(DOM_EL.collectButtonContainer);
+    DOM_EL.uploadButton.select("#upload-button");
 
     // DOM_EL.video = createCapture(videoConstraints, function(stream) {
     //     console.log(stream);
