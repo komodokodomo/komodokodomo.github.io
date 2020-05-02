@@ -80,6 +80,7 @@ window.addEventListener('DOMContentLoaded', () => {
    
     DOM_EL.video.elt.onloadeddata = e => {
       DOM_EL.video.elt.play();
+      DOM_EL.video.hide();
       render();
     }
   }
@@ -94,7 +95,7 @@ const setupCamera = async function() {
   }
 
 const render = function() {
-    DOM_EL.ctx.drawImage(DOM_EL.video.elt, 0, 0);
+    DOM_EL.ctx.drawImage(DOM_EL.video.elt, 0, 0, DOM_EL.canvas.width, DOM_EL.canvas.height);
     window.requestAnimationFrame(render);
   }
 
