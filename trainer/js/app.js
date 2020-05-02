@@ -325,8 +325,9 @@ function classSubmitEvent(){
     DOM_EL.collectContainer = createDiv();
     DOM_EL.collectContainer.id("collect-container");
 
-    DOM_EL.classContainer = createDiv();
-    DOM_EL.classContainer.id("class-container");
+    // DOM_EL.classContainer = createDiv();
+    // DOM_EL.classContainer.id("class-container");
+    DOM_EL.classContainer = select("#class-container");
     DOM_EL.classContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.classSelect = createSelect();
@@ -366,8 +367,9 @@ function classSubmitEvent(){
     DOM_EL.classRemove.mousePressed(classRemoveEvent);
     DOM_EL.classRemove.parent(DOM_EL.classContainer);
 
-    DOM_EL.canvasContainer = createDiv();
-    DOM_EL.canvasContainer.id("canvas-container");
+    // DOM_EL.canvasContainer = createDiv();
+    // DOM_EL.canvasContainer.id("canvas-container");
+    DOM_EL.canvasContainer = select("#canvas-container");
     DOM_EL.canvasContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.canvas = createCanvas(window.innerHeight*5/10, window.innerHeight*5/10);
@@ -378,8 +380,9 @@ function classSubmitEvent(){
     DOM_EL.imageSampleCounter.id("image-sample-counter");
     DOM_EL.imageSampleCounter.parent(DOM_EL.collectContainer);
 
-    DOM_EL.imageSampleContainer = createDiv();
-    DOM_EL.imageSampleContainer.id("image-sample-container");
+    // DOM_EL.imageSampleContainer = createDiv();
+    // DOM_EL.imageSampleContainer.id("image-sample-container");
+    DOM_EL.imageSampleContainer = select("#image-sample-container");
     DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
     let x = document.getElementById("class-select").length;
@@ -397,8 +400,9 @@ function classSubmitEvent(){
         }
     }
 
-    DOM_EL.collectButtonContainer = createDiv();
-    DOM_EL.collectButtonContainer.id("collect-button-container");
+    // DOM_EL.collectButtonContainer = createDiv();
+    // DOM_EL.collectButtonContainer.id("collect-button-container");
+    DOM_EL.collectButtonContainer = select("#collect-button-container");
     DOM_EL.collectButtonContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.settingButton = createButton("settings");
