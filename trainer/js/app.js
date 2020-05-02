@@ -161,7 +161,7 @@ function recordButtonEvent(){
     l.class("sample-list");
     l.parent(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber]);
 
-    let c = document.getElementById('p5Canvas');
+    let c = document.getElementById('canvas');
 
     dataUrl = c.toDataURL();
     
