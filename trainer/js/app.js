@@ -329,7 +329,7 @@ function classSubmitEvent(){
     // DOM_EL.classContainer = createDiv();
     // DOM_EL.classContainer.id("class-container");
     DOM_EL.classContainer = select("#class-container");
-    DOM_EL.classContainer.parent(DOM_EL.collectContainer);
+    // DOM_EL.classContainer.parent(DOM_EL.collectContainer);
 
     DOM_EL.classSelect = createSelect();
     DOM_EL.classSelect.id("class-select");
