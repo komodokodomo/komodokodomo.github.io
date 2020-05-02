@@ -90,7 +90,7 @@ const setupCamera = async function() {
     .getUserMedia({ video: { facingMode: "environment" }, audio: false })
     .then(stream => stream)
     .catch(function(error) {
-      console.error("Oops. Something is broken.", error);
+      alert("Oops. Something is broken.", error);
     });
   }
 
