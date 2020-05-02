@@ -71,15 +71,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const init = async function() {
     
-    DOM_EL.video = document.getElementById("canvas-camera");
-    DOM_EL.video.srcObject = await setupCamera();
+    DOM_EL.video = select("#canvas-camera");
+    DOM_EL.video.elt.srcObject = await setupCamera();
     
     DOM_EL.canvasContainer = select("#canvas-container");
     DOM_EL.canvas = select("#canvas");
     DOM_EL.ctx = DOM_EL.canvas.elt.getContext("2d", { alpha: false });
    
-    DOM_EL.video.onloadeddata = e => {
-      DOM_EL.video.play();
+    DOM_EL.video.elt.onloadeddata = e => {
+      DOM_EL.video.elt.play();
       render();
     }
   }
@@ -94,7 +94,7 @@ const setupCamera = async function() {
   }
 
 const render = function() {
-    DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, window.innerWidth, window.innerWidth);
+    DOM_EL.ctx.drawImage(DOM_EL.video.elt, 0, 0, window.innerWidth, window.innerWidth);
     window.requestAnimationFrame(render);
   }
 
@@ -360,22 +360,11 @@ function classSubmitEvent(){
 
     DOM_EL.uploadButton = select("#upload-button");
 
-    // DOM_EL.video = createCapture(videoConstraints, function(stream) {
-    //     console.log(stream);
-    //   });
-
-    // DOM_EL.video = createCapture(VIDEO);
-    // DOM_EL.video.elt.setAttribute('playsinline', '');
-    // DOM_EL.video.hide();
-
     imageMode(CENTER);
 }
 
 function draw(){
-    // clear();
 
-    // if(DOM_EL.video.width < DOM_EL.video.height && APP_STATE.width < APP_STATE.height)
-    // image(DOM_EL.video,width/2,height/2,width, width * DOM_EL.video.width/ (DOM_EL.video.height));
 }
 
 function windowResized(){
