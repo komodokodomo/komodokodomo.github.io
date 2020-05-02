@@ -379,9 +379,10 @@ function classSubmitEvent(){
 
     DOM_EL.canvas = select("#canvas");
 
-    DOM_EL.imageSampleCounter = createDiv("Press or hold on record to add sample images");
-    DOM_EL.imageSampleCounter.id("image-sample-counter");
-    DOM_EL.imageSampleCounter.parent(DOM_EL.collectContainer);
+    // DOM_EL.imageSampleCounter = createDiv("Press or hold on record to add sample images");
+    // DOM_EL.imageSampleCounter.id("image-sample-counter");
+    // DOM_EL.imageSampleCounter.parent(DOM_EL.collectContainer);
+    DOM_EL.imageSampleCounter = select("#image-sample-counter");
 
     // DOM_EL.imageSampleContainer = createDiv();
     // DOM_EL.imageSampleContainer.id("image-sample-container");
