@@ -20,6 +20,7 @@ var DOM_EL = {
     
     canvasContainer: null,
         canvas: null,
+        ctx: null,
 
     imageSampleContainer: null,
     imageSampleCounter: null,
@@ -64,14 +65,38 @@ var APP_STATE = {
     selectedClassNumber: null
 }
 
-// const setupCamera = async function() {
-//     return navigator.mediaDevices
-//     .getUserMedia({ video: { facingMode: "environment" }, audio: false })
-//     .then(stream => stream)
-//     .catch(function(error) {
-//       console.error("Oops. Something is broken.", error);
-//     });
-//   }
+window.addEventListener('DOMContentLoaded', () => {
+    init();
+  });
+
+const init = async function() {
+
+    DOM_EL.video.srcObject = await setupCamera();
+    
+    DOM_EL.canvas = createCanvas(window.innerHeight*5/10, window.innerHeight*5/10);
+    DOM_EL.canvas.id("p5Canvas");
+    DOM_EL.ctx = DOM_EL.canvas.elt.getContext("2d", { alpha: false });
+
+    
+    DOM_EL.video.onloadeddata = e => {
+      DOM_EL.video.play();
+      render();
+    }
+  }
+
+const setupCamera = async function() {
+    return navigator.mediaDevices
+    .getUserMedia({ video: { facingMode: "environment" }, audio: false })
+    .then(stream => stream)
+    .catch(function(error) {
+      console.error("Oops. Something is broken.", error);
+    });
+  }
+
+const render = function() {
+    DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, window.innerWidth, window.innerWidth);
+    window.requestAnimationFrame(render);
+  }
 
 
 function changeGatherEvent(){
@@ -131,12 +156,9 @@ function selectEvent(){
 }
 
 function recordButtonEvent(){
-    // let l = createElement("li");
+    
     let l = createDiv();
-
-
     l.class("sample-list");
-
     l.parent(DOM_EL.imageSampleList[APP_STATE.selectedClassNumber]);
 
     let c = document.getElementById('p5Canvas');
@@ -248,20 +270,6 @@ function classSubmitEvent(){
         APP_STATE.selectedClassNumber = x.length - 1;
         DOM_EL.classInput.value("");
 
-        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber] = createDiv();
-        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].class("image-sample-container");
-        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].parent(DOM_EL.collectContainer);
-    
-        // DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber] = createDiv("number of images");
-        // DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].class("image-sample-counter");
-        // DOM_EL.imageSampleCounter[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
-
-        // DOM_EL.imageSampleList[APP_STATE.selectedClassNumber] = createElement("ol");
-        // DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].class("image-sample-list");
-        // DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber]);
-
-        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].show();
-
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber] = createElement("ol");
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].id("image-sample-list");
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.imageSampleContainer);
@@ -284,7 +292,6 @@ function classSubmitEvent(){
     DOM_EL.classAdd.show();
     DOM_EL.classEdit.show();
     DOM_EL.classRemove.show();
-    // switch on classRemoveAlert
     }
 
  function setup(){
@@ -361,8 +368,8 @@ function classSubmitEvent(){
     DOM_EL.canvasContainer.id("canvas-container");
     DOM_EL.canvasContainer.parent(DOM_EL.collectContainer);
 
-    DOM_EL.canvas = createCanvas(window.innerHeight*5/10, window.innerHeight*5/10);
-    DOM_EL.canvas.id("p5Canvas");
+    // DOM_EL.canvas = createCanvas(window.innerHeight*5/10, window.innerHeight*5/10);
+    // DOM_EL.canvas.id("p5Canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 
     DOM_EL.imageSampleCounter = createDiv("Press or hold on record to add sample images");
@@ -409,18 +416,18 @@ function classSubmitEvent(){
     //     console.log(stream);
     //   });
 
-    DOM_EL.video = createCapture(VIDEO);
-    DOM_EL.video.elt.setAttribute('playsinline', '');
-    DOM_EL.video.hide();
+    // DOM_EL.video = createCapture(VIDEO);
+    // DOM_EL.video.elt.setAttribute('playsinline', '');
+    // DOM_EL.video.hide();
 
     imageMode(CENTER);
 }
 
 function draw(){
-    clear();
+    // clear();
 
     // if(DOM_EL.video.width < DOM_EL.video.height && APP_STATE.width < APP_STATE.height)
-    image(DOM_EL.video,width/2,height/2,width, width * DOM_EL.video.width/ (DOM_EL.video.height));
+    // image(DOM_EL.video,width/2,height/2,width, width * DOM_EL.video.width/ (DOM_EL.video.height));
 }
 
 function windowResized(){
