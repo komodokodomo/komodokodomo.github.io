@@ -322,8 +322,9 @@ function classSubmitEvent(){
     DOM_EL.menuEmbedButton.parent(DOM_EL.menuContainer);
     DOM_EL.menuEmbedButton.mousePressed(changeEmbedEvent);
 
-    DOM_EL.collectContainer = createDiv();
-    DOM_EL.collectContainer.id("collect-container");
+    // DOM_EL.collectContainer = createDiv();
+    // DOM_EL.collectContainer.id("collect-container");
+    DOM_EL.collectContainer = select("#collect-container");
 
     // DOM_EL.classContainer = createDiv();
     // DOM_EL.classContainer.id("class-container");
