@@ -386,7 +386,7 @@ function classSubmitEvent(){
     // DOM_EL.imageSampleContainer = createDiv();
     // DOM_EL.imageSampleContainer.id("image-sample-container");
     DOM_EL.imageSampleContainer = select("#image-sample-container");
-    DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
+    // DOM_EL.imageSampleContainer.parent(DOM_EL.collectContainer);
 
     let x = document.getElementById("class-select").length;
     for(let i = 0; i < x; i++){
