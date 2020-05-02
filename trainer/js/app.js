@@ -65,9 +65,9 @@ var APP_STATE = {
     selectedClassNumber: null
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    init();
-  });
+// window.addEventListener('DOMContentLoaded', () => {
+//     init();
+//   });
 
 const init = async function() {
 
@@ -205,7 +205,7 @@ function recordButtonEvent(){
 }
 
 function preload(){
-
+    init();
 }
 
 function classAddEvent(){
