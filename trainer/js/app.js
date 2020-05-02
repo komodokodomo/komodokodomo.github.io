@@ -65,38 +65,38 @@ var APP_STATE = {
     selectedClassNumber: null
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    init();
-  });
+// window.addEventListener('DOMContentLoaded', () => {
+//     init();
+//   });
 
-const init = async function() {
+// const init = async function() {
 
-    DOM_EL.video.srcObject = await setupCamera();
+//     DOM_EL.video.srcObject = await setupCamera();
     
-    DOM_EL.canvas = createCanvas(window.innerHeight*5/10, window.innerHeight*5/10);
-    DOM_EL.canvas.id("p5Canvas");
-    DOM_EL.ctx = DOM_EL.canvas.elt.getContext("2d", { alpha: false });
+//     DOM_EL.canvas = createCanvas(window.innerHeight*5/10, window.innerHeight*5/10);
+//     DOM_EL.canvas.id("p5Canvas");
+//     DOM_EL.ctx = DOM_EL.canvas.elt.getContext("2d", { alpha: false });
 
     
-    DOM_EL.video.onloadeddata = e => {
-      DOM_EL.video.play();
-      render();
-    }
-  }
+//     DOM_EL.video.onloadeddata = e => {
+//       DOM_EL.video.play();
+//       render();
+//     }
+//   }
 
-const setupCamera = async function() {
-    return navigator.mediaDevices
-    .getUserMedia({ video: { facingMode: "environment" }, audio: false })
-    .then(stream => stream)
-    .catch(function(error) {
-      console.error("Oops. Something is broken.", error);
-    });
-  }
+// const setupCamera = async function() {
+//     return navigator.mediaDevices
+//     .getUserMedia({ video: { facingMode: "environment" }, audio: false })
+//     .then(stream => stream)
+//     .catch(function(error) {
+//       console.error("Oops. Something is broken.", error);
+//     });
+//   }
 
-const render = function() {
-    DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, window.innerWidth, window.innerWidth);
-    window.requestAnimationFrame(render);
-  }
+// const render = function() {
+//     DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, window.innerWidth, window.innerWidth);
+//     window.requestAnimationFrame(render);
+//   }
 
 
 function changeGatherEvent(){
@@ -205,7 +205,6 @@ function recordButtonEvent(){
 }
 
 function preload(){
-    init();
 }
 
 function classAddEvent(){
@@ -371,8 +370,8 @@ function classSubmitEvent(){
     DOM_EL.canvasContainer.id("canvas-container");
     DOM_EL.canvasContainer.parent(DOM_EL.collectContainer);
 
-    // DOM_EL.canvas = createCanvas(window.innerHeight*5/10, window.innerHeight*5/10);
-    // DOM_EL.canvas.id("p5Canvas");
+    DOM_EL.canvas = createCanvas(window.innerHeight*5/10, window.innerHeight*5/10);
+    DOM_EL.canvas.id("p5Canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
 
     DOM_EL.imageSampleCounter = createDiv("Press or hold on record to add sample images");
