@@ -67,37 +67,37 @@ var APP_STATE = {
 
 window.addEventListener('DOMContentLoaded', () => {
     console.log("DOM loaded");
-    // init();
+    init();
   });
 
-// const init = async function() {
-
-//     DOM_EL.video.srcObject = await setupCamera();
+  const init = async function() {
     
-//     DOM_EL.canvas = createCanvas(window.innerHeight*5/10, window.innerHeight*5/10);
-//     DOM_EL.canvas.id("p5Canvas");
-//     DOM_EL.ctx = DOM_EL.canvas.elt.getContext("2d", { alpha: false });
-
+    DOM_EL.video = document.getElementById("canvas-camera");
+    DOM_EL.video.srcObject = await setupCamera();
     
-//     DOM_EL.video.onloadeddata = e => {
-//       DOM_EL.video.play();
-//       render();
-//     }
-//   }
+    DOM_EL.canvasContainer = select("#canvas-container");
+    DOM_EL.canvas = select("#canvas");
+    DOM_EL.ctx = DOM_EL.canvas.getContext("2d", { alpha: false });
+   
+    DOM_EL.video.onloadeddata = e => {
+      DOM_EL.video.play();
+      render();
+    }
+  }
 
-// const setupCamera = async function() {
-//     return navigator.mediaDevices
-//     .getUserMedia({ video: { facingMode: "environment" }, audio: false })
-//     .then(stream => stream)
-//     .catch(function(error) {
-//       console.error("Oops. Something is broken.", error);
-//     });
-//   }
+const setupCamera = async function() {
+    return navigator.mediaDevices
+    .getUserMedia({ video: { facingMode: "environment" }, audio: false })
+    .then(stream => stream)
+    .catch(function(error) {
+      console.error("Oops. Something is broken.", error);
+    });
+  }
 
-// const render = function() {
-//     DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, window.innerWidth, window.innerWidth);
-//     window.requestAnimationFrame(render);
-//   }
+const render = function() {
+    DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, window.innerWidth, window.innerWidth);
+    window.requestAnimationFrame(render);
+  }
 
 
 function changeGatherEvent(){
@@ -296,7 +296,6 @@ function classSubmitEvent(){
 
  function setup(){
 
-    // await setupCamera();
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
 
@@ -320,30 +319,20 @@ function classSubmitEvent(){
     DOM_EL.classSelect.selected('class2');
     APP_STATE.selectedClass = "class2";
     DOM_EL.classSelect.changed(selectEvent);
-
     DOM_EL.classInput = select("#class-input");
     DOM_EL.classInput.input(classInputEvent);
     DOM_EL.classInput.hide();
-
     DOM_EL.classSubmit = select("#class-submit-button");
     DOM_EL.classSubmit.mousePressed(classSubmitEvent);
     DOM_EL.classSubmit.hide();
-
     DOM_EL.classEdit = select("#class-edit-button");
     DOM_EL.classEdit.mousePressed(classEditEvent);
-
     DOM_EL.classAdd = select("#class-add-button");
     DOM_EL.classAdd.mousePressed(classAddEvent);
-
     DOM_EL.classRemove = select("#class-remove-button");
     DOM_EL.classRemove.mousePressed(classRemoveEvent);
 
-    DOM_EL.canvasContainer = select("#canvas-container");
-
-    DOM_EL.canvas = select("#canvas");
-
     DOM_EL.imageSampleCounter = select("#image-sample-counter");
-
     DOM_EL.imageSampleContainer = select("#image-sample-container");
 
     let x = document.getElementById("class-select").length;
@@ -393,8 +382,3 @@ function windowResized(){
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
 }
-
-// const render = function() {
-//     DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, window.innerWidth, window.innerWidth);
-//     window.requestAnimationFrame(render);
-//   }
