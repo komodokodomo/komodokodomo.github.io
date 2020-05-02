@@ -76,7 +76,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     DOM_EL.canvasContainer = select("#canvas-container");
     DOM_EL.canvas = select("#canvas");
-    DOM_EL.ctx = DOM_EL.canvas.getContext("2d", { alpha: false });
+    DOM_EL.ctx = DOM_EL.canvas.elt.getContext("2d", { alpha: false });
    
     DOM_EL.video.onloadeddata = e => {
       DOM_EL.video.play();
