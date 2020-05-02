@@ -65,9 +65,9 @@ var APP_STATE = {
     selectedClassNumber: null
 }
 
-// window.addEventListener('DOMContentLoaded', () => {
-//     init();
-//   });
+window.addEventListener('DOMContentLoaded', () => {
+    init();
+  });
 
 const init = async function() {
 
@@ -300,26 +300,29 @@ function classSubmitEvent(){
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
 
-    DOM_EL.menuContainer = createDiv();
-    DOM_EL.menuContainer.id("menu-container");
+    // DOM_EL.menuContainer = createDiv();
+    // DOM_EL.menuContainer.id("menu-container");
+    DOM_EL.menuContainer = select("#menu-container");
 
-    DOM_EL.menuCollectButton = createButton("GATHER");
-    DOM_EL.menuCollectButton.id("menu-collect-button");
+    // DOM_EL.menuCollectButton = createButton("GATHER");
+    // DOM_EL.menuCollectButton.id("menu-collect-button");
+    DOM_EL.menuCollectButton = select("#menu-collect-button");
     DOM_EL.menuCollectButton.class("selected");
     DOM_EL.menuCollectButton.parent(DOM_EL.menuContainer);
     DOM_EL.menuCollectButton.mousePressed(changeGatherEvent);
 
-    DOM_EL.menuTrainButton = createButton("TRAIN");
-    DOM_EL.menuTrainButton.id("menu-train-button");
+    // DOM_EL.menuTrainButton = createButton("TRAIN");
+    // DOM_EL.menuTrainButton.id("menu-train-button");
+    DOM_EL.menuTrainButton = select("#menu-train-button");
     DOM_EL.menuTrainButton.parent(DOM_EL.menuContainer);
     DOM_EL.menuTrainButton.mousePressed(changeTrainEvent);
 
-    DOM_EL.menuEmbedButton = createButton("EMBED");
-    DOM_EL.menuEmbedButton.id("menu-embed-button");
+    // DOM_EL.menuEmbedButton = createButton("EMBED");
+    // DOM_EL.menuEmbedButton.id("menu-embed-button");
+    DOM_EL.menuEmbedButton = select("#menu-embed-button");
     DOM_EL.menuEmbedButton.parent(DOM_EL.menuContainer);
     DOM_EL.menuEmbedButton.mousePressed(changeEmbedEvent);
 
-    
     DOM_EL.collectContainer = createDiv();
     DOM_EL.collectContainer.id("collect-container");
 
