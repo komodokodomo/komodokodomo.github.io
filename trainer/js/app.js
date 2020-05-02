@@ -94,7 +94,7 @@ const setupCamera = async function() {
   }
 
 const render = function() {
-    DOM_EL.ctx.drawImage(DOM_EL.video.elt, 0, 0, window.innerWidth, window.innerWidth);
+    DOM_EL.ctx.drawImage(DOM_EL.video.elt, 0, 0);
     window.requestAnimationFrame(render);
   }
 
