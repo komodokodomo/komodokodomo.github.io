@@ -67,6 +67,7 @@ var APP_STATE = {
 
 window.addEventListener('DOMContentLoaded', () => {
     console.log("DOM loaded");
+    init();
   });
 
   const init = async function() {
@@ -206,7 +207,6 @@ function recordButtonEvent(){
 }
 
 function preload(){
-    init();
 }
 
 function classAddEvent(){
