@@ -58,6 +58,11 @@ li {
   align-items: center;
 }
 
+#canvas{
+  width: 85%;
+  height: 85vw;
+}
+
 #image-sample-container{
   display: inline-flex;
   /* justify-content: center; */
