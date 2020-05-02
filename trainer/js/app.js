@@ -404,7 +404,7 @@ function classSubmitEvent(){
     // DOM_EL.collectButtonContainer = createDiv();
     // DOM_EL.collectButtonContainer.id("collect-button-container");
     DOM_EL.collectButtonContainer = select("#collect-button-container");
-    DOM_EL.collectButtonContainer.parent(DOM_EL.collectContainer);
+    // DOM_EL.collectButtonContainer.parent(DOM_EL.collectContainer);
 
     // DOM_EL.settingButton = createButton("settings");
     // DOM_EL.settingButton.id("setting-button");
