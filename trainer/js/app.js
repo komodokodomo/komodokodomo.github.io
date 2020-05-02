@@ -67,7 +67,6 @@ var APP_STATE = {
 
 window.addEventListener('DOMContentLoaded', () => {
     console.log("DOM loaded");
-    init();
   });
 
   const init = async function() {
@@ -360,6 +359,8 @@ function classSubmitEvent(){
     DOM_EL.recordButton.mousePressed(recordButtonEvent);
 
     DOM_EL.uploadButton = select("#upload-button");
+
+    init();
 
     imageMode(CENTER);
 }
