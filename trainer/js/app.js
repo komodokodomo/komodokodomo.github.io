@@ -104,10 +104,9 @@ const setupCamera = async function() {
   }
 
 const render = function() {
-    DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, DOM_EL.video.videoWidth, DOM_EL.video.videoHeight);
+    DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, DOM_EL.canvas.width, DOM_EL.canvas.width * DOM_EL.video.videoWidth/DOM_EL.video.videoHeight);
     window.requestAnimationFrame(render);
   }
-
 
 function changeGatherEvent(){
     APP_STATE.mode = 0;
