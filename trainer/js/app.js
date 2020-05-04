@@ -398,12 +398,11 @@ function classSubmitEvent(){
     var recordTime = new Hammer(DOM_EL.recordButton.elt);
     recordTime.on('press pressup tap', function(ev) {
     var t;
-    console.log(ev);
     if(ev.type == 'press'){
         APP_STATE.recording = true;
         t = setInterval(recordButtonEvent(),500);
     }
-    else if (ev == 'pressup'){clearInterval(t);}
+    else if (ev.type == 'pressup'){clearInterval(t);}
     });
 
     // init();
