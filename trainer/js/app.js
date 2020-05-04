@@ -65,7 +65,8 @@ var APP_STATE = {
     classInputString: "",
     selectedClass: "",
     selectedClassNumber: null,
-    switchFlag: false
+    switchFlag: false,
+    recording: null
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -395,9 +396,14 @@ function classSubmitEvent(){
     DOM_EL.uploadButton = select("#upload-button");
 
     var recordTime = new Hammer(DOM_EL.recordButton.elt);
-    recordTime.on('press', function(ev) {
+    recordTime.on('press pressup tap', function(ev) {
+    var t;
     console.log(ev);
-    if(millis() % 1000 == 0){ recordButtonEvent();}
+    if(ev.type == 'press'){
+        APP_STATE.recording = true;
+        t = setInterval(recordButtonEvent(),500);
+    }
+    else if (ev == 'pressup'){clearInterval(t);}
     });
 
     // init();
