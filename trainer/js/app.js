@@ -400,7 +400,7 @@ function classSubmitEvent(){
     
     if(ev.type == 'press'){
         APP_STATE.recording = true;
-        UTIL.recordIntervalFunction = setInterval(recordButtonEvent,500);
+        UTIL.recordIntervalFunction = setInterval(recordButtonEvent,300);
     }
     else if (ev.type == 'pressup'){clearInterval(UTIL.recordIntervalFunction);}
     else if (ev.type == 'tap'){recordButtonEvent();}
