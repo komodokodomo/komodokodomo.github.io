@@ -346,9 +346,7 @@ function classSubmitEvent(){
     DOM_EL.canvas = select("#canvas");
     DOM_EL.capture = createCapture({
         video: {
-            facingMode: {
-             exact: "user"
-           }
+            facingMode: "user"
         }});
     DOM_EL.capture.hide();
 
@@ -404,9 +402,7 @@ function switchCamera()
     DOM_EL.capture.remove();
    options = {
      video: {
-         facingMode: {
-          exact: "environment"
-        }
+         facingMode: "environment"
      }
    };
 
@@ -416,9 +412,7 @@ function switchCamera()
     DOM_EL.capture.remove();
    options = {
      video: {
-         facingMode: {
-          exact: "user"
-        }
+         facingMode: "user"
      }
    };
   }
