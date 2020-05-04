@@ -361,7 +361,7 @@ function classSubmitEvent(){
 
     DOM_EL.cameraFlip = createDiv("↶");
     DOM_EL.cameraFlip.parent(DOM_EL.canvasContainer);
-    DOM_EL.cameraFlip.position(DOM_EL.canvas.position().x + 5, DOM_EL.canvas.position().y + 5);
+    DOM_EL.cameraFlip.position(DOM_EL.canvas.position().x + 10, DOM_EL.canvas.position().y + 5);
     DOM_EL.cameraFlip.id("canvas-camera-flip");
     DOM_EL.cameraFlip.mousePressed(switchCamera);
 
