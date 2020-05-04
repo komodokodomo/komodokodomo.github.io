@@ -394,7 +394,12 @@ function classSubmitEvent(){
 }
 
 function draw(){
-image(DOM_EL.capture,width/2,height/2);
+    if(DOM_EL.capture.width > DOM_EL.capture.height){
+        image(DOM_EL.capture, width/2, height/2, DOM_EL.capture.width * height/DOM_EL.capture.height, height);
+    }
+    else{
+        image(DOM_EL.capture, width/2, height/2, width, DOM_EL.capture.height * width/DOM_EL.capture.width);
+    }
 }
 
 function windowResized(){
