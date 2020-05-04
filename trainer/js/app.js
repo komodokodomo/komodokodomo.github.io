@@ -85,7 +85,7 @@ window.addEventListener('DOMContentLoaded', () => {
     DOM_EL.canvas = document.getElementById("canvas");
     DOM_EL.ctx = DOM_EL.canvas.getContext("2d", { alpha: false, desynchronized: false });
    
-    DOM_EL.video.elt.onloadeddata = e => {
+    DOM_EL.video.onloadeddata = e => {
         // DOM_EL.video.elt.play();
         //   DOM_EL.video.hide();
         DOM_EL.video.play();
