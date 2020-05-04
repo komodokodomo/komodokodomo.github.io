@@ -428,12 +428,12 @@ function switchCamera()
 
 
 function stopCapture() {
-    let stream = capture.elt.srcObject;
+    let stream = DOM_EL.capture.elt.srcObject;
     let tracks = stream.getTracks();
   
     tracks.forEach(function(track) {
       track.stop();
     });
   
-    capture.elt.srcObject = null;
+    DOM_EL.capture.elt.srcObject = null;
   }
