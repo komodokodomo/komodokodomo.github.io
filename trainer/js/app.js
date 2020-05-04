@@ -403,7 +403,7 @@ function windowResized(){
 function switchCamera()
 {
   APP_STATE.switchFlag = !APP_STATE.switchFlag;
-  stopCapture();
+//   stopCapture();
   if(APP_STATE.switchFlag==true)
   {
     DOM_EL.capture.remove();
