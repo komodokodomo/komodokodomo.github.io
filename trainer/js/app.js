@@ -19,6 +19,7 @@ var DOM_EL = {
         classSubmit: null,
     
     canvasContainer: null,
+        capture: null,
         canvas: null,
         ctx: null,
 
@@ -62,7 +63,8 @@ var APP_STATE = {
     addClass: false,
     classInputString: "",
     selectedClass: "",
-    selectedClassNumber: null
+    selectedClassNumber: null,
+    switchFlag: false
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -340,6 +342,17 @@ function classSubmitEvent(){
     DOM_EL.classRemove = select("#class-remove-button");
     DOM_EL.classRemove.mousePressed(classRemoveEvent);
 
+    DOM_EL.canvasContainer = select("#canvas-container");
+    DOM_EL.canvas = select("#canvas");
+    DOM_EL.capture = createCapture({
+        video: {
+            facingMode: {
+             exact: "user"
+           }
+        }});
+    DOM_EL.capture.hide();
+
+
     DOM_EL.imageSampleCounter = select("#image-sample-counter");
     DOM_EL.imageSampleContainer = select("#image-sample-container");
 
@@ -368,16 +381,58 @@ function classSubmitEvent(){
 
     DOM_EL.uploadButton = select("#upload-button");
 
-    init();
+    // init();
 
     imageMode(CENTER);
 }
 
 function draw(){
-
+image(DOM_EL.capture,width/2,height/2);
 }
 
 function windowResized(){
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
 }
+
+function switchCamera()
+{
+  APP_STATE.switchFlag = !APP_STATE.switchFlag;
+  stopCapture();
+  if(APP_STATE.switchFlag==true)
+  {
+    DOM_EL.capture.remove();
+   options = {
+     video: {
+         facingMode: {
+          exact: "environment"
+        }
+     }
+   };
+
+  }
+  else
+  {
+    DOM_EL.capture.remove();
+   options = {
+     video: {
+         facingMode: {
+          exact: "user"
+        }
+     }
+   };
+  }
+  DOM_EL.capture = createCapture(options);
+}
+
+
+function stopCapture() {
+    let stream = capture.elt.srcObject;
+    let tracks = stream.getTracks();
+  
+    tracks.forEach(function(track) {
+      track.stop();
+    });
+  
+    capture.elt.srcObject = null;
+  }
