@@ -403,13 +403,12 @@ function windowResized(){
 function switchCamera()
 {
   APP_STATE.switchFlag = !APP_STATE.switchFlag;
-//   stopCapture();
   if(APP_STATE.switchFlag==true)
   {
     DOM_EL.capture.remove();
    options = {
      video: {
-         facingMode: "rear" 
+         facingMode: "environment" 
      }
    };
 
@@ -419,7 +418,7 @@ function switchCamera()
     DOM_EL.capture.remove();
    options = {
      video: {
-         facingMode: "front" 
+         facingMode: "user" 
      }
    };
   }
