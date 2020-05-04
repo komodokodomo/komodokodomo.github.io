@@ -391,7 +391,7 @@ function classSubmitEvent(){
 
     DOM_EL.recordButton = select("#record-button");
 
-    DOM_EL.recordButton.mousePressed(recordButtonEvent);
+    // DOM_EL.recordButton.mousePressed(recordButtonEvent);
 
     DOM_EL.uploadButton = select("#upload-button");
 
@@ -400,7 +400,7 @@ function classSubmitEvent(){
     
     if(ev.type == 'press'){
         APP_STATE.recording = true;
-        UTIL.recordIntervalFunction = setInterval(recordButtonEvent(),500);
+        UTIL.recordIntervalFunction = setInterval(recordButtonEvent,500);
     }
     else if (ev.type == 'pressup'){clearInterval(UTIL.recordIntervalFunction);}
     else if (ev.type == 'tap'){recordButtonEvent();}
