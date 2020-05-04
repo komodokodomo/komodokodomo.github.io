@@ -33,6 +33,7 @@ li {
 
 #class-select, #class-input{
   width: calc(200%/3);
+  outline: 2px solid lightgray;
 }
 
 #class-select{
@@ -161,10 +162,10 @@ button:focus {
   background: lightgray;
 }
 
-button:focus {
-  outline: 2px solid black;
+/* button:focus { */
+  /* outline: 2px solid black; */
   /* outline-offset: -4px; */
-}
+/* } */
 
 button:active {
   transform: scale(0.99);
