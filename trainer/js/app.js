@@ -51,7 +51,7 @@ var videoConstraints = {
   };
 
 var UTIL = {
-
+recordIntervalFunction: null
 }
 
 var APP_STATE = {
@@ -397,12 +397,13 @@ function classSubmitEvent(){
 
     var recordTime = new Hammer(DOM_EL.recordButton.elt);
     recordTime.on('press pressup tap', function(ev) {
-    var t;
+    
     if(ev.type == 'press'){
         APP_STATE.recording = true;
-        t = setInterval(recordButtonEvent(),500);
+        UTIL.recordIntervalFunction = setInterval(recordButtonEvent(),500);
     }
-    else if (ev.type == 'pressup'){clearInterval(t);}
+    else if (ev.type == 'pressup'){clearInterval(UTIL.recordIntervalFunction);}
+    else if (ev.type == 'tap'){recordButtonEvent();}
     });
 
     // init();
