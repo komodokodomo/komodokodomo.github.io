@@ -394,7 +394,7 @@ function classSubmitEvent(){
 
     DOM_EL.uploadButton = select("#upload-button");
 
-    var recordTime = new Hammer(DOM_EL.recordButton.elt, myOptions);
+    var recordTime = new Hammer(DOM_EL.recordButton.elt);
     recordTime.on('press', function(ev) {
     console.log(ev);
     if(millis() % 1000 == 0){ recordButtonEvent();}
