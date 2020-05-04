@@ -61,6 +61,8 @@ li {
 #canvas{
   width: 85%;
   height: 85vw;
+  max-width: calc(60vh * 0.85);;
+  max-height: calc(60% * 0.85);
 }
 
 #image-sample-container{
