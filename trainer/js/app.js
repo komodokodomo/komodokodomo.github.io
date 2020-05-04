@@ -71,12 +71,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const init = async function() {
     
-    DOM_EL.video = select("#canvas-camera");
-    DOM_EL.video.elt.srcObject = await setupCamera();
+    // DOM_EL.video = select("#canvas-camera");
+    // DOM_EL.video.elt.srcObject = await setupCamera();
+
+    DOM_EL.video = document.getElementById("canvas-camera");
+    DOM_EL.video.srcObject = await setupCamera();
+
     
     DOM_EL.canvasContainer = select("#canvas-container");
-    DOM_EL.canvas = select("#canvas");
-    DOM_EL.ctx = DOM_EL.canvas.elt.getContext("2d", { alpha: false });
+    // DOM_EL.canvas = select("#canvas");
+    // DOM_EL.ctx = DOM_EL.canvas.elt.getContext("2d", { alpha: false });
+
+    DOM_EL.canvas = document.getElementById("canvas");
+    DOM_EL.ctx = DOM_EL.canvas.getContext("2d", { alpha: false, desynchronized: false });
    
     DOM_EL.video.elt.onloadeddata = e => {
       DOM_EL.video.elt.play();
