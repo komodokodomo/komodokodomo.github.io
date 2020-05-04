@@ -409,7 +409,7 @@ function switchCamera()
     DOM_EL.capture.remove();
    options = {
      video: {
-         facingMode: "environment"
+         facingMode: { exact: "environment" }
      }
    };
 
@@ -419,21 +419,11 @@ function switchCamera()
     DOM_EL.capture.remove();
    options = {
      video: {
-         facingMode: "user"
+         facingMode: { exact: "user" }
      }
    };
   }
   DOM_EL.capture = createCapture(options);
+  DOM_EL.capture.hide();
 }
 
-
-function stopCapture() {
-    let stream = DOM_EL.capture.elt.srcObject;
-    let tracks = stream.getTracks();
-  
-    tracks.forEach(function(track) {
-      track.stop();
-    });
-  
-    DOM_EL.capture.elt.srcObject = null;
-  }
