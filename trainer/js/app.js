@@ -409,7 +409,7 @@ function switchCamera()
     DOM_EL.capture.remove();
    options = {
      video: {
-         facingMode: { exact: "environment" }
+         facingMode: "rear" 
      }
    };
 
@@ -419,7 +419,7 @@ function switchCamera()
     DOM_EL.capture.remove();
    options = {
      video: {
-         facingMode: { exact: "user" }
+         facingMode: "front" 
      }
    };
   }
