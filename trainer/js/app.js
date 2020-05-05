@@ -279,7 +279,7 @@ function classSubmitEvent(){
             DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
         }
 
-        DOM_EL.classSampleList[APP_STATE.selectedClassNumber] = createDiv();
+        DOM_EL.classSampleList[APP_STATE.selectedClassNumber] = createElement("li");
         DOM_EL.classSampleList[APP_STATE.selectedClassNumber].class("sample-list-image");
         DOM_EL.classSampleList[APP_STATE.selectedClassNumber].style("padding-right" , "1rem");
         DOM_EL.classSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.classSampleContainer);
@@ -410,7 +410,7 @@ function classSubmitEvent(){
 
     for(let i = 0; i < APP_STATE.numClasses; i++){
 
-        DOM_EL.classSampleList[i] = createDiv();
+        DOM_EL.classSampleList[i] = createElement("li");
         DOM_EL.classSampleList[i].class("sample-list-image");
         DOM_EL.classSampleList[i].style("padding-right" , "1rem");
         DOM_EL.classSampleList[i].parent(DOM_EL.classSampleContainer);
