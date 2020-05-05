@@ -1,3 +1,7 @@
+// ADD CLASS should result in new div being formed in train tab too
+// Mousehold on any class in train tab would result in train button becoming active.
+
+
 var DOM_EL = {
     
     video: null,
@@ -273,6 +277,19 @@ function classSubmitEvent(){
         }
         else{
             DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
+        }
+
+            DOM_EL.classSampleList[APP_STATE.selectedClassNumber] = createDiv();
+            DOM_EL.classSampleList[APP_STATE.selectedClassNumber].class("sample-list-image");
+            DOM_EL.classSampleList[APP_STATE.selectedClassNumber].style("padding-right" , "1rem");
+            DOM_EL.classSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.classSampleContainer);
+    
+            DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber] = createImg();
+            DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber].class("sample-list-image");
+            DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber].parent(DOM_EL.classSampleList[APP_STATE.selectedClassNumber]);
+    
+            DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber] = createDiv(DOM_EL.classSelect.elt.options[APP_STATE.selectedClassNumber].text);
+            DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber].parent( DOM_EL.classSampleList[APP_STATE.selectedClassNumber] );
         }
     }
 
