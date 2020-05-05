@@ -377,7 +377,7 @@ function classSubmitEvent(){
     for(let i = 0; i < APP_STATE.numClasses; i++){
 
         DOM_EL.classSampleList[i] = createDiv();
-        DOM_EL.classSampleList[i].class("class-sample-list");
+        DOM_EL.classSampleList[i].class("sample-list-image");
         DOM_EL.classSampleList[i].parent(DOM_EL.classSampleContainer);
 
         DOM_EL.classSampleListLabel[i] = createDiv(DOM_EL.classSelect.elt.options[i].text);
