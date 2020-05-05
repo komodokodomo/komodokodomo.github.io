@@ -380,11 +380,11 @@ function classSubmitEvent(){
         DOM_EL.classSampleList[i].class("sample-list-image");
         DOM_EL.classSampleList[i].parent(DOM_EL.classSampleContainer);
 
-        let r = createImg();
-        if(DOM_EL.imageSampleList[i].elt.childNodes[0].innerHTML != undefined){
-            r.elt.innerHTML = DOM_EL.imageSampleList[i].elt.childNodes[0].innerHTML;
-        }
-        r.parent(DOM_EL.classSampleList[i]);
+        DOM_EL.classSampleImage[i] = createImg();
+        DOM_EL.classSampleList[i].parent(DOM_EL.classSampleList[i]);
+        // if(DOM_EL.imageSampleList[i].elt.childNodes[0].innerHTML != undefined){
+        //     r.elt.innerHTML = DOM_EL.imageSampleList[i].elt.childNodes[0].innerHTML;
+        // }
 
         DOM_EL.classSampleListLabel[i] = createDiv(DOM_EL.classSelect.elt.options[i].text);
         DOM_EL.classSampleListLabel[i].parent( DOM_EL.classSampleList[i] );
