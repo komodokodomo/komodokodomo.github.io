@@ -150,6 +150,11 @@ li {
   padding: 1rem;
 }
 
+#training-button{
+  width: 100%;
+  height: 15%;
+}
+
 
 button {
   display: inline-block;

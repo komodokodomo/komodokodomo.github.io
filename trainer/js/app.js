@@ -286,7 +286,7 @@ function classSubmitEvent(){
 
         DOM_EL.classSampleList[APP_STATE.selectedClassNumber].parent(DOM_EL.classSampleContainer);
     
-        DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber] = createImg("../img/imageless.png");
+        DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber] = createImg("img/imageless.png");
         DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber].class("sample-list-image");
         DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber].parent(DOM_EL.classSampleList[APP_STATE.selectedClassNumber]);
     
@@ -417,7 +417,7 @@ function classSubmitEvent(){
         DOM_EL.classSampleList[i].style("padding-bottom" , "2rem");
         DOM_EL.classSampleList[i].parent(DOM_EL.classSampleContainer);
 
-        DOM_EL.classSampleListImage[i] = createImg("../img/imageless.png");
+        DOM_EL.classSampleListImage[i] = createImg("img/imageless.png");
         DOM_EL.classSampleListImage[i].class("sample-list-image");
         DOM_EL.classSampleListImage[i].parent(DOM_EL.classSampleList[i]);
 
