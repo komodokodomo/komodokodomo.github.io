@@ -41,9 +41,9 @@ var DOM_EL = {
     trainContainer: null,
 
     classSampleContainer: null,
-        classSampleList: null,
-        classSampleListLabel: null,
-        classSampleListSelect: null,
+        classSampleList: [],
+        classSampleListLabel: [],
+        // classSampleListSelect: null,
     
     trainButton: null,
 
@@ -68,6 +68,7 @@ var APP_STATE = {
     height: 0,
     editClass: false,
     addClass: false,
+    numClasses: null,
     classInputString: "",
     selectedClass: "",
     selectedClassNumber: null,
@@ -336,8 +337,8 @@ function classSubmitEvent(){
     DOM_EL.imageSampleCounter = select("#image-sample-counter");
     DOM_EL.imageSampleContainer = select("#image-sample-container");
 
-    let x = document.getElementById("class-select").length;
-    for(let i = 0; i < x; i++){
+    APP_STATE.numClasses = document.getElementById("class-select").length;
+    for(let i = 0; i < APP_STATE.numClasses; i++){
 
         DOM_EL.imageSampleList[i] = createElement("ol");
         DOM_EL.imageSampleList[i].class("image-sample-list");
@@ -373,6 +374,15 @@ function classSubmitEvent(){
     DOM_EL.classSampleContainer = select("#class-sample-container");
     DOM_EL.trainButton = select("#class-train-button");
 
+    for(let i = 0; i < APP_STATE.numClasses; i++){
+
+        DOM_EL.classSampleList[i] = createDiv();
+        DOM_EL.classSampleList[i].class("class-sample-list");
+        DOM_EL.classSampleList[i].parent(DOM_EL.classSampleContainer);
+
+        DOM_EL.classSampleListLabel[i] = createDiv(DOM_EL.classSelect.elt.options[i].text);
+        DOM_EL.classSampleListLabel[i].parent( DOM_EL.classSampleList[i] );
+    }
 
     imageMode(CENTER);
 }
