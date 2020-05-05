@@ -19,7 +19,7 @@ li {
     height: 5%;
 }
 
-#collect-container{
+#collect-container,#train-container,#embed-container{
   display: block;
   width: 100%;
   height: 95%;
