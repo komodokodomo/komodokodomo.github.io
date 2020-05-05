@@ -176,7 +176,8 @@ function recordButtonEvent(){
         },300);
     });
 
-    DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber].elt.innerHTML = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childNodes[0].innerHTML;
+    let inner = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childNodes[0].innerHTML;
+    DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber].elt.innerHTML = inner;
 
 
     let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
