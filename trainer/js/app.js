@@ -52,7 +52,6 @@ var DOM_EL = {
 }
 
 var videoConstraints = {
-    // video: { facingMode: { exact: "environment" } },
     video: true,
     audio: false
   };
@@ -63,7 +62,7 @@ recordIntervalFunction: null
 
 var APP_STATE = {
     mobileDevice: null,
-    mode : 0,            // either COLLECT or TRAIN or EMBED
+    mode : 0,           
     class: 0,
     width: 0,
     height: 0,
@@ -94,6 +93,7 @@ function changeGatherEvent(){
 function changeTrainEvent(){
     APP_STATE.mode = 1;
     DOM_EL.collectContainer.hide();
+    DOM_EL.trainContainer.show();
     DOM_EL.menuTrainButton.class("selected");
     DOM_EL.menuCollectButton.removeClass("selected");
     DOM_EL.menuEmbedButton.removeClass("selected");
@@ -124,7 +124,6 @@ function selectEvent(){
     for(let i = 0; i < x; i++){  
         if(DOM_EL.classSelect.elt.options[i].text == APP_STATE.selectedClass){
             APP_STATE.selectedClassNumber = i;
-            // DOM_EL.imageSampleContainer[i].show();   
             DOM_EL.imageSampleList[i].style("display", "inline-flex");              
         }
     }
@@ -160,7 +159,6 @@ function recordButtonEvent(){
 
     l.mouseOver(function(){r.show();});
     l.mouseOut(function(){r.hide();});
-    // r.parent(l);
 
     r.mousePressed(function(){
         l.class("removed"); 
@@ -238,7 +236,6 @@ function classSubmitEvent(){
     else if(APP_STATE.addClass == true && APP_STATE.classInputString.length > 0){
 
         APP_STATE.addClass = false;
-        // DOM_EL.imageSampleContainer[APP_STATE.selectedClassNumber].hide();
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].hide();
 
 
@@ -370,6 +367,11 @@ function classSubmitEvent(){
     else if (ev.type == 'pressup'){clearInterval(UTIL.recordIntervalFunction);}
     else if (ev.type == 'tap'){recordButtonEvent();}
     });
+
+    DOM_EL.trainContainer = select("#train-container");
+    DOM_EL.trainContainer.hide();
+    DOM_EL.classSampleContainer = select("#class-sample-container");
+    DOM_EL.trainButton = select("#class-train-button");
 
 
     imageMode(CENTER);
