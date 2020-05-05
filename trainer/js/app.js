@@ -43,6 +43,7 @@ var DOM_EL = {
     classSampleContainer: null,
         classSampleList: [],
         classSampleListLabel: [],
+        classSampleListImage: [],
         // classSampleListSelect: null,
     
     trainButton: null,
@@ -380,8 +381,8 @@ function classSubmitEvent(){
         DOM_EL.classSampleList[i].class("sample-list-image");
         DOM_EL.classSampleList[i].parent(DOM_EL.classSampleContainer);
 
-        DOM_EL.classSampleImage[i] = createImg();
-        DOM_EL.classSampleList[i].parent(DOM_EL.classSampleList[i]);
+        DOM_EL.classSampleListImage[i] = createImg();
+        DOM_EL.classSampleListImage[i].parent(DOM_EL.classSampleList[i]);
         // if(DOM_EL.imageSampleList[i].elt.childNodes[0].innerHTML != undefined){
         //     r.elt.innerHTML = DOM_EL.imageSampleList[i].elt.childNodes[0].innerHTML;
         // }
