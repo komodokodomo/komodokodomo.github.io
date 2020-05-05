@@ -381,13 +381,13 @@ function classSubmitEvent(){
     document.body.onmouseup = function() {
         console.log("MOUSE UP");
         clearInterval(UTIL.recordIntervalFunction);
-      }
+    }
 
 
     DOM_EL.trainContainer = select("#train-container");
     DOM_EL.trainContainer.hide();
     DOM_EL.classSampleContainer = select("#class-sample-container");
-    DOM_EL.trainButton = select("#class-train-button");
+    DOM_EL.trainButton = select("#training-button");
 
     for(let i = 0; i < APP_STATE.numClasses; i++){
 
@@ -404,6 +404,8 @@ function classSubmitEvent(){
         DOM_EL.classSampleListLabel[i].parent( DOM_EL.classSampleList[i] );
     }
 
+    DOM_EL.embedContainer = select("#embed-container");
+    DOM_EL.embedContainer.hide();
     imageMode(CENTER);
 }
 
