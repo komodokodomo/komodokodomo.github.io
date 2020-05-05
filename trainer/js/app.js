@@ -81,44 +81,6 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log(APP_STATE.mobileDevice);
   });
 
-  const init = async function() {
-    
-    // DOM_EL.video = select("#canvas-camera");
-    // DOM_EL.video.elt.srcObject = await setupCamera();
-
-    DOM_EL.video = document.getElementById("canvas-camera");
-    DOM_EL.video.srcObject = await setupCamera();
-
-    
-    DOM_EL.canvasContainer = select("#canvas-container");
-    // DOM_EL.canvas = select("#canvas");
-    // DOM_EL.ctx = DOM_EL.canvas.elt.getContext("2d", { alpha: false });
-
-    DOM_EL.canvas = document.getElementById("canvas");
-    DOM_EL.ctx = DOM_EL.canvas.getContext("2d", { alpha: false, desynchronized: false });
-   
-    DOM_EL.video.onloadeddata = e => {
-        // DOM_EL.video.elt.play();
-        //   DOM_EL.video.hide();
-        DOM_EL.video.play();
-        DOM_EL.video.style.display = "none";
-        render();
-    }
-  }
-
-const setupCamera = async function() {
-    return navigator.mediaDevices
-    .getUserMedia({ video: { facingMode: "environment" }, audio: false })
-    .then(stream => stream)
-    .catch(function(error) {
-      alert("Oops. Something is broken.", error);
-    });
-  }
-
-const render = function() {
-    DOM_EL.ctx.drawImage(DOM_EL.video, 0, 0, DOM_EL.canvas.width, DOM_EL.canvas.width * DOM_EL.video.videoWidth/DOM_EL.video.videoHeight);
-    window.requestAnimationFrame(render);
-  }
 
 function changeGatherEvent(){
     APP_STATE.mode = 0;
@@ -395,11 +357,7 @@ function classSubmitEvent(){
     DOM_EL.collectButtonContainer = select("#collect-button-container");
 
     DOM_EL.settingButton = select("#setting-button");
-
     DOM_EL.recordButton = select("#record-button");
-
-    // DOM_EL.recordButton.mousePressed(recordButtonEvent);
-
     DOM_EL.uploadButton = select("#upload-button");
 
     var recordTime = new Hammer(DOM_EL.recordButton.elt);
@@ -413,7 +371,6 @@ function classSubmitEvent(){
     else if (ev.type == 'tap'){recordButtonEvent();}
     });
 
-    // init();
 
     imageMode(CENTER);
 }
