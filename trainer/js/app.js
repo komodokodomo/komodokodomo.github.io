@@ -385,10 +385,11 @@ function classSubmitEvent(){
         clearInterval(UTIL.recordIntervalFunction);
     }
 
-    // DOM_EL.trainButton = select("#training-button");
     DOM_EL.trainContainer = select("#train-container");
     DOM_EL.trainContainer.hide();
     DOM_EL.classSampleContainer = select("#class-sample-container");
+    DOM_EL.trainButton = select("#training-button");
+
 
     for(let i = 0; i < APP_STATE.numClasses; i++){
 
