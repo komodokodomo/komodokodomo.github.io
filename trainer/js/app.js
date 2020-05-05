@@ -392,6 +392,7 @@ function classSubmitEvent(){
 
         DOM_EL.classSampleListImage[i] = createImg();
         DOM_EL.classSampleListImage[i].class("sample-list-image");
+        DOM_EL.classSampleListImage[i].style("padding-right" , "1rem");
         DOM_EL.classSampleListImage[i].parent(DOM_EL.classSampleList[i]);
 
         DOM_EL.classSampleListLabel[i] = createDiv(DOM_EL.classSelect.elt.options[i].text);
