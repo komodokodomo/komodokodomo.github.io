@@ -369,9 +369,13 @@ function classSubmitEvent(){
         APP_STATE.recording = true;
         UTIL.recordIntervalFunction = setInterval(recordButtonEvent,300);
     }
-    else if (ev.type == 'pressup'){clearInterval(UTIL.recordIntervalFunction);}
+    // else if (ev.type == 'pressup'){clearInterval(UTIL.recordIntervalFunction);}
     else if (ev.type == 'tap'){recordButtonEvent();}
     });
+
+    window.addEventListener('touchend', () => {
+        clearInterval(UTIL.recordIntervalFunction);
+      });
 
     DOM_EL.trainContainer = select("#train-container");
     DOM_EL.trainContainer.hide();

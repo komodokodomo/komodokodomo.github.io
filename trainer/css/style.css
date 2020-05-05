@@ -105,6 +105,7 @@ li {
 .sample-list-image{
   width: 100px;
   height: 100px;
+  padding-right: 1rem;
 }
 
 .sample-list-remove{
