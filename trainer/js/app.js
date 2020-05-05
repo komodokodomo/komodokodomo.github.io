@@ -326,8 +326,8 @@ function classSubmitEvent(){
     DOM_EL.classContainer = select("#class-container");
 
     DOM_EL.classSelect = select("#class-select");
-    DOM_EL.classSelect.selected('class2');
-    APP_STATE.selectedClass = "class2";
+    DOM_EL.classSelect.selected('example class 1');
+    APP_STATE.selectedClass = "example class 1";
     DOM_EL.classSelect.changed(selectEvent);
     DOM_EL.classInput = select("#class-input");
     DOM_EL.classInput.input(classInputEvent);
