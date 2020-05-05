@@ -176,6 +176,8 @@ function recordButtonEvent(){
         },300);
     });
 
+    DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber].elt.innerHTML = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childNodes[0].innerHTML;
+
 
     let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
     if(n > 0){
@@ -383,9 +385,6 @@ function classSubmitEvent(){
 
         DOM_EL.classSampleListImage[i] = createImg();
         DOM_EL.classSampleListImage[i].parent(DOM_EL.classSampleList[i]);
-        // if(DOM_EL.imageSampleList[i].elt.childNodes[0].innerHTML != undefined){
-        //     r.elt.innerHTML = DOM_EL.imageSampleList[i].elt.childNodes[0].innerHTML;
-        // }
 
         DOM_EL.classSampleListLabel[i] = createDiv(DOM_EL.classSelect.elt.options[i].text);
         DOM_EL.classSampleListLabel[i].parent( DOM_EL.classSampleList[i] );
