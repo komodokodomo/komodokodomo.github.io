@@ -374,6 +374,7 @@ function classSubmitEvent(){
     });
 
     window.addEventListener('touchend', () => {
+        console.log("touch ended");
         clearInterval(UTIL.recordIntervalFunction);
       });
 
