@@ -141,8 +141,12 @@ li {
 
 #class-sample-container{
   height: 80%;
+  width: 100%;
   display: flex;
   overflow-y: scroll;
+  flex-wrap: wrap;
+  padding: 0;
+  align-content: start;
 }
 
 
