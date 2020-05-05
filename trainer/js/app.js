@@ -380,6 +380,10 @@ function classSubmitEvent(){
         DOM_EL.classSampleList[i].class("sample-list-image");
         DOM_EL.classSampleList[i].parent(DOM_EL.classSampleContainer);
 
+        let i = createImg();
+        i.elt.innerHTML = DOM_EL.imageSampleList[i].elt.childNodes[0].innerHTML;
+        i.parent(DOM_EL.classSampleList[i]);
+
         DOM_EL.classSampleListLabel[i] = createDiv(DOM_EL.classSelect.elt.options[i].text);
         DOM_EL.classSampleListLabel[i].parent( DOM_EL.classSampleList[i] );
     }

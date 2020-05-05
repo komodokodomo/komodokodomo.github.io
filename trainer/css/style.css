@@ -141,6 +141,7 @@ li {
 
 #class-sample-container{
   height: 80%;
+  display: flex;
   overflow-y: scroll;
 }
 
