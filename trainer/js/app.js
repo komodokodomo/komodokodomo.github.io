@@ -246,6 +246,7 @@ function classSubmitEvent(){
         APP_STATE.editClass = false;
         DOM_EL.classSelect.option(APP_STATE.selectedClass ,APP_STATE.classInputString);
         APP_STATE.selectedClass = APP_STATE.classInputString;
+        DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber].html(APP_STATE.selectedClass);
         DOM_EL.classInput.value("");
     }
 
