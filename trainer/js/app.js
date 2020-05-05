@@ -255,7 +255,6 @@ function classSubmitEvent(){
         APP_STATE.addClass = false;
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].hide();
 
-
         let x = document.getElementById("class-select");
         let option = document.createElement("option");
         option.text = APP_STATE.classInputString;
@@ -346,7 +345,6 @@ function classSubmitEvent(){
     DOM_EL.canvasContainer = select("#canvas-container");
    
     let cLength = constrain(APP_STATE.width * 0.85, 0 , APP_STATE.height * 0.6 * 0.85);
-  
     DOM_EL.canvas = createCanvas(cLength,cLength);
     DOM_EL.canvas.id("canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
@@ -444,6 +442,12 @@ function draw(){
 function windowResized(){
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
+
+    let cLength = constrain(APP_STATE.width * 0.85, 0 , APP_STATE.height * 0.6 * 0.85);
+    DOM_EL.canvas.size(cLength,cLength);
+
+    DOM_EL.cameraFlip.position(DOM_EL.canvas.position().x + 10, DOM_EL.canvas.position().y + 5);
+
 }
 
 function switchCamera()
