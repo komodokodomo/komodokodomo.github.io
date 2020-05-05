@@ -147,6 +147,7 @@ li {
   flex-wrap: wrap;
   padding: 0;
   align-content: start;
+  padding: 0 1rem;
 }
 
 
