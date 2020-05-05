@@ -99,6 +99,7 @@ function changeTrainEvent(){
     DOM_EL.collectContainer.hide();
     DOM_EL.trainContainer.show();
     DOM_EL.embedContainer.hide();
+
     DOM_EL.menuTrainButton.class("selected");
     DOM_EL.menuCollectButton.removeClass("selected");
     DOM_EL.menuEmbedButton.removeClass("selected");
@@ -107,8 +108,9 @@ function changeTrainEvent(){
 function changeEmbedEvent(){
     APP_STATE.mode = 2;
     DOM_EL.collectContainer.hide();
-    DOM_EL.collectContainer.hide();
+    DOM_EL.trainContainer.hide();
     DOM_EL.embedContainer.show();
+
     DOM_EL.menuTrainButton.removeClass("selected");
     DOM_EL.menuCollectButton.removeClass("selected");
     DOM_EL.menuEmbedButton.class("selected");
@@ -383,11 +385,10 @@ function classSubmitEvent(){
         clearInterval(UTIL.recordIntervalFunction);
     }
 
-
+    DOM_EL.trainButton = select("#training-button");
     DOM_EL.trainContainer = select("#train-container");
     DOM_EL.trainContainer.hide();
     DOM_EL.classSampleContainer = select("#class-sample-container");
-    DOM_EL.trainButton = select("#training-button");
 
     for(let i = 0; i < APP_STATE.numClasses; i++){
 
