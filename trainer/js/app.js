@@ -86,6 +86,8 @@ window.addEventListener('DOMContentLoaded', () => {
 function changeGatherEvent(){
     APP_STATE.mode = 0;
     DOM_EL.collectContainer.show();
+    DOM_EL.trainContainer.hide();
+    DOM_EL.embedContainer.hide();
 
     DOM_EL.menuCollectButton.class("selected");
     DOM_EL.menuTrainButton.removeClass("selected");
@@ -96,6 +98,7 @@ function changeTrainEvent(){
     APP_STATE.mode = 1;
     DOM_EL.collectContainer.hide();
     DOM_EL.trainContainer.show();
+    DOM_EL.embedContainer.hide();
     DOM_EL.menuTrainButton.class("selected");
     DOM_EL.menuCollectButton.removeClass("selected");
     DOM_EL.menuEmbedButton.removeClass("selected");
@@ -104,6 +107,8 @@ function changeTrainEvent(){
 function changeEmbedEvent(){
     APP_STATE.mode = 2;
     DOM_EL.collectContainer.hide();
+    DOM_EL.collectContainer.hide();
+    DOM_EL.embedContainer.show();
     DOM_EL.menuTrainButton.removeClass("selected");
     DOM_EL.menuCollectButton.removeClass("selected");
     DOM_EL.menuEmbedButton.class("selected");
@@ -388,11 +393,11 @@ function classSubmitEvent(){
 
         DOM_EL.classSampleList[i] = createDiv();
         DOM_EL.classSampleList[i].class("sample-list-image");
+        DOM_EL.classSampleList[i].style("padding-right" , "1rem");
         DOM_EL.classSampleList[i].parent(DOM_EL.classSampleContainer);
 
         DOM_EL.classSampleListImage[i] = createImg();
         DOM_EL.classSampleListImage[i].class("sample-list-image");
-        DOM_EL.classSampleListImage[i].style("padding-right" , "1rem");
         DOM_EL.classSampleListImage[i].parent(DOM_EL.classSampleList[i]);
 
         DOM_EL.classSampleListLabel[i] = createDiv(DOM_EL.classSelect.elt.options[i].text);
