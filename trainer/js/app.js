@@ -373,10 +373,11 @@ function classSubmitEvent(){
     else if (ev.type == 'tap'){recordButtonEvent();}
     });
 
-    window.addEventListener('touchend', () => {
-        console.log("touch ended");
+    document.body.onmouseup = function() {
+        console.log("MOUSE UP");
         clearInterval(UTIL.recordIntervalFunction);
-      });
+      }
+
 
     DOM_EL.trainContainer = select("#train-container");
     DOM_EL.trainContainer.hide();
