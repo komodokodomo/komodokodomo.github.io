@@ -301,7 +301,7 @@ function classSubmitEvent(){
         DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber].parent(DOM_EL.classSampleList[APP_STATE.selectedClassNumber]);
     
         DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber] = createDiv(DOM_EL.classSelect.elt.options[APP_STATE.selectedClassNumber].text);
-        DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber].class("class-sample-list-overlay");
+        DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber].class("class-sample-list-label");
         DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber].parent( DOM_EL.classSampleList[APP_STATE.selectedClassNumber] );
 
         DOM_EL.classSampleListOverlay[APP_STATE.selectedClassNumber] = createDiv("✔️");
@@ -456,10 +456,11 @@ function classSubmitEvent(){
         DOM_EL.classSampleListImage[i].parent(DOM_EL.classSampleList[i]);
 
         DOM_EL.classSampleListLabel[i] = createDiv(DOM_EL.classSelect.elt.options[i].text);
-        DOM_EL.classSampleListLabel[i].class("class-sample-list-overlay");
+        DOM_EL.classSampleListLabel[i].class("class-sample-list-label");
         DOM_EL.classSampleListLabel[i].parent( DOM_EL.classSampleList[i] );
 
         DOM_EL.classSampleListOverlay[i] = createDiv("✔️");
+        DOM_EL.classSampleListOverlay[i].class("class-sample-list-overlay");
         DOM_EL.classSampleListOverlay[i].parent( DOM_EL.classSampleList[i] );
         DOM_EL.classSampleListOverlay[i].hide();
         
