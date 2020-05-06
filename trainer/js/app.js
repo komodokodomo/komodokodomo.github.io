@@ -512,4 +512,4 @@ function isMobile() {
         check = true;
     })(navigator.userAgent||navigator.vendor||window.opera);
     return check;
-  };
+  }
