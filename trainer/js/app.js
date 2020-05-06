@@ -309,16 +309,16 @@ function classSubmitEvent(){
         DOM_EL.classSampleListOverlay[APP_STATE.selectedClassNumber].hide();
 
         let holdSelect = new Hammer(DOM_EL.classSampleList[APP_STATE.selectedClassNumber].elt);
-        let n = APP_STATE.selectedClassNumber;
+        let chosen = APP_STATE.selectedClassNumber;
         holdSelect.on('press tap', function(ev) {
         
             if(ev.type == 'press'){
-                DOM_EL.classSampleList[n].class("class-selected");
-                DOM_EL.classSampleListOverlay[n].style("display", "flex");
+                DOM_EL.classSampleList[chosen].class("class-selected");
+                DOM_EL.classSampleListOverlay[chosen].style("display", "flex");
             }
             else if (ev.type == 'tap'){
-                DOM_EL.classSampleList[n].removeClass("class-selected");
-                DOM_EL.classSampleListOverlay[n].hide();
+                DOM_EL.classSampleList[chosen].removeClass("class-selected");
+                DOM_EL.classSampleListOverlay[chosen].hide();
             }
         });
 
