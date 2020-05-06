@@ -113,6 +113,16 @@ li {
 .sample-list-image{
   width: 100px;
   height: 100px;
+  display: flex;
+}
+
+.class-sample-list-overlay{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100px;
+  height: 100px;
 }
 
 .sample-list-remove{

@@ -1,5 +1,3 @@
-// ADD CLASS should result in new div being formed in train tab too
-// Mousehold on any class in train tab would result in train button becoming active.
 
 
 var DOM_EL = {
@@ -306,20 +304,22 @@ function classSubmitEvent(){
         DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber].parent( DOM_EL.classSampleList[APP_STATE.selectedClassNumber] );
 
         DOM_EL.classSampleListOverlay[APP_STATE.selectedClassNumber] = createDiv("✔️");
+        DOM_EL.classSampleListOverlay[APP_STATE.selectedClassNumber].class("class-sample-list-overlay");
         DOM_EL.classSampleListOverlay[APP_STATE.selectedClassNumber].parent( DOM_EL.classSampleList[APP_STATE.selectedClassNumber] );
         DOM_EL.classSampleListOverlay[APP_STATE.selectedClassNumber].hide();
 
         let holdSelect = new Hammer(DOM_EL.classSampleList[APP_STATE.selectedClassNumber].elt);
+        let n = APP_STATE.selectedClassNumber;
         holdSelect.on('press tap', function(ev) {
         
-        if(ev.type == 'press'){
-            DOM_EL.classSampleList[APP_STATE.selectedClassNumber].class("class-selected");
-            DOM_EL.classSampleListOverlay[APP_STATE.selectedClassNumber].show();
-        }
-        else if (ev.type == 'tap'){
-            DOM_EL.classSampleList[APP_STATE.selectedClassNumber].removeClass("class-selected");
-            DOM_EL.classSampleListOverlay[APP_STATE.selectedClassNumber].hide();
-        }
+            if(ev.type == 'press'){
+                DOM_EL.classSampleList[n].class("class-selected");
+                DOM_EL.classSampleListOverlay[n].style("display", "flex");
+            }
+            else if (ev.type == 'tap'){
+                DOM_EL.classSampleList[n].removeClass("class-selected");
+                DOM_EL.classSampleListOverlay[n].hide();
+            }
         });
 
     }
@@ -466,7 +466,7 @@ function classSubmitEvent(){
         
         if(ev.type == 'press'){
             DOM_EL.classSampleList[i].class("class-selected");
-            DOM_EL.classSampleListOverlay[i].show();
+            DOM_EL.classSampleListOverlay[i].style("display", "flex");
         }
         else if (ev.type == 'tap'){
             DOM_EL.classSampleList[i].removeClass("class-selected");
