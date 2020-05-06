@@ -81,6 +81,14 @@ var APP_STATE = {
     recording: null
 }
 
+const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
+const classifier = featureExtractor.classification();
+
+// When the model is loaded
+function modelLoaded() {
+  console.log('MobileNet Model Loaded!');
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     APP_STATE.mobileDevice = isMobile();
     console.log(APP_STATE.mobileDevice);
