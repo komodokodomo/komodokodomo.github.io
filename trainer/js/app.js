@@ -312,6 +312,8 @@ function classSubmitEvent(){
         }
         });
 
+    }
+
     DOM_EL.classSubmit.hide();
     DOM_EL.classInput.hide();
     DOM_EL.classSelect.show();
