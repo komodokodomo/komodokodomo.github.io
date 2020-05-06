@@ -89,7 +89,7 @@ li {
 .image-sample-list{
   display: inline-flex;
   padding: 1px;
-  padding-inline-start: 0;
+  padding-inline-start: 0px;
 }
 
 .sample-list{
@@ -184,3 +184,8 @@ button:active {
   transform: scale(0.99);
 }
 
+
+.class-selected{
+  opacity: 0.7;
+  transition: linear;
+}
