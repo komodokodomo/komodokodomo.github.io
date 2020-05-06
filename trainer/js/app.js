@@ -310,8 +310,7 @@ function classSubmitEvent(){
         else if (ev.type == 'tap'){
             DOM_EL.classSampleList[APP_STATE.selectedClassNumber].removeClass("class-selected");
         }
-        
-    }
+        });
 
     DOM_EL.classSubmit.hide();
     DOM_EL.classInput.hide();
