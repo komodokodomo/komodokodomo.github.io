@@ -470,7 +470,7 @@ function classSubmitEvent(){
 function draw(){
 
     if(APP_STATE.cameraFlip){
-        translate(DOM_EL.capture.width, 0);
+        translate(DOM_EL.canvas.width, 0);
         scale(-1, 1);
     }
     
