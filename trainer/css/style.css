@@ -130,6 +130,7 @@ li {
   position: absolute;
   width: 100px;
   height: 100px;
+  font-size: 2rem;
 }
 
 .sample-list-remove{
@@ -210,6 +211,7 @@ button:active {
 
 
 .class-selected{
-  opacity: 0.7;
+  opacity: 0.5;
   transition: linear;
+  transition-duration: 200ms;
 }
