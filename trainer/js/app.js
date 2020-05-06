@@ -168,7 +168,7 @@ function recordButtonEvent(){
 
     let c = document.getElementById('canvas');
 
-    dataUrl = c.toDataURL();
+    dataUrl = c.toDataURL(0.7);
     
     let i = createImg(dataUrl);
     i.class("sample-list-image");
