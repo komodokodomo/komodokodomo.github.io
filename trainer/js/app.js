@@ -314,7 +314,7 @@ function classSubmitEvent(){
         holdSelect.on('press tap', function(ev) {
         
             if(ev.type == 'press'){
-                DOM_EL.classSampleList[chosen].class("class-selected");
+                DOM_EL.classSampleList[chosen].addClass("class-selected");
                 DOM_EL.classSampleListOverlay[chosen].style("display", "flex");
             }
             else if (ev.type == 'tap'){
@@ -468,7 +468,7 @@ function classSubmitEvent(){
         holdSelect.on('press tap', function(ev) {
         
         if(ev.type == 'press'){
-            DOM_EL.classSampleList[i].class("class-selected");
+            DOM_EL.classSampleList[i].addClass("class-selected");
             DOM_EL.classSampleListOverlay[i].style("display", "flex");
         }
         else if (ev.type == 'tap'){
