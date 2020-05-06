@@ -213,5 +213,5 @@ button:active {
 .class-selected{
   opacity: 0.5;
   transition: linear;
-  transition-duration: 200ms;
+  transition-duration: 100ms;
 }
