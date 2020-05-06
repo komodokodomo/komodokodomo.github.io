@@ -24,6 +24,8 @@ var DOM_EL = {
     
     canvasContainer: null,
         capture: null,
+        cameraFlip: null,
+        cameraChange: null,
         canvas: null,
         ctx: null,
 
@@ -78,7 +80,8 @@ var APP_STATE = {
     selectedClass: "",
     selectedClassNumber: null,
     switchFlag: false,
-    recording: null
+    recording: null,
+    cameraMirror: false;
 }
 
 const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
@@ -375,11 +378,15 @@ function classSubmitEvent(){
     DOM_EL.capture.parent(DOM_EL.canvasContainer);
     DOM_EL.capture.hide();
 
-    DOM_EL.cameraFlip = createDiv("↶");
+    DOM_EL.cameraChange = createImg("img/change.png");
+    DOM_EL.cameraChange.parent(DOM_EL.canvasContainer);
+    DOM_EL.cameraChange.id("canvas-camera-change");
+    DOM_EL.cameraChange.mousePressed(switchCamera);
+
+    DOM_EL.cameraFlip = createImg("img/flip.png");
     DOM_EL.cameraFlip.parent(DOM_EL.canvasContainer);
-    DOM_EL.cameraFlip.position(DOM_EL.canvas.position().x + 10, DOM_EL.canvas.position().y + 5);
     DOM_EL.cameraFlip.id("canvas-camera-flip");
-    DOM_EL.cameraFlip.mousePressed(switchCamera);
+    DOM_EL.cameraFlip.mousePressed(function(){APP_STATE.cameraFlip = !APP_STATE.cameraFlip;});
 
 
     DOM_EL.imageSampleCounter = select("#image-sample-counter");
@@ -461,11 +468,18 @@ function classSubmitEvent(){
 }
 
 function draw(){
-    if(DOM_EL.capture.width > DOM_EL.capture.height){
-        image(DOM_EL.capture, width/2, height/2, DOM_EL.capture.width * height/DOM_EL.capture.height, height);
+    if(APP_STATE.cameraFlip){
+        const vid = ml5.flipImage(DOM_EL.capture);  
     }
     else{
-        image(DOM_EL.capture, width/2, height/2, width, DOM_EL.capture.height * width/DOM_EL.capture.width);
+        const vid = DOM_EL.capture;
+    }
+
+    if(DOM_EL.capture.width > DOM_EL.capture.height){
+        image(vid, width/2, height/2, DOM_EL.capture.width * height/DOM_EL.capture.height, height);
+    }
+    else{
+        image(vid, width/2, height/2, width, DOM_EL.capture.height * width/DOM_EL.capture.width);
     }
 }
 
@@ -476,7 +490,7 @@ function windowResized(){
     let cLength = constrain(APP_STATE.width * 0.85, 0 , APP_STATE.height * 0.6 * 0.85);
     DOM_EL.canvas.size(cLength,cLength);
 
-    DOM_EL.cameraFlip.position(DOM_EL.canvas.position().x + 10, DOM_EL.canvas.position().y + 5);
+    // DOM_EL.cameraFlip.position(DOM_EL.canvas.position().x + 10, DOM_EL.canvas.position().y + 5);
 
 }
 

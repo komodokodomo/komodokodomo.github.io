@@ -66,13 +66,22 @@ li {
   max-height: calc(60vh * 0.85);
 }
 
+#canvas-camera-change{
+  position: relative;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  top: calc(-50% + 3rem);
+}
+
 #canvas-camera-flip{
   position: relative;
-  color: white;
-  right: 2rem;
+  left: 2rem;
+  width: 50px;
+  height: 50px;
   top: calc(-50% + 3rem);
-  font-size: 2rem;
 }
+
 
 #image-sample-container{
   display: inline-flex;
