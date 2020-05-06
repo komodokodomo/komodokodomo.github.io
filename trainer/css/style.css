@@ -118,6 +118,9 @@ li {
 
 .class-sample-list-label{
   padding-top: 100px;
+  position: absolute;
+  width: 100px;
+  height: 100px;
 }
 
 .class-sample-list-overlay{
