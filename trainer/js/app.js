@@ -300,6 +300,16 @@ function classSubmitEvent(){
     
         DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber] = createDiv(DOM_EL.classSelect.elt.options[APP_STATE.selectedClassNumber].text);
         DOM_EL.classSampleListLabel[APP_STATE.selectedClassNumber].parent( DOM_EL.classSampleList[APP_STATE.selectedClassNumber] );
+
+        let holdSelect = new Hammer(DOM_EL.classSampleList[APP_STATE.selectedClassNumber].elt);
+        holdSelect.on('press tap', function(ev) {
+        
+        if(ev.type == 'press'){
+            DOM_EL.classSampleList[APP_STATE.selectedClassNumber].class("class-selected");
+        }
+        else if (ev.type == 'tap'){
+            DOM_EL.classSampleList[APP_STATE.selectedClassNumber].removeClass("class-selected");
+        }
         
     }
 
@@ -431,6 +441,17 @@ function classSubmitEvent(){
 
         DOM_EL.classSampleListLabel[i] = createDiv(DOM_EL.classSelect.elt.options[i].text);
         DOM_EL.classSampleListLabel[i].parent( DOM_EL.classSampleList[i] );
+        
+        let holdSelect = new Hammer(DOM_EL.classSampleList[i].elt);
+        holdSelect.on('press tap', function(ev) {
+        
+        if(ev.type == 'press'){
+            DOM_EL.classSampleList[i].class("class-selected");
+        }
+        else if (ev.type == 'tap'){
+            DOM_EL.classSampleList[i].removeClass("class-selected");
+        }
+        });
     }
 
     DOM_EL.embedContainer = select("#embed-container");
