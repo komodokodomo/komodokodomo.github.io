@@ -468,21 +468,19 @@ function classSubmitEvent(){
 }
 
 function draw(){
-    let vid;
-    
-    if(APP_STATE.cameraFlip){
-         vid = ml5.flipImage(DOM_EL.capture);  
-    }
-    else{
-         vid = DOM_EL.capture;
-    }
 
+    if(APP_STATE.cameraFlip){
+        translate(DOM_EL.capture.width, 0);
+        scale(-1, 1);
+    }
+    
     if(DOM_EL.capture.width > DOM_EL.capture.height){
-        image(vid, width/2, height/2, DOM_EL.capture.width * height/DOM_EL.capture.height, height);
+        image(DOM_EL.capture, width/2, height/2, DOM_EL.capture.width * height/DOM_EL.capture.height, height);
     }
     else{
-        image(vid, width/2, height/2, width, DOM_EL.capture.height * width/DOM_EL.capture.width);
-    }
+        image(DOM_EL.capture, width/2, height/2, width, DOM_EL.capture.height * width/DOM_EL.capture.width);
+    }    
+
 }
 
 function windowResized(){
