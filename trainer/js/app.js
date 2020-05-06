@@ -50,6 +50,7 @@ var DOM_EL = {
         classSampleList: [],
         classSampleListLabel: [],
         classSampleListImage: [],
+        classSampleListOverlay: [],
         // classSampleListSelect: null,
     
     trainButton: null,
