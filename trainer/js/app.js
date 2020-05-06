@@ -468,11 +468,13 @@ function classSubmitEvent(){
 }
 
 function draw(){
+    let vid;
+    
     if(APP_STATE.cameraFlip){
-        const vid = ml5.flipImage(DOM_EL.capture);  
+         vid = ml5.flipImage(DOM_EL.capture);  
     }
     else{
-        const vid = DOM_EL.capture;
+         vid = DOM_EL.capture;
     }
 
     if(DOM_EL.capture.width > DOM_EL.capture.height){
