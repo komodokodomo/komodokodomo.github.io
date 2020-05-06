@@ -117,6 +117,10 @@ li {
 }
 
 .class-sample-list-overlay{
+  padding-top: 100px;
+}
+
+.class-sample-list-overlay{
   display: flex;
   justify-content: center;
   align-items: center;
