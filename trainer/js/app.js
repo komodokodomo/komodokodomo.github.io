@@ -174,7 +174,7 @@ function recordButtonEvent(){
     i.class("sample-list-image");
     i.parent(l);
 
-    let r = createDiv("X");
+    let r = createDiv("❌");
     r.class("sample-list-remove");
 
     r.hide();
