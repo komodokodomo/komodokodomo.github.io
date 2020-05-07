@@ -534,11 +534,11 @@ function draw(){
         scale(-1, 1);
     }
 
-    // if(APP_STATE.modelTrained == true){
-    //     classifier.classify(function(err, result) {
-    //         console.log(result); // Should output 'dog'
-    //       });
-    // }
+    if(APP_STATE.modelTrained == true){
+        classifier.classify( DOM_EL.capture.elt, function(err, result) {
+            console.log(result); // Should output 'dog'
+          });
+    }
     
     if(DOM_EL.capture.width > DOM_EL.capture.height){
         image(DOM_EL.capture, width/2, height/2, DOM_EL.capture.width * height/DOM_EL.capture.height, height);
