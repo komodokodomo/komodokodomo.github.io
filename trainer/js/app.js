@@ -353,7 +353,9 @@ function trainButtonEvent(){
     //run through number of selected classes
     for (let i = 0; i< DOM_EL.classSampleList.length; i++){
         if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
+            console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.text);
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
+                console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
                 featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleList[i].class(), imageAdded);
                 APP_STATE.numTrainingImages++;
             }
