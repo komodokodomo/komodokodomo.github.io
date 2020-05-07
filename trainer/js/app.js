@@ -569,6 +569,7 @@ function switchCamera()
   }
   DOM_EL.capture = createCapture(options);
   DOM_EL.capture.id("video");
+  DOM_EL.capture.parent(DOM_EL.canvasContainer);
 //   DOM_EL.capture.hide();
 }
 
