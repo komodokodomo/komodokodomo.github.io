@@ -408,8 +408,9 @@ function trainButtonEvent(){
 
     DOM_EL.canvasContainer = select("#canvas-container");
    
-    let cLength = constrain(APP_STATE.width * 0.85, 0 , APP_STATE.height * 0.6 * 0.85);
-    DOM_EL.canvas = createCanvas(cLength,cLength);
+    // let cLength = constrain(APP_STATE.width * 0.85, 0 , APP_STATE.height * 0.6 * 0.85);
+    // DOM_EL.canvas = createCanvas(cLength,cLength);
+    DOM_EL.canvas = createCanvas(224,224);
     DOM_EL.canvas.id("canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
     
