@@ -330,15 +330,19 @@ function classSubmitEvent(){
     DOM_EL.classRemove.show();
     }
 
+function imageAdded(){
+    console.log("image added!");
+}
 
 function trainButtonEvent(){
     //run through number of selected classes
     for (let i = 0; i< DOM_EL.classSampleList.length; i++){
         console.log(DOM_EL.classSampleList[i].class());
         if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
-            console.log(DOM_EL.imageSampleList[i].elt.childElementCount);
+            // console.log(DOM_EL.imageSampleList[i].elt.childElementCount);
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-                console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0].src);
+                // console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
+                featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleList[i].class(), imageAdded);
             }
         }
         //identify the label and the images tagged to it, adding them to the feature extractor object
