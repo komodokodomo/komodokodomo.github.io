@@ -332,12 +332,15 @@ function classSubmitEvent(){
 
 
 function trainButtonEvent(){
-    let n = DOM_EL.classSampleList.elt.childElementCount
     //run through number of selected classes
-    // for (let i = 0; i< n; i++){
+    for (let i = 0; i< DOM_EL.classSampleList.length; i++){
+        if(DOM_EL.classSampleList.class() == "class-selected"){
+            console.log(DOM_EL.classSampleListLabel[i]);
+            for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++)
+        }
         //identify the label and the images tagged to it, adding them to the feature extractor object
     //     featureExtractor.addImage(input, label, ?callback);
-    // }
+    }
     //once done, start training them
     // featureExtractor.train(?callback);
     //show pop up that gives progress detail on training + send model button once its done
