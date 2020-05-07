@@ -76,7 +76,8 @@ var APP_STATE = {
     recording: null,
     cameraMirror: false,
     numTrainingImages: 0,
-    numTrainingImagesProcessed: 0
+    numTrainingImagesProcessed: 0,
+    loss: 0
 }
 
 const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
@@ -336,18 +337,17 @@ function imageAdded(){
     APP_STATE.numTrainingImagesProcessed++;
     if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImages){
         console.log("all training images added"); 
-        featureExtractor.train(trainImages(lossValue));
+        featureExtractor.train(function(lossValue) {
+            if (lossValue) {
+              APP_STATE.loss = lossValue;
+              console.log(APP_STATE.loss);
+            } else {
+              console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
+            }
+          });
     }
 }
 
-function trainImages(v){
-    if(v){
-        console.log(v);
-    }
-    else{
-        console.log("training completed");
-    }
-}
 
 function trainButtonEvent(){
     //run through number of selected classes
