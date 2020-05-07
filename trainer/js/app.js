@@ -128,7 +128,6 @@ function changeEmbedEvent(){
 
 function classInputEvent(){
     APP_STATE.classInputString = DOM_EL.classInput.value();
-    console.log(APP_STATE.classInputString);
 }
 
 function selectEvent(){
@@ -353,11 +352,8 @@ function trainImages(v){
 function trainButtonEvent(){
     //run through number of selected classes
     for (let i = 0; i< DOM_EL.classSampleList.length; i++){
-        console.log(DOM_EL.classSampleList[i].class());
         if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
-            // console.log(DOM_EL.imageSampleList[i].elt.childElementCount);
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-                // console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
                 featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleList[i].class(), imageAdded);
                 APP_STATE.numTrainingImages++;
             }
@@ -468,7 +464,6 @@ function trainButtonEvent(){
     });
 
     document.body.onmouseup = function() {
-        console.log("MOUSE UP");
         clearInterval(UTIL.recordIntervalFunction);
     }
 
