@@ -68,6 +68,7 @@ li {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  object-fit: cover;
 }
 
 #canvas{
@@ -75,6 +76,8 @@ li {
   height: 85vw;
   max-width: calc(60vh * 0.85);;
   max-height: calc(60vh * 0.85);
+  position: absolute;
+  z-index: -1;
 }
 
 #canvas-camera-change{
