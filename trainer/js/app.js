@@ -536,7 +536,7 @@ function draw(){
 
     if(APP_STATE.modelTrained == true){
         classifier.classify( DOM_EL.capture.elt, function(err, result) {
-            console.log(result); // Should output 'dog'
+            console.log(result[0].label); // Should output 'dog'
           });
     }
     
