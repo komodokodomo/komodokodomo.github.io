@@ -568,7 +568,8 @@ function switchCamera()
    };
   }
   DOM_EL.capture = createCapture(options);
-  DOM_EL.capture.hide();
+  DOM_EL.capture.id("video");
+//   DOM_EL.capture.hide();
 }
 
 
