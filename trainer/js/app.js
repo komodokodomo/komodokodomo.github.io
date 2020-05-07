@@ -76,7 +76,7 @@ var APP_STATE = {
     recording: null,
     cameraMirror: false,
     numTrainingImages: 0,
-    numTrainingImagesProcessed: 0;
+    numTrainingImagesProcessed: 0
 }
 
 const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
