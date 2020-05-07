@@ -74,7 +74,9 @@ var APP_STATE = {
     selectedClassNumber: null,
     switchFlag: false,
     recording: null,
-    cameraMirror: false
+    cameraMirror: false,
+    numTrainingImages: 0,
+    numTrainingImagesProcessed: 0;
 }
 
 const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
@@ -332,6 +334,10 @@ function classSubmitEvent(){
 
 function imageAdded(){
     console.log("image added!");
+    APP_STATE.numTrainingImagesProcessed++;
+    if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImages){
+        console.log("all training images added"); 
+    }
 }
 
 function trainButtonEvent(){
@@ -343,6 +349,7 @@ function trainButtonEvent(){
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
                 // console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
                 featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleList[i].class(), imageAdded);
+                APP_STATE.numTrainingImages++;
             }
         }
         //identify the label and the images tagged to it, adding them to the feature extractor object
