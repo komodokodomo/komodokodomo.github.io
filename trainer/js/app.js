@@ -465,7 +465,7 @@ function trainButtonEvent(){
     
     if(ev.type == 'press'){
         APP_STATE.recording = true;
-        UTIL.recordIntervalFunction = setInterval(recordButtonEvent,300);
+        UTIL.recordIntervalFunction = setInterval(recordButtonEvent,100);
     }
     else if (ev.type == 'tap'){recordButtonEvent();}
     });
