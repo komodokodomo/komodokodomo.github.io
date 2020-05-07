@@ -49,18 +49,12 @@ var DOM_EL = {
         classSampleListLabel: [],
         classSampleListImage: [],
         classSampleListOverlay: [],
-        // classSampleListSelect: null,
     
     trainButton: null,
 
     ////////////////////EMBED MODE///////////////////////
     embedContainer: null,
 }
-
-var videoConstraints = {
-    video: true,
-    audio: false
-  };
 
 var UTIL = {
 recordIntervalFunction: null
@@ -336,6 +330,19 @@ function classSubmitEvent(){
     DOM_EL.classRemove.show();
     }
 
+
+function trainButtonEvent(){
+    let n = DOM_EL.classSampleList.elt.childElementCount
+    //run through number of selected classes
+    // for (let i = 0; i< n; i++){
+        //identify the label and the images tagged to it, adding them to the feature extractor object
+    //     featureExtractor.addImage(input, label, ?callback);
+    // }
+    //once done, start training them
+    // featureExtractor.train(?callback);
+    //show pop up that gives progress detail on training + send model button once its done
+}
+
  function setup(){
 
     APP_STATE.width = window.innerWidth;
@@ -430,7 +437,6 @@ function classSubmitEvent(){
         APP_STATE.recording = true;
         UTIL.recordIntervalFunction = setInterval(recordButtonEvent,300);
     }
-    // else if (ev.type == 'pressup'){clearInterval(UTIL.recordIntervalFunction);}
     else if (ev.type == 'tap'){recordButtonEvent();}
     });
 
@@ -442,7 +448,9 @@ function classSubmitEvent(){
     DOM_EL.trainContainer = select("#train-container");
     DOM_EL.trainContainer.hide();
     DOM_EL.classSampleContainer = select("#class-sample-container");
+    
     DOM_EL.trainButton = select("#training-button");
+    DOM_EL.trainButton.mousePressed(trainButtonEvent);
 
 
     for(let i = 0; i < APP_STATE.numClasses; i++){
@@ -509,9 +517,6 @@ function windowResized(){
 
     let cLength = constrain(APP_STATE.width * 0.85, 0 , APP_STATE.height * 0.6 * 0.85);
     DOM_EL.canvas.size(cLength,cLength);
-
-    // DOM_EL.cameraFlip.position(DOM_EL.canvas.position().x + 10, DOM_EL.canvas.position().y + 5);
-
 }
 
 function switchCamera()
