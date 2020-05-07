@@ -338,7 +338,7 @@ function trainButtonEvent(){
         if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
             console.log(DOM_EL.imageSampleList[i].elt.childElementCount);
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-
+                console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0].src);
             }
         }
         //identify the label and the images tagged to it, adding them to the feature extractor object
