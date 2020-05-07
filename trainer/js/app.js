@@ -418,7 +418,8 @@ function trainButtonEvent(){
             facingMode: "user"
         }});
     DOM_EL.capture.parent(DOM_EL.canvasContainer);
-    DOM_EL.capture.hide();
+    DOM_EL.capture.id("video");
+    // DOM_EL.capture.hide();
 
     DOM_EL.cameraChange = createImg("img/change.png");
     DOM_EL.cameraChange.parent(DOM_EL.canvasContainer);
