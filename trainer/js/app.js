@@ -335,7 +335,7 @@ function trainButtonEvent(){
     //run through number of selected classes
     for (let i = 0; i< DOM_EL.classSampleList.length; i++){
         console.log(DOM_EL.classSampleList[i].class());
-        if(DOM_EL.classSampleList[i].class() == "class-selected"){
+        if(DOM_EL.classSampleList[i].class().contain("class-selected")) {
             console.log(DOM_EL.classSampleListLabel[i]);
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){}
         }
