@@ -82,7 +82,7 @@ var APP_STATE = {
 }
 
 const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
-let classifier;
+const classifier = featureExtractor.classification();
 
 // When the model is loaded
 function modelLoaded() {
@@ -345,7 +345,7 @@ function imageAdded(){
             } else {
               console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
               APP_STATE.modelTrained = true;
-              classifier = featureExtractor.classification(DOM_EL.capture);
+            //   classifier = featureExtractor.classification(DOM_EL.capture);
             }
           });
     }
@@ -534,11 +534,11 @@ function draw(){
         scale(-1, 1);
     }
 
-    if(APP_STATE.modelTrained == true){
-        classifier.classify(function(err, result) {
-            console.log(result); // Should output 'dog'
-          });
-    }
+    // if(APP_STATE.modelTrained == true){
+    //     classifier.classify(function(err, result) {
+    //         console.log(result); // Should output 'dog'
+    //       });
+    // }
     
     if(DOM_EL.capture.width > DOM_EL.capture.height){
         image(DOM_EL.capture, width/2, height/2, DOM_EL.capture.width * height/DOM_EL.capture.height, height);
