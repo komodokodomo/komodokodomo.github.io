@@ -337,7 +337,12 @@ function imageAdded(){
     APP_STATE.numTrainingImagesProcessed++;
     if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImages){
         console.log("all training images added"); 
+        featureExtractor.train(trainImages);
     }
+}
+
+function trainImages(){
+    console.log(this.value);
 }
 
 function trainButtonEvent(){
