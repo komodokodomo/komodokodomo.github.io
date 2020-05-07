@@ -77,11 +77,12 @@ var APP_STATE = {
     cameraMirror: false,
     numTrainingImages: 0,
     numTrainingImagesProcessed: 0,
-    loss: 0
+    loss: 0,
+    modelTrained: false
 }
 
 const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
-const classifier = featureExtractor.classification();
+let classifier;
 
 // When the model is loaded
 function modelLoaded() {
@@ -343,6 +344,8 @@ function imageAdded(){
               console.log(APP_STATE.loss);
             } else {
               console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
+              APP_STATE.modelTrained = true;
+              classifier = featureExtractor.classification(DOM_EL.capture);
             }
           });
     }
@@ -529,6 +532,12 @@ function draw(){
     if(APP_STATE.cameraFlip){
         translate(DOM_EL.canvas.width, 0);
         scale(-1, 1);
+    }
+
+    if(APP_STATE.modelTrained == true){
+        classifier.classify(function(err, result) {
+            console.log(result); // Should output 'dog'
+          });
     }
     
     if(DOM_EL.capture.width > DOM_EL.capture.height){
