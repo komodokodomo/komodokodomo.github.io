@@ -314,8 +314,10 @@ function classSubmitEvent(){
         holdSelect.on('press tap', function(ev) {
         
             if(ev.type == 'press'){
-                DOM_EL.classSampleList[chosen].addClass("class-selected");
-                DOM_EL.classSampleListOverlay[chosen].style("display", "flex");
+                if(DOM_EL.imageSampleList[chosen].elt.childElementCount > 0){
+                    DOM_EL.classSampleList[chosen].addClass("class-selected");
+                    DOM_EL.classSampleListOverlay[chosen].style("display", "flex");
+                }
             }
             else if (ev.type == 'tap'){
                 DOM_EL.classSampleList[chosen].removeClass("class-selected");
@@ -468,8 +470,10 @@ function classSubmitEvent(){
         holdSelect.on('press tap', function(ev) {
         
         if(ev.type == 'press'){
-            DOM_EL.classSampleList[i].addClass("class-selected");
-            DOM_EL.classSampleListOverlay[i].style("display", "flex");
+            if(DOM_EL.imageSampleList[i].elt.childElementCount > 0){
+                DOM_EL.classSampleList[i].addClass("class-selected");
+                DOM_EL.classSampleListOverlay[i].style("display", "flex");
+            }
         }
         else if (ev.type == 'tap'){
             DOM_EL.classSampleList[i].removeClass("class-selected");
