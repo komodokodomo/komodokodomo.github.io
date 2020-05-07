@@ -71,6 +71,10 @@ li {
   object-fit: cover;
 }
 
+.flip{
+  transform: rotateY(180deg);
+}
+
 #canvas{
   width: 85%;
   height: 85vw;

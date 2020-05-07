@@ -430,7 +430,10 @@ function trainButtonEvent(){
     DOM_EL.cameraFlip = createImg("img/flip.png");
     DOM_EL.cameraFlip.parent(DOM_EL.canvasContainer);
     DOM_EL.cameraFlip.id("canvas-camera-flip");
-    DOM_EL.cameraFlip.mousePressed(function(){APP_STATE.cameraFlip = !APP_STATE.cameraFlip;});
+    DOM_EL.cameraFlip.mousePressed(function(){
+        APP_STATE.cameraFlip = !APP_STATE.cameraFlip;
+        DOM_EL.capture.toggleClass("flip");
+    });
 
 
     DOM_EL.imageSampleCounter = select("#image-sample-counter");
