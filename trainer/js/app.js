@@ -670,4 +670,4 @@ function isMobile() {
 //         console.log("connected to server");
 //     });
     
-}
+// }
