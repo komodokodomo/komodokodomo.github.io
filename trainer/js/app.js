@@ -331,6 +331,8 @@ function classSubmitEvent(){
     DOM_EL.classAdd.show();
     DOM_EL.classEdit.show();
     DOM_EL.classRemove.show();
+
+    startCon();  
     }
 
 function imageAdded(){
@@ -408,8 +410,8 @@ async function uploadModel(callback, name) {
 const uploadBlob = async (data, name, type) => {
 
 
-    let serverUrl = 'https://cotf.cf/trainer';
-    // const blob = new Blob([data], { type });
+    // let serverUrl = 'https://cotf.cf/trainer';
+    const blob = new Blob([data], { type });
 
     // let httpRequestOptions = {
     //     method: 'POST',
@@ -658,3 +660,13 @@ function isMobile() {
     })(navigator.userAgent||navigator.vendor||window.opera);
     return check;
   }
+
+
+  function startCon(){
+    socket = io('cotf.cf', {});
+
+    socket.on('connect', function() {
+        console.log("connected to server");
+    });
+    
+}
