@@ -408,7 +408,7 @@ async function uploadModel(callback, name) {
 const uploadBlob = async (data, name, type) => {
 
 
-    let serverUrl = 'https://cors-anywhere.herokuapp.com/https://cotf.cf/trainer';
+    let serverUrl = 'https://cotf.cf/trainer';
     // const blob = new Blob([data], { type });
 
     // let httpRequestOptions = {
