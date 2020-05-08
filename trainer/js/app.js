@@ -410,6 +410,7 @@ const uploadBlob = async (data, name, type) => {
     // let postData = { userId: 1, title: 'p5 Clicked!', body: 'p5.js is way cool.' };
     // httpPost(serverUrl,blob);
 
+    let serverUrl = 'https://cotf.cf/trainer';
     const blob = new Blob([data], { type });
     httpPost(serverUrl,blob);
 
