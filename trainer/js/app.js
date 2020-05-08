@@ -372,6 +372,51 @@ function trainButtonEvent(){
     //show pop up that gives progress detail on training + send model button once its done
 }
 
+function modelUploaded(){
+    console.log("model uploaded!!");
+}
+
+async function uploadModel(callback, name) {
+    if (!featureExtractor.jointModel) {
+      console.log('No model found.');
+    }
+    this.jointModel.save(tf.io.withSaveHandler(async (data) => {
+      let modelName = 'model';
+      if(name) modelName = name;
+
+      featureExtractor.weightsManifest = {
+        modelTopology: data.modelTopology,
+        weightsManifest: [{
+          paths: [`./${modelName}.weights.bin`],
+          weights: data.weightSpecs,
+        }],
+        ml5Specs: {
+          mapStringToIndex: this.mapStringToIndex,
+        },
+      };
+      
+      await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
+      await uploadBlob(JSON.stringify(this.weightsManifest), `${modelName}.json`, 'text/plain');
+      if (callback) {
+        callback();
+      }
+    }));
+  }
+
+const uploadBlob = async (data, name, type) => {
+
+    const blob = new Blob([data], { type });
+    let serverUrl = 'https://jsonplaceholder.typicode.com/posts';
+    let httpRequestOptions = {
+      method: 'POST',
+      body: new FormData().append(name, blob),
+      headers: new Headers({
+        'Content-Type': 'multipart/form-data'
+      })
+    };
+    httpDo(serverUrl, httpRequestOptions);
+  };
+
  function setup(){
 
     APP_STATE.width = window.innerWidth;
@@ -528,50 +573,7 @@ function trainButtonEvent(){
     imageMode(CENTER);
 }
 
-function modelUploaded(){
-    console.log("model uploaded!!");
-}
 
-async function uploadModel(callback, name) {
-    if (!this.jointModel) {
-      console.log('No model found.');
-    }
-    this.jointModel.save(tf.io.withSaveHandler(async (data) => {
-      let modelName = 'model';
-      if(name) modelName = name;
-
-      this.weightsManifest = {
-        modelTopology: data.modelTopology,
-        weightsManifest: [{
-          paths: [`./${modelName}.weights.bin`],
-          weights: data.weightSpecs,
-        }],
-        ml5Specs: {
-          mapStringToIndex: this.mapStringToIndex,
-        },
-      };
-      
-      await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
-      await uploadBlob(JSON.stringify(this.weightsManifest), `${modelName}.json`, 'text/plain');
-      if (callback) {
-        callback();
-      }
-    }));
-  }
-
-const uploadBlob = async (data, name, type) => {
-
-    const blob = new Blob([data], { type });
-    let serverUrl = 'https://jsonplaceholder.typicode.com/posts';
-    let httpRequestOptions = {
-      method: 'POST',
-      body: new FormData().append(name, blob),
-      headers: new Headers({
-        'Content-Type': 'multipart/form-data'
-      })
-    };
-    httpDo(serverUrl, httpRequestOptions);
-  };
 
 
 function draw(){
