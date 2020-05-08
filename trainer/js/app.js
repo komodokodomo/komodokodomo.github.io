@@ -409,7 +409,7 @@ async function uploadModel(callback, name) {
 const uploadBlob = async (data, name, type) => {
 
 
-    // let serverUrl = 'https://cotf.cf/trainer';
+    let serverUrl = 'https://cotf.cf/trainer';
     const blob = new Blob([data], { type });
 
     // socket.emit("model",{name: blob});
