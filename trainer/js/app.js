@@ -407,22 +407,21 @@ async function uploadModel(callback, name) {
 
 const uploadBlob = async (data, name, type) => {
 
-    // let postData = { userId: 1, title: 'p5 Clicked!', body: 'p5.js is way cool.' };
+
+    // let serverUrl = 'https://cotf.cf/trainer';
+    const blob = new Blob([data], { type });
+    console.log(blob);
     // httpPost(serverUrl,blob);
 
     let serverUrl = 'https://cotf.cf/trainer';
-    const blob = new Blob([data], { type });
-    httpPost(serverUrl,blob);
-
-    // let serverUrl = 'https://cotf.cf/trainer';
-    // let httpRequestOptions = {
-    //   method: 'POST',
-    //   body: new FormData().append(name, blob),
-    //   headers: new Headers({
-    //     'Content-Type': 'multipart/form-data'
-    //   })
-    // };
-    // httpDo(serverUrl, httpRequestOptions);
+    let httpRequestOptions = {
+      method: 'POST',
+      payload: new FormData().append(name, blob),
+      headers: new Headers({
+        'Content-Type': 'multipart/form-data'
+      })
+    };
+    httpDo(serverUrl, httpRequestOptions);
   };
 
  function setup(){
