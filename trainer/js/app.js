@@ -409,7 +409,7 @@ const uploadBlob = async (data, name, type) => {
 
 
     let serverUrl = 'https://cors-anywhere.herokuapp.com/https://cotf.cf/trainer';
-    const blob = new Blob([data], { type });
+    // const blob = new Blob([data], { type });
 
     // let httpRequestOptions = {
     //     method: 'POST',
@@ -426,7 +426,7 @@ const uploadBlob = async (data, name, type) => {
     xhr.onload = function(e) {
     console.log('Sent');
     };
-    xhr.send(blob);
+    xhr.send(data);
 
   };
 
