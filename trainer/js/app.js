@@ -415,15 +415,22 @@ const uploadBlob = async (data, name, type) => {
     // httpPost(serverUrl,data);
 
     // let serverUrl = 'https://cotf.cf/trainer';
-    let httpRequestOptions = {
-      method: 'POST',
-      payload: new FormData().append(name, blob),
-    //   payload: new FormData().append("model", blob)
-      headers: new Headers({
-        'Content-Type': 'multipart/form-data'
-      })
+    // let httpRequestOptions = {
+    //   method: 'POST',
+    //   payload: new FormData().append(name, blob),
+    // //   payload: new FormData().append("model", blob)
+    //   headers: new Headers({
+    //     'Content-Type': 'multipart/form-data'
+    //   })
+    // };
+    // httpDo(serverUrl, httpRequestOptions);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', serverUrl, true);
+    xhr.onload = function(e) {
+    console.log('Sent');
     };
-    httpDo(serverUrl, httpRequestOptions);
+    xhr.send(blob);
   };
 
  function setup(){
