@@ -415,7 +415,8 @@ const uploadBlob = async (data, name, type) => {
         method: 'POST',
         body: new FormData().append(name, blob),
         headers: new Headers({
-          'Content-Type': type
+          'Content-Type': "application/x-www-form-urlencoded"
+        //   'Content-Type': "multipart/form-data"
         })
       };
       httpDo(serverUrl, httpRequestOptions);
