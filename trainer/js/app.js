@@ -332,7 +332,6 @@ function classSubmitEvent(){
     DOM_EL.classEdit.show();
     DOM_EL.classRemove.show();
 
-    startCon();  
     }
 
 function imageAdded(){
@@ -434,6 +433,7 @@ const uploadBlob = async (data, name, type) => {
   };
 
  function setup(){
+    startCon();  
 
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
