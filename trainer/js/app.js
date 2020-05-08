@@ -410,7 +410,7 @@ const uploadBlob = async (data, name, type) => {
 
     let serverUrl = 'https://cotf.cf/trainer';
     // const blob = new Blob([data], { type });
-    console.log(blob);
+    console.log(data);
     console.log(name);
     httpPost(serverUrl,data);
 
