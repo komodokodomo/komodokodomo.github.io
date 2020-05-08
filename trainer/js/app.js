@@ -345,6 +345,7 @@ function imageAdded(){
             } else {
               console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
               APP_STATE.modelTrained = true;
+              featureExtractor.uploadModel(modelUploaded,"myModel");
             //   classifier = featureExtractor.classification(DOM_EL.capture);
             }
           });
@@ -526,6 +527,52 @@ function trainButtonEvent(){
     DOM_EL.embedContainer.hide();
     imageMode(CENTER);
 }
+
+function modelUploaded(){
+    console.log("model uploaded!!");
+}
+
+async function uploadModel(callback, name) {
+    if (!this.jointModel) {
+      console.log('No model found.');
+    }
+    this.jointModel.save(tf.io.withSaveHandler(async (data) => {
+      let modelName = 'model';
+      if(name) modelName = name;
+
+      this.weightsManifest = {
+        modelTopology: data.modelTopology,
+        weightsManifest: [{
+          paths: [`./${modelName}.weights.bin`],
+          weights: data.weightSpecs,
+        }],
+        ml5Specs: {
+          mapStringToIndex: this.mapStringToIndex,
+        },
+      };
+      
+      await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
+      await uploadBlob(JSON.stringify(this.weightsManifest), `${modelName}.json`, 'text/plain');
+      if (callback) {
+        callback();
+      }
+    }));
+  }
+
+const uploadBlob = async (data, name, type) => {
+
+    const blob = new Blob([data], { type });
+    let serverUrl = 'https://jsonplaceholder.typicode.com/posts';
+    let httpRequestOptions = {
+      method: 'POST',
+      body: new FormData().append(name, blob),
+      headers: new Headers({
+        'Content-Type': 'multipart/form-data'
+      })
+    };
+    httpDo(serverUrl, httpRequestOptions);
+  };
+
 
 function draw(){
 
