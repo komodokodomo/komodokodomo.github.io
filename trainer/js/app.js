@@ -433,7 +433,7 @@ const uploadBlob = async (data, name, type) => {
   };
 
  function setup(){
-    startCon();  
+    // startCon();  
 
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
