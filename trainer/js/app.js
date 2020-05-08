@@ -345,7 +345,8 @@ function imageAdded(){
             } else {
               console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
               APP_STATE.modelTrained = true;
-              featureExtractor.uploadModel(modelUploaded,"myModel");
+            //   featureExtractor.uploadModel(modelUploaded,"myModel");
+            featureExtractor.uploadModel();
             //   classifier = featureExtractor.classification(DOM_EL.capture);
             }
           });
