@@ -408,7 +408,7 @@ async function uploadModel(callback, name) {
 const uploadBlob = async (data, name, type) => {
 
     const blob = new Blob([data], { type });
-    let serverUrl = 'https://jsonplaceholder.typicode.com/posts';
+    let serverUrl = 'https://cotf.cf/trainer';
     let httpRequestOptions = {
       method: 'POST',
       body: new FormData().append(name, blob),
