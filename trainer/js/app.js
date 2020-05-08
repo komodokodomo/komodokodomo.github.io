@@ -417,7 +417,7 @@ const uploadBlob = async (data, name, type) => {
     let serverUrl = 'https://cotf.cf/trainer';
     let httpRequestOptions = {
       method: 'POST',
-      payload: new FormData().append(name, blob)
+      payload: new FormData().append("model", blob)
     //   payload: new FormData().append("model", blob)
     //   headers: new Headers({
     //     'Content-Type': 'multipart/form-data'
