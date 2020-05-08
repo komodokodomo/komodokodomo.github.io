@@ -346,8 +346,8 @@ function imageAdded(){
               console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
               APP_STATE.modelTrained = true;
             //   featureExtractor.uploadModel(modelUploaded,"myModel");
-            // classifier.uploadModel(modelUploaded,"myModel");
-            classifier.save();
+            classifier.uploadModel(modelUploaded,"myModel");
+            // classifier.save();
             //   classifier = featureExtractor.classification(DOM_EL.capture);
             }
           });
@@ -382,7 +382,7 @@ async function uploadModel(callback, name) {
     if (!featureExtractor.jointModel) {
       console.log('No model found.');
     }
-    this.jointModel.save(tf.io.withSaveHandler(async (data) => {
+    featureExtractor.jointModel.save(tf.io.withSaveHandler(async (data) => {
       let modelName = 'model';
       if(name) modelName = name;
 
