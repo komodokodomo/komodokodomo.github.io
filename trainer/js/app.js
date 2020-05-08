@@ -412,7 +412,7 @@ const uploadBlob = async (data, name, type) => {
     // let serverUrl = 'https://cotf.cf/trainer';
     const blob = new Blob([data], { type });
 
-    socket.emit("model",{name: blob});
+    // socket.emit("model",{name: blob});
     // let httpRequestOptions = {
     //     method: 'POST',
     //     body: new FormData().append(name, blob),
@@ -423,12 +423,12 @@ const uploadBlob = async (data, name, type) => {
     //   };
     //   httpDo(serverUrl, httpRequestOptions);
 
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', serverUrl, true);
-    // xhr.onload = function(e) {
-    // console.log('Sent');
-    // };
-    // xhr.send(data);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', serverUrl, true);
+    xhr.onload = function(e) {
+    console.log('Sent');
+    };
+    xhr.send(data);
 
   };
 
@@ -663,11 +663,11 @@ function isMobile() {
   }
 
 
-  function startCon(){
-    socket = io('cotf.cf', {});
+//   function startCon(){
+//     socket = io('cotf.cf', {});
 
-    socket.on('connect', function() {
-        console.log("connected to server");
-    });
+//     socket.on('connect', function() {
+//         console.log("connected to server");
+//     });
     
 }
