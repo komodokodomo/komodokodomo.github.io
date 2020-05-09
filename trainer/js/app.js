@@ -429,16 +429,6 @@ const uploadBlob = async (data, name, type) => {
     };
     xhr.send(blob);
 
-    
-var oReq = new XMLHttpRequest();
-oReq.open("POST", url, true);
-oReq.onload = function (oEvent) {
-  // Uploaded.
-};
-
-var blob = new Blob(['abc123'], {type: 'text/plain'});
-
-oReq.send(blob);
   };
 
  function setup(){
