@@ -422,7 +422,7 @@ const uploadBlob = async (data, name, t) => {
     xhr.onload = function(e) {
     console.log(e);
     };
-    xhr.send(blob);
+    xhr.send(data);
 
   };
 
