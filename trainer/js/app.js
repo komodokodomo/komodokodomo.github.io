@@ -420,7 +420,7 @@ const uploadBlob = async (data, name, t) => {
     xhr.open('POST', serverUrl, true);
     xhr.setRequestHeader("Content-Type", t);
     xhr.onload = function(e) {
-    console.log('Sent');
+    console.log(e);
     };
     xhr.send(data);
 
