@@ -418,15 +418,29 @@ const uploadBlob = async (data, name, type) => {
     const blob = new Blob([data], { type });
     console.log(data);
 
-    let httpRequestOptions = {
-        method: 'POST',
-        body: new FormData().append("model", blob),
-        headers: new Headers({
-        //   'Content-Type': "application/x-www-form-urlencoded"
-          'Content-Type': "multipart/form-data"
-        })
-      };
-      httpDo(serverUrl, httpRequestOptions);
+    fetch(serverUrl,
+    {
+      method: 'post',
+      body: new FormData().append(name, blob)
+    })
+    .then(function(response) {
+        console.log('done');
+        return response;
+    })
+    .catch(function(err){ 
+        console.log(err);
+    });
+
+
+    // let httpRequestOptions = {
+    //     method: 'POST',
+    //     body: new FormData().append("model", blob),
+    //     headers: new Headers({
+    //     //   'Content-Type': "application/x-www-form-urlencoded"
+    //       'Content-Type': "multipart/form-data"
+    //     })
+    //   };
+    //   httpDo(serverUrl, httpRequestOptions);
 
     // var xhr = new XMLHttpRequest();
     // xhr.open('POST', serverUrl, true);
