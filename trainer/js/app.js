@@ -416,9 +416,9 @@ const uploadBlob = async (data, name, t) => {
     const blob = new Blob([data], { type : t});
 
     var xhr = new XMLHttpRequest();
-    xhr.setRequestHeader("Content-Type", t);
 
     xhr.open('POST', serverUrl, true);
+    xhr.setRequestHeader("Content-Type", t);
     xhr.onload = function(e) {
     console.log('Sent');
     };
