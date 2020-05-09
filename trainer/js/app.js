@@ -401,15 +401,15 @@ async function uploadModel(callback, name) {
     //   console.log(data.weightData);
     //   console.log(JSON.stringify(featureExtractor.weightsManifest));
       
-      await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
-      await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
+    //   await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
+      await uploadBlobJSON(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
       if (callback) {
         callback();
       }
     }));
   }
 
-const uploadBlob = async (data, name, t) => {
+const uploadBlobJSON = async (data, name, t) => {
 
 
     let serverUrl = 'https://cotf.cf/trainer';
@@ -420,7 +420,8 @@ const uploadBlob = async (data, name, t) => {
     fetch(serverUrl,
     {
       method: 'post',
-      body: new FormData().append(name, blob)
+      body: new FormData().append(name, blob),
+      headers: { "Content-Type": "application/json" }
     })
     .then(function(response) {
         console.log('done');
@@ -429,25 +430,6 @@ const uploadBlob = async (data, name, t) => {
     .catch(function(err){ 
         console.log(err);
     });
-
-
-    // let httpRequestOptions = {
-    //     method: 'POST',
-    //     body: new FormData().append("model", blob),
-    //     headers: new Headers({
-    //     //   'Content-Type': "application/x-www-form-urlencoded"
-    //       'Content-Type': "multipart/form-data"
-    //     })
-    //   };
-    //   httpDo(serverUrl, httpRequestOptions);
-
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', serverUrl, true);
-    // xhr.onload = function(e) {
-    // console.log('Sent');
-    // };
-    // xhr.send(blob);
-
   };
 
  function setup(){
