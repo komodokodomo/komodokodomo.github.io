@@ -399,9 +399,10 @@ async function uploadModel(callback, name) {
       };
 
       console.log(data.weightData);
+      console.log(JSON.stringify(featureExtractor.weightsManifest));
       
       await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
-    //   await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
+      await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
       if (callback) {
         callback();
       }
@@ -417,22 +418,22 @@ const uploadBlob = async (data, name, type) => {
     const blob = new Blob([data], { type });
     console.log(data);
 
-    // let httpRequestOptions = {
-    //     method: 'POST',
-    //     body: new FormData().append(name, blob),
-    //     headers: new Headers({
-    //     //   'Content-Type': "application/x-www-form-urlencoded"
-    //       'Content-Type': type
-    //     })
-    //   };
-    //   httpDo(serverUrl, httpRequestOptions);
+    let httpRequestOptions = {
+        method: 'POST',
+        body: new FormData().append(name, blob),
+        headers: new Headers({
+        //   'Content-Type': "application/x-www-form-urlencoded"
+          'Content-Type': "multipart/form-data"
+        })
+      };
+      httpDo(serverUrl, httpRequestOptions);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', serverUrl, true);
-    xhr.onload = function(e) {
-    console.log('Sent');
-    };
-    xhr.send(blob);
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', serverUrl, true);
+    // xhr.onload = function(e) {
+    // console.log('Sent');
+    // };
+    // xhr.send(blob);
 
   };
 
