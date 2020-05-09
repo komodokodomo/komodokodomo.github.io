@@ -412,7 +412,7 @@ const uploadBlob = async (data, name, type) => {
 
 
     // let serverUrl = 'https://cors-anywhere.herokuapp.com/https://cotf.cf/trainer';
-    let serverUrl = 'http://ec2-18-139-153-133.ap-southeast-1.compute.amazonaws.com:1880/trainer';
+    let serverUrl = 'https://cors-anywhere.herokuapp.com/http://ec2-18-139-153-133.ap-southeast-1.compute.amazonaws.com:1880/trainer';
 
     const blob = new Blob([data], { type });
     console.log(data);
