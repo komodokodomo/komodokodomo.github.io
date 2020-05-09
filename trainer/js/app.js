@@ -398,7 +398,7 @@ async function uploadModel(callback, name) {
         },
       };
       
-      await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
+    //   await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
       await uploadBlob(JSON.stringify(this.weightsManifest), `${modelName}.json`, 'text/plain');
       if (callback) {
         callback();
