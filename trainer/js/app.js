@@ -397,6 +397,8 @@ async function uploadModel(callback, name) {
           mapStringToIndex: featureExtractor.mapStringToIndex,
         },
       };
+
+      console.log(data.weightData);
       
       await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
       await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
@@ -411,7 +413,7 @@ const uploadBlob = async (data, name, type) => {
 
     let serverUrl = 'https://cors-anywhere.herokuapp.com/https://cotf.cf/trainer';
     const blob = new Blob([data], { type });
-    console.log(data);
+    // console.log(data);
 
     // let httpRequestOptions = {
     //     method: 'POST',
