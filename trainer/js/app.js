@@ -411,18 +411,18 @@ async function uploadModel(callback, name) {
 
 const uploadBlob = async (data, name, t) => {
 
-
     let serverUrl = 'https://cotf.cf/trainer';
 
     const blob = new Blob([data], { type : t});
 
-
     var xhr = new XMLHttpRequest();
+    xhr.setRequestHeader("Content-Type", t);
+
     xhr.open('POST', serverUrl, true);
     xhr.onload = function(e) {
     console.log('Sent');
     };
-    xhr.send(blob);
+    xhr.send(data);
 
   };
 
