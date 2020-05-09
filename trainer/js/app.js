@@ -394,12 +394,12 @@ async function uploadModel(callback, name) {
           weights: data.weightSpecs,
         }],
         ml5Specs: {
-          mapStringToIndex: this.mapStringToIndex,
+          mapStringToIndex: featureExtractor.mapStringToIndex,
         },
       };
       
-    //   await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
-      await uploadBlob(JSON.stringify(this.weightsManifest), `${modelName}.json`, 'text/plain');
+      await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
+      await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
       if (callback) {
         callback();
       }
