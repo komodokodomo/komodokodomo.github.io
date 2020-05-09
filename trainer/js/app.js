@@ -409,14 +409,13 @@ async function uploadModel(callback, name) {
     }));
   }
 
-const uploadBlob = async (data, name, type) => {
+const uploadBlob = async (data, name, t) => {
 
 
     let serverUrl = 'https://cotf.cf/trainer';
-    // let serverUrl = 'https://cors-anywhere.herokuapp.com/http://ec2-18-139-153-133.ap-southeast-1.compute.amazonaws.com:1880/trainer';
 
-    const blob = new Blob([data], { type });
-    console.log(data);
+    const blob = new Blob([data], { type : t});
+    // console.log(data);
 
     fetch(serverUrl,
     {
