@@ -402,7 +402,7 @@ async function uploadModel(callback, name) {
     //   console.log(JSON.stringify(featureExtractor.weightsManifest));
     
     await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
-    // await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
+    await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
       if (callback) {
         callback();
       }
@@ -422,7 +422,7 @@ const uploadBlob = async (data, name, t) => {
     xhr.onload = function(e) {
     console.log(e);
     };
-    xhr.send(data);
+    xhr.send(blob);
 
   };
 
