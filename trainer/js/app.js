@@ -412,15 +412,15 @@ async function uploadModel(callback, name) {
 const uploadBlob = async (data, name, type) => {
 
 
-    // let serverUrl = 'https://cors-anywhere.herokuapp.com/https://cotf.cf/trainer';
-    let serverUrl = 'https://cors-anywhere.herokuapp.com/http://ec2-18-139-153-133.ap-southeast-1.compute.amazonaws.com:1880/trainer';
+    let serverUrl = 'https://cotf.cf/trainer';
+    // let serverUrl = 'https://cors-anywhere.herokuapp.com/http://ec2-18-139-153-133.ap-southeast-1.compute.amazonaws.com:1880/trainer';
 
     const blob = new Blob([data], { type });
     console.log(data);
 
     let httpRequestOptions = {
         method: 'POST',
-        body: new FormData().append(name, blob),
+        body: new FormData().append("model", blob),
         // headers: new Headers({
         //   'Content-Type': "application/x-www-form-urlencoded"
         //   'Content-Type': "multipart/form-data"
