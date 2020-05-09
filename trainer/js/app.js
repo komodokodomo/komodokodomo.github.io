@@ -412,23 +412,33 @@ const uploadBlob = async (data, name, type) => {
     let serverUrl = 'https://cors-anywhere.herokuapp.com/https://cotf.cf/trainer';
     const blob = new Blob([data], { type });
 
-    let httpRequestOptions = {
-        method: 'POST',
-        body: new FormData().append(name, blob),
-        headers: new Headers({
-        //   'Content-Type': "application/x-www-form-urlencoded"
-          'Content-Type': type
-        })
-      };
-      httpDo(serverUrl, httpRequestOptions);
+    // let httpRequestOptions = {
+    //     method: 'POST',
+    //     body: new FormData().append(name, blob),
+    //     headers: new Headers({
+    //     //   'Content-Type': "application/x-www-form-urlencoded"
+    //       'Content-Type': type
+    //     })
+    //   };
+    //   httpDo(serverUrl, httpRequestOptions);
 
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', serverUrl, true);
-    // xhr.onload = function(e) {
-    // console.log('Sent');
-    // };
-    // xhr.send(data);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', serverUrl, true);
+    xhr.onload = function(e) {
+    console.log('Sent');
+    };
+    xhr.send(blob);
 
+    
+var oReq = new XMLHttpRequest();
+oReq.open("POST", url, true);
+oReq.onload = function (oEvent) {
+  // Uploaded.
+};
+
+var blob = new Blob(['abc123'], {type: 'text/plain'});
+
+oReq.send(blob);
   };
 
  function setup(){
