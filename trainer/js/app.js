@@ -400,9 +400,9 @@ async function uploadModel(callback, name) {
 
     //   console.log(data.weightData);
     //   console.log(JSON.stringify(featureExtractor.weightsManifest));
-    
-    await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
+   
     await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
+    await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
       if (callback) {
         callback();
       }
