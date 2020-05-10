@@ -656,6 +656,7 @@ function draw(){
     if(APP_STATE.modelTrained == true){
         classifier.classify( DOM_EL.canvas.elt, function(err, result) {
             console.log(result[0].label); // Should output 'dog'
+            console.log(result[0].confidence);
             DOM_EL.label.html(result[0].label);
             DOM_EL.labelBar.elt.style.width = (results[0].confidence * 100) + "%";
           });
