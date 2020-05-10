@@ -248,6 +248,8 @@ function classAddEvent(){
     window.setTimeout(function () { 
         document.getElementById("class-input").focus();
         DOM_EL.canvasContainer.hide();
+        DOM_EL.imageSampleCounter.hide();
+        DOM_EL.collectButtonContainer.hide();
     },10);
 }
 function classEditEvent(){
@@ -269,6 +271,8 @@ function classEditEvent(){
     window.setTimeout(function () { 
         document.getElementById("class-input").focus();
         DOM_EL.canvasContainer.hide();
+        DOM_EL.imageSampleCounter.hide();
+        DOM_EL.collectButtonContainer.hide();
     },10);
 }
 function classRemoveEvent(){
@@ -361,6 +365,9 @@ function classSubmitEvent(){
     DOM_EL.classRemove.show();
 
     DOM_EL.canvasContainer.style("display", "flex");
+    DOM_EL.imageSampleCounter.show();
+    DOM_EL.collectButtonContainer.style("display", "inline-flex");
+
 
     }
 
