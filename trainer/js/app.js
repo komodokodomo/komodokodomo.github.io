@@ -87,8 +87,11 @@ var APP_STATE = {
     modelTrained: false
 }
 
-const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
-const classifier = featureExtractor.classification();
+// const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
+// const classifier = featureExtractor.classification();
+
+let featureExtractor;
+let classifier;
 
 // When the model is loaded
 function modelLoaded() {
@@ -402,6 +405,10 @@ function imageAdded(){
 
 function trainButtonEvent(){
     //run through number of selected classes
+
+     featureExtractor = ml5.featureExtractor('MobileNet',{numLabels: DOM_EL.classSampleList.length}, modelLoaded);
+     classifier = featureExtractor.classification();
+
     for (let i = 0; i< DOM_EL.classSampleList.length; i++){
         if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
             console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.textContent);
