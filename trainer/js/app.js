@@ -657,8 +657,10 @@ function draw(){
         classifier.classify( DOM_EL.canvas.elt, function(err, result) {
             // console.log(result[0].label); // Should output 'dog'
             // console.log(result[0].confidence * 100 + "%");
-            DOM_EL.label.html(result[0].label);
-            DOM_EL.labelBar.style( "width", results[0].confidence * 100 + "%");
+            if(result){
+                DOM_EL.label.html(result[0].label);
+                DOM_EL.labelBar.style( "width", results[0].confidence * 100 + "%");
+            }
           });
     }
     
