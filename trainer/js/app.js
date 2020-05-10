@@ -366,6 +366,7 @@ function imageAdded(){
             } else {
               console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
               APP_STATE.modelTrained = true;
+              classifier.classify( DOM_EL.canvas.elt, gotResults);
             //   featureExtractor.uploadModel(modelUploaded,"myModel");
             uploadModel(modelUploaded,"myModel");
             // classifier.save();
@@ -646,6 +647,7 @@ const uploadBlob = async (data, name, t) => {
 
 function gotResults(err, result) {
 
+
         DOM_EL.label.html(result[0].label);
         // DOM_EL.labelBar.style( "width", (results[0].confidence * 100).toString() + "%");
         let length = (results[0].confidence * 100).toString() + "%";
@@ -664,7 +666,7 @@ function draw(){
     }
 
     if(APP_STATE.modelTrained == true){
-        classifier.classify( DOM_EL.canvas.elt, gotResults);
+        // classifier.classify( DOM_EL.canvas.elt, gotResults);
     }
     
     if(DOM_EL.capture.width > DOM_EL.capture.height){
