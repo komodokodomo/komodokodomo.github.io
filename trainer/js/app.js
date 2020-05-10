@@ -589,7 +589,7 @@ const uploadBlob = async (data, name, t) => {
     DOM_EL.labelBarContainer = select("#label-bar-container");
     DOM_EL.labelBarContainer.parent(DOM_EL.labelContainer);
 
-    DOM_EL.labelBar = select("#label-bar");
+    DOM_EL.labelBar = select("#label-progress");
     DOM_EL.labelBar.parent(DOM_EL.labelBarContainer);
 
 
@@ -661,7 +661,7 @@ function draw(){
                 DOM_EL.label.html(result[0].label);
                 // DOM_EL.labelBar.style( "width", (results[0].confidence * 100).toString() + "%");
                 let length = (results[0].confidence * 100).toString() + "%";
-                let elem = document.getElementById("label-bar");
+                let elem = document.getElementById("label-progress");
                 elem.style.width = length + "%";
             }
           });

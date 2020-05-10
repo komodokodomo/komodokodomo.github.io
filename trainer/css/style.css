@@ -251,7 +251,7 @@ button:active {
   background-color: lightgray;
 }
 
-#label-bar {
+#label-progress {
   width: 1%;
   height: 30px;
   background-color: green;
