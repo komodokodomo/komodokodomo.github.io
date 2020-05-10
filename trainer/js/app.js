@@ -661,6 +661,7 @@ function draw(){
                 DOM_EL.label.html(result[0].label);
                 // DOM_EL.labelBar.style( "width", (results[0].confidence * 100).toString() + "%");
                 let length = (results[0].confidence * 100).toString() + "%";
+                console.log(length);
                 let elem = document.getElementById("label-progress");
                 elem.style.width = length;
             }
