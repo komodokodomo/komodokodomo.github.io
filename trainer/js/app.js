@@ -247,6 +247,7 @@ function classAddEvent(){
     DOM_EL.classSubmit.show();
     window.setTimeout(function () { 
         document.getElementById("class-input").focus();
+        DOM_EL.canvasContainer.hide();
     },10);
 }
 function classEditEvent(){
@@ -267,6 +268,7 @@ function classEditEvent(){
     
     window.setTimeout(function () { 
         document.getElementById("class-input").focus();
+        DOM_EL.canvasContainer.hide();
     },10);
 }
 function classRemoveEvent(){
@@ -357,6 +359,8 @@ function classSubmitEvent(){
     DOM_EL.classAdd.show();
     DOM_EL.classEdit.show();
     DOM_EL.classRemove.show();
+
+    DOM_EL.canvasContainer.style("display", "flex");
 
     }
 
