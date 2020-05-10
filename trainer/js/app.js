@@ -667,6 +667,9 @@ const uploadBlob = async (data, name, t) => {
     imageMode(CENTER);
 }
 
+function getBaseLog(x, y) {
+    return Math.log(y) / Math.log(x);
+  }
 
 function gotResults(err, result) {
 
@@ -681,7 +684,7 @@ function gotResults(err, result) {
             let elem = document.getElementById("label-progress");
             elem.style.width = length;
         }
-        classifier.classify( DOM_EL.canvas.elt, gotResults);
+    classifier.classify( DOM_EL.canvas.elt, gotResults);
   }
 
 function draw(){
