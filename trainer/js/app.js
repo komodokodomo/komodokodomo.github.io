@@ -97,7 +97,6 @@ function modelLoaded() {
 
 window.addEventListener('DOMContentLoaded', () => {
     APP_STATE.mobileDevice = isMobile();
-    console.log(APP_STATE.mobileDevice);
   });
 
 
@@ -239,13 +238,14 @@ function classAddEvent(){
 
     DOM_EL.classInput.show();
     DOM_EL.classInput.value("");
-    DOM_EL.classInput.elt.focus();
+    // DOM_EL.classInput.elt.focus();
 
     DOM_EL.classAdd.hide();
     DOM_EL.classEdit.hide();
     DOM_EL.classRemove.hide();
 
     DOM_EL.classSubmit.show();
+    document.getElementById("class-input").focus();
 }
 function classEditEvent(){
     APP_STATE.editClass = true;
@@ -255,13 +255,14 @@ function classEditEvent(){
 
     DOM_EL.classInput.show();
     DOM_EL.classInput.value(APP_STATE.selectedClass);
-    DOM_EL.classInput.elt.focus();
+    // DOM_EL.classInput.elt.focus();
 
     DOM_EL.classAdd.hide();
     DOM_EL.classEdit.hide();
     DOM_EL.classRemove.hide();
 
     DOM_EL.classSubmit.show();
+    document.getElementById("class-input").focus();
 }
 function classRemoveEvent(){
 // switch on classRemoveAlert
