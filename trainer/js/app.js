@@ -690,7 +690,6 @@ function draw(){
     }
 
     if(APP_STATE.modelTrained == true){
-        // classifier.classify( DOM_EL.canvas.elt, gotResults);
     }
     
     if(DOM_EL.capture.width > DOM_EL.capture.height){
@@ -705,9 +704,6 @@ function draw(){
 function windowResized(){
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
-
-    // let cLength = constrain(APP_STATE.width * 0.85, 0 , APP_STATE.height * 0.6 * 0.85);
-    // DOM_EL.canvas.size(cLength,cLength);
 }
 
 function switchCamera()
