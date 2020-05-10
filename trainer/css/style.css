@@ -241,7 +241,9 @@ button:active {
 }
 
 #label-bar-container {
-  width: 100%;
+  position: absolute;
+  width: 80%;
+  left: 10%;
   background-color: lightgray;
 }
 
