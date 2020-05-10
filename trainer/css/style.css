@@ -234,6 +234,10 @@ button:active {
   transition-duration: 100ms;
 }
 
+#label{
+  text-align: center;
+  padding-bottom: 1rem;
+}
 
 #label-container{
   height: 35%;
