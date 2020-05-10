@@ -659,7 +659,7 @@ function draw(){
             // console.log(result[0].confidence * 100 + "%");
             if(result){
                 DOM_EL.label.html(result[0].label);
-                DOM_EL.labelBar.style( "width", results[0].confidence * 100 + "%");
+                DOM_EL.labelBar.style( "width", (results[0].confidence * 100).toString() + "%");
             }
           });
     }
