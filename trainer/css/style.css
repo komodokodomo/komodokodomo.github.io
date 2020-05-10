@@ -233,3 +233,20 @@ button:active {
   transition: linear;
   transition-duration: 100ms;
 }
+
+
+#label-container{
+  height: 35%;
+  width: 100%;
+}
+
+#label-bar-container {
+  width: 100%;
+  background-color: grey;
+}
+
+#label-bar {
+  width: 1%;
+  height: 30px;
+  background-color: green;
+}

@@ -41,6 +41,12 @@ var DOM_EL = {
         settingFpsInput: null,
         settingSaveButton: null,
 
+    labelContainer: null,
+        //run through number of labels add 
+        label: null,
+        labelBarContainer: null,
+        labelBar: null,
+
     ////////////////////TRAIN MODE///////////////////////
     trainContainer: null,
 
@@ -118,14 +124,28 @@ function changeTrainEvent(){
 }
 
 function changeEmbedEvent(){
-    APP_STATE.mode = 2;
-    DOM_EL.collectContainer.hide();
-    DOM_EL.trainContainer.hide();
-    DOM_EL.embedContainer.show();
+    // APP_STATE.mode = 2;
+    // DOM_EL.collectContainer.hide();
+    // DOM_EL.trainContainer.hide();
+    // DOM_EL.embedContainer.show();
 
+    // DOM_EL.menuTrainButton.removeClass("selected");
+    // DOM_EL.menuCollectButton.removeClass("selected");
+    // DOM_EL.menuEmbedButton.class("selected");
+    APP_STATE.mode = 0;
+    DOM_EL.collectContainer.show();
+    DOM_EL.trainContainer.hide();
+    DOM_EL.embedContainer.hide();
+
+    DOM_EL.menuCollectButton.class("selected");
     DOM_EL.menuTrainButton.removeClass("selected");
-    DOM_EL.menuCollectButton.removeClass("selected");
-    DOM_EL.menuEmbedButton.class("selected");
+    DOM_EL.menuEmbedButton.removeClass("selected");
+
+    DOM_EL.imageSampleCounter.hide();
+    DOM_EL.collectButtonContainer.hide();
+    DOM_EL.imageSampleContainer.hide();
+
+    DOM_EL.labelContainer.show();
 }
 
 function classInputEvent(){
@@ -559,6 +579,19 @@ const uploadBlob = async (data, name, t) => {
     document.body.onmouseup = function() {
         clearInterval(UTIL.recordIntervalFunction);
     }
+
+    DOM_EL.labelContainer = select("#label-container");
+    DOM_EL.labelContainer.hide();
+
+    DOM_EL.label = select("#label");
+    DOM_EL.label.parent(DOM_EL.labelContainer);
+
+    DOM_EL.labelBarContainer = select("#label-bar-container");
+    DOM_EL.labelBarContainer.parent(DOM_EL.labelContainer);
+
+    DOM_EL.labelBar = select("#label-bar");
+    DOM_EL.labelBar.parent(DOM_EL.labelBarContainer);
+
 
     DOM_EL.trainContainer = select("#train-container");
     DOM_EL.trainContainer.hide();
