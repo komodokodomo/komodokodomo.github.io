@@ -644,7 +644,17 @@ const uploadBlob = async (data, name, t) => {
 }
 
 
+function gotResults(err, result) {
 
+        DOM_EL.label.html(result[0].label);
+        // DOM_EL.labelBar.style( "width", (results[0].confidence * 100).toString() + "%");
+        let length = (results[0].confidence * 100).toString() + "%";
+        console.log(length);
+        let elem = document.getElementById("label-progress");
+        elem.style.width = length;
+        classifier.classify( DOM_EL.canvas.elt, gotResults);
+    
+  }
 
 function draw(){
 
@@ -654,18 +664,7 @@ function draw(){
     }
 
     if(APP_STATE.modelTrained == true){
-        classifier.classify( DOM_EL.canvas.elt, function(err, result) {
-            // console.log(result[0].label); // Should output 'dog'
-            // console.log(result[0].confidence * 100 + "%");
-            if(result){
-                DOM_EL.label.html(result[0].label);
-                // DOM_EL.labelBar.style( "width", (results[0].confidence * 100).toString() + "%");
-                let length = (results[0].confidence * 100).toString() + "%";
-                console.log(length);
-                let elem = document.getElementById("label-progress");
-                elem.style.width = length;
-            }
-          });
+        classifier.classify( DOM_EL.canvas.elt, gotResults);
     }
     
     if(DOM_EL.capture.width > DOM_EL.capture.height){
