@@ -245,7 +245,9 @@ function classAddEvent(){
     DOM_EL.classRemove.hide();
 
     DOM_EL.classSubmit.show();
-    document.getElementById("class-input").focus();
+    window.setTimeout(function () { 
+        document.getElementById("class-input").focus();
+    },10);
 }
 function classEditEvent(){
     APP_STATE.editClass = true;
@@ -262,7 +264,10 @@ function classEditEvent(){
     DOM_EL.classRemove.hide();
 
     DOM_EL.classSubmit.show();
-    document.getElementById("class-input").focus();
+    
+    window.setTimeout(function () { 
+        document.getElementById("class-input").focus();
+    },10);
 }
 function classRemoveEvent(){
 // switch on classRemoveAlert
