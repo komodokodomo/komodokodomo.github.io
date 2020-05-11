@@ -385,12 +385,15 @@ function imageAdded(){
 
     if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImages){
         console.log("all training images added"); 
+        DOM_EL.trainStatusImage.html("✔️Training images loaded");
         featureExtractor.train(function(lossValue) {
             if (lossValue) {
               APP_STATE.loss = lossValue;
+              DOM_EL.trainStatusLoss.html("Training progress (loss):" + APP_STATE.loss);
               console.log(APP_STATE.loss);
             } else {
               console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
+              DOM_EL.trainStatusLoss.html('✔️Done Training! Final Loss: ' +  APP_STATE.loss);
               APP_STATE.modelTrained = true;
               classifier.classify( DOM_EL.canvas.elt, gotResults);
             uploadModel(modelUploaded,"myModel");
@@ -408,12 +411,14 @@ function modelUploaded(){
 function trainButtonEvent(){
 
      featureExtractor = ml5.featureExtractor('MobileNet',{numLabels: DOM_EL.classSampleList.length}, modelLoaded);
+     DOM_EL.trainStatusContainer.show();
 
     //show pop up that gives progress detail on training + send model button once its done
 }
 
 function modelLoaded() {
     console.log('MobileNet Model Loaded!');
+    DOM_EL.trainStatusModel.html("✔️MobileNet model loaded");
     classifier = featureExtractor.classification();
   
     for (let i = 0; i< DOM_EL.classSampleList.length; i++){
@@ -676,6 +681,7 @@ const uploadBlob = async (data, name, t) => {
     }
 
     DOM_EL.trainStatusContainer = select("#train-status-container");
+    DOM_EL.trainStatusContainer.hide();
     DOM_EL.trainStatusModel = select("#train-status-model");
     DOM_EL.trainStatusImage = select("#train-status-image");
     DOM_EL.trainStatusLoss = select("#train-status-loss");
