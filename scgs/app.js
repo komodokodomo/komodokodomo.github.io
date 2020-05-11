@@ -11,7 +11,7 @@
 
 var jsonData,jsonDataLength;
 const URL = "https://teachablemachine.withgoogle.com/models/Bg30Yx6i/";
-const infoURL = 'https://cors-anywhere.herokuapp.com/https://gds-esd.tk/sheet/1V_naAwK3rQAWowSV0ny6SdjXwclEBmSw7J-wMMCOrBE/1';
+const infoURL = 'https://cors-anywhere.herokuapp.com/https://gds-esd.com/sheet/1V_naAwK3rQAWowSV0ny6SdjXwclEBmSw7J-wMMCOrBE/1';
 
 
 let model, maxPredictions, classPrediction,debugPrediction;
