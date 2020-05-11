@@ -81,7 +81,6 @@ var APP_STATE = {
     switchFlag: false,
     recording: null,
     cameraMirror: false,
-    trainingImage: false,
     numTrainingImages: 0,
     numTrainingImagesProcessed: 0,
     loss: 0,
@@ -94,25 +93,6 @@ var APP_STATE = {
 let featureExtractor;
 let classifier;
 
-// When the model is loaded
-function modelLoaded() {
-  console.log('MobileNet Model Loaded!');
-  classifier = featureExtractor.classification();
-
-  for (let i = 0; i< DOM_EL.classSampleList.length; i++){
-    if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
-        console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.textContent);
-        for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-            console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
-            APP_STATE.trainingImage = false;
-            featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);
-            while(APP_STATE.trainingImage == false){}
-            APP_STATE.numTrainingImages++;
-        }
-    }
-}
-
-}
 
 window.addEventListener('DOMContentLoaded', () => {
     APP_STATE.mobileDevice = isMobile();
@@ -246,8 +226,6 @@ function recordButtonEvent(){
 
 }
 
-function preload(){
-}
 
 function classAddEvent(){
     APP_STATE.addClass = true;
@@ -399,7 +377,7 @@ function classSubmitEvent(){
 function imageAdded(){
     console.log("image added!");
     APP_STATE.numTrainingImagesProcessed++;
-    APP_STATE.trainingImage = true;
+
     if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImages){
         console.log("all training images added"); 
         featureExtractor.train(function(lossValue) {
@@ -410,43 +388,44 @@ function imageAdded(){
               console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
               APP_STATE.modelTrained = true;
               classifier.classify( DOM_EL.canvas.elt, gotResults);
-            //   featureExtractor.uploadModel(modelUploaded,"myModel");
             uploadModel(modelUploaded,"myModel");
             // classifier.save();
-            //   classifier = featureExtractor.classification(DOM_EL.capture);
             }
           });
     }
 }
 
-
-function trainButtonEvent(){
-    //run through number of selected classes
-
-     featureExtractor = ml5.featureExtractor('MobileNet',{numLabels: DOM_EL.classSampleList.length}, modelLoaded);
-
-    // for (let i = 0; i< DOM_EL.classSampleList.length; i++){
-    //     if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
-    //         console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.textContent);
-    //         for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-    //             console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
-    //             APP_STATE.trainingImage = false;
-    //             featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);
-    //             while(APP_STATE.trainingImage == false){}
-    //             APP_STATE.numTrainingImages++;
-    //         }
-    //     }
-    //     //identify the label and the images tagged to it, adding them to the feature extractor object
-    // //     featureExtractor.addImage(input, label, ?callback);
-    // }
-    //once done, start training them
-    // featureExtractor.train(?callback);
-    //show pop up that gives progress detail on training + send model button once its done
-}
-
 function modelUploaded(){
     console.log("model uploaded!!");
 }
+
+
+function trainButtonEvent(){
+
+     featureExtractor = ml5.featureExtractor('MobileNet',{numLabels: DOM_EL.classSampleList.length}, modelLoaded);
+
+    //show pop up that gives progress detail on training + send model button once its done
+}
+
+function modelLoaded() {
+    console.log('MobileNet Model Loaded!');
+    classifier = featureExtractor.classification();
+  
+    for (let i = 0; i< DOM_EL.classSampleList.length; i++){
+      if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
+          console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.textContent);
+          for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
+              console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
+              APP_STATE.trainingImage = false;
+              featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);
+              APP_STATE.numTrainingImages++;
+          }
+      }
+  }
+  
+  }
+
+
 
 async function uploadModel(callback, name) {
     if (!featureExtractor.jointModel) {
@@ -763,7 +742,6 @@ function switchCamera()
   DOM_EL.capture.parent(DOM_EL.canvasContainer);
   DOM_EL.cameraChange.style("z-index","6");
   DOM_EL.cameraFlip.style("z-index","6");
-//   DOM_EL.capture.hide();
 }
 
 
@@ -777,11 +755,3 @@ function isMobile() {
   }
 
 
-//   function startCon(){
-//     socket = io('cotf.cf', {});
-
-//     socket.on('connect', function() {
-//         console.log("connected to server");
-//     });
-    
-// }

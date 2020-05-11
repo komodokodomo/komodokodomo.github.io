@@ -125,6 +125,8 @@ li {
   position: relative;
   width: 100px;
   height: 100px;
+  max-height: calc(20% - 1.5rem);
+  max-width: calc(20% - 1.5rem);
   display: flex;
   justify-content: center;
   align-items: center;
