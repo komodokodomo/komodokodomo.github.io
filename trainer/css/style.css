@@ -272,7 +272,7 @@ button:active {
   background: lightcyan;
   text-align-last: center;
 }
-}
+
 
 #train-status-image,#train-status-model,#train-status-loss{
   width : 100%;
