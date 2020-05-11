@@ -263,9 +263,15 @@ button:active {
 }
 
 #train-status-container{
+  position: absolute;
+  left: 7.5%;
+  top: calc((100vh - 85vw)/2);
   width: 85%;
   height: 85vw;
-  max-width: calc(60vh * 0.85);
-  max-height: calc(60vh * 0.85);
-  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+#train-status-image,#train-status-model,#train-status-loss{
+  width : 100%;
 }
