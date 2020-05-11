@@ -97,6 +97,21 @@ let classifier;
 // When the model is loaded
 function modelLoaded() {
   console.log('MobileNet Model Loaded!');
+  classifier = featureExtractor.classification();
+
+  for (let i = 0; i< DOM_EL.classSampleList.length; i++){
+    if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
+        console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.textContent);
+        for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
+            console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
+            APP_STATE.trainingImage = false;
+            featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);
+            while(APP_STATE.trainingImage == false){}
+            APP_STATE.numTrainingImages++;
+        }
+    }
+}
+
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -409,22 +424,21 @@ function trainButtonEvent(){
     //run through number of selected classes
 
      featureExtractor = ml5.featureExtractor('MobileNet',{numLabels: DOM_EL.classSampleList.length}, modelLoaded);
-     classifier = featureExtractor.classification();
 
-    for (let i = 0; i< DOM_EL.classSampleList.length; i++){
-        if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
-            console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.textContent);
-            for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-                console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
-                APP_STATE.trainingImage = false;
-                featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);
-                while(APP_STATE.trainingImage == false){}
-                APP_STATE.numTrainingImages++;
-            }
-        }
-        //identify the label and the images tagged to it, adding them to the feature extractor object
-    //     featureExtractor.addImage(input, label, ?callback);
-    }
+    // for (let i = 0; i< DOM_EL.classSampleList.length; i++){
+    //     if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
+    //         console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.textContent);
+    //         for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
+    //             console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
+    //             APP_STATE.trainingImage = false;
+    //             featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);
+    //             while(APP_STATE.trainingImage == false){}
+    //             APP_STATE.numTrainingImages++;
+    //         }
+    //     }
+    //     //identify the label and the images tagged to it, adding them to the feature extractor object
+    // //     featureExtractor.addImage(input, label, ?callback);
+    // }
     //once done, start training them
     // featureExtractor.train(?callback);
     //show pop up that gives progress detail on training + send model button once its done
