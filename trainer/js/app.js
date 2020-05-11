@@ -709,7 +709,7 @@ function gotResults(err, result) {
             let conf = constrain(getBaseLog(10, result[0].confidence * 100) * 100 / 2, 0, 100);
             let length = conf.toString() + "%";
             // let length = (result[0].confidence * 100).toString() + "%";
-            console.log(length);
+            // console.log(length);
             let elem = document.getElementById("label-progress");
             elem.style.width = length;
         }
