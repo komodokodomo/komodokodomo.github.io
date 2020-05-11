@@ -81,6 +81,7 @@ var APP_STATE = {
     switchFlag: false,
     recording: null,
     cameraMirror: false,
+    trainingImage: false,
     numTrainingImages: 0,
     numTrainingImagesProcessed: 0,
     loss: 0,
@@ -383,6 +384,7 @@ function classSubmitEvent(){
 function imageAdded(){
     console.log("image added!");
     APP_STATE.numTrainingImagesProcessed++;
+    APP_STATE.trainingImage = true;
     if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImages){
         console.log("all training images added"); 
         featureExtractor.train(function(lossValue) {
@@ -414,7 +416,9 @@ function trainButtonEvent(){
             console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.textContent);
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
                 console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
+                APP_STATE.trainingImage = false;
                 featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);
+                while(APP_STATE.trainingImage == false){}
                 APP_STATE.numTrainingImages++;
             }
         }
