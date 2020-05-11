@@ -268,10 +268,18 @@ button:active {
   top: calc((100vh - 85vw)/2);
   width: 85%;
   height: 85vw;
-  display: flex;
   justify-content: center;
 }
 
-#train-status-image,#train-status-model,#train-status-loss,#train-status-complete-button{
+#train-status-image,#train-status-model,#train-status-loss{
   width : 100%;
+  height: 3rem;
+  text-align: center;
+  font-size: large;
+}
+
+#train-status-complete-button{
+  width : 60%;
+  height: 4rem;
+  font-size: larger;
 }
