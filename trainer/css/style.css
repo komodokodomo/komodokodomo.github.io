@@ -272,6 +272,6 @@ button:active {
   justify-content: center;
 }
 
-#train-status-image,#train-status-model,#train-status-loss{
+#train-status-image,#train-status-model,#train-status-loss,#train-status-complete-button{
   width : 100%;
 }
