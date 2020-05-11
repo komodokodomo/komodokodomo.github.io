@@ -266,11 +266,9 @@ button:active {
   position: absolute;
   left: 7.5%;
   top: calc((100vh - 85vw)/2);
-  width: 85%;
   padding: 10px;
   justify-content: center;
   background: lightcyan;
-  text-align-last: center;
 }
 
 

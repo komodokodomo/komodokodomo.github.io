@@ -385,7 +385,9 @@ function imageAdded(){
 
     if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImages){
         console.log("all training images added"); 
-        DOM_EL.trainStatusImage.html("✔️Training images loaded");
+        setTimeout(function(){        
+            DOM_EL.trainStatusImage.html("✔️Training images loaded");
+        },5);
         featureExtractor.train(function(lossValue) {
             if (lossValue) {
               APP_STATE.loss = lossValue;
@@ -419,7 +421,9 @@ function trainButtonEvent(){
 
 function modelLoaded() {
     console.log('MobileNet Model Loaded!');
-    DOM_EL.trainStatusModel.html("✔️MobileNet model loaded");
+    setTimeout(function(){
+        DOM_EL.trainStatusModel.html("✔️MobileNet model loaded");
+    },5);
     classifier = featureExtractor.classification();
   
     for (let i = 0; i< DOM_EL.classSampleList.length; i++){
