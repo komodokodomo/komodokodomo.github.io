@@ -608,6 +608,10 @@ const uploadBlob = async (data, name, t) => {
         clearInterval(UTIL.recordIntervalFunction);
     }
 
+    document.body.ontouchend = function() {
+        clearInterval(UTIL.recordIntervalFunction);
+    }
+
     DOM_EL.labelContainer = select("#label-container");
     DOM_EL.labelContainer.hide();
 
