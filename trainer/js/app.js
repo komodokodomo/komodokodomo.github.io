@@ -58,12 +58,18 @@ var DOM_EL = {
     
     trainButton: null,
 
+    trainStatusContainer: null,
+        trainStatusModel: null,
+        trainStatusImage: null,
+        trainStatusLoss: null,
+        trainStatusCompleteButton: null,
+
     ////////////////////EMBED MODE///////////////////////
     embedContainer: null,
 }
 
 var UTIL = {
-recordIntervalFunction: null
+    recordIntervalFunction: null
 }
 
 var APP_STATE = {
@@ -366,7 +372,6 @@ function classSubmitEvent(){
     DOM_EL.classRemove.show();
 
     DOM_EL.canvasContainer.style("display", "flex");
-    // DOM_EL.imageSampleCounter.show();
     DOM_EL.imageSampleContainer.style("display", "inline-flex");
     DOM_EL.collectButtonContainer.style("display", "inline-flex");
     
@@ -669,6 +674,13 @@ const uploadBlob = async (data, name, t) => {
         }
         });
     }
+
+    DOM_EL.trainStatusContainer = select("#train-status-container");
+    DOM_EL.trainStatusModel = select("#train-status-model");
+    DOM_EL.trainStatusImage = select("#train-status-image");
+    DOM_EL.trainStatusLoss = select("#train-status-loss");
+    DOM_EL.trainStatusCompleteButton = select("#train-status-complete-button");
+
 
     DOM_EL.embedContainer = select("#embed-container");
     DOM_EL.embedContainer.hide();

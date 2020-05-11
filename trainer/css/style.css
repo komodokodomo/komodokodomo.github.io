@@ -80,7 +80,7 @@ li {
 #canvas{
   width: 85%;
   height: 85vw;
-  max-width: calc(60vh * 0.85);;
+  max-width: calc(60vh * 0.85);
   max-height: calc(60vh * 0.85);
   position: absolute;
   z-index: -1;
@@ -238,6 +238,7 @@ button:active {
   transition-duration: 100ms;
 }
 
+
 #label{
   text-align: center;
   padding-bottom: 1rem;
@@ -259,4 +260,12 @@ button:active {
   width: 1%;
   height: 30px;
   background-color: green;
+}
+
+#train-status-container{
+  width: 85%;
+  height: 85vw;
+  max-width: calc(60vh * 0.85);
+  max-height: calc(60vh * 0.85);
+  position: absolute;
 }
