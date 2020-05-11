@@ -103,7 +103,6 @@ li {
 
 #image-sample-container{
   display: inline-flex;
-  /* justify-content: center; */
   width: 100%;
   height: calc(20% - 1.5rem);
   overflow-x: scroll;
@@ -115,7 +114,7 @@ li {
 }
 .image-sample-list{
   display: inline-flex;
-  padding: 1px;
+  /* padding: 1px; */
   padding-inline-start: 0px;
 }
 
@@ -125,8 +124,6 @@ li {
   position: relative;
   width: 100px;
   height: 100px;
-  max-height: calc(20% - 1.5rem);
-  max-width: calc(20% - 1.5rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,6 +132,8 @@ li {
 .sample-list-image{
   width: 100px;
   height: 100px;
+  max-height: calc(20% - 1.5rem);
+  max-width: calc(20% - 1.5rem);
   display: flex;
 }
 
