@@ -127,13 +127,14 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 
 .sample-list-image{
   width: 100px;
   height: 100px;
-  max-height: calc(20% - 1.5rem);
-  max-width: calc(20% - 1.5rem);
+  max-height: calc(20vh - 1.5rem);
+  max-width: calc(20vh - 1.5rem);
   display: flex;
 }
 
