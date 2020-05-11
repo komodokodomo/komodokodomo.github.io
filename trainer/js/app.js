@@ -389,11 +389,12 @@ function imageAdded(){
         featureExtractor.train(function(lossValue) {
             if (lossValue) {
               APP_STATE.loss = lossValue;
-              DOM_EL.trainStatusLoss.html("Training progress (loss):" + APP_STATE.loss);
+              DOM_EL.trainStatusLoss.html("⚙️Training progress (loss):" + APP_STATE.loss);
               console.log(APP_STATE.loss);
             } else {
               console.log('Done Training! Final Loss: ' +  APP_STATE.loss);
               DOM_EL.trainStatusLoss.html('✔️Done Training! Final Loss: ' +  APP_STATE.loss);
+              DOM_EL.trainStatusCompleteButton.show();
               APP_STATE.modelTrained = true;
               classifier.classify( DOM_EL.canvas.elt, gotResults);
             uploadModel(modelUploaded,"myModel");
@@ -686,6 +687,8 @@ const uploadBlob = async (data, name, t) => {
     DOM_EL.trainStatusImage = select("#train-status-image");
     DOM_EL.trainStatusLoss = select("#train-status-loss");
     DOM_EL.trainStatusCompleteButton = select("#train-status-complete-button");
+    DOM_EL.trainStatusCompleteButton.hide();
+    DOM_EL.trainStatusCompleteButton.mousePressed(changeEmbedEvent);
 
 
     DOM_EL.embedContainer = select("#embed-container");
