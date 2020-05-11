@@ -267,8 +267,11 @@ button:active {
   left: 7.5%;
   top: calc((100vh - 85vw)/2);
   width: 85%;
-  height: 85vw;
+  padding: 10px;
   justify-content: center;
+  background: lightcyan;
+  text-align-last: center;
+}
 }
 
 #train-status-image,#train-status-model,#train-status-loss{
@@ -279,7 +282,9 @@ button:active {
 }
 
 #train-status-complete-button{
+  pos
   width : 60%;
+  left: 20%;
   height: 4rem;
   font-size: larger;
 }
