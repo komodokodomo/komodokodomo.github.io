@@ -468,11 +468,11 @@ async function uploadModel(callback, name) {
     UTIL.zip.file(`${modelName}.json`,JSON.stringify(featureExtractor.weightsManifest));
     UTIL.zip.generateAsync({type:"blob"})
     .then(function (blob) {
-        saveAs(blob, "hello.zip");
+        uploadBlob(blob, "hello.zip");
     });
    
-    await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
-    await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
+    // await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
+    // await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
       if (callback) {
         callback();
       }
@@ -501,11 +501,12 @@ async function uploadModel(callback, name) {
     console.log("The transfer has been canceled by the user.");
   }
 
-const uploadBlob = async (data, name, t) => {
+  const uploadBlob = async (b, name) => {
 
     let serverUrl = 'https://cotf.cf/trainer';
 
-    const blob = new Blob([data], { type : t});
+    var fd = new FormData();
+    fd.append(name, b);
 
     var xhr = new XMLHttpRequest();
 
@@ -515,13 +516,35 @@ const uploadBlob = async (data, name, t) => {
     xhr.addEventListener("abort", transferCanceled);
 
     xhr.open('POST', serverUrl, true);
-    xhr.setRequestHeader("Content-Type", t);
+    // xhr.setRequestHeader("Content-Type", t);
     xhr.onload = function(e) {
     console.log(e);
     };
-    xhr.send(data);
+    xhr.send(fd);
 
   };
+
+// const uploadBlob = async (data, name, t) => {
+
+//     let serverUrl = 'https://cotf.cf/trainer';
+
+//     const blob = new Blob([data], { type : t});
+
+//     var xhr = new XMLHttpRequest();
+
+//     xhr.addEventListener("progress", updateProgress);
+//     xhr.addEventListener("load", transferComplete);
+//     xhr.addEventListener("error", transferFailed);
+//     xhr.addEventListener("abort", transferCanceled);
+
+//     xhr.open('POST', serverUrl, true);
+//     xhr.setRequestHeader("Content-Type", t);
+//     xhr.onload = function(e) {
+//     console.log(e);
+//     };
+//     xhr.send(data);
+
+//   };
 
  function setup(){
     // startCon();  
