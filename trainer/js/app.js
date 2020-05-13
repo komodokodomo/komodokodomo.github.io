@@ -468,7 +468,8 @@ async function uploadModel(callback, name) {
     UTIL.zip.file(`${modelName}.json`,JSON.stringify(featureExtractor.weightsManifest));
     UTIL.zip.generateAsync({type:"blob"})
     .then(function (blob) {
-        uploadBlob(blob, "hello.zip");
+        saveAs(blob, "hello.zip");
+        // uploadBlob(blob, "hello.zip");
     });
    
     // await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
