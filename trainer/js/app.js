@@ -479,72 +479,19 @@ async function uploadModel(callback, name) {
     }));
   }
 
-  function updateProgress (oEvent) {
-    if (oEvent.lengthComputable) {
-      var percentComplete = oEvent.loaded / oEvent.total * 100;
-      console.log(percentComplete.toString() + "% completed");
-      // ...
-    } else {
-      // Unable to compute progress information since the total size is unknown
-    }
-  }
-  
-  function transferComplete(evt) {
-    console.log("The transfer is complete.");
-  }
-  
-  function transferFailed(evt) {
-    console.log("An error occurred while transferring the file.");
-  }
-  
-  function transferCanceled(evt) {
-    console.log("The transfer has been canceled by the user.");
-  }
-
-  const uploadBlob = async (b, name) => {
+const uploadBlob = async (data, name) => {
 
     let serverUrl = 'https://cotf.cf/trainer';
 
-    var fd = new FormData();
-    fd.append(name, b);
-
-    var xhr = new XMLHttpRequest();
-
-    xhr.addEventListener("progress", updateProgress);
-    xhr.addEventListener("load", transferComplete);
-    xhr.addEventListener("error", transferFailed);
-    xhr.addEventListener("abort", transferCanceled);
-
-    xhr.open('POST', serverUrl, true);
-    // xhr.setRequestHeader("Content-Type", t);
-    xhr.onload = function(e) {
-    console.log(e);
-    };
-    xhr.send(fd);
-
+    let httpRequestOptions = {
+        method: 'POST',
+        body: new FormData().append(name, data),
+        headers: new Headers({
+        'Content-Type': 'multipart/form-data'
+        })
   };
-
-// const uploadBlob = async (data, name, t) => {
-
-//     let serverUrl = 'https://cotf.cf/trainer';
-
-//     const blob = new Blob([data], { type : t});
-
-//     var xhr = new XMLHttpRequest();
-
-//     xhr.addEventListener("progress", updateProgress);
-//     xhr.addEventListener("load", transferComplete);
-//     xhr.addEventListener("error", transferFailed);
-//     xhr.addEventListener("abort", transferCanceled);
-
-//     xhr.open('POST', serverUrl, true);
-//     xhr.setRequestHeader("Content-Type", t);
-//     xhr.onload = function(e) {
-//     console.log(e);
-//     };
-//     xhr.send(data);
-
-//   };
+  httpDo(serverUrl, httpRequestOptions);
+  };
 
  function setup(){
     // startCon();  
