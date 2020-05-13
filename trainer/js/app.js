@@ -69,7 +69,8 @@ var DOM_EL = {
 }
 
 var UTIL = {
-    recordIntervalFunction: null
+    recordIntervalFunction: null,
+    zip: null
 }
 
 var APP_STATE = {
@@ -463,6 +464,12 @@ async function uploadModel(callback, name) {
 
     //   console.log(data.weightData);
     //   console.log(JSON.stringify(featureExtractor.weightsManifest));
+    UTIL.zip.file(`${modelName}.weights.bin`, data.weightData);
+    UTIL.zip.file(`${modelName}.json`,JSON.stringify(featureExtractor.weightsManifest));
+    UTIL.zip.generateAsync({type:"blob"})
+    .then(function (blob) {
+        saveAs(blob, "hello.zip");
+    });
    
     await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
     await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
@@ -518,6 +525,7 @@ const uploadBlob = async (data, name, t) => {
 
  function setup(){
     // startCon();  
+    UTIL.zip = new JSzip();
 
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
