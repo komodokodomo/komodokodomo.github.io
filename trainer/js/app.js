@@ -469,11 +469,14 @@ async function uploadModel(callback, name) {
     UTIL.zip.generateAsync({type:"blob"})
     .then(function (blob) {
         // saveAs(blob, "hello.zip");
+        console.log("zipped blob: ");
+        console.log(blob);
+        
         const link = document.createElement('a');
         link.style.display = 'none';
         document.body.appendChild(link);
         link.href = URL.createObjectURL(blob);
-        link.download = name;
+        link.download = "hello.zip";
         link.click();
         // uploadBlob(blob, "hello.zip");
     });
