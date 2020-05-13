@@ -525,7 +525,7 @@ const uploadBlob = async (data, name, t) => {
 
  function setup(){
     // startCon();  
-    UTIL.zip = new JSzip();
+    UTIL.zip = new JSZip();
 
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
