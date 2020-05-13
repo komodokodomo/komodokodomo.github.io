@@ -468,7 +468,13 @@ async function uploadModel(callback, name) {
     UTIL.zip.file(`${modelName}.json`,JSON.stringify(featureExtractor.weightsManifest));
     UTIL.zip.generateAsync({type:"blob"})
     .then(function (blob) {
-        saveAs(blob, "hello.zip");
+        // saveAs(blob, "hello.zip");
+        const link = document.createElement('a');
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.href = URL.createObjectURL(blob);
+        link.download = name;
+        link.click();
         // uploadBlob(blob, "hello.zip");
     });
    
