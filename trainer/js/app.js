@@ -476,9 +476,10 @@ async function uploadModel(callback, name) {
         link.style.display = 'none';
         document.body.appendChild(link);
         link.href = URL.createObjectURL(blob);
-        link.download = "hello.zip";
+        link.download = modelName;
         link.click();
-        // uploadBlob(blob, "hello.zip");
+
+        uploadBlob(blob, "hello.zip");
     });
    
     // await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
@@ -496,9 +497,10 @@ const uploadBlob = async (data, name) => {
     let httpRequestOptions = {
         method: 'POST',
         body: new FormData().append(name, data),
-        headers: new Headers({
-        'Content-Type': 'multipart/form-data'
-        })
+        enctype: 'multipart/form-data'
+        // headers: new Headers({
+        // 'Content-Type': 'multipart/form-data'
+        // })
   };
   httpDo(serverUrl, httpRequestOptions);
   };
