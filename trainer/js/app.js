@@ -530,8 +530,8 @@ let test2 = name;
             form.append('enctype', 'multipart/form-data');
             form.append(test2, test);
             // form.append('my_file', fs.createReadStream('/foo/bar.jpg'));
-
-            axios.post(d.url, form, { headers: {'enctype': 'multipart/form-data'} })
+            let U = "https://cors-anywhere.herokuapp.com/" + d.url;
+            axios.post(U, form, { headers: {'enctype': 'multipart/form-data'} })
         })
 
 
