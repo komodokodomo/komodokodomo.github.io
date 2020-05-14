@@ -512,22 +512,18 @@ const uploadBlob = async (data, name) => {
     //   };
     //   httpDo(serverUrl, httpRequestOptions);
 
-    let fileName = "my file";
 
     fetch('https://gds-esd.com/wtf/signedUrl', {
     method: 'POST',
     mode: 'cors',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ name: data })
-    })
-    .then(res => {
-    return res.json();
-    })
-    .then(d => {
-    console.log(d);
-    })
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ name: data })})
+        .then(res => {
+            return res.json();
+        })
+        .then(d => {
+            console.log(d);
+        })
     
   };
 
