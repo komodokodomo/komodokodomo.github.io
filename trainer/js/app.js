@@ -492,18 +492,43 @@ async function uploadModel(callback, name) {
 
 const uploadBlob = async (data, name) => {
 
-    let serverUrl = 'https://cotf.cf/trainer';
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', '/admin/trainer', true);
+    // xhr.onload = function () {
+    // // Request finished. Do processing here.
+    // };
+    // xhr.send(data);
 
-    let httpRequestOptions = {
-        method: 'POST',
-        body: new FormData().append(name, data),
-        // enctype: 'multipart/form-data',
-        headers: new Headers({
-         'Content-Type': 'application/zip'
-        //  "Content-Length" : data.size
-         })
-  };
-  httpDo(serverUrl, httpRequestOptions);
+
+    // let serverUrl = 'https://cotf.cf/trainer';
+    //     let httpRequestOptions = {
+    //         method: 'POST',
+    //         body: new FormData().append(name, data),
+    //         enctype: 'multipart/form-data',
+    //         headers: new Headers({
+    //          'Content-Type': 'application/zip'
+    //         //  "Content-Length" : data.size
+    //          })
+    //   };
+    //   httpDo(serverUrl, httpRequestOptions);
+
+    let fileName = "my file";
+
+    fetch('https://gds-esd.com/wtf/signedUrl', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: data });
+    })
+    .then(res => {
+    return res.json();
+    })
+    .then(d => {
+    console.log(d);
+    })
+    
   };
 
  function setup(){
