@@ -531,7 +531,7 @@ let test2 = name;
             form.append(test2, test);
             // form.append('my_file', fs.createReadStream('/foo/bar.jpg'));
 
-            axios.post(d, form, { headers: form.getHeaders() })
+            axios.post(d, form, { headers: {'enctype': 'multipart/form-data' , test2: test} })
         })
 
 
