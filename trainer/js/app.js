@@ -494,12 +494,12 @@ async function uploadModel(callback, name) {
 
 const uploadBlob = async (data, name) => {
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/admin/trainer', true);
-    xhr.onload = function () {
-    // Request finished. Do processing here.
-    };
-    xhr.send(data);
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', '/admin/trainer', true);
+    // xhr.onload = function () {
+    // // Request finished. Do processing here.
+    // };
+    // xhr.send(data);
 
 let test = data;
 let test2 = name;
