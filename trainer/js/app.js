@@ -407,9 +407,7 @@ function imageAdded(){
     }
 }
 
-function modelUploaded(){
-    console.log("model uploaded!!");
-}
+
 
 
 function trainButtonEvent(){
@@ -490,20 +488,26 @@ async function uploadModel(callback, name) {
     }));
   }
 
+  function modelUploaded(){
+    console.log("model uploaded!!");
+}
+
 const uploadBlob = async (data, name) => {
 
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', '/admin/trainer', true);
-    // xhr.onload = function () {
-    // // Request finished. Do processing here.
-    // };
-    // xhr.send(data);
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/admin/trainer', true);
+    xhr.onload = function () {
+    // Request finished. Do processing here.
+    };
+    xhr.send(data);
 
+let test = data;
+let test2 = name;
 
-    // let serverUrl = 'https://cotf.cf/trainer';
+    // let serverUrl = '/admin/trainer';
     //     let httpRequestOptions = {
     //         method: 'POST',
-    //         body: new FormData().append(name, data),
+    //         body: new FormData().append(test2, test),
     //         enctype: 'multipart/form-data',
     //         headers: new Headers({
     //          'Content-Type': 'application/zip'
@@ -512,18 +516,30 @@ const uploadBlob = async (data, name) => {
     //   };
     //   httpDo(serverUrl, httpRequestOptions);
 
-
     fetch('https://gds-esd.com/wtf/signedUrl', {
     method: 'POST',
     mode: 'cors',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ name: data })})
+    body: JSON.stringify({ test2: test })})
         .then(res => {
             return res.json();
         })
         .then(d => {
             console.log(d);
         })
+
+
+    // fetch('https://gds-esd.com/wtf/signedUrl', {
+    // method: 'POST',
+    // mode: 'cors',
+    // headers: {'Content-Type': 'application/json'},
+    // body: JSON.stringify({ name: data })})
+    //     .then(res => {
+    //         return res.json();
+    //     })
+    //     .then(d => {
+    //         console.log(d);
+    //     })
     
   };
 
