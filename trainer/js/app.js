@@ -477,11 +477,11 @@ async function uploadModel(callback, name) {
         // link.download = modelName;
         // link.click();
 
-        // uploadBlob(blob, "hello.zip");
+        uploadBlob(blob, "hello.zip");
     });
    
-    await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
-    await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
+    // await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
+    // await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
       if (callback) {
         callback();
       }
