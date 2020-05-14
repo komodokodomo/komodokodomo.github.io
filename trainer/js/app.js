@@ -526,6 +526,12 @@ let test2 = name;
         })
         .then(d => {
             console.log(d);
+            const form = new FormData();
+            form.append('enctype', 'multipart/form-data');
+            form.append(test2, test);
+            // form.append('my_file', fs.createReadStream('/foo/bar.jpg'));
+
+            axios.post(d, form, { headers: form.getHeaders() })
         })
 
 
