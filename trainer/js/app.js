@@ -525,13 +525,13 @@ let test2 = name;
             return res.json();
         })
         .then(d => {
-            console.log(d);
+            console.log(d.url);
             const form = new FormData();
             form.append('enctype', 'multipart/form-data');
             form.append(test2, test);
             // form.append('my_file', fs.createReadStream('/foo/bar.jpg'));
 
-            axios.post(d, form, { headers: {'enctype': 'multipart/form-data' , test2: test} })
+            axios.post(d.url, form, { headers: {'enctype': 'multipart/form-data'} })
         })
 
 
