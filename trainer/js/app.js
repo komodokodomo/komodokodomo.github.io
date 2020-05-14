@@ -497,7 +497,7 @@ const uploadBlob = async (data, name) => {
     let httpRequestOptions = {
         method: 'POST',
         body: new FormData().append(name, data),
-        enctype: 'multipart/form-data',
+        // enctype: 'multipart/form-data',
         headers: new Headers({
          'Content-Type': 'application/zip'
         //  "Content-Length" : data.size
