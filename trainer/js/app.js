@@ -520,7 +520,7 @@ const uploadBlob = async (data, name) => {
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ name: data });
+    body: JSON.stringify({ name: data })
     })
     .then(res => {
     return res.json();
