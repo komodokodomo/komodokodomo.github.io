@@ -499,8 +499,8 @@ const uploadBlob = async (data, name) => {
         body: new FormData().append(name, data),
         enctype: 'multipart/form-data',
         headers: new Headers({
-         'Content-Type': 'application/octet-stream',
-         "Content-Length" : data.size
+         'Content-Type': 'application/zip'
+        //  "Content-Length" : data.size
          })
   };
   httpDo(serverUrl, httpRequestOptions);
