@@ -492,37 +492,37 @@ async function uploadModel(callback, name) {
     console.log("model uploaded!!");
 }
 
-const uploadBlob = async (data, name, t) => {
+const uploadBlob = async (data, name) => {
 
-    const blob = new Blob([data], {type : t});
+    // const blob = new Blob([data], {type : t});
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/admin/trainer', true);
-    xhr.onload = function () {
-    // Request finished. Do processing here.
-    };
-    xhr.send(blob);
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', '/admin/trainer', true);
+    // xhr.onload = function () {
+    // // Request finished. Do processing here.
+    // };
+    // xhr.send(blob);
 
-// let test = data;
-// let test2 = name;
+let test = data;
+let test2 = name;
 
-    // fetch('https://gds-esd.com/wtf/signedUrl', {
-    // method: 'POST',
-    // mode: 'cors',
-    // headers: {'Content-Type': 'application/json'},
-    // body: JSON.stringify({ test2: test })})
-    //     .then(res => {
-    //         return res.json();
-    //     })
-    //     .then(d => {
-    //         console.log(d.url);
-    //         const form = new FormData();
-    //         form.append('enctype', 'multipart/form-data');
-    //         form.append(test2, test);
-    //         // form.append('my_file', fs.createReadStream('/foo/bar.jpg'));
-    //         let U = "https://cors-anywhere.herokuapp.com/" + d.url;
-    //         axios.post(U, form, { headers: {'enctype': 'multipart/form-data'} })
-    //     })
+    fetch('https://gds-esd.com/wtf/signedUrl', {
+    method: 'POST',
+    mode: 'cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ test2: test })})
+        .then(res => {
+            return res.json();
+        })
+        .then(d => {
+            console.log(d.url);
+            const form = new FormData();
+            form.append('enctype', 'multipart/form-data');
+            form.append(test2, test);
+            // form.append('my_file', fs.createReadStream('/foo/bar.jpg'));
+            let U = "https://cors-anywhere.herokuapp.com/" + d.url;
+            axios.post(U, form, { headers: {'enctype': 'multipart/form-data'} })
+        })
     
   };
 
