@@ -6,30 +6,68 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WTF-Snap Trainer</title>
     <meta name="description" content="Image uploading and training platform">
-
+    <meta name="google-signin-client_id" content="874868940141-sqtd69h8nsjejb47pggkd260nkl8ccjq.apps.googleusercontent.com">
     <meta name="theme-color" content="#000000" />
 
     <script src="../src/js/vendor/p5.min.js"></script>
     <script src="../src/js/vendor/jszip.min.js"></script>
-    <!-- <script src="../src/js/vendor/FileSaver.min.js"></script> -->
-    <!-- <script src="../src/js/vendor/p5.sound.min.js"></script> -->
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
     <script src="https://unpkg.com/ml5@0.5.0/dist/ml5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/1.7.0/tf.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
-    <!-- <script src=https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js></script> -->
+
+
 
   </head>
 
   <body id="body">
     <script type="text/javascript" src="js/app.js"></script>
+    <!-- <script type="text/javascript" src="js/worker.js"></script> -->
+    <div id="login-container">
+      <h1 class="login-header">WTF-Snap</h1>
+      <button type="button" id="login-skip-button" onClick="document.getElementById('google-login').scrollIntoView({behavior: 'smooth'});"> get started </button>
+      <p class="login-p">A fast, easy way to craft your own interactive teaching environment - no coding expertise required!</p>
+
+      <h2 class="login-header">What can I use it for?</h2>
+      <div class="login-instructions">
+        <h3 class="login-subheader">Out of classroom learning experiences </h3>
+        <p class="login-p">Trails / excursions that people can go on their own</p>
+        <p class="login-p">Prepare a outdoor language class </p>
+      </div>
+      <div class="login-instructions">
+        <h3 class="login-subheader">Augmented spaces </h3>
+        <p class="login-p">Transform your school garden into an interactive bio space</p>
+      </div>
+
+      <h2 class="login-header">How do I use it?</h2>
+      <div class="login-instructions">
+        <h3 class="login-subheader">1. Gather </h3>
+        <img src = "img/gather_1.gif" alt="GIF 1 showing how to collect" style="width: 40%; padding-right: 10px;">
+        <img src = "img/gather_2.gif" alt="GIF 2 showing how to collect" style="width: 40%; ">
+        <p class="login-p">Gather your examples into categories that you want the computer to identify.</p>
+      </div>
+      <div class="login-instructions">
+        <h3 class="login-subheader">2. Train </h3>
+        <img src = "img/train_1.gif" alt="GIF 1 showing how to train" style="width: 40%; padding-right: 10px;">
+        <img src = "img/train_2.gif" alt="GIF 2 showing how to train" style="width: 40%; ">
+        <p class="login-p">Train your model, then instantly test it out to see whether it can correctly classify new examples.</p>
+      </div>
+      <div class="login-instructions">
+        <h3 class="login-subheader">3. Embed </h3>
+        <p class="login-p">Start embedding your content to the trained categories,you can also invite others to do it to provide different perspectives and contents to the same environment. Once done, save it into the cloud for future lesson deployment, just like Kahoot! </p>
+      </div>
+
+      <div class="g-signin2" id="google-login" data-onsuccess="onSignIn" data-longtitle="true"></div>
+    </div>
+
     <div id="menu-container">
       <button type="button" id="menu-collect-button"> 1. Collect </button>
       <button type="button" id="menu-train-button">  2. Train </button>
-      <button type="button" id="menu-embed-button"> 3. Test </button>
+      <button type="button" id="menu-embed-button"> 3. Embed </button>
     </div>
     <div id="collect-container">
       <div id="class-container">
@@ -54,15 +92,16 @@
         <button type="button" id="record-button"> 📷/🎥 </button>
         <button type="button" id="upload-button"> 🖼️ </button>
       </div>
-      <div id="label-container">
-        <div id="label"> No Model Trained for now </div>
-        <div id="label-bar-container">
-          <div id="label-progress"></div>
-        </div>
-      </div>
+      <div id="label-container"></div>
+      <button type="button" id="save-button"> 💾save model💾 </button>
+      <!-- <input type="text" id="model-name-input" name="model-name-input"> -->
+
     </div>
 
     <div id="train-container">
+      <!-- <div id="train-instruction-container">
+        <div id="train-instruction">Press and hold on classes that you would like to train. A minimum of 2 classes are required for training to proceed.</div>
+      </div> -->
       <ol id="class-sample-container"></ol>
       <button type="button" id="training-button"> 👩🏼‍💻train model👩🏼‍💻 </button>
       <div id="train-status-container">

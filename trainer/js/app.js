@@ -3,6 +3,9 @@
 var DOM_EL = {
     
     video: null,
+    loginContainer: null,
+        loginDescriptor: null,
+        loginButton: null,
     ////////////////////MENU///////////////////////
     menuContainer: null,
         menuCollectButton: null,
@@ -22,6 +25,7 @@ var DOM_EL = {
     
     canvasContainer: null,
         capture: null,
+        captureOverlay: null,
         cameraFlip: null,
         cameraChange: null,
         canvas: null,
@@ -43,9 +47,12 @@ var DOM_EL = {
 
     labelContainer: null,
         //run through number of labels add 
-        label: null,
-        labelBarContainer: null,
-        labelBar: null,
+        labels: [],
+        labelText: [],
+        labelBarContainer: [],
+        labelBar: [],
+
+    saveButton: null,
 
     ////////////////////TRAIN MODE///////////////////////
     trainContainer: null,
@@ -70,10 +77,14 @@ var DOM_EL = {
 
 var UTIL = {
     recordIntervalFunction: null,
-    zip: null
+    zipModel: null,
+    zipImage: null,
+    proceedFlag: false,
+    worker: null
 }
 
 var APP_STATE = {
+    username: null,
     mobileDevice: null,
     mode : 0,           
     class: 0,
@@ -88,22 +99,57 @@ var APP_STATE = {
     switchFlag: false,
     recording: null,
     cameraMirror: false,
+    numTrainingClasses: 0,
     numTrainingImages: 0,
     numTrainingImagesProcessed: 0,
     loss: 0,
     modelTrained: false
 }
 
-// const featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded);
-// const classifier = featureExtractor.classification();
-
 let featureExtractor;
 let classifier;
 
+if(window.Worker){
+    UTIL.worker = new Worker('/trainer/js/worker.js');
+    UTIL.worker.postMessage({url: "https://unpkg.com/ml5@0.5.0/dist/ml5.min.js"});
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     APP_STATE.mobileDevice = isMobile();
   });
+
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    APP_STATE.username = profile.getEmail();
+    DOM_EL.menuContainer.style("display", "inline-flex");
+    DOM_EL.collectContainer.show();
+    DOM_EL.loginContainer.hide();
+    DOM_EL.loginButton.hide();
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/admin/trainer', true);
+    xhr.onload = function () {
+    };
+    xhr.send("login:" + profile.getEmail());
+    switchCamera();
+}
+
+window.onbeforeunload = function(){
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+ }
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
 
 
 function changeGatherEvent(){
@@ -112,9 +158,18 @@ function changeGatherEvent(){
     DOM_EL.trainContainer.hide();
     DOM_EL.embedContainer.hide();
 
+    DOM_EL.classContainer.removeClass("fade");
+
     DOM_EL.menuCollectButton.class("selected");
     DOM_EL.menuTrainButton.removeClass("selected");
     DOM_EL.menuEmbedButton.removeClass("selected");
+
+    DOM_EL.canvasContainer.style("display", "flex");
+    DOM_EL.imageSampleCounter.show();
+    DOM_EL.imageSampleContainer.style("display", "inline-flex");
+    DOM_EL.collectButtonContainer.style("display", "inline-flex");
+    DOM_EL.labelContainer.hide();
+    DOM_EL.saveButton.hide();
 }
 
 function changeTrainEvent(){
@@ -129,6 +184,10 @@ function changeTrainEvent(){
 }
 
 function changeEmbedEvent(){
+    
+}
+
+function changeTestEvent(){
     // APP_STATE.mode = 2;
     // DOM_EL.collectContainer.hide();
     // DOM_EL.trainContainer.hide();
@@ -138,6 +197,10 @@ function changeEmbedEvent(){
     // DOM_EL.menuCollectButton.removeClass("selected");
     // DOM_EL.menuEmbedButton.class("selected");
     APP_STATE.mode = 0;
+
+    // DOM_EL.menuContainer.hide();
+    DOM_EL.classContainer.addClass("fade");
+
     DOM_EL.collectContainer.show();
     DOM_EL.trainContainer.hide();
     DOM_EL.embedContainer.hide();
@@ -151,6 +214,34 @@ function changeEmbedEvent(){
     DOM_EL.imageSampleContainer.hide();
 
     DOM_EL.labelContainer.show();
+    DOM_EL.saveButton.show();
+}
+
+function zipImages(){
+
+    for (let i = 0; i< DOM_EL.classSampleList.length; i++){
+        if(DOM_EL.classSampleListImage[i].class().includes("class-selected")) {
+            console.log("CLASS : " + DOM_EL.classSampleListLabel[i].elt.textContent);
+            let res = DOM_EL.classSampleListLabel[i].elt.textContent.replace(/ /g, "_");
+            console.log(res);
+            let f = UTIL.zipImage.folder(res);
+
+            for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
+                APP_STATE.trainingImage = false;
+                // setTimeout(async function(){await featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);},(APP_STATE.numTrainingImagesProcessed*300));
+                f.file(j.toString()+".png",DOM_EL.imageSampleList[i].elt.children[j].children[0].src.split(",")[1],{base64: true});
+            }
+        }
+    }
+    // UTIL.zipImage.file(`${modelName}.weights.bin`, data.weightData);
+    // UTIL.zipImage.file(`${modelName}.json`,JSON.stringify(featureExtractor.weightsManifest));
+    UTIL.zipImage.generateAsync({type:"blob"})
+    .then(function (blob) {
+        uploadBlobAxios(blob,"assets.zip", 'application/zip');
+        // downloadBlob(blob,"assets.zip");
+        // uploadBlobXML(blob, `images.zip`, 'application/zip');
+        // console.log("model uploaded!!");
+    })
 }
 
 function classInputEvent(){
@@ -172,13 +263,7 @@ function selectEvent(){
             DOM_EL.imageSampleList[i].style("display", "inline-flex");              
         }
     }
-    let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
-    if(n > 0){
-        DOM_EL.imageSampleCounter.html(n.toString() + " Sample Images");
-    }
-    else{
-        DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
-    }
+    resetCounterHtml();
 
 }
 
@@ -209,13 +294,7 @@ function recordButtonEvent(){
         l.class("removed"); 
         setTimeout(function(){
             l.remove();
-            let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
-            if(n > 0){
-                DOM_EL.imageSampleCounter.html(n.toString() + " Sample Images");
-            }
-            else{
-                DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
-            }
+            resetCounterHtml();
         },300);
     });
 
@@ -223,26 +302,17 @@ function recordButtonEvent(){
     DOM_EL.classSampleListImage[APP_STATE.selectedClassNumber].elt.src = inner;
 
 
-    let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
-    if(n > 0){
-        DOM_EL.imageSampleCounter.html(n.toString() + " Sample Images");
-    }
-    else{
-        DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
-    }
+    resetCounterHtml();
 
 }
 
 
 function classAddEvent(){
     APP_STATE.addClass = true;
-    console.log("time to add class");
 
     DOM_EL.classSelect.hide();
-
     DOM_EL.classInput.show();
     DOM_EL.classInput.value("");
-    // DOM_EL.classInput.elt.focus();
 
     DOM_EL.classAdd.hide();
     DOM_EL.classEdit.hide();
@@ -252,7 +322,6 @@ function classAddEvent(){
     window.setTimeout(function () { 
         document.getElementById("class-input").focus();
         DOM_EL.canvasContainer.hide();
-        // DOM_EL.imageSampleCounter.hide();
         DOM_EL.imageSampleCounter.html("type in name of new class");
         DOM_EL.collectButtonContainer.hide();
         DOM_EL.imageSampleContainer.hide();
@@ -260,13 +329,11 @@ function classAddEvent(){
 }
 function classEditEvent(){
     APP_STATE.editClass = true;
-    console.log("time to edit class");
 
     DOM_EL.classSelect.hide();
 
     DOM_EL.classInput.show();
     DOM_EL.classInput.value(APP_STATE.selectedClass);
-    // DOM_EL.classInput.elt.focus();
 
     DOM_EL.classAdd.hide();
     DOM_EL.classEdit.hide();
@@ -278,16 +345,31 @@ function classEditEvent(){
         document.getElementById("class-input").focus();
         DOM_EL.canvasContainer.hide();
         DOM_EL.imageSampleCounter.html("edit name of class");
-        // DOM_EL.imageSampleCounter.hide();
         DOM_EL.collectButtonContainer.hide();
         DOM_EL.imageSampleContainer.hide();
     },10);
 }
+
 function classRemoveEvent(){
 // switch on classRemoveAlert
 }
 
+function resetCounterHtml(){
+    let n = DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].elt.childElementCount;
+    if(n == 1){
+        DOM_EL.imageSampleCounter.html(n.toString() + " Sample Image");
+    }
+    else if(n > 1){
+        DOM_EL.imageSampleCounter.html(n.toString() + " Sample Images");
+    }
+    else{
+        DOM_EL.imageSampleCounter.html("Press or hold on record to add sample images");
+    } 
+}
+
 function classSubmitEvent(){
+
+    resetCounterHtml();
 
     if(APP_STATE.editClass == true  && APP_STATE.classInputString.length > 0){
         APP_STATE.editClass = false;
@@ -298,6 +380,7 @@ function classSubmitEvent(){
     }
 
     else if(APP_STATE.addClass == true && APP_STATE.classInputString.length > 0){
+
 
         APP_STATE.addClass = false;
         DOM_EL.imageSampleList[APP_STATE.selectedClassNumber].hide();
@@ -352,12 +435,12 @@ function classSubmitEvent(){
         
             if(ev.type == 'press'){
                 if(DOM_EL.imageSampleList[chosen].elt.childElementCount > 0){
-                    DOM_EL.classSampleList[chosen].addClass("class-selected");
+                    DOM_EL.classSampleListImage[chosen].addClass("class-selected");
                     DOM_EL.classSampleListOverlay[chosen].style("display", "flex");
                 }
             }
             else if (ev.type == 'tap'){
-                DOM_EL.classSampleList[chosen].removeClass("class-selected");
+                DOM_EL.classSampleListImage[chosen].removeClass("class-selected");
                 DOM_EL.classSampleListOverlay[chosen].hide();
             }
         });
@@ -375,21 +458,78 @@ function classSubmitEvent(){
     DOM_EL.canvasContainer.style("display", "flex");
     DOM_EL.imageSampleContainer.style("display", "inline-flex");
     DOM_EL.collectButtonContainer.style("display", "inline-flex");
-    
-
-
     }
 
-function imageAdded(){
-    console.log("image added!");
-    APP_STATE.numTrainingImagesProcessed++;
+async function trainButtonEvent(){
+     featureExtractor = ml5.featureExtractor('MobileNet',{numLabels: DOM_EL.classSampleList.length}, modelLoaded);
+     DOM_EL.trainStatusContainer.show();
+}
 
+async function modelLoaded() {
+    console.log('MobileNet Model Loaded!');
+    await DOM_EL.trainStatusModel.html("✔️MobileNet model loaded");
+    classifier = featureExtractor.classification();
+    setTimeout(addImages,100);
+  }
+
+async function addImages(){
+    APP_STATE.numTrainingClasses = 0;
+    
+    //getting number of classes and images
+    for (let i = 0; i< DOM_EL.classSampleList.length; i++){
+        if(DOM_EL.classSampleListImage[i].class().includes("class-selected")) {
+            APP_STATE.numTrainingClasses++;
+            for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
+                APP_STATE.numTrainingImages++;
+            }
+        }
+    }
+    console.log( APP_STATE.numTrainingClasses + " classes to be trained, ");
+    console.log( APP_STATE.numTrainingImages + " images to be trained");
+    DOM_EL.labels = [];
+
+    for (let i = 0; i< DOM_EL.classSampleList.length; i++){
+        if(DOM_EL.classSampleListImage[i].class().includes("class-selected")) {
+            console.log("CLASS : " + DOM_EL.classSampleListLabel[i].elt.textContent);
+
+
+            DOM_EL.labels.push(createDiv());
+            DOM_EL.labels[DOM_EL.labels.length - 1].addClass("label");
+            DOM_EL.labels[DOM_EL.labels.length - 1].parent(DOM_EL.labelContainer);
+    
+            DOM_EL.labelText.push(createDiv(DOM_EL.classSampleListLabel[i].elt.textContent));
+            DOM_EL.labelText[DOM_EL.labels.length - 1].addClass("label-text");
+            DOM_EL.labelText[DOM_EL.labels.length - 1].parent(DOM_EL.labels[i]);
+    
+            DOM_EL.labelBarContainer.push(createDiv());
+            DOM_EL.labelBarContainer[DOM_EL.labels.length - 1].addClass("label-bar-container");
+            DOM_EL.labelBarContainer[DOM_EL.labels.length - 1].parent(DOM_EL.labels[i])
+    
+            DOM_EL.labelBar.push(createDiv());
+            DOM_EL.labelBar[DOM_EL.labels.length - 1].addClass("label-progress");
+            DOM_EL.labelBar[DOM_EL.labels.length - 1].parent( DOM_EL.labelBarContainer[i] );
+            DOM_EL.labelBar[DOM_EL.labels.length - 1].style("background-color","#" + Math.floor(Math.random()*16777215).toString(16));
+
+            for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
+                APP_STATE.trainingImage = false;
+                setTimeout(async function(){await featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);},(APP_STATE.numTrainingImagesProcessed*300));
+            }
+        }
+    }
+    
+  }
+
+async function imageAdded(){
+    APP_STATE.numTrainingImagesProcessed++;
+    await DOM_EL.trainStatusImage.html("⚙️ " + (APP_STATE.numTrainingImagesProcessed).toString() + "/" + (APP_STATE.numTrainingImages).toString() + " training images added");   
+    console.log(DOM_EL.trainStatusImage.elt.innerHTML);
+    //if all images added
     if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImages){
-        console.log("all training images added"); 
-        setTimeout(function(){        
-            DOM_EL.trainStatusImage.html("✔️Training images loaded");
-        },5);
-        featureExtractor.train(function(lossValue) {
+        console.log("✔️ All training images loaded");  
+        DOM_EL.trainStatusImage.html("✔️ All training images loaded");   
+         //start training
+        setTimeout(function(){
+            featureExtractor.train(function(lossValue) {
             if (lossValue) {
               APP_STATE.loss = lossValue;
               DOM_EL.trainStatusLoss.html("⚙️Training progress (loss):" + APP_STATE.loss);
@@ -399,47 +539,14 @@ function imageAdded(){
               DOM_EL.trainStatusLoss.html('✔️Done Training! Final Loss: ' +  APP_STATE.loss);
               DOM_EL.trainStatusCompleteButton.show();
               APP_STATE.modelTrained = true;
+
               classifier.classify( DOM_EL.canvas.elt, gotResults);
-            uploadModel(modelUploaded,"myModel");
-            // classifier.save();
+              uploadModel(modelUploaded,"myModel"); 
             }
           });
+        },100);
     }
 }
-
-
-
-
-function trainButtonEvent(){
-
-     featureExtractor = ml5.featureExtractor('MobileNet',{numLabels: DOM_EL.classSampleList.length}, modelLoaded);
-     DOM_EL.trainStatusContainer.show();
-
-    //show pop up that gives progress detail on training + send model button once its done
-}
-
-function modelLoaded() {
-    console.log('MobileNet Model Loaded!');
-    setTimeout(function(){
-        DOM_EL.trainStatusModel.html("✔️MobileNet model loaded");
-    },5);
-    classifier = featureExtractor.classification();
-  
-    for (let i = 0; i< DOM_EL.classSampleList.length; i++){
-      if(DOM_EL.classSampleList[i].class().includes("class-selected")) {
-          console.log("CLASS-----" + DOM_EL.classSampleListLabel[i].elt.textContent);
-          for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-              console.log(DOM_EL.imageSampleList[i].elt.children[j].children[0]);
-              APP_STATE.trainingImage = false;
-              featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);
-              APP_STATE.numTrainingImages++;
-          }
-      }
-  }
-  
-  }
-
-
 
 async function uploadModel(callback, name) {
     if (!featureExtractor.jointModel) {
@@ -448,7 +555,6 @@ async function uploadModel(callback, name) {
     featureExtractor.jointModel.save(tf.io.withSaveHandler(async (data) => {
       let modelName = 'model';
       if(name) modelName = name;
-
       featureExtractor.weightsManifest = {
         modelTopology: data.modelTopology,
         weightsManifest: [{
@@ -460,80 +566,85 @@ async function uploadModel(callback, name) {
         },
       };
 
-    //   console.log(data.weightData);
-    //   console.log(JSON.stringify(featureExtractor.weightsManifest));
-    UTIL.zip.file(`${modelName}.weights.bin`, data.weightData);
-    UTIL.zip.file(`${modelName}.json`,JSON.stringify(featureExtractor.weightsManifest));
-    UTIL.zip.generateAsync({type:"blob"})
-    .then(function (blob) {
-        // saveAs(blob, "hello.zip");
-        console.log("zipped blob: ");
-        console.log(blob);
-        
-        // const link = document.createElement('a');
-        // link.style.display = 'none';
-        // document.body.appendChild(link);
-        // link.href = URL.createObjectURL(blob);
-        // link.download = modelName;
-        // link.click();
+    // await featureExtractor.jointModel.save('https://cotf.cf/admin/trainer');
+  
 
-        uploadBlob(blob, "hello.zip");
+    UTIL.zipModel.file(`${modelName}.weights.bin`, data.weightData);
+    UTIL.zipModel.file(`${modelName}.json`,JSON.stringify(featureExtractor.weightsManifest));
+    UTIL.zipModel.generateAsync({type:"blob"})
+    .then(function (blob) {
+        // downloadBlob(blob);
+        zipImages();
+        uploadBlobXML(blob, `${modelName}.zip`, 'application/zip');
     });
-   
-    // await uploadBlob(data.weightData, `${modelName}.weights.bin`, 'application/octet-stream');
-    // await uploadBlob(JSON.stringify(featureExtractor.weightsManifest), `${modelName}.json`, 'text/plain');
+    
       if (callback) {
         callback();
       }
     }));
   }
 
-  function modelUploaded(){
-    console.log("model uploaded!!");
+function modelUploaded(){
+    // console.log("model uploaded!!");
 }
 
-const uploadBlob = async (data, name) => {
+function downloadBlob(blob,modelName){
+    const link = document.createElement('a');
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.href = URL.createObjectURL(blob);
+    link.download = modelName;
+    link.click(); 
+}
 
-    // const blob = new Blob([data], {type : t});
+const uploadBlobXML = async (data, name,t) => {
 
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', '/admin/trainer', true);
-    // xhr.onload = function () {
-    // // Request finished. Do processing here.
-    // };
-    // xhr.send(blob);
+    var fileOfBlob = new File([data], name);
+    form = new FormData(),
+    form.append("upload", fileOfBlob, name);
+    form.append("profile", APP_STATE.username);
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/admin/trainer', true);
+    xhr.onload = function () {
+    };
+    xhr.send(form);
+  };
 
-let test = data;
-let test2 = name;
+  const uploadBlobAxios = async (data, name,t) => {
+
+    // let n = name;
 
     fetch('https://gds-esd.com/wtf/signedUrl', {
     method: 'POST',
     mode: 'cors',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ test2: test })})
+    body: JSON.stringify({ "name": name })})
         .then(res => {
             return res.json();
         })
         .then(d => {
             console.log(d.url);
             const form = new FormData();
-            form.append('enctype', 'multipart/form-data');
-            form.append(test2, test);
-            // form.append('my_file', fs.createReadStream('/foo/bar.jpg'));
-            // let U = "https://cors-anywhere.herokuapp.com/" + d.url;
+            form.append("data", data);
             axios.post(d.url, form, { headers: {'enctype': 'multipart/form-data'} })
         })
     
   };
 
  function setup(){
-    // startCon();  
-    UTIL.zip = new JSZip();
+    UTIL.zipModel = new JSZip();
+    UTIL.zipImage = new JSZip();
 
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
 
+    DOM_EL.loginContainer = select("#login-container");
+    DOM_EL.loginButton = select("#google-login");
+    // DOM_EL.loginButton.attribute("data-width", (window.innerWidth * 0.8).toString());
+
     DOM_EL.menuContainer = select("#menu-container");
+    DOM_EL.menuContainer.hide();
 
     DOM_EL.menuCollectButton = select("#menu-collect-button");
     DOM_EL.menuCollectButton.class("selected");
@@ -546,6 +657,7 @@ let test2 = name;
     DOM_EL.menuEmbedButton.mousePressed(changeEmbedEvent);
 
     DOM_EL.collectContainer = select("#collect-container");
+    DOM_EL.collectContainer.hide();
 
     DOM_EL.classContainer = select("#class-container");
 
@@ -568,9 +680,7 @@ let test2 = name;
 
     DOM_EL.canvasContainer = select("#canvas-container");
    
-    // let cLength = constrain(APP_STATE.width * 0.85, 0 , APP_STATE.height * 0.6 * 0.85);
-    // DOM_EL.canvas = createCanvas(cLength,cLength);
-    DOM_EL.canvas = createCanvas(224,224);
+    DOM_EL.canvas = createCanvas(112,112);
     DOM_EL.canvas.id("canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
     
@@ -580,15 +690,18 @@ let test2 = name;
         }});
     DOM_EL.capture.parent(DOM_EL.canvasContainer);
     DOM_EL.capture.id("video");
-    // DOM_EL.capture.hide();
+
+    DOM_EL.captureOverlay = createDiv();
+    DOM_EL.captureOverlay.parent(DOM_EL.canvasContainer);
+    DOM_EL.captureOverlay.id("video-overlay");
 
     DOM_EL.cameraChange = createImg("img/change.png");
-    DOM_EL.cameraChange.parent(DOM_EL.canvasContainer);
+    DOM_EL.cameraChange.parent(DOM_EL.captureOverlay);
     DOM_EL.cameraChange.id("canvas-camera-change");
     DOM_EL.cameraChange.mousePressed(switchCamera);
 
     DOM_EL.cameraFlip = createImg("img/flip.png");
-    DOM_EL.cameraFlip.parent(DOM_EL.canvasContainer);
+    DOM_EL.cameraFlip.parent(DOM_EL.captureOverlay);
     DOM_EL.cameraFlip.id("canvas-camera-flip");
     DOM_EL.cameraFlip.mousePressed(function(){
         APP_STATE.cameraFlip = !APP_STATE.cameraFlip;
@@ -641,15 +754,18 @@ let test2 = name;
     DOM_EL.labelContainer = select("#label-container");
     DOM_EL.labelContainer.hide();
 
-    DOM_EL.label = select("#label");
-    DOM_EL.label.parent(DOM_EL.labelContainer);
+    DOM_EL.saveButton = select("#save-button");
+    DOM_EL.saveButton.hide();
+    DOM_EL.saveButton.mousePressed(modelUploaded,"myModel");
 
-    DOM_EL.labelBarContainer = select("#label-bar-container");
-    DOM_EL.labelBarContainer.parent(DOM_EL.labelContainer);
+    // DOM_EL.labelText = select("#label");
+    // DOM_EL.labelText.parent(DOM_EL.labelContainer);
 
-    DOM_EL.labelBar = select("#label-progress");
-    DOM_EL.labelBar.parent(DOM_EL.labelBarContainer);
+    // DOM_EL.labelBarContainer = select("#label-bar-container");
+    // DOM_EL.labelBarContainer.parent(DOM_EL.labelContainer);
 
+    // DOM_EL.labelBar = select("#label-progress");
+    // DOM_EL.labelBar.parent(DOM_EL.labelBarContainer);
 
     DOM_EL.trainContainer = select("#train-container");
     DOM_EL.trainContainer.hide();
@@ -685,12 +801,12 @@ let test2 = name;
         
         if(ev.type == 'press'){
             if(DOM_EL.imageSampleList[i].elt.childElementCount > 0){
-                DOM_EL.classSampleList[i].addClass("class-selected");
+                DOM_EL.classSampleListImage[i].addClass("class-selected"); //OPACITY ONLY FOR IMG
                 DOM_EL.classSampleListOverlay[i].style("display", "flex");
             }
         }
         else if (ev.type == 'tap'){
-            DOM_EL.classSampleList[i].removeClass("class-selected");
+            DOM_EL.classSampleListImage[i].removeClass("class-selected"); //OPACITY ONLY FOR IMG
             DOM_EL.classSampleListOverlay[i].hide();
         }
         });
@@ -703,8 +819,7 @@ let test2 = name;
     DOM_EL.trainStatusLoss = select("#train-status-loss");
     DOM_EL.trainStatusCompleteButton = select("#train-status-complete-button");
     DOM_EL.trainStatusCompleteButton.hide();
-    DOM_EL.trainStatusCompleteButton.mousePressed(changeEmbedEvent);
-
+    DOM_EL.trainStatusCompleteButton.mousePressed(changeTestEvent);
 
     DOM_EL.embedContainer = select("#embed-container");
     DOM_EL.embedContainer.hide();
@@ -719,14 +834,18 @@ function gotResults(err, result) {
 
     if(result)
         {
-            DOM_EL.label.html(result[0].label);
-            // DOM_EL.labelBar.style( "width", (results[0].confidence * 100).toString() + "%");
-            let conf = constrain(getBaseLog(10, result[0].confidence * 100) * 100 / 2, 0, 100);
-            let length = conf.toString() + "%";
+            for(let i = 0; i<APP_STATE.numTrainingClasses; i++){ //loop through all classes
+                for(let j = 0; j<APP_STATE.numTrainingClasses; j++){
+                    if(DOM_EL.labelText[i].html() == result[j].label){
+                        let length = (result[j].confidence * 100).toString() + "%";
+                        DOM_EL.labelBar[i].elt.style.width = length;
+                    }
+                }
+            }
+
+            // DOM_EL.labelText.html(result[0].label);
             // let length = (result[0].confidence * 100).toString() + "%";
-            // console.log(length);
-            let elem = document.getElementById("label-progress");
-            elem.style.width = length;
+            // DOM_EL.labelBar.elt.style.width = length;
         }
     classifier.classify( DOM_EL.canvas.elt, gotResults);
   }
