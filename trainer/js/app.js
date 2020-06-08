@@ -1,5 +1,3 @@
-
-
 var DOM_EL = {
     
     video: null,
@@ -229,7 +227,7 @@ function zipImages(){
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
                 APP_STATE.trainingImage = false;
                 // setTimeout(async function(){await featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);},(APP_STATE.numTrainingImagesProcessed*300));
-                f.file(j.toString()+".png",DOM_EL.imageSampleList[i].elt.children[j].children[0].src.split(",")[1],{base64: true});
+                f.file("image_" + j.toString()+".png",DOM_EL.imageSampleList[i].elt.children[j].children[0].src.split(",")[1],{base64: true});
             }
         }
     }
@@ -237,7 +235,7 @@ function zipImages(){
     // UTIL.zipImage.file(`${modelName}.json`,JSON.stringify(featureExtractor.weightsManifest));
     UTIL.zipImage.generateAsync({type:"blob"})
     .then(function (blob) {
-        uploadBlobAxios(blob,"assets.zip", 'application/zip');
+        uploadBlobGoogle(blob,"assets.zip", 'application/zip');
         // downloadBlob(blob,"assets.zip");
         // uploadBlobXML(blob, `images.zip`, 'application/zip');
         // console.log("model uploaded!!");
@@ -611,26 +609,41 @@ const uploadBlobXML = async (data, name,t) => {
     xhr.send(form);
   };
 
-  const uploadBlobAxios = async (data, name,t) => {
+const uploadBlobGoogle = async (data, name,t) => {
 
-    // let n = name;
+    const formData = new FormData()
+    formData.append('myFile', data)
 
     fetch('https://gds-esd.com/wtf/signedUrl', {
-    method: 'POST',
-    mode: 'cors',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ "name": name })})
-        .then(res => {
-            return res.json();
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ fileName: name })
         })
-        .then(d => {
-            console.log(d.url);
-            const form = new FormData();
-            form.append("data", data);
-            axios.post(d.url, form, { headers: {'enctype': 'multipart/form-data'} })
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          console.log('signedUrl: ', data);
+          fetch(data.url, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': t
+            },
+            body: formData
+          })
+          .then(response => console.log(response))
+          .then(data => {
+            console.log(data)
+          })
+          .catch(error => {
+            console.error(error)
+          })
         })
     
-  };
+};
 
  function setup(){
     UTIL.zipModel = new JSZip();
@@ -758,15 +771,6 @@ const uploadBlobXML = async (data, name,t) => {
     DOM_EL.saveButton.hide();
     DOM_EL.saveButton.mousePressed(modelUploaded,"myModel");
 
-    // DOM_EL.labelText = select("#label");
-    // DOM_EL.labelText.parent(DOM_EL.labelContainer);
-
-    // DOM_EL.labelBarContainer = select("#label-bar-container");
-    // DOM_EL.labelBarContainer.parent(DOM_EL.labelContainer);
-
-    // DOM_EL.labelBar = select("#label-progress");
-    // DOM_EL.labelBar.parent(DOM_EL.labelBarContainer);
-
     DOM_EL.trainContainer = select("#train-container");
     DOM_EL.trainContainer.hide();
     DOM_EL.classSampleContainer = select("#class-sample-container");
@@ -801,12 +805,12 @@ const uploadBlobXML = async (data, name,t) => {
         
         if(ev.type == 'press'){
             if(DOM_EL.imageSampleList[i].elt.childElementCount > 0){
-                DOM_EL.classSampleListImage[i].addClass("class-selected"); //OPACITY ONLY FOR IMG
+                DOM_EL.classSampleListImage[i].addClass("class-selected"); 
                 DOM_EL.classSampleListOverlay[i].style("display", "flex");
             }
         }
         else if (ev.type == 'tap'){
-            DOM_EL.classSampleListImage[i].removeClass("class-selected"); //OPACITY ONLY FOR IMG
+            DOM_EL.classSampleListImage[i].removeClass("class-selected");
             DOM_EL.classSampleListOverlay[i].hide();
         }
         });
@@ -826,10 +830,6 @@ const uploadBlobXML = async (data, name,t) => {
     imageMode(CENTER);
 }
 
-function getBaseLog(x, y) {
-    return Math.log(y) / Math.log(x);
-  }
-
 function gotResults(err, result) {
 
     if(result)
@@ -842,10 +842,6 @@ function gotResults(err, result) {
                     }
                 }
             }
-
-            // DOM_EL.labelText.html(result[0].label);
-            // let length = (result[0].confidence * 100).toString() + "%";
-            // DOM_EL.labelBar.elt.style.width = length;
         }
     classifier.classify( DOM_EL.canvas.elt, gotResults);
   }
@@ -855,9 +851,6 @@ function draw(){
     if(APP_STATE.cameraFlip){
         translate(DOM_EL.canvas.width, 0);
         scale(-1, 1);
-    }
-
-    if(APP_STATE.modelTrained == true){
     }
     
     if(DOM_EL.capture.width > DOM_EL.capture.height){
