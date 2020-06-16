@@ -96,7 +96,7 @@ li {
   width: calc(60vh * 0.85);;
   height: calc(60vh * 0.85);
   display: block;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
 }
 
 

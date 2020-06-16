@@ -510,7 +510,7 @@ async function addImages(){
 
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
                 APP_STATE.trainingImage = false;
-                setTimeout(async function(){await featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);},(APP_STATE.numTrainingImagesProcessed*300));
+                setTimeout(async function(){await featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);},(APP_STATE.numTrainingImagesProcessed*600));
             }
         }
     }
@@ -707,6 +707,7 @@ const uploadBlobGoogle = async (data, name,t) => {
     DOM_EL.captureOverlay = createDiv();
     DOM_EL.captureOverlay.parent(DOM_EL.canvasContainer);
     DOM_EL.captureOverlay.id("video-overlay");
+    if(APP_STATE.mobileDevice == false){DOM_EL.captureOverlay.style("transform", "translate(-50%, -50%)");}
 
     DOM_EL.cameraChange = createImg("img/change.png");
     DOM_EL.cameraChange.parent(DOM_EL.captureOverlay);
