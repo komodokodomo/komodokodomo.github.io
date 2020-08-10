@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" lang="en">
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WTF-Snap Trainer</title>
+    <meta name="description" content="Image uploading and training platform">
+    <meta name="google-signin-client_id" content="874868940141-sqtd69h8nsjejb47pggkd260nkl8ccjq.apps.googleusercontent.com">
+    <meta name="theme-color" content="#000000" />
+
+    <script src="../src/js/vendor/p5.min.js"></script>
+    <script src="../src/js/vendor/jszip.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script> -->
+    <script src="https://unpkg.com/ml5@0.5.0/dist/ml5.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm/dist/tf-backend-wasm.js"></script> -->
+    <!-- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> -->
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+  </head>
+
+  <body id="body">
+    <script type="text/javascript" src="js/app.js"></script>
+    <div id="login-container">
+      <h1 class="login-header">WTF-Snap</h1>
+      <button type="button" id="login-skip-button" onClick="document.getElementById('google-login').scrollIntoView({behavior: 'smooth'});"> get started </button>
+      <p class="login-p">A fast, easy way to craft your own interactive teaching environment</p>
+
+      <h2 class="login-header">What can I use it for?</h2>
+      <div class="login-instructions">
+        <h3 class="login-subheader">Out of classroom learning experiences </h3>
+        <p class="login-p">Trails / excursions that people can go on their own</p>
+        <p class="login-p">Prepare a outdoor language class </p>
+      </div>
+      <div class="login-instructions">
+        <h3 class="login-subheader">Cross disciplinary lessons </h3>
+        <p class="login-p">Transform your school garden into a lesson ground for different subjects</p>
+      </div>
+
+      <h2 class="login-header">How do I use it?</h2>
+      <div class="login-instructions">
+        <h3 class="login-subheader">1. Gather </h3>
+        <img src = "img/gather_1_low.gif" alt="GIF 1 showing how to collect" style="width: 40%; padding-right: 10px;">
+        <img src = "img/gather_2_low.gif" alt="GIF 2 showing how to collect" style="width: 40%; ">
+        <p class="login-p">Gather your examples into categories that you want the computer to identify.</p>
+      </div>
+      <div class="login-instructions">
+        <h3 class="login-subheader">2. Train </h3>
+        <img src = "img/train_1_low.gif" alt="GIF 1 showing how to train" style="width: 40%; padding-right: 10px;">
+        <img src = "img/train_2_low.gif" alt="GIF 2 showing how to train" style="width: 40%; ">
+        <p class="login-p">Train your model, then instantly test it out to see whether it can correctly classify new examples.</p>
+      </div>
+
+
+      <div class="g-signin2" id="google-login" data-onsuccess="onSignIn" data-longtitle="true"></div>
+    </div>
+
+    <div id="menu-container">
+      <div id="menu-hamburger">☰</div>
+      <div id="menu-title">WTF-Snap</div>
+      <div id="menu-project-title"></div>
+      <div id="menu-profile-image-container">
+        <!-- <img src = "getProfile.Url" alt="google profile pic" style="width: 40%; "> -->
+      </div>
+    </div>
+
+    <div id="projects-container">
+      <!-- <div id="project-container">
+        <div id="project-title"></div>
+        <div id="project-title-edit"></div>
+        <div id="project-detail"></div>
+        <div id="project-remove"></div>
+      </div>
+    -->
+      <div id="add-project-container">
+        <div id="add-project-title" style="margin: auto;">+ New Project</div>
+      </div> 
+    </div>
+    <div id="classes-container">
+      <!-- <div id="class-container">
+        <div id="class-title-container">
+          <img id="class-thumbnail" src = "getProfile.Url" alt="google profile pic">
+          <div id="class-title"></div>
+          <div id="class-title-edit"></div>
+        </div>
+        <div id="class-detail"></div>
+        <div id="class-add-image"></div>
+        <div id="class-remove"></div>
+      </div>-->
+      <div id="add-class-container">
+        <div id="add-class-title" style="margin: auto;">+ New Class</div>
+      </div> 
+      <div id="project-button-container">
+        <div id="save-project-container">
+          <div id="save-project-title">Save Project</div>
+          <div id="save-project-help">❓</div>
+        </div>󠀿󠀿
+        <div id="train-project-container">
+          <div id="train-project-title">Train</div>
+          <div id="train-project-help">❓</div>
+        </div>󠀿󠀿
+        <div id="preview-project-container">
+          <div id="preview-project-title">Preview</div>
+          <div id="preview-project-help">❓</div>
+        </div>󠀿󠀿
+      </div> 
+    </div>
+
+    <div id="popup-container">
+    
+      <div id="alert-status-container">
+        <div id="alert-status-title"></div>
+        <div id="alert-status-content"></div>
+      </div>
+      <div id="alert-ok-container">
+        <div id="alert-ok-title"></div>
+        <div id="alert-ok-content"></div>
+        <div id="alert-ok-button"></div>
+      </div>
+      <div id="alert-option-container">
+        <div id="alert-option-title"></div>
+        <div id="alert-option-content"></div>
+        <div id="alert-option-yes-button"></div>
+        <div id="alert-option-no-button"></div>
+      </div>
+
+      <div id="collect-container">
+        <div id="collect-class-container">
+          <div id="collect-class-title"></div>
+          <div id="collect-class-edit">🖊️</div>
+          <div id="collect-class-remove">🗑️</div>
+        </div>
+        <div id="collect-close-container"></div>
+        <video id="collect-video-container"></video>
+        <div id="canvas-container"></div>
+        <div id="collect-image-container">
+          <!-- <div id="image-sample-counter"></div>
+          <div id="image-sample-list-container">
+            <ol id="image-sample-list">
+              <div id="sample-list">
+                <img src="" class="">
+                <div id="image-sample-list-remove">🗑️</div>
+              </div>
+            </ol>
+          </div> -->
+        </div>
+        <div id="collect-button-container">
+          <button type="button" id="image-record-button">🎥 Press to record 🎥</button>
+        </div>
+      </div>
+
+      <div id="preview-container">
+        <div id="preview-title-container">
+          <div id="preview-title">Preview</div>
+          <div id="preview-project"></div>
+        </div>
+        <div id="preview-close-container"></div>
+        <video id="collect-video-container"></video>
+        <div id="canvas-container"></div>
+      </div>
+    </div>
+  </body>
+</html>
+

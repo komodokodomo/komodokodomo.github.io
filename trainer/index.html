@@ -13,13 +13,14 @@
     <script src="../src/js/vendor/jszip.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm/dist/tf-backend-wasm.js"></script>
+    <script src="https://unpkg.com/ml5@0.5.0/dist/ml5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-    <script src="https://unpkg.com/ml5@0.5.0/dist/ml5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/1.7.0/tf.js"></script>
-    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-
-
-
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton"></script>
+    <script>
+      tf.setBackend('wasm').then(() => console.log("backend set"));
+    </script>
 
   </head>
 
@@ -45,20 +46,20 @@
       <h2 class="login-header">How do I use it?</h2>
       <div class="login-instructions">
         <h3 class="login-subheader">1. Gather </h3>
-        <img src = "img/gather_1.gif" alt="GIF 1 showing how to collect" style="width: 40%; padding-right: 10px;">
-        <img src = "img/gather_2.gif" alt="GIF 2 showing how to collect" style="width: 40%; ">
+        <img src = "img/gather_1_low.gif" alt="GIF 1 showing how to collect" style="width: 40%; padding-right: 10px;">
+        <img src = "img/gather_2_low.gif" alt="GIF 2 showing how to collect" style="width: 40%; ">
         <p class="login-p">Gather your examples into categories that you want the computer to identify.</p>
       </div>
       <div class="login-instructions">
         <h3 class="login-subheader">2. Train </h3>
-        <img src = "img/train_1.gif" alt="GIF 1 showing how to train" style="width: 40%; padding-right: 10px;">
-        <img src = "img/train_2.gif" alt="GIF 2 showing how to train" style="width: 40%; ">
+        <img src = "img/train_1_low.gif" alt="GIF 1 showing how to train" style="width: 40%; padding-right: 10px;">
+        <img src = "img/train_2_low.gif" alt="GIF 2 showing how to train" style="width: 40%; ">
         <p class="login-p">Train your model, then instantly test it out to see whether it can correctly classify new examples.</p>
       </div>
-      <div class="login-instructions">
+      <!-- <div class="login-instructions">
         <h3 class="login-subheader">3. Embed </h3>
         <p class="login-p">Start embedding your content to the trained categories,you can also invite others to do it to provide different perspectives and contents to the same environment. Once done, save it into the cloud for future lesson deployment, just like Kahoot! </p>
-      </div>
+      </div> -->
 
       <div class="g-signin2" id="google-login" data-onsuccess="onSignIn" data-longtitle="true"></div>
     </div>
@@ -72,8 +73,6 @@
       <div id="class-container">
         <select id="class-select">
           <option value="example class 1">example class 1</option>
-          <!-- <option value="class2">class2</option>
-          <option value="class3">class3</option> -->
         </select>
         <input type="text" id="class-input" name="class-input">
         <button type="button" id="class-submit-button"> submit </button>
@@ -87,9 +86,9 @@
       <div id="image-sample-counter">Press or hold on record to add sample images</div>
       <div id="image-sample-container"></div>
       <div id="collect-button-container">
-        <button type="button" id="setting-button"> ⚙️ </button>
-        <button type="button" id="record-button"> 📷/🎥 </button>
-        <button type="button" id="upload-button"> 🖼️ </button>
+        <!-- <button type="button" id="setting-button"> ⚙️ </button> -->
+        <button type="button" id="record-button">🎥 hold to record 🎥</button>
+        <!-- <button type="button" id="upload-button"> 🖼️ </button> -->
       </div>
       <div id="label-container"></div>
       <button type="button" id="save-button"> 💾save model💾 </button>
@@ -102,11 +101,10 @@
         <div id="train-instruction">Press and hold on classes that you would like to train. A minimum of 2 classes are required for training to proceed.</div>
       </div> -->
       <ol id="class-sample-container"></ol>
-      <button type="button" id="cloud-button">  upload to cloud </button>
-      <button type="button" id="training-button"> 👩🏼‍💻train locally👩🏼‍💻 </button>
+      <button type="button" id="training-button"> 👩🏼‍💻train model👩🏼‍💻 </button>
       <div id="train-status-container">
-        <div id="train-status-model"> ❌MobileNet model loaded </div>
-        <div id="train-status-image"> ❌Training images loaded</div>
+        <div id="train-status-model"> ❌Base model loaded </div>
+        <div id="train-status-image"> ❌Base model fed training images</div>
         <div id="train-status-loss"> ❌Training progress (loss)</div>
         <button type="button" id="train-status-complete-button"> test trained model! </button>
       </div>
@@ -117,3 +115,4 @@
     </div>
   </body>
 </html>
+

@@ -77,6 +77,7 @@ var UTIL = {
     recordIntervalFunction: null,
     zipModel: null,
     zipImage: null,
+    unzipImage: null,
     proceedFlag: false,
     worker: null
 }
@@ -97,42 +98,84 @@ var APP_STATE = {
     switchFlag: false,
     recording: null,
     cameraMirror: false,
-    numTrainingClasses: 0,
-    numTrainingImages: 0,
-    numTrainingImagesProcessed: 0,
+
+    numTrainingClasses: 0,      // 4
+    numTrainingImagesSum: 0,    // 38
+    numTrainingImagesProcessed: 0, //should eventually reach 38
+    numTrainingImagesArray: [], // [20,10,5,3]
+
+    trainingClassNumber: [],    // [0,1,2,4]
+    currentArrayIndex: 0,       // could be 0,1,2,3
+    currentImageNumberIndex: 0,   //currentImageNumberIndex[trainingClassNumber[i]]
     loss: 0,
     modelTrained: false
 }
 
 let featureExtractor;
 let classifier;
+let projectFiles;
 
 if(window.Worker){
-    UTIL.worker = new Worker('/trainer/js/worker.js');
-    UTIL.worker.postMessage({url: "https://unpkg.com/ml5@0.5.0/dist/ml5.min.js"});
+    console.log("web worker supported. Not active for now though.")
+//     UTIL.worker = new Worker('/trainer/js/worker.js');
+//     UTIL.worker.postMessage({url: "https://unpkg.com/ml5@0.5.0/dist/ml5.min.js"});
 }
 
 window.addEventListener('DOMContentLoaded', () => {
     APP_STATE.mobileDevice = isMobile();
+    tf.setBackend('wasm').then(() => console.log("backend set"));
+    console.log(ml5.tf.getBackend());
   });
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('ID: ' + profile.getId()); 
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
     APP_STATE.username = profile.getEmail();
+   
     DOM_EL.menuContainer.style("display", "inline-flex");
     DOM_EL.collectContainer.show();
     DOM_EL.loginContainer.hide();
     DOM_EL.loginButton.hide();
+    
+    
+    let u = "?account=" + profile.getEmail();
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/admin/trainer', true);
-    xhr.onload = function () {
-    };
-    xhr.send("login:" + profile.getEmail());
+    xhr.open('GET', '/admin/model' + u, true);
+    xhr.responseType = "arraybuffer";
+
+    xhr.onload = function(e) {
+        if (this.status == 200) {
+          var data = this.response;
+
+          UTIL.unzipImage.loadAsync(data,{createFolders: true})
+            .then(function (zip) {
+                console.log(zip.files);
+                projectFiles = zip.files;
+                for (const property in projectFiles) {
+                    if(!projectFiles[property].dir){
+                        // console.log(`${property}: ${projectFiles[property]._data.compressedContent}`);
+                        console.log(`${property}: ${bufferToBase64(projectFiles[property]._data.compressedContent)}`);
+                    }
+                  }
+            });
+        }
+        else if(this.status == 404) {
+          console.log("no files detected, new account maybe?");
+        }
+      };
+    xhr.send("login");
+
     switchCamera();
+}
+
+function bufferToBase64(buf) {
+    var binstr = Array.prototype.map.call(buf, function (ch) {
+        return String.fromCharCode(ch);
+    }).join('');
+    return btoa(binstr);
 }
 
 window.onbeforeunload = function(){
@@ -225,8 +268,6 @@ function zipImages(){
             let f = UTIL.zipImage.folder(res);
 
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-                APP_STATE.trainingImage = false;
-                // setTimeout(async function(){await featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);},(APP_STATE.numTrainingImagesProcessed*300));
                 f.file("image_" + j.toString()+".png",DOM_EL.imageSampleList[i].elt.children[j].children[0].src.split(",")[1],{base64: true});
             }
         }
@@ -236,8 +277,8 @@ function zipImages(){
     UTIL.zipImage.generateAsync({type:"blob"})
     .then(function (blob) {
         uploadBlobGoogle(blob,"assets.zip", 'application/zip');
-        // downloadBlob(blob,"assets.zip");
-        // uploadBlobXML(blob, `images.zip`, 'application/zip');
+        downloadBlob(blob,"assets.zip");
+        // uploadBlobXML(blob, `images.zip`, 'images');
         // console.log("model uploaded!!");
     })
 }
@@ -273,7 +314,7 @@ function recordButtonEvent(){
 
     let c = document.getElementById('canvas');
 
-    dataUrl = c.toDataURL(0.7);
+    dataUrl = c.toDataURL(0.5);
     
     let i = createImg(dataUrl);
     i.class("sample-list-image");
@@ -459,37 +500,48 @@ function classSubmitEvent(){
     }
 
 async function trainButtonEvent(){
-     featureExtractor = ml5.featureExtractor('MobileNet',{numLabels: DOM_EL.classSampleList.length}, modelLoaded);
-     DOM_EL.trainStatusContainer.show();
+    featureExtractor = null; //reset featureExtractor
+    featureExtractor = ml5.featureExtractor('MobileNet',{numLabels: DOM_EL.classSampleList.length}, modelLoaded);
+    console.log(featureExtractor);
+    DOM_EL.trainStatusContainer.show();
 }
 
 async function modelLoaded() {
     console.log('MobileNet Model Loaded!');
-    await DOM_EL.trainStatusModel.html("✔️MobileNet model loaded");
+    await DOM_EL.trainStatusModel.html("✔️Base model loaded");
     classifier = featureExtractor.classification();
+    APP_STATE.modelTrained = false;
     setTimeout(addImages,100);
   }
 
+
 async function addImages(){
     APP_STATE.numTrainingClasses = 0;
+    APP_STATE.numTrainingImagesSum = 0;
+    APP_STATE.numTrainingImagesProcessed = 0;
     
     //getting number of classes and images
     for (let i = 0; i< DOM_EL.classSampleList.length; i++){
         if(DOM_EL.classSampleListImage[i].class().includes("class-selected")) {
             APP_STATE.numTrainingClasses++;
             for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-                APP_STATE.numTrainingImages++;
+                APP_STATE.numTrainingImagesSum++;
             }
         }
     }
     console.log( APP_STATE.numTrainingClasses + " classes to be trained, ");
-    console.log( APP_STATE.numTrainingImages + " images to be trained");
+    console.log( APP_STATE.numTrainingImagesSum + " images to be trained");
+    
     DOM_EL.labels = [];
 
-    for (let i = 0; i< DOM_EL.classSampleList.length; i++){
-        if(DOM_EL.classSampleListImage[i].class().includes("class-selected")) {
-            console.log("CLASS : " + DOM_EL.classSampleListLabel[i].elt.textContent);
 
+    for (let i = 0; i< DOM_EL.classSampleList.length; i++){ //creating preview confidence bar
+        if(DOM_EL.classSampleListImage[i].class().includes("class-selected")) {
+
+            APP_STATE.trainingClassNumber.push(i);
+            APP_STATE.numTrainingImagesArray.push(DOM_EL.imageSampleList[i].elt.childElementCount);
+
+            console.log("CLASS : " + DOM_EL.classSampleListLabel[i].elt.textContent);
 
             DOM_EL.labels.push(createDiv());
             DOM_EL.labels[DOM_EL.labels.length - 1].addClass("label");
@@ -508,24 +560,27 @@ async function addImages(){
             DOM_EL.labelBar[DOM_EL.labels.length - 1].parent( DOM_EL.labelBarContainer[i] );
             DOM_EL.labelBar[DOM_EL.labels.length - 1].style("background-color","#" + Math.floor(Math.random()*16777215).toString(16));
 
-            for(let j = 0; j<DOM_EL.imageSampleList[i].elt.childElementCount; j++){
-                APP_STATE.trainingImage = false;
-                setTimeout(async function(){await featureExtractor.addImage(DOM_EL.imageSampleList[i].elt.children[j].children[0], DOM_EL.classSampleListLabel[i].elt.textContent, imageAdded);},(APP_STATE.numTrainingImagesProcessed*600));
-            }
         }
     }
+    console.log(APP_STATE.trainingClassNumber);
+    console.log(APP_STATE.numTrainingImagesArray);
+    
+    // ml5.tf.setBackend("cpu");
+    featureExtractor.addImage(DOM_EL.imageSampleList[APP_STATE.trainingClassNumber[APP_STATE.currentArrayIndex]].elt.children[APP_STATE.currentImageNumberIndex].children[0], DOM_EL.classSampleListLabel[APP_STATE.trainingClassNumber[APP_STATE.currentArrayIndex]].elt.textContent, imageAdded);
+
+
     
   }
 
 async function imageAdded(){
     APP_STATE.numTrainingImagesProcessed++;
-    await DOM_EL.trainStatusImage.html("⚙️ " + (APP_STATE.numTrainingImagesProcessed).toString() + "/" + (APP_STATE.numTrainingImages).toString() + " training images added");   
-    console.log(DOM_EL.trainStatusImage.elt.innerHTML);
-    //if all images added
-    if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImages){
-        console.log("✔️ All training images loaded");  
-        DOM_EL.trainStatusImage.html("✔️ All training images loaded");   
+    DOM_EL.trainStatusImage.html("⚙️ Base model fed " + (APP_STATE.numTrainingImagesProcessed).toString() + "/" + (APP_STATE.numTrainingImagesSum).toString() + " training images");   
+
+    if(APP_STATE.numTrainingImagesProcessed == APP_STATE.numTrainingImagesSum){ //    if all images added
+        console.log("✔️ All training images fed");  
+        DOM_EL.trainStatusImage.html("✔️ All training images fed, time to train!");   
          //start training
+        ml5.tf.setBackend("webgl");
         setTimeout(function(){
             featureExtractor.train(function(lossValue) {
             if (lossValue) {
@@ -537,12 +592,21 @@ async function imageAdded(){
               DOM_EL.trainStatusLoss.html('✔️Done Training! Final Loss: ' +  APP_STATE.loss);
               DOM_EL.trainStatusCompleteButton.show();
               APP_STATE.modelTrained = true;
-
+            //   ml5.tf.setBackend("webgl");
               classifier.classify( DOM_EL.canvas.elt, gotResults);
-              uploadModel(modelUploaded,"myModel"); 
+              uploadModel(modelUploaded,"myModel_"+ Date.now().toString()); 
             }
           });
         },100);
+    }
+    else{
+        APP_STATE.currentImageNumberIndex ++;
+        if(APP_STATE.currentImageNumberIndex == APP_STATE.numTrainingImagesArray[APP_STATE.currentArrayIndex]){
+            APP_STATE.currentArrayIndex ++;
+            APP_STATE.currentImageNumberIndex = 0;
+        }    
+        console.log(ml5.tf.memory());
+        setTimeout(function(){featureExtractor.addImage(DOM_EL.imageSampleList[APP_STATE.trainingClassNumber[APP_STATE.currentArrayIndex]].elt.children[APP_STATE.currentImageNumberIndex].children[0], DOM_EL.classSampleListLabel[APP_STATE.trainingClassNumber[APP_STATE.currentArrayIndex]].elt.textContent, imageAdded);},50)
     }
 }
 
@@ -550,7 +614,7 @@ async function uploadModel(callback, name) {
     if (!featureExtractor.jointModel) {
       console.log('No model found.');
     }
-    featureExtractor.jointModel.save(tf.io.withSaveHandler(async (data) => {
+    featureExtractor.jointModel.save(ml5.tf.io.withSaveHandler(async (data) => {
       let modelName = 'model';
       if(name) modelName = name;
       featureExtractor.weightsManifest = {
@@ -562,18 +626,15 @@ async function uploadModel(callback, name) {
         ml5Specs: {
           mapStringToIndex: featureExtractor.mapStringToIndex,
         },
-      };
-
-    // await featureExtractor.jointModel.save('https://cotf.cf/admin/trainer');
-  
+      };  
 
     UTIL.zipModel.file(`${modelName}.weights.bin`, data.weightData);
     UTIL.zipModel.file(`${modelName}.json`,JSON.stringify(featureExtractor.weightsManifest));
     UTIL.zipModel.generateAsync({type:"blob"})
     .then(function (blob) {
-        // downloadBlob(blob);
+        downloadBlob(blob,"model.zip");
         zipImages();
-        uploadBlobXML(blob, `${modelName}.zip`, 'application/zip');
+        // uploadBlobXML(blob, `${modelName}.zip`, 'model');
     });
     
       if (callback) {
@@ -600,6 +661,7 @@ const uploadBlobXML = async (data, name,t) => {
     var fileOfBlob = new File([data], name);
     form = new FormData(),
     form.append("upload", fileOfBlob, name);
+    form.append("type", t);
     form.append("profile", APP_STATE.username);
     
     var xhr = new XMLHttpRequest();
@@ -646,15 +708,17 @@ const uploadBlobGoogle = async (data, name,t) => {
 };
 
  function setup(){
+
+    console.log("pixel density: " + pixelDensity());
     UTIL.zipModel = new JSZip();
     UTIL.zipImage = new JSZip();
+    UTIL.unzipImage = new JSZip();
 
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
 
     DOM_EL.loginContainer = select("#login-container");
     DOM_EL.loginButton = select("#google-login");
-    // DOM_EL.loginButton.attribute("data-width", (window.innerWidth * 0.8).toString());
 
     DOM_EL.menuContainer = select("#menu-container");
     DOM_EL.menuContainer.hide();
@@ -693,7 +757,7 @@ const uploadBlobGoogle = async (data, name,t) => {
 
     DOM_EL.canvasContainer = select("#canvas-container");
    
-    DOM_EL.canvas = createCanvas(112,112);
+    DOM_EL.canvas = createCanvas(224/pixelDensity(),224/pixelDensity());
     DOM_EL.canvas.id("canvas");
     DOM_EL.canvas.parent(DOM_EL.canvasContainer);
     
@@ -832,7 +896,9 @@ const uploadBlobGoogle = async (data, name,t) => {
 }
 
 function gotResults(err, result) {
-
+    if(!APP_STATE.modelTrained){
+        return;
+    }
     if(result)
         {
             for(let i = 0; i<APP_STATE.numTrainingClasses; i++){ //loop through all classes
@@ -906,5 +972,4 @@ function isMobile() {
     })(navigator.userAgent||navigator.vendor||window.opera);
     return check;
   }
-
 

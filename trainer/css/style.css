@@ -203,11 +203,13 @@ li {
   height: 15%;
 }
 
-#menu-collect-button, #menu-train-button, #menu-embed-button, #record-button, #setting-button, #upload-button{
+#menu-collect-button, #menu-train-button, #menu-embed-button{
   width: calc( 100% / 3 );
 }
 
+
 #record-button{
+  width: 100%;
   font-size: 2rem;
 }
 
@@ -215,12 +217,6 @@ li {
   font-size: 1.5rem;
 }
 
-/* #train-instruction-container{
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-} */
 
 #class-sample-container{
   height: 80%;

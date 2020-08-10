@@ -11,6 +11,9 @@ body {
     align-items: center;
   }
 
+  a {
+    word-wrap: break-word;
+  }
 
 #canvas{
     width: 100%;
