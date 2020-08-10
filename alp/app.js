@@ -99,10 +99,10 @@ var MISC = {
 
 var URLS = {
   proxy : "https://cors-anywhere.herokuapp.com/",
-  model : URLS.proxy + "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
-  lens : URLS.proxy + "https://cotf.online/api/public/lenses/ICN612526932717731840",
-  dict : URLS.proxy + "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
-  content: URLS.proxy + "https://cotf.online/api/public/contents/ICN612526932717731840",
+  model : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
+  lens : "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/lenses/ICN612526932717731840",
+  dict : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
+  content: "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/contents/ICN612526932717731840",
 }
 
 let model;
