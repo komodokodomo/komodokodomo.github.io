@@ -444,7 +444,8 @@ function registerDOM(){
     DOM_EL.carouselCell[i] = createDiv();
     DOM_EL.carouselCell[i].addClass("carousel-cell");
   
-    DOM_EL.carouselCellEmoji[i] = createDiv("🕵️");
+    // DOM_EL.carouselCellEmoji[i] = createDiv("🕵️");
+    DOM_EL.carouselCellEmoji[i] = createDiv(twemoji.parse(APP_STATE.data[i].lens_emoji));
     DOM_EL.carouselCellEmoji[i].addClass("carousel-cell-emoji");
   
     DOM_EL.carouselCellTitle[i] = createDiv("lens_name");
@@ -560,7 +561,8 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevC].removeClass('center');
       DOM_EL.carouselCellTitle[prevC].addClass('right');
       DOM_EL.carouselCellTitle[prevC].html(APP_STATE.data[lensR].lens_display_name);
-      DOM_EL.carouselCellEmoji[prevC].html(APP_STATE.data[lensR].lens_emoji);
+      // DOM_EL.carouselCellEmoji[prevC].html(APP_STATE.data[lensR].lens_emoji);
+      DOM_EL.carouselCellEmoji[prevC].html(twemoji.parse(APP_STATE.data[lensR].lens_emoji));
 
       DOM_EL.carouselCell[prevL].removeClass('left');
       DOM_EL.carouselCell[prevL].addClass('center');
@@ -569,7 +571,8 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevL].removeClass('left');
       DOM_EL.carouselCellTitle[prevL].addClass('center');
       DOM_EL.carouselCellTitle[prevL].html(APP_STATE.data[lensC].lens_display_name);
-      DOM_EL.carouselCellEmoji[prevL].html(APP_STATE.data[lensC].lens_emoji);
+      // DOM_EL.carouselCellEmoji[prevL].html(APP_STATE.data[lensC].lens_emoji);
+      DOM_EL.carouselCellEmoji[prevL].html(twemoji.parse(APP_STATE.data[lensC].lens_emoji));
 
 
       DOM_EL.carouselCell[prevR].removeClass('right');
@@ -579,7 +582,8 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevR].removeClass('right');
       DOM_EL.carouselCellTitle[prevR].addClass('left');
       DOM_EL.carouselCellTitle[prevR].html(APP_STATE.data[lensL].lens_display_name);
-      DOM_EL.carouselCellEmoji[prevR].html(APP_STATE.data[lensL].lens_emoji);
+      // DOM_EL.carouselCellEmoji[prevR].html(APP_STATE.data[lensL].lens_emoji);
+      DOM_EL.carouselCellEmoji[prevR].html(twemoji.parse(APP_STATE.data[lensL].lens_emoji));
 
       if(APP_STATE.data[lensC].lens_display_name == "Other opinions"){
         DOM_EL.content.hide();
