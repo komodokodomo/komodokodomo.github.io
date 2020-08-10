@@ -444,8 +444,8 @@ function registerDOM(){
     DOM_EL.carouselCell[i] = createDiv();
     DOM_EL.carouselCell[i].addClass("carousel-cell");
   
-    // DOM_EL.carouselCellEmoji[i] = createDiv("🕵️");
-    DOM_EL.carouselCellEmoji[i] = createDiv(twemoji.parse(APP_STATE.data[i].lens_emoji));
+    DOM_EL.carouselCellEmoji[i] = createDiv("🕵️");
+    twemoji.parse(DOM_EL.carouselCellEmoji[i].elt);
     DOM_EL.carouselCellEmoji[i].addClass("carousel-cell-emoji");
   
     DOM_EL.carouselCellTitle[i] = createDiv("lens_name");
