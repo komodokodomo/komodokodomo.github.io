@@ -99,10 +99,14 @@ var MISC = {
 
 var URLS = {
   proxy : "https://cors-anywhere.herokuapp.com/",
-  model : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
-  lens : "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/lenses/ICN612526932717731840",
-  dict : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
-  content: "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/contents/ICN612526932717731840",
+  model : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
+  lens : "https://cotf.online/api/public/lenses/ICN612526932717731840",
+  dict : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
+  content: "https://cotf.online/api/public/contents/ICN612526932717731840",
+  // model : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
+  // lens : "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/lenses/ICN612526932717731840",
+  // dict : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
+  // content: "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/contents/ICN612526932717731840",
 }
 
 let model;
