@@ -491,6 +491,7 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevC].addClass('left');
       DOM_EL.carouselCellTitle[prevC].html(APP_STATE.data[lensL].lens_display_name);
       DOM_EL.carouselCellEmoji[prevC].html(APP_STATE.data[lensL].lens_emoji);
+      DOM_EL.carouselCellEmoji[prevC].html(twemoji.parse(APP_STATE.data[lensL].lens_emoji));
 
 
       DOM_EL.carouselCell[prevR].removeClass('right');
@@ -501,6 +502,8 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevR].addClass('center');
       DOM_EL.carouselCellTitle[prevR].html(APP_STATE.data[lensC].lens_display_name);
       DOM_EL.carouselCellEmoji[prevR].html(APP_STATE.data[lensC].lens_emoji);
+      DOM_EL.carouselCellEmoji[prevR].html(twemoji.parse(APP_STATE.data[lensC].lens_emoji));
+
 
       DOM_EL.carouselCell[prevL].removeClass('left');
       DOM_EL.carouselCell[prevL].addClass('right');
@@ -509,7 +512,9 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevL].removeClass('left');
       DOM_EL.carouselCellTitle[prevL].addClass('right');
       DOM_EL.carouselCellTitle[prevL].html(APP_STATE.data[lensR].lens_display_name);
-      DOM_EL.carouselCellEmoji[prevL].html(APP_STATE.data[lensR].lens_emoji);
+      // DOM_EL.carouselCellEmoji[prevL].html(APP_STATE.data[lensR].lens_emoji);
+      DOM_EL.carouselCellEmoji[prevL].html(twemoji.parse(APP_STATE.data[lensR].lens_emoji));
+
 
       if(APP_STATE.data[lensC].lens_display_name == "Other opinions"){
         DOM_EL.content.hide();
