@@ -696,17 +696,17 @@ async function init() {
   setupModel();
   APP_STATE.data = await loadData();
   
-  for(let i = 0; i < APP_STATE.data.length; i++){
-    if(APP_STATE.data[i].lens_display_name == "Forensic Scientist") {
-      APP_STATE.data[i].lens_emoji = "👨‍🔬";
-    }
-    else if(APP_STATE.data[i].lens_display_name == "Crime Scene Investigator") {
-      APP_STATE.data[i].lens_emoji = "👮";
-    }
-    else if(APP_STATE.data[i].lens_display_name == "Detective") {
-      APP_STATE.data[i].lens_emoji = "🕵️‍♂️";
-    }
-  }
+  // for(let i = 0; i < APP_STATE.data.length; i++){
+  //   if(APP_STATE.data[i].lens_display_name == "Forensic Scientist") {
+  //     APP_STATE.data[i].lens_emoji = "👨‍🔬";
+  //   }
+  //   else if(APP_STATE.data[i].lens_display_name == "Crime Scene Investigator") {
+  //     APP_STATE.data[i].lens_emoji = "👮";
+  //   }
+  //   else if(APP_STATE.data[i].lens_display_name == "Detective") {
+  //     APP_STATE.data[i].lens_emoji = "🕵️‍♂️";
+  //   }
+  // }
 
   if(MISC.hardcoded){
     let social = {lens: "other-opinions", lens_display_name: "Other opinions", lens_emoji: "💬" };
