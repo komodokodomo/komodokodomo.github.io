@@ -801,7 +801,7 @@ const loadData = async function() {
         lenses.push({
           lens: body.data[i].lens,
           lens_display_name: body.data[i].lens_display_name,
-          lens_emoji: body.data[i].lens_display_name
+          lens_emoji: body.data[i].lens_emoji
         })
       }
       // grab content
