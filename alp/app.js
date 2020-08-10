@@ -99,9 +99,9 @@ var MISC = {
 
 var URLS = {
   model : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
-  lens : "https://labs.gds-esd.com/api/public/lenses/ICN612526932717731840",
+  lens : "https://cotf.online/api/public/lenses/ICN612526932717731840",
   dict : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
-  content: "https://labs.gds-esd.com/api/public/contents/ICN612526932717731840",
+  content: "https://cotf.online/api/public/contents/ICN612526932717731840",
 }
 
 let model;
