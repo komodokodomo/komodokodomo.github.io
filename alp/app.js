@@ -98,10 +98,11 @@ var MISC = {
 }
 
 var URLS = {
-  model : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
-  lens : "https://cotf.online/api/public/lenses/ICN612526932717731840",
-  dict : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
-  content: "https://cotf.online/api/public/contents/ICN612526932717731840",
+  proxy : "https://cors-anywhere.herokuapp.com/",
+  model : URLS.proxy + "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
+  lens : URLS.proxy + "https://cotf.online/api/public/lenses/ICN612526932717731840",
+  dict : URLS.proxy + "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
+  content: URLS.proxy + "https://cotf.online/api/public/contents/ICN612526932717731840",
 }
 
 let model;
