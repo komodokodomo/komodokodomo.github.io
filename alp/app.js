@@ -450,6 +450,7 @@ function registerDOM(){
       DOM_EL.completionImageContainer = select("#completion-image-container");
       DOM_EL.completionContent = select("#completion-content");
     DOM_EL.completionButton = select("#completion-button");
+    DOM_EL.completionButton.mousePressed(completeEvent);
   DOM_EL.completionContainer.hide();
 
 
@@ -651,6 +652,11 @@ function registerDOM(){
 
   DOM_EL.orientationContainer = select("#orientation-container");
   DOM_EL.orientationContainer.position(0,0);
+}
+
+
+function completeEvent(){
+  DOM_EL.completionContainer.hide();
 }
 
 function setup(){
