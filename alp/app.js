@@ -34,6 +34,7 @@ var DOM_EL = {
       evidenceListItemContainer: [],
       evidenceListItem: [],
         evidenceListItemImage: [],
+        evidenceListItemNudge: [],
       evidenceListItemTitle: [],
       
   contentContainer: null,
@@ -791,8 +792,24 @@ async function init() {
     for(let i = 0; i < APP_STATE.numClasses; i++){
       DOM_EL.evidenceListItemContainer[i] = createDiv();
       DOM_EL.evidenceListItemContainer[i].attribute("index", (i+1).toString());
+      DOM_EL.evidenceListItemContainer[i].attribute("explored", "false");
       DOM_EL.evidenceListItemContainer[i].class("evidence-list-item-container");
       DOM_EL.evidenceListItemContainer[i].parent( DOM_EL.evidenceList);
+
+      DOM_EL.evidenceListItem[i] = createElement("li");
+      DOM_EL.evidenceListItem[i].addClass("evidence-list-item");
+      DOM_EL.evidenceListItem[i].addClass("noimage");
+      DOM_EL.evidenceListItem[i].parent( DOM_EL.evidenceListItemContainer[i]);
+
+      DOM_EL.evidenceListItemNudge[i] = createDiv(),
+      DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
+      DOM_EL.evidenceListItemNudge[i].addClass("hide");
+      DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
+
+      DOM_EL.evidenceListItemTitle[i] = createP("???");
+      DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
+      DOM_EL.evidenceListItemTitle[i].parent(DOM_EL.evidenceListItemContainer[i]);
+
       DOM_EL.evidenceListItemContainer[i].mousePressed(function(){
         if(DOM_EL.evidenceListItemContainer[i].class == "noimage"){
           console.log("nothing captured yet");
@@ -813,17 +830,13 @@ async function init() {
           setTimeout(function(){
             DOM_EL.contentContainer.removeClass("fade");
           },0);
+
+          if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
+            DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
+            DOM_EL.evidenceListItemNudge[i].removeClass("hide");
+          }
         }
       });
-
-      DOM_EL.evidenceListItem[i] = createElement("li");
-      DOM_EL.evidenceListItem[i].addClass("evidence-list-item");
-      DOM_EL.evidenceListItem[i].addClass("noimage");
-      DOM_EL.evidenceListItem[i].parent( DOM_EL.evidenceListItemContainer[i]);
-
-      DOM_EL.evidenceListItemTitle[i] = createP("???");
-      DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
-      DOM_EL.evidenceListItemTitle[i].parent(DOM_EL.evidenceListItemContainer[i]);
     }
 
       DOM_EL.evidenceHeader.html("0/" + APP_STATE.numClasses + " Evidence Collected");

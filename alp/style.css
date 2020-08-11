@@ -295,6 +295,21 @@ display: flex;
   display: block;
 }
 
+.evidence-list-item-nudge{
+  position: relative;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background: blue;
+}
+
+.evidence-list-item-nudge.hide{
+  opacity: 0;  
+}
+
+
 .evidence-list-item-title{
   font-size: calc(8px + (30 - 8) * ((100vw - 300px) / (1600 - 300)));
 }
