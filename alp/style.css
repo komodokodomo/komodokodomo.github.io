@@ -344,6 +344,7 @@ display: flex;
 }
 
 .evidence-list-item{
+  position: relative;
   margin: 5px;
   width: 100px;
   height: 100px;
