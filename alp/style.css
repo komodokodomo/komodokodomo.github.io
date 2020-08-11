@@ -33,7 +33,7 @@ a {
   text-align: center;
 }
 
-#onboard-image-container{
+#onboard-image-container,#completion-image-container{
   font-size: calc(48px + 32 * ((100vw - 300px) / (1000 - 300)));
 }
 
@@ -160,6 +160,20 @@ width: calc(var(--vw, 1vw) * 100);
 height: calc(var(--vh, 1vh) * 100);
 display: flex;
 }
+
+#completion-button{
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: #f2f2f2;
+  font-family: 'Roboto Mono';
+  box-shadow: grey 3px 3px 3px;
+  border-style: solid;
+  border-width: calc(0.75px + 2 * ((100vw - 300px) / (1600 - 300)));
+  padding: 5px;
+}
+
+
 
 #loading-bar-container{
   left: 10%;

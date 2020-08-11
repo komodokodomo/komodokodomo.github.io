@@ -57,8 +57,7 @@ var DOM_EL = {
           carouselCellTitle: [],
     
   completionContainer: null,
-    completionContentContainer: null,
-      completionContentHeader: null,
+      completionHeader: null,
       completionImageContainer: null,
       completionContent: null,
     completionButton: null,
@@ -445,10 +444,9 @@ function registerDOM(){
   
   DOM_EL.completionContainer = select("#completion-container");
   DOM_EL.completionContainer.position(0,0);
-    DOM_EL.completionContentContainer = select("#completion-content-container");
-      DOM_EL.completionContentHeader = select("#completion-content-header");
-      DOM_EL.completionImageContainer = select("#completion-image-container");
-      DOM_EL.completionContent = select("#completion-content");
+    DOM_EL.completionHeader = select("#completion-header");
+    DOM_EL.completionImageContainer = select("#completion-image-container");
+    DOM_EL.completionContent = select("#completion-content");
     DOM_EL.completionButton = select("#completion-button");
     DOM_EL.completionButton.mousePressed(completeEvent);
   DOM_EL.completionContainer.hide();
