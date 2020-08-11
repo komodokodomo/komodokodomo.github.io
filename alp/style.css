@@ -162,6 +162,7 @@ display: flex;
 }
 
 #loading-bar-container{
+  left: 10%;
   width: 80%;
   display: inline-block;
   background: none;
@@ -193,7 +194,7 @@ display: flex;
   max-width: 100%;
 }
 
-#orientation-header,#orientation-content{
+#orientation-header,#orientation-content,#loading-header,#loading-content{
   text-align: center;
 }
 
