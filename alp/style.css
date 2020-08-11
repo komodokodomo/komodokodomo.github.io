@@ -37,7 +37,7 @@ a {
   font-size: calc(48px + 32 * ((100vw - 300px) / (1000 - 300)));
 }
 
-#onboard-content-container{
+#onboard-content-container,#completion-content-container{
   width: 90%;
   /* height: 70%; */
   max-width: 90vw;
@@ -46,7 +46,7 @@ a {
   margin: 5% 5% 0 5%;
 }
 
-#onboard-content{
+#onboard-content,#completion-content{
   margin: 10%;
 }
 
