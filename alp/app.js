@@ -959,7 +959,7 @@ async function loadDictionary(){
 const updateModelDownloadProgress = function(fraction) {
   console.log(`Downloading model... ${fraction.toFixed(2) * 100}%`);
   DOM_EL.loadingBar.style("width", fraction.toFixed(2) * 100 +"%");
-  DOM_EL.loadingContent.html(fraction.toFixed(2) * 100 +"% loaded");
+  DOM_EL.loadingContent.html(MISC.thinking + fraction.toFixed(2) * 100 +"% loaded");
 }
 
 
