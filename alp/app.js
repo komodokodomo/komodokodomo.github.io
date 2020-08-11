@@ -63,6 +63,12 @@ var DOM_EL = {
       completionContent: null,
     completionButton: null,
 
+  loadingContainer: null,
+    loadingBarContainer: null,
+      loadingBar: null,
+    loadingHeader: null,
+    loadingContent: null,
+
   orientationContainer: null,
     orientationImageContainer: null,
       orientationImage: null,
@@ -628,6 +634,14 @@ function registerDOM(){
     }
   });
 
+  DOM_EL.loadingContainer = select("#loading-container");
+  DOM_EL.loadingContainer.position(0,0);
+  DOM_EL.loadingBarContainer = select("#loading-bar-container");
+  DOM_EL.loadingBar = select("#loading-bar");
+  DOM_EL.loadingHeader = select("#loading-header");
+  DOM_EL.loadingContent = select("#loading-content");
+  DOM_EL.loadingContainer.hide();
+
   DOM_EL.orientationContainer = select("#orientation-container");
   DOM_EL.orientationContainer.position(0,0);
 }
@@ -722,18 +736,6 @@ function windowResized(){
 async function init() {
   setupModel();
   APP_STATE.data = await loadData();
-  
-  // for(let i = 0; i < APP_STATE.data.length; i++){
-  //   if(APP_STATE.data[i].lens_display_name == "Forensic Scientist") {
-  //     APP_STATE.data[i].lens_emoji = "👨‍🔬";
-  //   }
-  //   else if(APP_STATE.data[i].lens_display_name == "Crime Scene Investigator") {
-  //     APP_STATE.data[i].lens_emoji = "👮";
-  //   }
-  //   else if(APP_STATE.data[i].lens_display_name == "Detective") {
-  //     APP_STATE.data[i].lens_emoji = "🕵️‍♂️";
-  //   }
-  // }
 
   if(MISC.hardcoded){
     let social = {lens: "other-opinions", lens_display_name: "Other opinions", lens_emoji: "💬" };
@@ -753,7 +755,9 @@ async function init() {
 
  async function setupModel() {
 
+    DOM_EL.loadingContainer.style("display","flex");
     model = await tf.loadGraphModel(URLS.model, { 'onProgress': updateModelDownloadProgress});
+    DOM_EL.loadingContainer.hide();
     dictionary = await loadDictionary();
     predictAsync();
     console.log("autoML model loaded");
@@ -940,7 +944,6 @@ const loadData = async function() {
     }
   }
 
-  // window.requestAnimationFrame(updateDom);
   setTimeout(function(){
     predictAsync();
   },100);
@@ -955,12 +958,8 @@ async function loadDictionary(){
 
 const updateModelDownloadProgress = function(fraction) {
   console.log(`Downloading model... ${fraction.toFixed(2) * 100}%`);
-  // if(fraction.toFixed(2) * 100 == 100){
-  //   setTimeout(function(){
-  //     predictAsync();
-  //     console.log("autoML model loaded");
-  //   },500);
-  // }
+  DOM_EL.loadingBar.style("width", fraction.toFixed(2) * 100 +"%");
+  DOM_EL.loadingContent.html(fraction.toFixed(2) * 100 +"% loaded");
 }
 
 

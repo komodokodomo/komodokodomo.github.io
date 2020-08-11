@@ -151,7 +151,7 @@ canvas {
   display: block;
 } */
 
-#login-container,#onboard-container,#orientation-container{
+#login-container,#onboard-container,#orientation-container,#loading-container{
 background-color: #ffe573;
 justify-content: center;
 align-content: center;
@@ -159,6 +159,19 @@ flex-direction: column;
 width: calc(var(--vw, 1vw) * 100);
 height: calc(var(--vh, 1vh) * 100);
 display: flex;
+}
+
+#loading-bar-container{
+  width: 80%;
+  display: inline-block;
+  background: none;
+  border-style: solid;
+}
+
+#loading-bar{
+  width: 1%;
+  height: 1.5rem;
+  background-color: black;
 }
 
 
