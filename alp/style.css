@@ -39,7 +39,8 @@ a {
 
 #onboard-content-container,#completion-content-container{
   width: 90%;
-  height: 70%;
+  height: 75%;
+  overflow-y: scroll;
   max-width: 90vw;
   background: #f2f2f2;
   position: absolute;
