@@ -94,6 +94,7 @@ var APP_STATE = {
   evidencesFound: [],
   evidenceCounter: 0,
   evidenceDetected: null,
+  prevEvidenceDetected: null,
   completed: false
 }
 
@@ -748,10 +749,10 @@ async function init() {
   setupModel();
   APP_STATE.data = await loadData();
 
-  if(MISC.hardcoded){
-    let social = {lens: "other-opinions", lens_display_name: "Other opinions", lens_emoji: "💬" };
-    APP_STATE.data.push(social);
-  }
+  // if(MISC.hardcoded){
+  //   let social = {lens: "other-opinions", lens_display_name: "Other opinions", lens_emoji: "💬" };
+  //   APP_STATE.data.push(social);
+  // }
 
   DOM_EL.carouselCellTitle[0].html(APP_STATE.data[0].lens_display_name);
   DOM_EL.carouselCellTitle[1].html(APP_STATE.data[1].lens_display_name);
