@@ -305,7 +305,7 @@ display: flex;
   background: blue;
 }
 
-.evidence-list-item-nudge.hide{
+.evidence-list-item-nudge.h{
   opacity: 0;  
 }
 

@@ -803,7 +803,7 @@ async function init() {
 
       DOM_EL.evidenceListItemNudge[i] = createDiv(),
       DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
-      DOM_EL.evidenceListItemNudge[i].addClass("hide");
+      DOM_EL.evidenceListItemNudge[i].addClass("h");
       DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
       DOM_EL.evidenceListItemTitle[i] = createP("???");
@@ -833,7 +833,7 @@ async function init() {
 
           if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
             DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
-            DOM_EL.evidenceListItemNudge[i].removeClass("hide");
+            DOM_EL.evidenceListItemNudge[i].removeClass("h");
           }
         }
       });
