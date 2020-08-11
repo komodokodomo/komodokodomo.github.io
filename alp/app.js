@@ -912,9 +912,16 @@ const loadData = async function() {
       if(APP_STATE.evidenceFound){
         APP_STATE.evidenceFound = false;
       }
-      DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
-      DOM_EL.personaButton.addClass("inactive");
-      DOM_EL.personaButton.html("📸 capture evidence");
+      if(APP_STATE.probability > 0.5){
+        DOM_EL.personaText.html("I think we should look elsewhere" + MISC.thinking);
+        DOM_EL.personaButton.addClass("inactive");
+        DOM_EL.personaButton.html("📸 capture evidence");
+      }
+      else{
+        DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+        DOM_EL.personaButton.addClass("inactive");
+        DOM_EL.personaButton.html("📸 capture evidence");
+      }
     }
   }
   else{
