@@ -164,6 +164,7 @@ display: flex;
 #loading-bar-container{
   left: 10%;
   width: 80%;
+  position: relative;
   display: inline-block;
   background: none;
   border-style: solid;
