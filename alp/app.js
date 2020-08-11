@@ -94,7 +94,8 @@ var APP_STATE = {
   evidenceFound: false,
   evidencesFound: [],
   evidenceCounter: 0,
-  evidenceDetected: null
+  evidenceDetected: null,
+  completed: false
 }
 
 var MISC = {
@@ -343,6 +344,11 @@ function captureEvidenceEvent(){
       APP_STATE.evidenceCounter++;
 
       DOM_EL.evidenceHeader.html(APP_STATE.evidenceCounter.toString()+ "/" + APP_STATE.numClasses + " Evidence Collected");
+
+      if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
+        APP_STATE.completed = true;
+        DOM_EL.completionContainer.style("display","flex");
+      }
     }
     
 
@@ -438,6 +444,7 @@ function registerDOM(){
 
   
   DOM_EL.completionContainer = select("#completion-container");
+  DOM_EL.completionContainer.position(0,0);
     DOM_EL.completionContentContainer = select("#completion-content-container");
       DOM_EL.completionContentHeader = select("#completion-content-header");
       DOM_EL.completionImageContainer = select("#completion-image-container");

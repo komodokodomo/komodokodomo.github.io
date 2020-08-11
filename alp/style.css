@@ -151,7 +151,7 @@ canvas {
   display: block;
 } */
 
-#login-container,#onboard-container,#orientation-container,#loading-container{
+#login-container,#onboard-container,#orientation-container,#loading-container,#completion-container{
 background-color: #ffe573;
 justify-content: center;
 align-content: center;
@@ -195,7 +195,7 @@ display: flex;
   max-width: 100%;
 }
 
-#orientation-header,#orientation-content,#loading-header,#loading-content{
+#orientation-header,#orientation-content,#loading-header,#loading-content,#completion-header,#completion-content{
   text-align: center;
 }
 
