@@ -346,7 +346,7 @@ function captureEvidenceEvent(){
 
       if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
         APP_STATE.completed = true;
-        DOM_EL.completionContainer.style("display","flex");
+        DOM_EL.completionContainer.show();
       }
     }
     
