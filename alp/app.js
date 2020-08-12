@@ -255,6 +255,7 @@ function checkOrientation(){
 
 function addChatLog(){
   let listEl = createElement('li');
+  listEl.addClass("content-social-list")
   let usernameSpanEl = createSpan();
   let textSpanEl = createSpan();
 
