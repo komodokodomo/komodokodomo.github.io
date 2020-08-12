@@ -260,9 +260,9 @@ function addChatLog(){
   let textSpanEl = createSpan();
 
   usernameSpanEl.addClass('username');
-  usernameSpanEl.html(DOM_EL.contentSocialChatbox.value());
+  usernameSpanEl.html("you");
   textSpanEl.addClass('text');
-  textSpanEl.html(DOM_EL.contentSocial.value());
+  textSpanEl.html(DOM_EL.contentSocialChatbox.value());
 
   listEl.child(usernameSpanEl);
   listEl.child(textSpanEl);
