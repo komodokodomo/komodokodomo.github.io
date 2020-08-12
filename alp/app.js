@@ -750,10 +750,10 @@ async function init() {
   setupModel();
   APP_STATE.data = await loadData();
 
-  // if(MISC.hardcoded){
-  //   let social = {lens: "other-opinions", lens_display_name: "Other opinions", lens_emoji: "💬" };
-  //   APP_STATE.data.push(social);
-  // }
+  if(MISC.hardcoded){
+    let social = {lens: "other-opinions", lens_display_name: "Other opinions", lens_emoji: "💬" };
+    APP_STATE.data.push(social);
+  }
 
   DOM_EL.carouselCellTitle[0].html(APP_STATE.data[0].lens_display_name);
   DOM_EL.carouselCellTitle[1].html(APP_STATE.data[1].lens_display_name);
@@ -801,10 +801,10 @@ async function init() {
       DOM_EL.evidenceListItem[i].addClass("noimage");
       DOM_EL.evidenceListItem[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
-      // DOM_EL.evidenceListItemNudge[i] = createDiv(),
-      // DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
-      // DOM_EL.evidenceListItemNudge[i].addClass("h");
-      // DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItem[i]);
+      DOM_EL.evidenceListItemNudge[i] = createDiv(),
+      DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
+      DOM_EL.evidenceListItemNudge[i].addClass("h");
+      DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItem[i]);
 
       DOM_EL.evidenceListItemTitle[i] = createP("???");
       DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
@@ -831,10 +831,10 @@ async function init() {
             DOM_EL.contentContainer.removeClass("fade");
           },0);
 
-          // if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
-          //   DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
-          //   DOM_EL.evidenceListItemNudge[i].removeClass("h");
-          // }
+          if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
+            DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
+            DOM_EL.evidenceListItemNudge[i].removeClass("h");
+          }
         }
       });
     }

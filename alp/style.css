@@ -296,12 +296,13 @@ display: flex;
 }
 
 .evidence-list-item-nudge{
-  position: relative;
+  position: absolute;
   right: 0;
   top: 0;
   border-radius: 50%;
   width: 10px;
   height: 10px;
+  transform: translate(50%,-50%);
   background: blue;
 }
 
