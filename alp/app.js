@@ -825,7 +825,7 @@ async function init() {
           //   changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), DOM_EL.evidenceListItemTitle[i].html());
           // }
           let d = document.getElementById("content-image");
-          d.src = DOM_EL.evidenceListItem[i].elt.childNodes[0].src;
+          d.src = DOM_EL.evidenceListItem[i].elt.childNodes[1].src;
           DOM_EL.contentContainer.style("display","flex");
           setTimeout(function(){
             DOM_EL.contentContainer.removeClass("fade");
