@@ -805,7 +805,7 @@ async function init() {
       DOM_EL.evidenceListItemNudge[i] = createDiv(),
       DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
       DOM_EL.evidenceListItemNudge[i].addClass("h");
-      DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItem[i]);
+      DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
       DOM_EL.evidenceListItemTitle[i] = createP("???");
       DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
