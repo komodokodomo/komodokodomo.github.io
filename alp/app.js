@@ -305,6 +305,10 @@ function contentCloseEvent(){
   DOM_EL.contentContainer.addClass("fade");
   setTimeout(function(){
     DOM_EL.contentContainer.hide();
+    if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
+      APP_STATE.completed = true;
+      DOM_EL.completionContainer.show();
+    }
   },300);
 }
 
@@ -359,10 +363,6 @@ function captureEvidenceEvent(){
         DOM_EL.contentContainer.removeClass("fade");
       },0);
 
-      if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
-        APP_STATE.completed = true;
-        DOM_EL.completionContainer.show();
-      }
     }
     
 
