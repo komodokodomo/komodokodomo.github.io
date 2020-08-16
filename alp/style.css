@@ -695,7 +695,7 @@ display: flex;
   font-size: calc(12px + (30 - 8) * ((100vw - 300px) / (1300 - 300)));
   overflow-y: scroll;
   max-width: 100%;
-  max-height: calc(100% - (var(--vmin) * 3));
+  max-height: calc(100% - (var(--vmin) * 4));
 }
 
 #content-social{
