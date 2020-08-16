@@ -710,6 +710,21 @@ display: flex;
   list-style-type: none;
 }
 
+#content-instruction-container{
+  display: block;
+  bottom: 0;
+  opacity: 0.6;
+  font-size: 8px;
+  font-style: italic;
+  position: absolute;
+  width: calc(100% - 20px);
+  border-top-style: ridge;
+  /* background: lightyellow; */
+  /* border-bottom-left-radius: inherit; */
+  /* border-bottom-right-radius: inherit; */
+  padding: 10px;
+}
+
 
 #content-lenses-container{
   width: 90%;
