@@ -355,7 +355,9 @@ function captureEvidenceEvent(){
       let d = document.getElementById("content-image");
       d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter].elt.childNodes[0].src;
       DOM_EL.contentContainer.style("display","flex");
-      DOM_EL.contentContainer.removeClass("fade");
+      setTimeout(function(){
+        DOM_EL.contentContainer.removeClass("fade");
+      },0);
 
       if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
         APP_STATE.completed = true;
