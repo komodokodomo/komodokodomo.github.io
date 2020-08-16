@@ -347,6 +347,16 @@ function captureEvidenceEvent(){
 
       DOM_EL.evidenceHeader.html(APP_STATE.evidenceCounter.toString()+ "/" + APP_STATE.numClasses + " Evidence Collected");
 
+      
+      DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[APP_STATE.evidenceCounter].attribute("index"));
+      DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html());
+      let s = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html().replace( / /g , "_" );
+      changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), s);
+      let d = document.getElementById("content-image");
+      d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter].elt.childNodes[0].src;
+      DOM_EL.contentContainer.style("display","flex");
+      DOM_EL.contentContainer.removeClass("fade");
+
       if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
         APP_STATE.completed = true;
         DOM_EL.completionContainer.show();
@@ -793,7 +803,7 @@ async function init() {
     for(let i = 0; i < APP_STATE.numClasses; i++){
       DOM_EL.evidenceListItemContainer[i] = createDiv();
       DOM_EL.evidenceListItemContainer[i].attribute("index", (i+1).toString());
-      DOM_EL.evidenceListItemContainer[i].attribute("explored", "false");
+      // DOM_EL.evidenceListItemContainer[i].attribute("explored", "false");
       DOM_EL.evidenceListItemContainer[i].class("evidence-list-item-container");
       DOM_EL.evidenceListItemContainer[i].parent( DOM_EL.evidenceList);
 
@@ -802,10 +812,10 @@ async function init() {
       DOM_EL.evidenceListItem[i].addClass("noimage");
       DOM_EL.evidenceListItem[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
-      DOM_EL.evidenceListItemNudge[i] = createDiv(),
-      DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
-      DOM_EL.evidenceListItemNudge[i].addClass("h");
-      DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
+      // DOM_EL.evidenceListItemNudge[i] = createDiv(),
+      // DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
+      // DOM_EL.evidenceListItemNudge[i].addClass("h");
+      // DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
       DOM_EL.evidenceListItemTitle[i] = createP("???");
       DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
@@ -832,10 +842,10 @@ async function init() {
             DOM_EL.contentContainer.removeClass("fade");
           },0);
 
-          if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
-            DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
-            DOM_EL.evidenceListItemNudge[i].removeClass("h");
-          }
+          // if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
+          //   DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
+          //   DOM_EL.evidenceListItemNudge[i].removeClass("h");
+          // }
         }
       });
     }
@@ -847,6 +857,7 @@ async function init() {
     model.predict(zeros);
   
 }
+
 
 const loadData = async function() {
   return fetch(URLS.lens)
