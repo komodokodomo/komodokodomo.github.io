@@ -713,15 +713,15 @@ display: flex;
 #content-instruction-container{
   display: block;
   bottom: 0;
-  opacity: 0.6;
   font-size: var(--vmin);
   font-style: italic;
   position: absolute;
   width: calc(100% - 20px);
   border-top-style: ridge;
   background: #f2f2f2;
-  /* border-bottom-left-radius: inherit; */
-  /* border-bottom-right-radius: inherit; */
+  color: gray;
+  border-bottom-left-radius: inherit; 
+  border-bottom-right-radius: inherit; 
   padding: var(--vmin);
 }
 
