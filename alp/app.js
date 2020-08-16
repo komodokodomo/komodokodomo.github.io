@@ -350,8 +350,8 @@ function captureEvidenceEvent(){
       
       DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[APP_STATE.evidenceCounter].attribute("index"));
       DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html());
-      let s = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html().replace( / /g , "_" );
-      changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), s);
+      let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html().replace( / /g , "_" );
+      changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), t);
       let d = document.getElementById("content-image");
       d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter].elt.childNodes[0].src;
       DOM_EL.contentContainer.style("display","flex");
