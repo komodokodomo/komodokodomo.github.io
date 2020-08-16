@@ -719,7 +719,7 @@ display: flex;
   position: absolute;
   width: calc(100% - 20px);
   border-top-style: ridge;
-  /* background: lightyellow; */
+  background: #f2f2f2;
   /* border-bottom-left-radius: inherit; */
   /* border-bottom-right-radius: inherit; */
   padding: var(--vmin);
