@@ -311,8 +311,11 @@ display: flex;
   border-radius: 50%;
   width: 10px;
   height: 10px;
+  color: gold;
+  font-size: 10px;
+  font-weight: bold;
   transform: translate(50%,-50%);
-  background: blue;
+  /* background: blue; */
 }
 
 .evidence-list-item-nudge.h{

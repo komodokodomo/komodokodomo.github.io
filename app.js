@@ -805,7 +805,7 @@ async function init() {
     for(let i = 0; i < APP_STATE.numClasses; i++){
       DOM_EL.evidenceListItemContainer[i] = createDiv();
       DOM_EL.evidenceListItemContainer[i].attribute("index", (i+1).toString());
-      // DOM_EL.evidenceListItemContainer[i].attribute("explored", "false");
+      DOM_EL.evidenceListItemContainer[i].attribute("explored", "false");
       DOM_EL.evidenceListItemContainer[i].class("evidence-list-item-container");
       DOM_EL.evidenceListItemContainer[i].parent( DOM_EL.evidenceList);
 
@@ -814,10 +814,10 @@ async function init() {
       DOM_EL.evidenceListItem[i].addClass("noimage");
       DOM_EL.evidenceListItem[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
-      // DOM_EL.evidenceListItemNudge[i] = createDiv(),
-      // DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
-      // DOM_EL.evidenceListItemNudge[i].addClass("h");
-      // DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
+      DOM_EL.evidenceListItemNudge[i] = createDiv("?"),
+      DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
+      DOM_EL.evidenceListItemNudge[i].addClass("h");
+      DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
       DOM_EL.evidenceListItemTitle[i] = createP("???");
       DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
@@ -844,10 +844,10 @@ async function init() {
             DOM_EL.contentContainer.removeClass("fade");
           },0);
 
-          // if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
-          //   DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
-          //   DOM_EL.evidenceListItemNudge[i].removeClass("h");
-          // }
+          if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
+            DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
+            DOM_EL.evidenceListItemNudge[i].removeClass("h");
+          }
         }
       });
     }
