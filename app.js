@@ -665,24 +665,23 @@ function completeEvent(){
 function setup(){
 
   setInterval(function(){
-    let x = false;
     MISC.thinking += ".";
     if(MISC.thinking == "...."){
       MISC.thinking = ".";
     }
     if(millis() - APP_STATE.promptTimer> 15000){
       APP_STATE.promptTimer = millis();
+      APP_STATE.prompt = false;
       if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
         for(let i = 0; i < APP_STATE.evidenceCounter; i++){
-
+          if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){APP_STATE.prompt = true;}
         }
-
-        APP_STATE.prompt = true;
-        DOM_EL.evidenceBox.addClass("highlight");
-        setTimeout(function(){
-          DOM_EL.evidenceBox.removeClass("highlight");
-          APP_STATE.prompt = false;
-        },300);
+        if(APP_STATE.prompt == true){
+          DOM_EL.evidenceBox.addClass("highlight");
+          setTimeout(function(){
+            DOM_EL.evidenceBox.removeClass("highlight");
+          },300);
+        }
       }
     }
   },1000);
