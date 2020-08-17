@@ -339,7 +339,7 @@ function captureEvidenceEvent(){
       // }
       DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].elt.scrollIntoView({behavior: 'smooth'});
       DOM_EL.evidenceListItem[APP_STATE.evidenceCounter].removeClass("noimage");
-      DOM_EL.evidenceSubheader.html("Click on the captured evidence to see what can be done with it!");
+      DOM_EL.evidenceSubheader.html("Click on the captured evidence and examine it further for more clues!");
       
       APP_STATE.evidencesFound[APP_STATE.evidenceCounter] = APP_STATE.evidenceDetected;
       DOM_EL.evidenceListItemNudge[APP_STATE.evidenceCounter].removeClass("h");
@@ -669,7 +669,7 @@ function setup(){
     if(MISC.thinking == "...."){
       MISC.thinking = ".";
     }
-    if(millis() - APP_STATE.promptTimer> 10000){
+    if(millis() - APP_STATE.promptTimer> 30000){
       APP_STATE.promptTimer = millis();
       if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
         APP_STATE.prompt = true;
@@ -904,10 +904,10 @@ const loadData = async function() {
   APP_STATE.predictedClass = prediction.label;
   APP_STATE.probability = parseFloat(prediction.prob.toFixed(2));
 
-  if(APP_STATE.prompt){
-    DOM_EL.personaText.html( "I think we should look at the evidences collected for hints" );
-  }
-  else{
+  // if(APP_STATE.prompt){
+  //   DOM_EL.personaText.html( "I think we should look at the evidences collected for hints" );
+  // }
+  // else{
     if(MISC.hardcoded){
       if(MISC.whitelist.includes(APP_STATE.predictedClass)){
         if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
@@ -995,7 +995,7 @@ const loadData = async function() {
         DOM_EL.personaButton.html("📸 capture evidence");
       }
     }
-  }
+  // }
 
 
   setTimeout(function(){
