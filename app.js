@@ -81,6 +81,8 @@ var APP_STATE = {
   predictedClass: null,
   probability: null,
 
+  promptTimer: 0,
+
   DOMRegistered: false,
   switchFlag: false,
   mobileDevice: false,
@@ -212,8 +214,6 @@ var featureExtractor,classifier;
 
 window.addEventListener('DOMContentLoaded', () => {
   APP_STATE.mobileDevice = isMobile();
-  // tf.setBackend('wasm').then(() => console.log("backend set"));
-  // console.log(ml5.tf.getBackend());
 });
 
 document.addEventListener("visibilitychange", () => {
@@ -322,6 +322,7 @@ function captureEvidenceEvent(){
       }
     }
     else{
+      APP_STATE.promptTimer = millis();
       let dataUrl = DOM_EL.canvas.elt.toDataURL(0.5);
       let i = createImg(dataUrl);
       i.class("evidence-list-item-image");
@@ -662,6 +663,13 @@ function setup(){
     MISC.thinking += ".";
     if(MISC.thinking == "...."){
       MISC.thinking = ".";
+    }
+    if(millis() - APP_STATE.promptTimer> 30000){
+      APP_STATE.promptTimer = millis();
+      if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
+        prompt();
+        console.log("prompt user to look at evidence");
+      }
     }
   },1000);
   registerDOM();
