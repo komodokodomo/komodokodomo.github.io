@@ -666,14 +666,14 @@ function setup(){
     if(MISC.thinking == "...."){
       MISC.thinking = ".";
     }
-    if(millis() - APP_STATE.promptTimer> 30000){
+    if(millis() - APP_STATE.promptTimer> 10000){
       APP_STATE.promptTimer = millis();
       if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
         // prompt();
         console.log("prompt user to look at evidence");
-        DOM_EL.evidenceContainer.addClass("highlight");
+        DOM_EL.evidenceBox.addClass("highlight");
         setTimeout(function(){
-          DOM_EL.evidenceContainer.removeClass("highlight");
+          DOM_EL.evidenceBox.removeClass("highlight");
         },200);
       }
     }
