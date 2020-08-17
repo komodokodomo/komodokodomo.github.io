@@ -674,7 +674,7 @@ function setup(){
         DOM_EL.evidenceBox.addClass("highlight");
         setTimeout(function(){
           DOM_EL.evidenceBox.removeClass("highlight");
-        },20);
+        },300);
       }
     }
   },1000);
