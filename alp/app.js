@@ -220,7 +220,7 @@ var featureExtractor,classifier;
 
 function preload() {
   soundFormats('mp3', 'ogg');
-  SOUNDS.shutter = loadSound('sound/shutter');
+  SOUNDS.shutter = loadSound('../sound/shutter');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
