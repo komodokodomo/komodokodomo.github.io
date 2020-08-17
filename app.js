@@ -342,6 +342,8 @@ function captureEvidenceEvent(){
       DOM_EL.evidenceSubheader.html("Click on the captured evidence to see what can be done with it!");
       
       APP_STATE.evidencesFound[APP_STATE.evidenceCounter] = APP_STATE.evidenceDetected;
+      DOM_EL.evidenceListItemNudge[APP_STATE.evidenceCounter].removeClass("h");
+
       APP_STATE.evidenceCounter++;
 
       DOM_EL.evidenceHeader.html(APP_STATE.evidenceCounter.toString()+ "/" + APP_STATE.numClasses + " Evidence Collected");
@@ -846,7 +848,7 @@ async function init() {
 
           if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
             DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
-            DOM_EL.evidenceListItemNudge[i].removeClass("h");
+            DOM_EL.evidenceListItemNudge[i].addClass("h");
           }
         }
       });

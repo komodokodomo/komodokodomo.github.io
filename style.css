@@ -304,20 +304,19 @@ display: flex;
   position: relative;
 }
 
-.evidence-list-item-nudge{
+.evidence-list-item-nudge {
   position: absolute;
   right: 0;
   top: 0;
   border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  color: gold;
+  width: 15px;
+  height: 15px;
+  color: gray;
   font-size: 10px;
+  text-align: center;
   font-weight: bold;
-  transform: translate(50%,-50%);
-  /* background: blue; */
+  background: gold;
 }
-
 .evidence-list-item-nudge.h{
   opacity: 0;  
 }
