@@ -111,10 +111,6 @@ var URLS = {
   lens : "https://cotf.online/api/public/lenses/ICN612526932717731840",
   dict : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
   content: "https://cotf.online/api/public/contents/ICN612526932717731840",
-  // model : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
-  // lens : "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/lenses/ICN612526932717731840",
-  // dict : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
-  // content: "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/contents/ICN612526932717731840",
 }
 
 let model;
@@ -346,18 +342,6 @@ function captureEvidenceEvent(){
       APP_STATE.evidenceCounter++;
 
       DOM_EL.evidenceHeader.html(APP_STATE.evidenceCounter.toString()+ "/" + APP_STATE.numClasses + " Evidence Collected");
-
-      
-      DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[APP_STATE.evidenceCounter-1].attribute("index"));
-      DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html());
-      let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html().replace( / /g , "_" );
-      changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), t);
-      let d = document.getElementById("content-image");
-      d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter-1].elt.childNodes[0].src;
-      DOM_EL.contentContainer.style("display","flex");
-      setTimeout(function(){
-        DOM_EL.contentContainer.removeClass("fade");
-      },0);
 
       if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
         APP_STATE.completed = true;
