@@ -277,13 +277,14 @@ display: flex;
   max-width: calc(60vh * 0.9);
   max-width: calc(var(--vh, 1vh) * 60 * 0.9);
   margin: auto;
-  transition: linear 200ms;
+  transition: linear 300ms;
 }
 
 #evidence-box.highlight {
   border-width: calc(1.5px + 4 * ((100vw - 300px) / (1600 - 300)));
+  background: lightgoldenrodyellow;
   border-color: blue;
-  transition: linear 200ms;
+  /* transition: linear 200ms; */
 }
 
 #evidence-header,#evidence-subheader{
