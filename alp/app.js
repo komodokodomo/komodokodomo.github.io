@@ -308,6 +308,7 @@ function contentCloseEvent(){
     if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
       APP_STATE.completed = true;
       DOM_EL.completionContainer.show();
+      DOM_EL.evidenceHeader.html("All Evidence Collected!");
     }
   },300);
 }
