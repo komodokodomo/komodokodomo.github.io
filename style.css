@@ -281,12 +281,11 @@ display: flex;
 }
 
 #evidence-box.highlight {
-  border-width: calc(2.25px + 6 * ((100vw - 300px) / (1600 - 300)));
-  background: lightgoldenrodyellow;
-  /* border-color: blue; */
-  transition: linear 300ms;
-  transform: translate(0,-10%);
-}
+    background: #ffe573;
+    box-shadow:grey 3px 3px 3px;
+    transition: ease-out 300ms;
+    transform: translate(0,-10%);
+  }
 
 #evidence-header,#evidence-subheader{
   padding: 0 1rem 0 1rem;
