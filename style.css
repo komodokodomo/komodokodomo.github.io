@@ -281,9 +281,9 @@ display: flex;
 }
 
 #evidence-box.highlight {
-  border-width: calc(1.5px + 4 * ((100vw - 300px) / (1600 - 300)));
+  border-width: calc(2.25px + 6 * ((100vw - 300px) / (1600 - 300)));
   background: lightgoldenrodyellow;
-  border-color: blue;
+  /* border-color: blue; */
   transition: linear 300ms;
 }
 
