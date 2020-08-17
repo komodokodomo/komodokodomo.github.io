@@ -730,6 +730,7 @@ function switchCamera()
   }
   DOM_EL.capture = createCapture(options);
   DOM_EL.capture.id("video");
+  DOM_EL.capture.style("z-index","-1");
   DOM_EL.capture.parent(DOM_EL.canvasContainer);
   DOM_EL.captureChange.style("z-index","3");
   DOM_EL.captureFlip.style("z-index","3");
