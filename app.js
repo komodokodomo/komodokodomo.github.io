@@ -665,15 +665,19 @@ function completeEvent(){
 function setup(){
 
   setInterval(function(){
+    let x = false;
     MISC.thinking += ".";
     if(MISC.thinking == "...."){
       MISC.thinking = ".";
     }
-    if(millis() - APP_STATE.promptTimer> 30000){
+    if(millis() - APP_STATE.promptTimer> 15000){
       APP_STATE.promptTimer = millis();
       if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
+        for(let i = 0; i < APP_STATE.evidenceCounter; i++){
+
+        }
+
         APP_STATE.prompt = true;
-        console.log("prompt user to look at evidence");
         DOM_EL.evidenceBox.addClass("highlight");
         setTimeout(function(){
           DOM_EL.evidenceBox.removeClass("highlight");
