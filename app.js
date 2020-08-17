@@ -27,6 +27,7 @@ var DOM_EL = {
       personaText: null,
       personaButton: null,
     evidenceContainer: null,
+      evidenceBox: null,
       evidenceHeader: null,
       evidenceSubheader: null,
       evidenceListContainer: null,
@@ -413,6 +414,7 @@ function registerDOM(){
         DOM_EL.personaButton = select("#persona-button");
         DOM_EL.personaButton.mousePressed(captureEvidenceEvent);
     DOM_EL.evidenceContainer = select("#evidence-container");
+      DOM_EL.evidenceBox = select("#evidence-box");
       DOM_EL.evidenceHeader = select("#evidence-header");
       DOM_EL.evidenceSubheader = select("#evidence-subheader");
       DOM_EL.evidenceListContainer = select("#evidence-list-container");
