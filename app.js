@@ -499,7 +499,7 @@ function registerDOM(){
   DOM_EL.carouselCellTitle[2].addClass("right");
 
 
-  let carouselSwipe = new Hammer(DOM_EL.carouselContainer.elt);
+  let carouselSwipe = new Hammer(DOM_EL.contentContainer.elt);
   carouselSwipe.on('swiperight swipeleft', function(ev) {
     APP_STATE.carouselFlag = !APP_STATE.carouselFlag;
     if(ev.type == 'swipeleft'){
