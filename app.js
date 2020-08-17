@@ -83,6 +83,7 @@ var APP_STATE = {
   probability: null,
 
   promptTimer: 0,
+  prompt: false,
 
   DOMRegistered: false,
   switchFlag: false,
@@ -900,8 +901,60 @@ const loadData = async function() {
   APP_STATE.predictedClass = prediction.label;
   APP_STATE.probability = parseFloat(prediction.prob.toFixed(2));
 
-  if(MISC.hardcoded){
-    if(MISC.whitelist.includes(APP_STATE.predictedClass)){
+  if(APP_STATE.prompt){
+    DOM_EL.personaText.html( "I think we should look at the evidences collected for hints" );
+  }
+  else{
+    if(MISC.hardcoded){
+      if(MISC.whitelist.includes(APP_STATE.predictedClass)){
+        if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
+          let s = "Hmmm" + MISC.thinking + "is it a " + APP_STATE.predictedClass +" ?";
+          DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.predictedClass +"?");
+          DOM_EL.personaButton.addClass("inactive");
+          DOM_EL.personaButton.html("📸 capture evidence");
+        }
+        else if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound){
+        }
+        else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound == false){
+          APP_STATE.evidenceFound = true;
+          DOM_EL.personaText.html("I see a " + APP_STATE.predictedClass +".");
+          APP_STATE.evidenceDetected = APP_STATE.predictedClass;
+          DOM_EL.personaButton.removeClass("inactive");
+          if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
+            DOM_EL.personaButton.html("📸 recapture evidence");
+          }
+        }
+        else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound){
+          if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
+            DOM_EL.personaButton.html("📸 recapture evidence");
+          }
+        }
+        else if(APP_STATE.probability < 0.5){
+          if(APP_STATE.evidenceFound){
+            APP_STATE.evidenceFound = false;
+          }
+          DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+          DOM_EL.personaButton.addClass("inactive");
+          DOM_EL.personaButton.html("📸 capture evidence");
+        }
+      }
+      else{
+        if(APP_STATE.evidenceFound){
+          APP_STATE.evidenceFound = false;
+        }
+        if(APP_STATE.probability > 0.5){
+          DOM_EL.personaText.html("I think we should look elsewhere" + MISC.thinking);
+          DOM_EL.personaButton.addClass("inactive");
+          DOM_EL.personaButton.html("📸 capture evidence");
+        }
+        else{
+          DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+          DOM_EL.personaButton.addClass("inactive");
+          DOM_EL.personaButton.html("📸 capture evidence");
+        }
+      }
+    }
+    else{
       if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
         let s = "Hmmm" + MISC.thinking + "is it a " + APP_STATE.predictedClass +" ?";
         DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.predictedClass +"?");
@@ -918,11 +971,17 @@ const loadData = async function() {
         if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
           DOM_EL.personaButton.html("📸 recapture evidence");
         }
+        // else{
+        //   DOM_EL.personaButton.html("📸 capture evidence");
+        // }
       }
       else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound){
         if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
           DOM_EL.personaButton.html("📸 recapture evidence");
         }
+        // else{
+        //   DOM_EL.personaButton.html("📸 capture evidence");
+        // }
       }
       else if(APP_STATE.probability < 0.5){
         if(APP_STATE.evidenceFound){
@@ -933,60 +992,8 @@ const loadData = async function() {
         DOM_EL.personaButton.html("📸 capture evidence");
       }
     }
-    else{
-      if(APP_STATE.evidenceFound){
-        APP_STATE.evidenceFound = false;
-      }
-      if(APP_STATE.probability > 0.5){
-        DOM_EL.personaText.html("I think we should look elsewhere" + MISC.thinking);
-        DOM_EL.personaButton.addClass("inactive");
-        DOM_EL.personaButton.html("📸 capture evidence");
-      }
-      else{
-        DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
-        DOM_EL.personaButton.addClass("inactive");
-        DOM_EL.personaButton.html("📸 capture evidence");
-      }
-    }
   }
-  else{
-    if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
-      let s = "Hmmm" + MISC.thinking + "is it a " + APP_STATE.predictedClass +" ?";
-      DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.predictedClass +"?");
-      DOM_EL.personaButton.addClass("inactive");
-      DOM_EL.personaButton.html("📸 capture evidence");
-    }
-    else if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound){
-    }
-    else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound == false){
-      APP_STATE.evidenceFound = true;
-      DOM_EL.personaText.html("I see a " + APP_STATE.predictedClass +".");
-      APP_STATE.evidenceDetected = APP_STATE.predictedClass;
-      DOM_EL.personaButton.removeClass("inactive");
-      if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
-        DOM_EL.personaButton.html("📸 recapture evidence");
-      }
-      // else{
-      //   DOM_EL.personaButton.html("📸 capture evidence");
-      // }
-    }
-    else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound){
-      if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
-        DOM_EL.personaButton.html("📸 recapture evidence");
-      }
-      // else{
-      //   DOM_EL.personaButton.html("📸 capture evidence");
-      // }
-    }
-    else if(APP_STATE.probability < 0.5){
-      if(APP_STATE.evidenceFound){
-        APP_STATE.evidenceFound = false;
-      }
-      DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
-      DOM_EL.personaButton.addClass("inactive");
-      DOM_EL.personaButton.html("📸 capture evidence");
-    }
-  }
+
 
   setTimeout(function(){
     predictAsync();
