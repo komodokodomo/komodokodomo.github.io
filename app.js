@@ -117,6 +117,10 @@ var URLS = {
   content: "https://cotf.online/api/public/contents/ICN612526932717731840",
 }
 
+var SOUNDS = {
+  shutter: null
+}
+
 let model;
 let dictionary;
 
@@ -214,6 +218,11 @@ var featureExtractor,classifier;
 //   setTimeout(function(){classifier.classify( DOM_EL.canvas.elt, gotResults);},20);
 // }
 
+function preload() {
+  soundFormats('mp3', 'ogg');
+  SOUNDS.shutter = loadSound('sound/shutter');
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   APP_STATE.mobileDevice = isMobile();
 });
@@ -310,6 +319,7 @@ function captureEvidenceEvent(){
   if(DOM_EL.personaButton.class() !== "inactive"){
 
     DOM_EL.captureOverlay.addClass("snap");
+    SOUNDS.shutter.play();
     setTimeout(function(){
       DOM_EL.captureOverlay.removeClass("snap");
     },50);
