@@ -668,10 +668,9 @@ function setup(){
       MISC.thinking = ".";
     }
     if(millis() - APP_STATE.promptTimer> 10000){
-      APP_STATE.prompt = true;
       APP_STATE.promptTimer = millis();
       if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
-        // prompt();
+        APP_STATE.prompt = true;
         console.log("prompt user to look at evidence");
         DOM_EL.evidenceBox.addClass("highlight");
         setTimeout(function(){
