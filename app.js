@@ -667,7 +667,7 @@ function setup(){
     if(millis() - APP_STATE.promptTimer> 30000){
       APP_STATE.promptTimer = millis();
       if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
-        prompt();
+        // prompt();
         console.log("prompt user to look at evidence");
       }
     }
