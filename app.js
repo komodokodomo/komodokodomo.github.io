@@ -668,6 +668,7 @@ function setup(){
       MISC.thinking = ".";
     }
     if(millis() - APP_STATE.promptTimer> 10000){
+      APP_STATE.prompt = true;
       APP_STATE.promptTimer = millis();
       if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
         // prompt();
@@ -675,6 +676,7 @@ function setup(){
         DOM_EL.evidenceBox.addClass("highlight");
         setTimeout(function(){
           DOM_EL.evidenceBox.removeClass("highlight");
+          APP_STATE.prompt = false;
         },300);
       }
     }
