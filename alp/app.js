@@ -119,7 +119,8 @@ var URLS = {
 
 var SOUNDS = {
   shutter: null,
-  evidence: null
+  evidence: null,
+  complete: null
 }
 
 let model;
@@ -223,6 +224,7 @@ function preload() {
   soundFormats('mp3', 'ogg');
   SOUNDS.shutter = loadSound('../sound/shutter');
   SOUNDS.evidence = loadSound('../sound/evidence');
+  SOUNDS.complete = loadSound('../sound/complete');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -318,6 +320,7 @@ function contentCloseEvent(){
     DOM_EL.contentContainer.hide();
     if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
       APP_STATE.completed = true;
+      SOUNDS.complete.play();
       DOM_EL.completionContainer.show();
       DOM_EL.evidenceHeader.html("All Evidence Collected!");
     }
