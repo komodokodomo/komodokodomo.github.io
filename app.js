@@ -118,7 +118,8 @@ var URLS = {
 }
 
 var SOUNDS = {
-  shutter: null
+  shutter: null,
+  evidence: null
 }
 
 let model;
@@ -221,6 +222,7 @@ var featureExtractor,classifier;
 function preload() {
   soundFormats('mp3', 'ogg');
   SOUNDS.shutter = loadSound('sound/shutter');
+  SOUNDS.evidence = loadSound('sound/evidence');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -844,6 +846,7 @@ async function init() {
           console.log("nothing captured yet");
         }
         else{
+          SOUNDS.evidence.play();
           DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[i].attribute("index"));
           DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[i].html());
           // if(MISC.hardcoded){
