@@ -669,6 +669,10 @@ function setup(){
       if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
         // prompt();
         console.log("prompt user to look at evidence");
+        DOM_EL.evidenceContainer.addClass("highlight");
+        setTimeout(function(){
+          DOM_EL.evidenceContainer.removeClass("highlight");
+        },200);
       }
     }
   },1000);
