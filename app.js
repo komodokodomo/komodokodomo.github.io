@@ -791,6 +791,7 @@ async function init() {
     let backgroundSoundDuration = SOUNDS.background.duration() * 1000;
     SOUNDS.background.play();
     let skip = Date.now() % backgroundSoundDuration;
+    console.log(skip);
     SOUNDS.background.jump(skip);
   }
 
