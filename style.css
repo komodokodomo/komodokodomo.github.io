@@ -723,6 +723,12 @@ display: flex;
   border-bottom-left-radius: inherit; 
   border-bottom-right-radius: inherit; 
   padding: var(--vmin);
+  transition: ease-in 1000ms;
+}
+
+#content-instruction-container.fade{
+  color: #f2f2f2;
+  transition: ease-in 1000ms;
 }
 
 

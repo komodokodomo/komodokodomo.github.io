@@ -51,7 +51,8 @@ var DOM_EL = {
         contentSocial: null,
         contentSocialChatbox: null,
         contentSocialButton: null,
-   
+      contentInstruction: null,
+
     contentLensesContainer: null,
       carouselContainer: null,
         carouselCell: [],
@@ -459,6 +460,7 @@ function registerDOM(){
         DOM_EL.contentSocialButton = select("#content-social-button");
         DOM_EL.contentSocialButton.mousePressed(addChatLog);
       DOM_EL.contentSocialContainer.hide();
+      DOM_EL.contentInstruction = select("#content-instruction-container");
     DOM_EL.contentLensesContainer = select("#content-lenses-container");
       DOM_EL.carouselContainer = select("#lens-carousel");
   DOM_EL.contentContainer.hide();
@@ -701,6 +703,7 @@ function setup(){
         }
       }
     }
+    DOM_EL.contentInstruction.toggleClass("flip");
   },1000);
   registerDOM();
   APP_STATE.DOMRegistered = true;

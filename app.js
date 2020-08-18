@@ -50,6 +50,7 @@ var DOM_EL = {
         contentSocial: null,
         contentSocialChatbox: null,
         contentSocialButton: null,
+      contentInstruction: null,
    
     contentLensesContainer: null,
       carouselContainer: null,
@@ -111,10 +112,6 @@ var URLS = {
   lens : "https://cotf.online/api/public/lenses/ICN612526932717731840",
   dict : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
   content: "https://cotf.online/api/public/contents/ICN612526932717731840",
-  // model : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
-  // lens : "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/lenses/ICN612526932717731840",
-  // dict : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
-  // content: "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/contents/ICN612526932717731840",
 }
 
 var SOUNDS = {
@@ -471,6 +468,7 @@ function registerDOM(){
         DOM_EL.contentSocialButton = select("#content-social-button");
         DOM_EL.contentSocialButton.mousePressed(addChatLog);
       DOM_EL.contentSocialContainer.hide();
+      DOM_EL.contentInstruction = select("#content-instruction-container");
     DOM_EL.contentLensesContainer = select("#content-lenses-container");
       DOM_EL.carouselContainer = select("#lens-carousel");
   DOM_EL.contentContainer.hide();
@@ -700,6 +698,7 @@ function setup(){
     if(MISC.thinking == "...."){
       MISC.thinking = ".";
     }
+    DOM_EL.contentInstruction.toggleClass("flip");
   },1000);
   registerDOM();
   APP_STATE.DOMRegistered = true;
