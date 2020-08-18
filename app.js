@@ -120,7 +120,8 @@ var URLS = {
 var SOUNDS = {
   shutter: null,
   evidence: null,
-  complete: null
+  complete: null,
+  background: null
 }
 
 let model;
@@ -225,6 +226,7 @@ function preload() {
   SOUNDS.shutter = loadSound('sound/shutter');
   SOUNDS.evidence = loadSound('sound/evidence');
   SOUNDS.complete = loadSound('sound/complete');
+  SOUNDS.background = loadSound('sound/background');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -689,6 +691,15 @@ function completeEvent(){
 }
 
 function setup(){
+
+  if(SOUNDS.background.isLoaded()){
+    let backgroundSoundDuration = SOUNDS.background.frames() / SOUNDS.background.sampleRate();
+    console.log("duration: " + backgroundSoundDuration);
+    let start = Date.now() % backgroundSoundDuration;
+    console.log(start);
+    SOUNDS.background.play();
+    SOUNDS.background.jump(start,backgroundSoundDuration);
+  }
 
   setInterval(function(){
     MISC.thinking += ".";

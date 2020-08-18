@@ -681,14 +681,6 @@ function completeEvent(){
 
 function setup(){
 
-  if(SOUNDS.background.isLoaded()){
-    let backgroundSoundDuration = SOUNDS.background.frames() / SOUNDS.background.sampleRate();
-    console.log("duration: " + backgroundSoundDuration);
-    let start = Date.now() % backgroundSoundDuration;
-    console.log(start);
-    // SOUNDS.background.jump(start,backgroundSoundDuration);
-  }
-
   setInterval(function(){
     MISC.thinking += ".";
     if(MISC.thinking == "...."){
