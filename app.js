@@ -790,7 +790,8 @@ async function init() {
     SOUNDS.background.setLoop(true);
     let backgroundSoundDuration = SOUNDS.background.duration() * 1000;
     SOUNDS.background.play();
-    SOUNDS.background.jump(Date.now()%backgroundSoundDuration);
+    let skip = Date.now() % backgroundSoundDuration;
+    SOUNDS.background.jump(skip);
   }
 
   // if(MISC.hardcoded){
