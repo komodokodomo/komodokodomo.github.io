@@ -793,7 +793,7 @@ async function init() {
     console.log(start);
     SOUNDS.background.play();
     SOUNDS.background.setLoop(true);
-    SOUNDS.background.jump(start,backgroundSoundDuration);
+    SOUNDS.background.jump(start);
   }
 
   // if(MISC.hardcoded){
