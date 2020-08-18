@@ -227,11 +227,6 @@ function preload() {
   SOUNDS.evidence = loadSound('../sound/evidence');
   SOUNDS.complete = loadSound('../sound/complete');
   SOUNDS.background = loadSound('../sound/background');
-  if(SOUNDS.background.isLoaded()){
-    let backgroundSoundDuration = SOUNDS.background.frames() / SOUNDS.background.sampleRate();
-    console.log("duration: " + backgroundSoundDuration);
-    console.log(Date.now() % backgroundSoundDuration);
-  }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -685,6 +680,12 @@ function completeEvent(){
 }
 
 function setup(){
+
+  if(SOUNDS.background.isLoaded()){
+    let backgroundSoundDuration = SOUNDS.background.frames() / SOUNDS.background.sampleRate();
+    console.log("duration: " + backgroundSoundDuration);
+    console.log(Date.now() % backgroundSoundDuration);
+  }
 
   setInterval(function(){
     MISC.thinking += ".";
