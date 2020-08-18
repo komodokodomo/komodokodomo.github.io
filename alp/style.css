@@ -726,7 +726,7 @@ display: flex;
   font-size: var(--vmin);
   font-style: italic;
   position: absolute;
-  width: calc(100% - 20px);
+  width: calc(100% - 2 * var(--vmin));
   border-top-style: ridge;
   background: #f2f2f2;
   color: gray;
