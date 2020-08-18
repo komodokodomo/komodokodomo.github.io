@@ -792,6 +792,7 @@ async function init() {
     let start = Date.now() % backgroundSoundDuration;
     console.log(start);
     SOUNDS.background.play();
+    SOUNDS.background.setLoop(true);
     SOUNDS.background.jump(start,backgroundSoundDuration);
   }
 
