@@ -226,7 +226,7 @@ function preload() {
   SOUNDS.shutter = loadSound('sound/shutter');
   SOUNDS.evidence = loadSound('sound/evidence');
   SOUNDS.complete = loadSound('sound/complete');
-  SOUNDS.background = loadSound('sound/background');
+  // SOUNDS.background = loadSound('sound/background');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -789,10 +789,10 @@ async function init() {
   if(SOUNDS.background.isLoaded()){
     SOUNDS.background.setLoop(true);
     let backgroundSoundDuration = SOUNDS.background.duration() * 1000;
-    SOUNDS.background.play();
+    // SOUNDS.background.play();
     let skip = (Date.now() % backgroundSoundDuration)/1000;
     console.log(skip);
-    SOUNDS.background.jump(skip);
+    // SOUNDS.background.jump(skip);
   }
 
   // if(MISC.hardcoded){

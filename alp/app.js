@@ -226,7 +226,7 @@ function preload() {
   SOUNDS.shutter = loadSound('../sound/shutter');
   SOUNDS.evidence = loadSound('../sound/evidence');
   SOUNDS.complete = loadSound('../sound/complete');
-  SOUNDS.background = loadSound('../sound/background');
+  // SOUNDS.background = loadSound('../sound/background');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
