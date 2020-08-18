@@ -293,6 +293,7 @@ function onboard(){
   // predictAsync();
 }
 function login(){
+
   if(DOM_EL.loginInput.value() === "123456"){
     DOM_EL.loginContainer.hide();
     // DOM_EL.onboardContainer.style("display", "flex");
@@ -692,14 +693,7 @@ function completeEvent(){
 
 function setup(){
 
-  if(SOUNDS.background.isLoaded()){
-    let backgroundSoundDuration = SOUNDS.background.frames() / SOUNDS.background.sampleRate();
-    console.log("duration: " + backgroundSoundDuration);
-    let start = Date.now() % backgroundSoundDuration;
-    console.log(start);
-    SOUNDS.background.play();
-    SOUNDS.background.jump(start,backgroundSoundDuration);
-  }
+  getAudioContext().suspend();
 
   setInterval(function(){
     MISC.thinking += ".";
@@ -811,6 +805,15 @@ async function init() {
 
     DOM_EL.loadingContainer.style("display","flex");
     model = await tf.loadGraphModel(URLS.model, { 'onProgress': updateModelDownloadProgress});
+    userStartAudio();
+    if(SOUNDS.background.isLoaded()){
+      let backgroundSoundDuration = SOUNDS.background.frames() / SOUNDS.background.sampleRate();
+      console.log("duration: " + backgroundSoundDuration);
+      let start = Date.now() % backgroundSoundDuration;
+      console.log(start);
+      SOUNDS.background.play();
+      SOUNDS.background.jump(start,backgroundSoundDuration);
+    }
     DOM_EL.loadingContainer.hide();
     dictionary = await loadDictionary();
     predictAsync();
