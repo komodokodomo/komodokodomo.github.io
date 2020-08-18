@@ -788,9 +788,9 @@ async function init() {
   userStartAudio();
   if(SOUNDS.background.isLoaded()){
     SOUNDS.background.setLoop(true);
-    let backgroundSoundDuration = SOUNDS.background.duration();
+    let backgroundSoundDuration = SOUNDS.background.duration() * 1000;
     SOUNDS.background.play();
-    SOUNDS.background.jump(Date.now() % (backgroundSoundDuration*1000));
+    SOUNDS.background.jump(Date.now()%backgroundSoundDuration);
   }
 
   // if(MISC.hardcoded){
