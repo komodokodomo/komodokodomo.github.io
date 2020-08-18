@@ -785,6 +785,16 @@ async function init() {
   setupModel();
   APP_STATE.data = await loadData();
 
+  userStartAudio();
+  if(SOUNDS.background.isLoaded()){
+    let backgroundSoundDuration = SOUNDS.background.frames() / SOUNDS.background.sampleRate();
+    console.log("duration: " + backgroundSoundDuration);
+    let start = Date.now() % backgroundSoundDuration;
+    console.log(start);
+    SOUNDS.background.play();
+    SOUNDS.background.jump(start,backgroundSoundDuration);
+  }
+
   // if(MISC.hardcoded){
   //   let social = {lens: "other-opinions", lens_display_name: "Other opinions", lens_emoji: "💬" };
   //   APP_STATE.data.push(social);
@@ -805,15 +815,7 @@ async function init() {
 
     DOM_EL.loadingContainer.style("display","flex");
     model = await tf.loadGraphModel(URLS.model, { 'onProgress': updateModelDownloadProgress});
-    userStartAudio();
-    if(SOUNDS.background.isLoaded()){
-      let backgroundSoundDuration = SOUNDS.background.frames() / SOUNDS.background.sampleRate();
-      console.log("duration: " + backgroundSoundDuration);
-      let start = Date.now() % backgroundSoundDuration;
-      console.log(start);
-      SOUNDS.background.play();
-      SOUNDS.background.jump(start,backgroundSoundDuration);
-    }
+
     DOM_EL.loadingContainer.hide();
     dictionary = await loadDictionary();
     predictAsync();
