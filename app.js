@@ -786,14 +786,14 @@ async function init() {
   APP_STATE.data = await loadData();
 
   userStartAudio();
-  if(SOUNDS.background.isLoaded()){
-    SOUNDS.background.setLoop(true);
-    let backgroundSoundDuration = SOUNDS.background.duration() * 1000;
+  // if(SOUNDS.background.isLoaded()){
+    // SOUNDS.background.setLoop(true);
+    // let backgroundSoundDuration = SOUNDS.background.duration() * 1000;
     // SOUNDS.background.play();
-    let skip = (Date.now() % backgroundSoundDuration)/1000;
-    console.log(skip);
+    // let skip = (Date.now() % backgroundSoundDuration)/1000;
+    // console.log(skip);
     // SOUNDS.background.jump(skip);
-  }
+  // }
 
   // if(MISC.hardcoded){
   //   let social = {lens: "other-opinions", lens_display_name: "Other opinions", lens_emoji: "💬" };
