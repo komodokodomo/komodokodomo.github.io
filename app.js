@@ -698,7 +698,7 @@ function setup(){
     if(MISC.thinking == "...."){
       MISC.thinking = ".";
     }
-    DOM_EL.contentInstruction.toggleClass("flip");
+    DOM_EL.contentInstruction.toggleClass("fade");
   },1000);
   registerDOM();
   APP_STATE.DOMRegistered = true;
