@@ -27,7 +27,6 @@ var DOM_EL = {
       personaText: null,
       personaButton: null,
     evidenceContainer: null,
-      evidenceBox: null,
       evidenceHeader: null,
       evidenceSubheader: null,
       evidenceListContainer: null,
@@ -82,9 +81,6 @@ var APP_STATE = {
   predictedClass: null,
   probability: null,
 
-  promptTimer: 0,
-  prompt: false,
-
   DOMRegistered: false,
   switchFlag: false,
   mobileDevice: false,
@@ -115,6 +111,10 @@ var URLS = {
   lens : "https://cotf.online/api/public/lenses/ICN612526932717731840",
   dict : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
   content: "https://cotf.online/api/public/contents/ICN612526932717731840",
+  // model : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
+  // lens : "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/lenses/ICN612526932717731840",
+  // dict : "https://cors-anywhere.herokuapp.com/https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
+  // content: "https://cors-anywhere.herokuapp.com/https://cotf.online/api/public/contents/ICN612526932717731840",
 }
 
 var SOUNDS = {
@@ -229,6 +229,8 @@ function preload() {
 
 window.addEventListener('DOMContentLoaded', () => {
   APP_STATE.mobileDevice = isMobile();
+  // tf.setBackend('wasm').then(() => console.log("backend set"));
+  // console.log(ml5.tf.getBackend());
 });
 
 document.addEventListener("visibilitychange", () => {
@@ -316,6 +318,12 @@ function contentCloseEvent(){
   DOM_EL.contentContainer.addClass("fade");
   setTimeout(function(){
     DOM_EL.contentContainer.hide();
+    if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
+      APP_STATE.completed = true;
+      SOUNDS.complete.play();
+      DOM_EL.completionContainer.show();
+      DOM_EL.evidenceHeader.html("All Evidence Collected!");
+    }
   },300);
 }
 
@@ -338,7 +346,6 @@ function captureEvidenceEvent(){
       }
     }
     else{
-      APP_STATE.promptTimer = millis();
       let dataUrl = DOM_EL.canvas.elt.toDataURL(0.5);
       let i = createImg(dataUrl);
       i.class("evidence-list-item-image");
@@ -353,20 +360,25 @@ function captureEvidenceEvent(){
       // }
       DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].elt.scrollIntoView({behavior: 'smooth'});
       DOM_EL.evidenceListItem[APP_STATE.evidenceCounter].removeClass("noimage");
-      DOM_EL.evidenceSubheader.html("Click on the captured evidence and examine it further for more clues!");
+      DOM_EL.evidenceSubheader.html("Click on the captured evidence to see what can be done with it!");
       
       APP_STATE.evidencesFound[APP_STATE.evidenceCounter] = APP_STATE.evidenceDetected;
-      DOM_EL.evidenceListItemNudge[APP_STATE.evidenceCounter].removeClass("h");
-
       APP_STATE.evidenceCounter++;
 
       DOM_EL.evidenceHeader.html(APP_STATE.evidenceCounter.toString()+ "/" + APP_STATE.numClasses + " Evidence Collected");
 
-      if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
-        APP_STATE.completed = true;
-        SOUNDS.complete.play();
-        DOM_EL.completionContainer.show();
-      }
+      
+      DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[APP_STATE.evidenceCounter-1].attribute("index"));
+      DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html());
+      let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html().replace( / /g , "_" );
+      changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), t);
+      let d = document.getElementById("content-image");
+      d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter-1].elt.childNodes[0].src;
+      DOM_EL.contentContainer.style("display","flex");
+      setTimeout(function(){
+        DOM_EL.contentContainer.removeClass("fade");
+      },0);
+
     }
     
 
@@ -432,7 +444,6 @@ function registerDOM(){
         DOM_EL.personaButton = select("#persona-button");
         DOM_EL.personaButton.mousePressed(captureEvidenceEvent);
     DOM_EL.evidenceContainer = select("#evidence-container");
-      DOM_EL.evidenceBox = select("#evidence-box");
       DOM_EL.evidenceHeader = select("#evidence-header");
       DOM_EL.evidenceSubheader = select("#evidence-subheader");
       DOM_EL.evidenceListContainer = select("#evidence-list-container");
@@ -684,21 +695,6 @@ function setup(){
     if(MISC.thinking == "...."){
       MISC.thinking = ".";
     }
-    if(millis() - APP_STATE.promptTimer> 15000){
-      APP_STATE.promptTimer = millis();
-      APP_STATE.prompt = false;
-      if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
-        for(let i = 0; i < APP_STATE.evidenceCounter; i++){
-          if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){APP_STATE.prompt = true;}
-        }
-        if(APP_STATE.prompt == true){
-          DOM_EL.evidenceBox.addClass("highlight");
-          setTimeout(function(){
-            DOM_EL.evidenceBox.removeClass("highlight");
-          },300);
-        }
-      }
-    }
   },1000);
   registerDOM();
   APP_STATE.DOMRegistered = true;
@@ -826,7 +822,7 @@ async function init() {
     for(let i = 0; i < APP_STATE.numClasses; i++){
       DOM_EL.evidenceListItemContainer[i] = createDiv();
       DOM_EL.evidenceListItemContainer[i].attribute("index", (i+1).toString());
-      DOM_EL.evidenceListItemContainer[i].attribute("explored", "false");
+      // DOM_EL.evidenceListItemContainer[i].attribute("explored", "false");
       DOM_EL.evidenceListItemContainer[i].class("evidence-list-item-container");
       DOM_EL.evidenceListItemContainer[i].parent( DOM_EL.evidenceList);
 
@@ -835,10 +831,10 @@ async function init() {
       DOM_EL.evidenceListItem[i].addClass("noimage");
       DOM_EL.evidenceListItem[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
-      DOM_EL.evidenceListItemNudge[i] = createDiv("?"),
-      DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
-      DOM_EL.evidenceListItemNudge[i].addClass("h");
-      DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
+      // DOM_EL.evidenceListItemNudge[i] = createDiv(),
+      // DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
+      // DOM_EL.evidenceListItemNudge[i].addClass("h");
+      // DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
       DOM_EL.evidenceListItemTitle[i] = createP("???");
       DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
@@ -866,10 +862,10 @@ async function init() {
             DOM_EL.contentContainer.removeClass("fade");
           },0);
 
-          if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
-            DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
-            DOM_EL.evidenceListItemNudge[i].addClass("h");
-          }
+          // if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){
+          //   DOM_EL.evidenceListItemContainer[i].attribute("explored","true");
+          //   DOM_EL.evidenceListItemNudge[i].removeClass("h");
+          // }
         }
       });
     }
@@ -924,60 +920,8 @@ const loadData = async function() {
   APP_STATE.predictedClass = prediction.label;
   APP_STATE.probability = parseFloat(prediction.prob.toFixed(2));
 
-  // if(APP_STATE.prompt){
-  //   DOM_EL.personaText.html( "I think we should look at the evidences collected for hints" );
-  // }
-  // else{
-    if(MISC.hardcoded){
-      if(MISC.whitelist.includes(APP_STATE.predictedClass)){
-        if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
-          let s = "Hmmm" + MISC.thinking + "is it a " + APP_STATE.predictedClass +" ?";
-          DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.predictedClass +"?");
-          DOM_EL.personaButton.addClass("inactive");
-          DOM_EL.personaButton.html("📸 capture evidence");
-        }
-        else if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound){
-        }
-        else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound == false){
-          APP_STATE.evidenceFound = true;
-          DOM_EL.personaText.html("I see a " + APP_STATE.predictedClass +".");
-          APP_STATE.evidenceDetected = APP_STATE.predictedClass;
-          DOM_EL.personaButton.removeClass("inactive");
-          if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
-            DOM_EL.personaButton.html("📸 recapture evidence");
-          }
-        }
-        else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound){
-          if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
-            DOM_EL.personaButton.html("📸 recapture evidence");
-          }
-        }
-        else if(APP_STATE.probability < 0.5){
-          if(APP_STATE.evidenceFound){
-            APP_STATE.evidenceFound = false;
-          }
-          DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
-          DOM_EL.personaButton.addClass("inactive");
-          DOM_EL.personaButton.html("📸 capture evidence");
-        }
-      }
-      else{
-        if(APP_STATE.evidenceFound){
-          APP_STATE.evidenceFound = false;
-        }
-        if(APP_STATE.probability > 0.5){
-          DOM_EL.personaText.html("I think we should look elsewhere" + MISC.thinking);
-          DOM_EL.personaButton.addClass("inactive");
-          DOM_EL.personaButton.html("📸 capture evidence");
-        }
-        else{
-          DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
-          DOM_EL.personaButton.addClass("inactive");
-          DOM_EL.personaButton.html("📸 capture evidence");
-        }
-      }
-    }
-    else{
+  if(MISC.hardcoded){
+    if(MISC.whitelist.includes(APP_STATE.predictedClass)){
       if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
         let s = "Hmmm" + MISC.thinking + "is it a " + APP_STATE.predictedClass +" ?";
         DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.predictedClass +"?");
@@ -994,17 +938,11 @@ const loadData = async function() {
         if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
           DOM_EL.personaButton.html("📸 recapture evidence");
         }
-        // else{
-        //   DOM_EL.personaButton.html("📸 capture evidence");
-        // }
       }
       else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound){
         if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
           DOM_EL.personaButton.html("📸 recapture evidence");
         }
-        // else{
-        //   DOM_EL.personaButton.html("📸 capture evidence");
-        // }
       }
       else if(APP_STATE.probability < 0.5){
         if(APP_STATE.evidenceFound){
@@ -1015,8 +953,60 @@ const loadData = async function() {
         DOM_EL.personaButton.html("📸 capture evidence");
       }
     }
-  // }
-
+    else{
+      if(APP_STATE.evidenceFound){
+        APP_STATE.evidenceFound = false;
+      }
+      if(APP_STATE.probability > 0.5){
+        DOM_EL.personaText.html("I think we should look elsewhere" + MISC.thinking);
+        DOM_EL.personaButton.addClass("inactive");
+        DOM_EL.personaButton.html("📸 capture evidence");
+      }
+      else{
+        DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+        DOM_EL.personaButton.addClass("inactive");
+        DOM_EL.personaButton.html("📸 capture evidence");
+      }
+    }
+  }
+  else{
+    if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
+      let s = "Hmmm" + MISC.thinking + "is it a " + APP_STATE.predictedClass +" ?";
+      DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.predictedClass +"?");
+      DOM_EL.personaButton.addClass("inactive");
+      DOM_EL.personaButton.html("📸 capture evidence");
+    }
+    else if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound){
+    }
+    else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound == false){
+      APP_STATE.evidenceFound = true;
+      DOM_EL.personaText.html("I see a " + APP_STATE.predictedClass +".");
+      APP_STATE.evidenceDetected = APP_STATE.predictedClass;
+      DOM_EL.personaButton.removeClass("inactive");
+      if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
+        DOM_EL.personaButton.html("📸 recapture evidence");
+      }
+      // else{
+      //   DOM_EL.personaButton.html("📸 capture evidence");
+      // }
+    }
+    else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound){
+      if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
+        DOM_EL.personaButton.html("📸 recapture evidence");
+      }
+      // else{
+      //   DOM_EL.personaButton.html("📸 capture evidence");
+      // }
+    }
+    else if(APP_STATE.probability < 0.5){
+      if(APP_STATE.evidenceFound){
+        APP_STATE.evidenceFound = false;
+      }
+      DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+      DOM_EL.personaButton.addClass("inactive");
+      DOM_EL.personaButton.html("📸 capture evidence");
+    }
+  }
 
   setTimeout(function(){
     predictAsync();

@@ -222,9 +222,9 @@ var featureExtractor,classifier;
 
 function preload() {
   soundFormats('mp3', 'ogg');
-  SOUNDS.shutter = loadSound('../sound/shutter');
-  SOUNDS.evidence = loadSound('../sound/evidence');
-  SOUNDS.complete = loadSound('../sound/complete');
+  SOUNDS.shutter = loadSound('sound/shutter');
+  SOUNDS.evidence = loadSound('sound/evidence');
+  SOUNDS.complete = loadSound('sound/complete');
 }
 
 window.addEventListener('DOMContentLoaded', () => {
