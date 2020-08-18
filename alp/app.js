@@ -686,7 +686,7 @@ function setup(){
     console.log("duration: " + backgroundSoundDuration);
     let start = Date.now() % backgroundSoundDuration;
     console.log(start);
-    SOUNDS.background.jump(start,backgroundSoundDuration);
+    // SOUNDS.background.jump(start,backgroundSoundDuration);
   }
 
   setInterval(function(){
