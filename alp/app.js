@@ -230,6 +230,10 @@ function preload() {
   // SOUNDS.background = loadSound('../sound/background');
 }
 
+document.addEventListener('touchmove', function (event) {
+  if (event.scale !== 1) { event.preventDefault(); }
+}, { passive: false });
+
 window.addEventListener('DOMContentLoaded', () => {
   APP_STATE.mobileDevice = isMobile();
 });
