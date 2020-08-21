@@ -1189,6 +1189,12 @@ const serialiseJSONContent = node => {
       children = node.children.map(child => renderMark(child));
       children.forEach(child => el.appendChild(child));
       return el;
+    case 'image':
+      el = document.createElement("img");
+      el.src = node.url;
+      // children = node.children.map(child => renderMark(child));
+      // children.forEach(child => el.appendChild(child));
+      return el;  
     default:
       el = document.createElement("div");
       children = node.children.map(child => renderMark(child));
