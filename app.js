@@ -524,6 +524,22 @@ function registerDOM(){
       APP_STATE.swipeCounter++;
       APP_STATE.lensCounter++;
 
+      if(MISC.hardcoded){
+        let a = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
+        let b = DOM_EL.contentClass.html().replace( / /g , "_" );
+        let stuff = APP_STATE.data[a][b];
+        if (stuff === undefined) {
+          APP_STATE.swipeCounter++;
+          APP_STATE.lensCounter++;
+        }
+  
+        stuff = APP_STATE.data[overflow(APP_STATE.lensCounter, APP_STATE.numLens)][b];
+        if (stuff === undefined) {
+          APP_STATE.swipeCounter++;
+          APP_STATE.lensCounter++;
+        }
+      }
+
       let prevL = overflow( APP_STATE.swipeCounter - 1, 3 );
       let prevC = overflow( APP_STATE.swipeCounter, 3 );
       let prevR = overflow( APP_STATE.swipeCounter + 1, 3 );
@@ -602,6 +618,22 @@ function registerDOM(){
     else if (ev.type == 'swiperight'){
       APP_STATE.swipeCounter--;
       APP_STATE.lensCounter--;
+
+      if(MISC.hardcoded){
+        let a = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
+        let b = DOM_EL.contentClass.html().replace( / /g , "_" );
+        let stuff = APP_STATE.data[a][b];
+        if (stuff === undefined) {
+          APP_STATE.swipeCounter--;
+          APP_STATE.lensCounter--;
+        }
+  
+        stuff = APP_STATE.data[overflow(APP_STATE.lensCounter, APP_STATE.numLens)][b];
+        if (stuff === undefined) {
+          APP_STATE.swipeCounter--;
+          APP_STATE.lensCounter--;
+        }
+      }
 
       let prevL = overflow( APP_STATE.swipeCounter + 1, 3 );
       let prevC = overflow( APP_STATE.swipeCounter + 2, 3 );
