@@ -105,7 +105,7 @@ var MISC = {
   findingText: "I need a better angle",
   redirectText: "Nope, we should look elsewhere",
   hardcoded: true,
-  whitelist: ["wound","telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
+  whitelist: ["vase","wound","telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
 }
 
 var URLS = {
