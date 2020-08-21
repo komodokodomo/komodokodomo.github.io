@@ -105,7 +105,7 @@ var MISC = {
   findingText: "I need a better angle",
   redirectText: "Nope, we should look elsewhere",
   hardcoded: true,
-  whitelist: ["beer_bottles","telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
+  whitelist: ["telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
 }
 
 var URLS = {
@@ -537,7 +537,8 @@ function registerDOM(){
           APP_STATE.lensCounter++;
         }
   
-        stuff = APP_STATE.data[overflow(APP_STATE.lensCounter, APP_STATE.numLens)][b];
+        let aa = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
+        stuff = APP_STATE.data[aa][b];
         if (stuff === undefined) {
           APP_STATE.swipeCounter++;
           APP_STATE.lensCounter++;
@@ -632,7 +633,8 @@ function registerDOM(){
           APP_STATE.lensCounter--;
         }
   
-        stuff = APP_STATE.data[overflow(APP_STATE.lensCounter, APP_STATE.numLens)][b];
+        let aa = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
+        stuff = APP_STATE.data[aa][b];
         if (stuff === undefined) {
           APP_STATE.swipeCounter--;
           APP_STATE.lensCounter--;
