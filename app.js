@@ -103,7 +103,7 @@ var APP_STATE = {
 var MISC = {
   thinking: ".",
   hardcoded: true,
-  whitelist: ["beer_bottles","telephone", "fabric_on_handle", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_bedframe", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
+  whitelist: ["beer_bottles","telephone", "fabric_on_handle", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
 }
 
 var URLS = {
