@@ -1191,6 +1191,7 @@ const serialiseJSONContent = node => {
       return el;
     case 'image':
       el = document.createElement("img");
+      el.classList.add("content-img");
       el.src = node.url;
       // children = node.children.map(child => renderMark(child));
       // children.forEach(child => el.appendChild(child));

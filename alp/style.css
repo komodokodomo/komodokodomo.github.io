@@ -736,6 +736,11 @@ display: flex;
   transition: ease-in 1000ms;
 }
 
+.content-img{
+  max-width: 100%;
+  max-height: calc(var(--vh) * 20);
+}
+
 #content-instruction-container.fade{
   color: #f2f2f2;
   transition: ease-in 1000ms;
