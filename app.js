@@ -105,7 +105,7 @@ var MISC = {
   findingText: "I need a better angle",
   redirectText: "Nope, we should look elsewhere",
   hardcoded: true,
-  whitelist: ["beer_bottles","telephone", "fabric_on_handle", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
+  whitelist: ["beer_bottles","telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
 }
 
 var URLS = {
@@ -228,9 +228,9 @@ function preload() {
   // SOUNDS.background = loadSound('sound/background');
 }
 
-document.addEventListener('touchmove', function (event) {
-  if (event.scale !== 1) { event.preventDefault(); }
-}, { passive: false });
+// document.addEventListener('touchmove', function (event) {
+//   if (event.scale !== 1) { event.preventDefault(); }
+// }, { passive: false });
 
 window.addEventListener('DOMContentLoaded', () => {
   APP_STATE.mobileDevice = isMobile();
@@ -516,6 +516,10 @@ function registerDOM(){
   DOM_EL.carouselCellTitle[1].addClass("center");
   DOM_EL.carouselCellTitle[2].addClass("right");
 
+  let pinchZoom = new Hammer(DOM_EL.captureContainer.elt);
+  pinchZoom.on('pinchend', function (e) {
+    console.log("do nothing on zoom");
+  });
 
   let carouselSwipe = new Hammer(DOM_EL.contentContainer.elt);
   carouselSwipe.on('swiperight swipeleft', function(ev) {
