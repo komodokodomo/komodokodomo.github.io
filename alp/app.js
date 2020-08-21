@@ -106,6 +106,8 @@ var APP_STATE = {
 
 var MISC = {
   thinking: ".",
+  findingText: "I think I need a better angle",
+  redirectText: "Nope, we should look elsewhere",
   hardcoded: true,
   whitelist: ["beer_bottles","telephone", "fabric_on_handle", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
 }
@@ -204,7 +206,7 @@ var featureExtractor,classifier;
 //             if(APP_STATE.evidenceFound){
 //               APP_STATE.evidenceFound = false;
 //             }
-//             DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+//             DOM_EL.personaText.html(MISC.findingText + MISC.thinking);
 //             DOM_EL.personaButton.addClass("inactive");
 //           }
 //         }
@@ -212,7 +214,7 @@ var featureExtractor,classifier;
 //           if(APP_STATE.evidenceFound){
 //             APP_STATE.evidenceFound = false;
 //           }
-//           DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+//           DOM_EL.personaText.html(MISC.findingText + MISC.thinking);
 //           DOM_EL.personaButton.addClass("inactive");
 //         }
 //       }
@@ -965,7 +967,7 @@ const loadData = async function() {
           if(APP_STATE.evidenceFound){
             APP_STATE.evidenceFound = false;
           }
-          DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+          DOM_EL.personaText.html(MISC.findingText + MISC.thinking);
           DOM_EL.personaButton.addClass("inactive");
           DOM_EL.personaButton.html("📸 capture evidence");
         }
@@ -975,12 +977,12 @@ const loadData = async function() {
           APP_STATE.evidenceFound = false;
         }
         if(APP_STATE.probability > 0.5){
-          DOM_EL.personaText.html("I think we should look elsewhere" + MISC.thinking);
+          DOM_EL.personaText.html(MISC.redirectText + MISC.thinking);
           DOM_EL.personaButton.addClass("inactive");
           DOM_EL.personaButton.html("📸 capture evidence");
         }
         else{
-          DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+          DOM_EL.personaText.html(MISC.findingText + MISC.thinking);
           DOM_EL.personaButton.addClass("inactive");
           DOM_EL.personaButton.html("📸 capture evidence");
         }
@@ -1019,7 +1021,7 @@ const loadData = async function() {
         if(APP_STATE.evidenceFound){
           APP_STATE.evidenceFound = false;
         }
-        DOM_EL.personaText.html("Trying to figure this out" + MISC.thinking);
+        DOM_EL.personaText.html(MISC.findingText + MISC.thinking);
         DOM_EL.personaButton.addClass("inactive");
         DOM_EL.personaButton.html("📸 capture evidence");
       }
