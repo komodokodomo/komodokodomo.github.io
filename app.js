@@ -1088,6 +1088,7 @@ const updateModelDownloadProgress = function(fraction) {
 
 
 const prepData = (data, lenses) => {
+  console.log(data);
   for (let i = 0; i < data.length; i++) {
     let content = data[i].content;
     let index = lenses.findIndex(lens => lens.lens === data[i].lens);
