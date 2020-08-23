@@ -920,7 +920,7 @@ async function init() {
           // if(MISC.hardcoded){
             // let s = DOM_EL.evidenceListItemTitle[i].html().replace( / /g , "_" );
             // changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), s);
-            let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html().replace( / /g , "_" );
+            let t = DOM_EL.evidenceListItemTitle[i].html().replace( / /g , "_" );
             changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), getKeyByValue(APP_STATE.displayName, t));
             
 
