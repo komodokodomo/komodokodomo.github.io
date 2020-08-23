@@ -918,8 +918,12 @@ async function init() {
           DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[i].attribute("index"));
           DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[i].html());
           // if(MISC.hardcoded){
-            let s = DOM_EL.evidenceListItemTitle[i].html().replace( / /g , "_" );
-            changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), s);
+            // let s = DOM_EL.evidenceListItemTitle[i].html().replace( / /g , "_" );
+            // changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), s);
+            let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html().replace( / /g , "_" );
+            changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), getKeyByValue(APP_STATE.displayName, t));
+            
+
           // }
           // else{
           //   changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), DOM_EL.evidenceListItemTitle[i].html());
