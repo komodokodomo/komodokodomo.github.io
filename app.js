@@ -358,7 +358,8 @@ function captureEvidenceEvent(){
       i.parent(DOM_EL.evidenceListItem[APP_STATE.evidenceCounter]);
   
       // if(MISC.hardcoded){
-        let s = APP_STATE.evidenceDetected.replace( /_/g , " " );
+        let x = APP_STATE.displayName[APP_STATE.evidenceDetected];
+        let s = x.replace( /_/g , " " );
         DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html(s);
       // }
       // else{
@@ -376,8 +377,10 @@ function captureEvidenceEvent(){
       
       DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[APP_STATE.evidenceCounter-1].attribute("index"));
       DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html());
+      
       let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html().replace( / /g , "_" );
-      changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), t);
+      changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), getKeyByValue(APP_STATE.displayName, t));
+
       let d = document.getElementById("content-image");
       d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter-1].elt.childNodes[0].src;
       DOM_EL.contentContainer.style("display","flex");
@@ -390,6 +393,10 @@ function captureEvidenceEvent(){
 
   }
   
+}
+
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
 }
 
 function registerDOM(){
