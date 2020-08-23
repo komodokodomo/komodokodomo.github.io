@@ -535,22 +535,22 @@ function registerDOM(){
       APP_STATE.swipeCounter++;
       APP_STATE.lensCounter++;
 
-      if(MISC.hardcoded){
-        let a = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
-        let b = DOM_EL.contentClass.html().replace( / /g , "_" );
-        let stuff = APP_STATE.data[a][b];
-        if (stuff === undefined) {
-          APP_STATE.swipeCounter++;
-          APP_STATE.lensCounter++;
-        }
+      // if(MISC.hardcoded){
+      //   let a = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
+      //   let b = DOM_EL.contentClass.html().replace( / /g , "_" );
+      //   let stuff = APP_STATE.data[a][b];
+      //   if (stuff === undefined) {
+      //     APP_STATE.swipeCounter++;
+      //     APP_STATE.lensCounter++;
+      //   }
   
-        let aa = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
-        stuff = APP_STATE.data[aa][b];
-        if (stuff === undefined) {
-          APP_STATE.swipeCounter++;
-          APP_STATE.lensCounter++;
-        }
-      }
+      //   let aa = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
+      //   stuff = APP_STATE.data[aa][b];
+      //   if (stuff === undefined) {
+      //     APP_STATE.swipeCounter++;
+      //     APP_STATE.lensCounter++;
+      //   }
+      // }
 
       let prevL = overflow( APP_STATE.swipeCounter - 1, 3 );
       let prevC = overflow( APP_STATE.swipeCounter, 3 );
@@ -619,7 +619,8 @@ function registerDOM(){
       setTimeout(function(){
         // if(MISC.hardcoded){
           let s = DOM_EL.contentClass.html().replace( / /g , "_" );
-          changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), s);
+          // changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), s);
+          changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), getKeyByValue(APP_STATE.displayName, s));
         // }
         // else{
         //   changeContent(lensC, DOM_EL.contentClass.html());
@@ -631,22 +632,22 @@ function registerDOM(){
       APP_STATE.swipeCounter--;
       APP_STATE.lensCounter--;
 
-      if(MISC.hardcoded){
-        let a = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
-        let b = DOM_EL.contentClass.html().replace( / /g , "_" );
-        let stuff = APP_STATE.data[a][b];
-        if (stuff === undefined) {
-          APP_STATE.swipeCounter--;
-          APP_STATE.lensCounter--;
-        }
+      // if(MISC.hardcoded){
+      //   let a = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
+      //   let b = DOM_EL.contentClass.html().replace( / /g , "_" );
+      //   let stuff = APP_STATE.data[a][b];
+      //   if (stuff === undefined) {
+      //     APP_STATE.swipeCounter--;
+      //     APP_STATE.lensCounter--;
+      //   }
   
-        let aa = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
-        stuff = APP_STATE.data[aa][b];
-        if (stuff === undefined) {
-          APP_STATE.swipeCounter--;
-          APP_STATE.lensCounter--;
-        }
-      }
+      //   let aa = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
+      //   stuff = APP_STATE.data[aa][b];
+      //   if (stuff === undefined) {
+      //     APP_STATE.swipeCounter--;
+      //     APP_STATE.lensCounter--;
+      //   }
+      // }
 
       let prevL = overflow( APP_STATE.swipeCounter + 1, 3 );
       let prevC = overflow( APP_STATE.swipeCounter + 2, 3 );
@@ -713,7 +714,8 @@ function registerDOM(){
       setTimeout(function(){
         // if(MISC.hardcoded){
           let s = DOM_EL.contentClass.html().replace( / /g , "_" );
-          changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), s);
+          // changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), s);
+          changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), getKeyByValue(APP_STATE.displayName, s));
         // }
         // else{
         // changeContent(lensC, DOM_EL.contentClass.html());
