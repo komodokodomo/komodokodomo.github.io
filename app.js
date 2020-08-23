@@ -82,7 +82,7 @@ var APP_STATE = {
   predictedClass: null,
   probability: null,
 
-  displayName: null,
+  displayName: [],
 
   DOMRegistered: false,
   switchFlag: false,
