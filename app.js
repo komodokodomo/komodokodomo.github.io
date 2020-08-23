@@ -236,8 +236,6 @@ function preload() {
 
 window.addEventListener('DOMContentLoaded', () => {
   APP_STATE.mobileDevice = isMobile();
-  // tf.setBackend('wasm').then(() => console.log("backend set"));
-  // console.log(ml5.tf.getBackend());
 });
 
 document.addEventListener("visibilitychange", () => {
@@ -985,8 +983,7 @@ const loadData = async function() {
   if(MISC.hardcoded){
     if(MISC.whitelist.includes(APP_STATE.predictedClass)){
       if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
-        let s = "Hmmm" + MISC.thinking + "is it a " + APP_STATE.predictedClass +" ?";
-        DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.predictedClass +"?");
+        DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.displayName[APP_STATE.predictedClass] +"?");
         DOM_EL.personaButton.addClass("inactive");
         DOM_EL.personaButton.html("📸 capture evidence");
       }
@@ -994,7 +991,7 @@ const loadData = async function() {
       }
       else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound == false){
         APP_STATE.evidenceFound = true;
-        DOM_EL.personaText.html("I see a " + APP_STATE.predictedClass +".");
+        DOM_EL.personaText.html("I see a " + APP_STATE.displayName[APP_STATE.predictedClass] +".");
         APP_STATE.evidenceDetected = APP_STATE.predictedClass;
         DOM_EL.personaButton.removeClass("inactive");
         if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
@@ -1033,8 +1030,7 @@ const loadData = async function() {
   }
   else{
     if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
-      let s = "Hmmm" + MISC.thinking + "is it a " + APP_STATE.predictedClass +" ?";
-      DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.predictedClass +"?");
+      DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.displayName[APP_STATE.predictedClass] +"?");
       DOM_EL.personaButton.addClass("inactive");
       DOM_EL.personaButton.html("📸 capture evidence");
     }
@@ -1042,7 +1038,7 @@ const loadData = async function() {
     }
     else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound == false){
       APP_STATE.evidenceFound = true;
-      DOM_EL.personaText.html("I see a " + APP_STATE.predictedClass +".");
+      DOM_EL.personaText.html("I see a " + APP_STATE.displayName[APP_STATE.predictedClass] +".");
       APP_STATE.evidenceDetected = APP_STATE.predictedClass;
       DOM_EL.personaButton.removeClass("inactive");
       if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
