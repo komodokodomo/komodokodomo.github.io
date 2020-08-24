@@ -1012,7 +1012,7 @@ const loadData = async function() {
   if(MISC.hardcoded){
     if(APP_STATE.whitelist.includes(APP_STATE.predictedClass)){
       if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
-        DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.displayName[APP_STATE.predictedClass] +"?");
+        DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.displayName[APP_STATE.predictedClass].replace( /_/g , " " ) +"?");
         DOM_EL.personaButton.addClass("inactive");
         DOM_EL.personaButton.html("📸 capture evidence");
       }
@@ -1059,7 +1059,7 @@ const loadData = async function() {
   }
   else{
     if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
-      DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.displayName[APP_STATE.predictedClass] +"?");
+      DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.displayName[APP_STATE.predictedClass].replace( /_/g , " " ) +"?");
       DOM_EL.personaButton.addClass("inactive");
       DOM_EL.personaButton.html("📸 capture evidence");
     }
