@@ -83,7 +83,6 @@ var APP_STATE = {
   probability: null,
 
   displayName: [],
-  displayBoolean: [],
   whitelist: [],
 
   DOMRegistered: false,
@@ -109,7 +108,7 @@ var MISC = {
   findingText: "I need a better angle",
   redirectText: "Nope, we should look elsewhere",
   hardcoded: true,
-  whitelist: ["paint_scraper","blood_pool_on_floor","vase","wound","telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
+  // whitelist: ["paint_scraper","blood_pool_on_floor","vase","wound","telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
 }
 
 var URLS = {
@@ -1103,7 +1102,6 @@ const prepData = (data, lenses) => {
     if(data[i].is_public && APP_STATE.whitelist.includes(data[i].object) == false){
       APP_STATE.whitelist.push(data[i].object);
     }
-    APP_STATE.displayBoolean[`${data[i].object}`] = data[i].is_public;
     let content = data[i].content;
     let index = lenses.findIndex(lens => lens.lens === data[i].lens);
     if (index !== -1) {
