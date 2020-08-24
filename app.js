@@ -117,10 +117,10 @@ var MISC = {
 
 var URLS = {
   proxy : "https://cors-anywhere.herokuapp.com/",
-  model : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
-  lens : "https://cotf.online/api/public/lenses/ICN612526932717731840",
-  dict : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
-  content: "https://cotf.online/api/public/contents/ICN612526932717731840",
+  model : "https://storage.googleapis.com/wtf-snap-models/ICN3241995796404502528/model.json", 
+  lens : "https://cotf.online/api/public/lenses/ICN3241995796404502528",
+  dict : "https://storage.googleapis.com/wtf-snap-models/ICN3241995796404502528/dict.txt",
+  content: "https://cotf.online/api/public/contents/ICN3241995796404502528",
 }
 
 var SOUNDS = {
