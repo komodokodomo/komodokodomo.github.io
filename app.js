@@ -883,12 +883,8 @@ async function init() {
         console.log(links);
     }
 
-    if(MISC.hardcoded){
-      APP_STATE.numClasses = MISC.whitelist.length;
-    }
-    else{
-      APP_STATE.numClasses = dictionary.length;    
-    }
+      APP_STATE.numClasses = APP_STATE.whitelist.length;
+
     
     for(let i = 0; i < APP_STATE.numClasses; i++){
       DOM_EL.evidenceListItemContainer[i] = createDiv();
@@ -996,7 +992,7 @@ const loadData = async function() {
   APP_STATE.probability = parseFloat(prediction.prob.toFixed(2));
 
   if(MISC.hardcoded){
-    if(MISC.whitelist.includes(APP_STATE.predictedClass)){
+    if(APP_STATE.whitelist.includes(APP_STATE.predictedClass)){
       if(APP_STATE.probability > 0.5 && APP_STATE.probability < 0.8 && APP_STATE.evidenceFound == false){
         DOM_EL.personaText.html( MISC.thinking+ "is it a " + APP_STATE.displayName[APP_STATE.predictedClass] +"?");
         DOM_EL.personaButton.addClass("inactive");
