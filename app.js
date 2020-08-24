@@ -1001,7 +1001,7 @@ const loadData = async function() {
       }
       else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound == false){
         APP_STATE.evidenceFound = true;
-        DOM_EL.personaText.html("I see a " + APP_STATE.displayName[APP_STATE.predictedClass].replace( /_/g , " " ) +".");
+        DOM_EL.personaText.html("I see " + APP_STATE.displayName[APP_STATE.predictedClass].replace( /_/g , " " ) +".");
         APP_STATE.evidenceDetected = APP_STATE.predictedClass;
         DOM_EL.personaButton.removeClass("inactive");
         if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
@@ -1048,7 +1048,7 @@ const loadData = async function() {
     }
     else if(APP_STATE.probability > 0.8 && APP_STATE.evidenceFound == false){
       APP_STATE.evidenceFound = true;
-      DOM_EL.personaText.html("I see a " + APP_STATE.displayName[APP_STATE.predictedClass].replace( /_/g , " " ) +".");
+      DOM_EL.personaText.html("I see " + APP_STATE.displayName[APP_STATE.predictedClass].replace( /_/g , " " ) +".");
       APP_STATE.evidenceDetected = APP_STATE.predictedClass;
       DOM_EL.personaButton.removeClass("inactive");
       if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
