@@ -83,6 +83,7 @@ var APP_STATE = {
   probability: null,
 
   displayName: [],
+  displayBoolean: [],
 
   DOMRegistered: false,
   switchFlag: false,
@@ -107,7 +108,7 @@ var MISC = {
   findingText: "I need a better angle",
   redirectText: "Nope, we should look elsewhere",
   hardcoded: true,
-  whitelist: ["blood_pool_on_floor","vase","wound","telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
+  whitelist: ["paint_scraper","blood_pool_on_floor","vase","wound","telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
 }
 
 var URLS = {
@@ -836,7 +837,7 @@ function windowResized(){
 async function init() {
   setupModel();
   APP_STATE.data = await loadData();
-  console.log(APP_STATE.displayName);
+  console.log(APP_STATE.displayBoolean);
 
   userStartAudio();
   // if(SOUNDS.background.isLoaded()){
@@ -1101,6 +1102,7 @@ const updateModelDownloadProgress = function(fraction) {
 const prepData = (data, lenses) => {
   for (let i = 0; i < data.length; i++) {
     APP_STATE.displayName[`${data[i].object}`] = data[i].object_display_name;
+    APP_STATE.displayBoolean[`${data[i].object}`] = data[i].is_public;
     let content = data[i].content;
     let index = lenses.findIndex(lens => lens.lens === data[i].lens);
     if (index !== -1) {
