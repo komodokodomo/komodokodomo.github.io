@@ -279,6 +279,14 @@ display: flex;
   margin: auto;
 }
 
+
+#evidence-box.highlight {
+  background: #ffe573;
+  box-shadow:grey 3px 3px 3px;
+  transition: ease-out 300ms;
+  transform: translate(0,-10%);
+}
+
 #evidence-header,#evidence-subheader{
   padding: 0 1rem 0 1rem;
 }
