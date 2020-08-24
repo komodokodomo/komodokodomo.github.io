@@ -84,6 +84,7 @@ var APP_STATE = {
 
   displayName: [],
   displayBoolean: [],
+  whitelist: [],
 
   DOMRegistered: false,
   switchFlag: false,
@@ -837,7 +838,7 @@ function windowResized(){
 async function init() {
   setupModel();
   APP_STATE.data = await loadData();
-  console.log(APP_STATE.displayBoolean);
+  console.log(APP_STATE.whitelist);
 
   userStartAudio();
   // if(SOUNDS.background.isLoaded()){
@@ -1102,6 +1103,10 @@ const updateModelDownloadProgress = function(fraction) {
 const prepData = (data, lenses) => {
   for (let i = 0; i < data.length; i++) {
     APP_STATE.displayName[`${data[i].object}`] = data[i].object_display_name;
+    
+    if(data[i].is_public){
+      APP_STATE.whitelist.push(data[i].object);
+    }
     APP_STATE.displayBoolean[`${data[i].object}`] = data[i].is_public;
     let content = data[i].content;
     let index = lenses.findIndex(lens => lens.lens === data[i].lens);
