@@ -1104,7 +1104,7 @@ const prepData = (data, lenses) => {
   for (let i = 0; i < data.length; i++) {
     APP_STATE.displayName[`${data[i].object}`] = data[i].object_display_name;
     
-    if(data[i].is_public){
+    if(data[i].is_public && APP_STATE.whitelist.includes(data[i].object) == false){
       APP_STATE.whitelist.push(data[i].object);
     }
     APP_STATE.displayBoolean[`${data[i].object}`] = data[i].is_public;
