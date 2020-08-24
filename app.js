@@ -82,6 +82,9 @@ var APP_STATE = {
   predictedClass: null,
   probability: null,
 
+  promptTimer: 0,
+  prompt: false,
+
   displayName: [],
   whitelist: [],
 
@@ -353,6 +356,7 @@ function captureEvidenceEvent(){
       }
     }
     else{
+      APP_STATE.promptTimer = millis();
       let dataUrl = DOM_EL.canvas.elt.toDataURL(0.5);
       let i = createImg(dataUrl);
       i.class("evidence-list-item-image");
@@ -752,6 +756,21 @@ function setup(){
     if(MISC.thinking == "...."){
       MISC.thinking = ".";
     }
+    // if(millis() - APP_STATE.promptTimer> 15000){
+    //   APP_STATE.promptTimer = millis();
+    //   APP_STATE.prompt = false;
+    //   if(APP_STATE.evidenceCounter > 0 && APP_STATE.evidenceCounter < APP_STATE.numClasses){
+    //     for(let i = 0; i < APP_STATE.evidenceCounter; i++){
+    //       if(DOM_EL.evidenceListItemContainer[i].attribute("explored") == "false"){APP_STATE.prompt = true;}
+    //     }
+    //     if(APP_STATE.prompt == true){
+    //       DOM_EL.evidenceBox.addClass("highlight");
+    //       setTimeout(function(){
+    //         DOM_EL.evidenceBox.removeClass("highlight");
+    //       },300);
+    //     }
+    //   }
+    // }
     DOM_EL.contentInstruction.toggleClass("fade");
   },1000);
   registerDOM();
