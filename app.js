@@ -860,7 +860,7 @@ async function init() {
   APP_STATE.data = await loadData();
   setupModel();
 
-  console.log(APP_STATE.whitelist);
+  console.log(APP_STATE.data);
 
   userStartAudio();
   // if(SOUNDS.background.isLoaded()){
@@ -1115,8 +1115,6 @@ const updateModelDownloadProgress = function(fraction) {
 
 
 const prepData = (data, lenses) => {
-  console.log(data);
-  console.log(lenses);
 
   for (let i = 0; i < data.length; i++) {
     APP_STATE.displayName[`${data[i].object}`] = data[i].object_display_name;
@@ -1143,7 +1141,6 @@ const prepData = (data, lenses) => {
       lenses.push(newLens);
     }
   }
-  console.log(APP_STATE.whitelist);
 
   return lenses;
 }
