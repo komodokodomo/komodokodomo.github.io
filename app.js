@@ -857,15 +857,18 @@ function windowResized(){
 
 async function init() {
   DOM_EL.loadingContainer.style("display","flex");
-  // APP_STATE.data = await loadData();
-  APP_STATE.data = await fetch('backup_lenses.json')
-  .then(response => response.json())
-  .then(lenses => {
-    // grab content
-    return fetch('backup_data.json')
-    .then(res => res.json())
-    .then(data => prepData(data, lenses))
- })
+  APP_STATE.data = await loadData(URLS.lens,URLS.content);
+  if(APP_STATE.data == null){
+    APP_STATE.data = await loadData('backup_lenses.json','backup_data.json');
+  }
+//   APP_STATE.data = await fetch('backup_lenses.json')
+//   .then(response => response.json())
+//   .then(lenses => {
+//     // grab content
+//     return fetch('backup_data.json')
+//     .then(res => res.json())
+//     .then(data => prepData(data, lenses))
+//  })
 
   setupModel();
 
@@ -971,9 +974,8 @@ async function init() {
   
 }
 
-
-const loadData = async function() {
-  return fetch(URLS.lens)
+const loadData = async function(a,b) {
+  return fetch(a)
     .then(res => res.json())
     .then(body => {
       // populate lenses first
@@ -989,11 +991,33 @@ const loadData = async function() {
     })
     .then(lenses => {
        // grab content
-       return fetch(URLS.content)
+       return fetch(b)
        .then(res => res.json())
        .then(body => prepData(body.data, lenses))
     })
 }
+// const loadData = async function() {
+//   return fetch(URLS.lens)
+//     .then(res => res.json())
+//     .then(body => {
+//       // populate lenses first
+//       let lenses = [];
+//       for (let i = 0; i < body.data.length; i++) {
+//         lenses.push({
+//           lens: body.data[i].lens,
+//           lens_display_name: body.data[i].lens_display_name,
+//           lens_emoji: body.data[i].lens_emoji
+//         })
+//       }
+//       return lenses;
+//     })
+//     .then(lenses => {
+//        // grab content
+//        return fetch(URLS.content)
+//        .then(res => res.json())
+//        .then(body => prepData(body.data, lenses))
+//     })
+// }
 
  async function predictAsync() {
 
