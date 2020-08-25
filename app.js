@@ -857,12 +857,8 @@ function windowResized(){
 
 async function init() {
   setupModel();
-  console.log("setupModel done");
   APP_STATE.data = await loadData();
-  console.log("loadData done");
-  // DOM_EL.loadingBar.style("width", "100%");
-  // DOM_EL.loadingContent.html("100% loaded");
-  // setTimeout(function(){DOM_EL.loadingContainer.hide();},300);
+
   console.log(APP_STATE.whitelist);
 
   userStartAudio();
@@ -895,8 +891,8 @@ async function init() {
 
     DOM_EL.loadingContainer.style("display","flex");
     model = await tf.loadGraphModel(URLS.model, { 'onProgress': updateModelDownloadProgress});
-
     DOM_EL.loadingContainer.hide();
+
     dictionary = await loadDictionary();
     predictAsync();
     console.log("autoML model loaded");
@@ -908,7 +904,7 @@ async function init() {
         console.log(links);
     }
 
-      APP_STATE.numClasses = APP_STATE.whitelist.length;
+    APP_STATE.numClasses = APP_STATE.whitelist.length;
 
     
     for(let i = 0; i < APP_STATE.numClasses; i++){
@@ -986,10 +982,13 @@ const loadData = async function() {
           lens_emoji: body.data[i].lens_emoji
         })
       }
-      // grab content
-      return fetch(URLS.content)
-        .then(res => res.json())
-        .then(body => prepData(body.data, lenses))
+      return lenses;
+    })
+    .then(lenses => {
+       // grab content
+       return fetch(URLS.content)
+       .then(res => res.json())
+       .then(body => prepData(body.data, lenses))
     })
 }
 
@@ -1120,6 +1119,9 @@ const updateModelDownloadProgress = function(fraction) {
 
 
 const prepData = (data, lenses) => {
+  console.log(data);
+  console.log(lenses);
+
   for (let i = 0; i < data.length; i++) {
     APP_STATE.displayName[`${data[i].object}`] = data[i].object_display_name;
     
@@ -1145,6 +1147,7 @@ const prepData = (data, lenses) => {
       lenses.push(newLens);
     }
   }
+  console.log(APP_STATE.whitelist);
 
   return lenses;
 }
