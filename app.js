@@ -857,10 +857,15 @@ function windowResized(){
 
 async function init() {
   DOM_EL.loadingContainer.style("display","flex");
-  APP_STATE.data = await loadData();
-  // APP_STATE.data = await fetch('backup_data.json')
-  // .then(response => response.json())
-  // .then(data => data);
+  // APP_STATE.data = await loadData();
+  APP_STATE.data = await fetch('backup_lenses.json')
+  .then(response => response.json())
+  .then(lenses => {
+    // grab content
+    return fetch('backup_data')
+    .then(res => res.json())
+    .then(data => prepData(data, lenses))
+ })
 
   setupModel();
 
@@ -980,7 +985,6 @@ const loadData = async function() {
           lens_emoji: body.data[i].lens_emoji
         })
       }
-      console.log(lenses);
       return lenses;
     })
     .then(lenses => {
