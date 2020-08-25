@@ -857,6 +857,9 @@ function windowResized(){
 async function init() {
   setupModel();
   APP_STATE.data = await loadData();
+  DOM_EL.loadingBar.style("width", "100%");
+  DOM_EL.loadingContent.html("100% loaded");
+  setTimeout(function(){DOM_EL.loadingContainer.hide();},300);
   console.log(APP_STATE.whitelist);
 
   userStartAudio();
@@ -890,7 +893,6 @@ async function init() {
     DOM_EL.loadingContainer.style("display","flex");
     model = await tf.loadGraphModel(URLS.model, { 'onProgress': updateModelDownloadProgress});
 
-    DOM_EL.loadingContainer.hide();
     dictionary = await loadDictionary();
     predictAsync();
     console.log("autoML model loaded");
@@ -1107,9 +1109,9 @@ async function loadDictionary(){
 
 
 const updateModelDownloadProgress = function(fraction) {
-  console.log(`Downloading model... ${fraction.toFixed(2) * 100}%`);
-  DOM_EL.loadingBar.style("width", fraction.toFixed(2) * 100 +"%");
-  DOM_EL.loadingContent.html(Math.round(fraction * 100) +"% loaded");
+  console.log(`Downloading model... ${fraction.toFixed(2) * 75}%`);
+  DOM_EL.loadingBar.style("width", fraction.toFixed(2) * 75 +"%");
+  DOM_EL.loadingContent.html(Math.round(fraction * 75) +"% loaded");
 }
 
 
