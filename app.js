@@ -859,6 +859,7 @@ async function init() {
   DOM_EL.loadingContainer.style("display","flex");
   APP_STATE.data = await loadData(URLS.lens,URLS.content);
   if(APP_STATE.data == null){
+    console.log("reverting to local backup");
     APP_STATE.data = await loadData('backup_lenses.json','backup_data.json');
   }
 //   APP_STATE.data = await fetch('backup_lenses.json')
