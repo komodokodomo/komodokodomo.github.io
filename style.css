@@ -288,11 +288,12 @@ display: flex;
 }
 
 #evidence-header,#evidence-subheader{
-  padding: 0 1rem 0 1rem;
+  padding: 0 calc( 1rem + 5px );
 }
 
 #evidence-header{
   /* font-size: calc(12px + (30 - 8) * ((100vw - 300px) / (1600 - 300))); */
+  margin: 0.5em 0;
   font-size: calc(13px + 20 * ((100vw - 300px) / (1000 - 300)));
 }
 
