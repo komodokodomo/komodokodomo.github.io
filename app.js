@@ -844,7 +844,7 @@ async function init() {
   console.log(APP_STATE.data);
   if(APP_STATE.data.length == 0){
     console.log("reverting to local backup");
-    APP_STATE.data = await loadData('backup_lenses.json','backup_data.json');
+    APP_STATE.data = await loadData2('backup_lenses.json','backup_data.json');
   }
 //   APP_STATE.data = await fetch('backup_lenses.json')
 //   .then(response => response.json())
@@ -978,6 +978,27 @@ const loadData = async function(a,b) {
        // grab content
        return fetch(b)
        .then(res => res.json())
+       .then(body => prepData(body.data, lenses))
+    })
+}
+
+const loadData2 = async function(a,b) {
+  return fetch(a)
+    .then(body => {
+      // populate lenses first
+      let lenses = [];
+      for (let i = 0; i < body.data.length; i++) {
+        lenses.push({
+          lens: body.data[i].lens,
+          lens_display_name: body.data[i].lens_display_name,
+          lens_emoji: body.data[i].lens_emoji
+        })
+      }
+      return lenses;
+    })
+    .then(lenses => {
+       // grab content
+       return fetch(b)
        .then(body => prepData(body.data, lenses))
     })
 }
