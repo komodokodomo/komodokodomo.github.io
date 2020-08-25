@@ -292,7 +292,8 @@ display: flex;
 }
 
 #evidence-header{
-  font-size: calc(12px + (30 - 8) * ((100vw - 300px) / (1600 - 300)));
+  /* font-size: calc(12px + (30 - 8) * ((100vw - 300px) / (1600 - 300))); */
+  font-size: calc(13px + 22 * ((100vw - 300px) / (1000 - 300)));
 }
 
 #evidence-subheader{
