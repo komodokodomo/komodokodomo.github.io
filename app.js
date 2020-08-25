@@ -841,7 +841,8 @@ function windowResized(){
 async function init() {
   DOM_EL.loadingContainer.style("display","flex");
   APP_STATE.data = await loadData(URLS.lens,URLS.content);
-  if(APP_STATE.data == null){
+  console.log(APP_STATE.data);
+  if(APP_STATE.data.length){
     console.log("reverting to local backup");
     APP_STATE.data = await loadData('backup_lenses.json','backup_data.json');
   }
@@ -972,9 +973,6 @@ const loadData = async function(a,b) {
         })
       }
       return lenses;
-    })
-    .catch((error) => {
-      console.error('Error:', error);
     })
     .then(lenses => {
        // grab content
