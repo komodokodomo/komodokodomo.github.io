@@ -974,7 +974,7 @@ async function init() {
 
 
 const loadData = async function() {
-  return fetch(URLS.lens , {cache: "no-store"})
+  return fetch(URLS.lens)
     .then(res => res.json())
     .then(body => {
       // populate lenses first
@@ -987,7 +987,7 @@ const loadData = async function() {
         })
       }
       // grab content
-      return fetch(URLS.content , {cache: "no-store"})
+      return fetch(URLS.content)
         .then(res => res.json())
         .then(body => prepData(body.data, lenses))
     })
@@ -1106,7 +1106,7 @@ const loadData = async function() {
 }
 
 async function loadDictionary(){
-  const response = await tf.util.fetch(URLS.dict , {cache: "no-store"});
+  const response = await tf.util.fetch(URLS.dict);
   const text = await response.text();
   return text.trim().split('\n');
 }
