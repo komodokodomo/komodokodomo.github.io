@@ -117,9 +117,9 @@ var MISC = {
 var URLS = {
   proxy : "https://cors-anywhere.herokuapp.com/",
   model : "https://storage.googleapis.com/wtf-snap-models/ICN8739202091563614208/model.json", 
-  lens : "https://cotf.online/api/public/lenses/ICN8739202091563614208",
+  lens : "https://cotf.online/api/public/lenses/ICN8739202091563614208a",
   dict : "https://storage.googleapis.com/wtf-snap-models/ICN8739202091563614208/dict.txt",
-  content: "https://cotf.online/api/public/contents/ICN8739202091563614208",
+  content: "https://cotf.online/api/public/contents/ICN8739202091563614208a",
 }
 
 var SOUNDS = {
