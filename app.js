@@ -325,6 +325,7 @@ function openContent(){
 }
 
 function contentCloseEvent(){
+  APP_STATE.promptTimer = millis();
   DOM_EL.contentContainer.addClass("fade");
   setTimeout(function(){
     DOM_EL.contentContainer.hide();
