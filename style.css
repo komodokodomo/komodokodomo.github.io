@@ -293,7 +293,7 @@ display: flex;
 
 #evidence-header{
   /* font-size: calc(12px + (30 - 8) * ((100vw - 300px) / (1600 - 300))); */
-  margin: 0.5em 0;
+  margin: 1rem 0 0.5em 0;
   font-size: calc(13px + 20 * ((100vw - 300px) / (1000 - 300)));
 }
 
