@@ -112,15 +112,14 @@ var MISC = {
   findingText: "I need a better angle",
   redirectText: "Nope, we should look elsewhere",
   hardcoded: true,
-  // whitelist: ["paint_scraper","blood_pool_on_floor","vase","wound","telephone", "fabric_in_hand", "footprint_1", "footprint_2", "head_trauma", "hammer", "screwdriver", "fingerprint_mug", "blood_drip_on_floor", "blood_on_wall", "blood_on_mat"],
 }
 
 var URLS = {
   proxy : "https://cors-anywhere.herokuapp.com/",
-  model : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/model.json", 
-  lens : "https://cotf.online/api/public/lenses/ICN612526932717731840",
-  dict : "https://storage.googleapis.com/wtf-snap-models/ICN612526932717731840/dict.txt",
-  content: "https://cotf.online/api/public/contents/ICN612526932717731840",
+  model : "https://storage.googleapis.com/wtf-snap-models/ICN8739202091563614208/model.json", 
+  lens : "https://cotf.online/api/public/lenses/ICN8739202091563614208",
+  dict : "https://storage.googleapis.com/wtf-snap-models/ICN8739202091563614208/dict.txt",
+  content: "https://cotf.online/api/public/contents/ICN8739202091563614208",
 }
 
 var SOUNDS = {
