@@ -856,8 +856,8 @@ function windowResized(){
 
 
 async function init() {
-  setupModel();
   APP_STATE.data = await loadData();
+  setupModel();
 
   console.log(APP_STATE.whitelist);
 
@@ -918,11 +918,6 @@ async function init() {
       DOM_EL.evidenceListItem[i].addClass("evidence-list-item");
       DOM_EL.evidenceListItem[i].addClass("noimage");
       DOM_EL.evidenceListItem[i].parent( DOM_EL.evidenceListItemContainer[i]);
-
-      // DOM_EL.evidenceListItemNudge[i] = createDiv(),
-      // DOM_EL.evidenceListItemNudge[i].addClass("evidence-list-item-nudge");
-      // DOM_EL.evidenceListItemNudge[i].addClass("h");
-      // DOM_EL.evidenceListItemNudge[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
       DOM_EL.evidenceListItemTitle[i] = createP("???");
       DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
