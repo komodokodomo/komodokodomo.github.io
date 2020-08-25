@@ -542,23 +542,6 @@ function registerDOM(){
       APP_STATE.swipeCounter++;
       APP_STATE.lensCounter++;
 
-      // if(MISC.hardcoded){
-      //   let a = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
-      //   let b = DOM_EL.contentClass.html().replace( / /g , "_" );
-      //   let stuff = APP_STATE.data[a][b];
-      //   if (stuff === undefined) {
-      //     APP_STATE.swipeCounter++;
-      //     APP_STATE.lensCounter++;
-      //   }
-  
-      //   let aa = overflow(APP_STATE.lensCounter, APP_STATE.numLens);
-      //   stuff = APP_STATE.data[aa][b];
-      //   if (stuff === undefined) {
-      //     APP_STATE.swipeCounter++;
-      //     APP_STATE.lensCounter++;
-      //   }
-      // }
-
       let prevL = overflow( APP_STATE.swipeCounter - 1, 3 );
       let prevC = overflow( APP_STATE.swipeCounter, 3 );
       let prevR = overflow( APP_STATE.swipeCounter + 1, 3 );
@@ -989,6 +972,9 @@ const loadData = async function(a,b) {
         })
       }
       return lenses;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
     })
     .then(lenses => {
        // grab content
