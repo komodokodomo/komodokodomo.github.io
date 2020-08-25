@@ -862,7 +862,7 @@ async function init() {
   .then(response => response.json())
   .then(lenses => {
     // grab content
-    return fetch('backup_data')
+    return fetch('backup_data.json')
     .then(res => res.json())
     .then(data => prepData(data, lenses))
  })
