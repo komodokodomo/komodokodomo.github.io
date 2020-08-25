@@ -856,6 +856,7 @@ function windowResized(){
 
 
 async function init() {
+  DOM_EL.loadingContainer.style("display","flex");
   APP_STATE.data = await loadData();
   setupModel();
 
@@ -889,7 +890,7 @@ async function init() {
 
  async function setupModel() {
 
-    DOM_EL.loadingContainer.style("display","flex");
+    // DOM_EL.loadingContainer.style("display","flex");
     model = await tf.loadGraphModel(URLS.model, { 'onProgress': updateModelDownloadProgress});
     DOM_EL.loadingContainer.hide();
 
