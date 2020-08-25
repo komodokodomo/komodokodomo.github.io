@@ -855,7 +855,7 @@ function windowResized(){
 
 
 async function init() {
-  await setupModel();
+  setupModel();
   console.log("setupModel done");
   APP_STATE.data = await loadData();
   console.log("loadData done");
