@@ -855,8 +855,8 @@ function windowResized(){
 
 
 async function init() {
-  setupModel();
   APP_STATE.data = await loadData();
+  setupModel();
   console.log(APP_STATE.whitelist);
 
   userStartAudio();
