@@ -861,7 +861,7 @@ async function init() {
       DOM_EL.evidenceListItemTitle[i].parent(DOM_EL.evidenceListItemContainer[i]);
 
       DOM_EL.evidenceListItemContainer[i].mousePressed(function(){
-        if(DOM_EL.evidenceListItemContainer[i].class == "noimage"){
+        if(DOM_EL.evidenceListItem[i].class == "noimage"){
           console.log("nothing captured yet");
         }
         else{
