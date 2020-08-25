@@ -117,9 +117,9 @@ var MISC = {
 var URLS = {
   proxy : "https://cors-anywhere.herokuapp.com/",
   model : "https://storage.googleapis.com/wtf-snap-models/ICN8739202091563614208/model.json", 
-  lens : "https://cotf.online/api/public/lenses/ICN8739202091563614208a",
+  lens : "https://cotf.online/api/public/lenses/ICN8739202091563614208",
   dict : "https://storage.googleapis.com/wtf-snap-models/ICN8739202091563614208/dict.txt",
-  content: "https://cotf.online/api/public/contents/ICN8739202091563614208a",
+  content: "https://cotf.online/api/public/contents/ICN8739202091563614208",
 }
 
 var SOUNDS = {
@@ -846,14 +846,6 @@ async function init() {
     console.log("reverting to local backup");
     APP_STATE.data = await loadData('backup_lenses.json','backup_data.json');
   }
-//   APP_STATE.data = await fetch('backup_lenses.json')
-//   .then(response => response.json())
-//   .then(lenses => {
-//     // grab content
-//     return fetch('backup_data.json')
-//     .then(res => res.json())
-//     .then(data => prepData(data, lenses))
-//  })
 
   setupModel();
 
