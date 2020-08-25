@@ -857,10 +857,10 @@ function windowResized(){
 
 async function init() {
   DOM_EL.loadingContainer.style("display","flex");
-  // APP_STATE.data = await loadData();
-  APP_STATE.data = await fetch('backup_data.json')
-  .then(response => response.json())
-  .then(data => data);
+  APP_STATE.data = await loadData();
+  // APP_STATE.data = await fetch('backup_data.json')
+  // .then(response => response.json())
+  // .then(data => data);
 
   setupModel();
 
@@ -1117,6 +1117,7 @@ const updateModelDownloadProgress = function(fraction) {
 
 
 const prepData = (data, lenses) => {
+  console.log(data);
 
   for (let i = 0; i < data.length; i++) {
     APP_STATE.displayName[`${data[i].object}`] = data[i].object_display_name;
