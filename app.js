@@ -980,6 +980,7 @@ const loadData = async function() {
           lens_emoji: body.data[i].lens_emoji
         })
       }
+      console.log(lenses);
       return lenses;
     })
     .then(lenses => {
@@ -1117,7 +1118,6 @@ const updateModelDownloadProgress = function(fraction) {
 
 
 const prepData = (data, lenses) => {
-  console.log(data);
 
   for (let i = 0; i < data.length; i++) {
     APP_STATE.displayName[`${data[i].object}`] = data[i].object_display_name;
