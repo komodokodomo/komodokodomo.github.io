@@ -858,7 +858,10 @@ function windowResized(){
 async function init() {
   DOM_EL.loadingContainer.style("display","flex");
   // APP_STATE.data = await loadData();
-  APP_STATE.data = await loadJSON("backup_data.json");
+  APP_STATE.data = await fetch('backup_data.json')
+  .then(response => response.json())
+  .then(data => data);
+
   setupModel();
 
   userStartAudio();
