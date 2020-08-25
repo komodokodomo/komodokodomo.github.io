@@ -855,7 +855,7 @@ function windowResized(){
 
 
 async function init() {
-  setupModel();
+  await setupModel();
   APP_STATE.data = await loadData();
   DOM_EL.loadingBar.style("width", "100%");
   DOM_EL.loadingContent.html("100% loaded");
