@@ -1,0 +1,120 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 ,maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- <script type="text/javascript" src="p5.geolocation.js"></script> -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+
+  <script src="../src/js/vendor/p5.min.js"></script>
+  <script src="../src/js/vendor/p5.sound.min.js"></script>
+  <script src="../src/js/vendor/orientation.js"></script>
+
+
+  <!-- <script src="https://unpkg.com/ml5@0.5.0/dist/ml5.js"></script> -->
+  <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm/dist/tf-backend-wasm.js"></script>
+  <!-- <script> ml5.tf.setBackend('wasm').then(() => console.log("backend set"));</script> -->
+
+  <!-- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> -->
+  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+
+<link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+  <script src="app.js"></script>
+  <div id=login-container>
+    <h1 id=login-title-container>FHSS ALP</h1>
+    <input type="number" id="login-input" placeholder="123456" >
+    <div type="button" id="login-button"> enter </div>
+  </div>
+  <div id=onboard-container>
+    <div id=onboard-content-container>
+      <h1 id=onboard-header>Background</h1>
+      <div id=onboard-image-container>🕵️</div>
+      <!-- <p id=onboard-content>A murder has been discovered in a flat. You, as the district investigator, have been dispatched with a team to uncover the truth and catch the culprit.</p> -->
+      <p id=onboard-content>The police received a call from a 10-year old boy, Royston Tan on 26 Aug 1.30 pm. He was buying lunch for his grandpa who stayed alone at Block 483 Jurong West Street 41 after school. 
+        <br><br> Being the Crime Scene Investigators(CSI) stationed at the Jurong Police Division, your team has been instructed by your superior to investigate the crime. </p>
+    </div>
+    <div id="onboard-button"> let's go! </div>
+  </div>
+  <div id=capture-container>
+    <div id="capture-header-container">
+      <h1 id="capture-header">ALP</h1>
+      <h3 id="capture-instance-title">/ Intro 101</h3>
+      <p id="capture-subheader">Scan your immediate surroundings to gather more clues on what to do!</p>
+    </div>
+    <div id="canvas-container">
+      <div id="persona-container">🕵️</div>
+      <div id="persona-text-container">
+        <div id="persona-text">Trying to figure this out</div>
+        <button type="button" id="persona-button" class="inactive"> 📸 capture evidence </button>
+      </div>
+    </div>
+    <div id="evidence-container">
+      <div id="evidence-box">
+        <h2 id="evidence-header">0/0 Evidence Collected</h2>
+        <p id="evidence-subheader">No evidence collected yet! Scan your surroundings to obtain clues.</p>
+        <div id="evidence-list-container">
+          <ul id="evidence-list"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id=content-container class="fade">
+    <h1 id="content-close">X</h1>
+    <div id="content-title-container">
+      <h1 id="content-header">Evidence_Variable</h1>
+      <div id="content-image-container">
+        <img id="content-image" src="img/imageless.png" alt="no image">
+      </div>
+      <h2 id="content-class">Classname_Variable</h2>
+    </div>
+    <div id="content-box-container" >
+      <div id="content-box">
+        <div id="content"></div>
+        <div id="content-social-container">
+          <ul id="content-social"></ul>
+          <textarea id="content-social-chatbox"></textarea>
+          <div id="content-social-button">Send</div>
+        </div>
+        <div id="content-instruction-container">Swipe left or right to explore different perspectives</div>
+      </div>
+    </div>
+    <div id="content-lenses-container">
+      <div id="lens-carousel" class="carousel"> </div>
+    </div>
+  </div>
+  <div id=completion-container>
+    <div id=completion-content-container>
+      <h1 id="completion-header">Done!</h1>
+      <div id="completion-image-container">✌️</div>
+      <p id="completion-content">Congrats! You have captured and documented all the clues. But your work is not done - look through all the clues to see needs to be done to discover the cause of murder. </p>
+    </div>
+    <div type="button" id="completion-button"> back </div>
+  </div>
+  <div id="loading-container">
+    <h2 id="loading-header">Loading contents</h2>
+    <div id= "loading-bar-container">
+      <div id= "loading-bar"></div>
+    </div>
+    <p id="loading-content">0% loaded</p>
+  </div>
+  <div id="orientation-container">
+    <div id= "orientation-image-container">
+      <img id="orientation-image" src="img/orientation.png" alt="no image">
+    </div>
+    <h2 id="orientation-header">Works best in portrait mode</h2>
+    <p id="orientation-content">Tilt the device back to continue using the app</p>
+  </div>
+</body>
+</html>

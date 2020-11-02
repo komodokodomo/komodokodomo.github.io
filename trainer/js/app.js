@@ -123,8 +123,8 @@ if(window.Worker){
 
 window.addEventListener('DOMContentLoaded', () => {
     APP_STATE.mobileDevice = isMobile();
-    tf.setBackend('wasm').then(() => console.log("backend set"));
-    console.log(ml5.tf.getBackend());
+    // tf.setBackend('wasm').then(() => console.log("backend set"));
+    // console.log(ml5.tf.getBackend());
   });
 
 function onSignIn(googleUser) {
@@ -634,7 +634,7 @@ async function uploadModel(callback, name) {
     .then(function (blob) {
         downloadBlob(blob,"model.zip");
         zipImages();
-        // uploadBlobXML(blob, `${modelName}.zip`, 'model');
+        uploadBlobXML(blob, `${modelName}.zip`, 'model');
     });
     
       if (callback) {
