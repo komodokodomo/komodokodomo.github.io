@@ -79,6 +79,7 @@ var DOM_EL = {
 }
 
 var APP_STATE = {
+  pinJson : null,
   data: null,
   predictedClass: null,
   probability: null,
@@ -132,6 +133,8 @@ let model;
 let dictionary;
 
 var featureExtractor,classifier;
+let projectFiles = [];
+
 
 function loadQuizManifest(){
 
@@ -142,6 +145,7 @@ function loadQuizManifest(){
   xhr.onload = function(e) {
       if (this.status == 200) {
         var data = this.response;
+        APP_STATE.pinJson = data;
         console.log(data);
       }
       else if(this.status == 404) {
@@ -151,12 +155,32 @@ function loadQuizManifest(){
   xhr.send("load all active pin");
 }
 
+function loadProjectAssets(account,project){
+  let u = "?account=" + account;
+  let p = "&project=" + project;
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/admin/LIST_CLASS' + u + p, true);
 
-function loadProjectModel(){
+  xhr.onload = function(e) {
+      if (this.status == 200) {
+          var data = JSON.parse(this.response);
+          APP_STATE.data = data;
+          console.log(APP_STATE.data);
+          init();
+      }
+      else if(this.status == 404) {
+        console.log("no classList.json detected, new project maybe?");
+      }
+    };
+  xhr.send("load classlist.json");
+}
+
+
+function loadProjectModel(account,project){
   let jsonFile;
   let weightsFile;
-  let u = "?account=" + APP_STATE.username;
-  let p = "&project=" + APP_STATE.project;
+  let u = "?account=" + account;
+  let p = "&project=" + project;
   APP_STATE.modelTrained = false;
 
 
@@ -179,12 +203,16 @@ function loadProjectModel(){
               console.log(d);
               let dd = new Blob([d], {type: 'application/octet-stream'});
               weightsFile = new File([dd], "model.weights.bin");
-              APP_STATE.modelTrained = true;
               projectFiles.push(jsonFile);
               projectFiles.push(weightsFile);
               featureExtractor = null; //reset featureExtractor
               featureExtractor = ml5.featureExtractor('MobileNet', modelLoaded); 
-              hideAlertStatus();
+
+              DOM_EL.loginContainer.hide();
+              DOM_EL.onboardContainer.show();
+              loadProjectAssets(account,project);
+              // init();
+              // hideAlertStatus();
           }
         };
 
@@ -192,7 +220,8 @@ function loadProjectModel(){
       }
       else if(this.status == 404) {
         console.log("no zipped model detected, new project maybe?");
-        hideAlertStatus();
+        showLoginError();
+        // hideAlertStatus();
       }
     };
   xhr.send("load project model");
@@ -201,54 +230,57 @@ function loadProjectModel(){
 function modelLoaded() {
   console.log("Model Loaded!");
   classifier = featureExtractor.classification();
-  // classifier.load("model/myModel_1594629618667.json",customModelReady);
-}
-
-function customModelReady(){
+  Array.from(projectFiles).forEach((file) => {
+    if (file.name.includes('.json')) {
+        console.log("found a json file")
+    } else if (file.name.includes('.bin')) {
+        console.log("found a bin file")
+    }
+  });
+  classifier.load(projectFiles);
   console.log("Custom Model Loaded!");
-  classifier.classify( DOM_EL.canvas.elt, gotResults);
 }
 
 function gotResults(err, result) {
-  if(APP_STATE.numClassesObtained == false){
-    APP_STATE.numClassesObtained = true;
-    console.log(result);
-    console.log("number of classes: "+ result.length);
-    APP_STATE.numClasses = result.length - 1;
-    for(let i = 0; i < APP_STATE.numClasses; i++){
-      DOM_EL.evidenceListItemContainer[i] = createDiv();
-      DOM_EL.evidenceListItemContainer[i].attribute("index", (i+1).toString());
-      DOM_EL.evidenceListItemContainer[i].class("evidence-list-item-container");
-      DOM_EL.evidenceListItemContainer[i].parent( DOM_EL.evidenceList);
-      DOM_EL.evidenceListItemContainer[i].mousePressed(function(){
-        if(DOM_EL.evidenceListItemContainer[i].class == "noimage"){
-          console.log("nothing captured yet");
-        }
-        else{
-          DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[i].attribute("index"));
-          DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[i].html());
-          changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), DOM_EL.evidenceListItemTitle[i].html());
-          let d = document.getElementById("content-image");
-          d.src = DOM_EL.evidenceListItem[i].elt.childNodes[0].src;
-          DOM_EL.contentContainer.style("display","flex");
-          setTimeout(function(){
-            DOM_EL.contentContainer.removeClass("fade");
-          },0);
-        }
-      });
+  // if(APP_STATE.numClassesObtained == false){
+  //   APP_STATE.numClassesObtained = true;
+  //   console.log(result);
+  //   console.log("number of classes: "+ result.length);
+  //   APP_STATE.numClasses = result.length - 1;
+  //   for(let i = 0; i < APP_STATE.numClasses; i++){
+  //     DOM_EL.evidenceListItemContainer[i] = createDiv();
+  //     DOM_EL.evidenceListItemContainer[i].attribute("index", (i+1).toString());
+  //     DOM_EL.evidenceListItemContainer[i].class("evidence-list-item-container");
+  //     DOM_EL.evidenceListItemContainer[i].parent( DOM_EL.evidenceList);
+  //     DOM_EL.evidenceListItemContainer[i].mousePressed(function(){
+  //       if(DOM_EL.evidenceListItemContainer[i].class == "noimage"){
+  //         console.log("nothing captured yet");
+  //       }
+  //       else{
+  //         DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[i].attribute("index"));
+  //         DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[i].html());
+  //         changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), DOM_EL.evidenceListItemTitle[i].html());
+  //         let d = document.getElementById("content-image");
+  //         d.src = DOM_EL.evidenceListItem[i].elt.childNodes[0].src;
+  //         DOM_EL.contentContainer.style("display","flex");
+  //         setTimeout(function(){
+  //           DOM_EL.contentContainer.removeClass("fade");
+  //         },0);
+  //       }
+  //     });
 
-      DOM_EL.evidenceListItem[i] = createElement("li");
-      DOM_EL.evidenceListItem[i].addClass("evidence-list-item");
-      DOM_EL.evidenceListItem[i].addClass("noimage");
-      DOM_EL.evidenceListItem[i].parent( DOM_EL.evidenceListItemContainer[i]);
+  //     DOM_EL.evidenceListItem[i] = createElement("li");
+  //     DOM_EL.evidenceListItem[i].addClass("evidence-list-item");
+  //     DOM_EL.evidenceListItem[i].addClass("noimage");
+  //     DOM_EL.evidenceListItem[i].parent( DOM_EL.evidenceListItemContainer[i]);
 
-      DOM_EL.evidenceListItemTitle[i] = createP("???");
-      DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
-      DOM_EL.evidenceListItemTitle[i].parent(DOM_EL.evidenceListItemContainer[i]);
-    }
+  //     DOM_EL.evidenceListItemTitle[i] = createP("???");
+  //     DOM_EL.evidenceListItemTitle[i].class("evidence-list-item-title");
+  //     DOM_EL.evidenceListItemTitle[i].parent(DOM_EL.evidenceListItemContainer[i]);
+  //   }
 
-    DOM_EL.evidenceHeader.html("0/" + APP_STATE.numClasses + " Evidence Collected");
-  }
+  //   DOM_EL.evidenceHeader.html("0/" + APP_STATE.numClasses + " Evidence Collected");
+  // }
   if(result)
       {
         if(result[0].label !== "Irrelevant"){
@@ -360,23 +392,30 @@ function addChatLog(){
 function onboard(){
   DOM_EL.onboardContainer.hide();
   DOM_EL.captureContainer.show();
-  // predictAsync();
+  classifier.classify( DOM_EL.canvas.elt, gotResults);
 }
 function login(){
+  
+  let account;
+  let project;
 
-  if(DOM_EL.loginInput.value() === "123456"){
-    DOM_EL.loginContainer.hide();
-    // DOM_EL.onboardContainer.style("display", "flex");
-    DOM_EL.onboardContainer.show();
-    featureExtractor = ml5.featureExtractor("Mobilenet", modelLoaded);
-    init();
+  if(APP_STATE.pinJson[DOM_EL.loginInput.value()] !== undefined){
+    account = APP_STATE.pinJson[DOM_EL.loginInput.value()].split("/")[0];
+    project = APP_STATE.pinJson[DOM_EL.loginInput.value()].split("/")[1];
+    console.log(account + ", " + project);
+    loadProjectModel(account, project);
+    
   }
   else{
-    DOM_EL.loginInput.removeClass("no-error");
-    setTimeout(function(){
-      DOM_EL.loginInput.addClass("no-error");
-    },300);
+    showLoginError();
   }
+}
+
+function showLoginError(){
+  DOM_EL.loginInput.removeClass("no-error");
+  setTimeout(function(){
+    DOM_EL.loginInput.addClass("no-error");
+  },300);
 }
 
 function openContent(){
@@ -752,14 +791,14 @@ function registerDOM(){
         ext: '.svg'
       }));
 
-      if(APP_STATE.data[lensC].lens_display_name == "Other opinions"){
-        DOM_EL.content.hide();
-        DOM_EL.contentSocialContainer.show();
-      }
-      else{
-        DOM_EL.content.show();
-        DOM_EL.contentSocialContainer.hide();
-      }
+      // if(APP_STATE.data[lensC].lens_display_name == "Other opinions"){
+      //   DOM_EL.content.hide();
+      //   DOM_EL.contentSocialContainer.show();
+      // }
+      // else{
+      //   DOM_EL.content.show();
+      //   DOM_EL.contentSocialContainer.hide();
+      // }
 
       //set alt chatbox and divs to the left and start moving them
       //set main chatbox and divs to move to right
@@ -914,15 +953,16 @@ async function init() {
 
   userStartAudio();
 
-  DOM_EL.carouselCellTitle[0].html(APP_STATE.data[0].lens_display_name);
-  DOM_EL.carouselCellTitle[1].html(APP_STATE.data[1].lens_display_name);
-  DOM_EL.carouselCellTitle[2].html(APP_STATE.data[2].lens_display_name);
 
-  DOM_EL.carouselCellEmoji[0].html(APP_STATE.data[0].lens_emoji);
-  DOM_EL.carouselCellEmoji[1].html(APP_STATE.data[1].lens_emoji);
-  DOM_EL.carouselCellEmoji[2].html(APP_STATE.data[2].lens_emoji);
-  APP_STATE.numLens = APP_STATE.data.length;
-  console.log(APP_STATE.data);
+  // DOM_EL.carouselCellTitle[0].html(APP_STATE.data[0].lens_display_name);
+  // DOM_EL.carouselCellTitle[1].html(APP_STATE.data[1].lens_display_name);
+  // DOM_EL.carouselCellTitle[2].html(APP_STATE.data[2].lens_display_name);
+
+  // DOM_EL.carouselCellEmoji[0].html(APP_STATE.data[0].lens_emoji);
+  // DOM_EL.carouselCellEmoji[1].html(APP_STATE.data[1].lens_emoji);
+  // DOM_EL.carouselCellEmoji[2].html(APP_STATE.data[2].lens_emoji);
+  // APP_STATE.numLens = APP_STATE.data.length;
+  // console.log(APP_STATE.data);
 }
 
  async function setupModel() {
@@ -931,7 +971,7 @@ async function init() {
 
     modifyHyperlinks();
 
-    APP_STATE.numClasses = APP_STATE.whitelist.length;
+    APP_STATE.numClasses = Object.keys(APP_STATE.data).length;
 
     
     for(let i = 0; i < APP_STATE.numClasses; i++){

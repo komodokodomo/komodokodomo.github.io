@@ -93,6 +93,7 @@ class cContainer {
         let d = new Date();
         let s = d.toLocaleDateString();
         let l = d.toLocaleTimeString();
+        let t = this.title.html();
 
         this.title.show();
         this.inputBox.hide(); 
@@ -108,7 +109,7 @@ class cContainer {
         xhr.onload = function(e) {
             if (this.status == 200) {
                 var data = this.response;
-                APP_STATE.classJson[this.uuid].name = this.title.html();
+                APP_STATE.classJson[this.uuid].name = t;
                 console.log("server received request to edit object class");
             }
             else if(this.status == 404) {
@@ -272,7 +273,7 @@ class cContainer {
 
         this.title.show();
         this.inputBox.hide(); 
-        this.details.html("last edit: " + s + " " + l);
+        this.detailsEdit.html("last edit: " + s + " " + l);
     
         let u = "?account=" + APP_STATE.username;
         let c = "&rename=" + this.uuid;
@@ -1769,11 +1770,11 @@ function windowResized(){
   
     if(vh > vw){
       document.documentElement.style.setProperty('--vmin', `${vw*2}px`);
-      DOM_EL.orientationContainer.style("display", "none");
+    //   DOM_EL.orientationContainer.style("display", "none");
     }
     else{
       document.documentElement.style.setProperty('--vmin', `${vh*2}px`);
-      DOM_EL.orientationContainer.style("display", "flex");
+    //   DOM_EL.orientationContainer.style("display", "flex");
     }
 }
 
