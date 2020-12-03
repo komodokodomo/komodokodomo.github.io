@@ -615,9 +615,16 @@ padding: 1rem;
   align-items: center;
 }
 
-#collect-class-container,#add-content-class-container,#preview-title-container,#preview-content-title{
+#collect-class-container,#preview-title-container,#preview-content-title{
   display: inline-flex;
   padding: 1rem;
+}
+
+#add-content-class-container{
+  display: inline-flex;
+  padding: 1rem;
+  width: calc(100% - 2rem);
+  background: whitesmoke;
 }
 
 #collect-close-container,#add-content-close-container,#preview-close-container,#preview-content-close{
@@ -696,7 +703,17 @@ padding: 1rem;
 
 #quill-container{
   overflow-y: scroll;
-  height: calc(100% - 5rem - 13px);
+  height: calc(100% - 8rem - 13px);
+}
+
+#quill-toolbar{
+  overflow-y: scroll;
+  max-height: 42px;
+}
+
+
+.ql-snow{
+  background: whitesmoke;
 }
 
 #quiz-builder-container{
@@ -1130,4 +1147,147 @@ button:active {
   margin: 1em;
   overflow: scroll;
   max-height: 90%;
+}
+
+#add-content-lens-container{
+  display: flex;
+  width: 100%;
+  height: 3rem;
+}
+
+#add-content-lens-container:hover{
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+#add-lens-container{
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-radius: 1rem;
+  background: gold;
+  flex-basis: 80px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: small;
+  border-style: solid;
+  border-width: 3px;
+  border-color: white;
+  box-sizing: border-box;
+  height: 3rem;
+}
+
+.lens-container{
+  display: flex;
+  background: lightgray;
+  border-radius: 1rem;
+  position: relative;
+  flex-basis: 150px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  border-style: solid;
+  border-width: 3px;
+  border-color: white;
+  box-sizing: border-box;
+  font-size: small;
+  transition: 0.3s;
+}
+
+.lens-container.active{
+  background: whitesmoke;
+  border-radius: 1rem 1rem 0 0;
+  transition: 0.3s;
+  border-width: 3px 3px 0 3px;
+}
+
+/* .lens-container.active{
+  background: whitesmoke;
+  border-radius: 0rem 0rem 1rem 1rem;
+  transition: 0.3s;
+  border-width: 0px 3px 3px 3px;
+} */
+
+.lens-title-container{
+  display: flex;
+  margin: auto 0px auto 5px;
+  transition: 0.3s;
+}
+
+.lens-title-container.active{
+  border-right-style: inset;
+  transition: 0.3s;
+}
+
+.lens-title{
+  font-size: medium;
+  overflow: hidden;
+  margin: auto;
+  transition: 0.3s;
+}
+
+.lens-title.active{
+  margin: auto 8px auto 5px;
+  transition: 0.3s;
+}
+
+.lens-edit{
+  font-size: x-small;
+  display: none;
+  margin: auto 0px auto 5px;
+}
+.lens-remove{
+  font-size: x-small;
+  display: none;
+  margin: auto 8px auto 5px;
+}
+
+.lens-emoji{
+  font-size: x-small;
+  display: none;
+  margin: auto 0px auto 5px;
+}
+
+.lens-emoji-title{
+  display: none;
+  margin: auto 5px;
+  font-size: medium;
+}
+
+.lens-edit.active{
+  display: block;
+}
+.lens-remove.active{
+  display: block;
+}
+.lens-emoji.active{
+  display: block;
+}
+.lens-emoji-title.active{
+  display: block;
+}
+
+
+.lens-input{
+
+}
+
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

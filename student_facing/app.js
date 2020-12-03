@@ -133,6 +133,8 @@ let model;
 let dictionary;
 
 var featureExtractor,classifier;
+const PREDICT_UPPERBOUND = 0.97;
+const PREDICT_LOWERBOUND = 0.90;
 let projectFiles = [];
 
 
@@ -155,6 +157,36 @@ function loadQuizManifest(){
   xhr.send("load all active pin");
 }
 
+function loadProjectDetails(account,project){
+  let u = "?account=" + account;
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/admin/LIST_PROJECT' + u, true);
+
+  xhr.onload = function(e) {
+      if (this.status == 200) {
+          var data = JSON.parse(this.response);
+          console.log(data);
+          Object.keys(data).forEach(key => {
+            if(data[key].pin == DOM_EL.loginInput.value() && data[key].modelTrained){
+            console.log("model detected, proceeding");
+            loadProjectModel(account, project);
+          }
+            else{
+              console.log("quiz project found but no model detected, not proceeding"); //ABIT DIRTY HERE SINCE THE MESSAGE REPEATS OVER THE LOOP
+              showLoginError(); 
+            }
+        });
+
+          // init();
+      }
+      else if(this.status == 404) {
+        console.log("no quiz manifest found");
+        showLoginError();
+      }
+    };
+  xhr.send("load projectlist.json");
+}
+
 function loadProjectAssets(account,project){
   let u = "?account=" + account;
   let p = "&project=" + project;
@@ -165,6 +197,7 @@ function loadProjectAssets(account,project){
       if (this.status == 200) {
           var data = JSON.parse(this.response);
           APP_STATE.data = data;
+          Object.keys(APP_STATE.data).forEach(key => APP_STATE.displayName[key] = APP_STATE.data[key].name);
           console.log(APP_STATE.data);
           init();
       }
@@ -284,22 +317,22 @@ function gotResults(err, result) {
   if(result)
       {
         if(result[0].label !== "Irrelevant"){
-          if(result[0].confidence > 0.6 && result[0].confidence < 0.9 && APP_STATE.evidenceFound == false){
+          if(result[0].confidence > PREDICT_LOWERBOUND && result[0].confidence < PREDICT_UPPERBOUND && APP_STATE.evidenceFound == false){
             let s = "Hmmm" + MISC.thinking + "is it a " + result[0].label +" ?";
             DOM_EL.personaText.html( MISC.thinking+ "is it a " + result[0].label +"?");
             DOM_EL.personaButton.addClass("inactive");
           }
-          else if(result[0].confidence > 0.6 && result[0].confidence < 0.9 && APP_STATE.evidenceFound){
+          else if(result[0].confidence > PREDICT_LOWERBOUND && result[0].confidence < PREDICT_UPPERBOUND && APP_STATE.evidenceFound){
           }
-          else if(result[0].confidence > 0.9 && APP_STATE.evidenceFound == false){
+          else if(result[0].confidence > PREDICT_UPPERBOUND && APP_STATE.evidenceFound == false){
             APP_STATE.evidenceFound = true;
             DOM_EL.personaText.html("I see a " + result[0].label +".");
             APP_STATE.evidenceDetected = result[0].label;
             DOM_EL.personaButton.removeClass("inactive");
           }
-          else if(result[0].confidence > 0.9 && APP_STATE.evidenceFound){
+          else if(result[0].confidence > PREDICT_UPPERBOUND && APP_STATE.evidenceFound){
           }
-          else if(result[0].confidence < 0.6){
+          else if(result[0].confidence < PREDICT_LOWERBOUND){
             if(APP_STATE.evidenceFound){
               APP_STATE.evidenceFound = false;
             }
@@ -326,12 +359,7 @@ function preload() {
   SOUNDS.shutter = loadSound('sound/shutter');
   SOUNDS.evidence = loadSound('sound/evidence');
   SOUNDS.complete = loadSound('sound/complete');
-  // SOUNDS.background = loadSound('sound/background');
 }
-
-// document.addEventListener('touchmove', function (event) {
-//   if (event.scale !== 1) { event.preventDefault(); }
-// }, { passive: false });
 
 window.addEventListener('DOMContentLoaded', () => {
   APP_STATE.mobileDevice = isMobile();
@@ -394,6 +422,7 @@ function onboard(){
   DOM_EL.captureContainer.show();
   classifier.classify( DOM_EL.canvas.elt, gotResults);
 }
+
 function login(){
   
   let account;
@@ -403,8 +432,7 @@ function login(){
     account = APP_STATE.pinJson[DOM_EL.loginInput.value()].split("/")[0];
     project = APP_STATE.pinJson[DOM_EL.loginInput.value()].split("/")[1];
     console.log(account + ", " + project);
-    loadProjectModel(account, project);
-    
+    loadProjectDetails(account,project);
   }
   else{
     showLoginError();
@@ -466,9 +494,9 @@ function captureEvidenceEvent(){
       i.parent(DOM_EL.evidenceListItem[APP_STATE.evidenceCounter]);
   
       // if(MISC.hardcoded){
-        let x = APP_STATE.displayName[APP_STATE.evidenceDetected];
-        let s = x.replace( /_/g , " " );
-        DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html(s);
+        // let x = APP_STATE.displayName[APP_STATE.evidenceDetected];
+        // let s = x.replace( /_/g , " " );
+        DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html(APP_STATE.evidenceDetected);
       // }
       // else{
       //   DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter].html(APP_STATE.evidenceDetected);
@@ -486,8 +514,8 @@ function captureEvidenceEvent(){
       DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[APP_STATE.evidenceCounter-1].attribute("index"));
       DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html());
       
-      let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html().replace( / /g , "_" );
-      changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), getKeyByValue(APP_STATE.displayName, t));
+      // let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html().replace( / /g , "_" );
+      changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), getKeyByValue(APP_STATE.displayName, APP_STATE.evidenceDetected));
 
       let d = document.getElementById("content-image");
       d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter-1].elt.childNodes[0].src;

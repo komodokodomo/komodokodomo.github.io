@@ -1,3 +1,147 @@
+class lContainer {
+    constructor(uuid, title, emoji, content) {
+        this.container = createDiv();
+            this.lensTitleContainer = createDiv();
+                this.inputBox = createInput();
+                this.emojiTitle = createDiv(emoji);
+                this.title = createDiv(title);
+                this.edit = createDiv("🖊️");
+                this.emojiPicker = createDiv("🙂");
+            this.remove = createDiv("🗑️");
+            this.uuid = uuid;
+            this.content = content;
+    }
+    init() {
+        this.container.addClass("lens-container");
+        this.container.mousePressed(this.lensChosenEvent.bind(this))
+            this.lensTitleContainer.addClass("lens-title-container");
+            this.lensTitleContainer.parent(this.container);
+
+        this.emojiTitle.addClass("lens-emoji-title");
+        this.emojiTitle.addClass("active");
+        this.emojiTitle.parent(this.lensTitleContainer);
+
+        this.title.addClass("lens-title");
+        this.title.parent(this.lensTitleContainer);
+
+        // this.edit.hide();
+        this.edit.addClass("lens-edit");
+        this.edit.parent(this.container);       
+        this.edit.mousePressed(this.editTitle.bind(this));
+
+        this.emojiPicker.addClass("lens-emoji");
+        this.emojiPicker.parent(this.container);       
+        this.emojiPicker.mousePressed(this.editEmoji.bind(this));
+
+        // this.remove.hide();
+        this.remove.addClass("lens-remove");
+        this.remove.parent(this.container);
+        this.remove.mousePressed(this.triggerRemoveLensAlert.bind(this));
+
+        this.inputBox.hide();
+        this.inputBox.addClass("lens-input");
+        this.inputBox.elt.addEventListener("blur", this.titleEdited.bind(this));
+        this.inputBox.input(this.classInputEvent.bind(this));
+        this.inputBox.parent(this.lensTitleContainer);
+
+    }
+
+    changeTitle(title){
+        this.title.html(title);
+    }
+    classInputEvent(){
+        this.title.html(this.inputBox.elt.value);
+    }
+    lensChosenEvent(){
+        this.container.elt.scrollIntoView({behavior: 'smooth'}); //,inline: 'center', block: 'center'
+        if(APP_STATE.activeLens == this.uuid){}
+        else{
+            console.log(this.title + "active");
+            this.container.addClass("active");
+            this.lensTitleContainer.addClass("active");
+            // this.emojiTitle.addClass("active");
+            this.title.addClass("active");
+            this.edit.addClass("active");
+            this.remove.addClass("active");
+            this.emojiPicker.addClass("active");
+    
+            if(APP_STATE.activeLens !== null){
+                DOM_EL.lensContainer[APP_STATE.activeLens].container.removeClass("active");
+                DOM_EL.lensContainer[APP_STATE.activeLens].lensTitleContainer.removeClass("active");
+                // DOM_EL.lensContainer[APP_STATE.activeLens].emojiTitle.removeClass("active");
+                DOM_EL.lensContainer[APP_STATE.activeLens].title.removeClass("active");
+                DOM_EL.lensContainer[APP_STATE.activeLens].edit.removeClass("active");
+                DOM_EL.lensContainer[APP_STATE.activeLens].remove.removeClass("active");
+                DOM_EL.lensContainer[APP_STATE.activeLens].emojiPicker.removeClass("active");
+            }
+            console.log("reset all other tab to show only title, show title, edit, and remove on active tab ");
+        }
+        APP_STATE.activeLens = this.uuid;
+    }
+    editEmoji(){
+        UTIL.emojiPicker.togglePicker(DOM_EL.addContentLensContainer.elt);
+    }
+    editTitle(){
+        console.log("function to edit title of " + this.title.html());
+        this.title.hide();
+        this.inputBox.value(this.title.html()); 
+        this.inputBox.show(); 
+        setTimeout(function(){this.inputBox.elt.focus();}.bind(this),0);
+    }
+    titleEdited(username,project){
+
+        this.title.show();
+        this.inputBox.hide(); 
+    
+        // let u = "?account=" + username;
+        // let p = "&project=" + project;
+        // let c = "&rename=" + this.uuid;
+        // let name = "&name=" + this.title.html();
+        // console.log(name);
+
+        // var xhr = new XMLHttpRequest();
+        // xhr.open('GET', '/admin/edit_lens' + u + p + c + name, true);
+        // xhr.onload = function(e) {
+        //     if (this.status == 200) {
+        //         var data = this.response;
+        //         APP_STATE.classJson[this.uuid].name = t;
+        //         console.log("server received request to edit object class");
+        //     }
+        //     else if(this.status == 404) {
+        //         console.log("server failed received request to edit class");
+        //     }
+        //   };
+        // xhr.send("rename lens");
+    }
+    triggerRemoveLensAlert(){
+        console.log("function to remove object " + this.uuid + ", " + this.title.html() );
+        if(APP_STATE.activeLens == this.uuid){
+            APP_STATE.activeLens = null;
+        }
+
+        // let u = "?account=" + APP_STATE.username;
+        // let p = "&project=" + APP_STATE.project;
+        // let c = "&delete=" + this.uuid;
+        
+        // var xhr = new XMLHttpRequest();
+        // xhr.open('GET', '/admin/edit_class' + u + p + c, true);
+        // xhr.onload = function(e) {
+        //     if (this.status == 200) {
+        //         var data = this.response;
+        //         console.log("server received request to remove object class");
+        //     }
+        //     else if(this.status == 404) {
+        //         console.log("server failed received request to remove object class");
+        //     }
+        //   };
+        // xhr.send("delete lens");
+        DOM_EL.lensContainer[this.uuid].container.remove();
+        delete DOM_EL.lensContainer[this.uuid];
+        // DOM_EL.projectContainer[APP_STATE.project].classes = arrayRemove(DOM_EL.projectContainer[APP_STATE.project].classes, this.uuid);// result = [1, 2, 3, 4, 5, 7, 8, 9, 0]
+    }
+
+  }
+
 class cContainer {
     constructor(uuid, title, numImages = 0, thumbnail = "img/imageless.png") {
         this.numImages = numImages;
@@ -443,6 +587,9 @@ var DOM_EL = {
         collectButton: null,
 
         addContentContainer: null,
+            addContentLensContainer: null,
+                addLensContainer: null,
+                lensContainer: [],
             addContentTitle: null,
             addContentCloseContainer: null,
             quillContainer: null,
@@ -505,7 +652,8 @@ var UTIL = {
     zipImage: null,
     unzipImage: null,
     quill: null,
-    quillQuizButton: null
+    quillQuizButton: null,
+    emojiPicker: null
 }
 
 var MISC = {
@@ -547,7 +695,9 @@ var APP_STATE = {
     evidencesFound: [],
     evidenceDetected: null,
     evidenceFound: false,
-    evidenceCounter: 0
+    evidenceCounter: 0,
+
+    activeLens: null
 }
 
 let featureExtractor;
@@ -954,7 +1104,7 @@ function addProjectEvent(){
     DOM_EL.projectContainer[n] = new pContainer(n, "new quiz " + DOM_EL.projectsContainer.elt.childElementCount, "last modified: " + s + " " + l, "????");
     DOM_EL.projectContainer[n].init();
     DOM_EL.projectContainer[n].container.parent(DOM_EL.projectsContainer);
-    DOM_EL.projectContainer[n].container.elt.scrollIntoView({behavior: 'smooth'});
+    DOM_EL.projectContainer[n].container.elt.scrollIntoView({behavior: 'smooth'}); //,inline: 'center', block: 'center'
 
     let u = "?account=" + APP_STATE.username;
     let c = "&create=" + n;
@@ -986,6 +1136,9 @@ function addClassEvent(){
     console.log("time to add a object to project: ");
     
     DOM_EL.classContainer[n] = new cContainer(n, "new quiz scene " + DOM_EL.classesContainer.elt.childElementCount);  //constructor(uuid, title, details, thumbnail)
+    if(DOM_EL.projectContainer[APP_STATE.project].classes.length == 0){
+        DOM_EL.classContainer[n].container.addClass("first");
+    }
     APP_STATE.classJson[n] = {
         "name":"new quiz scene " + DOM_EL.classesContainer.elt.childElementCount,
         "num":DOM_EL.classesContainer.elt.childElementCount, 
@@ -1259,6 +1412,20 @@ function menuHamburgerEvent(){
 
  function setup(){
 
+    UTIL.emojiPicker = new EmojiButton({
+        position: {
+            top: '0',
+            right: '0'
+          }
+        }
+    );
+
+    UTIL.emojiPicker.on('emoji', selection => {
+        console.log(selection);
+        DOM_EL.lensContainer[APP_STATE.activeLens].emojiTitle.html(selection);
+    });
+
+
     setInterval(function(){
         MISC.thinking += ".";
         if(MISC.thinking == "...."){
@@ -1270,13 +1437,15 @@ function menuHamburgerEvent(){
     UTIL.zipImage = new JSZip();
     UTIL.unzipImage = new JSZip();
 
+    // let toolbarOptions = [
+    //     [{ header: [1, 2, false] }],
+    //     ['bold', 'italic', 'underline'],
+    //     ['image']
+    //     ];
+
     UTIL.quill = new Quill('#quill-container', {
         modules: {
-          toolbar: [
-            [{ header: [1, 2, false] }],
-            ['bold', 'italic', 'underline'],
-            ['image']
-          ]
+            toolbar: '#quill-toolbar'
         },
         placeholder: 'Start adding content!',
         theme: 'snow'  // or 'bubble'
@@ -1301,7 +1470,7 @@ function menuHamburgerEvent(){
         APP_STATE.quillRange = UTIL.quill.getSelection();
         console.log(APP_STATE.quillRange);
     }
-    UTIL.quillQuizButton.attach(UTIL.quill) // Add the custom button to the quill editor
+    // UTIL.quillQuizButton.attach(UTIL.quill) // Add the custom button to the quill editor
 
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
@@ -1373,6 +1542,9 @@ function menuHamburgerEvent(){
             DOM_EL.collectButton.mousePressed(collectImageEvent);
 
         DOM_EL.addContentContainer = select("#add-content-container");
+            DOM_EL.addContentLensContainer = select("#add-content-lens-container");
+                DOM_EL.addLensContainer = select("#add-lens-container");
+                DOM_EL.addLensContainer.mousePressed(addLensEvent);
             DOM_EL.addContentTitle = select("#add-content-class-title");
             DOM_EL.addContentCloseContainer = select("#add-content-close-container");
             DOM_EL.addContentCloseContainer.mousePressed(addContentCloseEvent);
@@ -1477,6 +1649,20 @@ function menuHamburgerEvent(){
 
 
     imageMode(CENTER);
+}
+
+function addLensEvent(){
+
+    let n = Date.now();
+
+    console.log("send API call to edit JSON file");
+    console.log("create a new tab under DOM_EL.addContentLensContainer[][]");
+
+    DOM_EL.lensContainer[n] = new lContainer(n,"new lens","🧐",""); //constructor(uuid, title, emoji="🧐", content)
+    DOM_EL.lensContainer[n].init();
+    DOM_EL.lensContainer[n].container.parent(DOM_EL.addContentLensContainer);
+    DOM_EL.lensContainer[n].container.elt.scrollIntoView({behavior: 'smooth'});
+
 }
 
 function quizDoneEvent(){

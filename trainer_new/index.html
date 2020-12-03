@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quizzical.ml</title>
+    <title>ALP CMS</title>
     <meta name="description" content="Create a treasure hunting quiz activity easily">
     <meta name="google-signin-client_id" content="874868940141-sqtd69h8nsjejb47pggkd260nkl8ccjq.apps.googleusercontent.com">
     <meta name="theme-color" content="#000000" />
@@ -21,16 +21,17 @@
     <script src="https://cdn.jsdelivr.net/gh/T-vK/DynamicQuillTools@master/DynamicQuillTools.js"></script>
     <script src="https://unpkg.com/ml5@0.5.0/dist/ml5.js"></script>
     <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-  </head>
+    <script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@3.1.1/dist/index.min.js"></script>
+    </head>
 
   <body id="body">
     <script type="text/javascript" src="js/app.js"></script>
     <div id="login-container">
-      <h1 class="login-header">Quizzical</h1>
-      <button type="button" id="login-skip-button" onClick="document.getElementById('google-login').scrollIntoView({behavior: 'smooth'});"> get started </button>
-      <p class="login-p">Quiz + Physical = Quizzical -> Turn anywhere into a interactive teaching environment with a few snaps!</p>
+      <h1 class="login-header">ALP Lesson Builder</h1>
+      <!-- <button type="button" id="login-skip-button" onClick="document.getElementById('google-login').scrollIntoView({behavior: 'smooth'});"> get started </button> -->
+      <p class="login-p">Turn anywhere into an ALP classroom with a few snaps!</p>
 
-      <h2 class="login-header">What can I use it for?</h2>
+      <h2 class="login-header">🤔What can I also use it for?</h2>
       <div class="login-instructions">
         <h3 class="login-subheader">Out of classroom learning experiences </h3>
         <p class="login-p">Trails / excursions that people can go on their own</p>
@@ -141,6 +142,66 @@
           <div id="add-content-class-title">TITLE</div>
         </div>
         <div id="add-content-close-container">X</div>
+        <div id="quill-toolbar">
+          <!-- <span class="ql-formats"> -->
+            <!-- <select class="ql-header">
+              <option selected>paragraph</option>
+              <option value="1">H1</option>
+              <option value="2">H2</option>
+            </select> -->
+          <!-- </span> -->
+          <span class="ql-formats">
+            <!-- <select class="ql-header">
+              <option value="false">Paragraph</option>
+              <option value="1">Header 1</option>
+              <option value="2">Header 2</option>
+            </select> -->
+            <!-- <select class="ql-size"></select> -->
+            <button class="ql-bold"></button>
+            <button class="ql-italic"></button>
+            <button class="ql-underline"></button>
+            <!-- <button class="ql-strike"></button> -->
+            <button class="ql-blockquote"></button>
+            <button class="ql-link"></button>
+            <button class="ql-image"></button>
+            <!-- <select class="ql-color"></select> -->
+            <select class="ql-background"></select>
+          </span>
+          
+          <!-- <span class="ql-formats">
+
+          </span> -->
+          <!-- <span class="ql-formats">
+            <button class="ql-blockquote"></button>
+            <button class="ql-link"></button>
+          </span> -->
+          <!-- <span class="ql-formats">
+            <button class="ql-header" value="1"></button>
+            <button class="ql-header" value="2"></button>
+          </span> -->
+          <!-- <span class="ql-formats">
+            <button class="ql-list" value="ordered"></button>
+            <button class="ql-list" value="bullet"></button>
+            <button class="ql-indent" value="-1"></button>
+            <button class="ql-indent" value="+1"></button>
+          </span> -->
+          <!-- <span class="ql-formats">
+            <button class="ql-direction" value="rtl"></button>
+            <select class="ql-align"></select>
+          </span> -->
+          <!-- <span class="ql-formats">
+            <button class="ql-script" value="sub"></button>
+            <button class="ql-script" value="super"></button>
+          </span> -->
+          <!-- <span class="ql-formats">
+            <button class="ql-clean"></button>
+          </span> -->
+        </div>
+        <div id="add-content-lens-container">
+          <div id="add-lens-container">
+            <div style="margin:auto;">+ lens</div>
+          </div>
+        </div>
         <div id="quill-container"></div>
         <div id="add-content-opacity-container" class="hide"></div>
         <div id="quiz-builder-container" style="display: none;">
