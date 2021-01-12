@@ -840,7 +840,9 @@ function windowResized(){
 
 async function init() {
   DOM_EL.loadingContainer.style("display","flex");
-  APP_STATE.data = await loadData(URLS.lens,URLS.content);
+  // APP_STATE.data = await loadData(URLS.lens,URLS.content);
+  APP_STATE.data = await loadData('backup_lenses.json','backup_data.json');
+
   console.log(APP_STATE.data);
   if(APP_STATE.data.length == 0){
     console.log("reverting to local backup");
@@ -953,13 +955,13 @@ async function init() {
 
 const loadData = async function(a,b) {
   return fetch(a)
-    .then(async function(response) {
-        if (!response.ok) {
-            // throw Error(response.statusText);
-            APP_STATE.data = await loadData('backup_lenses.json','backup_data.json');
-        }
-        return response;
-    })
+    // .then(async function(response) {
+    //     if (!response.ok) {
+    //         // throw Error(response.statusText);
+    //         APP_STATE.data = await loadData('backup_lenses.json','backup_data.json');
+    //     }
+    //     return response;
+    // })
     .then(res => res.json())
     .then(body => {
       // populate lenses first
