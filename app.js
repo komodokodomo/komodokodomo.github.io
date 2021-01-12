@@ -953,6 +953,13 @@ async function init() {
 
 const loadData = async function(a,b) {
   return fetch(a)
+    .then(function(response) {
+        if (!response.ok) {
+            // throw Error(response.statusText);
+            APP_STATE.data = await loadData('backup_lenses.json','backup_data.json');
+        }
+        return response;
+    })
     .then(res => res.json())
     .then(body => {
       // populate lenses first
