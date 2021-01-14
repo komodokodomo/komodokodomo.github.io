@@ -8,9 +8,9 @@ function handleMotionEvent(event) {
     var yy = event.acceleration.y;
     var zz = event.acceleration.z;
 
-    var rotateDegrees = event.alpha;
-    var leftToRight = event.gamma;
-    var frontToBack = event.beta;
+    var rotateDegrees = event.rotationRate.alpha;
+    var leftToRight = event.rotationRate.gamma;
+    var frontToBack = event.rotationRate.beta;
 
     console.log(x +", " + y + ", " + z);
     console.log(xx +", " + yy + ", " + zz);
