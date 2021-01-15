@@ -43,6 +43,19 @@ function init() {
 		} catch(e) {
 			console.log(" couldn't vibrate");
 		}
+    });
+    
+    mm.on("dig", function(info) {
+		console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
+		console.log(info.actionKey); // Logs the string "basketball shot"
+		console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
+		try {
+		if(document.getElementById("vibrate").checked) {
+			window.navigator.vibrate(200);
+		}
+		} catch(e) {
+			console.log(" couldn't vibrate");
+		}
 	});
 }
 
