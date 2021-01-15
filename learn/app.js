@@ -133,8 +133,8 @@ let model;
 let dictionary;
 
 var featureExtractor,classifier;
-const PREDICT_UPPERBOUND = 0.97;
-const PREDICT_LOWERBOUND = 0.92;
+const PREDICT_UPPERBOUND = 0.95;
+const PREDICT_LOWERBOUND = 0.85;
 let projectFiles = [];
 
 
@@ -329,14 +329,14 @@ function gotResults(err, result) {
           if(APP_STATE.evidenceFound){
             APP_STATE.evidenceFound = false;
           }
-          DOM_EL.personaText.html(MISC.findingText + MISC.thinking);
+          DOM_EL.personaText.html(MISC.redirectText + MISC.thinking);
           DOM_EL.personaButton.addClass("inactive");
         }
       }
     if(err){
       console.log(error);
     }
-  setTimeout(function(){classifier.classify( DOM_EL.canvas.elt, gotResults);},20);
+  setTimeout(function(){classifier.classify( DOM_EL.canvas.elt, gotResults);},40);
 }
 
 function preload() {
@@ -802,7 +802,7 @@ function setup(){
     modules: {
       toolbar: false
     },
-    placeholder: 'Add/Choose a lens to start adding content!',
+    placeholder: 'I have nothing to say about this',
     theme: 'snow'  // or 'bubble'
   });
 
@@ -810,7 +810,7 @@ function setup(){
     modules: {
       toolbar: false
     },
-    placeholder: 'No background has been given for this quiz',
+    placeholder: 'No background was given to you, seems like you have to fully figure this out on your own..',
     theme: 'snow'  // or 'bubble'
   });
 
