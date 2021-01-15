@@ -47,7 +47,7 @@ function init() {
 }
 
 window.addEventListener("load", init, false);
-window.addEventListener("devicemotion", handleMotionEvent, true);
+// window.addEventListener("devicemotion", handleMotionEvent, true);
 
 // if (window.DeviceOrientationEvent) {
 //     window.addEventListener("deviceorientation", function(event) {
@@ -60,6 +60,6 @@ window.addEventListener("devicemotion", handleMotionEvent, true);
 //     }, true);
 // }
 
-var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
+// var handleOrientationEvent = function(frontToBack, leftToRight, rotateDegrees) {
     // do something amazing
-};
+// };
