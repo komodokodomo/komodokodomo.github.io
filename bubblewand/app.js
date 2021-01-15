@@ -41,7 +41,7 @@ function init() {
 			window.navigator.vibrate(200);
 		}
 		} catch(e) {
-			document.getElementById("response").innerHTML  + " couldn't vibrate";
+			console.log(" couldn't vibrate");
 		}
 	});
 }
