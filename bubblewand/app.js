@@ -10,6 +10,10 @@ var MOVEMENT = {
     rotateX : null,
 }
 
+var DOM_EL = {
+    gesture: null
+}
+
 function handleMotionEvent(event) {
 
     MOVEMENT.x = event.accelerationIncludingGravity.x;
@@ -29,13 +33,18 @@ function handleMotionEvent(event) {
     console.log(MOVEMENT.rotateZ +", " + MOVEMENT.rotateY + ", " + MOVEMENT.rotateX);
 }
 
+function setup(){
+    DOM_EL.gesture = select("#gesture-identifier");
+}
+
 function init() {
 	mm = new MobileMovement();
 
 	mm.on("basketball shot", function(info) {
 		console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
 		console.log(info.actionKey); // Logs the string "basketball shot"
-		console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
+        console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
+        DOM_EL.gesture.html(info.actionKey);
 		try {
 		if(document.getElementById("vibrate").checked) {
 			window.navigator.vibrate(200);
@@ -48,7 +57,8 @@ function init() {
     mm.on("dig", function(info) {
 		console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
 		console.log(info.actionKey); // Logs the string "basketball shot"
-		console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
+        console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
+        DOM_EL.gesture.html(info.actionKey);
 		try {
 		if(document.getElementById("vibrate").checked) {
 			window.navigator.vibrate(200);
