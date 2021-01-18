@@ -46,9 +46,9 @@ function init() {
         console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
         DOM_EL.gesture.html(info.actionKey);
 		try {
-		if(document.getElementById("vibrate").checked) {
+		// if(document.getElementById("vibrate").checked) {
 			window.navigator.vibrate(200);
-		}
+		// }
 		} catch(e) {
 			console.log(" couldn't vibrate");
 		}
@@ -60,9 +60,9 @@ function init() {
         console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
         DOM_EL.gesture.html(info.actionKey);
 		try {
-		if(document.getElementById("vibrate").checked) {
+		// if(document.getElementById("vibrate").checked) {
 			window.navigator.vibrate(200);
-		}
+		// }
 		} catch(e) {
 			console.log(" couldn't vibrate");
 		}
