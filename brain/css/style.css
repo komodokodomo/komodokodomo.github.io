@@ -1,6 +1,9 @@
 @font-face {
     font-family: 'nevis-bold';
-    src: url('../fonts/nevis-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/nevis-Bold.woff') format('woff'), url('../fonts/nevis-Bold.ttf') format('truetype'), url('../fonts/nevis-Bold.svg#nevis-Bold') format('svg');
+    src: url('../fonts/nevis-Bold.woff') format('woff');
+        /* url('../fonts/nevis-Bold.eot?#iefix') format('embedded-opentype'), */
+         /* url('../fonts/nevis-Bold.ttf') format('truetype'), 
+         url('../fonts/nevis-Bold.svg#nevis-Bold') format('svg'); */
     font-weight: normal;
     font-style: normal;
 }
