@@ -70,7 +70,7 @@
                     /* if sound is NOT muted, play */
                     if (!$('.sound-icon').hasClass('mute')) {
                         var audioElement = document.createElement('audio');
-                        audioElement.setAttribute('src', '/images/BBTaudio.mp3');
+                        audioElement.setAttribute('src', '../images/BBTaudio.mp3');
                         audioElement.play();
                     }
 
