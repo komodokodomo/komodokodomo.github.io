@@ -356,7 +356,7 @@ class ThoughtBubble {
             this.div.style("font-size", width*scaleXYMap/30 + 'px');
             if(this.y + this.height/2 - (frameCount - this.frameCount)*5 < (this.height) * -1 - this.y ){
                 this.bubbleOut = false;
-                UTIL.socket.emit("bubble_message",{name: APP_STATE.nickname, message : UTIL.speechBubbleContent, color: {R:this.color.R,G:this.color.G,B:this.color.B}});
+                UTIL.socket.emit("bubble_image",{name: APP_STATE.nickname, message : UTIL.speechBubbleContent, color: {R:this.color.R,G:this.color.G,B:this.color.B}});
                 UTIL.speechBubbleContent = "";
                 this.contents = "";
                 this.contentsHTML = "";
