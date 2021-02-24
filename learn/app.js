@@ -54,6 +54,7 @@ var DOM_EL = {
       contentInstruction: null,
    
     contentLensesContainer: null,
+      contentLens: [],
       carouselContainer: null,
         carouselCell: [],
           carouselCellEmoji: [],
@@ -215,10 +216,9 @@ function loadProjectAssets(account,project){
           Object.keys(APP_STATE.data).forEach(key => APP_STATE.displayName[key] = APP_STATE.data[key].name);
           Object.keys(APP_STATE.data[Object.keys(APP_STATE.data)[0]].content).forEach(key => APP_STATE.lensName[key] = APP_STATE.data[Object.keys(APP_STATE.data)[0]].content[key].name);
           
-          for(let i = 0; i < Object.keys(APP_STATE.lensName).length; i++){
-            DOM_EL.carouselCellTitle[i].html(APP_STATE.data[Object.keys(APP_STATE.displayName)[0]].content[Object.keys(APP_STATE.lensName)[i]].name); 
-            DOM_EL.carouselCellEmoji[i].html(twemoji.parse(APP_STATE.data[Object.keys(APP_STATE.displayName)[0]].content[Object.keys(APP_STATE.lensName)[i]].emoji));
-          }
+          APP_STATE.numLens = Object.keys(APP_STATE.lensName).length;
+          // updateCarousel();
+          registerLenses();
           console.log(APP_STATE.data);
           init();
       }
@@ -229,6 +229,58 @@ function loadProjectAssets(account,project){
   xhr.send("load classlist.json");
 }
 
+function registerLenses(){
+  for(let i = 0; i < APP_STATE.numLens; i++){
+    DOM_EL.contentLens[i] = createDiv();
+    DOM_EL.contentLens[i].addClass("lens-pill");
+    DOM_EL.contentLens[i].parent(DOM_EL.contentLensesContainer);
+    DOM_EL.contentLens[i].attribute("index",i.toString());
+    DOM_EL.contentLens[i].mousePressed(()=>{
+      for(let j = 0; j < APP_STATE.numLens; j++){
+        DOM_EL.contentLens[j].removeClass("selected");
+        DOM_EL.carouselCellTitle[j].removeClass("selected");
+        DOM_EL.carouselCellEmoji[j].removeClass("selected");
+      }
+      DOM_EL.contentBoxContainer.addClass("fade");
+      setTimeout(() => {
+        changeContent(Object.keys(APP_STATE.lensName)[i], getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html()));
+        DOM_EL.contentBoxContainer.removeClass("fade");
+        DOM_EL.carouselCellTitle[i].addClass("selected");
+        DOM_EL.carouselCellEmoji[i].addClass("selected");
+        DOM_EL.contentLens[i].addClass("selected");
+      },300);
+      DOM_EL.contentLens[i].elt.scrollIntoView({behavior: 'smooth'});
+    });
+
+    DOM_EL.carouselCellEmoji[i] = createDiv("🕵️");
+    twemoji.parse(DOM_EL.carouselCellEmoji[i].elt);
+    DOM_EL.carouselCellEmoji[i].addClass("carousel-cell-emoji");
+  
+    DOM_EL.carouselCellTitle[i] = createDiv("lens_name");
+    DOM_EL.carouselCellTitle[i].addClass("carousel-cell-title");
+
+    DOM_EL.contentLens[i].child(DOM_EL.carouselCellEmoji[i]);
+    DOM_EL.contentLens[i].child(DOM_EL.carouselCellTitle[i]);
+    DOM_EL.carouselCellTitle[i].html(APP_STATE.data[Object.keys(APP_STATE.displayName)[0]].content[Object.keys(APP_STATE.lensName)[i]].name); 
+    DOM_EL.carouselCellEmoji[i].html(twemoji.parse(APP_STATE.data[Object.keys(APP_STATE.displayName)[0]].content[Object.keys(APP_STATE.lensName)[i]].emoji));
+  }
+}
+
+
+function updateCarousel(){
+  if(APP_STATE.numLens < 3){
+    for(let i = 0; i < 3; i++){
+      DOM_EL.carouselCellTitle[i].html(APP_STATE.data[Object.keys(APP_STATE.displayName)[0]].content[Object.keys(APP_STATE.lensName)[overflow(i,APP_STATE.numLens)]].name); 
+      DOM_EL.carouselCellEmoji[i].html(twemoji.parse(APP_STATE.data[Object.keys(APP_STATE.displayName)[0]].content[Object.keys(APP_STATE.lensName)[overflow(i,APP_STATE.numLens)]].emoji));
+    }
+  }
+  else{
+    for(let i = 0; i < 3; i++){
+      DOM_EL.carouselCellTitle[i].html(APP_STATE.data[Object.keys(APP_STATE.displayName)[0]].content[Object.keys(APP_STATE.lensName)[i]].name); 
+      DOM_EL.carouselCellEmoji[i].html(twemoji.parse(APP_STATE.data[Object.keys(APP_STATE.displayName)[0]].content[Object.keys(APP_STATE.lensName)[i]].emoji));
+    }
+  }
+}
 
 function loadProjectModel(account,project){
   let jsonFile;
@@ -403,9 +455,14 @@ function addChatLog(){
 }
 
 function onboard(){
-  DOM_EL.onboardContainer.hide();
-  DOM_EL.captureContainer.show();
-  classifier.classify( DOM_EL.canvas.elt, gotResults);
+  if(DOM_EL.onboardButton.class().includes("inactive")){
+    console.log("still loading");
+  }
+  else{
+    DOM_EL.onboardContainer.hide();
+    DOM_EL.captureContainer.show();
+    classifier.classify( DOM_EL.canvas.elt, gotResults);
+  }
 }
 
 function login(){
@@ -442,6 +499,13 @@ function openContent(){
 function contentCloseEvent(){
   APP_STATE.promptTimer = millis();
   DOM_EL.contentContainer.addClass("fade");
+  //TODO, make toggling class "selected" more efficient instead of brute force loop logic 
+  for(let j = 0; j < APP_STATE.numLens; j++){
+    DOM_EL.contentLens[j].removeClass("selected");
+    DOM_EL.carouselCellTitle[j].removeClass("selected");
+    DOM_EL.carouselCellEmoji[j].removeClass("selected");
+  }
+  UTIL.quill.setContents();
   setTimeout(function(){
     DOM_EL.contentContainer.hide();
     if(APP_STATE.evidencesFound.length == APP_STATE.numClasses && APP_STATE.completed == false){
@@ -490,11 +554,34 @@ function captureEvidenceEvent(){
       DOM_EL.evidenceHeader.html(APP_STATE.evidenceCounter.toString()+ "/" + APP_STATE.numClasses + " Evidence Collected");
 
       
-      DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[APP_STATE.evidenceCounter-1].attribute("index"));
+      DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[APP_STATE.evidenceCounter-1].attribute("index") + " : " + DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html());
       DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html());
       
-      // let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html().replace( / /g , "_" );
-      changeContent(Object.keys(APP_STATE.lensName)[overflow(APP_STATE.lensCounter, APP_STATE.numLens)], getKeyByValue(APP_STATE.displayName, APP_STATE.evidenceDetected));
+      let x = getKeyByValue(APP_STATE.displayName, APP_STATE.evidenceDetected);
+      let index = 0;
+      let sampled = false;
+
+      Object.keys(APP_STATE.lensName).forEach(element => {
+        let stuff = APP_STATE.data[x].content[element];
+        console.log(stuff.operation.ops);
+        if (stuff.operation.ops === undefined || stuff.operation.ops === null || stuff.operation.ops == {}) {
+          DOM_EL.contentLens[index].hide();
+        }
+        else{
+          DOM_EL.contentLens[index].style("display","flex");
+          if(!sampled){
+            changeContent(element, x);
+            DOM_EL.carouselCellTitle[index].addClass("selected");
+            DOM_EL.carouselCellEmoji[index].addClass("selected");
+            DOM_EL.contentLens[index].addClass("selected");
+            DOM_EL.contentLens[index].elt.scrollIntoView({behavior: 'smooth'});
+            sampled = true;
+          }
+        }
+        index++; 
+      });
+
+      // changeContent(Object.keys(APP_STATE.lensName)[overflow(APP_STATE.lensCounter, APP_STATE.numLens)], getKeyByValue(APP_STATE.displayName, APP_STATE.evidenceDetected));
 
       let d = document.getElementById("content-image");
       d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter-1].elt.childNodes[0].src;
@@ -598,6 +685,7 @@ function registerDOM(){
         DOM_EL.contentSocialButton.mousePressed(addChatLog);
       DOM_EL.contentSocialContainer.hide();
       DOM_EL.contentInstruction = select("#content-instruction-container");
+      DOM_EL.contentInstruction.hide();
     DOM_EL.contentLensesContainer = select("#content-lenses-container");
       DOM_EL.carouselContainer = select("#lens-carousel");
   DOM_EL.contentContainer.hide();
@@ -612,7 +700,25 @@ function registerDOM(){
     DOM_EL.completionButton.mousePressed(completeEvent);
   DOM_EL.completionContainer.hide();
 
+  // registerCarousel();
 
+
+  DOM_EL.loadingContainer = select("#loading-container");
+  DOM_EL.loadingContainer.position(0,0);
+  DOM_EL.loadingBarContainer = select("#loading-bar-container");
+  DOM_EL.loadingBar = select("#loading-bar");
+  DOM_EL.loadingHeader = select("#loading-header");
+  DOM_EL.loadingContent = select("#loading-content");
+  DOM_EL.loadingContainer.hide();
+
+  DOM_EL.orientationContainer = select("#orientation-container");
+  DOM_EL.orientationContainer.position(0,0);
+  APP_STATE.DOMRegistered = true;
+}
+
+
+
+function registerCarousel(){
   for(let i = 0; i < 3; i++){
     DOM_EL.carouselCell[i] = createDiv();
     DOM_EL.carouselCell[i].addClass("carousel-cell");
@@ -666,7 +772,6 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevC].removeClass('center');
       DOM_EL.carouselCellTitle[prevC].addClass('left');
       DOM_EL.carouselCellTitle[prevC].html(APP_STATE.data[getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html())].content[Object.keys(APP_STATE.lensName)[lensL]].name); //APP_STATE.data[getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html())].content[Object.keys(APP_STATE.lensName)[lensL]].name
-      // DOM_EL.carouselCellEmoji[prevC].html(APP_STATE.data[lensL].lens_emoji);        
       DOM_EL.carouselCellEmoji[prevC].html(twemoji.parse(APP_STATE.data[getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html())].content[Object.keys(APP_STATE.lensName)[lensL]].emoji,{  //APP_STATE.data[objectID].content[lensID].emoji
         folder: 'svg',
         ext: '.svg'
@@ -679,7 +784,6 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevR].removeClass('right');
       DOM_EL.carouselCellTitle[prevR].addClass('center');
       DOM_EL.carouselCellTitle[prevR].html(APP_STATE.data[getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html())].content[Object.keys(APP_STATE.lensName)[lensC]].name);
-      // DOM_EL.carouselCellEmoji[prevR].html(APP_STATE.data[lensC].lens_emoji);
       DOM_EL.carouselCellEmoji[prevR].html(twemoji.parse(APP_STATE.data[getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html())].content[Object.keys(APP_STATE.lensName)[lensC]].emoji,{
         folder: 'svg',
         ext: '.svg'
@@ -693,26 +797,13 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevL].removeClass('left');
       DOM_EL.carouselCellTitle[prevL].addClass('right');
       DOM_EL.carouselCellTitle[prevL].html(APP_STATE.data[getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html())].content[Object.keys(APP_STATE.lensName)[lensR]].name);
-      // DOM_EL.carouselCellEmoji[prevL].html(APP_STATE.data[lensR].lens_emoji);
       DOM_EL.carouselCellEmoji[prevL].html(twemoji.parse(APP_STATE.data[getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html())].content[Object.keys(APP_STATE.lensName)[lensR]].emoji,{
         folder: 'svg',
         ext: '.svg'
       }));
 
-
-      // if(APP_STATE.data[lensC].lens_display_name == "Other opinions"){
-      //   DOM_EL.content.hide();
-      //   DOM_EL.contentSocialContainer.show();
-      // }
-      // else{
-      //   DOM_EL.content.show();
-      //   DOM_EL.contentSocialContainer.hide();
-      // }
-
-      //set alt chatbox and divs to the right and start moving them
-      //set main chatbox and divs to move to left
       DOM_EL.contentBoxContainer.addClass("fade");
-      setTimeout(function(){
+      setTimeout(() => {
         changeContent(Object.keys(APP_STATE.lensName)[overflow(APP_STATE.lensCounter, APP_STATE.numLens)], getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html()));
         DOM_EL.contentBoxContainer.removeClass("fade");
       },300);
@@ -736,7 +827,6 @@ function registerDOM(){
       DOM_EL.carouselCellTitle[prevC].removeClass('center');
       DOM_EL.carouselCellTitle[prevC].addClass('right');
       DOM_EL.carouselCellTitle[prevC].html(APP_STATE.data[getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html())].content[Object.keys(APP_STATE.lensName)[lensR]].name);
-      // DOM_EL.carouselCellEmoji[prevC].html(APP_STATE.data[lensR].lens_emoji);
       DOM_EL.carouselCellEmoji[prevC].html(twemoji.parse(APP_STATE.data[getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html())].content[Object.keys(APP_STATE.lensName)[lensR]].emoji,{
         folder: 'svg',
         ext: '.svg'
@@ -767,9 +857,6 @@ function registerDOM(){
         ext: '.svg'
       }));
 
-
-      //set alt chatbox and divs to the left and start moving them
-      //set main chatbox and divs to move to right
       DOM_EL.contentBoxContainer.addClass("fade");
       setTimeout(function(){
         changeContent(Object.keys(APP_STATE.lensName)[overflow(APP_STATE.lensCounter, APP_STATE.numLens)], getKeyByValue(APP_STATE.displayName, DOM_EL.contentClass.html()));
@@ -777,18 +864,6 @@ function registerDOM(){
       },300);
     }
   });
-
-  DOM_EL.loadingContainer = select("#loading-container");
-  DOM_EL.loadingContainer.position(0,0);
-  DOM_EL.loadingBarContainer = select("#loading-bar-container");
-  DOM_EL.loadingBar = select("#loading-bar");
-  DOM_EL.loadingHeader = select("#loading-header");
-  DOM_EL.loadingContent = select("#loading-content");
-  DOM_EL.loadingContainer.hide();
-
-  DOM_EL.orientationContainer = select("#orientation-container");
-  DOM_EL.orientationContainer.position(0,0);
-  APP_STATE.DOMRegistered = true;
 }
 
 
@@ -835,7 +910,7 @@ function setup(){
         }
       }
     }
-    DOM_EL.contentInstruction.toggleClass("fade");
+    // DOM_EL.contentInstruction.toggleClass("fade");
   },1000);
   registerDOM();
   checkOrientation();
@@ -858,34 +933,6 @@ function setup(){
   }  
 }
 
-// function switchCamera()
-// {
-//   APP_STATE.switchFlag = !APP_STATE.switchFlag;
-//   if(APP_STATE.switchFlag==true)
-//   {
-//     DOM_EL.capture.remove();
-//    options = {
-//      video: {
-//          facingMode: "environment" 
-//      }
-//    };
-
-//   }
-//   else{
-//     DOM_EL.capture.remove();
-//    options = {
-//      video: {
-//          facingMode: "user" 
-//      }
-//    };
-//   }
-//   DOM_EL.capture = createCapture(options);
-//   DOM_EL.capture.id("video");
-//   DOM_EL.capture.style("z-index","-1");
-//   DOM_EL.capture.parent(DOM_EL.canvasContainer);
-//   DOM_EL.captureChange.style("z-index","3");
-//   DOM_EL.captureFlip.style("z-index","3");
-// }
 
 function switchCamera()
 {
@@ -958,22 +1005,11 @@ function modifyHyperlinks(){
 
 async function init() {
   DOM_EL.loadingContainer.style("display","flex");
-
   setupModel();
-
   userStartAudio();
 
-
-  // DOM_EL.carouselCellTitle[0].html(APP_STATE.data[0].lens_display_name);
-  // DOM_EL.carouselCellTitle[1].html(APP_STATE.data[1].lens_display_name);
-  // DOM_EL.carouselCellTitle[2].html(APP_STATE.data[2].lens_display_name);
-
-  // DOM_EL.carouselCellEmoji[0].html(APP_STATE.data[0].lens_emoji);
-  // DOM_EL.carouselCellEmoji[1].html(APP_STATE.data[1].lens_emoji);
-  // DOM_EL.carouselCellEmoji[2].html(APP_STATE.data[2].lens_emoji);
-  let n = Object.keys(APP_STATE.data)[0];
-  APP_STATE.numLens = Object.keys(APP_STATE.data[n].content).length; 
-  // console.log(APP_STATE.data);
+  // let n = Object.keys(APP_STATE.data)[0];
+  // APP_STATE.numLens = Object.keys(APP_STATE.data[n].content).length; 
 }
 
 function gotNumClasses(err,result){
@@ -1011,10 +1047,33 @@ function gotNumClasses(err,result){
         }
         else{
           SOUNDS.evidence.play();
-          DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[i].attribute("index"));
-          DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[i].html());
+          DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[i].attribute("index") + " : " + DOM_EL.evidenceListItemTitle[i].html());
+          DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[i].html()); //TODO Remove dependency on reading content class. currently opacity set to 0;
 
-          changeContent(Object.keys(APP_STATE.lensName)[overflow(APP_STATE.lensCounter, APP_STATE.numLens)], getKeyByValue(APP_STATE.displayName, DOM_EL.evidenceListItemTitle[i].html()));
+          let x = getKeyByValue(APP_STATE.displayName, DOM_EL.evidenceListItemTitle[i].html());
+          let index = 0;
+          let sampled = false;
+    
+          Object.keys(APP_STATE.lensName).forEach(element => {
+            let stuff = APP_STATE.data[x].content[element];
+            if (stuff.operation === undefined || stuff.operation === null) {
+              DOM_EL.contentLens[index].hide();
+            }
+            else{
+              DOM_EL.contentLens[index].style("display","flex");
+              if(!sampled){
+                changeContent(element, x);
+                DOM_EL.carouselCellTitle[index].addClass("selected");
+                DOM_EL.carouselCellEmoji[index].addClass("selected");
+                DOM_EL.contentLens[index].addClass("selected");
+                DOM_EL.contentLens[index].elt.scrollIntoView({behavior: 'smooth'});
+                sampled = true;
+              }
+            }
+            index++; 
+          });
+
+          // changeContent(Object.keys(APP_STATE.lensName)[overflow(APP_STATE.lensCounter, APP_STATE.numLens)], getKeyByValue(APP_STATE.displayName, DOM_EL.evidenceListItemTitle[i].html()));
             
           let d = document.getElementById("content-image");
           d.src = DOM_EL.evidenceListItem[i].elt.childNodes[0].src;
@@ -1032,6 +1091,8 @@ function gotNumClasses(err,result){
     }
     DOM_EL.evidenceHeader.html("0/" + APP_STATE.numClasses + " Evidence Collected");
     console.log("Custom Model Loaded!");
+    DOM_EL.onboardButton.html("let's go!");
+    DOM_EL.onboardButton.removeClass("inactive");
   }
 }
 

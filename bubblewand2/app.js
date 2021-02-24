@@ -27,6 +27,8 @@ var DOM_EL = {
         activityContent: null,
 
     canvas: null,
+    capture: null,
+    captureOverlay: null,
     speechBubbleContainer: null,
     speechBubble: null,
 }
@@ -36,10 +38,15 @@ var CNV_EL = {
 }
 
 var UTIL = {
-    speechRec : null,
     speechBubbleContent: "",
     scribble: null,
-    socket: null
+    socket: null,
+    canvas: null,
+    ctx: null,
+    scheduler: null,
+    worker1: null,
+    worker2: null,
+
     // speechTimer: 0
 }
 
@@ -48,6 +55,13 @@ var APP_STATE = {
     height: null,
     nickname: ""
 }
+
+UTIL.scheduler = Tesseract.createScheduler();
+UTIL.worker1 = Tesseract.createWorker();
+UTIL.worker2 = Tesseract.createWorker();
+Tesseract.setLogging(true)
+
+
 
 function handleMotion(event) {
 
@@ -62,10 +76,6 @@ function handleMotion(event) {
     MOVEMENT.rotateZ = event.rotationRate.alpha;
     MOVEMENT.rotateY = event.rotationRate.gamma;
     MOVEMENT.rotateX = event.rotationRate.beta;
-
-    // console.log(x +", " + y + ", " + z);
-    // console.log(xx +", " + yy + ", " + zz);
-    // console.log(MOVEMENT.rotateZ +", " + MOVEMENT.rotateY + ", " + MOVEMENT.rotateX);
 }
 
 function loginEvent(){
@@ -118,17 +128,14 @@ function setup(){
     frameRate(10);
     startCon();
 
+    UTIL.canvas = document.createElement("canvas");
+    UTIL.ctx = UTIL.canvas.getContext("2d");
+
     APP_STATE.width = window.innerWidth;
     APP_STATE.height = window.innerHeight;
 
     let titleHeight = document.getElementById('activity-title-container').offsetHeight;
     DOM_EL.canvas = createCanvas(APP_STATE.width,APP_STATE.height - titleHeight);
-    // DOM_EL.canvas = select("#canvas-container");
-    // DOM_EL.canvas.position(0,0);
-    // DOM_EL.gesture = select("#gesture-identifier");
-
-    // DOM_EL.speechBubbleContainer = select("#speech-bubble-container");
-    // DOM_EL.speechBubble = select("#speech-bubble");
 
     DOM_EL.loginContainer = select("#login-container");
     DOM_EL.loginTitleContainer = select("#login-title-container");
@@ -146,57 +153,87 @@ function setup(){
             DOM_EL.activityContentContainer = select("#activity-content");
             DOM_EL.canvas.parent(DOM_EL.activityContainer);
     DOM_EL.activityContainer.hide();
+    
+    DOM_EL.capture = createCapture({
+        audio: false,
+        video: {
+          facingMode: {
+            exact: "environment"
+          }
+        }
+      });
+     DOM_EL.captureOverlay = createDiv();
+     DOM_EL.captureOverlay.id("video-overlay");
+    // DOM_EL.capture.parent(DOM_EL.activityContainer);
 
-    UTIL.speechRec = new p5.SpeechRec('en-US', gotSpeech);
-    UTIL.speechRec.continuous = false;
-    UTIL.speechRec.interimResults = true;
-    UTIL.speechRec.onResult = changeSpeechBubbleContent;
-    UTIL.speechRec.onEnd = speechEnd;
-    UTIL.speechRec.start();
+    // DOM_EL.capture.hide();
   
 
     UTIL.scribble = new Scribble();
     CNV_EL.bubble = new ThoughtBubble(0, 0, width*0.7, width*0.7, "💬<i>say your reply and your wand will capture it!</i>", {R:random(0,255),G:random(0,255),B:random(0,255)}, true)
-    // UTIL.speechRec.start(continuous, interimResults);
 }
+
+function snapEvent(){
+    UTIL.canvas.width = DOM_EL.capture.elt.width;
+    UTIL.canvas.height = DOM_EL.capture.elt.height;
+
+    DOM_EL.captureOverlay.addClass("flash");
+    setTimeout(() => DOM_EL.captureOverlay.removeClass("flash"), 100);
+
+    DOM_EL.capture.pause();
+    const rectangles = [
+        {
+          left: 0,
+          top: 0,
+          width: UTIL.canvas.width,
+          height: UTIL.canvas.height/2,
+        },
+        {
+          left: 0,
+          top: UTIL.canvas.height/2,
+          width: UTIL.canvas.width,
+          height: UTIL.canvas.height/2,
+        },
+      ];
+    UTIL.ctx.drawImage(DOM_EL.capture.elt, 0, 0);
+    ocr(UTIL.canvas,rectangles);
+}
+
+// function ocr(imageLike) {
+//     Tesseract.recognize(
+//         imageLike,
+//         'eng',
+//         { logger: m => console.log(m) }
+//       ).then(({ data: { text } }) => {
+//         console.log(text);
+//       })
+//   }
+
+async function ocr(imageLike,rect){
+    await UTIL.worker1.load();
+    await UTIL.worker2.load();
+    await UTIL.worker1.loadLanguage('eng');
+    await UTIL.worker2.loadLanguage('eng');
+    await UTIL.worker1.initialize('eng');
+    await UTIL.worker2.initialize('eng');
+
+    UTIL.scheduler.addWorker(UTIL.worker1);
+    UTIL.scheduler.addWorker(UTIL.worker2);
+    // const results = await Promise.all(rect.map((rect) => (
+    //     UTIL.scheduler.addJob('recognize', imageLike, { rect })
+    //   )));
+    const { data: { text } } = await UTIL.scheduler.addJob('recognize', imageLike);
+
+    console.log(text);
+    // await UTIL.scheduler.terminate(); // It also terminates all workers.
+  }
+   
 
 function draw(){
     background("#f5f5f5");
     CNV_EL.bubble.render();
 }
 
-
-function gotSpeech() {
-    console.log(UTIL.speechRec.resultString);
-    // DOM_EL.speechBubble.html(UTIL.speechBubbleContent + " " + UTIL.speechRec.resultString);
-}
-
-function speechEnd(){
-    console.log("speech ended");
-    if(UTIL.speechRec.resultString){
-        if(UTIL.speechRec.resultString.length > 0){
-            UTIL.speechBubbleContent = UTIL.speechBubbleContent += UTIL.speechRec.resultString;
-            UTIL.speechRec.resultString = "";
-            UTIL.speechBubbleContent = UTIL.speechBubbleContent += "\n";
-            CNV_EL.bubble.changeContents(UTIL.speechBubbleContent);
-            // DOM_EL.speechBubble.html(UTIL.speechBubbleContent);
-        }
-    }
-    UTIL.speechRec.start();
-}
-
-function changeSpeechBubbleContent(){
-    // UTIL.speechBubbleContent = UTIL.speechBubbleContent += UTIL.speechRec.resultString;
-    // DOM_EL.speechBubble.html(UTIL.speechBubbleContent);
-    // speechTimer = millis();
-    console.log(UTIL.speechRec.resultString);
-    CNV_EL.bubble.changeContents(UTIL.speechBubbleContent + " " + UTIL.speechRec.resultString);
-    // CNV_EL.bubble.render();
-    // DOM_EL.speechBubble.html(UTIL.speechBubbleContent + " " + UTIL.speechRec.resultString);
-    // if(millis() - speechTimer > 1000){
-    //     UTIL.speechBubbleContent = UTIL.speechBubbleContent += UTIL.speechRec.resultString;
-    // }
-}
 
 function triggerBubbleAnimation(){
     if(!CNV_EL.bubble.bubbleOut){
@@ -210,18 +247,6 @@ function triggerBubbleAnimation(){
 function init() {
 
 	mm = new MobileMovement();
-
-	// mm.on("basketball shot", function(info) {
-	// 	console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
-	// 	console.log(info.actionKey); // Logs the string "basketball shot"
-    //     console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
-    // });
-    
-    mm.on("dig", function(info) {
-		console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
-		console.log(info.actionKey); // Logs the string "basketball shot"
-        console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
-    });
     
     mm.on("basketball shot", function(info) {
 		console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
@@ -255,9 +280,13 @@ class ThoughtBubble {
         this.frameCount;
         this.randomSeed;
         this.color = color;
-        this.div = createDiv(contents);
+        this.div = createDiv();
+        this.div.mousePressed(snapEvent);
         this.div.addClass("bubble");
         this.div.parent(DOM_EL.activityContainer);
+
+        DOM_EL.capture.parent(this.div);
+        DOM_EL.captureOverlay.parent(this.div);
     }
     render(){
         let shiftXMap;
@@ -306,9 +335,9 @@ class ThoughtBubble {
             fill(0);
             noStroke();
             text(APP_STATE.nickname + "'s bubble:", this.x + shiftXMap, -this.height * scaleXYMap/2 + (this.height - this.height * scaleXYMap * sqrt(0.5))/2);
-            this.div.html(this.contentsHTML);
+            // this.div.html(this.contentsHTML);
             this.div.position(this.x + shiftXMap + width/2, this.y + height/2 + DOM_EL.canvas.position().y);
-            this.div.size(this.width * this.scaleX * scaleXYMap * sqrt(0.5), this.height  * scaleXYMap * sqrt(0.5) - 40);
+            this.div.size(this.width * this.scaleX * scaleXYMap -10, this.height  * scaleXYMap - 10);
             this.div.style("font-size", width*scaleXYMap/30 + 'px');
         }
         else{
@@ -321,9 +350,9 @@ class ThoughtBubble {
             fill(0);
             // text(this.contents, this.x + this.randomSeed + sin(frameCount) * random(2,30), this.y - (frameCount - this.frameCount)*8);
             text(APP_STATE.nickname + "'s bubble:", this.x + this.randomSeed + sin(frameCount) * random(2,30), -this.height * scaleXYMap/2 + (this.height - this.height * scaleXYMap * sqrt(0.5))/2 - (frameCount - this.frameCount)*8);
-            this.div.html(this.contentsHTML);
+            // this.div.html(this.contentsHTML);
             this.div.position(this.x + shiftXMap + width/2 + this.randomSeed + sin(frameCount) * random(2,30), this.y + height/2 + DOM_EL.canvas.position().y - (frameCount - this.frameCount)*8);
-            this.div.size(this.width * this.scaleX * scaleXYMap * sqrt(0.5), this.height  * scaleXYMap * sqrt(0.5) - 40);
+            this.div.size(this.width * this.scaleX * scaleXYMap - 10, this.height  * scaleXYMap -10);
             this.div.style("font-size", width*scaleXYMap/30 + 'px');
             if(this.y + this.height/2 - (frameCount - this.frameCount)*5 < (this.height) * -1 - this.y ){
                 this.bubbleOut = false;

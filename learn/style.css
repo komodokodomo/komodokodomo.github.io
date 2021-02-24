@@ -77,6 +77,13 @@ a {
   padding: 5px;
 }
 
+#onboard-button.inactive{
+  background: lightgray;
+  opacity: 0.3;
+  border-style: none;
+  box-shadow: none;
+}
+
 #canvas-container{
   display: flex;
   height: calc(var(--vh, 1vh) * 50);
@@ -409,10 +416,8 @@ display: flex;
 #login-title-container{
   display: block;
   left: 50%;
-  /* top: 30%; */
   position: relative;
   transform: translate(-50%, -50%);
-  /* font-size: 4rem; */
   font-size: calc(40px + (30 - 8) * ((100vw - 300px) / (1000 - 300)));
   font-weight: bold;
   text-align: center;
@@ -626,6 +631,7 @@ display: flex;
   /* height: 1.5rem; */
   margin-top: calc(5px + 11 * ((100vw - 300px) / (1600 - 300)));
   margin-bottom: (10px + (30 - 8) * ((100vw - 300px) / (1600 - 300)));
+  opacity: 0;  /* TEMP SOLUTION */
 }
 
 #content-image-container{
@@ -637,6 +643,7 @@ display: flex;
   border-width: calc(0.75px + 2 * ((100vw - 300px) / (1600 - 300)));
   border-radius: var(--vmin);
   overflow: hidden;
+  margin: auto;
 }
 
 #content-image{
@@ -684,18 +691,17 @@ display: flex;
   border-style: solid;
   border-width: calc(0.75px + 2 * ((100vw - 300px) / (1600 - 300)));
   border-radius: var(--vmin);
-  height: calc(100% - 2rem);
+  /* height: calc(100% - 2rem); */
   width: calc(100% - 2rem);
   position: relative;
 }
 
-#content-box:before {
+/* #content-box:before {
 	border: 1em solid transparent;
 	border-top-color: black;
 	content: '';
 	margin-left: -1em;
   position: absolute;
-  /* transform: translateX(-0.5em); */
 		top: 100%;
 		left: 50%;
 	width: 0;
@@ -707,12 +713,11 @@ display: flex;
 	content: '';
 	margin-left: -1em;
   position: absolute;
-  /* transform: translateX(-0.5em); */
 		top: calc(100% - 0.5px - 2 * ((100vw - 300px) / (1600 - 300))); 
 		left: 50%;
 	width: 0;
 	height: 0;
-}
+} */
 
 #content{
   padding: calc(12px + (30 - 8) * ((100vw - 300px) / (1300 - 300)));
@@ -760,12 +765,13 @@ display: flex;
   transition: ease-in 1000ms;
 }
 
-
 #content-lenses-container{
-  width: 90%;
-  max-width: calc(60vh * 0.9);
-  max-width: calc(var(--vh, 1vh) * 60 * 0.9);
+  max-width: 90%;
+  /* max-width: calc(60vh * 0.9); */
+  /* max-width: calc(var(--vmin) * 30 * 0.9); */
   height: 20%;
+  display: inline-flex;
+  overflow-x: auto;
 }
 
 #content-social-chatbox {
@@ -817,6 +823,27 @@ display: flex;
   padding: calc(8px + 11 * ((100vw - 300px) / (1600 - 300)));
 }
 
+.lens-pill{
+  /* background: whitesmoke; */
+  position: relative;
+  width: 15vh;
+  height: 15vh;
+  max-width: 15vh;
+  max-height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 0 -20px;
+  border-radius: 50%;
+  transition: 300ms;
+}
+
+.lens-pill.selected{
+  background: rgba(245, 245, 245, 0.37);
+  margin: 0;
+}
 
 .carousel {
   display: flex;
@@ -858,6 +885,15 @@ display: flex;
   transition: linear 300ms;
 }
 
+.carousel-cell-emoji{
+  font-size: 5vh;
+  transition: 300ms;
+}
+
+.carousel-cell-emoji.selected{
+  font-size: 10vh;
+}
+
 .carousel-cell-emoji.center {
   /* font-size: 5rem; */
   
@@ -883,6 +919,69 @@ display: flex;
   /* font-size: 1rem; */
   font-size: calc(8px + (30 - 8) * ((100vw - 300px) / (1600 - 300)));
   transition: linear 300ms;
+}
+
+.carousel-cell-title{
+  transition: 300ms;
+  font-size: xx-small;
+}
+
+.carousel-cell-title.selected{
+  font-size: smaller;
+}
+
+.carousel-cell-title:before {
+  border: 1em solid transparent;
+  border-top-color: transparent;
+  content: '';
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -2px);
+  opacity: 0;
+}
+
+.carousel-cell-title:after {
+  border: 1em solid transparent;
+  border-top-color: transparent;
+  content: '';
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -3px);
+  opacity: 0;
+}
+
+
+
+.carousel-cell-title.selected:before {
+  border: 1em solid transparent;
+  border-top-color: black;
+  content: '';
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -2px);
+  opacity: 1;
+}
+
+.carousel-cell-title.selected:after {
+  border: 1em solid transparent;
+  border-top-color: #f2f2f2;
+  content: '';
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -3px);
+  opacity: 1;
 }
 
 .ql-container.ql-snow{

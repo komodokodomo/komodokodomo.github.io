@@ -1,0 +1,326 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BBT Randomiser</title>
+    <meta name='description' content='With our randomiser, your category/character choice for BBT is clear!'>
+    <meta name="author" content="Suhaimizs">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/sweetalert.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.min.js"></script>
+    <script src="js/jquery.quovolver.min.js"></script>
+    <script src="js/sweetalert-dev.js"></script>
+    <script src="js/site.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.typeit/3.0.1/typeit.min.js"></script>
+
+
+    <!-- Typekit -->
+    <script src="https://use.typekit.net/nbs6zzu.js"></script>
+    <script>
+        try {
+            Typekit.load({
+                async: true
+            });
+        } catch (e) {}
+    </script>
+
+    <!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+    <!-- Google Analytics -->
+    <!--<script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("");
+            pageTracker._trackPageview();
+        } catch (err) {}
+    </script>-->
+    <!-- End Google Analytics -->
+
+    <!-- Lead Forensics -->
+    <script type="text/javascript" src="http://1-cl0ud.com/js/21626.js"></script>
+    <!-- End Lead Forensics -->
+
+</head>
+
+<body class="">
+
+    <!-- borders -->
+    <div class="top-border"></div>
+    <div class="right-border"></div>
+    <div class="bottom-border"></div>
+    <div class="left-border"></div>
+    <!-- /borders -->
+
+    <!-- Menu -->
+    <div id="menubtn" class="nav-icon cross">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- /menu -->
+
+    <div class="social">
+
+        <!--<div class="share-btns">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://tea.miltonbayer.com/" class="winner-fb" target="_new"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/home?status=%40miltonbayer%20have%20some%20awesome%20new%20spinners%20to%20use!%20Perfect%20for%20deciding%20whose%20turn%20it%20is%20to%20make%20the%20office%20tea%20-%20https%3A//tea.miltonbayer.com/" class="winner-tw" target="_new"><i class="fa fa-twitter"></i></a>
+            <a href="mailto:?&amp;subject=Milton Bayer's Spinners&amp;body=Milton Bayer have some awesome new spinners to use! Perfect for deciding whose turn it is to make the office tea - https://tea.miltonbayer.com/" class="winner-email" target="_new"><i class="fa fa-envelope"></i></a>
+        </div>-->
+        <!--/share-btns-->
+        <i class="shareText"></i>
+    </div>
+
+    <!-- tea spoon -->
+    <img src="/images/straw.png" id="pointer" />
+    <!-- /tea spoon -->
+
+    <div class="btnwrapper">
+        <span id="enternames" class="viewmap viewall white">
+			<i>
+				<span>Randomise</span>
+        <span>the category/character</span>
+        </i>
+        </span>
+
+        <span id="spin" class="viewmap viewall white">
+			<i>
+				<span>Stir</span>
+        <span>to decide for BBT</span>
+        </i>
+        </span>
+    </div>
+    <!-- /btnwrapper -->
+
+    <div class="wrapper">
+        <!-- spinnner -->
+        <canvas class="spinner" width="500" height="500"></canvas>
+        <!-- /spinner -->
+
+        <!-- teacup <img src="/images/beer-mat.jpg" id="spinnerbg" /> -->
+        <img src="/images/beer-mat.jpg" id="spinnerbg" />
+        <!-- /teacup -->
+
+        <!-- spinner <img id="bg" src="/images/beer-foam.png" /> -->
+        <img id="bg" src="/images/bbtpearl500.png" />
+        <!-- /spinner -->
+    </div>
+    <!-- /wrapper -->
+
+    <!-- Winner page -->
+    <div id="winnerwrapper" class="overlay-scale">
+        <div class="nav-icon cross">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div id="winnercontent">
+            <h1 class="winner"></h1>
+            <h2>Head to the corresponding tab in the BBT site.</h2>
+            <!--<p>Share with friends</p>
+
+
+
+            <div class="share-btns">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://tea.miltonbayer.com/" class="winner-fb" target="_new"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/home?status=%40miltonbayer%20have%20some%20awesome%20new%20spinners%20to%20use!%20Perfect%20for%20deciding%20whose%20turn%20it%20is%20to%20make%20the%20office%20tea%20-%20https%3A//tea.miltonbayer.com/" class="winner-tw" target="_new"><i class="fa fa-twitter"></i></a>
+                <a href="mailto:?&amp;subject=Milton Bayer's Spinners&amp;body=Milton Bayer have some awesome new spinners to use! Perfect for deciding whose turn it is to make the office tea - https://tea.miltonbayer.com/" class="winner-email" target="_new"><i class="fa fa-envelope"></i></a>
+            </div>-->
+            <!--/share-btns-->
+            <i class="shareText"></i>
+
+        </div>
+        <!-- /winnercontent -->
+    </div>
+    <!-- /winnerwrapper -->
+
+
+    <!-- Add Names page -->
+    <div id="addnameswrapper" class="overlay-scale">
+
+        <div class="nav-icon cross">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="addnamescontent">
+            <h1>Enter the categories/character to randomise and click '➡':</h1>
+
+            <form class="iform" action="#" method="get">
+                <input id="joiner" name="joiner" class="joiner" placeholder="Type here..." />
+                <button class="add">Add</button>
+            </form>
+            <div class="error"></div>
+
+            <div class="participantswrapper">
+                <ul class="participants">
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-mouse"> Fast/Slow🐭</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-cat"> Fast/Slow😺</a></li> 
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-rabbit"> Fast/Slow🐰</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-dog"> Fast/Slow🐶</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-fish"> Fast/Slow🐡</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-bird"> Fast/Slow🐦</a></li>
+
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fast/fast-mouse"> Fast🐭</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fast/fast-cat"> Fast😺</a></li> 
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fast/fast-rabbit"> Fast🐰</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fast/fast-dog"> Fast🐶</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fast/fast-fish"> Fast🐡</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fast/fast-bird"> Fast🐦</a></li>
+
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-mouse"> Slow/Fast🐭</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-cat"> Slow/Fast😺</a></li> 
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-rabbit"> Slow/Fast🐰</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-dog"> Slow/Fast🐶</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-fish"> Slow/Fast🐡</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-bird"> Slow/Fast🐦</a></li>
+
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/slow/slow-mouse"> Slow🐭</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/slow/slow-cat"> Slow😺</a></li> 
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/slow/slow-rabbit"> Slow🐰</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/slow/slow-dog"> Slow🐶</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/slow/slow-fish"> Slow🐡</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/slow/slow-bird"> Slow🐦</a></li>
+
+                    <!--<li>Fast🐭</li>
+                    <li>Slow😺</li> 
+                    <li>Fast/Slow🐰</li>
+                    <li>Fast🐶</li>
+                    <li>Slow🐡</li>
+                    <li>Slow/Fast🐦</li>
+
+                    <li>Fast😺</li>
+                    <li>Slow🐰</li> 
+                    <li>Fast/Slow🐶</li>
+                    <li>Fast🐡</li>
+                    <li>Slow🐦</li>
+                    <li>Slow/Fast🐭</li> 
+
+                    <li>Fast🐰</li>
+                    <li>Slow🐶</li> 
+                    <li>Fast/Slow🐡</li>
+                    <li>Fast🐦</li>
+                    <li>Slow🐭</li>
+                    <li>Slow/Fast😺</li> 
+
+                    <li>Fast🐶</li>
+                    <li>Slow🐡</li> 
+                    <li>Fast/Slow🐦</li>
+                    <li>Fast🐭</li>
+                    <li>Slow😺</li>
+                    <li>Slow/Fast🐰</li> 
+
+                    <li>Fast🐡</li>
+                    <li>Slow🐦</li> 
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fastslow-mouse">Fast/Slow🐭</li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/fast-cat">Fast😺</a></li>
+                    <li><a href="https://sites.google.com/moe.edu.sg/brainboost/fastslow/slow-rabbit">Slow🐰</a></li>
+                    <li>Slow/Fast🐶</li> 
+
+                    <li>Fast🐦</li>
+                    <li>Slow🐭</li> 
+                    <li>Fast/Slow😺</li>
+                    <li>Fast🐰</li>
+                    <li>Slow🐶</li>
+                    <li>Slow/Fast🐡</li>-->  
+                </ul>
+            </div>
+            <!-- /participantswrapper Slow😺Fast/Slow🐰Fast🐶Slow🐡Slow/Fast🐦 -->
+
+            <div class="namesbtnwrapper">
+                <span id="submitspin" class="viewmap viewall white">
+					<i>
+						<span>Go</span>
+                <span>now</span>
+                </i>
+                </span>
+
+                <span id="savenames" class="viewmap viewall white">
+					<i>
+						<span>Save</span>
+                <span>names</span>
+                </i>
+                </span>
+
+                <span id="clearnames" class="viewmap viewall white">
+					<i>
+						<span>Clear</span>
+                <span>names</span>
+                </i>
+                </span>
+            </div>
+            <!-- /namesbtnwrapper -->
+
+        </div>
+        <!-- /addnamescontent -->
+    </div>
+    <!-- /addnameswrapper -->
+
+    <!-- Menu -->
+    <div id="menu" class="overlay-scale open">
+
+        <div class="social">
+
+            <div class="share-btns">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://tea.miltonbayer.com/" class="winner-fb" target="_new"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/home?status=%40miltonbayer%20have%20some%20awesome%20new%20spinners%20to%20use!%20Perfect%20for%20deciding%20whose%20turn%20it%20is%20to%20make%20the%20office%20tea%20-%20https%3A//tea.miltonbayer.com/" class="winner-tw" target="_new"><i class="fa fa-twitter"></i></a>
+                <a href="mailto:?&amp;subject=Milton Bayer's Spinners&amp;body=Milton Bayer have some awesome new spinners to use! Perfect for deciding whose turn it is to make the office tea - https://tea.miltonbayer.com/" class="winner-email" target="_new"><i class="fa fa-envelope"></i></a>
+            </div>
+            <!--/share-btns-->
+            <i class="shareText"></i>
+        </div>
+
+        <div id="menuwrapper">
+
+            <h1>Brain Boost Time (BBT)</h1>
+            <br><br/>
+            <p id="example5"></p>
+
+            <script>
+                $('#example5').typeIt({
+                    strings: ["Fast Mouse🐭?", "Slow Cat😺?", "Fast/Slow Rabbit🐰", "Fast Dog🐶?", "Slow Fish🐡?", "Slow/Fast Bird🐦?"],
+                    speed: 100,
+                    breakLines: false,
+                    loop: true,
+                    breakDelay: 2300,
+                });
+            </script>
+
+            <p>How to decide on which Brain Boost Time energiser category/character?</p>
+            <p class="spintosee">Click the BBT below to let it decide!</p>
+
+             <a href="?spin" class="menu-item-tea">Tea</a>
+            <!--or <a href="?xmas&spin" class="menu-item-xmas">Xmas</a>-->
+
+
+        </div>
+        <!-- /menuwrapper -->
+    </div>
+    <!-- /menu -->
+    <div class="sound-icon"></div>
+
+    <!--<div class="brewedby">Adapted from the original brew by <a href="https://tea.miltonbayer.com/" target="_blank">tea.miltonbayer.com</a></div>-->
+
+</body>
+
+</html>

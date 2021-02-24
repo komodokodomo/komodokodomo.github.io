@@ -1,0 +1,213 @@
+html {
+    font-family: 'Roboto Mono';
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  body {
+    margin: 0;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+#login-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .login-instructions{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: whitesmoke;
+    box-shadow: 0 4px 8px 0 gray;
+    border-radius:1rem;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #login-skip-button{
+    position: absolute;
+    right: 1.5rem;
+    top: 0;
+    font-size: 1.5rem;
+    margin-block-start: 1.5rem;
+  }
+  
+  #menu-container{
+    display: inline-flex;
+    width: 100%;  
+    height: 3rem;
+    align-items: center;
+    box-shadow: 0px 3px 3px lightgrey;
+    background: whitesmoke;
+  }
+
+  #menu-hamburger,#menu-title{
+    font-family: 'Roboto Mono';
+    font-weight: bold;
+    padding: 1rem;
+    align-self: center;
+  }
+  
+  #menu-home{
+    display: block;
+    right: 1rem;
+    position: absolute;  
+  }
+  
+  
+  #menu-hamburger-popup{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: lightgrey;
+    z-index: 1;
+    padding-inline-start: 0;
+    margin: 0;
+    border-style: solid;
+  }
+  
+  #menu-hamburger-popup-list:last-child {
+    border-bottom-style: none;
+  }
+  
+  .menu-hamburger-popup-list{
+  border-bottom-style: solid;
+  padding: 1rem;
+  }
+  
+  #menu-hamburger-popup.hidden{
+    display: none;
+  }
+  
+  #menu-project-title{
+    font-size: larger;
+    font-family: 'Roboto Mono';
+    font-weight: bolder;
+  }
+  
+  #activities-container{
+    display: inline-block;
+    /* flex-direction: column;
+    align-items: center; */
+    width: 100%;
+    overflow-y: scroll;
+    height: calc(100vh - 3rem);
+    height: calc(var(--vh, 1vh) * 100 - 3rem);
+  }
+  
+  #login-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;  
+    height: 100%;
+  }
+  
+  #login-title-header {
+    display: block;
+    position: relative;
+    transform: translate(0%, -50%);
+    font-size: calc(40px + (30 - 8) * ((100vw - 300px) / (1000 - 300)));
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  #login-title-instructions{
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    text-align: center;
+    transform: translate(0%, -100%);
+  }
+  
+  #login-google-container{
+    justify-content: center;
+    display: flex;
+    transform: translate(0px, 100%);
+  }
+
+.activity-container{
+    width: calc(var(--vmin) * 50 - 2rem);
+    height: calc(var(--vmin) * 50 - 2rem);
+    display: inline-flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    margin: 1rem 0 0 0.5rem;
+}
+
+.activity-thumbnail{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 1.0;
+    transition: 1s;
+}
+
+.activity-container:hover .activity-thumbnail{
+    opacity: 0.1;
+}
+
+.activity-instructions{
+    font-size: 0.7rem;
+    margin: auto;
+    text-align: center;
+    padding: 0 1rem;
+    transition: 1s;
+}
+
+.activity-container:hover .activity-title{
+    opacity: 0.0;
+}
+
+.activity-title{
+    position: absolute;
+    text-align: center;
+    opacity: 1.0;
+    transition: 1s;
+    background-color: white;
+    font-size: 1.5rem;
+}
+
+.activity-container:hover .activity-hidden-container{
+    opacity: 1.0;
+    z-index: 1;
+}
+
+.activity-hidden-container{
+    opacity: 0.0;
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity-button{
+    text-align: center;
+    background: #f2f2f2;
+    font-family: 'Roboto Mono';
+    box-shadow: grey 3px 0px 3px;
+    border-style: solid;
+    padding: 5px;
+    margin-bottom: 10%;
+  }
+
+.activity-button:hover{
+    cursor: pointer;
+}
+
+
+
+
+
