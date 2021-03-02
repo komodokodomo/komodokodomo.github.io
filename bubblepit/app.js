@@ -88,6 +88,21 @@ function startCon()
           );
           UTIL.index++;
   });
+  UTIL.socket.on('bubble-image-event', function(msg) 
+  {
+        console.log(msg);	//title,contents,color,xin, yin, din, idin, oin) {
+        CNV_EL.balls[UTIL.index] = new Ball(  //  constructor(contents,xin, yin, din, idin, oin) {
+            msg.name,
+            msg.message,
+            msg.color,
+            width/2 + random(-width/2, width/2),
+            height,
+            random(width*0.2-10, width*0.2+10),
+            UTIL.index,
+            CNV_EL.balls
+          );
+          UTIL.index++;
+  });
 }
 
 function setup(){
@@ -137,6 +152,7 @@ function draw(){
         ball.collide();
         ball.move();
         ball.display();
+        ball.updateDiameterMultiplier();
       });
     // CNV_EL.bubble.render();
 }
@@ -195,10 +211,39 @@ class Ball {
     this.randomSeed = random(-10,10);
     this.randomPhase = random(2*PI);
     this.color = color;
+    this.imageBall = contents.includes("data:image/png;base64");
+    this.diameterMultiplier = 1.0;
+    this.diameterMultiplierTarget = 1.0;
+    
 
-    this.div = createDiv(contents);
+    if(this.imageBall){
+      this.image = createImg(contents);
+      this.div = createDiv();
+      this.div.addClass("circular");
+      this.image.parent(this.div);
+      this.image.addClass("bubble-image");
+    }
+    else{
+      this.div = createDiv(contents);
+    }
     this.div.addClass("bubble");
     this.div.parent(DOM_EL.activityContainer);
+    this.div.mouseOver(this.mouseOverBubble.bind(this));
+    this.div.mouseOut(this.mouseOutBubble.bind(this));
+  }
+
+  mouseOverBubble(){
+    this.diameterMultiplierTarget = 3.0;
+    console.log("mouseover detected");
+  }
+
+  mouseOutBubble(){
+    this.diameterMultiplierTarget = 1.0;
+    console.log("mouseout detected");
+  }
+
+  updateDiameterMultiplier(){
+    this.diameterMultiplier = lerp(this.diameterMultiplier,this.diameterMultiplierTarget,0.1);
   }
 
   collide() {
@@ -207,7 +252,7 @@ class Ball {
       let dx = this.others[i].x - this.x;
       let dy = this.others[i].y - this.y;
       let distance = sqrt(dx * dx + dy * dy);
-      let minDist = this.others[i].diameter/2 + this.diameter/2;
+      let minDist = this.others[i].diameter*this.others[i].diameterMultiplier/2 + this.diameter*this.diameterMultiplier/2;
       //   console.log(distance);
       //console.log(minDist);
       if (distance < minDist) {
@@ -232,18 +277,18 @@ class Ball {
     this.x += this.vx;
     this.y += this.vy;
     this.x += (this.randomSeed * cos(frameCount+this.randomPhase) * (this.y-this.diameter/2)/height);
-    if (this.x + this.diameter / 2 > width) {
-      this.x = width - this.diameter / 2;
+    if (this.x + this.diameter * this.diameterMultiplier / 2 > width) {
+      this.x = width - this.diameter * this.diameterMultiplier / 2;
       this.vx *= UTIL.friction;
-    } else if (this.x - this.diameter / 2 < 0) {
-      this.x = this.diameter / 2;
+    } else if (this.x - this.diameter * this.diameterMultiplier / 2 < 0) {
+      this.x = this.diameter * this.diameterMultiplier / 2;
       this.vx *= UTIL.friction;
     }
-    if (this.y + this.diameter / 2 > height) {
-      this.y = height - this.diameter / 2;
+    if (this.y + this.diameter * this.diameterMultiplier / 2 > height) {
+      this.y = height - this.diameter * this.diameterMultiplier / 2;
       this.vy *= UTIL.friction;
-    } else if (this.y - this.diameter / 2 < 0) {
-      this.y = this.diameter / 2;
+    } else if (this.y - this.diameter * this.diameterMultiplier / 2 < 0) {
+      this.y = this.diameter * this.diameterMultiplier / 2;
       this.vy *= UTIL.friction;
     }
   }
@@ -254,28 +299,28 @@ class Ball {
     noFill();
     UTIL.scribble.scribbleEllipse(  this.x, 
                                     this.y, 
-                                    this.diameter + 10* sin(frameCount), 
-                                    this.diameter + this.randomSeed * cos(frameCount+this.randomPhase) 
+                                    this.diameter * this.diameterMultiplier + 10* sin(frameCount), 
+                                    this.diameter * this.diameterMultiplier + this.randomSeed * cos(frameCount+this.randomPhase) 
     );
 
     stroke(0,0,200,10);                            
     UTIL.scribble.scribbleEllipse(  this.x, 
                                     this.y, 
-                                    this.diameter + 10* sin(frameCount), 
-                                    this.diameter + this.randomSeed* cos(frameCount+this.randomPhase) 
+                                    this.diameter * this.diameterMultiplier + 10* sin(frameCount), 
+                                    this.diameter * this.diameterMultiplier + this.randomSeed* cos(frameCount+this.randomPhase) 
     );                            
 
     noStroke();
     fill(this.color.R,this.color.G,this.color.B,10);
     ellipse(    this.x, 
                 this.y, 
-                this.diameter + this.randomSeed* sin(frameCount+this.randomPhase) - 3, 
-                this.diameter + this.randomSeed* cos(frameCount+this.randomPhase) - 3 
+                this.diameter * this.diameterMultiplier + this.randomSeed* sin(frameCount+this.randomPhase) - 3, 
+                this.diameter * this.diameterMultiplier + this.randomSeed* cos(frameCount+this.randomPhase) - 3 
     );
 
     fill(0);
     textSize(10);
-    text(this.title,this.x,this.y- this.diameter/2 + 20);
+    text(this.title,this.x,this.y- this.diameter * this.diameterMultiplier/2 + 20);
     textSize(6);
     // text(   this.contents, 
     //         this.x, 
@@ -287,10 +332,18 @@ class Ball {
                       this.x,
                       this.y + titleHeight
                       );
-    this.div.size(
-                      this.diameter * sqrt(0.5) + this.randomSeed* sin(frameCount+this.randomPhase) - 20,
-                      this.diameter * sqrt(0.5) + this.randomSeed* cos(frameCount+this.randomPhase) - 20,
-                      );
+    if(this.imageBall){
+      this.div.size(
+        this.diameter * this.diameterMultiplier + this.randomSeed* sin(frameCount+this.randomPhase),
+        this.diameter * this.diameterMultiplier + this.randomSeed* cos(frameCount+this.randomPhase),
+        );
+    }
+    else{
+      this.div.size(
+        this.diameter * this.diameterMultiplier * sqrt(0.5) + this.randomSeed* sin(frameCount+this.randomPhase) - 20,
+        this.diameter * this.diameterMultiplier * sqrt(0.5) + this.randomSeed* cos(frameCount+this.randomPhase) - 20,
+        );
+    }
   }
 }
 

@@ -46,6 +46,7 @@ var UTIL = {
     scheduler: null,
     worker1: null,
     worker2: null,
+    dataUrl: null
 
     // speechTimer: 0
 }
@@ -79,6 +80,7 @@ function handleMotion(event) {
 }
 
 function loginEvent(){
+    getAccel();
     if(DOM_EL.loginNicknameInput.value().length == 0){
         DOM_EL.loginNicknameInput.removeClass("no-error");
         setTimeout( () => DOM_EL.loginNicknameInput.addClass("no-error"), 300 );
@@ -196,6 +198,8 @@ function snapEvent(){
         },
       ];
     UTIL.ctx.drawImage(DOM_EL.capture.elt, 0, 0);
+    UTIL.dataUrl = UTIL.canvas.toDataURL(0.5);
+    console.log(UTIL.dataUrl);
     ocr(UTIL.canvas,rectangles);
 }
 
@@ -252,14 +256,13 @@ function init() {
 		console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
 		console.log(info.actionKey); // Logs the string "basketball shot"
         console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
-        if(UTIL.speechBubbleContent.length > 0){
+        if(UTIL.dataUrl.length !== null){
             triggerBubbleAnimation();
         }
 	});
 }
 
 window.addEventListener("load", init, false);
-window.addEventListener("devicemotion", handleMotion, true);
 
 
 
@@ -356,8 +359,10 @@ class ThoughtBubble {
             this.div.style("font-size", width*scaleXYMap/30 + 'px');
             if(this.y + this.height/2 - (frameCount - this.frameCount)*5 < (this.height) * -1 - this.y ){
                 this.bubbleOut = false;
-                UTIL.socket.emit("bubble_image",{name: APP_STATE.nickname, message : UTIL.speechBubbleContent, color: {R:this.color.R,G:this.color.G,B:this.color.B}});
+                DOM_EL.capture.play();
+                UTIL.socket.emit("bubble_image",{name: APP_STATE.nickname, message : UTIL.dataUrl, color: {R:this.color.R,G:this.color.G,B:this.color.B}});
                 UTIL.speechBubbleContent = "";
+                UTIL.dataUrl = null;
                 this.contents = "";
                 this.contentsHTML = "";
             }
@@ -415,4 +420,20 @@ function windowResized(){
       document.documentElement.style.setProperty('--vmin', `${vh*2}px`);
     //   DOM_EL.orientationContainer.style("display", "flex");
     }
+}
+
+function getAccel(){
+    try{ 
+        DeviceMotionEvent.requestPermission().then(response => {
+        if (response == 'granted') {
+            console.log("accelerometer permission granted");
+            // Do stuff here
+            window.addEventListener("devicemotion", handleMotion, true);
+        }
+    });
+    }
+    catch(err) {
+            console.log(err);
+            window.addEventListener("devicemotion", handleMotion, true);
+        }
 }
