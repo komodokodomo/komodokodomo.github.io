@@ -158,6 +158,14 @@ const s = ( sketch ) => {
   };
   
   let myp5 = new p5(s,'wheel-canvas');
+  var test;
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    console.log(document.getElementById('startup-container'))
+    test = document.getElementById('startup-container');
+    console.log(test);
+  });
   
   // let pie = [];
   
