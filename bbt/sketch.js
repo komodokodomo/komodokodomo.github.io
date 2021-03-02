@@ -30,8 +30,8 @@ const s = ( sketch ) => {
     }
     
     sketch.windowResized = () => {
-      APP_STATE.width = document.getElementById('wheel-canvas').offsetWidth;
-      APP_STATE.height = document.getElementById('wheel-canvas').offsetHeight;
+      APP_STATE.width = document.getElementById('startup-container').offsetWidth;
+      APP_STATE.height = document.getElementById('startup-container').offsetHeight;
       console.log(APP_STATE.width + ", " + APP_STATE.height);
 
       if(APP_STATE.width>APP_STATE.height){
@@ -48,8 +48,8 @@ const s = ( sketch ) => {
     }
     
     sketch.setup = () => {
-      APP_STATE.width = document.getElementById('wheel-canvas').offsetWidth;
-      APP_STATE.height = document.getElementById('wheel-canvas').offsetHeight;
+      APP_STATE.width = document.getElementById('startup-container').offsetWidth;
+      APP_STATE.height = document.getElementById('startup-container').offsetHeight;
       if(APP_STATE.width>APP_STATE.height){
         APP_STATE.smallerSide = APP_STATE.height;
       }else{
