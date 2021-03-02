@@ -100,6 +100,7 @@ const s = ( sketch ) => {
          spinStarted = false;
           console.log("spin stopped");
           console.log(chosenPie);
+          test.classList.add("d-none");
           // sketch.select("#startup-container").hide();
           // test.element.classList.add("collapse");
          }
