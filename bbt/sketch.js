@@ -101,7 +101,7 @@ const s = ( sketch ) => {
           console.log("spin stopped");
           console.log(chosenPie);
           // sketch.select("#startup-container").hide();
-          test.element.classList.add("collapse");
+          // test.element.classList.add("collapse");
          }
       };
     
