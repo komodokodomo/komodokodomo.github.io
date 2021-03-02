@@ -32,6 +32,8 @@ const s = ( sketch ) => {
     sketch.windowResized = () => {
       APP_STATE.width = document.getElementById('wheel-canvas').offsetWidth;
       APP_STATE.height = document.getElementById('wheel-canvas').offsetHeight;
+      console.log(APP_STATE.width + ", " + APP_STATE.height);
+
       if(APP_STATE.width>APP_STATE.height){
         APP_STATE.smallerSide = APP_STATE.height;
       }else{
