@@ -17,14 +17,17 @@ html, body {
   }
   
   #canvas-container,#instruction-container{
-    height: calc(50 * var(--vmax));
-    width: calc(50 * var(--vmax));
+    height: calc(48 * var(--vmax));
+    width: calc(48 * var(--vmax));
     border-style: solid;
+    display: inline-flex;
   }
   
   #content-container{
     position: relative;
     border-style: solid;
+    left: calc(2 * var(--vmax));
+    top: calc(2 * var(--vmax));
   }
   
   #content-timer{
@@ -33,8 +36,8 @@ html, body {
 
   #play-container,#timer-container,#restart-container{
       position: relative;
-      width: calc(100 * var(--vmax) / 3);
-      height: calc(100 * var(--vmax) / 3);
+      width: calc(96 * var(--vmax) / 3);
+      height: calc(96 * var(--vmax) / 3);
       display: inline-flex;
       justify-content: center;
       align-items: center;
