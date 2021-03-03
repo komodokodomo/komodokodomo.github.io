@@ -64,8 +64,8 @@ html, body {
   .label-right{
     position: absolute;
     padding: 10px;
-    font-weight: lighter;
-    fill: gray;
+    font-size:small;
+    color: gray;
     right: 0;
     top: 0;
 }
