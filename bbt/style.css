@@ -40,7 +40,7 @@ html, body {
   #play-container,#timer-container,#restart-container{
       position: relative;
       width: calc(96 * var(--vmax) / 3);
-      height: calc(100 * var(--vmin) - 48 * var(--vmax));
+      height: calc(100vh - 4 * var(--vmax) - 2rem - 48 * var(--vmax));
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -59,7 +59,21 @@ html, body {
       left: 0;
       top: 0;
   }
+  .label-right{
+    position: absolute;
+    padding: 10px;
+    font-weight: lighter;
+    fill: gray;
+    right: 0;
+    top: 0;
+}
   
   #content-top-container,#content-bot-container{
       display: flex;
+  }
+
+  #nav-container{
+    bottom: 1rem;
+    position: absolute;
+    left: 1rem;
   }
