@@ -34,4 +34,16 @@ html, body {
   #content-timer{
     position: absolute;
   }
+
+  #play-title-container{
+      position: relative;
+  }
+
+  .icon{
+      font-size: 4rem;
+  }
+
+  .label{
+      position: absolute;
+  }
   
