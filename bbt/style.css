@@ -73,7 +73,24 @@ html, body {
   }
 
   #nav-container{
+    width: calc(96 * var(--vmax));
     bottom: 1rem;
     position: absolute;
-    left: 1rem;
+    left: calc(2 * var(--vmax));
   }
+
+  .nav-brand{
+      font-weight: bold;
+      fill: black;
+  }
+
+  .nav-link{
+      float: right;
+      fill: lightgray;
+      transition: 1s;
+  }
+
+  .nav-link:hover{
+    fill: black;
+}
+  
