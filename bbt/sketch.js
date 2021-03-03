@@ -1,7 +1,25 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM fully loaded and parsed');
+  updateCSSVar();
 });
 
+
+function updateCSSVar(){
+  let vh = window.innerHeight * 0.01;
+  let vw = window.innerWidth * 0.01;
+
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  document.documentElement.style.setProperty('--vw', `${vw}px`);
+
+  if(vh > vw){
+    document.documentElement.style.setProperty('--vmin', `${vw}px`);
+    document.documentElement.style.setProperty('--vmax', `${vh}px`);
+  }
+  else{
+    document.documentElement.style.setProperty('--vmin', `${vh}px`);
+    document.documentElement.style.setProperty('--vmax', `${vw}px`);
+  }
+}
 
 const s = ( sketch ) => {
   let pie = [];
@@ -43,6 +61,8 @@ const s = ( sketch ) => {
     }else{
       APP_STATE.smallerSide = APP_STATE.width;
     }
+    updateCSSVar();
+
     sketch.resizeCanvas(APP_STATE.width, APP_STATE.height);
     for(let i = 0; i < pie.length; i++){
       pie[i].pX = APP_STATE.width/2;

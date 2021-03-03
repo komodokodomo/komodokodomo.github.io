@@ -22,9 +22,9 @@ html, body {
     text-align: center;
   }
   
-  #startup-container{
-    height: 85vh;
-    width: 100vw;
+  #canvas-container{
+    height: calc(50 * var(--vmax));
+    width: calc(50 * var(--vmax));
   }
   
   #content-container{
