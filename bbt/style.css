@@ -81,16 +81,17 @@ html, body {
 
   .nav-brand{
       font-weight: bold;
-      fill: black;
+      color: black;
   }
 
   .nav-link{
       float: right;
-      fill: lightgray;
+      color: gray;
       transition: 1s;
+      margin-left: 1rem;
   }
 
   .nav-link:hover{
-    fill: black;
+    color: black;
 }
   
