@@ -22,6 +22,8 @@ html, body {
     border-style: solid;
     display: inline-flex;
     vertical-align: bottom;
+    justify-content: center;
+    align-items: center;
   }
   
   #content-container{
