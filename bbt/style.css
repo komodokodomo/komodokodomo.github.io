@@ -16,7 +16,7 @@ html, body {
     font-family : arial san-serif;
   }
   
-  #canvas-container{
+  #canvas-container,#instruction-container{
     height: calc(50 * var(--vmax));
     width: calc(50 * var(--vmax));
     border-style: solid;
@@ -49,5 +49,7 @@ html, body {
   .label{
       position: absolute;
       padding: 10px;
+      left: 0;
+      top: 0;
   }
   
