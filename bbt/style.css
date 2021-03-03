@@ -16,12 +16,6 @@ html, body {
     font-family : arial san-serif;
   }
   
-  #wheel-button{
-    border-style: solid;
-    background: gold;
-    text-align: center;
-  }
-  
   #canvas-container{
     height: calc(50 * var(--vmax));
     width: calc(50 * var(--vmax));
@@ -43,7 +37,7 @@ html, body {
   }
 
   .icon{
-      font-size: 4rem;
+      font-size: 3rem;
   }
 
   .label{

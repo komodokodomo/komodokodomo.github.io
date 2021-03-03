@@ -93,7 +93,7 @@ const s = ( sketch ) => {
                          choices[i],
                          colors[i%colors.length]);
     }
-    button = sketch.select("#wheel-button");
+    button = sketch.select("#play-image");
     button.mousePressed(sketch.spin);
   };
   sketch.spin = () => {
