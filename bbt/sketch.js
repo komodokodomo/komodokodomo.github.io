@@ -107,7 +107,8 @@ const s = ( sketch ) => {
     }
   }
   sketch.draw = () => {
-    sketch.background(220);
+    // sketch.background(220);
+    sketch.clear();
     tickerDeflection = sketch.lerp(tickerDeflection,0,0.1);
     for(let i = 0; i < pie.length; i++){
       pie[i].rotation = sketch.lerp(pie[i].rotation,pie[i].rotationTarget,0.02);
