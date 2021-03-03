@@ -30,10 +30,13 @@ html, body {
     position: absolute;
   }
 
-  #play-container,#timer-container{
+  #play-container,#timer-container,#restart-container{
       position: relative;
       width: calc(100 * var(--vmax) / 3);
       height: calc(100 * var(--vmax) / 3);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
   }
 
   .icon{
@@ -42,5 +45,6 @@ html, body {
 
   .label{
       position: absolute;
+      padding: 10px;
   }
   
