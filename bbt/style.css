@@ -29,14 +29,17 @@ html, body {
   
   #content-container{
     position: relative;
+    border-style: solid;
   }
   
   #content-timer{
     position: absolute;
   }
 
-  #play-title-container{
+  #play-container,#timer-container{
       position: relative;
+      width: calc(100 * var(--vmax) / 3);
+      height: calc(100 * var(--vmax) / 3);
   }
 
   .icon{
