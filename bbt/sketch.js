@@ -52,8 +52,8 @@ const s = ( sketch ) => {
   }
   
   sketch.setup = () => {
-    APP_STATE.width = document.getElementById('startup-container').offsetWidth;
-    APP_STATE.height = document.getElementById('startup-container').offsetHeight;
+    APP_STATE.width = document.getElementById('canvas-container').offsetWidth;
+    APP_STATE.height = document.getElementById('canvas-container').offsetHeight;
     if(APP_STATE.width>APP_STATE.height){
       APP_STATE.smallerSide = APP_STATE.height;
     }else{
