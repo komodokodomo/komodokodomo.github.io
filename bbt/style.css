@@ -40,7 +40,7 @@ html, body {
   #play-container,#timer-container,#restart-container{
       position: relative;
       width: calc(96 * var(--vmax) / 3);
-      height: calc(100 * var(--vmmin) - 48 * var(--vmax));
+      height: calc(100 * var(--vmin) - 48 * var(--vmax));
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -60,3 +60,6 @@ html, body {
       top: 0;
   }
   
+  #content-top-container,#content-bot-container{
+      display: flex;
+  }
