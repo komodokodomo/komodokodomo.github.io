@@ -19,6 +19,7 @@ html, body {
   #canvas-container{
     height: calc(50 * var(--vmax));
     width: calc(50 * var(--vmax));
+    border-style: solid;
   }
   
   #content-container{
@@ -37,6 +38,8 @@ html, body {
       display: inline-flex;
       justify-content: center;
       align-items: center;
+      border-style: solid;
+      box-sizing: border-box;
   }
 
   .icon{
