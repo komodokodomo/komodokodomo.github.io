@@ -2,39 +2,37 @@
 <html lang="en">
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <meta charset="utf-8" />
 
   </head>
   <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <script src="sketch.js"></script>
-    <nav class="navbar navbar-light bg-light">
-      <div id="title-container" class="container-fluid">
-        <a class="navbar-brand" href="#">🧠Brain Boost Time</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="txti.es/k9etz">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="txti.es/k9etz">Feedback</a>
-        </li>
-      </ul>
-        </div>
-      </div>
-    </nav>
-      <div id="startup-container" class="d-grid gap-1 col-12 mx-auto">
-        <div class="d-flex" id="wheel-canvas"></div>
-        <button id="wheel-button" type="button" class="btn btn-secondary btn-sm">Randomize Activity</button>
-      </div>
-    <div id="content-container">
+
+    
+    <div id="canvas-container">
+        <div id="wheel-canvas"></div>
+        <button id="wheel-button" type="button">Randomize Activity</button>
     </div>
+    <div id="play-container">
+      <div id="play-title-container">
+        <div id="play-title" class="label">play</div>
+      </div>
+    </div>
+    <div id="content-container">
+      <div id="content-timer">1:00</div>
+      <div class="row">
+        <div id="content-instruction-container">Some instructions</div>
+        <div id="content">
+      </div>
+    </div>
+    <div id="nav-container" >
+      <a class="nav-brand" href="#">🧠Brain Boost Time</a>
+      <a class="nav-link" href="http://txti.es/k9etz">About</a>
+      <a class="nav-link" href="http://txti.es/k9etz">Feedback</a>
+    </div>
+    <script src="sketch.js"></script>
+
   </body>
 </html>
