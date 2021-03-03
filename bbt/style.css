@@ -27,6 +27,8 @@ html, body {
   #content-container{
     position: relative;
     border-style: solid;
+    width: calc(100vw - 4 * var(--vmax));
+    height: calc(100vh - 4 * var(--vmax) - 2rem);
     left: calc(2 * var(--vmax));
     top: calc(2 * var(--vmax));
   }
@@ -37,7 +39,7 @@ html, body {
 
   #play-container,#timer-container,#restart-container{
       position: relative;
-      width: calc(100 * var(--vmmin) - 48 * var(--vmax));
+      width: calc(96 * var(--vmax) / 3);
       height: calc(100 * var(--vmmin) - 48 * var(--vmax));
       display: inline-flex;
       justify-content: center;
