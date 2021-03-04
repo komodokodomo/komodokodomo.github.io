@@ -1,6 +1,3 @@
-const { clear } = require("console");
-const { setTimeout } = require("core-js");
-
 window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
   registerDOM();
