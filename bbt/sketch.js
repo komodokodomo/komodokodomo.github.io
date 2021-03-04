@@ -44,7 +44,7 @@ function registerSketches(){
     s.registerDOM = () => {
       DOM_EL.timerContainer = s.select("timer-container");
       DOM_EL.playContainer = s.select("play-container");
-      DOM_EL.playContainer.mousePressed(playEvent);
+      DOM_EL.playContainer.mousePressed(s.playEvent);
       DOM_EL.restartContainer = s.select("restart-container");
     }
   
