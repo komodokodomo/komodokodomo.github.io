@@ -53,7 +53,7 @@ const c = ( sketch ) => {
   sketch.playEvent = () => {
     DOM_EL.playContainer.toggleClass("play");
     if(DOM_EL.playContainer.class().includes("play")){
-      UTIL.timer = setInterval(updateTimer, 1000);
+      UTIL.timer = setInterval(sketch.updateTimer, 1000);
     }else{
       clearInterval(UTIL.timer);
     }
