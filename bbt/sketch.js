@@ -41,7 +41,7 @@ var GLOBAL_APP_STATE = {
         wheelCanvas: null,
         wheelCanvasConfig: null,
       timerContainer: null,
-        timerTitle: null,
+        timer: null,
       playContainer: null,
       restartContainer: null,
     }
@@ -57,7 +57,7 @@ var GLOBAL_APP_STATE = {
         DOM_EL.instruction = s.select("#instruction");
 
       DOM_EL.timerContainer = s.select("#timer-container");
-        DOM_EL.timerTitle = s.select("#timer-title");
+        DOM_EL.timer = s.select("#timer");
       DOM_EL.playContainer = s.select("#play-container");
       DOM_EL.playContainer.mousePressed(s.playEvent);
       DOM_EL.restartContainer = s.select("#restart-container");
@@ -80,9 +80,10 @@ var GLOBAL_APP_STATE = {
     s.updateTimer = () => { 
       console.log("1s pass");
       GLOBAL_APP_STATE.timerValue--;
-      DOM_EL.timerTitle.html(GLOBAL_APP_STATE.timerValue);
+      DOM_EL.timer.html(GLOBAL_APP_STATE.timerValue);
       if(GLOBAL_APP_STATE.timerValue == 0){
         clearInterval(UTIL.timer);
+        document.getElementById('instruction').innerHTML = "Sit down and focus"
       }
     }
   } 
@@ -204,6 +205,7 @@ var GLOBAL_APP_STATE = {
         sketch.APP_STATE.spinStarted = false;
           console.log("spin stopped");
           console.log(GLOBAL_APP_STATE.chosenPie);
+          document.getElementById('instruction').innerHTML = "Stand up and follow me!"
           // sketch.select("#wheel-canvas").hide();
           document.getElementById("spin-container").classList.toggle('hidden');
           document.getElementById("timer-container").classList.toggle('hidden');
