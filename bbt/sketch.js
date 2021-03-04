@@ -94,6 +94,7 @@ var GLOBAL_APP_STATE = {
     s.playEvent = () => {
       if(DOM_EL.playContainer.class().includes("play")){
         UTIL.timer = setInterval(s.updateTimer, 1000);
+        document.getElementById('instruction').innerHTML = "Follow my actions!"
       }else{
         clearInterval(UTIL.timer);
       }
