@@ -98,11 +98,11 @@ html, body {
     vertical-align: bottom;
   }
 
-  #play-container{
+  #timer-container{
     border-right-style: solid;
   }
 
-  #timer-container{
+  #play-container{
     border-left-style: solid;
     border-right-style: solid;
   }
