@@ -1,8 +1,45 @@
+var DOM_EL = {
+  contentContainer: null,
+  canvasContainer: null,
+  timerContainer: null,
+  playContainer: null,
+  restartContainer: null,
+}
+
+var UTIL = {
+  timer: null,
+}
+
+var APP_STATE = {
+  timerValue: 60,
+}
+
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM fully loaded and parsed');
   updateCSSVar();
+  registerDOM();
 });
 
+function registerDOM(){
+  DOM_EL.timerContainer = select("timer-container");
+  DOM_EL.playContainer = select("play-container");
+  DOM_EL.playContainer.mousePressed(playEvent);
+  DOM_EL.restartContainer = select("restart-container");
+}
+
+
+function playEvent(){
+  DOM_EL.playContainer.toggleClass("play");
+  if(DOM_EL.playContainer.class().includes("play")){
+    UTIL.timer = setInterval(updateTimer, 1000);
+  }else{
+    clearInterval(UTIL.timer);
+  }
+}
+
+function updateTimer(){ 
+  console.log("1s pass");
+} 
 
 function updateCSSVar(){
   let vh = window.innerHeight * 0.01;

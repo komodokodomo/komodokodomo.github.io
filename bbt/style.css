@@ -24,6 +24,7 @@ html, body {
     vertical-align: bottom;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
   
   #content-container{
@@ -40,6 +41,7 @@ html, body {
   }
 
   #play-container,#timer-container,#restart-container{
+      cursor: pointer;
       position: relative;
       width: calc(96 * var(--vmax) / 3);
       height: calc(100vh - 4 * var(--vmax) - 2rem - 48 * var(--vmax));
