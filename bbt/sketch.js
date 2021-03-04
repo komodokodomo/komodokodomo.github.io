@@ -248,6 +248,9 @@ var GLOBAL_APP_STATE = {
           // });
 
           document.getElementById("spin-transition").classList.toggle('hidden-right');
+          document.getElementById("wheel-transition").classList.toggle('hidden-right');
+          document.getElementById("instruction-transition").classList.toggle('hidden-right');
+
 
           setTimeout(() => {
             document.getElementById("spin-container").classList.toggle('hidden');
@@ -258,7 +261,6 @@ var GLOBAL_APP_STATE = {
             document.getElementById("timer-transition").classList.toggle('hidden-right');
             document.getElementById("play-transition").classList.toggle('hidden-right');
             document.getElementById("restart-transition").classList.toggle('hidden-right');
-
           }, 
           1000, 
           );
