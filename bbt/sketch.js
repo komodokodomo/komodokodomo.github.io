@@ -1,47 +1,8 @@
-const c = ( sketch ) => {
-  var DOM_EL = {
-    contentContainer: null,
-    canvasContainer: null,
-    timerContainer: null,
-    playContainer: null,
-    restartContainer: null,
-  }
-
-  var UTIL = {
-    timer: null,
-  }
-
-  var APP_STATE = {
-    timerValue: 60,
-  }
-
-  window.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed');
-    updateCSSVar();
-    registerDOM();
-  });
-
-  function registerDOM(){
-    DOM_EL.timerContainer = sketch.select("timer-container");
-    DOM_EL.playContainer = sketch.select("play-container");
-    DOM_EL.playContainer.mousePressed(playEvent);
-    DOM_EL.restartContainer = sketch.select("restart-container");
-  }
-
-
-  function playEvent(){
-    DOM_EL.playContainer.toggleClass("play");
-    if(DOM_EL.playContainer.class().includes("play")){
-      UTIL.timer = setInterval(updateTimer, 1000);
-    }else{
-      clearInterval(UTIL.timer);
-    }
-  }
-
-  function updateTimer(){ 
-    console.log("1s pass");
-  }
-} 
+window.addEventListener('DOMContentLoaded', (event) => {
+  console.log('DOM fully loaded and parsed');
+  updateCSSVar();
+  // registerDOM();
+});
 
 function updateCSSVar(){
   let vh = window.innerHeight * 0.01;
@@ -59,6 +20,51 @@ function updateCSSVar(){
     document.documentElement.style.setProperty('--vmax', `${vw}px`);
   }
 }
+
+const c = ( sketch ) => {
+  var DOM_EL = {
+    contentContainer: null,
+    canvasContainer: null,
+    timerContainer: null,
+    playContainer: null,
+    restartContainer: null,
+  }
+
+  var UTIL = {
+    timer: null,
+  }
+
+  var APP_STATE = {
+    timerValue: 60,
+  }
+
+  sketch.registerDOM = () => {
+    DOM_EL.timerContainer = sketch.select("timer-container");
+    DOM_EL.playContainer = sketch.select("play-container");
+    DOM_EL.playContainer.mousePressed(playEvent);
+    DOM_EL.restartContainer = sketch.select("restart-container");
+  }
+
+  sketch.setup = () =>{
+    sketch.noCanvas();
+    sketch.registerDOM();
+  }
+
+  sketch.playEvent = () => {
+    DOM_EL.playContainer.toggleClass("play");
+    if(DOM_EL.playContainer.class().includes("play")){
+      UTIL.timer = setInterval(updateTimer, 1000);
+    }else{
+      clearInterval(UTIL.timer);
+    }
+  }
+
+  sketch.updateTimer = () => { 
+    console.log("1s pass");
+  }
+} 
+
+
 
 const s = ( sketch ) => {
   let pie = [];
@@ -221,6 +227,7 @@ const s = ( sketch ) => {
 };
 
 let myp5 = new p5(s,'wheel-canvas');
+let content = new p5(c);
 var test;
 
 
