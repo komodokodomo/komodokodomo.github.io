@@ -1,3 +1,6 @@
+const { clear } = require("console");
+const { setTimeout } = require("core-js");
+
 window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
   registerDOM();
@@ -29,6 +32,7 @@ function registerDOM(){
 var SKETCHES = {
   play: null,
   spin: null,
+  transition: null,
 }
 
 var GLOBAL_APP_STATE = {
@@ -37,6 +41,22 @@ var GLOBAL_APP_STATE = {
   chosenPie: null
 }
 
+
+// SKETCHES.transition = ( s ) => {
+
+//   s.showAnimation = false;
+
+//   s.setup = () => {
+//     s.createCanvas();
+//   }
+//   s.draw = () => {
+//     if(s.showAnimation){
+//       clear();
+//     } else{
+
+//     }
+//   }
+// }
 
   SKETCHES.play = ( s ) => {
     var DOM_EL = {
@@ -98,6 +118,8 @@ var GLOBAL_APP_STATE = {
     }
   } 
   
+
+
   
   
   SKETCHES.spin = ( sketch ) => {
@@ -217,10 +239,19 @@ var GLOBAL_APP_STATE = {
           console.log(GLOBAL_APP_STATE.chosenPie);
           document.getElementById('instruction').innerHTML = "Stand up and follow me!"
           // sketch.select("#wheel-canvas").hide();
-          document.getElementById("spin-container").classList.toggle('hidden');
-          document.getElementById("timer-container").classList.toggle('hidden');
-          document.getElementById("play-container").classList.toggle('hidden');
-          document.getElementById("restart-container").classList.toggle('hidden');
+          document.getElementsByClassName("transition-canvas").forEach(element => {
+            element.classList.toggle('hidden-right');
+            setTimeout((e) => {
+              e.classList.toggle('hidden-left');
+              document.getElementById("spin-container").classList.toggle('hidden');
+              document.getElementById("timer-container").classList.toggle('hidden');
+              document.getElementById("play-container").classList.toggle('hidden');
+              document.getElementById("restart-container").classList.toggle('hidden');
+            }, 
+            300, 
+            element
+            );
+          });
          }
       };
     
