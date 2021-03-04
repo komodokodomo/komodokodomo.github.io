@@ -22,7 +22,7 @@ function updateCSSVar(){
 }
 
 function registerSketches(){
-  SKETCHES.play = ( sketch ) => {
+  SKETCHES.play = ( s ) => {
     var DOM_EL = {
       contentContainer: null,
       canvasContainer: null,
@@ -39,28 +39,28 @@ function registerSketches(){
       timerValue: 60,
     }
   
-    sketch.registerDOM = () => {
-      DOM_EL.timerContainer = sketch.select("timer-container");
-      DOM_EL.playContainer = sketch.select("play-container");
+    s.registerDOM = () => {
+      DOM_EL.timerContainer = s.select("timer-container");
+      DOM_EL.playContainer = s.select("play-container");
       DOM_EL.playContainer.mousePressed(playEvent);
-      DOM_EL.restartContainer = sketch.select("restart-container");
+      DOM_EL.restartContainer = s.select("restart-container");
     }
   
-    sketch.setup = () =>{
-      sketch.noCanvas();
-      sketch.registerDOM();
+    s.setup = () =>{
+      s.noCanvas();
+      s.registerDOM();
     }
   
-    sketch.playEvent = () => {
+    s.playEvent = () => {
       if(DOM_EL.playContainer.class().includes("play")){
-        UTIL.timer = setInterval(sketch.updateTimer, 1000);
+        UTIL.timer = setInterval(s.updateTimer, 1000);
       }else{
         clearInterval(UTIL.timer);
       }
       DOM_EL.playContainer.toggleClass("play");
     }
   
-    sketch.updateTimer = () => { 
+    s.updateTimer = () => { 
       console.log("1s pass");
     }
   } 
