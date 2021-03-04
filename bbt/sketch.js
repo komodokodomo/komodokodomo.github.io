@@ -204,7 +204,11 @@ var GLOBAL_APP_STATE = {
         sketch.APP_STATE.spinStarted = false;
           console.log("spin stopped");
           console.log(GLOBAL_APP_STATE.chosenPie);
-          sketch.select("#wheel-canvas").hide();
+          // sketch.select("#wheel-canvas").hide();
+          document.getElementById("spin-container").classList.toggle('hidden');
+          document.getElementById("timer-container").classList.toggle('hidden');
+          document.getElementById("play-container").classList.toggle('hidden');
+          document.getElementById("restart-container").classList.toggle('hidden');
          }
       };
     
