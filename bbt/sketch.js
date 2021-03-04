@@ -87,7 +87,7 @@ var SKETCHES = {
     "Fast🐡","Fast🐦"
     ]
   
-    let colors = [
+    sketch.colors = [
         '#a94fca', '#EE4266', '#FFD23F', '#3BCEAC', '#2765d4', '#FF715B'
     ];
     
@@ -97,7 +97,7 @@ var SKETCHES = {
     let chosenPie;
     let tickerDeflection = 0;
     
-    let APP_STATE = {
+    sketch.APP_STATE = {
       width: null,
       height: null,
       smallerSide: null
@@ -108,45 +108,45 @@ var SKETCHES = {
     }
     
     sketch.windowResized = () => {
-      APP_STATE.width = document.getElementById('canvas-container').offsetWidth;
-      APP_STATE.height = document.getElementById('canvas-container').offsetHeight;
-      console.log(APP_STATE.width + ", " + APP_STATE.height);
-      if(APP_STATE.width>APP_STATE.height){
-        APP_STATE.smallerSide = APP_STATE.height;
+      sketch.APP_STATE.width = document.getElementById('canvas-container').offsetWidth;
+      sketch.APP_STATE.height = document.getElementById('canvas-container').offsetHeight;
+      console.log(sketch.APP_STATE.width + ", " + sketch.APP_STATE.height);
+      if(sketch.APP_STATE.width > sketch.APP_STATE.height){
+        sketch.APP_STATE.smallerSide = sketch.APP_STATE.height;
       }else{
-        APP_STATE.smallerSide = APP_STATE.width;
+        sketch.APP_STATE.smallerSide = sketch.APP_STATE.width;
       }
       updateCSSVar();
   
-      sketch.resizeCanvas(APP_STATE.width, APP_STATE.height);
+      sketch.resizeCanvas(sketch.APP_STATE.width, sketch.APP_STATE.height);
       for(let i = 0; i < pie.length; i++){
-        pie[i].pX = APP_STATE.width/2;
-        pie[i].pY = APP_STATE.height/2;
-        pie[i].radius = APP_STATE.smallerSide*0.8;
+        pie[i].pX = sketch.APP_STATE.width/2;
+        pie[i].pY = sketch.APP_STATE.height/2;
+        pie[i].radius = sketch.APP_STATE.smallerSide*0.8;
       }
     }
     
     sketch.setup = () => {
-      APP_STATE.width = document.getElementById('canvas-container').offsetWidth;
-      APP_STATE.height = document.getElementById('canvas-container').offsetHeight;
-      if(APP_STATE.width>APP_STATE.height){
-        APP_STATE.smallerSide = APP_STATE.height;
+      sketch.APP_STATE.width = document.getElementById('canvas-container').offsetWidth;
+      sketch.APP_STATE.height = document.getElementById('canvas-container').offsetHeight;
+      if(sketch.APP_STATE.width > sketch.APP_STATE.height){
+        sketch.APP_STATE.smallerSide = sketch.APP_STATE.height;
       }else{
-        APP_STATE.smallerSide = APP_STATE.width;
+        sketch.APP_STATE.smallerSide = sketch.APP_STATE.width;
       }
   
       sketch.angleMode(sketch.DEGREES);
       sketch.textAlign(sketch.RIGHT,sketch.CENTER);
-      sketch.createCanvas(APP_STATE.width, APP_STATE.height);
+      sketch.createCanvas(sketch.APP_STATE.width, sketch.APP_STATE.height);
       for(let i = 0; i < sketch.choices.length; i++){
         pie[i] = new Wheel(sketch.width/2,
                            sketch.height/2, 
                            360*i/sketch.choices.length,
                            0,
                            360/sketch.choices.length,
-                           APP_STATE.smallerSide*0.8,
+                           sketch.APP_STATE.smallerSide*0.8,
                            sketch.choices[i],
-                           colors[i%colors.length]);
+                           sketch.colors[i%sketch.colors.length]);
       }
       button = sketch.select("#spin");
       button.mousePressed(sketch.spin);
@@ -174,7 +174,7 @@ var SKETCHES = {
         pie[i].drawPeg();
       }
         sketch.strokeWeight(2);
-        sketch.ellipse(sketch.width/2,sketch.height/2 - APP_STATE.smallerSide*0.4 - 5 - tickerDeflection,20,20);
+        sketch.ellipse(sketch.width/2,sketch.height/2 - sketch.APP_STATE.smallerSide*0.4 - 5 - tickerDeflection,20,20);
         sketch.ellipse(sketch.width/2,sketch.height/2 ,30,30);
       if(spinStarted && (sketch.abs(pie[0].rotation-pie[0].rotationTarget)<1)){
          spinStarted = false;
@@ -212,6 +212,7 @@ var SKETCHES = {
         sketch.translate(this.pX, this.pY);
         sketch.rotate(this.rotationOffset + this.endingAngle/2 + this.rotation);
         sketch.textAlign(sketch.RIGHT,sketch.CENTER);
+        sketch.textSize(sketch.width/20);
         sketch.text(this.content,this.radius/2 - this.radius/16,0);
       sketch.pop();
     }
