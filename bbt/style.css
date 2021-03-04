@@ -54,8 +54,8 @@ html, body {
   #content-container{
     position: relative;
     border-style: solid;
-    width: calc(100vw -2rem);
-    height: calc(100vh - 2rem);
+    width: calc(100vw - 2rem);
+    height: calc(100vh - 5rem);
     left: 1rem;
     top: 1rem;
   }
@@ -98,11 +98,16 @@ html, body {
     vertical-align: bottom;
   }
 
-  #play-container,#timer-container{
+  #play-container{
     border-right-style: solid;
   }
 
-  #restart-container,#timer-container{
+  #timer-container{
+    border-left-style: solid;
+    border-right-style: solid;
+  }
+
+  #restart-container{
     border-left-style: solid;
   }
 
