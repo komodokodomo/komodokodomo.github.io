@@ -238,17 +238,23 @@ var GLOBAL_APP_STATE = {
           // sketch.select("#wheel-canvas").hide();
           Array.from(document.getElementsByClassName("transition-canvas")).forEach(element => {
             element.classList.toggle('hidden-right');
-            setTimeout((e) => {
-              e.classList.toggle('hidden-left');
-              document.getElementById("spin-container").classList.toggle('hidden');
-              document.getElementById("timer-container").classList.toggle('hidden');
-              document.getElementById("play-container").classList.toggle('hidden');
-              document.getElementById("restart-container").classList.toggle('hidden');
-            }, 
-            300, 
-            element
-            );
+            element.classList.toggle('hidden-left');
+            // setTimeout((e) => {
+            //   e.classList.toggle('hidden-left');
+            // }, 
+            // 600, 
+            // element
+            // );
           });
+
+          setTimeout(() => {
+            document.getElementById("spin-container").classList.toggle('hidden');
+            document.getElementById("timer-container").classList.toggle('hidden');
+            document.getElementById("play-container").classList.toggle('hidden');
+            document.getElementById("restart-container").classList.toggle('hidden');
+          }, 
+          500, 
+          );
          }
       };
     
