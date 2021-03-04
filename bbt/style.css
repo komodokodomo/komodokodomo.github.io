@@ -77,6 +77,7 @@ html, body {
 
   #control-container{
     width: 100%;
+    position: relative;
     border-style: solid;
     box-sizing: border-box;
     height: 33%;
@@ -96,6 +97,10 @@ html, body {
     align-items: center;
     box-sizing: content-box;
     vertical-align: bottom;
+  }
+
+  #play-container.hidden,#timer-container.hidden,#restart-container.hidden{
+    display: none;
   }
 
   #timer-container{

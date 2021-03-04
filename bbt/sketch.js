@@ -148,7 +148,7 @@ var SKETCHES = {
                            choices[i],
                            colors[i%colors.length]);
       }
-      button = sketch.select("#play-image");
+      button = sketch.select("#spin");
       button.mousePressed(sketch.spin);
     };
     sketch.spin = () => {
