@@ -174,8 +174,18 @@ var SKETCHES = {
         pie[i].drawPeg();
       }
         sketch.strokeWeight(2);
-        sketch.ellipse(sketch.width/2,sketch.height/2 - sketch.APP_STATE.smallerSide*0.4 - 5 - tickerDeflection,20,20);
-        sketch.ellipse(sketch.width/2,sketch.height/2 ,30,30);
+        sketch.ellipse(
+              sketch.width/2,
+              sketch.height/2 - sketch.APP_STATE.smallerSide*0.4 - 5 - tickerDeflection,
+              sketch.APP_STATE.smallerSide*0.1, 
+              sketch.APP_STATE.smallerSide*0.1
+              );
+        sketch.ellipse(
+              sketch.width/2,
+              sketch.height/2 ,
+              sketch.APP_STATE.smallerSide*0.1, 
+              sketch.APP_STATE.smallerSide*0.1
+              );
       if(spinStarted && (sketch.abs(pie[0].rotation-pie[0].rotationTarget)<1)){
          spinStarted = false;
           console.log("spin stopped");
@@ -212,7 +222,7 @@ var SKETCHES = {
         sketch.translate(this.pX, this.pY);
         sketch.rotate(this.rotationOffset + this.endingAngle/2 + this.rotation);
         sketch.textAlign(sketch.RIGHT,sketch.CENTER);
-        sketch.textSize(sketch.width/20);
+        sketch.textSize(sketch.width/30);
         sketch.text(this.content,this.radius/2 - this.radius/16,0);
       sketch.pop();
     }
