@@ -20,6 +20,7 @@ html, body {
     height: calc(100 * var(--vmin) - 5rem);
     width: calc(100 * var(--vmin) - 5rem);
     border-style: solid;
+    box-sizing: border-box;
     display: inline-flex;
     vertical-align: bottom;
     justify-content: center;
@@ -30,14 +31,13 @@ html, body {
 
   #sidebar-container{
     height: calc(100 * var(--vmin) - 5rem);
-    width: calc(100vw - 100 * var(--vmin) - 2rem);
-    border-style: solid;
+    width: calc(100vw - 100 * var(--vmin) + 3rem);
     display: flex;
-    /* vertical-align: bottom; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    position: relative;
-    overflow: hidden;  
+    flex-direction: column;
+    right: 0;
+    top: 0;
+    position: absolute;
+    overflow: hidden;
   }
 
   #wheel-config-container{
@@ -66,14 +66,20 @@ html, body {
 
   #instruction-container{
     width: 100%;
-    height: 33%;
+    height: 67%;
     display: flex;
     vertical-align: bottom;
+    border-style: solid;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
 }
 
   #control-container{
     width: 100%;
-    height: 67%;
+    border-style: solid;
+    box-sizing: border-box;
+    height: 33%;
     display: flex;
     vertical-align: bottom;
     justify-content: center;
@@ -81,16 +87,23 @@ html, body {
   }
 
   #play-container,#timer-container,#restart-container{
-      cursor: pointer;
-      position: relative;
-      width: calc(100% / 3);
-      height: 100%;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border-style: solid;
-      box-sizing: border-box;
-      vertical-align: bottom;
+    cursor: pointer;
+    position: relative;
+    width: calc(100% / 3);
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    vertical-align: bottom;
+  }
+
+  #play-container,#timer-container{
+    border-right-style: solid;
+  }
+
+  #restart-container,#timer-container{
+    border-left-style: solid;
   }
 
   .icon{
