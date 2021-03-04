@@ -236,24 +236,31 @@ var GLOBAL_APP_STATE = {
           console.log(GLOBAL_APP_STATE.chosenPie);
           document.getElementById('instruction').innerHTML = "Stand up and follow me!"
           // sketch.select("#wheel-canvas").hide();
-          Array.from(document.getElementsByClassName("transition-canvas")).forEach(element => {
-            element.classList.toggle('hidden-right');
-            element.classList.toggle('hidden-left');
+          // Array.from(document.getElementsByClassName("transition-canvas")).forEach(element => {
+            // element.classList.toggle('hidden-right');
+            // element.classList.toggle('hidden-left');
             // setTimeout((e) => {
             //   e.classList.toggle('hidden-left');
             // }, 
             // 600, 
             // element
             // );
-          });
+          // });
+
+          document.getElementById("spin-transition").classList.toggle('hidden-right');
 
           setTimeout(() => {
             document.getElementById("spin-container").classList.toggle('hidden');
             document.getElementById("timer-container").classList.toggle('hidden');
             document.getElementById("play-container").classList.toggle('hidden');
             document.getElementById("restart-container").classList.toggle('hidden');
+
+            document.getElementById("timer-transition").classList.toggle('hidden-right');
+            document.getElementById("play-transition").classList.toggle('hidden-right');
+            document.getElementById("restart-transition").classList.toggle('hidden-right');
+
           }, 
-          500, 
+          1000, 
           );
          }
       };
