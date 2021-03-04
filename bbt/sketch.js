@@ -236,7 +236,7 @@ var GLOBAL_APP_STATE = {
           console.log(GLOBAL_APP_STATE.chosenPie);
           document.getElementById('instruction').innerHTML = "Stand up and follow me!"
           // sketch.select("#wheel-canvas").hide();
-          document.getElementsByClassName("transition-canvas").forEach(element => {
+          Array.from(document.getElementsByClassName("transition-canvas")).forEach(element => {
             element.classList.toggle('hidden-right');
             setTimeout((e) => {
               e.classList.toggle('hidden-left');
