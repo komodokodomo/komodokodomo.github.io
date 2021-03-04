@@ -79,7 +79,7 @@ var SKETCHES = {
   SKETCHES.spin = ( sketch ) => {
     let pie = [];
   
-    let choices = [
+    sketch.choices = [
     "Fast/Slow🐭","Fast/Slow🐶",
     "Fast/Slow🐡","Fast/Slow🐦",
     "Fast🐭","Fast😺",
@@ -138,14 +138,14 @@ var SKETCHES = {
       sketch.angleMode(sketch.DEGREES);
       sketch.textAlign(sketch.RIGHT,sketch.CENTER);
       sketch.createCanvas(APP_STATE.width, APP_STATE.height);
-      for(let i = 0; i < choices.length; i++){
+      for(let i = 0; i < sketch.choices.length; i++){
         pie[i] = new Wheel(sketch.width/2,
                            sketch.height/2, 
-                           360*i/choices.length,
+                           360*i/sketch.choices.length,
                            0,
-                           360/choices.length,
+                           360/sketch.choices.length,
                            APP_STATE.smallerSide*0.8,
-                           choices[i],
+                           sketch.choices[i],
                            colors[i%colors.length]);
       }
       button = sketch.select("#spin");
