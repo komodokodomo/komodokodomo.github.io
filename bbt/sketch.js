@@ -234,7 +234,7 @@ var GLOBAL_APP_STATE = {
         sketch.APP_STATE.spinStarted = false;
           console.log("spin stopped");
           console.log(GLOBAL_APP_STATE.chosenPie);
-          document.getElementById('instruction').innerHTML = "Stand up and follow me!"
+          document.getElementById('instruction').innerHTML = "Stand up and get ready! Press play once ready"
           // sketch.select("#wheel-canvas").hide();
           // Array.from(document.getElementsByClassName("transition-canvas")).forEach(element => {
             // element.classList.toggle('hidden-right');
