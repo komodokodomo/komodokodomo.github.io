@@ -98,6 +98,7 @@ html, body {
   }
 
   #play-container,#timer-container,#restart-container{
+    background: whitesmoke;
     overflow: hidden;
     cursor: pointer;
     position: relative;
@@ -128,6 +129,7 @@ html, body {
   }
 
   #spin-container{
+    background: whitesmoke;
     overflow: hidden;
     cursor: pointer;
     position: absolute;

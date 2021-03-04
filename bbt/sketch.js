@@ -254,9 +254,9 @@ var GLOBAL_APP_STATE = {
 
           setTimeout(() => {
             document.getElementById("timer-container").classList.toggle('hidden');
-            document.getElementById("play-container").classList.toggle('hidden');
-            document.getElementById("restart-container").classList.toggle('hidden');
-            document.getElementById("spin-container").classList.toggle('hidden');
+            // document.getElementById("play-container").classList.toggle('hidden');
+            // document.getElementById("restart-container").classList.toggle('hidden');
+            // document.getElementById("spin-container").classList.toggle('hidden');
 
 
             document.getElementById("timer-transition").classList.toggle('hidden-right');
