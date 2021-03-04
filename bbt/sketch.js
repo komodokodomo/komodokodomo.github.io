@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
   registerSketches();
   let myp5 = new p5(SKETCHES.spin,'wheel-canvas');
-  // let content = new p5(SKETCHES.play);
+  let content = new p5(SKETCHES.play);
 });
 
 function updateCSSVar(){
