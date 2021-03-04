@@ -115,15 +115,18 @@ var GLOBAL_APP_STATE = {
         document.getElementById("wheel-transition").classList.toggle('hidden-right');
         document.getElementById("instruction-transition").classList.toggle('hidden-right');
 
+        setTimeout(() => {
+          document.getElementById("spin-container").classList.toggle('hidden');
+        }, 
+        950, 
+        );
+
 
         setTimeout(() => {
 
           document.getElementById("spin-transition").classList.toggle('hidden-right');
           document.getElementById("wheel-transition").classList.toggle('hidden-right');
           document.getElementById("instruction-transition").classList.toggle('hidden-right');
-
-          document.getElementById("spin-container").classList.toggle('hidden');
-
         }, 
         1000, 
         );
