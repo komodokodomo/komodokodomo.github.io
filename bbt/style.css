@@ -75,6 +75,10 @@ html, body {
     align-items: center;
 }
 
+  #instruction{
+    font-size: 2rem;
+  }
+
   #control-container{
     width: 100%;
     position: relative;

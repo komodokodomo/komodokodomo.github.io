@@ -27,6 +27,7 @@ var SKETCHES = {
 }
 
 var GLOBAL_APP_STATE = {
+  timerStartingValue: 60,
   timerValue: 60,
   chosenPie: null
 }
@@ -83,7 +84,11 @@ var GLOBAL_APP_STATE = {
       DOM_EL.timer.html(GLOBAL_APP_STATE.timerValue);
       if(GLOBAL_APP_STATE.timerValue == 0){
         clearInterval(UTIL.timer);
-        document.getElementById('instruction').innerHTML = "Sit down and focus"
+        document.getElementById('instruction').innerHTML = "Sit down and focus";
+        document.getElementById("spin-container").classList.toggle('hidden');
+        document.getElementById("timer-container").classList.toggle('hidden');
+        document.getElementById("play-container").classList.toggle('hidden');
+        document.getElementById("restart-container").classList.toggle('hidden');
       }
     }
   } 
