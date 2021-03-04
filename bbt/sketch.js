@@ -1,9 +1,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM fully loaded and parsed');
   updateCSSVar();
-  registerSketches();
-  let myp5 = new p5(SKETCHES.spin,'wheel-canvas');
-  let content = new p5(SKETCHES.play);
+  // registerSketches();
 });
 
 function updateCSSVar(){
@@ -23,7 +21,11 @@ function updateCSSVar(){
   }
 }
 
-function registerSketches(){
+var SKETCHES = {
+  play: null,
+  spin: null,
+}
+
   SKETCHES.play = ( s ) => {
     var DOM_EL = {
       contentContainer: null,
@@ -228,14 +230,14 @@ function registerSketches(){
     }
   }
   };
-}
+
+
+  let myp5 = new p5(SKETCHES.spin,'wheel-canvas');
+  let content = new p5(SKETCHES.play);
+ 
 
 
 
-var SKETCHES = {
-  play: null,
-  spin: null,
-}
 
 
 
