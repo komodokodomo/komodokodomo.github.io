@@ -107,11 +107,28 @@ var GLOBAL_APP_STATE = {
       DOM_EL.timer.html(GLOBAL_APP_STATE.timerValue);
       if(GLOBAL_APP_STATE.timerValue == 0){
         clearInterval(UTIL.timer);
-        document.getElementById('instruction').innerHTML = "Sit down and focus";
-        document.getElementById("spin-container").classList.toggle('hidden');
-        document.getElementById("timer-container").classList.toggle('hidden');
-        document.getElementById("play-container").classList.toggle('hidden');
-        document.getElementById("restart-container").classList.toggle('hidden');
+
+        document.getElementById("timer-transition").classList.toggle('hidden-right');
+        document.getElementById("play-transition").classList.toggle('hidden-right');
+        document.getElementById("restart-transition").classList.toggle('hidden-right');
+        document.getElementById("wheel-transition").classList.toggle('hidden-right');
+        document.getElementById("instruction-transition").classList.toggle('hidden-right');
+
+
+        setTimeout(() => {
+          document.getElementById("spin-container").classList.toggle('hidden');
+
+          document.getElementById("spin-transition").classList.toggle('hidden-right');
+          document.getElementById("wheel-transition").classList.toggle('hidden-right');
+          document.getElementById("instruction-transition").classList.toggle('hidden-right');
+        }, 
+        1000, 
+        );
+        // document.getElementById('instruction').innerHTML = "Sit down and focus";
+        // document.getElementById("spin-container").classList.toggle('hidden');
+        // document.getElementById("timer-container").classList.toggle('hidden');
+        // document.getElementById("play-container").classList.toggle('hidden');
+        // document.getElementById("restart-container").classList.toggle('hidden');
       }
     }
   } 
@@ -235,7 +252,7 @@ var GLOBAL_APP_STATE = {
         sketch.APP_STATE.spinStarted = false;
           console.log("spin stopped");
           console.log(GLOBAL_APP_STATE.chosenPie);
-          document.getElementById('instruction').innerHTML = "Stand up and get ready! Press play once ready"
+          document.getElementById('instruction').innerHTML = "Stand up and get ready!<br><br>Press play when ready!"
           // sketch.select("#wheel-canvas").hide();
           // Array.from(document.getElementsByClassName("transition-canvas")).forEach(element => {
             // element.classList.toggle('hidden-right');
