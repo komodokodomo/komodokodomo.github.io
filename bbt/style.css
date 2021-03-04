@@ -16,9 +16,9 @@ html, body {
     font-family : arial san-serif;
   }
   
-  #canvas-container,#instruction-container{
-    height: calc(48 * var(--vmax));
-    width: calc(48 * var(--vmax));
+  #canvas-container{
+    height: calc(100 * var(--vmin) - 5rem);
+    width: calc(100 * var(--vmin) - 5rem);
     border-style: solid;
     display: inline-flex;
     vertical-align: bottom;
@@ -28,35 +28,63 @@ html, body {
     overflow: hidden;
   }
 
-  #instruction-overlay{
+  #sidebar-container{
+    height: calc(100 * var(--vmin) - 5rem);
+    width: calc(100vw - 100 * var(--vmin) - 2rem);
+    border-style: solid;
+    display: flex;
+    /* vertical-align: bottom; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    position: relative;
+    overflow: hidden;  
+  }
+
+  #wheel-config-container{
       width: 100%;
       height: 100%;
       transition: 300ms;
       position: absolute;
   }
 
-  #instruction-overlay.hidden-right{
+  #wheel-config-container.hidden-right{
     transform: translate(100%,0);
 }
   
   #content-container{
     position: relative;
     border-style: solid;
-    width: calc(100vw - 4 * var(--vmax));
-    height: calc(100vh - 4 * var(--vmax) - 2rem);
-    left: calc(2 * var(--vmax));
-    top: calc(2 * var(--vmax));
+    width: calc(100vw -2rem);
+    height: calc(100vh - 2rem);
+    left: 1rem;
+    top: 1rem;
   }
   
   #content-timer{
     position: absolute;
   }
 
+  #instruction-container{
+    width: 100%;
+    height: 33%;
+    display: flex;
+    vertical-align: bottom;
+}
+
+  #control-container{
+    width: 100%;
+    height: 67%;
+    display: flex;
+    vertical-align: bottom;
+    justify-content: center;
+    align-items: center;
+  }
+
   #play-container,#timer-container,#restart-container{
       cursor: pointer;
       position: relative;
-      width: calc(96 * var(--vmax) / 3);
-      height: calc(100vh - 4 * var(--vmax) - 2rem - 48 * var(--vmax));
+      width: calc(100% / 3);
+      height: 100%;
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -84,15 +112,15 @@ html, body {
     top: 0;
 }
   
-  #content-top-container,#content-bot-container{
+  #content-top-container,#content-control-container{
       display: flex;
   }
 
   #nav-container{
-    width: calc(96 * var(--vmax));
+    width: calc(100vw - 2rem);
     bottom: 1rem;
     position: absolute;
-    left: calc(2 * var(--vmax));
+    left: 1rem;
   }
 
   .nav-brand{

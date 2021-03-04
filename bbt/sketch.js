@@ -29,6 +29,8 @@ var SKETCHES = {
   SKETCHES.play = ( s ) => {
     var DOM_EL = {
       contentContainer: null,
+      instructionContainer: null,
+        instruction: null,
       canvasContainer: null,
       timerContainer: null,
       playContainer: null,
@@ -44,6 +46,9 @@ var SKETCHES = {
     }
   
     s.registerDOM = () => {
+      DOM_EL.instructionContainer = s.select("#instruction-container");
+        DOM_EL.instruction = s.select("#instruction");
+
       DOM_EL.timerContainer = s.select("#timer-container");
       DOM_EL.playContainer = s.select("#play-container");
       DOM_EL.playContainer.mousePressed(s.playEvent);
