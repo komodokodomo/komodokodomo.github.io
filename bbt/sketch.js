@@ -80,11 +80,11 @@ var SKETCHES = {
     let pie = [];
   
     sketch.choices = [
-    "Fast/Slow🐭","Fast/Slow🐶",
-    "Fast/Slow🐡","Fast/Slow🐦",
-    "Fast🐭","Fast😺",
-    "Fast🐰","Fast🐶",
-    "Fast🐡","Fast🐦"
+    "Fast / Slow 🐭","Fast / Slow 🐶",
+    "Fast / Slow 🐡","Fast / Slow 🐦",
+    "Fast 🐭","Fast 😺",
+    "Fast 🐰","Fast 🐶",
+    "Fast 🐡","Fast 🐦"
     ]
   
     sketch.colors = [
@@ -127,6 +127,8 @@ var SKETCHES = {
     }
     
     sketch.setup = () => {
+      sketch.textFont('Roboto');
+
       sketch.APP_STATE.width = document.getElementById('canvas-container').offsetWidth;
       sketch.APP_STATE.height = document.getElementById('canvas-container').offsetHeight;
       if(sketch.APP_STATE.width > sketch.APP_STATE.height){
@@ -177,14 +179,14 @@ var SKETCHES = {
         sketch.ellipse(
               sketch.width/2,
               sketch.height/2 - sketch.APP_STATE.smallerSide*0.4 - 5 - tickerDeflection,
-              sketch.APP_STATE.smallerSide*0.1, 
-              sketch.APP_STATE.smallerSide*0.1
+              sketch.APP_STATE.smallerSide*0.05, 
+              sketch.APP_STATE.smallerSide*0.05
               );
         sketch.ellipse(
               sketch.width/2,
               sketch.height/2 ,
-              sketch.APP_STATE.smallerSide*0.1, 
-              sketch.APP_STATE.smallerSide*0.1
+              sketch.APP_STATE.smallerSide*0.05, 
+              sketch.APP_STATE.smallerSide*0.05
               );
       if(spinStarted && (sketch.abs(pie[0].rotation-pie[0].rotationTarget)<1)){
          spinStarted = false;
