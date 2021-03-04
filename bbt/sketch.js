@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-  console.log('DOM fully loaded and parsed');
   updateCSSVar();
-  // registerSketches();
+  registerDOM();
+  console.log('DOM fully loaded and parsed');
 });
 
 function updateCSSVar(){
@@ -19,6 +19,11 @@ function updateCSSVar(){
     document.documentElement.style.setProperty('--vmin', `${vh}px`);
     document.documentElement.style.setProperty('--vmax', `${vw}px`);
   }
+}
+
+function registerDOM(){
+
+
 }
 
 var SKETCHES = {
