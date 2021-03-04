@@ -26,13 +26,22 @@ var SKETCHES = {
   spin: null,
 }
 
+var GLOBAL_APP_STATE = {
+  timerValue: 60,
+  chosenPie: null
+}
+
+
   SKETCHES.play = ( s ) => {
     var DOM_EL = {
       contentContainer: null,
       instructionContainer: null,
         instruction: null,
       canvasContainer: null,
+        wheelCanvas: null,
+        wheelCanvasConfig: null,
       timerContainer: null,
+        timerTitle: null,
       playContainer: null,
       restartContainer: null,
     }
@@ -41,15 +50,14 @@ var SKETCHES = {
       timer: null,
     }
   
-    var APP_STATE = {
-      timerValue: 60,
-    }
+
   
     s.registerDOM = () => {
       DOM_EL.instructionContainer = s.select("#instruction-container");
         DOM_EL.instruction = s.select("#instruction");
 
       DOM_EL.timerContainer = s.select("#timer-container");
+        DOM_EL.timerTitle = s.select("#timer-title");
       DOM_EL.playContainer = s.select("#play-container");
       DOM_EL.playContainer.mousePressed(s.playEvent);
       DOM_EL.restartContainer = s.select("#restart-container");
@@ -71,6 +79,11 @@ var SKETCHES = {
   
     s.updateTimer = () => { 
       console.log("1s pass");
+      GLOBAL_APP_STATE.timerValue--;
+      DOM_EL.timerTitle.html(GLOBAL_APP_STATE.timerValue);
+      if(GLOBAL_APP_STATE.timerValue == 0){
+        clearInterval(UTIL.timer);
+      }
     }
   } 
   
@@ -93,14 +106,13 @@ var SKETCHES = {
     
     let button;
     let clickSound;
-    let spinStarted = false;
-    let chosenPie;
     let tickerDeflection = 0;
     
     sketch.APP_STATE = {
       width: null,
       height: null,
-      smallerSide: null
+      smallerSide: null,
+      spinStarted: false
     }
     
     sketch.preload = () => {
@@ -155,7 +167,7 @@ var SKETCHES = {
     };
     sketch.spin = () => {
       console.log("spin now");
-      spinStarted = true;
+      sketch.APP_STATE.spinStarted = true;
       let spinValue = sketch.random(720,1440);
       let spinValueTarget = sketch.random(0,360);
       for(let i = 0; i < pie.length; i++){
@@ -188,10 +200,10 @@ var SKETCHES = {
               sketch.APP_STATE.smallerSide*0.05, 
               sketch.APP_STATE.smallerSide*0.05
               );
-      if(spinStarted && (sketch.abs(pie[0].rotation-pie[0].rotationTarget)<1)){
-         spinStarted = false;
+      if(sketch.APP_STATE.spinStarted && (sketch.abs(pie[0].rotation-pie[0].rotationTarget)<1)){
+        sketch.APP_STATE.spinStarted = false;
           console.log("spin stopped");
-          console.log(chosenPie);
+          console.log(GLOBAL_APP_STATE.chosenPie);
           sketch.select("#wheel-canvas").hide();
          }
       };
@@ -235,7 +247,7 @@ var SKETCHES = {
         sketch.rotate(this.rotationOffset + this.rotation);
         if((this.rotationOffset +90 + this.rotation)%360 < 5 && this.clickPlayed == false){
           clickSound.play();
-          chosenPie = this.content;
+          GLOBAL_APP_STATE.chosenPie = this.content;
           this.clickPlayed = true;
           tickerDeflection = this.radius/32;
         }else if((this.rotationOffset +90 + this.rotation)%360 < 5 && this.clickPlayed){
