@@ -103,15 +103,16 @@ html, body {
     position: relative;
   }
 
-  .config-list-container:first-child{
+  .config-list-container{
     margin-top: calc(30px + 1em);
+    overflow-y: scroll;
   }
 
-  .config-list-container{
+  .config-list{
     display: flex;
     position: relative;
     background: lightgray;
-    margin: 0px 10px 5px 10px;
+    margin: 10px 10px 0px 10px;
   }
 
   .config-list-title{
