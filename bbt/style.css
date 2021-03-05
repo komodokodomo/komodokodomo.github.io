@@ -102,10 +102,23 @@ html, body {
     border-left-style: solid;
     position: relative;
   }
+
+  .config-list-container:first-child{
+    margin-top: calc(30px + 1em);
+  }
+
+  .config-list-container{
+    display: flex;
+    position: relative;
+    background: lightgray;
+  }
   
   .config-list-control{
     float: right;
+    fill: darkgray;
+    font-size: small;
   }
+  
 
   #wheel-config-save-container{
     cursor: pointer;
