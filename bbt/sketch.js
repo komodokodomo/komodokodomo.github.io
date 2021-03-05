@@ -4,6 +4,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM fully loaded and parsed');
 });
 
+window.addEventListener("resize", updateCSSVar);
+
+
 function updateCSSVar(){
   let vh = window.innerHeight * 0.01;
   let vw = window.innerWidth * 0.01;
@@ -57,6 +60,7 @@ var GLOBAL_DOM = {
   wheelConfigSaveContainer: null,
   wheelConfig: null,
 
+  // spinContainer
   instruction: null,
 }
 
@@ -204,7 +208,7 @@ var GLOBAL_DOM = {
       }else{
         sketch.APP_STATE.smallerSide = sketch.APP_STATE.width;
       }
-      updateCSSVar();
+      // updateCSSVar();
   
       sketch.resizeCanvas(sketch.APP_STATE.width, sketch.APP_STATE.height);
       for(let i = 0; i < pie.length; i++){
