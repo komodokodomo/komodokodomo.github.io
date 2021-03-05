@@ -102,7 +102,17 @@ html, body {
     border-left-style: solid;
     position: relative;
   }
+  
+  .config-list-control{
+    content: "include";
+    float: right;
+  }
+  .config-list-control.remove{
+    content: "exclude";
+  }
+
   #wheel-config-save-container{
+    cursor: pointer;
     width: 100%;
     height: 20%;
     border-top-style: solid;
