@@ -48,7 +48,7 @@ html, body {
       width: 100%;
       height: 100%;
       transition: 1000ms;
-      border-style: solid;
+      border-left-style: solid;
       background: whitesmoke;
       display: flex;
       flex-direction: column;
@@ -63,6 +63,15 @@ html, body {
     background: whitesmoke;
     display: flex;
 }
+
+  .pill{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+  }
+
   #wheel-config-list-container{
     width: 100%;
     height: 60%;
