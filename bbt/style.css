@@ -29,6 +29,10 @@ html, body {
     position: relative;
   }
 
+  #wheel-canvas{
+    position: absolute;
+  }
+
   #sidebar-container{
     overflow: hidden;
     height: calc(100 * var(--vmin) - 5rem);
