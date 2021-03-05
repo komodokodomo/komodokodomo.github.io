@@ -43,8 +43,40 @@ html, body {
   #wheel-config-container{
       width: 100%;
       height: 100%;
-      transition: 300ms;
-      position: absolute;
+      transition: 1000ms;
+      border-style: solid;
+      background: whitesmoke;
+      display: flex;
+      position: relative;
+  }
+
+  #wheel-config-preset-container{
+    width: 100%;
+    height: 20%;
+    /* position: absolute; */
+    border-bottom-style: solid;
+    background: whitesmoke;
+    display: flex;
+}
+  #wheel-config-list-container{
+    width: 100%;
+    height: 60%;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    background: whitesmoke;
+    position: relative;
+    display: flex;
+    vertical-align: bottom;
+  }
+  #wheel-config-save-container{
+    width: 100%;
+    height: 20%;
+    border-top-style: solid;
+    background: whitesmoke;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #wheel-config-container.hidden-right{
@@ -164,6 +196,10 @@ html, body {
     right: 0;
     top: 0;
 }
+
+.label-right:hover{
+        color: black;
+    }
   
   #content-top-container,#content-control-container{
       display: flex;

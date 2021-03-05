@@ -23,6 +23,10 @@ function updateCSSVar(){
 
 function registerDOM(){
 
+  GLOBAL_DOM.wheelConfigContainer = document.getElementById("wheel-config-container");
+  
+  GLOBAL_DOM.wheelConfig = document.getElementById("wheel-change");
+  GLOBAL_DOM.wheelConfig.onclick = () => {GLOBAL_DOM.wheelConfigContainer.classList.toggle("hidden-right");};
 
 }
 
@@ -36,6 +40,10 @@ var GLOBAL_APP_STATE = {
   timerStartingValue: 10,
   timerValue: 10,
   chosenPie: null
+}
+
+var GLOBAL_DOM = {
+  wheelConfig: null,
 }
 
 
