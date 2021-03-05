@@ -25,10 +25,18 @@ function registerDOM(){
 
   GLOBAL_DOM.wheelConfigContainer = document.getElementById("wheel-config-container");
   GLOBAL_DOM.wheelConfigSaveContainer = document.getElementById("wheel-config-save-container");
-  GLOBAL_DOM.wheelConfigSaveContainer.onclick = () => {GLOBAL_DOM.wheelConfigContainer.classList.toggle("hidden-right");};
+  GLOBAL_DOM.wheelConfigSaveContainer.onclick = () => {
+    GLOBAL_DOM.wheelConfigContainer.classList.toggle("hidden-right");
+    GLOBAL_DOM.instruction.innerHTML = "Spin the wheel to choose an activity"
+  };
 
   GLOBAL_DOM.wheelConfig = document.getElementById("wheel-change");
-  GLOBAL_DOM.wheelConfig.onclick = () => {GLOBAL_DOM.wheelConfigContainer.classList.toggle("hidden-right");};
+  GLOBAL_DOM.wheelConfig.onclick = () => {
+    GLOBAL_DOM.wheelConfigContainer.classList.toggle("hidden-right");
+    GLOBAL_DOM.instruction.innerHTML = "Choose a preset or customize which activities to randomize!"
+  };
+
+  GLOBAL_DOM.instruction = document.getElementById('instruction');
 
 }
 
@@ -48,6 +56,8 @@ var GLOBAL_DOM = {
   wheelConfigContainer: null,
   wheelConfigSaveContainer: null,
   wheelConfig: null,
+
+  instruction: null,
 }
 
 
