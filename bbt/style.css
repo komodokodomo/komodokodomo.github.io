@@ -104,11 +104,7 @@ html, body {
   }
   
   .config-list-control{
-    content: "include";
     float: right;
-  }
-  .config-list-control.remove{
-    content: "exclude";
   }
 
   #wheel-config-save-container{
