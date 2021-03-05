@@ -70,6 +70,11 @@ html, body {
     justify-content: center;
     align-items: center;
     border-right-style: solid;
+    transition: ease-in 300ms;
+  }
+
+  .pill:hover{
+    background: indianred;
   }
 
   .pill:last-child{
