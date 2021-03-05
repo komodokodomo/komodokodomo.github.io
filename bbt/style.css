@@ -106,6 +106,7 @@ html, body {
   .config-list-container{
     margin-top: calc(30px + 1em);
     overflow-y: scroll;
+    height: calc(100% - 30px - 1em);
   }
 
   .config-list{
