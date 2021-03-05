@@ -111,6 +111,7 @@ html, body {
     display: flex;
     position: relative;
     background: lightgray;
+    margin-bottom: 10px;
   }
 
   .config-list-title{
