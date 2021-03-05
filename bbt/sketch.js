@@ -149,13 +149,14 @@ var GLOBAL_DOM = {
 
 
         setTimeout(() => {
-
+          GLOBAL_APP_STATE.timerValue = GLOBAL_APP_STATE.timerStartingValue;
           document.getElementById("spin-transition").classList.toggle('hidden-right');
           document.getElementById("wheel-transition").classList.toggle('hidden-right');
           document.getElementById("instruction-transition").classList.toggle('hidden-right');
         }, 
         1000, 
         );
+        
         // document.getElementById('instruction').innerHTML = "Sit down and focus";
         // document.getElementById("spin-container").classList.toggle('hidden');
         // document.getElementById("timer-container").classList.toggle('hidden');
