@@ -51,6 +51,7 @@ html, body {
       border-style: solid;
       background: whitesmoke;
       display: flex;
+      flex-direction: column;
       position: relative;
   }
 
@@ -71,6 +72,17 @@ html, body {
     position: relative;
     display: flex;
     vertical-align: bottom;
+  }
+  #wheel-config-list-included-container{
+    width: 50%;
+    border-right-style: solid;
+    position: relative;
+  }
+
+  #wheel-config-list-excluded-container{
+    width: 50%;
+    border-left-style: solid;
+    position: relative;
   }
   #wheel-config-save-container{
     width: 100%;
