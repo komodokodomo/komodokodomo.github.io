@@ -150,6 +150,7 @@ var GLOBAL_DOM = {
 
         setTimeout(() => {
           GLOBAL_APP_STATE.timerValue = GLOBAL_APP_STATE.timerStartingValue;
+          GLOBAL_DOM.instruction.innerHTML = "Spin the wheel to choose an activity"
           document.getElementById("spin-transition").classList.toggle('hidden-right');
           document.getElementById("wheel-transition").classList.toggle('hidden-right');
           document.getElementById("instruction-transition").classList.toggle('hidden-right');
