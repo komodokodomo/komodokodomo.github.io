@@ -449,7 +449,7 @@ var CHOICES  = {
       sketch.APP_STATE.spinStarted = true;
       let spinValue = sketch.random(720,1440);
       let spinValueTarget = sketch.random(0,360);
-      for(let i = 0; i < pie.length; i++){
+      for(let i = 0; i < sketch.pie.length; i++){
         sketch.pie[i].rotation = spinValue;
         sketch.pie[i].rotationTarget = spinValueTarget;
       }
