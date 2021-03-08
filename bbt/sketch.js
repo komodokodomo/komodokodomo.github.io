@@ -42,7 +42,7 @@ function registerDOM(){
   GLOBAL_DOM.wheelConfigPresetSlow = document.getElementById("wheel-config-preset-slow");
   GLOBAL_DOM.wheelConfigPresetSlow.onclick = () => {
     for(let i = 0; i < Object.keys(CHOICES).length; i++){
-      if(Object.keys(CHOICES)[i].includes("fs_") || Object.keys(CHOICES)[i].includes("f_")){
+      if(Object.keys(CHOICES)[i].includes("b_") || Object.keys(CHOICES)[i].includes("f_")){
         if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
           GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
           GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
@@ -69,7 +69,7 @@ function registerDOM(){
   GLOBAL_DOM.wheelConfigPresetFast = document.getElementById("wheel-config-preset-fast");
   GLOBAL_DOM.wheelConfigPresetFast.onclick = () => {
     for(let i = 0; i < Object.keys(CHOICES).length; i++){
-      if(Object.keys(CHOICES)[i].includes("fs_") || Object.keys(CHOICES)[i].includes("s_")){
+      if(Object.keys(CHOICES)[i].includes("b_") || Object.keys(CHOICES)[i].includes("s_")){
         if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
           GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
           GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
@@ -96,7 +96,7 @@ function registerDOM(){
           GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
         }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
         }
-      }else if(Object.keys(CHOICES)[i].includes("fs_")){
+      }else if(Object.keys(CHOICES)[i].includes("b_")){
         if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
           console.log("alr here no need to change");
         }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
@@ -142,7 +142,7 @@ function registerDOM(){
     GLOBAL_DOM.wheelConfigList[i].appendChild(GLOBAL_DOM.wheelConfigListTitle[i]);
     GLOBAL_DOM.wheelConfigList[i].appendChild(GLOBAL_DOM.wheelConfigListRemove[i]);
 
-    if(Object.keys(CHOICES)[i].includes("fs_")){
+    if(Object.keys(CHOICES)[i].includes("b_")){
       GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
       GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
     }else if(Object.keys(CHOICES)[i].includes("f_")){
@@ -189,22 +189,22 @@ var GLOBAL_DOM = {
 }
 
 var CHOICES  = {
-  "fs_mouse" : {
+  "b_mouse" : {
     name : "Fast / Slow 🐭",
   },
-  "fs_dog" : {
+  "b_dog" : {
     name : "Fast / Slow 🐶",
   },
-  "fs_cat" : {
+  "b_cat" : {
     name : "Fast / Slow 🐭",
   },
-  "fs_fish" : {
+  "b_fish" : {
     name : "Fast / Slow 🐡",
   },
-  "fs_bird" : {
+  "b_bird" : {
     name : "Fast / Slow 🐦",
   },
-  "fs_bunny" : {
+  "b_bunny" : {
     name : "Fast / Slow 🐰",
   },
   "f_mouse" : {
