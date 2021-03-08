@@ -54,7 +54,16 @@ function registerDOM(){
     GLOBAL_DOM.wheelConfigListRemove[i].classList.add("config-list-control");
     GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude"
     GLOBAL_DOM.wheelConfigListRemove[i].onclick = () => {
-      GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+      if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
+        GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+        GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+        GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+      }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
+        GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
+        GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+        GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        // GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+      }
     };
 
 
