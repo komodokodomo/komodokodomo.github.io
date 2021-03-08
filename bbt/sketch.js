@@ -317,11 +317,11 @@ let animation = ( s ) => {
     directory2 = "assets/" + animal + "/" + chosenFile2;
     console.log(directory1);
 
-    loadImage(directory1, img => {
-      image(img, s.width/4, height/2, s.width/2, s.height/2);
+    s.loadImage(directory1, img => {
+      s.image(img, s.width/4, height/2, s.width/2, s.height/2);
     });
-    loadImage(directory2, img => {
-      image(img, 3 * s.width/4, height/2, s.width/2, s.height/2);
+    s.loadImage(directory2, img => {
+      s.image(img, 3 * s.width/4, height/2, s.width/2, s.height/2);
     });
   }
 
