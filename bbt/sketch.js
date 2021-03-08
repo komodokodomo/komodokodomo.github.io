@@ -91,6 +91,8 @@ var GLOBAL_DOM = {
   wheelConfigListExcluded: null,
   wheelConfigList: [],
   wheelConfigListTitle: [],
+  wheelConfigListRemove: [],
+
   // spinContainer
   instruction: null,
 }
