@@ -59,7 +59,7 @@ function registerDOM(){
 
 
 
-    let titleContent = document.createTextNode(CHOICES[Object.keys(CHOICES)[i]]);
+    let titleContent = document.createTextNode(CHOICES[Object.keys(CHOICES)[i]].name);
     GLOBAL_DOM.wheelConfigListTitle[i].appendChild(titleContent);
 
     GLOBAL_DOM.wheelConfigList[i].appendChild(GLOBAL_DOM.wheelConfigListTitle[i]);
