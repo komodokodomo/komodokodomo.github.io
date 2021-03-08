@@ -287,12 +287,13 @@ let animation = ( s ) => {
     console.log(value);
     let currentKey;
     let directory1,directory2;
-    let animal = currentKey.split("_")[1];
+    let animal;
     let file = [];
 
     for(let i = 0; i< Object.keys(CHOICES).length; i++){
       if(CHOICES[Object.keys(CHOICES)[i]].name == value){
         currentKey = Object.keys(CHOICES)[i];
+        animal = currentKey.split("_")[1];
         console.log(currentKey);
         break;
       }
