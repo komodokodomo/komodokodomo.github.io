@@ -114,6 +114,7 @@ html, body {
     position: relative;
     background: lightgray;
     margin: 10px 10px 0px 10px;
+    align-items: center;
   }
 
   .config-list-title{
@@ -126,6 +127,12 @@ html, body {
     right: 0;
     fill: darkgray;
     font-size: small;
+    cursor: pointer;
+    transition: 300ms;
+  }
+
+  .config-list-control:hover{
+    fill: black;
   }
   
 
