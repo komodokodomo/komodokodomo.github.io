@@ -147,6 +147,11 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 300ms;
+  }
+
+  #wheel-config-save-container:hover{
+    background: lightgray;
   }
 
   #wheel-config-container.hidden-right{
