@@ -329,7 +329,6 @@ var CHOICES  = {
 
         setTimeout(() => {
           document.getElementById("spin-container").classList.toggle('hidden');
-          GLOBAL_APP_STATE.timerValue = GLOBAL_APP_STATE.timerStartingValue;
         }, 
         950, 
         );
@@ -337,6 +336,7 @@ var CHOICES  = {
 
         setTimeout(() => {
           GLOBAL_APP_STATE.timerValue = GLOBAL_APP_STATE.timerStartingValue;
+          DOM_EL.timer.html(GLOBAL_APP_STATE.timerValue);
           GLOBAL_DOM.instruction.innerHTML = "Spin the wheel to choose an activity"
           document.getElementById("spin-transition").classList.toggle('hidden-right');
           document.getElementById("wheel-transition").classList.toggle('hidden-right');
