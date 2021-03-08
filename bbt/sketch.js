@@ -39,6 +39,34 @@ function registerDOM(){
     GLOBAL_DOM.instruction.innerHTML = "Choose a preset or customize which activities to randomize!"
   };
 
+  GLOBAL_DOM.wheelConfigListIncluded = document.getElementById("wheel-config-list-included");
+  GLOBAL_DOM.wheelConfigListExcluded = document.getElementById("wheel-config-list-excluded");
+
+
+  for(let i = 0; i < Object.keys(CHOICES).length; i++){
+    GLOBAL_DOM.wheelConfigList[i] = document.createElement("div");
+    GLOBAL_DOM.wheelConfigList[i].classList.add("config-list");
+
+    GLOBAL_DOM.wheelConfigListTitle[i] = document.createElement("div");
+    GLOBAL_DOM.wheelConfigListTitle[i].classList.add("config-list-title");
+
+    GLOBAL_DOM.wheelConfigListRemove[i] = document.createElement("div");
+    GLOBAL_DOM.wheelConfigListRemove[i].classList.add("config-list-remove");
+    GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude"
+    GLOBAL_DOM.wheelConfigListRemove[i].onclick = () => {
+      GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+    };
+
+
+
+    let titleContent = document.createTextNode(Object.keys(CHOICES)[i]);
+    GLOBAL_DOM.wheelConfigListTitle[i].appendChild(titleContent);
+
+    GLOBAL_DOM.wheelConfigList[i].appendChild(GLOBAL_DOM.wheelConfigListTitle[i]);
+    
+    GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+  }
+
   GLOBAL_DOM.instruction = document.getElementById('instruction');
 
 }
@@ -59,11 +87,70 @@ var GLOBAL_DOM = {
   wheelConfigContainer: null,
   wheelConfigSaveContainer: null,
   wheelConfig: null,
-
+  wheelConfigListIncluded: null,
+  wheelConfigListExcluded: null,
+  wheelConfigList: [],
+  wheelConfigListTitle: [],
   // spinContainer
   instruction: null,
 }
 
+var CHOICES  = {
+  "fs_mouse" : {
+    name : "Fast / Slow 🐭",
+  },
+  "fs_dog" : {
+    name : "Fast / Slow 🐶",
+  },
+  "fs_cat" : {
+    name : "Fast / Slow 🐭",
+  },
+  "fs_fish" : {
+    name : "Fast / Slow 🐡",
+  },
+  "fs_bird" : {
+    name : "Fast / Slow 🐦",
+  },
+  "fs_bunny" : {
+    name : "Fast / Slow 🐰",
+  },
+  "f_mouse" : {
+    name : "Fast 🐭",
+  },
+  "f_dog" : {
+    name : "Fast 🐶",
+  },
+  "f_cat" : {
+    name : "Fast 🐭",
+  },
+  "f_fish" : {
+    name : "Fast 🐡",
+  },
+  "f_bird" : {
+    name : "Fast 🐦",
+  },
+  "f_bunny" : {
+    name : "Fast 🐰",
+  },
+  "s_mouse" : {
+    name : "Slow 🐭",
+  },
+  "s_dog" : {
+    name : "Slow 🐶",
+  },
+  "s_cat" : {
+    name : "Slow 🐭",
+  },
+  "s_fish" : {
+    name : "Slow 🐡",
+  },
+  "s_bird" : {
+    name : "Slow 🐦",
+  },
+  "s_bunny" : {
+    name : "Slow 🐰",
+  },
+}
 
 // SKETCHES.transition = ( s ) => {
 
