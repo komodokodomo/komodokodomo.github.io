@@ -52,7 +52,7 @@ function registerDOM(){
 
     GLOBAL_DOM.wheelConfigListRemove[i] = document.createElement("div");
     GLOBAL_DOM.wheelConfigListRemove[i].classList.add("config-list-control");
-    GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude"
+
     GLOBAL_DOM.wheelConfigListRemove[i].onclick = () => {
       if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
         GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
@@ -65,14 +65,22 @@ function registerDOM(){
       }
     };
 
-
-
     let titleContent = document.createTextNode(CHOICES[Object.keys(CHOICES)[i]].name);
     GLOBAL_DOM.wheelConfigListTitle[i].appendChild(titleContent);
 
     GLOBAL_DOM.wheelConfigList[i].appendChild(GLOBAL_DOM.wheelConfigListTitle[i]);
     GLOBAL_DOM.wheelConfigList[i].appendChild(GLOBAL_DOM.wheelConfigListRemove[i]);
-    GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+
+    if(Object.keys(CHOICES)[i].includes("fs_")){
+      GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+      GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+    }else if(Object.keys(CHOICES)[i].includes("f_")){
+      GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+      GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+    }else if(Object.keys(CHOICES)[i].includes("s_")){
+      GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+      GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
+    }
   }
 
   GLOBAL_DOM.instruction = document.getElementById('instruction');
@@ -89,7 +97,8 @@ var SKETCHES = {
 var GLOBAL_APP_STATE = {
   timerStartingValue: 10,
   timerValue: 10,
-  chosenPie: null
+  chosenPie: null,
+  filterMode : 0, //0: CHILLOUT 1: WAKE UP 2: CUSTOM
 }
 
 var GLOBAL_DOM = {
