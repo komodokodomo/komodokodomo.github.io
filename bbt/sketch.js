@@ -284,6 +284,7 @@ let animation = ( s ) => {
   }
 
   s.loadAsset = (value) => {
+    console.log(value);
     let currentKey;
     let directory1,directory2;
     let animal = currentKey.split("_")[1];
@@ -314,7 +315,7 @@ let animation = ( s ) => {
     directory1 = "assets/" + animal + "/" + chosenFile1;
     directory2 = "assets/" + animal + "/" + chosenFile2;
     console.log(directory1);
-    
+
     loadImage(directory1, img => {
       image(img, s.width/4, height/2, s.width/2, s.height/2);
     });
