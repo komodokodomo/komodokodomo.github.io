@@ -409,12 +409,12 @@ var CHOICES  = {
     sketch.createWheel = (index,length,content) => {
       sketch.pie[index] = new Wheel(sketch.width/2,
         sketch.height/2, 
-        360 * index / sketch.choices.length,
+        360 * index / length,
         0,
         360 / length,
         sketch.APP_STATE.smallerSide*0.8,
         content,
-        sketch.colors[index % sketch.colors.length]);
+        sketch.colors[index % length]);
     }
     
     sketch.setup = () => {
