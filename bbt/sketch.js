@@ -362,7 +362,7 @@ var CHOICES  = {
         sketch.pie[i].rotation = sketch.lerp(sketch.pie[i].rotation,sketch.pie[i].rotationTarget,0.02);
         sketch.pie[i].drawPie();
       }
-      for(let i = 0; i < pie.length; i++){
+      for(let i = 0; i < sketch.pie.length; i++){
         sketch.pie[i].drawText();
         sketch.pie[i].drawPeg();
       }
