@@ -406,7 +406,7 @@ var CHOICES  = {
       }
     }
 
-    sketch.createWheel(index,length,content){
+    sketch.createWheel = (index,length,content) => {
       sketch.pie[index] = new Wheel(sketch.width/2,
         sketch.height/2, 
         360 * index / sketch.choices.length,
