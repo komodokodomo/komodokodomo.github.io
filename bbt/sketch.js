@@ -51,7 +51,7 @@ function registerDOM(){
     GLOBAL_DOM.wheelConfigListTitle[i].classList.add("config-list-title");
 
     GLOBAL_DOM.wheelConfigListRemove[i] = document.createElement("div");
-    GLOBAL_DOM.wheelConfigListRemove[i].classList.add("config-list-remove");
+    GLOBAL_DOM.wheelConfigListRemove[i].classList.add("config-list-control");
     GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude"
     GLOBAL_DOM.wheelConfigListRemove[i].onclick = () => {
       GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
@@ -59,7 +59,7 @@ function registerDOM(){
 
 
 
-    let titleContent = document.createTextNode(Object.keys(CHOICES)[i]);
+    let titleContent = document.createTextNode(CHOICES[Object.keys(CHOICES)[i]]);
     GLOBAL_DOM.wheelConfigListTitle[i].appendChild(titleContent);
 
     GLOBAL_DOM.wheelConfigList[i].appendChild(GLOBAL_DOM.wheelConfigListTitle[i]);
@@ -92,7 +92,6 @@ var GLOBAL_DOM = {
   wheelConfigList: [],
   wheelConfigListTitle: [],
   wheelConfigListRemove: [],
-
   // spinContainer
   instruction: null,
 }
