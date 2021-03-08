@@ -39,6 +39,87 @@ function registerDOM(){
     GLOBAL_DOM.instruction.innerHTML = "Choose a preset or customize which activities to randomize!"
   };
 
+  GLOBAL_DOM.wheelConfigPresetSlow = document.getElementById("wheel-config-preset-slow");
+  GLOBAL_DOM.wheelConfigPresetSlow.onclick = () => {
+    for(let i = 0; i < Object.keys(CHOICES).length; i++){
+      if(Object.keys(CHOICES)[i].includes("fs_") || Object.keys(CHOICES)[i].includes("f_")){
+        if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
+          GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+          GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
+          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
+          // GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          // GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }
+      }else if(Object.keys(CHOICES)[i].includes("s_")){
+        if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
+          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+          // GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          // GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
+          GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
+          GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }
+      }
+    }
+  }
+
+  GLOBAL_DOM.wheelConfigPresetFast = document.getElementById("wheel-config-preset-fast");
+  GLOBAL_DOM.wheelConfigPresetFast.onclick = () => {
+    for(let i = 0; i < Object.keys(CHOICES).length; i++){
+      if(Object.keys(CHOICES)[i].includes("fs_") || Object.keys(CHOICES)[i].includes("s_")){
+        if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
+          GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+          GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
+          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
+          // GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          // GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }
+      }else if(Object.keys(CHOICES)[i].includes("f_")){
+        if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
+          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+          // GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          // GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
+          GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
+          GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }
+      }
+    }
+  };
+  GLOBAL_DOM.wheelConfigPresetBoth = document.getElementById("wheel-config-preset-both");
+  GLOBAL_DOM.wheelConfigPresetBoth.onclick = () => {
+    for(let i = 0; i < Object.keys(CHOICES).length; i++){
+      if(Object.keys(CHOICES)[i].includes("s_") || Object.keys(CHOICES)[i].includes("f_")){
+        if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
+          GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+          GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
+          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
+          // GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          // GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }
+      }else if(Object.keys(CHOICES)[i].includes("fs_")){
+        if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
+          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
+          // GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          // GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
+          GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
+          GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
+          GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+        }
+      }
+    }
+  };
+
+
   GLOBAL_DOM.wheelConfigListIncluded = document.getElementById("wheel-config-list-included");
   GLOBAL_DOM.wheelConfigListExcluded = document.getElementById("wheel-config-list-excluded");
 
@@ -105,6 +186,9 @@ var GLOBAL_DOM = {
   wheelConfigContainer: null,
   wheelConfigSaveContainer: null,
   wheelConfig: null,
+  wheelConfigPresetSlow: null,
+  wheelConfigPresetFast: null,
+  wheelConfigPresetBoth: null,
   wheelConfigListIncluded: null,
   wheelConfigListExcluded: null,
   wheelConfigList: [],
