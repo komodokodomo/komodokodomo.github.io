@@ -284,10 +284,17 @@ let animation = ( s ) => {
   }
 
   s.loadAsset = (value) => {
-    let currentKey = getKeyByValue(CHOICES,value);
+    let currentKey;
     let directory1,directory2;
     let animal = currentKey.split("_")[1];
     let file = [];
+
+    for(let i = 0; i< Object.keys(CHOICES).length; i++){
+      if(CHOICES[Object.keys(CHOICES)[i]].name == value){
+        currentKey = Object.keys(CHOICES)[i];
+        break;
+      }
+    }
 
     if(currentKey.split("_")[0] == "s"){
       chosenFile1 = "S1.gif"
@@ -539,7 +546,9 @@ let animation = ( s ) => {
           document.getElementById('instruction').innerHTML = "Stand up and get ready!<br><br>Press play when ready!"
           GLOBAL_DOM.wheelCanvas.style.display = "none";
           GLOBAL_DOM.animationCanvas.style.display = "block";
+          SKETCHES.animation.loadAsset(GLOBAL_APP_STATE.chosenPie);
 
+          SKETCHES.animation.loadAsset(GLOBAL_APP_STATE.chosenPie);
 
           document.getElementById("spin-transition").classList.toggle('hidden-right');
           document.getElementById("wheel-transition").classList.toggle('hidden-right');
