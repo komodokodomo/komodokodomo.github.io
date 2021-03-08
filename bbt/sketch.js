@@ -31,6 +31,12 @@ function registerDOM(){
   GLOBAL_DOM.wheelConfigSaveContainer.onclick = () => {
     GLOBAL_DOM.wheelConfigContainer.classList.toggle("hidden-right");
     GLOBAL_DOM.instruction.innerHTML = "Spin the wheel to choose an activity"
+    SKETCHES.wheel.pie = [];
+    let x = GLOBAL_DOM.wheelConfigListIncluded.childElementCount
+    for(let i = 0; i < x; i++){
+      SKETCHES.wheel.createWheel(i,x,GLOBAL_DOM.wheelConfigListIncluded.children[i].firstElementChild.innerHTML);
+    }
+
   };
 
   GLOBAL_DOM.wheelConfig = document.getElementById("wheel-change");
@@ -398,6 +404,17 @@ var CHOICES  = {
         sketch.pie[i].pY = sketch.APP_STATE.height/2;
         sketch.pie[i].radius = sketch.APP_STATE.smallerSide*0.8;
       }
+    }
+
+    sketch.createWheel(index,length,content){
+      sketch.pie[index] = new Wheel(sketch.width/2,
+        sketch.height/2, 
+        360 * index / sketch.choices.length,
+        0,
+        360 / length,
+        sketch.APP_STATE.smallerSide*0.8,
+        content,
+        sketch.colors[index % sketch.colors.length]);
     }
     
     sketch.setup = () => {
