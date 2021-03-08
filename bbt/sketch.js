@@ -292,6 +292,7 @@ let animation = ( s ) => {
     for(let i = 0; i< Object.keys(CHOICES).length; i++){
       if(CHOICES[Object.keys(CHOICES)[i]].name == value){
         currentKey = Object.keys(CHOICES)[i];
+        console.log(currentKey);
         break;
       }
     }
@@ -310,8 +311,10 @@ let animation = ( s ) => {
       chosenFile1 = file[s.round(s.random(0,1))];
       chosenFile2 = file[s.round(s.random(2,3))];
     }
-    directory1 = "assets/" + animal + "/" + chosenFile1
-    directory2 = "assets/" + animal + "/" + chosenFile2
+    directory1 = "assets/" + animal + "/" + chosenFile1;
+    directory2 = "assets/" + animal + "/" + chosenFile2;
+    console.log(directory1);
+    
     loadImage(directory1, img => {
       image(img, s.width/4, height/2, s.width/2, s.height/2);
     });
