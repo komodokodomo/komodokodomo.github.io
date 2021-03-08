@@ -32,6 +32,9 @@ html, body {
   #wheel-canvas{
     position: absolute;
   }
+  #animation-canvas{
+    position: absolute;
+  }
 
   #sidebar-container{
     overflow: hidden;

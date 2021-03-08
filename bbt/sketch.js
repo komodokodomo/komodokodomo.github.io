@@ -27,6 +27,8 @@ function updateCSSVar(){
 function registerDOM(){
 
   GLOBAL_DOM.wheelCanvas = document.getElementById("wheel-canvas");
+  GLOBAL_DOM.animationCanvas = document.getElementById("animation-canvas");
+
 
   GLOBAL_DOM.wheelConfigContainer = document.getElementById("wheel-config-container");
   GLOBAL_DOM.wheelConfigSaveContainer = document.getElementById("wheel-config-save-container");
@@ -171,6 +173,7 @@ var SKETCHES = {
   spin: null,
   transition: null,
   wheel: null,
+  animation: null,
 }
 
 var GLOBAL_APP_STATE = {
@@ -182,6 +185,7 @@ var GLOBAL_APP_STATE = {
 
 var GLOBAL_DOM = {
   wheelCanvas: null,
+  animationCanvas: null,
   wheelConfigContainer: null,
   wheelConfigSaveContainer: null,
   wheelConfig: null,
@@ -254,21 +258,71 @@ var CHOICES  = {
   },
 }
 
-// SKETCHES.transition = ( s ) => {
+let animation = ( s ) => {
 
-//   s.showAnimation = false;
+  // s.imageAssets = {};
+  s.APP_STATE = {
+    width: null,
+    height: null,
+    smallerSide: null,
+  }
 
-//   s.setup = () => {
-//     s.createCanvas();
-//   }
-//   s.draw = () => {
-//     if(s.showAnimation){
-//       clear();
-//     } else{
+  s.preload = () => {
 
-//     }
-//   }
-// }
+    
+  }
+
+  s.windowResized = () => {
+    s.APP_STATE.width = document.getElementById('canvas-container').offsetWidth;
+    s.APP_STATE.height = document.getElementById('canvas-container').offsetHeight;
+    if(s.APP_STATE.width > s.APP_STATE.height){
+      s.APP_STATE.smallerSide = s.APP_STATE.height;
+    }else{
+      s.APP_STATE.smallerSide = s.APP_STATE.width;
+    }
+    s.resizeCanvas(s.APP_STATE.width, s.APP_STATE.height);
+  }
+
+  s.loadAsset = (value) => {
+    let currentKey = getKeyByValue(CHOICES,value);
+    let directory1,directory2;
+    let animal = currentKey.split("_")[1];
+    let file = [];
+
+    if(currentKey.split("_")[0] == "s"){
+      chosenFile1 = "S1.gif"
+      chosenFile2 = "S2.gif"
+    }else if(currentKey.split("_")[0] == "f"){
+      chosenFile1 = "F1.gif"
+      chosenFile2 = "F2.gif"
+    }else if(currentKey.split("_")[0] == "b"){
+      file[0] = "S1.gif"
+      file[1] = "F1.gif" 
+      file[2] = "S2.gif"
+      file[3] = "F2.gif" 
+      chosenFile1 = file[s.round(s.random(0,1))];
+      chosenFile2 = file[s.round(s.random(2,3))];
+    }
+    directory1 = "assets/" + animal + "/" + chosenFile1
+    directory2 = "assets/" + animal + "/" + chosenFile2
+    loadImage(directory1, img => {
+      image(img, s.width/4, height/2, s.width/2, s.height/2);
+    });
+    loadImage(directory2, img => {
+      image(img, 3 * s.width/4, height/2, s.width/2, s.height/2);
+    });
+  }
+
+  s.setup = () => {
+    s.APP_STATE.width = document.getElementById('canvas-container').offsetWidth;
+    s.APP_STATE.height = document.getElementById('canvas-container').offsetHeight;
+    s.createCanvas(s.APP_STATE.width,s.APP_STATE.height);
+    s.imageMode(s.CENTER);
+  }
+
+  s.draw = () => {
+  }
+}
 
   SKETCHES.play = ( s ) => {
     var DOM_EL = {
@@ -348,11 +402,6 @@ var CHOICES  = {
         1000, 
         );
         
-        // document.getElementById('instruction').innerHTML = "Sit down and focus";
-        // document.getElementById("spin-container").classList.toggle('hidden');
-        // document.getElementById("timer-container").classList.toggle('hidden');
-        // document.getElementById("play-container").classList.toggle('hidden');
-        // document.getElementById("restart-container").classList.toggle('hidden');
       }
     }
   } 
@@ -489,6 +538,7 @@ var CHOICES  = {
           console.log(GLOBAL_APP_STATE.chosenPie);
           document.getElementById('instruction').innerHTML = "Stand up and get ready!<br><br>Press play when ready!"
           GLOBAL_DOM.wheelCanvas.style.display = "none";
+          GLOBAL_DOM.animationCanvas.style.display = "block";
 
 
           document.getElementById("spin-transition").classList.toggle('hidden-right');
@@ -566,8 +616,14 @@ var CHOICES  = {
 
 
   SKETCHES.wheel = new p5(wheel,'wheel-canvas');
+  SKETCHES.animation = new p5(animation,'animation-canvas');
+
   let content = new p5(SKETCHES.play);
  
+
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
 
 
 
