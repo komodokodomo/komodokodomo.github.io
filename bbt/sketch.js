@@ -329,6 +329,7 @@ var CHOICES  = {
 
         setTimeout(() => {
           document.getElementById("spin-container").classList.toggle('hidden');
+          GLOBAL_APP_STATE.timerValue = GLOBAL_APP_STATE.timerStartingValue;
         }, 
         950, 
         );
