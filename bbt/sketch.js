@@ -62,7 +62,6 @@ function registerDOM(){
         GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
         GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
         GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
-        // GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
       }
     };
 
@@ -84,6 +83,7 @@ var SKETCHES = {
   play: null,
   spin: null,
   transition: null,
+  wheel: null,
 }
 
 var GLOBAL_APP_STATE = {
@@ -268,8 +268,8 @@ var CHOICES  = {
 
   
   
-  SKETCHES.spin = ( sketch ) => {
-    let pie = [];
+  let wheel = ( sketch ) => {
+    sketch.pie = [];
   
     sketch.choices = [
     "Fast / Slow 🐭","Fast / Slow 🐶",
@@ -310,10 +310,10 @@ var CHOICES  = {
       // updateCSSVar();
   
       sketch.resizeCanvas(sketch.APP_STATE.width, sketch.APP_STATE.height);
-      for(let i = 0; i < pie.length; i++){
-        pie[i].pX = sketch.APP_STATE.width/2;
-        pie[i].pY = sketch.APP_STATE.height/2;
-        pie[i].radius = sketch.APP_STATE.smallerSide*0.8;
+      for(let i = 0; i < sketch.pie.length; i++){
+        sketch.pie[i].pX = sketch.APP_STATE.width/2;
+        sketch.pie[i].pY = sketch.APP_STATE.height/2;
+        sketch.pie[i].radius = sketch.APP_STATE.smallerSide*0.8;
       }
     }
     
@@ -332,7 +332,7 @@ var CHOICES  = {
       sketch.textAlign(sketch.RIGHT,sketch.CENTER);
       sketch.createCanvas(sketch.APP_STATE.width, sketch.APP_STATE.height);
       for(let i = 0; i < sketch.choices.length; i++){
-        pie[i] = new Wheel(sketch.width/2,
+        sketch.pie[i] = new Wheel(sketch.width/2,
                            sketch.height/2, 
                            360*i/sketch.choices.length,
                            0,
@@ -350,21 +350,21 @@ var CHOICES  = {
       let spinValue = sketch.random(720,1440);
       let spinValueTarget = sketch.random(0,360);
       for(let i = 0; i < pie.length; i++){
-        pie[i].rotation = spinValue;
-        pie[i].rotationTarget = spinValueTarget;
+        sketch.pie[i].rotation = spinValue;
+        sketch.pie[i].rotationTarget = spinValueTarget;
       }
     }
     sketch.draw = () => {
       // sketch.background(220);
       sketch.clear();
       tickerDeflection = sketch.lerp(tickerDeflection,0,0.1);
-      for(let i = 0; i < pie.length; i++){
-        pie[i].rotation = sketch.lerp(pie[i].rotation,pie[i].rotationTarget,0.02);
-        pie[i].drawPie();
+      for(let i = 0; i < sketch.pie.length; i++){
+        sketch.pie[i].rotation = sketch.lerp(sketch.pie[i].rotation,sketch.pie[i].rotationTarget,0.02);
+        sketch.pie[i].drawPie();
       }
       for(let i = 0; i < pie.length; i++){
-        pie[i].drawText();
-        pie[i].drawPeg();
+        sketch.pie[i].drawText();
+        sketch.pie[i].drawPeg();
       }
         sketch.strokeWeight(2);
         sketch.ellipse(
@@ -379,7 +379,7 @@ var CHOICES  = {
               sketch.APP_STATE.smallerSide*0.05, 
               sketch.APP_STATE.smallerSide*0.05
               );
-      if(sketch.APP_STATE.spinStarted && (sketch.abs(pie[0].rotation-pie[0].rotationTarget)<1)){
+      if(sketch.APP_STATE.spinStarted && (sketch.abs(sketch.pie[0].rotation - sketch.pie[0].rotationTarget)<1)){
         sketch.APP_STATE.spinStarted = false;
           console.log("spin stopped");
           console.log(GLOBAL_APP_STATE.chosenPie);
@@ -473,7 +473,7 @@ var CHOICES  = {
   };
 
 
-  let myp5 = new p5(SKETCHES.spin,'wheel-canvas');
+  SKETCHES.wheel = new p5(wheel,'wheel-canvas');
   let content = new p5(SKETCHES.play);
  
 

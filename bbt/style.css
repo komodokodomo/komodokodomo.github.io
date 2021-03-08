@@ -71,6 +71,7 @@ html, body {
     align-items: center;
     border-right-style: solid;
     transition: ease-in 300ms;
+    cursor: pointer;
   }
 
   .pill:hover{
@@ -125,14 +126,14 @@ html, body {
     position: absolute;
     margin: 10px;
     right: 0;
-    fill: darkgray;
+    color: darkgray;
     font-size: small;
     cursor: pointer;
     transition: 300ms;
   }
 
   .config-list-control:hover{
-    fill: black;
+    color: black;
   }
   
 
