@@ -75,15 +75,9 @@ function registerDOM(){
           GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
           GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
         }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
-          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
-          // GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
-          // GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
         }
       }else if(Object.keys(CHOICES)[i].includes("f_")){
         if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
-          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
-          // GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
-          // GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
         }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
           GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
           GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
@@ -101,16 +95,12 @@ function registerDOM(){
           GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
           GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
         }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
-          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
-          // GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
-          // GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
         }
       }else if(Object.keys(CHOICES)[i].includes("fs_")){
         if(GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "exclude"){
-          // GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "include";
-          // GLOBAL_DOM.wheelConfigListIncluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
-          // GLOBAL_DOM.wheelConfigListExcluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
+          console.log("alr here no need to change");
         }else if (GLOBAL_DOM.wheelConfigListRemove[i].innerHTML == "include"){
+          console.log("change to included list");
           GLOBAL_DOM.wheelConfigListRemove[i].innerHTML = "exclude";
           GLOBAL_DOM.wheelConfigListExcluded.removeChild(GLOBAL_DOM.wheelConfigList[i]);
           GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
