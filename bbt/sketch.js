@@ -26,6 +26,8 @@ function updateCSSVar(){
 
 function registerDOM(){
 
+  GLOBAL_DOM.wheelCanvas = document.getElementById("wheel-canvas");
+
   GLOBAL_DOM.wheelConfigContainer = document.getElementById("wheel-config-container");
   GLOBAL_DOM.wheelConfigSaveContainer = document.getElementById("wheel-config-save-container");
   GLOBAL_DOM.wheelConfigSaveContainer.onclick = () => {
@@ -179,6 +181,7 @@ var GLOBAL_APP_STATE = {
 }
 
 var GLOBAL_DOM = {
+  wheelCanvas: null,
   wheelConfigContainer: null,
   wheelConfigSaveContainer: null,
   wheelConfig: null,
@@ -485,17 +488,8 @@ var CHOICES  = {
           console.log("spin stopped");
           console.log(GLOBAL_APP_STATE.chosenPie);
           document.getElementById('instruction').innerHTML = "Stand up and get ready!<br><br>Press play when ready!"
-          // sketch.select("#wheel-canvas").hide();
-          // Array.from(document.getElementsByClassName("transition-canvas")).forEach(element => {
-            // element.classList.toggle('hidden-right');
-            // element.classList.toggle('hidden-left');
-            // setTimeout((e) => {
-            //   e.classList.toggle('hidden-left');
-            // }, 
-            // 600, 
-            // element
-            // );
-          // });
+          GLOBAL_DOM.wheelCanvas.style.display = "none";
+
 
           document.getElementById("spin-transition").classList.toggle('hidden-right');
           document.getElementById("wheel-transition").classList.toggle('hidden-right');
@@ -503,9 +497,6 @@ var CHOICES  = {
 
 
           setTimeout(() => {
-            // document.getElementById("timer-container").classList.toggle('hidden');
-            // document.getElementById("play-container").classList.toggle('hidden');
-            // document.getElementById("restart-container").classList.toggle('hidden');
             document.getElementById("spin-container").classList.toggle('hidden');
 
 
