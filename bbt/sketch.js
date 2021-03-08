@@ -63,7 +63,7 @@ function registerDOM(){
     GLOBAL_DOM.wheelConfigListTitle[i].appendChild(titleContent);
 
     GLOBAL_DOM.wheelConfigList[i].appendChild(GLOBAL_DOM.wheelConfigListTitle[i]);
-    
+    GLOBAL_DOM.wheelConfigList[i].appendChild(GLOBAL_DOM.wheelConfigListRemove[i]);
     GLOBAL_DOM.wheelConfigListIncluded.appendChild(GLOBAL_DOM.wheelConfigList[i]);
   }
 
