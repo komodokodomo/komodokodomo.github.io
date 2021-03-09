@@ -344,10 +344,13 @@ html, body {
   
 
 #opacity-container{
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100vw;
   height: 100vh;
-  background: white;
-  opacity: 0.5;
+  background: rgba(255, 255, 255, 0.918);
+  font-size: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
