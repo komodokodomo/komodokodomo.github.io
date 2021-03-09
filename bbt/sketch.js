@@ -1,4 +1,3 @@
-const { clear } = require("console");
 
 window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
