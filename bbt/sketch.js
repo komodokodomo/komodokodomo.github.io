@@ -422,6 +422,8 @@ let animation = ( s ) => {
 
         setTimeout(() => {
           GLOBAL_APP_STATE.timerValue = GLOBAL_APP_STATE.timerStartingValue;
+          GLOBAL_DOM.wheelCanvas.style.display = "block";
+          GLOBAL_DOM.animationCanvas.style.display = "none";
           DOM_EL.timer.html(GLOBAL_APP_STATE.timerValue);
           GLOBAL_DOM.instruction.innerHTML = "Spin the wheel to choose an activity"
           document.getElementById("spin-transition").classList.toggle('hidden-right');
