@@ -1,5 +1,3 @@
-const { xor128 } = require("seedrandom");
-
 window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
   registerDOM();
