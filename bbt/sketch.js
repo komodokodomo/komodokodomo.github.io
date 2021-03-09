@@ -36,7 +36,7 @@ function registerDOM(){
     GLOBAL_DOM.wheelConfigContainer.classList.toggle("hidden-right");
     GLOBAL_DOM.instruction.innerHTML = "Spin the wheel to choose an activity"
     SKETCHES.wheel.pie = [];
-    let x = GLOBAL_DOM.wheelConfigListIncluded.childElementCount
+    let x = GLOBAL_DOM.wheelConfigListIncluded.childElementCount;
     for(let i = 0; i < x; i++){
       SKETCHES.wheel.createWheel(i,x,GLOBAL_DOM.wheelConfigListIncluded.children[i].firstElementChild.innerHTML);
     }
@@ -538,16 +538,21 @@ let animation = ( s ) => {
       sketch.angleMode(sketch.DEGREES);
       sketch.textAlign(sketch.RIGHT,sketch.CENTER);
       sketch.createCanvas(sketch.APP_STATE.width, sketch.APP_STATE.height);
-      for(let i = 0; i < sketch.choices.length; i++){
-        sketch.pie[i] = new Wheel(sketch.width/2,
-                           sketch.height/2, 
-                           360*i/sketch.choices.length,
-                           0,
-                           360/sketch.choices.length,
-                           sketch.APP_STATE.smallerSide*0.8,
-                           sketch.choices[i],
-                           sketch.colors[i%sketch.colors.length]);
+
+      let x = GLOBAL_DOM.wheelConfigListIncluded.childElementCount;
+      for(let i = 0; i < x; i++){
+        sketch.createWheel(i,x,GLOBAL_DOM.wheelConfigListIncluded.children[i].firstElementChild.innerHTML);
       }
+      // for(let i = 0; i < sketch.choices.length; i++){
+      //   sketch.pie[i] = new Wheel(sketch.width/2,
+      //                      sketch.height/2, 
+      //                      360*i/sketch.choices.length,
+      //                      0,
+      //                      360/sketch.choices.length,
+      //                      sketch.APP_STATE.smallerSide*0.8,
+      //                      sketch.choices[i],
+      //                      sketch.colors[i%sketch.colors.length]);
+      // }
       button = sketch.select("#spin");
       button.mousePressed(sketch.spin);
     };
