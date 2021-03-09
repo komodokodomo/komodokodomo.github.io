@@ -568,7 +568,7 @@ let animation = ( s ) => {
         sketch.createWheel(i,x,GLOBAL_DOM.wheelConfigListIncluded.children[i].firstElementChild.innerHTML);
       }
 
-      button = sketch.select("#spin");
+      button = sketch.select("#spin-container");
       button.mousePressed(sketch.spin);
     };
     sketch.spin = () => {
