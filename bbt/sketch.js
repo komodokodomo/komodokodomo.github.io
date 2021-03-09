@@ -318,10 +318,10 @@ let animation = ( s ) => {
     console.log(directory1);
 
     s.loadImage(directory1, img => {
-      s.image(img, s.width/4, height/2, s.width/2, s.height/2);
+      s.image(img, s.width/4, s.height/2, s.width/2, s.height/2);
     });
     s.loadImage(directory2, img => {
-      s.image(img, 3 * s.width/4, height/2, s.width/2, s.height/2);
+      s.image(img, 3 * s.width/4, s.height/2, s.width/2, s.height/2);
     });
   }
 
