@@ -27,7 +27,8 @@ function updateCSSVar(){
 
 function registerAudio(){
     GLOBAL_AUDIO.wheel = document.getElementById("audio-wheel");
-    window.onclick = () => {
+    document.getElementById("opacity-container").onclick = () => {
+      document.getElementById("opacity-container").style.display = "none";
       let promise = GLOBAL_AUDIO.wheel.play();
       if (promise !== undefined) {
         promise.then(_ => {

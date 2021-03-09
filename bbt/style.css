@@ -342,3 +342,13 @@ html, body {
     transform: translate(100%,0);
 }
   
+
+#opacity-container{
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
