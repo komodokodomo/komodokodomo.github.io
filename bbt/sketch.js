@@ -346,7 +346,7 @@ let animation = ( s ) => {
       s.image(s.img[0], s.width/4, s.height/2, s.width/2, s.height/2);
       s.image(s.img[1], 3 * s.width/4, s.height/2, s.width/2, s.height/2);
     }else{
-      clear();
+      s.clear();
     }
   }
 }
