@@ -27,16 +27,16 @@ function updateCSSVar(){
 
 function registerAudio(){
     GLOBAL_AUDIO.wheel = document.getElementById("audio-wheel");
-    let promise = GLOBAL_AUDIO.wheel.play();
-    if (promise !== undefined) {
-      promise.then(_ => {
-        console.log("audio started");
-      }).catch(error => {
-        console.error(error);
-        console.log("looks like need some other way to start audio");
-        // Autoplay was prevented.
-        // Show a "Play" button so that user can start playback.
-      });
+    window.onclick = () => {
+      let promise = GLOBAL_AUDIO.wheel.play();
+      if (promise !== undefined) {
+        promise.then(_ => {
+          console.log("audio started");
+        }).catch(error => {
+          console.error(error);
+          console.log("looks like need some other way to start audio");
+        });
+      }
     }
 }
 
