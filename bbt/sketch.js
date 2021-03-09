@@ -545,7 +545,7 @@ let animation = ( s ) => {
         360 / length,
         sketch.APP_STATE.smallerSide*0.8,
         content,
-        sketch.colors[index % length]);
+        sketch.colors[index % sketch.colors.length]);
     }
     
     sketch.setup = () => {
