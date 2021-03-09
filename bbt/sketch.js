@@ -445,6 +445,8 @@ let animation = ( s ) => {
       DOM_EL.timer.html(GLOBAL_APP_STATE.timerValue);
       if(GLOBAL_APP_STATE.timerValue == 0){
         clearInterval(UTIL.timer);
+        audioVolumeIn(GLOBAL_AUDIO.wheel);
+
         SKETCHES.animation.play = false;
         GLOBAL_DOM.playContainer.classList.remove("play");
         GLOBAL_DOM.playTitle.innerHTML = "Paused";
@@ -455,7 +457,6 @@ let animation = ( s ) => {
 
         document.getElementById("wheel-transition").classList.toggle('hidden-right');
         document.getElementById("instruction-transition").classList.toggle('hidden-right');
-        audioVolumeIn(GLOBAL_AUDIO.wheel);
 
         setTimeout(() => {
           document.getElementById("spin-container").classList.toggle('hidden');
