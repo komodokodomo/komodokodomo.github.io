@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
   registerDOM();
-  // registerAudio();
+  registerAudio();
   console.log('DOM fully loaded and parsed');
 });
 
@@ -25,10 +25,20 @@ function updateCSSVar(){
   }
 }
 
-// function registerAudio(){
-
-
-// }
+function registerAudio(){
+    GLOBAL_AUDIO.wheel = document.getElementById("audio-wheel");
+    let promise = GLOBAL_AUDIO.wheel.play();
+    if (promise !== undefined) {
+      promise.then(_ => {
+        console.log("audio started");
+      }).catch(error => {
+        console.error(error);
+        console.log("looks like need some other way to start audio");
+        // Autoplay was prevented.
+        // Show a "Play" button so that user can start playback.
+      });
+    }
+}
 
 function registerDOM(){
   GLOBAL_DOM.wheelTitle = document.getElementById("wheel-title");
@@ -502,9 +512,9 @@ let animation = ( s ) => {
     
     sketch.preload = () => {
       clickSound = sketch.loadSound('assets/click.mp3');
-      GLOBAL_AUDIO.wheel = sketch.loadSound("assets/sound/wheel.mp3", () => {
-        GLOBAL_AUDIO.wheel.play();
-      });
+      // GLOBAL_AUDIO.wheel = sketch.loadSound("assets/sound/wheel.mp3", () => {
+      //   GLOBAL_AUDIO.wheel.play();
+      // });
     }
     
     sketch.windowResized = () => {
