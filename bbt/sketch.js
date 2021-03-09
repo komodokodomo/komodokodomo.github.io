@@ -269,10 +269,12 @@ let animation = ( s ) => {
   }
 
   s.img = [];
+  s.static = null;
   s.imgLoaded = false;
 
   s.preload = () => {
 
+    s.static = s.loadImage("assets/static.gif");
     
   }
 
@@ -351,7 +353,7 @@ let animation = ( s ) => {
         s.image(s.img[1], 3 * s.width/4, s.height/2, s.width/2, s.height/2);
       }
     }else{
-      s.clear();
+      s.image(s.static);
     }
   }
 }
