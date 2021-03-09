@@ -353,7 +353,7 @@ let animation = ( s ) => {
         s.image(s.img[1], 3 * s.width/4, s.height/2, s.width/2, s.height/2);
       }
     }else{
-      s.image(s.static);
+      s.image(s.static,s.width/2,s.height/2,s.width,s.height);
     }
   }
 }
