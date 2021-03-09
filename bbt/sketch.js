@@ -1,3 +1,4 @@
+const { xor128 } = require("seedrandom");
 
 window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
@@ -270,6 +271,7 @@ let animation = ( s ) => {
   }
 
   s.img = [];
+  s.imgLoaded = false;
 
   s.preload = () => {
 
@@ -293,6 +295,7 @@ let animation = ( s ) => {
     let directory1,directory2;
     let animal;
     let file = [];
+    s.imgLoaded = false;
 
     for(let i = 0; i< Object.keys(CHOICES).length; i++){
       if(CHOICES[Object.keys(CHOICES)[i]].name == value){
@@ -324,11 +327,13 @@ let animation = ( s ) => {
     s.loadImage(directory1, img => {
       // s.image(img, s.width/4, s.height/2, s.width/2, s.height/2);
       s.img[0] = img;
+      s.loadImage(directory2, x => {
+        // s.image(img, 3 * s.width/4, s.height/2, s.width/2, s.height/2);
+        s.img[1] = xor128;
+        s.imgLoaded = true;
+      });
     });
-    s.loadImage(directory2, img => {
-      // s.image(img, 3 * s.width/4, s.height/2, s.width/2, s.height/2);
-      s.img[1] = img;
-    });
+
 
     // s.img[0] = s.loadImage(directory1);
     // s.img[1] = s.loadImage(directory2);
@@ -343,8 +348,10 @@ let animation = ( s ) => {
 
   s.draw = () => {
     if(s.play){
-      s.image(s.img[0], s.width/4, s.height/2, s.width/2, s.height/2);
-      s.image(s.img[1], 3 * s.width/4, s.height/2, s.width/2, s.height/2);
+      if(s.imgLoaded){
+        s.image(s.img[0], s.width/4, s.height/2, s.width/2, s.height/2);
+        s.image(s.img[1], 3 * s.width/4, s.height/2, s.width/2, s.height/2);
+      }
     }else{
       s.clear();
     }
