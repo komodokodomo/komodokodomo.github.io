@@ -354,14 +354,15 @@ let animation = ( s ) => {
   }
 
   s.draw = () => {
-    s.clear();
     if(s.play){
       if(s.imgLoaded){
+        s.clear();
         s.image(s.img[0], s.width/4, s.height/2, s.width/2, s.height/2);
         s.image(s.img[1], 3 * s.width/4, s.height/2, s.width/2, s.height/2);
       }
     }else if(s.playStatic){
-      s.image(s.static,s.width/2,s.height/2,s.width,s.height);
+      s.clear();
+      s.image(s.static,s.width/2,s.height/2,2 * s.width/3,2 * s.height/3);
     }
   }
 }
@@ -412,6 +413,7 @@ let animation = ( s ) => {
       }else{
         clearInterval(UTIL.timer);
         GLOBAL_DOM.playTitle.innerHTML = "Play";
+        SKETCHES.animation.play = true;
       }
       DOM_EL.playContainer.toggleClass("play");
     }
