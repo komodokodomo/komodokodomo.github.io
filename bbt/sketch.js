@@ -561,7 +561,7 @@ let animation = ( s ) => {
         sketch.pie[i].rotationTarget = spinValueTarget;
       }
     }
-    sketch.draw = () => {
+    sketch.draw = async () => {
       // sketch.background(220);
       sketch.clear();
       tickerDeflection = sketch.lerp(tickerDeflection,0,0.1);
@@ -593,7 +593,7 @@ let animation = ( s ) => {
           document.getElementById('instruction').innerHTML = "Stand up and get ready<br><br>Press play when ready!"
           GLOBAL_DOM.wheelCanvas.style.display = "none";
           GLOBAL_DOM.animationCanvas.style.display = "block";
-          SKETCHES.animation.loadAsset(GLOBAL_APP_STATE.chosenPie);
+          await SKETCHES.animation.loadAsset(GLOBAL_APP_STATE.chosenPie);
 
           document.getElementById("spin-transition").classList.toggle('hidden-right');
           document.getElementById("wheel-transition").classList.toggle('hidden-right');
