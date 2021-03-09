@@ -1,6 +1,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
   registerDOM();
+  registerAudio();
   console.log('DOM fully loaded and parsed');
 });
 
@@ -22,6 +23,13 @@ function updateCSSVar(){
     document.documentElement.style.setProperty('--vmin', `${vh}px`);
     document.documentElement.style.setProperty('--vmax', `${vw}px`);
   }
+}
+
+function registerAudio(){
+  GLOBAL_AUDIO.wheel = new Audio("assets/sound/wheel.mp3");
+  GLOBAL_AUDIO.wheel.addEventListener("canplaythrough", event => {
+    GLOBAL_AUDIO.wheel.play();
+  });
 }
 
 function registerDOM(){
@@ -226,6 +234,10 @@ var GLOBAL_DOM = {
 
   playTitle: null,
   playContainer: null,
+}
+
+var GLOBAL_AUDIO = {
+  wheel: null,
 }
 
 var CHOICES  = {
@@ -543,16 +555,7 @@ let animation = ( s ) => {
       for(let i = 0; i < x; i++){
         sketch.createWheel(i,x,GLOBAL_DOM.wheelConfigListIncluded.children[i].firstElementChild.innerHTML);
       }
-      // for(let i = 0; i < sketch.choices.length; i++){
-      //   sketch.pie[i] = new Wheel(sketch.width/2,
-      //                      sketch.height/2, 
-      //                      360*i/sketch.choices.length,
-      //                      0,
-      //                      360/sketch.choices.length,
-      //                      sketch.APP_STATE.smallerSide*0.8,
-      //                      sketch.choices[i],
-      //                      sketch.colors[i%sketch.colors.length]);
-      // }
+
       button = sketch.select("#spin");
       button.mousePressed(sketch.spin);
     };
