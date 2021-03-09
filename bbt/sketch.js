@@ -26,10 +26,10 @@ function updateCSSVar(){
 }
 
 function registerAudio(){
-  GLOBAL_AUDIO.wheel = new Audio("assets/sound/wheel.mp3");
-  GLOBAL_AUDIO.wheel.addEventListener("canplaythrough", event => {
+  GLOBAL_AUDIO.wheel = loadSound("assets/sound/wheel.mp3", () => {
     GLOBAL_AUDIO.wheel.play();
   });
+
 }
 
 function registerDOM(){
