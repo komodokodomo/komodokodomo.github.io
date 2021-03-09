@@ -409,10 +409,10 @@ let animation = ( s ) => {
         SKETCHES.animation.play = true;
         SKETCHES.animation.playStatic = false;
         document.getElementById('instruction').innerHTML = "Follow my actions!"
-        GLOBAL_DOM.playTitle.innerHTML = "Pause";
+        GLOBAL_DOM.playTitle.innerHTML = "Play";
       }else{
         clearInterval(UTIL.timer);
-        GLOBAL_DOM.playTitle.innerHTML = "Play";
+        GLOBAL_DOM.playTitle.innerHTML = "Pause";
         SKETCHES.animation.play = true;
       }
       DOM_EL.playContainer.toggleClass("play");
