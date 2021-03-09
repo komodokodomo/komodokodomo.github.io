@@ -596,8 +596,6 @@ let animation = ( s ) => {
           GLOBAL_DOM.animationCanvas.style.display = "block";
           SKETCHES.animation.loadAsset(GLOBAL_APP_STATE.chosenPie);
 
-          SKETCHES.animation.loadAsset(GLOBAL_APP_STATE.chosenPie);
-
           document.getElementById("spin-transition").classList.toggle('hidden-right');
           document.getElementById("wheel-transition").classList.toggle('hidden-right');
           document.getElementById("instruction-transition").classList.toggle('hidden-right');
