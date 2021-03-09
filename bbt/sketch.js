@@ -591,7 +591,7 @@ let animation = ( s ) => {
         sketch.APP_STATE.spinStarted = false;
           console.log("spin stopped");
           console.log(GLOBAL_APP_STATE.chosenPie);
-          document.getElementById('instruction').innerHTML = "Stand up and get ready!<br><br>Press play when ready!"
+          document.getElementById('instruction').innerHTML = "Stand up and get ready<br><br>Press play when ready!"
           GLOBAL_DOM.wheelCanvas.style.display = "none";
           GLOBAL_DOM.animationCanvas.style.display = "block";
           SKETCHES.animation.loadAsset(GLOBAL_APP_STATE.chosenPie);

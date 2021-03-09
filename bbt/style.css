@@ -219,6 +219,7 @@ html, body {
     align-items: center;
     box-sizing: content-box;
     vertical-align: bottom;
+    transition: 300ms;
   }
 
   #play-container.hidden,#timer-container.hidden,#restart-container.hidden{
@@ -238,6 +239,15 @@ html, body {
     border-left-style: solid;
   }
 
+  #play-container:hover{
+    background: lightgray;
+  }
+
+  #restart-container:hover{
+    background: lightgray;
+  }
+
+
   #spin-container{
     background: whitesmoke;
     overflow: hidden;
@@ -250,10 +260,15 @@ html, body {
     align-items: center;
     box-sizing: content-box;
     border-style:solid;
+    transition: 300ms;
   }
 
   #spin-container.hidden{
     display: none;
+  }
+
+  #spin-container:hover{
+    background: lightgray;
   }
 
   .icon{
@@ -273,6 +288,7 @@ html, body {
     color: gray;
     right: 0;
     top: 0;
+    cursor: pointer;
 }
 
 .label-right:hover{
