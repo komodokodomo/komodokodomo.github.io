@@ -168,7 +168,7 @@ function registerDOM(){
 
   GLOBAL_DOM.playContainer = document.getElementById('play-container');
   GLOBAL_DOM.playContainer.onclick = () => {
-    if(GLOBAL_DOM.playContainer.classList.includes("play")){
+    if(GLOBAL_DOM.playContainer.classList.value.includes("play")){
       clearInterval(UTIL.timer);
       GLOBAL_DOM.playTitle.innerHTML = "Pause";
       SKETCHES.animation.play = true;
