@@ -25,7 +25,7 @@ function updateCSSVar(){
 }
 
 function registerDOM(){
-
+  GLOBAL_DOM.wheelTitle = document.getElementById("wheel-title");
   GLOBAL_DOM.wheelCanvas = document.getElementById("wheel-canvas");
   GLOBAL_DOM.animationCanvas = document.getElementById("animation-canvas");
 
@@ -184,6 +184,7 @@ var GLOBAL_APP_STATE = {
 }
 
 var GLOBAL_DOM = {
+  wheelTitle: null,
   wheelCanvas: null,
   animationCanvas: null,
   wheelConfigContainer: null,
@@ -435,6 +436,7 @@ let animation = ( s ) => {
           GLOBAL_APP_STATE.timerValue = GLOBAL_APP_STATE.timerStartingValue;
           GLOBAL_DOM.wheelCanvas.style.display = "block";
           GLOBAL_DOM.animationCanvas.style.display = "none";
+          GLOBAL_DOM.wheelTitle.innerHTML = "wheel";
           DOM_EL.timer.html(GLOBAL_APP_STATE.timerValue);
           GLOBAL_DOM.instruction.innerHTML = "Spin the wheel to choose an activity"
           document.getElementById("spin-transition").classList.toggle('hidden-right');
@@ -593,7 +595,7 @@ let animation = ( s ) => {
           setTimeout(() => {
             document.getElementById("spin-container").classList.toggle('hidden');
 
-
+            GLOBAL_DOM.wheelTitle.innerHTML = GLOBAL_APP_STATE.chosenPie;
             document.getElementById("timer-transition").classList.toggle('hidden-right');
             document.getElementById("play-transition").classList.toggle('hidden-right');
             document.getElementById("restart-transition").classList.toggle('hidden-right');
