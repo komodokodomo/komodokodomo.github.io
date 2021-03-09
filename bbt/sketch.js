@@ -168,18 +168,20 @@ function registerDOM(){
 
   GLOBAL_DOM.playContainer = document.getElementById('play-container');
   GLOBAL_DOM.playContainer.onclick = () => {
+    console.log("play button pressed");
     if(GLOBAL_DOM.playContainer.classList.value.includes("play")){
+      GLOBAL_DOM.playContainer.classList.toggle("play");
       clearInterval(UTIL.timer);
       GLOBAL_DOM.playTitle.innerHTML = "Pause";
-      SKETCHES.animation.play = true;
+      SKETCHES.animation.play = false;
     }else{
+      GLOBAL_DOM.playContainer.classList.toggle("play");
       UTIL.timer = setInterval(content.updateTimer, 1000);
       SKETCHES.animation.play = true;
       SKETCHES.animation.playStatic = false;
       GLOBAL_DOM.instruction.innerHTML = "Follow my actions!"
       GLOBAL_DOM.playTitle.innerHTML = "Play";
     }
-    GLOBAL_DOM.playContainer.classList.toggle("play");
   }
   GLOBAL_DOM.playTitle = document.getElementById('play-title');
 
@@ -408,8 +410,6 @@ let animation = ( s ) => {
 
       DOM_EL.timerContainer = s.select("#timer-container");
         DOM_EL.timer = s.select("#timer");
-      // DOM_EL.playContainer = s.select("#play-container");
-      // DOM_EL.playContainer.mousePressed(s.playEvent);
       DOM_EL.restartContainer = s.select("#restart-container");
     }
   
@@ -418,21 +418,7 @@ let animation = ( s ) => {
       s.registerDOM();
     }
   
-    // s.playEvent = () => {
-    //   if(DOM_EL.playContainer.class().includes("play")){
-    //     clearInterval(UTIL.timer);
-    //     GLOBAL_DOM.playTitle.innerHTML = "Pause";
-    //     SKETCHES.animation.play = true;
-    //   }else{
-    //     UTIL.timer = setInterval(s.updateTimer, 1000);
-    //     SKETCHES.animation.play = true;
-    //     SKETCHES.animation.playStatic = false;
-    //     document.getElementById('instruction').innerHTML = "Follow my actions!"
-    //     GLOBAL_DOM.playTitle.innerHTML = "Play";
-    //   }
-    //   DOM_EL.playContainer.toggleClass("play");
-    // }
-  
+
     s.updateTimer = () => { 
       console.log("tick");
       GLOBAL_APP_STATE.timerValue--;
