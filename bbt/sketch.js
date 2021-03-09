@@ -455,10 +455,10 @@ let animation = ( s ) => {
 
         document.getElementById("wheel-transition").classList.toggle('hidden-right');
         document.getElementById("instruction-transition").classList.toggle('hidden-right');
+        audioVolumeIn(GLOBAL_AUDIO.wheel);
 
         setTimeout(() => {
           document.getElementById("spin-container").classList.toggle('hidden');
-          audioVolumeIn(GLOBAL_AUDIO.wheel);
         }, 
         950, 
         );
