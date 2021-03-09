@@ -610,6 +610,7 @@ let animation = ( s ) => {
         sketch.APP_STATE.spinStarted = false;
           console.log("spin stopped");
           console.log(GLOBAL_APP_STATE.chosenPie);
+          audioVolumeOut(GLOBAL_AUDIO.wheel);
           document.getElementById('instruction').innerHTML = "Stand up and get ready<br><br>Press play when ready!"
           GLOBAL_DOM.wheelCanvas.style.display = "none";
           GLOBAL_DOM.animationCanvas.style.display = "block";
@@ -700,6 +701,40 @@ let animation = ( s ) => {
   function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
   }
+
+  function audioVolumeIn(q){
+    if(q.volume){
+       var InT = 0;
+       var setVolume = 0.2; // Target volume level for new song
+       var speed = 0.005; // Rate of increase
+       q.volume = InT;
+       var eAudio = setInterval(function(){
+           InT += speed;
+           q.volume = InT.toFixed(1);
+           if(InT.toFixed(1) >= setVolume){
+              clearInterval(eAudio);
+              //alert('clearInterval eAudio'+ InT.toFixed(1));
+           };
+       },50);
+    };
+};
+
+function audioVolumeOut(q){
+    if(q.volume){
+       var InT = 0.4;
+       var setVolume = 0;  // Target volume level for old song 
+       var speed = 0.005;  // Rate of volume decrease
+       q.volume = InT;
+       var fAudio = setInterval(function(){
+           InT -= speed;
+           q.volume = InT.toFixed(1);
+           if(InT.toFixed(1) <= setVolume){
+              clearInterval(fAudio);
+              //alert('clearInterval fAudio'+ InT.toFixed(1));
+           };
+       },50);
+    };
+};
 
 
 
