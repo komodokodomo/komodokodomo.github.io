@@ -172,7 +172,7 @@ function registerDOM(){
     if(GLOBAL_DOM.playContainer.classList.value.includes("play")){
       GLOBAL_DOM.playContainer.classList.toggle("play");
       clearInterval(UTIL.timer);
-      GLOBAL_DOM.playTitle.innerHTML = "Pause";
+      GLOBAL_DOM.playTitle.innerHTML = "Paused";
       SKETCHES.animation.play = false;
     }else{
       GLOBAL_DOM.playContainer.classList.toggle("play");
@@ -426,6 +426,8 @@ let animation = ( s ) => {
       if(GLOBAL_APP_STATE.timerValue == 0){
         clearInterval(UTIL.timer);
         SKETCHES.animation.play = false;
+        GLOBAL_DOM.playContainer.classList.remove("play");
+        GLOBAL_DOM.playTitle.innerHTML = "Paused";
 
         document.getElementById("timer-transition").classList.toggle('hidden-right');
         document.getElementById("play-transition").classList.toggle('hidden-right');
