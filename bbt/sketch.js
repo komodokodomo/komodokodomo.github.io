@@ -1,3 +1,5 @@
+const { clear } = require("console");
+
 window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
   registerDOM();
@@ -265,7 +267,10 @@ let animation = ( s ) => {
     width: null,
     height: null,
     smallerSide: null,
+    play: false
   }
+
+  s.img = [];
 
   s.preload = () => {
 
@@ -318,11 +323,16 @@ let animation = ( s ) => {
     console.log(directory1);
 
     s.loadImage(directory1, img => {
-      s.image(img, s.width/4, s.height/2, s.width/2, s.height/2);
+      // s.image(img, s.width/4, s.height/2, s.width/2, s.height/2);
+      s.img[0] = img;
     });
     s.loadImage(directory2, img => {
-      s.image(img, 3 * s.width/4, s.height/2, s.width/2, s.height/2);
+      // s.image(img, 3 * s.width/4, s.height/2, s.width/2, s.height/2);
+      s.img[1] = img;
     });
+
+    // s.img[0] = s.loadImage(directory1);
+    // s.img[1] = s.loadImage(directory2);
   }
 
   s.setup = () => {
@@ -333,6 +343,12 @@ let animation = ( s ) => {
   }
 
   s.draw = () => {
+    if(s.play){
+      s.image(s.img[0], s.width/4, s.height/2, s.width/2, s.height/2);
+      s.image(s.img[1], 3 * s.width/4, s.height/2, s.width/2, s.height/2);
+    }else{
+      clear();
+    }
   }
 }
 
@@ -375,6 +391,7 @@ let animation = ( s ) => {
     s.playEvent = () => {
       if(DOM_EL.playContainer.class().includes("play")){
         UTIL.timer = setInterval(s.updateTimer, 1000);
+        SKETCHES.animation.play = true;
         document.getElementById('instruction').innerHTML = "Follow my actions!"
       }else{
         clearInterval(UTIL.timer);
@@ -388,6 +405,7 @@ let animation = ( s ) => {
       DOM_EL.timer.html(GLOBAL_APP_STATE.timerValue);
       if(GLOBAL_APP_STATE.timerValue == 0){
         clearInterval(UTIL.timer);
+        SKETCHES.animation.play = false;
 
         document.getElementById("timer-transition").classList.toggle('hidden-right');
         document.getElementById("play-transition").classList.toggle('hidden-right');
