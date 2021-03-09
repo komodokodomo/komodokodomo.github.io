@@ -265,7 +265,8 @@ let animation = ( s ) => {
     width: null,
     height: null,
     smallerSide: null,
-    play: false
+    play: false,
+    playStatic : false,
   }
 
   s.img = [];
@@ -344,15 +345,17 @@ let animation = ( s ) => {
     s.APP_STATE.height = document.getElementById('canvas-container').offsetHeight;
     s.createCanvas(s.APP_STATE.width,s.APP_STATE.height);
     s.imageMode(s.CENTER);
+    s.frameRate(30);
   }
 
   s.draw = () => {
+    s.clear();
     if(s.play){
       if(s.imgLoaded){
         s.image(s.img[0], s.width/4, s.height/2, s.width/2, s.height/2);
         s.image(s.img[1], 3 * s.width/4, s.height/2, s.width/2, s.height/2);
       }
-    }else{
+    }else if(s.playStatic){
       s.image(s.static,s.width/2,s.height/2,s.width,s.height);
     }
   }
