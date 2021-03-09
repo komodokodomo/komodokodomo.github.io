@@ -327,7 +327,7 @@ let animation = ( s ) => {
       s.img[0] = img;
       s.loadImage(directory2, x => {
         // s.image(img, 3 * s.width/4, s.height/2, s.width/2, s.height/2);
-        s.img[1] = xor128;
+        s.img[1] = x;
         s.imgLoaded = true;
       });
     });
