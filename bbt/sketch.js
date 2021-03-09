@@ -706,8 +706,8 @@ let animation = ( s ) => {
   function audioVolumeIn(q){
     if(q.volume){
        var InT = 0;
-       var setVolume = 0.2; // Target volume level for new song
-       var speed = 0.005; // Rate of increase
+       var setVolume = 1.0; // Target volume level for new song
+       var speed = 0.020; // Rate of increase
        q.volume = InT;
        var eAudio = setInterval(function(){
            InT += speed;
