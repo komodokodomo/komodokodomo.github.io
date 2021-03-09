@@ -458,6 +458,7 @@ let animation = ( s ) => {
 
         setTimeout(() => {
           document.getElementById("spin-container").classList.toggle('hidden');
+          audioVolumeIn(GLOBAL_AUDIO.wheel);
         }, 
         950, 
         );
