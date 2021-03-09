@@ -445,7 +445,6 @@ let animation = ( s ) => {
       DOM_EL.timer.html(GLOBAL_APP_STATE.timerValue);
       if(GLOBAL_APP_STATE.timerValue == 0){
         clearInterval(UTIL.timer);
-        audioVolumeIn(GLOBAL_AUDIO.wheel);
 
         SKETCHES.animation.play = false;
         GLOBAL_DOM.playContainer.classList.remove("play");
@@ -466,6 +465,8 @@ let animation = ( s ) => {
 
 
         setTimeout(() => {
+          audioVolumeIn(GLOBAL_AUDIO.wheel);
+
           GLOBAL_APP_STATE.timerValue = GLOBAL_APP_STATE.timerStartingValue;
           GLOBAL_DOM.wheelCanvas.style.display = "block";
           GLOBAL_DOM.animationCanvas.style.display = "none";
