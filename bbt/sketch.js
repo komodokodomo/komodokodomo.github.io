@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
   updateCSSVar();
   registerDOM();
-  registerAudio();
+  // registerAudio();
   console.log('DOM fully loaded and parsed');
 });
 
@@ -25,12 +25,10 @@ function updateCSSVar(){
   }
 }
 
-function registerAudio(){
-  GLOBAL_AUDIO.wheel = loadSound("assets/sound/wheel.mp3", () => {
-    GLOBAL_AUDIO.wheel.play();
-  });
+// function registerAudio(){
 
-}
+
+// }
 
 function registerDOM(){
   GLOBAL_DOM.wheelTitle = document.getElementById("wheel-title");
@@ -504,6 +502,9 @@ let animation = ( s ) => {
     
     sketch.preload = () => {
       clickSound = sketch.loadSound('assets/click.mp3');
+      GLOBAL_AUDIO.wheel = loadSound("assets/sound/wheel.mp3", () => {
+        GLOBAL_AUDIO.wheel.play();
+      });
     }
     
     sketch.windowResized = () => {
