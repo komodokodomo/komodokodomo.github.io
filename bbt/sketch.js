@@ -706,8 +706,6 @@ let animation = ( s ) => {
 
   function audioVolumeIn(q){
     console.log("audioVolumeIn func running");
-    if(q.volume){
-      console.log("audioVolumeIn func pt2 running");
        var InT = 0;
        var setVolume = 1.0; // Target volume level for new song
        var speed = 0.020; // Rate of increase
@@ -720,7 +718,6 @@ let animation = ( s ) => {
               //alert('clearInterval eAudio'+ InT.toFixed(1));
            };
        },50);
-    };
 }
 
 function audioVolumeOut(q){
