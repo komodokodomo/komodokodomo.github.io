@@ -166,6 +166,8 @@ function registerDOM(){
 
   GLOBAL_DOM.instruction = document.getElementById('instruction');
 
+  GLOBAL_DOM.playTitle = document.getElementById('play-title');
+
 }
 
 var SKETCHES = {
@@ -200,6 +202,8 @@ var GLOBAL_DOM = {
   wheelConfigListRemove: [],
   // spinContainer
   instruction: null,
+
+  playTitle: null,
 }
 
 var CHOICES  = {
@@ -276,7 +280,7 @@ let animation = ( s ) => {
 
   s.preload = () => {
 
-    s.static = s.loadImage("assets/static.gif");
+    s.static = s.loadImage("assets/stand.gif");
     
   }
 
@@ -404,8 +408,10 @@ let animation = ( s ) => {
         SKETCHES.animation.play = true;
         SKETCHES.animation.playStatic = false;
         document.getElementById('instruction').innerHTML = "Follow my actions!"
+        GLOBAL_DOM.playTitle.innerHTML = "Pause";
       }else{
         clearInterval(UTIL.timer);
+        GLOBAL_DOM.playTitle.innerHTML = "Play";
       }
       DOM_EL.playContainer.toggleClass("play");
     }
