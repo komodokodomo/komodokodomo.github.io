@@ -502,7 +502,7 @@ let animation = ( s ) => {
     
     sketch.preload = () => {
       clickSound = sketch.loadSound('assets/click.mp3');
-      GLOBAL_AUDIO.wheel = loadSound("assets/sound/wheel.mp3", () => {
+      GLOBAL_AUDIO.wheel = sketch.loadSound("assets/sound/wheel.mp3", () => {
         GLOBAL_AUDIO.wheel.play();
       });
     }
