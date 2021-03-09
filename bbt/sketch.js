@@ -405,15 +405,15 @@ let animation = ( s ) => {
   
     s.playEvent = () => {
       if(DOM_EL.playContainer.class().includes("play")){
+        clearInterval(UTIL.timer);
+        GLOBAL_DOM.playTitle.innerHTML = "Pause";
+        SKETCHES.animation.play = true;
+      }else{
         UTIL.timer = setInterval(s.updateTimer, 1000);
         SKETCHES.animation.play = true;
         SKETCHES.animation.playStatic = false;
         document.getElementById('instruction').innerHTML = "Follow my actions!"
         GLOBAL_DOM.playTitle.innerHTML = "Play";
-      }else{
-        clearInterval(UTIL.timer);
-        GLOBAL_DOM.playTitle.innerHTML = "Pause";
-        SKETCHES.animation.play = true;
       }
       DOM_EL.playContainer.toggleClass("play");
     }
