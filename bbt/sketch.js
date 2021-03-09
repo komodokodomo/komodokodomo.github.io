@@ -330,7 +330,6 @@ let animation = ( s ) => {
         currentKey = Object.keys(CHOICES)[i];
         animal = currentKey.split("_")[1];
         console.log(currentKey);
-        break;
       }
     }
 
