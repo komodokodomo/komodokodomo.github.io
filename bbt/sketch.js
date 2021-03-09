@@ -401,6 +401,7 @@ let animation = ( s ) => {
       if(DOM_EL.playContainer.class().includes("play")){
         UTIL.timer = setInterval(s.updateTimer, 1000);
         SKETCHES.animation.play = true;
+        SKETCHES.animation.playStatic = false;
         document.getElementById('instruction').innerHTML = "Follow my actions!"
       }else{
         clearInterval(UTIL.timer);
@@ -598,6 +599,8 @@ let animation = ( s ) => {
             document.getElementById("restart-transition").classList.toggle('hidden-right');
             document.getElementById("wheel-transition").classList.toggle('hidden-right');
             document.getElementById("instruction-transition").classList.toggle('hidden-right');
+
+            SKETCHES.animation.playStatic = true;
           }, 
           1000, 
           );
