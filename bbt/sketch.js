@@ -193,6 +193,10 @@ var SKETCHES = {
   animation: null,
 }
 
+var UTIL = {
+  timer: null,
+}
+
 var GLOBAL_APP_STATE = {
   timerStartingValue: 10,
   timerValue: 10,
@@ -396,11 +400,6 @@ let animation = ( s ) => {
       playContainer: null,
       restartContainer: null,
     }
-  
-    var UTIL = {
-      timer: null,
-    }
-  
 
   
     s.registerDOM = () => {
