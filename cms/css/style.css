@@ -991,6 +991,7 @@ button:active {
 }
 
 #alert-ok-button.inactive{
+  display: none;
   background: gray;
   color: lightgray;
 }
