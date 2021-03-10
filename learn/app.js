@@ -80,6 +80,8 @@ var DOM_EL = {
 }
 
 var APP_STATE = {
+  loginButtonClicked: false,
+
   pinJson : null,
   data: null,
   predictedClass: null,
@@ -465,12 +467,13 @@ function onboard(){
   }
 }
 
-function login(){
+function loginEvent(){
   
   let account;
   let project;
 
-  if(APP_STATE.pinJson[DOM_EL.loginInput.value()] !== undefined){
+  if(APP_STATE.pinJson[DOM_EL.loginInput.value()] !== undefined && APP_STATE.loginButtonClicked == false){
+    APP_STATE.loginButtonClicked = true;
     account = APP_STATE.pinJson[DOM_EL.loginInput.value()].directory.split("/")[0];
     project = APP_STATE.pinJson[DOM_EL.loginInput.value()].directory.split("/")[1];
     console.log(account + ", " + project);
@@ -485,6 +488,7 @@ function showLoginError(){
   DOM_EL.loginInput.removeClass("no-error");
   setTimeout(function(){
     DOM_EL.loginInput.addClass("no-error");
+    APP_STATE.loginButtonClicked = false;
   },300);
 }
 
@@ -607,7 +611,7 @@ function registerDOM(){
     DOM_EL.loginInput = select("#login-input");
       DOM_EL.loginInput.addClass("no-error");
     DOM_EL.loginButton = select("#login-button");
-      DOM_EL.loginButton.mousePressed(login);
+      DOM_EL.loginButton.mousePressed(loginEvent);
 
   DOM_EL.onboardContainer = select("#onboard-container");
     DOM_EL.onboardContentContainer = select("#onboard-content-container");
@@ -630,28 +634,32 @@ function registerDOM(){
       DOM_EL.capture = createCapture({
         video: {
             facingMode: "environment"
-        }});
-      DOM_EL.capture.parent(DOM_EL.canvasContainer);
-      DOM_EL.capture.id("video");
+        }}, () => {
+          DOM_EL.capture.parent(DOM_EL.canvasContainer);
+          DOM_EL.capture.id("video");
+          
+          DOM_EL.captureOverlay = createDiv();
+          DOM_EL.captureOverlay.parent(DOM_EL.canvasContainer);
+          DOM_EL.captureOverlay.id("video-overlay");
+
+          DOM_EL.captureChange = createImg("img/change.png");
+          DOM_EL.captureChange.parent(DOM_EL.captureOverlay);
+          DOM_EL.captureChange.id("canvas-camera-change");
+          DOM_EL.captureChange.mousePressed(switchCamera);
       
-      DOM_EL.captureOverlay = createDiv();
-      DOM_EL.captureOverlay.parent(DOM_EL.canvasContainer);
-      DOM_EL.captureOverlay.id("video-overlay");
+          DOM_EL.captureFlip = createImg("img/flip.png");
+          DOM_EL.captureFlip.parent(DOM_EL.captureOverlay);
+          DOM_EL.captureFlip.id("canvas-camera-flip");
+          DOM_EL.captureFlip.mousePressed(function(){
+              APP_STATE.cameraFlip = !APP_STATE.cameraFlip;
+              DOM_EL.capture.toggleClass("flip");
+          });
+        });
+
       // if(APP_STATE.mobileDevice == false){
       //   DOM_EL.captureOverlay.style("transform", "translate(-50%, -50%)");
       // }
-      DOM_EL.captureChange = createImg("img/change.png");
-      DOM_EL.captureChange.parent(DOM_EL.captureOverlay);
-      DOM_EL.captureChange.id("canvas-camera-change");
-      DOM_EL.captureChange.mousePressed(switchCamera);
-  
-      DOM_EL.captureFlip = createImg("img/flip.png");
-      DOM_EL.captureFlip.parent(DOM_EL.captureOverlay);
-      DOM_EL.captureFlip.id("canvas-camera-flip");
-      DOM_EL.captureFlip.mousePressed(function(){
-          APP_STATE.cameraFlip = !APP_STATE.cameraFlip;
-          DOM_EL.capture.toggleClass("flip");
-      });
+
     DOM_EL.personaContainer = select("#persona-container");
       DOM_EL.personaAvatar = select("#persona-avatar");
       DOM_EL.personaTextContainer = select("#persona-text-container");
@@ -959,12 +967,12 @@ function switchCamera()
   }
   DOM_EL.capture = createCapture(options, function(stream) {
     console.log(stream);
+    DOM_EL.capture.id("video");
+    DOM_EL.capture.style("z-index","-1");
+    DOM_EL.capture.parent(DOM_EL.canvasContainer);
+    DOM_EL.captureChange.style("z-index","3");
+    DOM_EL.captureFlip.style("z-index","3");
   });
-  DOM_EL.capture.id("video");
-  DOM_EL.capture.style("z-index","-1");
-  DOM_EL.capture.parent(DOM_EL.canvasContainer);
-  DOM_EL.cameraChange.style("z-index","3");
-  DOM_EL.cameraFlip.style("z-index","3");
 }
 
 function isMobile() {

@@ -2214,7 +2214,6 @@ function addLensEvent(){
     let n = Date.now();
 
     console.log("send API call to edit JSON file");
-    console.log("create a new tab under DOM_EL.addContentLensContainer[][]");
 
         let u = "?account=" + APP_STATE.username;
         let p = "&project=" + APP_STATE.project;
@@ -2228,8 +2227,7 @@ function addLensEvent(){
             if (this.status == 200) {
                 var data = this.response;
                 Object.keys(APP_STATE.classJson[APP_STATE.project]).forEach(function(key) {
-                    // console.log('Key : ' + key + ', Value : ' + APP_STATE.classJson[key]);
-                    // delete APP_STATE.classJson[key].content[id]
+
                     if(APP_STATE.classJson[APP_STATE.project][key].content == null){
                         APP_STATE.classJson[APP_STATE.project][key].content = {};
                         APP_STATE.classJson[APP_STATE.project][key].content[n] = {"name": "new lens", "emoji": "🧐", "operation":{} };
@@ -2238,13 +2236,7 @@ function addLensEvent(){
                         APP_STATE.classJson[APP_STATE.project][key].content[n] = {"name": "new lens", "emoji": "🧐", "operation":{} };
                     }
                 });
-                // if(APP_STATE.classJson[APP_STATE.class].content == null){
-                //     APP_STATE.classJson[APP_STATE.class].content = [];
-                //     APP_STATE.classJson[APP_STATE.class].content[n] = {"name": "new lens", "emoji": "🧐", "operation":"null" };
-                // }
-                // else{
-                //     APP_STATE.classJson[APP_STATE.class].content[n] = {"name": "new lens", "emoji": "🧐", "operation":"null" };
-                // }
+
                 console.log("server received request to edit object class");
                 console.log(APP_STATE.classJson[APP_STATE.project]);
             }
@@ -2276,14 +2268,6 @@ function quizDoneEvent(){
         UTIL.quill.deleteText( APP_STATE.quillRange.index,  APP_STATE.quillRange.length);
         UTIL.quill.clipboard.dangerouslyPasteHTML( APP_STATE.quillRange.index,DOM_EL.projectContainer[1602489937404].container.elt.innerHTML);
     }
-    // } else {
-    // console.log('User cursor is not in editor');
-    // }
-    // { insert: DOM_EL.quizBuilderTitleInput, attributes: { bold: true } },
-    // { insert: DOM_EL.quizBuilderTitleInput, attributes: { bold: true ,answer: quizOptionAnswer.value } },
-    // { insert: DOM_EL.quizBuilderTitleInput, attributes: { bold: true ,answer: quizOptionAnswer.value } },
-    // { insert: DOM_EL.quizBuilderTitleInput, attributes: { bold: true ,answer: quizOptionAnswer.value } },
-    // { insert: DOM_EL.quizBuilderTitleInput, attributes: { bold: true ,answer: quizOptionAnswer.value } },
    
 }
 
@@ -2403,14 +2387,7 @@ function addContentCloseEvent(){
     DOM_EL.opacityContainer.hide();
     DOM_EL.popupContainer.hide();
     DOM_EL.addContentContainer.hide();
-    // if(APP_STATE.classJson[APP_STATE.class].content){
-    //     if(APP_STATE.classJson[APP_STATE.class].content.ops.length>0){
-    //         DOM_EL.classContainer[APP_STATE.class].detailsQuestion.html("✅ Content Added");
-    //     }
-    //     else{
-    //         DOM_EL.classContainer[APP_STATE.class].detailsQuestion.html("❌ No Content");
-    //     }
-    // }
+
     if(APP_STATE.classJson[APP_STATE.project][APP_STATE.class].hasOwnProperty("content")){  
         // if(APP_STATE.classJson[APP_STATE.class].content.ops.length > 1 || APP_STATE.classJson[APP_STATE.class].content.ops[0].insert.length > 1){
         if(Object.keys(APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content).length > 1){
@@ -2421,27 +2398,6 @@ function addContentCloseEvent(){
         }
     }
     updateClasslist();
-    // if(!UTIL.quillChanged){
-    //     console.log("no change, dont do anything");
-    // }
-    // else{
-    //     UTIL.quillChanged = false;
-    //     APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content[APP_STATE.activeLens].operation = UTIL.quill.getContents();  
-
-    //     let u = "?account=" + APP_STATE.username;
-    //     let p = "&project=" + APP_STATE.project;
-    //     let c = "&class=" + APP_STATE.class;
-    
-    //     form = new FormData(),
-    //     form.append("upload", JSON.stringify(APP_STATE.classJson[APP_STATE.project]));
-        
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.open('POST', '/admin/update_classlist' + u + p + c, true);
-    //     xhr.onload = function () {
-    //         console.log("classJson uploaded!!");
-    //     };
-    //     xhr.send(JSON.stringify(APP_STATE.classJson[APP_STATE.project]));
-    // }
 }
 
 function populateEvidenceList(x){
