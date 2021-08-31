@@ -37,6 +37,7 @@ var CNV_EL = {
 
 var UTIL = {
     speechRec : null,
+    speechRecBuffer: "",
     speechBubbleContent: "",
     scribble: null,
     socket: null
@@ -46,8 +47,84 @@ var UTIL = {
 var APP_STATE = {
     width: null,
     height: null,
-    nickname: ""
+    nickname: "",
+    speechRecorded: false,
+    room : 1234
 }
+
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+// var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+
+var recognition = new SpeechRecognition();
+// recognition.grammars = speechRecognitionList;
+recognition.continuous = false;
+recognition.lang = 'en-SG';
+recognition.interimResults = true;
+// recognition.maxAlternatives = 1;
+
+recognition.onspeechstart = function() {
+    console.log('Speech has been detected');
+  }
+
+  recognition.onspeechend = function(event) {
+    APP_STATE.speechRecorded = false;
+    console.log('Speech end has been detected');
+    // recognition.stop();
+    // recognition.start();
+  }
+
+recognition.onresult = function(event) {
+    UTIL.speechRecBuffer = "";
+
+    for(let i = 0; i <= event.resultIndex; i++){
+        UTIL.speechRecBuffer += event.results[i][0].transcript;
+        UTIL.speechRecBuffer += " ";
+        if(event.results[i].isFinal){
+            APP_STATE.speechRecorded = true;
+            console.log("final transcript: " +  event.results[i][0].transcript);
+            UTIL.speechBubbleContent = UTIL.speechBubbleContent + event.results[i][0].transcript + "\n" ;
+            setTimeout(() => {
+                CNV_EL.bubble.changeContents(UTIL.speechBubbleContent);
+                // setTimeout(()=>{            
+                    if(CNV_EL.bubble.instructionDiv.class().includes("hidden")){
+                    CNV_EL.bubble.instructionDiv.removeClass("hidden");
+                }
+            // },5);
+            },0);
+        }
+        else{
+            CNV_EL.bubble.changeContents(UTIL.speechBubbleContent + " " + UTIL.speechRecBuffer);
+        }
+    }
+    if(!APP_STATE.speechRecorded){
+        CNV_EL.bubble.changeContents(UTIL.speechBubbleContent + " " + UTIL.speechRecBuffer);
+    }
+    
+  }
+
+// recognition.onspeechend = function(e) {
+    // console.log(e);
+    // if(UTIL.speechRec.resultString){
+    //     if(UTIL.speechRec.resultString.length > 0){
+    //         UTIL.speechBubbleContent = UTIL.speechBubbleContent += UTIL.speechRec.resultString;
+    //         UTIL.speechRec.resultString = "";
+    //         UTIL.speechBubbleContent = UTIL.speechBubbleContent += "\n";
+    //         CNV_EL.bubble.changeContents(UTIL.speechBubbleContent);
+    //         // DOM_EL.speechBubble.html(UTIL.speechBubbleContent);
+    //     }
+    // }
+// }
+
+recognition.onerror = function(event) {
+    console.log('Error occurred in recognition: ' + event.error);
+    console.log('attempting restart');
+    recognition.abort();
+    setTimeout(() => {
+        recognition.start();
+    },5);
+}
+
 
 function handleMotion(event) {
 
@@ -63,9 +140,14 @@ function handleMotion(event) {
     MOVEMENT.rotateY = event.rotationRate.gamma;
     MOVEMENT.rotateX = event.rotationRate.beta;
 
+    if(MOVEMENT.zz < -10 &&  MOVEMENT.rotateX > 15){
+        if(UTIL.speechBubbleContent.length > 0){
+            triggerBubbleAnimation();
+        }
+    }
     // console.log(x +", " + y + ", " + z);
-    // console.log(xx +", " + yy + ", " + zz);
-    // console.log(MOVEMENT.rotateZ +", " + MOVEMENT.rotateY + ", " + MOVEMENT.rotateX);
+    console.log(MOVEMENT.xx +", " + MOVEMENT.yy + ", " + MOVEMENT.zz);
+    console.log(MOVEMENT.rotateZ +", " + MOVEMENT.rotateY + ", " + MOVEMENT.rotateX);
 }
 
 function loginEvent(){
@@ -77,6 +159,9 @@ function loginEvent(){
         APP_STATE.nickname = DOM_EL.loginNicknameInput.value();
         DOM_EL.activityContainer.show();
         DOM_EL.loginContainer.hide();  
+        CNV_EL.bubble.recordDiv.style("display","flex");
+        CNV_EL.bubble.editDiv.style("display","flex");
+        CNV_EL.bubble.resetDiv.style("display","flex");
     }
   }
   
@@ -87,32 +172,7 @@ function loginEvent(){
     },300);
   }
 
-function startCon()
-{
-  UTIL.socket = io('fhss.ml', {});
-  UTIL.socket.on('connect', function() 
-  {
-        UTIL.socket.emit('hello',{room : "1234"});
-		console.log("connected");		 
-  });
-  UTIL.socket.on('someone-joined', function(msg) 
-  {
-		console.log(msg);	
-	});
-  UTIL.socket.on('someone-change', function(msg) 
-  {
-		console.log(msg);		 		 
-  });
-  UTIL.socket.on('someone-left', function(msg) 
-  {
-		console.log(msg);	
-  });
-  UTIL.socket.on('bubble-question-event', function(msg) 
-  {
-        console.log(msg);	
-        DOM_EL.activityTitle.html(msg.value);
-  });
-}
+
 
 function setup(){
     frameRate(10);
@@ -147,24 +207,18 @@ function setup(){
             DOM_EL.canvas.parent(DOM_EL.activityContainer);
     DOM_EL.activityContainer.hide();
 
-    UTIL.speechRec = new p5.SpeechRec('en-US', gotSpeech);
-    UTIL.speechRec.continuous = false;
-    UTIL.speechRec.interimResults = true;
-    UTIL.speechRec.onResult = changeSpeechBubbleContent;
-    UTIL.speechRec.onEnd = speechEnd;
-    UTIL.speechRec.start();
+    // UTIL.speechRec = new p5.SpeechRec('en-SG', gotSpeech);
+    // UTIL.speechRec.continuous = false;
+    // UTIL.speechRec.interimResults = true;
+    // UTIL.speechRec.onResult = changeSpeechBubbleContent;
+    // UTIL.speechRec.onEnd = speechEnd;
+    // UTIL.speechRec.start();
   
 
     UTIL.scribble = new Scribble();
     CNV_EL.bubble = new ThoughtBubble(0, 0, width*0.7, width*0.7, "💬<i>say your reply and your wand will capture it!</i>", {R:random(0,255),G:random(0,255),B:random(0,255)}, true)
     // UTIL.speechRec.start(continuous, interimResults);
 }
-
-function draw(){
-    background("#f5f5f5");
-    CNV_EL.bubble.render();
-}
-
 
 function gotSpeech() {
     console.log(UTIL.speechRec.resultString);
@@ -179,24 +233,22 @@ function speechEnd(){
             UTIL.speechRec.resultString = "";
             UTIL.speechBubbleContent = UTIL.speechBubbleContent += "\n";
             CNV_EL.bubble.changeContents(UTIL.speechBubbleContent);
-            // DOM_EL.speechBubble.html(UTIL.speechBubbleContent);
+
         }
     }
-    UTIL.speechRec.start();
+    // UTIL.speechRec.start();
 }
 
 function changeSpeechBubbleContent(){
-    // UTIL.speechBubbleContent = UTIL.speechBubbleContent += UTIL.speechRec.resultString;
-    // DOM_EL.speechBubble.html(UTIL.speechBubbleContent);
-    // speechTimer = millis();
     console.log(UTIL.speechRec.resultString);
     CNV_EL.bubble.changeContents(UTIL.speechBubbleContent + " " + UTIL.speechRec.resultString);
-    // CNV_EL.bubble.render();
-    // DOM_EL.speechBubble.html(UTIL.speechBubbleContent + " " + UTIL.speechRec.resultString);
-    // if(millis() - speechTimer > 1000){
-    //     UTIL.speechBubbleContent = UTIL.speechBubbleContent += UTIL.speechRec.resultString;
-    // }
 }
+
+function draw(){
+    background("#f5f5f5");
+    CNV_EL.bubble.render();
+}
+
 
 function triggerBubbleAnimation(){
     if(!CNV_EL.bubble.bubbleOut){
@@ -204,24 +256,19 @@ function triggerBubbleAnimation(){
         CNV_EL.bubble.frameCount = frameCount;
         CNV_EL.bubble.randomSeed = random(-10,10);
     }
-    // DOM_EL.speechBubbleContainer.addClass("float");
+    CNV_EL.bubble.instructionDiv.addClass("hidden");
+    
 }
 
 function init() {
 
 	mm = new MobileMovement();
-
-	// mm.on("basketball shot", function(info) {
+    
+    // mm.on("dig", function(info) {
 	// 	console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
 	// 	console.log(info.actionKey); // Logs the string "basketball shot"
     //     console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
     // });
-    
-    mm.on("dig", function(info) {
-		console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
-		console.log(info.actionKey); // Logs the string "basketball shot"
-        console.log(info.event.alpha); // Logs the alpha component of the DeviceOrientation event triggering the callback
-    });
     
     mm.on("basketball shot", function(info) {
 		console.log(info.movement); // Logs the monitored movement object defined by "basketball shot"
@@ -236,7 +283,59 @@ function init() {
 window.addEventListener("load", init, false);
 window.addEventListener("devicemotion", handleMotion, true);
 
+function toggleRecord(){
+    if(CNV_EL.bubble.recordDiv.class().includes("active")){
+        CNV_EL.bubble.recordDiv.removeClass("active");
+        recognition.stop();
 
+    }else{
+        CNV_EL.bubble.recordDiv.addClass("active");
+        recognition.start();
+    }
+}
+function startRecord(){
+        CNV_EL.bubble.recordDiv.addClass("active");
+        recognition.start();
+}
+
+function stopRecord(){
+        CNV_EL.bubble.recordDiv.removeClass("active");
+        recognition.stop();
+}
+
+function editContentEvent(){
+    if(CNV_EL.bubble.recordDiv.class().includes("active")){
+        CNV_EL.bubble.recordDiv.removeClass("active");
+        recognition.stop();
+    }
+    CNV_EL.bubble.textDiv.hide();
+    CNV_EL.bubble.inputDiv.style("display","flex");
+    CNV_EL.bubble.inputDiv.value(CNV_EL.bubble.contents);   
+
+    CNV_EL.bubble.recordDiv.hide();
+    CNV_EL.bubble.editDiv.hide();
+    CNV_EL.bubble.resetDiv.hide();
+
+    setTimeout(()=>{
+        CNV_EL.bubble.inputDiv.elt.focus();
+    },5);
+    console.log("editContentEvent fired");
+}
+
+
+function resetContentEvent(){
+    if(CNV_EL.bubble.recordDiv.class().includes("active")){
+        CNV_EL.bubble.recordDiv.removeClass("active");
+        recognition.stop();
+    }
+    UTIL.speechBubbleContent = "";
+    UTIL.speechRecBuffer = "";
+    CNV_EL.bubble.changeContents("");
+}
+
+// function inputEvent(){
+//     CNV_EL.bubble.inputDiv.value(this.value());
+// }
 
 class ThoughtBubble {
     constructor(posX, posY, width, height, contents, color, handle = false){
@@ -255,9 +354,62 @@ class ThoughtBubble {
         this.frameCount;
         this.randomSeed;
         this.color = color;
-        this.div = createDiv(contents);
+
+        this.instructionDiv = createDiv();
+        this.instructionDiv.id("instruction-div")
+        this.instructionDiv.addClass("hidden");
+        
+        this.instructionImage = createImg("image/wand_instruction.gif");
+        this.instructionImage.id("instruction-image");
+        this.instructionImage.parent(this.instructionDiv);
+        
+        this.instruction = createDiv("Wave your device to send your speech bubble to the board");
+        this.instruction.id("instruction");
+        this.instruction.parent(this.instructionDiv);
+
+        this.div = createDiv();
         this.div.addClass("bubble");
         this.div.parent(DOM_EL.activityContainer);
+
+        this.textDiv = createDiv(contents);
+        this.textDiv.addClass("bubble-contents");
+        this.textDiv.parent(this.div);
+
+        this.inputDiv = createElement("textarea",contents);
+        // this.inputDiv.input(inputEvent);
+        this.inputDiv.elt.onblur = function(){
+            this.inputDiv.hide();
+            CNV_EL.bubble.changeContents(this.inputDiv.value());
+            UTIL.speechBubbleContent = this.inputDiv.value();
+            // if(this.inputDiv.value().length > 0){APP_STATE.speechRecorded = true;}
+            this.textDiv.style("display","flex");
+            CNV_EL.bubble.recordDiv.style("display","flex");
+            CNV_EL.bubble.editDiv.style("display","flex");
+            CNV_EL.bubble.resetDiv.style("display","flex");
+        }.bind(this);
+        this.inputDiv.addClass("bubble-contents");
+        this.inputDiv.parent(this.div);
+        this.inputDiv.hide();
+
+        this.recordDiv = createDiv("🎙️");
+        this.recordDiv.hide();
+        this.recordDiv.id("record-div");
+        // this.closeDiv.parent(this.div);
+        // this.recordDiv.mousePressed(toggleRecord);
+        this.recordDiv.touchStarted(startRecord);
+        this.recordDiv.touchEnded(stopRecord);
+
+        this.editDiv = createDiv("✏️");
+        this.editDiv.hide();
+        this.editDiv.id("edit-div");
+        this.editDiv.mousePressed(editContentEvent);
+
+        this.resetDiv = createDiv("🔄");
+        this.resetDiv.hide();
+        this.resetDiv.id("reset-div");
+        this.resetDiv.mousePressed(resetContentEvent);
+
+
     }
     render(){
         let shiftXMap;
@@ -306,7 +458,7 @@ class ThoughtBubble {
             fill(0);
             noStroke();
             text(APP_STATE.nickname + "'s bubble:", this.x + shiftXMap, -this.height * scaleXYMap/2 + (this.height - this.height * scaleXYMap * sqrt(0.5))/2);
-            this.div.html(this.contentsHTML);
+            this.textDiv.html(this.contentsHTML);
             this.div.position(this.x + shiftXMap + width/2, this.y + height/2 + DOM_EL.canvas.position().y);
             this.div.size(this.width * this.scaleX * scaleXYMap * sqrt(0.5), this.height  * scaleXYMap * sqrt(0.5) - 40);
             this.div.style("font-size", width*scaleXYMap/30 + 'px');
@@ -321,13 +473,13 @@ class ThoughtBubble {
             fill(0);
             // text(this.contents, this.x + this.randomSeed + sin(frameCount) * random(2,30), this.y - (frameCount - this.frameCount)*8);
             text(APP_STATE.nickname + "'s bubble:", this.x + this.randomSeed + sin(frameCount) * random(2,30), -this.height * scaleXYMap/2 + (this.height - this.height * scaleXYMap * sqrt(0.5))/2 - (frameCount - this.frameCount)*8);
-            this.div.html(this.contentsHTML);
+            this.textDiv.html(this.contentsHTML);
             this.div.position(this.x + shiftXMap + width/2 + this.randomSeed + sin(frameCount) * random(2,30), this.y + height/2 + DOM_EL.canvas.position().y - (frameCount - this.frameCount)*8);
             this.div.size(this.width * this.scaleX * scaleXYMap * sqrt(0.5), this.height  * scaleXYMap * sqrt(0.5) - 40);
             this.div.style("font-size", width*scaleXYMap/30 + 'px');
             if(this.y + this.height/2 - (frameCount - this.frameCount)*5 < (this.height) * -1 - this.y ){
                 this.bubbleOut = false;
-                UTIL.socket.emit("bubble_message",{name: APP_STATE.nickname, message : UTIL.speechBubbleContent, color: {R:this.color.R,G:this.color.G,B:this.color.B}});
+                UTIL.socket.emit("bubble_message",{room: APP_STATE.room,name: APP_STATE.nickname, message : UTIL.speechBubbleContent, color: {R:this.color.R,G:this.color.G,B:this.color.B}});
                 UTIL.speechBubbleContent = "";
                 this.contents = "";
                 this.contentsHTML = "";
@@ -386,4 +538,31 @@ function windowResized(){
       document.documentElement.style.setProperty('--vmin', `${vh*2}px`);
     //   DOM_EL.orientationContainer.style("display", "flex");
     }
+}
+
+function startCon()
+{
+  UTIL.socket = io('fhss.ml', {});
+  UTIL.socket.on('connect', function() 
+  {
+        UTIL.socket.emit('hello',{room : APP_STATE.room});
+		console.log("connected");		 
+  });
+  UTIL.socket.on('someone-joined', function(msg) 
+  {
+		console.log(msg);	
+	});
+  UTIL.socket.on('someone-change', function(msg) 
+  {
+		console.log(msg);		 		 
+  });
+  UTIL.socket.on('someone-left', function(msg) 
+  {
+		console.log(msg);	
+  });
+  UTIL.socket.on('bubble-question-event', function(msg) 
+  {
+        console.log(msg);	
+        DOM_EL.activityTitle.html(msg.value);
+  });
 }

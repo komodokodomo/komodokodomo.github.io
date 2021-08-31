@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bubblewand</title>
     <meta name="description" content="Let's hear everyones' opinions">
@@ -10,11 +14,14 @@
     <!-- <meta name="theme-color" content="#000000" /> -->
 
     <script src="../src/js/vendor/p5.min.js"></script>
+    <script src="../src/js/vendor/p5.sound.min.js"></script>
+
     <script src="../src/js/vendor/p5.speech.js"></script>
     <script src="../src/js/vendor/p5.scribble.js"></script>
-    <script src="../src/js/vendor/jszip.min.js"></script>
+    <!-- <script src="../src/js/vendor/jszip.min.js"></script> -->
     <script src="../src/js/vendor/mobile-movement.min.js"></script>
-    <script src="../src/js/vendor/compass.js"></script>
+    <!-- <script src="../src/js/vendor/compass.js"></script> -->
+    <script src="../src/js/vendor/orientation.js"></script>
 
     
 
@@ -33,17 +40,45 @@
     <div id=login-container>
         <h1 id=login-title-container>🌠Bubblewand</h1>
         <input type="number" id="login-pin-input" placeholder="****" >
-        <input type="text" id="login-nickname-input" placeholder="nickname" >
+        <input type="text" id="login-nickname-input" placeholder="name" >
         <div type="button" id="login-button"> enter! </div>
       </div>
     <div id="activity-container">
         <div id="activity-title-container">
             <div id="activity-title">💬 Bubblewand </div>
-            <div id="activity-instructions">🎙️Speak or ⌨️type into the bubble wand to create a message. 👋Wave your wand to send it to the board!</div>
+            <div id="activity-instructions">📷 Use your bubble wand to capture a photo.</div>
         </div>
         <div id="activity-content-container"></div>
     </div>
+    <div id="orientation-container">
+      <div id= "orientation-image-container">
+        <img id="orientation-image" src="image/orientation.png" alt="no image">
+      </div>
+      <h2 id="orientation-header">Works best in portrait mode</h2>
+      <p id="orientation-content">Tilt the device back to continue using the app</p>
+    </div>
+    <div id="error-container">
+      <div id= "error-image-container">
+        <img id="error-image" src="image/error.png" alt="no image">
+      </div>
+      <h2 id="error-header">You need to enable the camera!</h2>
+      <p id="error-content">Refresh the webpage and remember to press <strong>allow</strong></p>
+      <div type="button" id="refresh-button"> refresh </div>
+    </div>
+    <div id="pause-container">
+      <div id= "pause-image-container">
+        <img id="pause-image" src="image/pause.png" alt="no image">
+      </div>
+      <h2 id="pause-header">Stop looking at your device</h2>
+      <p id="pause-content">Focus on your teacher please (:</p>
+    </div>
     <!-- <canvas id="canvas-container"></canvas> -->
+    <!-- <script>
+      function refreshPage() {
+        window.location = window.location.href+'?eraseCache=true';
+        location.reload(true);
+      }
+      </script> -->
     <script type="text/javascript" src="app.js"></script>
     <!-- <div id="gesture-identifier">GESTURE</div> -->
     <!-- <div id="speech-bubble-container">

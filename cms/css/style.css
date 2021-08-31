@@ -121,10 +121,21 @@ div.button{
   align-self: center;
 }
 
+#menu-hamburger{
+  cursor: pointer;
+}
+
 #menu-home{
   display: block;
   right: 1rem;
   position: absolute;  
+  cursor: pointer;
+  transition: 300ms;
+  color: black;
+}
+
+#menu-home:hover{
+  color: blue;
 }
 
 
@@ -145,9 +156,17 @@ div.button{
 }
 
 .menu-hamburger-popup-list{
-border-bottom-style: solid;
-padding: 1rem;
+  border-bottom-style: solid;
+  padding: 1rem;
+  cursor: pointer;
+  transition: 300ms;
+  color: black;
 }
+
+.menu-hamburger-popup-list:hover{
+  background: lightsalmon;
+  color: white;
+  }
 
 #menu-hamburger-popup.hidden{
   display: none;
@@ -173,7 +192,7 @@ padding: 1rem;
     position: absolute;
     right: 1rem;
     background: whitesmoke;
-    box-shadow: 3px 3px 3px lightgrey;
+    box-shadow: 1px 1px 1px lightgrey;
     height: 3rem;
     margin: auto;
     margin-top: 1rem;
@@ -186,6 +205,14 @@ padding: 1rem;
     transition-duration: 300ms;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+#add-class-container:hover,#add-project-container:hover{
+  background: lightsalmon;
+  transform: translate(0, -2px);
+  box-shadow: 3px 3px 3px lightgrey;
 }
 
 #add-class-container.help{
@@ -237,6 +264,7 @@ padding: 1rem;
   border-style: solid;
   border-width: thin;
   box-shadow: 3px 3px 3px lightgrey;
+  overflow: hidden;
 }
 
 .class-container.irrelevant{
@@ -275,7 +303,16 @@ padding: 1rem;
 .pill-title{
   display: block;
   margin-left: 1rem;
+  transition: 300ms;
+  cursor: pointer;
+  background: none;
 }
+
+.pill-title:hover{
+  background: whitesmoke;
+  padding: 3px;
+}
+
 .pill-title-edit{
   display: block;
   margin-right: 0.5rem;
@@ -329,6 +366,12 @@ padding: 1rem;
   background: darkgrey;
   padding: 0.5em;
   box-shadow: lightgrey 0px 1px 2px;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.class-record:hover,.class-add-content:hover,.details-edit-button:hover,.details-preview-button:hover{
+  background: lightsalmon;
 }
 
 .class-detail-images-container,.details-edit-container{
@@ -380,6 +423,12 @@ padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.class-remove:hover{
+  background: lightsalmon;
 }
 
 .class-remove.irrelevant{
@@ -416,7 +465,14 @@ padding: 1rem;
   font-size: 0.75rem;
   justify-content: space-between;
   box-shadow: lightgrey 0px 3px 3px;
+  cursor: pointer;
+  transition: 300ms;
 }
+
+#train-project-container:hover,#preview-project-container:hover{
+  transform: translate(0,-2px);
+}
+
 #train-project-container{
   background: lightsalmon;
   /* margin: 0 0.5rem 0 0; */
@@ -431,7 +487,6 @@ padding: 1rem;
   color: whitesmoke;
   border-style: none;
   box-shadow: none;
-
 }
 
 #train-project-title,#preview-project-title{
@@ -639,7 +694,7 @@ padding: 1rem;
 }
 
 #alert-option-content{
-  padding: 0 0 1rem 0;
+  padding: 0 1rem 1rem 1rem;
 }
 
 #alert-status-title,#alert-ok-title,#alert-option-title,#alert-refresh-title{
@@ -799,6 +854,8 @@ padding: 1rem;
 
 #quill-toolbar{
   overflow-y: scroll;
+  border-style: none;
+  border-bottom-style: dotted;
   max-height: 42px;
 }
 
@@ -1290,9 +1347,17 @@ button:active {
 
 } */
 
+
+#add-lens-container:hover{
+  /* box-shadow: 3px 3px 3px lightgray ; */
+  background: rgb(253, 231, 107);
+}
+
 #add-lens-container{
+  /* cursor: pointer;
   display: flex;
   margin-top: auto;
+  margin-right: 5px;
   margin-bottom: auto;
   border-radius: 1rem;
   background: gold;
@@ -1300,36 +1365,58 @@ button:active {
   flex-grow: 0;
   flex-shrink: 0;
   font-size: small;
-  border-style: solid;
-  border-width: thin;
-  /* border-width: 3px; */
-  border-color: white;
+  margin-right: 3px;
+  transition: 0.3s;
   box-sizing: border-box;
-  height: 3rem;
+  height: 3rem; */
+  cursor: pointer;
+  display: inline-flex;
+  margin-top: 0;
+  border-radius: 1rem;
+  border-style: dotted;
+  border-color: darkgray;
+  flex-basis: 80px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: small;
+  margin-right: 10px;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  margin-left: 5px;
+  transition: 0.3s;
+  box-sizing: border-box;
 }
 
 .lens-container{
-  display: flex;
+  cursor: pointer;
+  display: inline-flex;
   background: lightgray;
   border-radius: 1rem;
   position: relative;
   flex-basis: 150px;
   flex-grow: 0;
   flex-shrink: 0;
-  border-style: solid;
-  /* border-width: 3px; */
-  border-width: thin;
-  border-color: white;
+  margin-right: 10px;
   box-sizing: border-box;
-  font-size: small;
+  font-size: x-small;
   transition: 0.3s;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.lens-container:hover{
+  background: rgb(228, 228, 228);
+  /* margin-left: 3px;  
+  margin-right: 6px;   */
 }
 
 .lens-container.active{
   background: whitesmoke;
+  box-shadow: 3px 3px 3px lightgrey;
   border-radius: 1rem 1rem 0 0;
   transition: 0.3s;
   border-width: 3px 3px 0 3px;
+  margin-bottom: 0;
 }
 
 /* .lens-container.active{
@@ -1355,11 +1442,13 @@ button:active {
   overflow: hidden;
   margin: auto;
   transition: 0.3s;
+  font-size: small;
 }
 
 .lens-title.active{
   margin: auto 8px auto 5px;
   transition: 0.3s;
+  font-size: medium;
 }
 
 .lens-edit{
@@ -1411,11 +1500,22 @@ button:active {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  /* background: #f1f1f1; */
+  background: whitesmoke;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
+  /* background: #888; */
+  background: whitesmoke;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
 

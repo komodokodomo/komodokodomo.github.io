@@ -135,9 +135,9 @@ var infoDiv;
 
 
 function preload() {
-  let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
+  // let url = 'https://api.sheety.co/9b122d4c-2e08-4749-b8d8-4d49bbd56886';
   geoData = loadJSON("map.geojson");
-  jsonFile = loadJSON(url);
+  // jsonFile = loadJSON(url);
 }
 
 // function onEachFeature(feature, layer) {
@@ -433,8 +433,8 @@ function draw()
     //   let pos = myMap.latLngToPixel(allPlaces[i][1], allPlaces[i][0])
     //   ellipse(pos.x, pos.y, 50, 50);
     // }
-    let region = scanBeacon();  
-    if(region!==undefined){console.log(region);}                                                             //                                                                  //
+    // let region = scanBeacon();  
+    // if(region!==undefined){console.log(region);}                                                             //                                                                  //
     checkRegionChange();                                                    //
   }
 }
@@ -461,62 +461,62 @@ function enterButtonEvent() {
 }
 
 
-function scanBeacon()
-{
-  var lastPingDetected= [];
-  var spectrum = fft.analyze();                                                            // get FFT data for subsequent analysis
-  lastPingEnergyHighest = 0;
-  for(var i = 0; i<Object.keys(jsonFile).length; i++)                                      // repeat the same actions for all the frequencies listed
-  {   
-    peakDetect[i].update(fft); 
-    if ( peakDetect[i].isDetected ) 
-    {
-      lastPingPeakPeriod[i] = millis()-lastPingPeak[i];
-      if(lastPingPeakPeriod[i]>170 && lastPingPeakPeriod[i]<230)
-      {
-        lastPingPeakCounter[i]++;
-        lastPingEnergy[i] = fft.getEnergy(beacon[i]-bandwidth, beacon[i]+bandwidth);
-        if(lastPingEnergy[i]>lastPingEnergyHighest)
-        {
-          lastPingEnergyHighest = lastPingEnergy[i];
-          // lastPingChosen = i;
-        }
-      }
-      // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]+", chosen: " + beaconChosen);
-      lastPingPeak[i] = millis();
-      lastPingTtlTimer[i] = millis();
-    }
-    else
-    {
-      if(millis()-lastPingTtlTimer[i]>TTL/4)
-      {
-        lastPingPeakCounter[i] = 0;
-        lastPingEnergy[i] = 0;
-        if(i==beaconChosen){beaconChosen = 99;}
-        // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
-      }
-    }
+// function scanBeacon()
+// {
+//   var lastPingDetected= [];
+//   var spectrum = fft.analyze();                                                            // get FFT data for subsequent analysis
+//   lastPingEnergyHighest = 0;
+//   for(var i = 0; i<Object.keys(jsonFile).length; i++)                                      // repeat the same actions for all the frequencies listed
+//   {   
+//     peakDetect[i].update(fft); 
+//     if ( peakDetect[i].isDetected ) 
+//     {
+//       lastPingPeakPeriod[i] = millis()-lastPingPeak[i];
+//       if(lastPingPeakPeriod[i]>170 && lastPingPeakPeriod[i]<230)
+//       {
+//         lastPingPeakCounter[i]++;
+//         lastPingEnergy[i] = fft.getEnergy(beacon[i]-bandwidth, beacon[i]+bandwidth);
+//         if(lastPingEnergy[i]>lastPingEnergyHighest)
+//         {
+//           lastPingEnergyHighest = lastPingEnergy[i];
+//           // lastPingChosen = i;
+//         }
+//       }
+//       // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]+", energy: " + lastPingEnergy[i]+", chosen: " + beaconChosen);
+//       lastPingPeak[i] = millis();
+//       lastPingTtlTimer[i] = millis();
+//     }
+//     else
+//     {
+//       if(millis()-lastPingTtlTimer[i]>TTL/4)
+//       {
+//         lastPingPeakCounter[i] = 0;
+//         lastPingEnergy[i] = 0;
+//         if(i==beaconChosen){beaconChosen = 99;}
+//         // console.log("band:" + i +", last ping: " + lastPingPeakPeriod[i]+", counter: " + lastPingPeakCounter[i]);
+//       }
+//     }
 
-  }
-  for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
-  {
-    if(lastPingPeakCounter[i]>8){lastPingDetected.push(i);}
-  }
+//   }
+//   for(var i = 0; i<beacon.length; i++)                                      // repeat the same actions for all the frequencies listed
+//   {
+//     if(lastPingPeakCounter[i]>8){lastPingDetected.push(i);}
+//   }
 
-  for(var i = 0; i<lastPingDetected.length; i++)                                      // repeat the same actions for all the frequencies listed
-  {
-    // console.log("ping from: " +lastPingDetected[i]);
-    if(lastPingEnergyHighest<lastPingEnergy[lastPingDetected[i]])
-    {
-      lastPingEnergyHighest = lastPingEnergy[lastPingDetected[i]];
-      beaconChosen = lastPingDetected[i];
-      return(lastPingDetected[i]);
-      // console.log("chose: "+beaconChosen);
-    }
-  }
-  // console.log("region detected: " + lastPingChosen);
+//   for(var i = 0; i<lastPingDetected.length; i++)                                      // repeat the same actions for all the frequencies listed
+//   {
+//     // console.log("ping from: " +lastPingDetected[i]);
+//     if(lastPingEnergyHighest<lastPingEnergy[lastPingDetected[i]])
+//     {
+//       lastPingEnergyHighest = lastPingEnergy[lastPingDetected[i]];
+//       beaconChosen = lastPingDetected[i];
+//       return(lastPingDetected[i]);
+//       // console.log("chose: "+beaconChosen);
+//     }
+//   }
+//   // console.log("region detected: " + lastPingChosen);
 
-}
+// }
 
 function checkRegionChange()
 {

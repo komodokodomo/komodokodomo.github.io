@@ -1,6 +1,9 @@
 body{
     margin: 0px;
-    font-family: 'Roboto Mono';
+    font-family: 'Roboto';
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
 }
 
 #login-container{
@@ -79,8 +82,80 @@ body{
     padding: calc(8px + 11 * ((100vw - 300px) / (1600 - 300)));
     }
 
+#main-container{
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+}
+
+
+#user-container{
+    z-index: 1;
+    width: 20rem;
+    height: 100%;
+    position: absolute;
+    top: 5rem;
+    background: white;
+    right: 0;
+    transform: translate(20rem,0);
+    border-left-style: none;
+    transition: 1s;
+}
+
+#user-counter-container{
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.user-list{
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.user-list-title{
+    float: left;
+}
+
+.user-list-status{
+    float: right;
+}
+
+#user-hide-container{
+    position: absolute;
+    padding: 5px;
+    cursor: pointer;
+    background: white;
+    top: 50%;
+    border-style: double;
+    transform: translate(-100%, -50%);
+}
+
+#user-container.showuser{
+    /* width: 20rem; */
+    transform: translate(0,0);
+    border-left-style: double;
+}
+
+
+#activity-container.showuser{
+    /* width: calc(100% - 20rem); */
+}
+
+#activity-container{
+    width: 100%;
+    position: relative;
+    transition: 1s;
+}
+
+
 #activity-title-container{
-    background: gainsboro;
+    position: relative;
+    background: whitesmoke;
     width: 100%;
     height: 5rem;
     justify-content: center;
@@ -88,22 +163,51 @@ body{
     flex-direction: column;
     align-content: center;
     border-bottom-style: solid;
+    border-color: darkgray;
     box-shadow: 0px 3px 3px lightgrey;
 }
 
 #activity-title{
     font-size: 1.5rem;
     width: 60%;
-    font-family: 'Roboto Mono';
+    font-family: 'Roboto';
     margin: auto;
     text-align: center;
+    background: gainsboro;
 }
 
 #activity-instructions{
     font-size: 0.7rem;
-    margin: auto;
+    margin: 0 auto auto auto;
     text-align: center;
     padding: 0 1rem;
+}
+
+#activity-next{
+    position: absolute;
+    margin: 1rem;
+    right: 0;
+    transition: 300ms;
+    color: black;
+    cursor: pointer;
+}
+
+#activity-prev{
+    position: absolute;
+    margin: 1rem;
+    left: 0;
+    color: black;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+#activity-next:hover,#activity-prev:hover{
+    color: blue;
+}
+
+#activity-prev.inactive{
+    color: lightgray;
+    cursor: auto;
 }
 
 #canvas-container{
@@ -139,15 +243,56 @@ body{
     padding: 1rem 0 0rem 0;
 }
 
-
-.bubble{
-    overflow: auto;
+.bubble-container{
+    cursor: pointer;
     transform: translate(-50%,-50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 0;
+}
+
+.bubble-close{
+    opacity: 1;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 0;
+    background: lightgray;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    transition: 300ms;
+    font-size: large;
+}
+
+.bubble-close.hidden{
+    opacity: 0;
+}
+
+.bubble{
+    overflow: auto;
+    font-size: small;
+    /* transform: translate(-50%,-50%); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.bubble.expanded{
+    font-size: x-large;
+}
+
+.bubble:focus{
+    outline:none;
 }
 
 .circular{
@@ -163,4 +308,99 @@ body{
     max-width: 100%;
     max-height: 100%;
 }
+
+.bubble-title{
+    position: absolute;
+    top: 0;
+    background: whitesmoke;
+    font-size: x-large;
+}
+
+/* #anon-container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: lightgray;
+    box-shadow: 1px 1px 1px lightgray;
+    transition: 300ms;
+    cursor: pointer;
+} */
+/* 
+#anon-container.inactive{
+    background: lightgray;
+    box-shadow: none;
+    opacity: 0.7;
+    transform: translate(0,5rem);
+} */
+
+#anon-container.active,#pause-container.active{
+    box-shadow: 3px 3px 3px lightgray;
+    background: lightsalmon;
+    transform: translate(0,-2px);
+}
+
+#anon-container:hover{
+    box-shadow: 3px 3px 3px lightgray;
+    background: lightsalmon;
+    transform: translate(0,-2px);
+}
+
+#archive-container,#anon-container,#clear-container,#pause-container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: lightgray;
+    box-shadow: 1px 1px 1px lightgray;
+    transition: 300ms;
+    cursor: pointer;
+}
+
+#archive-container{
+    right: 1rem;
+    bottom: 1rem;
+}
+
+#anon-container{
+    left: 5rem;
+    bottom: 1rem;
+    font-size: small;
+}
+
+#clear-container{
+    right: 5rem;
+    bottom: 1rem;
+    font-size: small;
+}
+
+#pause-container{
+    left: 1rem;
+    bottom: 1rem;
+    font-size: small;
+}
+
+#archive-container.inactive,#clear-container.inactive,#anon-container.inactive,#pause-container.inactive{
+    background: lightgray;
+    box-shadow: none;
+    opacity: 0.7;
+    transform: translate(0,5rem);
+}
+
+#archive-container:hover,#clear-container:hover,#pause-container:hover{
+    box-shadow: 3px 3px 3px lightgray;
+    background: lightsalmon;
+    transform: translate(0,-2px);
+}
+
+
 

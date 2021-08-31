@@ -153,4 +153,94 @@ body{
     z-index: 0;
 }
 
+.bubble-contents{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#record-div,#edit-div,#reset-div{
+    background: lightgray;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: translate(-50%,-50%); 
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+#edit-div{
+    left: calc(50% - 5rem);
+    height: 3rem;
+    width: 3rem;
+    bottom: 3rem;;
+}
+
+#reset-div{
+    left: calc(50% + 5rem);
+    height: 3rem;
+    width: 3rem;
+    bottom: 3rem;;
+}
+
+#record-div{
+    height: 5rem;
+    width: 5rem;
+    left: 50%;
+    bottom: 1rem;
+    transition: 300ms;
+}
+
+#record-div.active{
+    height: 6rem;
+    width: 6rem;
+    bottom: 0.5rem;
+    background: indianred;
+    /* border-radius: 5%; */
+    box-shadow: 0px 0px 5px lightsalmon;
+}
+
+#instruction-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 30vw;
+    height: 30vw;
+    overflow: hidden;
+    top: 5rem;
+    left: 50%;
+    transition: 1s;
+    transform: translate(-50%,0%);
+    opacity: 1;
+}
+
+#instruction-div.hidden{
+    transform: translate(-50%,-100%);
+    opacity: 0;
+}
+
+#instruction-image{
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#instruction{
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    padding: 10px;
+    font-size: smaller;
+}
 

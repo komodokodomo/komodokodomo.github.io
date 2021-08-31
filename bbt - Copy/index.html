@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <meta charset="utf-8" />
+    <meta name="google-signin-client_id" content="874868940141-sqtd69h8nsjejb47pggkd260nkl8ccjq.apps.googleusercontent.com">
+
+  </head>
+  <body>
+
+    <div id="options-container" >
+      <div id="options-inner-container">
+        <div id="options-buzz" class="options">
+          <div class="options-title"><strong>Enter anonymously</strong> <br><br><small><i>( your settings will disappear if your browser cache is cleared )</i></small>😱</div>
+        </div>
+        <div id="options-chill" class="options">
+          <div class="g-signin2" id="google-login" data-width="2000" data-height="2000" data-onsuccess="onSignIn" data-longtitle="true"></div>
+          <div class="options-title">
+            <strong>Enter with Google</strong> <br><br><small><i>( your settings are saved no matter what )</i></small>😀
+          </div>
+        </div>
+      </div>
+      <!-- <div id="options-skip" class="corner-title">skip</div> -->
+    </div>
+
+
+    <div id="content-container" class="">
+      <div id="nav-container" >
+        <a class="nav-brand" href="#">🧠Brain Boost Time</a>
+        <div id="nav-user"></div>
+        <a class="nav-link" target="_blank" href="https://sites.google.com/moe.edu.sg/brainboost/others/about-bbt">About</a>
+        <a class="nav-link" target="_blank" href="https://suhaimizs.typeform.com/to/gjE7Io">Feedback</a>
+        <div id="nav-mute">🔊</div>
+      </div>
+      <div id="content-inner-container" class="">
+        <div id="activities-container">
+          <div id="activities-container-bg"></div>
+          <div id="activities-edit"class="corner-title">edit</div>
+          <div id="activities-inner-container">
+          </div>
+        </div>
+        <div id="sidebar-container">
+          <div id="sidebar-timer" class="sidebar-cell">
+            <div id="sidebar-timer-title">60s</div>
+            <input id="sidebar-timer-input" class="hide" type="number" min="0" max="600"></input>
+            <!-- <div id="sidebar-timer-edit" class="corner-title">edit</div> -->
+          </div>
+          <div id="sidebar-play" class="sidebar-cell"></div>
+          <div id="sidebar-random" class="sidebar-cell">
+            <div id="sidebar-random-title">randomize</div>
+            <!-- <div id="sidebar-random-edit" class="corner-title">pick 1</div> -->
+          </div>
+          <div id="sidebar-back" class="sidebar-cell hide">
+            <div id="sidebar-back-title">back</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div id="opacity-container">Click anywhere to start <br><b>🧠Brain Boost Time!</b>
+    </div> -->
+    <div id="feedback-container" class="hide">
+      <div id="feedback-inner-container">
+        <div class="feedback-title">How focused are we now?</div>
+        <ul class="ratings-brain">
+          <li class="brain"></li>
+          <li class="brain"></li>
+          <li class="brain"></li>
+          <li class="brain"></li>
+          <li class="brain"></li>
+        </ul>
+        <div class="feedback-title">Did we enjoy the activity?</div>
+        <ul class="ratings-happy">
+          <li class="happy"></li>
+          <li class="happy"></li>
+          <li class="happy"></li>
+          <li class="happy"></li>
+          <li class="happy"></li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script src="sketch.js"></script>
+    <audio id="audio-wheel" src="assets/sound/main.mp3" loop="loop"></audio>
+    <audio id="audio-f1" src="assets/sound/f1.mp3" loop="loop"></audio>
+    <audio id="audio-f2" src="assets/sound/f2.mp3" loop="loop"></audio>
+    <audio id="audio-f3" src="assets/sound/f3.mp3" loop="loop"></audio>
+    <audio id="audio-f4" src="assets/sound/f4.mp3" loop="loop"></audio>
+  </body>
+</html>

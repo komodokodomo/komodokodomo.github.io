@@ -1,0 +1,269 @@
+{
+    "timing" : 60,
+    "activities":{
+        "0":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/bird/F1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "1":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/bird/S1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "2":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/bunny/F1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "3":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/bunny/S1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "4":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/cat/F1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "5":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/cat/S1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "6":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/dog/F1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "7":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/dog/S1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "8":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/fish/F1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "9":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/fish/S1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "10":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/mouse/F1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "11":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/mouse/S1.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "12":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/bird/F2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "13":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/bird/S2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "14":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/cat/F2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "15":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/cat/S2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "16":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/dog/F2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "17":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/dog/S2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "18":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/fish/F2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "19":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/fish/S2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "20":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/mouse/F2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "21":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/mouse/S2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        },
+        "22":{
+            "type": "fast",
+            "emoji": null,
+            "image" : "assets/bunny/F2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my dance moves!"
+        },
+        "23":{
+            "type": "slow",
+            "emoji": null,
+            "image" : "assets/bunny/S2.gif",
+            "ratings":{
+                "uses":0,
+                "brain":0,
+                "happy":0
+                },
+            "title":"Follow my chill moves!"
+        }
+    } 
+}

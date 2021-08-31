@@ -130,14 +130,15 @@ var UTIL = {
   quill: null,
   descriptionQuill: null,
   description: null,
+  contentFader: null,
 }
 
 let model;
 let dictionary;
 
 var featureExtractor,classifier;
-const PREDICT_UPPERBOUND = 0.95;
-const PREDICT_LOWERBOUND = 0.85;
+const PREDICT_UPPERBOUND = 0.85;
+const PREDICT_LOWERBOUND = 0.75;
 let projectFiles = [];
 
 
@@ -351,7 +352,11 @@ async function modelLoaded() {
 
 function gotResults(err, result) {
 
+  let timingMultiplier = 1;
+
   let label = APP_STATE.data[result[0].label].name;
+  let altLabel = APP_STATE.data[result[1].label].name;
+
   
   if(result)
       {
@@ -360,14 +365,21 @@ function gotResults(err, result) {
             let s = "Hmmm" + MISC.thinking + "is it a " + label +" ?";
             DOM_EL.personaText.html( MISC.thinking+ "is it a " +label +"?");
             DOM_EL.personaButton.addClass("inactive");
+            DOM_EL.personaButton.html("📸 capture evidence"); //📸 capture evidence
           }
           else if(result[0].confidence > PREDICT_LOWERBOUND && result[0].confidence < PREDICT_UPPERBOUND && APP_STATE.evidenceFound){
           }
           else if(result[0].confidence > PREDICT_UPPERBOUND && APP_STATE.evidenceFound == false){
             APP_STATE.evidenceFound = true;
-            DOM_EL.personaText.html("I see a " + label +".");
+            DOM_EL.personaText.html("I found " + label +".");
             APP_STATE.evidenceDetected = label;
             DOM_EL.personaButton.removeClass("inactive");
+            timingMultiplier = 15;
+            if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
+              DOM_EL.personaButton.html("📸 recapture evidence"); //📸 capture evidence
+            }
+            else{
+            }
           }
           else if(result[0].confidence > PREDICT_UPPERBOUND && APP_STATE.evidenceFound){
           }
@@ -377,20 +389,56 @@ function gotResults(err, result) {
             }
             DOM_EL.personaText.html(MISC.findingText + MISC.thinking);
             DOM_EL.personaButton.addClass("inactive");
+            DOM_EL.personaButton.html("📸 capture evidence"); //📸 capture evidence
           }
         }
-        else if(label == "irrelevant"){
-          if(APP_STATE.evidenceFound){
+        else{
+          // if(APP_STATE.evidenceFound){
             APP_STATE.evidenceFound = false;
-          }
-          DOM_EL.personaText.html(MISC.redirectText + MISC.thinking);
-          DOM_EL.personaButton.addClass("inactive");
+          // }
         }
+        // else if(label == "irrelevant"){
+        //     if(result[1].confidence > PREDICT_LOWERBOUND && result[1].confidence < PREDICT_UPPERBOUND && APP_STATE.evidenceFound == false){
+        //       let s = "Hmmm" + MISC.thinking + "is it a " + altLabel +" ?";
+        //       DOM_EL.personaText.html( MISC.thinking+ "is it a " +altLabel +"?");
+        //       DOM_EL.personaButton.addClass("inactive");
+        //     }
+        //     else if(result[1].confidence > PREDICT_LOWERBOUND && result[1].confidence < PREDICT_UPPERBOUND && APP_STATE.evidenceFound){
+        //     }
+        //     else if(result[1].confidence > PREDICT_UPPERBOUND && APP_STATE.evidenceFound == false){
+        //       APP_STATE.evidenceFound = true;
+        //       DOM_EL.personaText.html("I see a " + altLabel +".");
+        //       APP_STATE.evidenceDetected = altLabel;
+        //       DOM_EL.personaButton.removeClass("inactive");
+        //       timingMultiplier = 10;
+        //       if(APP_STATE.evidencesFound.includes(APP_STATE.evidenceDetected)){
+        //         DOM_EL.personaButton.html("📸 recapture evidence"); //📸 capture evidence
+        //       }
+        //       else{
+        //         DOM_EL.personaButton.html("📸 capture evidence"); //📸 capture evidence
+        //       }
+        //     }
+        //     else if(result[1].confidence > PREDICT_UPPERBOUND && APP_STATE.evidenceFound){
+        //     }
+        //     else if(result[1].confidence < PREDICT_LOWERBOUND){
+        //       if(APP_STATE.evidenceFound){
+        //         APP_STATE.evidenceFound = false;
+        //       }
+        //       DOM_EL.personaText.html(MISC.findingText + MISC.thinking);
+        //       DOM_EL.personaButton.addClass("inactive");
+        //       APP_STATE.evidenceFound = false;
+        //     }
+        //   // if(APP_STATE.evidenceFound){
+        //   //   APP_STATE.evidenceFound = false;
+        //   // }
+        //   DOM_EL.personaText.html(MISC.redirectText + MISC.thinking);
+        //   DOM_EL.personaButton.addClass("inactive");
+        // }
       }
     if(err){
       console.log(error);
     }
-  setTimeout(function(){classifier.classify( DOM_EL.canvas.elt, gotResults);},40);
+  setTimeout(function(){classifier.classify( DOM_EL.canvas.elt, gotResults);},40 * timingMultiplier);
 }
 
 function preload() {
@@ -461,6 +509,7 @@ function onboard(){
     console.log("still loading");
   }
   else{
+    switchCamera();
     DOM_EL.onboardContainer.hide();
     DOM_EL.captureContainer.show();
     classifier.classify( DOM_EL.canvas.elt, gotResults);
@@ -567,8 +616,14 @@ function captureEvidenceEvent(){
 
       Object.keys(APP_STATE.lensName).forEach(element => {
         let stuff = APP_STATE.data[x].content[element];
-        console.log(stuff.operation.ops);
-        if (stuff.operation.ops === undefined || stuff.operation.ops === null || stuff.operation.ops == {}) {
+        console.log(stuff.operation);
+        if(stuff.operation == null){
+          DOM_EL.contentLens[index].hide();
+        }
+        else if (stuff.operation.ops === undefined || stuff.operation.ops === null || stuff.operation.ops == {}) {
+          DOM_EL.contentLens[index].hide();
+        }
+        else if (stuff.operation.ops.length == 1 && stuff.operation.ops[0].insert == "\n") {
           DOM_EL.contentLens[index].hide();
         }
         else{
@@ -585,14 +640,24 @@ function captureEvidenceEvent(){
         index++; 
       });
 
-      // changeContent(Object.keys(APP_STATE.lensName)[overflow(APP_STATE.lensCounter, APP_STATE.numLens)], getKeyByValue(APP_STATE.displayName, APP_STATE.evidenceDetected));
 
       let d = document.getElementById("content-image");
       d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter-1].elt.childNodes[0].src;
-      DOM_EL.contentContainer.style("display","flex");
-      setTimeout(function(){
-        DOM_EL.contentContainer.removeClass("fade");
-      },0);
+
+      UTIL.contentFader = setInterval(() => {
+        if(DOM_EL.contentContainer.style("display") !== "flex"){
+          DOM_EL.contentContainer.style("display","flex");
+        }
+        else{
+          if(DOM_EL.contentContainer.class().includes("fade")){
+            DOM_EL.contentContainer.removeClass("fade");
+          }
+          else{
+            clearInterval(UTIL.contentFader);
+            UTIL.contentFader = null;
+          }
+        }
+      },50);
 
     }
     
@@ -967,12 +1032,13 @@ function switchCamera()
   }
   DOM_EL.capture = createCapture(options, function(stream) {
     console.log(stream);
-    DOM_EL.capture.id("video");
-    DOM_EL.capture.style("z-index","-1");
-    DOM_EL.capture.parent(DOM_EL.canvasContainer);
-    DOM_EL.captureChange.style("z-index","3");
-    DOM_EL.captureFlip.style("z-index","3");
   });
+
+  DOM_EL.capture.id("video");
+  DOM_EL.capture.style("z-index","-1");
+  DOM_EL.capture.parent(DOM_EL.canvasContainer);
+  DOM_EL.captureChange.style("z-index","3");
+  DOM_EL.captureFlip.style("z-index","3");
 }
 
 function isMobile() {
@@ -1114,8 +1180,9 @@ function gotNumClasses(err,result){
 function changeContent(lensID,objectID){
   let stuff = APP_STATE.data[objectID].content[lensID];
   console.log(stuff);
+  UTIL.quill.setContents();
   if (stuff.operation === undefined) {
-    UTIL.quill.setContents();
+    // UTIL.quill.setContents();
   } else {
     UTIL.quill.setContents(stuff.operation);
   }

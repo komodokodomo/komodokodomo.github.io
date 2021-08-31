@@ -3,7 +3,7 @@ body{
     font-family: 'Roboto Mono';
 }
 
-#login-container{
+#login-container,#orientation-container,#error-container,#pause-container{
     background-color: #ffe573;
     justify-content: center;
     align-content: center;
@@ -68,11 +68,26 @@ body{
     background-color: #f2f2f2;
     }
 
-#login-button {
+#login-button{
     left: 50%;
     width: calc(80px + 110 * ((100vw - 300px) / (1600 - 300)));
     position: relative;
     transform: translate(-50%, -50%);
+    font-size: calc(16px + (30 - 8) * ((100vw - 300px) / (1600 - 300)));
+    text-align: center;
+    background: #f2f2f2;
+    font-family: 'Roboto Mono';
+    box-shadow: grey 3px 3px 3px;
+    border-style: solid;
+    border-width: calc(0.75px + 2 * ((100vw - 300px) / (1600 - 300)));
+    padding: calc(8px + 11 * ((100vw - 300px) / (1600 - 300)));
+    }
+
+#refresh-button {
+    /* left: 50%; */
+    width: calc(80px + 110 * ((100vw - 300px) / (1600 - 300)));
+    position: relative;
+    /* transform: translate(-50%, -50%); */
     font-size: calc(16px + (30 - 8) * ((100vw - 300px) / (1600 - 300)));
     text-align: center;
     background: #f2f2f2;
@@ -94,6 +109,10 @@ body{
     border-bottom-style: solid;
     box-shadow: 0px 3px 3px lightgrey;
     z-index: 4;
+}
+
+canvas{
+    touch-action: none;
 }
 
 #activity-title{
@@ -142,6 +161,8 @@ body{
 }
 
 .bubble{
+    touch-action: none;
+    
     border-radius: 50%;
     overflow: hidden;
     transform: translate(-50%,-50%);
@@ -151,6 +172,37 @@ body{
     justify-content: center;
     align-items: center;
     z-index: 0;
+}
+
+#close-div{
+    height: 5rem;
+    width: 5rem;
+    background: lightgray;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translate(-50%,-50%); 
+    transition: 300ms;
+}
+
+#close-div.side{
+    height: 30vh;
+    width: 30vh;
+    left: 100%;
+    /* right: 0; */
+    bottom: 0;
+    font-size: 2rem;
+    background: lightgray;
+    border-radius: 100% 0 0 0;
+    transform: translate(-100%,0); 
+}
+
+#close-div.remove{
+    background: rgb(255, 68, 96);
 }
 
 video{
@@ -181,4 +233,73 @@ video{
     transition: 0ms;
 }
 
+#instruction-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 30vw;
+    height: 30vw;
+    /* overflow: hidden; */
+    top: 5rem;
+    left: 50%;
+    transition: 1s;
+    transform: translate(-100%,0%);
+    opacity: 1;
+}
 
+#instruction-div.hidden{
+    transform: translate(-100%,-100%);
+    opacity: 0;
+}
+
+#instruction-image{
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#instruction{
+    z-index: 1;
+    position: absolute;
+    transform: translate(100%,0%);
+    font-size: x-small;
+    /* top: 0; */
+    padding: 10px;
+    font-size: smaller;
+    background: white;
+}
+
+
+#orientation-container,#error-container{
+    position: absolute;
+    z-index: 4;
+  }
+
+  #pause-container{
+    position: absolute;
+    z-index: 5;
+  }
+
+  #error-container,#pause-container{
+    background: salmon;
+    align-items: center;
+  }
+
+  
+  #orientation-image-container,#error-image-container,#pause-image-container{
+    height: 30vh;
+    width: 30vh;
+    /* left: 50%; */
+    position: relative;
+    /* transform: translate(-50%, 0); */
+  }
+  
+  #orientation-image,#error-image,#pause-image{
+    max-height: 100%;
+    max-width: 100%;
+  }
+  
+  #orientation-header,#orientation-content,#error-header,#error-content,#pause-header,#pause-content{
+    text-align: center;
+  }

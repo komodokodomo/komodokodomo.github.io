@@ -11,36 +11,51 @@
 
     <script src="../src/js/vendor/p5.min.js"></script>
     <script src="../src/js/vendor/p5.scribble.js"></script>
+    <script src="../src/js/vendor/p5.sound.min.js"></script>
+
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script src="https://unpkg.com/ml5@0.6.0/dist/ml5.js"></script>
+
+
+
     </head>
 
   <body id="body">
     <div id=login-container>
-        <h1 id=login-title-container>TITLE</h1>
+        <h1 id=login-title-container>💬 Bubblepit</h1>
         <input type="text" id="login-pin-input" placeholder="****" >
-        <div type="button" id="login-button"> enter! </div>
+        <div type="button" id="login-button"> create! </div>
     </div>
-    <div id="activity-container">
-        <div id="activity-title-container">
-            <input type="text" id="activity-title" placeholder="💬 Type in question here" >
-            <!-- <div id="activity-title">💬 Type in question here </div> -->
-            <div id="activity-instructions">🎙️Speak or ⌨️type into your bubble wand to create a message. 👋Wave your wand to send it to the board!</div>
-        </div>
-        <div id="activity-content-container"></div>
-    </div>
-    <div id="menu-container">
-      <div id="menu-hide-container">
-          <!-- <div id="menu-hide">show more </div> -->
+    <div id="main-container">
+        <div id="activity-container" class="">
+          <div id="user-container" class="">
+            <div id="user-counter-container">0 online</div>
+            <div id="user-hide-container">&lt;</div>
+            <div id="user-list-container">
+            </div>
+          </div>
+          <div id="activity-title-container">
+              <input type="text" id="activity-title" placeholder="💬 Type in question here" >
+              <div id="activity-instructions">🎙️Speak or ⌨️type into your bubble wand to create a message. 👋Wave your wand to send it to the board!</div>
+              <div id="activity-prev" class="inactive">previous question</div>
+              <div id="activity-next">next question</div>
+          </div>
+          <div id="activity-content-container"></div>
+
+          <div id="pause-container" class="">pause</div>
+          <div id="clear-container" class="inactive">clear</div>
+          <div id="anon-container" class="">anon</div>
+          <div id="archive-container" class="inactive">💾</div>
       </div>
-      <div id="activity-content-container"></div>
     </div>
     <script type="text/javascript" src="app.js"></script>
   </body>

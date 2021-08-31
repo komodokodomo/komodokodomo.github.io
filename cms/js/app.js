@@ -55,6 +55,10 @@ class lContainer {
 
     }
 
+    focusTitle(){
+        
+    }
+
     changeTitle(title){
         this.title.html(title);
     }
@@ -64,9 +68,11 @@ class lContainer {
     lensChosenEvent(){
         this.container.elt.scrollIntoView({behavior: 'smooth'}); //,inline: 'center', block: 'center'
         UTIL.quill.enable();
-        if(APP_STATE.activeLens == this.uuid){}
+        if(APP_STATE.activeLens == this.uuid){
+            console.log("same lens chosen, nothing to do");
+        }
         else{
-            console.log(this.title.html() + " active");
+            console.log(this.title.html() + " x " + DOM_EL.classContainer[APP_STATE.class].title.html() + " active");
             setTimeout(() => {
                 this.container.addClass("active");
                 this.lensTitleContainer.addClass("active");
@@ -83,12 +89,33 @@ class lContainer {
                 DOM_EL.lensContainer[APP_STATE.activeLens].remove.removeClass("active");
                 DOM_EL.lensContainer[APP_STATE.activeLens].emojiPicker.removeClass("active");
             }
-            console.log("reset all other tab to show only title, show title, edit, and remove on active tab ");
 
-            updateClasslist();
+            if(UTIL.quillChanged){
+                UTIL.quillChanged = false;
+                APP_STATE.lensJson[APP_STATE.activeLens][APP_STATE.class] = UTIL.quill.getContents();
+                let u = "?account=" + APP_STATE.username;
+                let p = "&project=" + APP_STATE.project;
+                let c = "&class=" + APP_STATE.class;
+                let l = "&lens=" + APP_STATE.activeLens;
+            
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/admin/update_classlens' + u + p + c + l, true);
+                xhr.onload = function () {
+                    console.log("updated lens!!");
+                };
+                xhr.send(JSON.stringify(APP_STATE.lensJson[APP_STATE.activeLens][APP_STATE.class]));
+            }
+
+
+            APP_STATE.activeLens = this.uuid;
+            if(APP_STATE.lensJson[APP_STATE.activeLens][APP_STATE.class] !== null || APP_STATE.lensJson[APP_STATE.activeLens][APP_STATE.class] !== {}){
+                UTIL.quill.setContents(APP_STATE.lensJson[APP_STATE.activeLens][APP_STATE.class]);
+            }
+            else{
+                UTIL.quill.setContents();
+            }
+            // UTIL.quill.setContents(APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content[APP_STATE.activeLens].operation);
         }
-        APP_STATE.activeLens = this.uuid;
-        UTIL.quill.setContents(APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content[APP_STATE.activeLens].operation);
     }
     editEmoji(){
         if(this.container.class().includes("active")){
@@ -106,10 +133,10 @@ class lContainer {
             this.title.hide();
             this.inputBox.value(this.title.html()); 
             this.inputBox.show(); 
-            setTimeout(function(){this.inputBox.elt.focus();}.bind(this),0);
+            setTimeout(function(){this.inputBox.elt.focus();}.bind(this),5);
         }
         else{
-            console.log("lensContainer clicked but event should not propagate to child");
+            // console.log("lensContainer clicked but event should not propagate to child");
         }
 
     }
@@ -132,14 +159,12 @@ class lContainer {
             if (this.status == 200) {
                 var data = this.response;
                 Object.keys(APP_STATE.classJson[APP_STATE.project]).forEach(function(key) {
-                    // console.log('Key : ' + key + ', Value : ' + APP_STATE.classJson[key]);
                     APP_STATE.classJson[APP_STATE.project][key].content[id].name = t;
                 });
-                // APP_STATE.classJson[APP_STATE.class].content[id].name = t;
-                console.log("server received request to edit object class");
+                console.log("server received request to edit lens title");
             }
             else if(this.status == 404) {
-                console.log("server failed received request to edit class");
+                console.log("server failed received request to edit lens title");
             }
           };
         xhr.send("rename lens");
@@ -152,7 +177,7 @@ class lContainer {
         DOM_EL.alertOptionContainer.style("z-index","1");
         DOM_EL.opacityContainer.show();
         DOM_EL.opacityContainer.style("z-index","1");
-        DOM_EL.alertOptionContent.html("Are you sure you would like to delete Lens: <b>" + this.title.html()) + "</b>?";
+        DOM_EL.alertOptionContent.html("Any content within quiz: <b>" + DOM_EL.menuTitle.html() + " </b> tagged to <b>" + this.title.html() + "</b> will be removed. Are you sure you would like to delete Lens: <b>" + this.title.html() + "</b>?");
         APP_STATE.optionChoice = null;
 
         await waitUserInput();
@@ -165,7 +190,7 @@ class lContainer {
 
             let u = "?account=" + APP_STATE.username;
             let p = "&project=" + APP_STATE.project;
-            let name = "&delete=" + this.uuid;
+            let name = "&delete=" + id;
             
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/admin/edit_lens' + u + p + name, true);
@@ -179,11 +204,10 @@ class lContainer {
                 }
             };
             xhr.send("delete lens");
-            DOM_EL.lensContainer[this.uuid].container.remove();
-            delete DOM_EL.lensContainer[this.uuid];
+            DOM_EL.lensContainer[id].container.remove();
+            delete DOM_EL.lensContainer[id];
             Object.keys(APP_STATE.classJson[APP_STATE.project]).forEach(function(key) {
-                // console.log('Key : ' + key + ', Value : ' + APP_STATE.classJson[key]);
-                delete APP_STATE.classJson[APP_STATE.project][key].content[id]
+                delete APP_STATE.classJson[APP_STATE.project][key].content[id];
             });
         }
         // DOM_EL.popupContainer.hide();
@@ -291,8 +315,21 @@ class cContainer {
         console.log(this.inputBox.elt.value);
         this.title.html(this.inputBox.elt.value);
     }
+    focusTitle(){
+        if(this.title.html() == "irrelevant"){}
+        else{
+            console.log("function to edit title of " + this.title.html());
+            this.title.hide();
+            this.inputBox.value(this.title.html()); 
+            this.inputBox.show(); 
+            setTimeout(function(){
+                this.inputBox.elt.focus();
+                this.inputBox.elt.setSelectionRange(0, this.inputBox.elt.value.length);
+            }.bind(this),0);
+        }
+    }
     editTitle(){
-        if(this.title == "irrelevant"){}
+        if(this.title.html() == "irrelevant"){}
         else{
             console.log("function to edit title of " + this.title.html());
             this.title.hide();
@@ -359,9 +396,7 @@ class cContainer {
             DOM_EL.classContainer[this.uuid].container.remove();
             delete DOM_EL.classContainer[this.uuid];
             delete DOM_EL.imageSampleList[this.uuid];
-            console.log(APP_STATE.classJson[APP_STATE.project]);
             delete APP_STATE.classJson[APP_STATE.project][this.uuid];
-            console.log(APP_STATE.classJson[APP_STATE.project]);
             DOM_EL.projectContainer[APP_STATE.project].classes = arrayRemove(DOM_EL.projectContainer[APP_STATE.project].classes, this.uuid);// result = [1, 2, 3, 4, 5, 7, 8, 9, 0]
 
             if(DOM_EL.projectContainer[APP_STATE.project].canTrain()){
@@ -398,7 +433,20 @@ class cContainer {
         else{
             APP_STATE.class = this.uuid;
             if(APP_STATE.activeLens !== null){
-                UTIL.quill.setContents(APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content[APP_STATE.activeLens].operation);
+                // if(APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content[APP_STATE.activeLens].operation == null){
+                //     UTIL.quill.setContents();
+                //     console.log("no content for now");
+                // }
+                // else{
+                //     UTIL.quill.setContents(APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content[APP_STATE.activeLens].operation);
+                // }
+            if(APP_STATE.lensJson[APP_STATE.activeLens][APP_STATE.class] == {}){
+                    UTIL.quill.setContents();
+                    console.log("no content for now");
+                }
+                else{
+                    UTIL.quill.setContents(APP_STATE.lensJson[APP_STATE.activeLens][APP_STATE.class]);
+                }
             }
             else{
                 UTIL.quill.setContents();
@@ -507,8 +555,7 @@ class cContainer {
         console.log("function to edit intro of: " + this.title.html());
         APP_STATE.pin = this.pin;
         APP_STATE.project = this.uuid;
-        // UTIL.descriptionBuffer = this.description;
-        // console.log(UTIL.descriptionBuffer);
+
         DOM_EL.addDescriptionTitle.html("Edit <u>" + this.title.html() + "</u> Intro");
         DOM_EL.opacityContainer.style("display","flex");
         DOM_EL.popupContainer.style("display","flex");
@@ -521,18 +568,12 @@ class cContainer {
         else{
             UTIL.descriptionQuill.setContents(this.description);
         }
-        // UTIL.descriptionBuffer = null;
-        // setTimeout(async function(){
-        //     await UTIL.descriptionQuill.setContents(UTIL.descriptionBuffer);
-        //     // UTIL.descriptionBuffer = null;
-        // },20);
     }
 
     titleEdited(){
         let d = new Date();
         let s = d.toLocaleDateString();
         let l = d.toLocaleTimeString();
-        // let l = d.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'}).replace(/(:\d{2}| [AP]M)$/, "");
 
         this.title.show();
         this.inputBox.hide(); 
@@ -584,6 +625,7 @@ class cContainer {
         xhr.send("delete project");
         DOM_EL.projectContainer[this.uuid].container.remove();
         delete DOM_EL.projectContainer[this.uuid];
+        delete APP_STATE.classJson[this.uuid];
         }
         DOM_EL.popupContainer.hide();
         DOM_EL.alertOptionContainer.hide();
@@ -591,10 +633,11 @@ class cContainer {
     }
     async enterProject(){
         if(this.propagate){
+            console.log("entering room " + this.pin);
             APP_STATE.pin = this.pin;
             UTIL.socket.emit('cms_login',{room : APP_STATE.pin});
 
-            APP_STATE.editable = null;
+            APP_STATE.editable = true; //TEMP FIX
             while (APP_STATE.editable === null) {await UTIL.timeout(50);} // pauses script
 
             if(APP_STATE.editable){
@@ -715,29 +758,7 @@ function updatePinlist(){
     }
 }
 
-function updateClasslist(){
-    if(!UTIL.quillChanged){
-        console.log("no change, dont do anything");
-    }
-    else{
-        UTIL.quillChanged = false;
-        APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content[APP_STATE.activeLens].operation = UTIL.quill.getContents();  
 
-        let u = "?account=" + APP_STATE.username;
-        let p = "&project=" + APP_STATE.project;
-        let c = "&class=" + APP_STATE.class;
-    
-        form = new FormData(),
-        form.append("upload", JSON.stringify(APP_STATE.classJson[APP_STATE.project]));
-        
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '/admin/update_classlist' + u + p + c, true);
-        xhr.onload = function () {
-            console.log("classJson uploaded!!");
-        };
-        xhr.send(JSON.stringify(APP_STATE.classJson[APP_STATE.project]));
-    }
-}
 
 var DOM_EL = {
     
@@ -891,6 +912,7 @@ var UTIL = {
     zipImage: null,
     unzipImage: null,
     quill: null,
+    quillBlankTemplate: null,
     descriptionQuill: null,
     quillQuizButton: null,
     emojiPicker: null,
@@ -932,6 +954,7 @@ var APP_STATE = {
     modelTrained: false,
 
     classJson: {},
+    lensJson: {},
     quillChanged: false,
     descriptionQuillChanged: false,
     quillRange: null,
@@ -968,13 +991,13 @@ window.addEventListener("visibilitychange", () => {
       if(APP_STATE.DOMRegistered){
         DOM_EL.capture.elt.pause();
       }
-      console.log("window hidden");
+    //   console.log("window hidden");
     }
     else{
       if(APP_STATE.DOMRegistered){
         DOM_EL.capture.elt.play();
       }    
-      console.log("window shown");
+    //   console.log("window shown");
     }
   });
 
@@ -1017,7 +1040,7 @@ function loadProjectList(){
           var data = JSON.parse(this.response);
           console.log(data);
           Object.keys(data).forEach(function(key) {
-            console.log('Key : ' + key + ', Value : ' + data[key]);
+            // console.log('Key : ' + key + ', Value : ' + data[key]);
             let d = new Date(data[key].detail);
             let s = d.toLocaleDateString();
             let l = d.toLocaleTimeString();
@@ -1168,9 +1191,10 @@ function loadProjectManifest(){
             if (this.status == 200) {
                 DOM_EL.projectContainer[APP_STATE.project].manifestLoaded = true; 
                 var data = JSON.parse(this.response);
-                APP_STATE.classJson[APP_STATE.project] = data; //Object.keys(APP_STATE.classJson[APP_STATE.project]).length
-                console.log(data);
+                APP_STATE.classJson[APP_STATE.project] = data; 
 
+
+                
                 if(Object.keys(APP_STATE.classJson[APP_STATE.project]).length === 0 && APP_STATE.classJson[APP_STATE.project].constructor === Object) {
                     DOM_EL.addClassContainer.addClass("help");
                     hideAlertStatus();
@@ -1181,9 +1205,19 @@ function loadProjectManifest(){
                     setTimeout(() => {DOM_EL.addClassContainer.html("+");},0);
                     let firstKey = Object.keys(APP_STATE.classJson[APP_STATE.project])[0];
                     Object.keys(APP_STATE.classJson[APP_STATE.project][firstKey].content).forEach(function(key) {
-                        DOM_EL.lensContainer[key] = new lContainer(key, APP_STATE.classJson[APP_STATE.project][firstKey].content[key].name, APP_STATE.classJson[APP_STATE.project][firstKey].content[key].emoji,""); //constructor(uuid, title, emoji="🧐", content)
+                        APP_STATE.lensJson[key] = {};
+                        DOM_EL.lensContainer[key] = new lContainer( key, 
+                                                                    APP_STATE.classJson[APP_STATE.project][firstKey].content[key].name, 
+                                                                    APP_STATE.classJson[APP_STATE.project][firstKey].content[key].emoji,
+                                                                    ""); //constructor(uuid, title, emoji="🧐", content)
                         DOM_EL.lensContainer[key].init();
                         DOM_EL.lensContainer[key].container.parent(DOM_EL.addContentLensContainer);                    
+                });
+
+                Object.keys(APP_STATE.classJson[APP_STATE.project]).forEach((key) => {
+                    Object.keys(APP_STATE.classJson[APP_STATE.project][key].content).forEach((x) => {
+                        APP_STATE.lensJson[x][key] = APP_STATE.classJson[APP_STATE.project][key].content[x].operation;
+                    });
                 });
             }
 
@@ -1369,6 +1403,11 @@ function menuEvent(){
 
     if( APP_STATE.activeLens !== null){
         DOM_EL.lensContainer[APP_STATE.activeLens].container.removeClass("active");
+        DOM_EL.lensContainer[APP_STATE.activeLens].lensTitleContainer.removeClass("active");
+        DOM_EL.lensContainer[APP_STATE.activeLens].title.removeClass("active");
+        DOM_EL.lensContainer[APP_STATE.activeLens].edit.removeClass("active");
+        DOM_EL.lensContainer[APP_STATE.activeLens].remove.removeClass("active");
+        DOM_EL.lensContainer[APP_STATE.activeLens].emojiPicker.removeClass("active");
         APP_STATE.activeLens = null;
     }
 
@@ -1471,15 +1510,16 @@ function addProjectEvent(){
     let d = new Date();
     let s = d.toLocaleDateString();
     let l = d.toLocaleTimeString();
+    let seedNum = DOM_EL.projectsContainer.elt.childElementCount;
     console.log("time to add a project");
-    DOM_EL.projectContainer[n] = new pContainer(n, "new quiz " + DOM_EL.projectsContainer.elt.childElementCount, "edited: " + s, "????", {});
+    DOM_EL.projectContainer[n] = new pContainer(n, "new quiz " + seedNum, "edited: " + s, "????", {});
     DOM_EL.projectContainer[n].init();
     DOM_EL.projectContainer[n].container.parent(DOM_EL.projectsContainer);
     DOM_EL.projectContainer[n].container.elt.scrollIntoView({behavior: 'smooth'}); //,inline: 'center', block: 'center'
 
     let u = "?account=" + APP_STATE.username;
     let c = "&create=" + n;
-    let name = "&name=new quiz "+ DOM_EL.projectsContainer.elt.childElementCount;
+    let name = "&name=new quiz "+ seedNum;
     
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/admin/edit_project' + u + c + name, true);
@@ -1510,7 +1550,7 @@ function addIrrelevantClassEvent(){
     if(Object.keys(APP_STATE.classJson[APP_STATE.project]).length > 0){
        cloneContent =  APP_STATE.classJson[APP_STATE.project][Object.keys(APP_STATE.classJson[APP_STATE.project])[0]].content;
        Object.keys(cloneContent).forEach(function(key) {
-            cloneContent[key].operation = {};
+            cloneContent[key].operation = null;
         });
     }
 
@@ -1561,9 +1601,10 @@ function addClassEvent(){
     // let d = new Date();
 
     let cloneContent = {};
+    let cNum = DOM_EL.classesContainer.elt.childElementCount;
     console.log("time to add a object to project: ");
     
-    DOM_EL.classContainer[n] = new cContainer(n, "new quiz scene " + DOM_EL.classesContainer.elt.childElementCount);  //constructor(uuid, title, details, thumbnail)
+    DOM_EL.classContainer[n] = new cContainer(n, "new quiz scene " + cNum);  //constructor(uuid, title, details, thumbnail)
     if(DOM_EL.projectContainer[APP_STATE.project].classes.length == 0){
         DOM_EL.classContainer[n].container.addClass("first");
     }
@@ -1571,8 +1612,9 @@ function addClassEvent(){
     if(Object.keys(APP_STATE.classJson[APP_STATE.project]).length > 0){
        cloneContent =  APP_STATE.classJson[APP_STATE.project][Object.keys(APP_STATE.classJson[APP_STATE.project])[0]].content;
        Object.keys(cloneContent).forEach(function(key) {
-            cloneContent[key].operation = {};
+            cloneContent[key].operation = null;
         });
+        console.log(cloneContent);
     }
 
     Object.keys(APP_STATE.classJson[APP_STATE.project]).forEach(function(key) {
@@ -1583,8 +1625,8 @@ function addClassEvent(){
     });
 
     APP_STATE.classJson[APP_STATE.project][n] = {
-        "name":"new quiz scene " + DOM_EL.classesContainer.elt.childElementCount,
-        "num":DOM_EL.classesContainer.elt.childElementCount, 
+        "name":"new quiz scene " + cNum,
+        "num":cNum, 
         "thumbnail": null, 
         "images":[],
         "content": cloneContent
@@ -1596,6 +1638,7 @@ function addClassEvent(){
     if(irrelevantClassPresent){
         DOM_EL.classContainer[irrelevantClass].container.parent(DOM_EL.classesContainer);
     }
+    DOM_EL.classContainer[n].focusTitle();
 
     DOM_EL.imageSampleList[n] = createElement("ol");
     DOM_EL.imageSampleList[n].class("image-sample-list");
@@ -1607,7 +1650,7 @@ function addClassEvent(){
     let u = "?account=" + APP_STATE.username;
     let p = "&project=" + APP_STATE.project;
     let c = "&create=" + n;
-    let name = "&name=new quiz scene " + DOM_EL.classesContainer.elt.childElementCount;
+    let name = "&name=new quiz scene " + cNum;
     
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/admin/edit_class' + u + p + c + name, true);
@@ -1675,7 +1718,7 @@ function previewButtonEvent(){
 }
 
 function modelLoaded() {
-    console.log('MobileNet Model Loaded!');
+    // console.log('MobileNet Model Loaded!');
     DOM_EL.alertStatusContent.elt.children[1].innerHTML = "📥 ML model loaded, trying to load custom classifier";
 
     setTimeout(function(){
@@ -1684,15 +1727,15 @@ function modelLoaded() {
             classifier = featureExtractor.classification();
             Array.from(projectFiles).forEach((file) => {
                 if (file.name.includes('.json')) {
-                    console.log("found a json file")
+                    // console.log("found a json file")
                     DOM_EL.alertStatusContent.elt.children[1].innerHTML = "📥 ML model loaded, loading custom JSON";
                 } else if (file.name.includes('.bin')) {
-                    console.log("found a bin file")
+                    // console.log("found a bin file")
                     DOM_EL.alertStatusContent.elt.children[1].innerHTML = "📥 ML model loaded, loading custom Binary";
                 }
               });
                 classifier.load(projectFiles);
-                console.log("custom classifier loaded");
+                // console.log("custom classifier loaded");
                 DOM_EL.alertStatusContent.elt.children[1].innerHTML = "✔️ ML model loaded, custom classifier loaded";
                 setTimeout(hideAlertStatus,200);
                 DOM_EL.previewButtonContainer.removeClass("inactive");
@@ -1970,6 +2013,9 @@ function menuHamburgerEvent(){
         theme: 'snow'  // or 'bubble'
       });
 
+    UTIL.quillBlankTemplate = UTIL.quill.getContents();
+  
+
     UTIL.descriptionQuill = new Quill('#add-description-quill-container', {
         modules: {
             toolbar: '#quill-description-toolbar'
@@ -1987,9 +2033,9 @@ function menuHamburgerEvent(){
 
     UTIL.quill.on('text-change', function(delta, oldDelta, source) {
         if (source == 'api') {
-          console.log("An API call triggered this change.");
+        //   console.log("An API call triggered this change.");
         } else if (source == 'user') {
-          console.log("A user action triggered this change.");
+        //   console.log("A user action triggered this change.");
           UTIL.quillChanged = true;
         }
       });
@@ -2104,11 +2150,11 @@ function menuHamburgerEvent(){
             DOM_EL.addContentCloseContainer.mousePressed(addContentCloseEvent);
             DOM_EL.quillContainer = select("#quill-container");
             DOM_EL.addContentOpacityContainer = select("#add-content-opacity-container");
-            DOM_EL.quizBuilderContainer = select("#quiz-builder-container");
-                DOM_EL.quizDoneContainer = select("#quiz-done-container");
-                DOM_EL.quizDoneContainer.mousePressed(quizDoneEvent);
-                DOM_EL.quizCancelContainer = select("#quiz-cancel-container");
-                DOM_EL.quizCancelContainer.mousePressed(quizCancelEvent);
+            // DOM_EL.quizBuilderContainer = select("#quiz-builder-container");
+            //     DOM_EL.quizDoneContainer = select("#quiz-done-container");
+            //     DOM_EL.quizDoneContainer.mousePressed(quizDoneEvent);
+            //     DOM_EL.quizCancelContainer = select("#quiz-cancel-container");
+            //     DOM_EL.quizCancelContainer.mousePressed(quizCancelEvent);
 
         DOM_EL.previewContainer = select("#preview-container");
             DOM_EL.previewTitleContainer = select("#preview-title-container");
@@ -2144,6 +2190,7 @@ function menuHamburgerEvent(){
     DOM_EL.projectButtonContainer.hide();
     DOM_EL.opacityContainer.hide();
     DOM_EL.popupContainer.hide();
+    DOM_EL.collectContainer.hide();
     DOM_EL.alertStatusContainer.hide();
     DOM_EL.alertOkContainer.hide();
     DOM_EL.alertRefreshContainer.hide();
@@ -2162,48 +2209,30 @@ function menuHamburgerEvent(){
     DOM_EL.capture = createCapture({
         video: {
             facingMode: "user"
-        }});
-    DOM_EL.capture.parent(DOM_EL.canvasContainer);
-    DOM_EL.capture.id("video");
-
-    DOM_EL.captureOverlay = createDiv();
-    DOM_EL.captureOverlay.parent(DOM_EL.canvasContainer);
-    DOM_EL.captureOverlay.id("video-overlay");
-    // if(APP_STATE.mobileDevice == false){DOM_EL.captureOverlay.style("transform", "translate(-50%, -50%)");}
-
-    DOM_EL.cameraChange = createImg("img/change.png");
-    DOM_EL.cameraChange.parent(DOM_EL.captureOverlay);
-    DOM_EL.cameraChange.id("canvas-camera-change");
-    DOM_EL.cameraChange.mousePressed(switchCamera);
-
-    DOM_EL.cameraFlip = createImg("img/flip.png");
-    DOM_EL.cameraFlip.parent(DOM_EL.captureOverlay);
-    DOM_EL.cameraFlip.id("canvas-camera-flip");
-    DOM_EL.cameraFlip.mousePressed(function(){
-        APP_STATE.cameraFlip = !APP_STATE.cameraFlip;
-        DOM_EL.capture.toggleClass("flip");
-    });
+        }},() => {
+            DOM_EL.capture.parent(DOM_EL.canvasContainer);
+            DOM_EL.capture.id("video");
+        
+            DOM_EL.captureOverlay = createDiv();
+            DOM_EL.captureOverlay.parent(DOM_EL.canvasContainer);
+            DOM_EL.captureOverlay.id("video-overlay");
+            // if(APP_STATE.mobileDevice == false){DOM_EL.captureOverlay.style("transform", "translate(-50%, -50%)");}
+        
+            DOM_EL.cameraChange = createImg("img/change.png");
+            DOM_EL.cameraChange.parent(DOM_EL.captureOverlay);
+            DOM_EL.cameraChange.id("canvas-camera-change");
+            DOM_EL.cameraChange.mousePressed(switchCamera);
+        
+            DOM_EL.cameraFlip = createImg("img/flip.png");
+            DOM_EL.cameraFlip.parent(DOM_EL.captureOverlay);
+            DOM_EL.cameraFlip.id("canvas-camera-flip");
+            DOM_EL.cameraFlip.mousePressed(function(){
+                APP_STATE.cameraFlip = !APP_STATE.cameraFlip;
+                DOM_EL.capture.toggleClass("flip");
+            });
+        });
 
     DOM_EL.imageSampleContainer = select("#image-sample-container");
-
-    // document.body.onmouseup = function() {
-    //     clearInterval(UTIL.recordIntervalFunction);
-    // }
-
-    // document.body.ontouchend = function() {
-    //     clearInterval(UTIL.recordIntervalFunction);
-    // }
-
-
-    // DOM_EL.trainStatusContainer = select("#train-status-container");
-    // DOM_EL.trainStatusContainer.hide();
-    // DOM_EL.trainStatusModel = select("#train-status-model");
-    // DOM_EL.trainStatusImage = select("#train-status-image");
-    // DOM_EL.trainStatusLoss = select("#train-status-loss");
-    // DOM_EL.trainStatusCompleteButton = select("#train-status-complete-button");
-    // DOM_EL.trainStatusCompleteButton.hide();
-    // DOM_EL.trainStatusCompleteButton.mousePressed(changeTestEvent);
-
 
     imageMode(CENTER);
     APP_STATE.DOMRegistered = true;
@@ -2212,70 +2241,54 @@ function menuHamburgerEvent(){
 function addLensEvent(){
 
     let n = Date.now();
+    let u = "?account=" + APP_STATE.username;
+    let p = "&project=" + APP_STATE.project;
+    let c = "&class=" + APP_STATE.class;
+    let uuid = "&create=" + n;
+    let lensName = "new lens " + DOM_EL.addContentLensContainer.elt.childElementCount;
+    let name = "&name=" + lensName;
 
-    console.log("send API call to edit JSON file");
+    APP_STATE.lensJson[n] = {};
+    // console.log(APP_STATE.classJson[APP_STATE.project]);
+    Object.keys(APP_STATE.classJson[APP_STATE.project]).forEach(function(key) {
+        if( APP_STATE.lensJson[n][key] == null){
+            APP_STATE.lensJson[n][key] = {};
+        }
+    });
 
-        let u = "?account=" + APP_STATE.username;
-        let p = "&project=" + APP_STATE.project;
-        let c = "&class=" + APP_STATE.class;
-        let uuid = "&create=" + n;
-        let name = "&name=new lens";
+    Object.keys(APP_STATE.classJson[APP_STATE.project]).forEach(function(key) {
+        if(APP_STATE.classJson[APP_STATE.project][key].content == null){
+            console.log("class has no lens attached to to it before, so have to add new prop");
+            APP_STATE.classJson[APP_STATE.project][key].content = {};
+            APP_STATE.classJson[APP_STATE.project][key].content[n] = {"name": lensName, "emoji": "🧐", "operation": null };
+        }
+        else{
+            console.log("class has lens attached to to it before, so just add more prop");
+            APP_STATE.classJson[APP_STATE.project][key].content[n] = {"name": lensName, "emoji": "🧐", "operation": null };
+        }
+        console.log(APP_STATE.classJson[APP_STATE.project][key].content);
+    });
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '/admin/edit_lens' + u + p + c + uuid + name, true);
-        xhr.onload = function(e) {
-            if (this.status == 200) {
-                var data = this.response;
-                Object.keys(APP_STATE.classJson[APP_STATE.project]).forEach(function(key) {
-
-                    if(APP_STATE.classJson[APP_STATE.project][key].content == null){
-                        APP_STATE.classJson[APP_STATE.project][key].content = {};
-                        APP_STATE.classJson[APP_STATE.project][key].content[n] = {"name": "new lens", "emoji": "🧐", "operation":{} };
-                    }
-                    else{
-                        APP_STATE.classJson[APP_STATE.project][key].content[n] = {"name": "new lens", "emoji": "🧐", "operation":{} };
-                    }
-                });
-
-                console.log("server received request to edit object class");
-                console.log(APP_STATE.classJson[APP_STATE.project]);
-            }
-            else if(this.status == 404) {
-                console.log("server failed received request to edit class");
-            }
-          };
-        xhr.send("add lens");
-
-    DOM_EL.lensContainer[n] = new lContainer(n,"new lens","🧐",""); //constructor(uuid, title, emoji="🧐", content)
+    DOM_EL.lensContainer[n] = new lContainer(n,lensName,"🧐",""); //constructor(uuid, title, emoji="🧐", content)
     DOM_EL.lensContainer[n].init();
     DOM_EL.lensContainer[n].container.parent(DOM_EL.addContentLensContainer);
     DOM_EL.lensContainer[n].container.elt.scrollIntoView({behavior: 'smooth'});
 
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/admin/edit_lens' + u + p + c + uuid + name, true);
+    xhr.onload = function(e) {
+        if (this.status == 200) {
+            // var data = this.response;
+            console.log("server received request to add lens to every class");
+        }
+        else if(this.status == 404) {
+            console.log("server failed to add lens to every class");
+        }
+        };
+    xhr.send("add lens");
+
 }
 
-function quizDoneEvent(){
-    DOM_EL.quizBuilderContainer.hide();
-    DOM_EL.addContentOpacityContainer.hide();
-    console.log("add in custom quiz html to quillContainer");
-    // let title = createDiv(DOM_EL.quizBuilderTitleInput)
-    // let range = UTIL.quill.getSelection();
-    // if (range) {
-    if ( APP_STATE.quillRange.length == 0) {
-        console.log('User cursor is at index',  APP_STATE.quillRange.index);
-        UTIL.quill.clipboard.dangerouslyPasteHTML( APP_STATE.quillRange.index,DOM_EL.projectContainer[1602489937404].container.elt.innerHTML);
-    } else {
-        // var text = UTIL.quill.getText( APP_STATE.quillRange.index,  APP_STATE.quillRange.length);
-        UTIL.quill.deleteText( APP_STATE.quillRange.index,  APP_STATE.quillRange.length);
-        UTIL.quill.clipboard.dangerouslyPasteHTML( APP_STATE.quillRange.index,DOM_EL.projectContainer[1602489937404].container.elt.innerHTML);
-    }
-   
-}
-
-function quizCancelEvent(){
-    DOM_EL.quizBuilderContainer.hide();
-    DOM_EL.addContentOpacityContainer.hide();
-    console.log("clear all content within quizBuilderContainer");
-}
 
 function captureEvidenceEvent(){
     if(DOM_EL.personaButton.class() !== "inactive"){
@@ -2301,8 +2314,6 @@ function captureEvidenceEvent(){
         i.class("evidence-list-item-image");
         i.parent(DOM_EL.previewEvidenceListItem[APP_STATE.evidenceCounter]);
     
-        //   let x = APP_STATE.displayName[APP_STATE.evidenceDetected];
-        //   let s = x.replace( /_/g , " " );
         DOM_EL.previewEvidenceListItemTitle[APP_STATE.evidenceCounter].html(APP_STATE.evidenceDetected);
 
         DOM_EL.previewEvidenceListItemTitle[APP_STATE.evidenceCounter].elt.scrollIntoView({behavior: 'smooth'});
@@ -2314,19 +2325,6 @@ function captureEvidenceEvent(){
   
         DOM_EL.previewEvidenceHeader.html(APP_STATE.evidenceCounter.toString()+ "/" + APP_STATE.numClasses + " Evidence Collected");
   
-        
-        // DOM_EL.contentHeader.html("Evidence " +  DOM_EL.evidenceListItemContainer[APP_STATE.evidenceCounter-1].attribute("index"));
-        // DOM_EL.contentClass.html(DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html());
-        
-        // let t = DOM_EL.evidenceListItemTitle[APP_STATE.evidenceCounter-1].html().replace( / /g , "_" );
-        // changeContent(overflow(APP_STATE.lensCounter, APP_STATE.numLens), getKeyByValue(APP_STATE.displayName, t));
-  
-        // let d = document.getElementById("content-image");
-        // d.src = DOM_EL.evidenceListItem[APP_STATE.evidenceCounter-1].elt.childNodes[0].src;
-        // DOM_EL.contentContainer.style("display","flex");
-        // setTimeout(function(){
-        //   DOM_EL.contentContainer.removeClass("fade");
-        // },0);
       }
     }
   }
@@ -2374,7 +2372,6 @@ function previewContentCloseEvent(){
 }
 
 function addDescriptionCloseEvent(){
-    // DOM_EL.addDescriptionOpacityContainer.hide();
     DOM_EL.popupContainer.hide();
     DOM_EL.opacityContainer.hide();
     DOM_EL.addDescriptionContainer.hide();
@@ -2389,7 +2386,6 @@ function addContentCloseEvent(){
     DOM_EL.addContentContainer.hide();
 
     if(APP_STATE.classJson[APP_STATE.project][APP_STATE.class].hasOwnProperty("content")){  
-        // if(APP_STATE.classJson[APP_STATE.class].content.ops.length > 1 || APP_STATE.classJson[APP_STATE.class].content.ops[0].insert.length > 1){
         if(Object.keys(APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content).length > 1){
             DOM_EL.classContainer[APP_STATE.class].detailsQuestion.html("✅ Lenses Added");
         }
@@ -2397,7 +2393,34 @@ function addContentCloseEvent(){
             DOM_EL.classContainer[APP_STATE.class].detailsQuestion.html("❌ No Lenses");
         }
     }
-    updateClasslist();
+
+    if(!UTIL.quillChanged){
+        console.log("no change, dont do anything");
+        UTIL.quill.setContents();  
+    }
+    else{
+        UTIL.quillChanged = false;
+        console.log(UTIL.quill.getContents());
+        APP_STATE.classJson[APP_STATE.project][APP_STATE.class].content[APP_STATE.activeLens].operation = UTIL.quill.getContents();
+        APP_STATE.lensJson[APP_STATE.activeLens][APP_STATE.class] = UTIL.quill.getContents(); //NEW
+        UTIL.quill.setContents();  
+
+        let u = "?account=" + APP_STATE.username;
+        let p = "&project=" + APP_STATE.project;
+        let c = "&class=" + APP_STATE.class;
+        let l = "&lens=" + APP_STATE.activeLens;
+    
+        var xhr = new XMLHttpRequest();
+        // xhr.open('POST', '/admin/update_classlist' + u + p + c, true);
+        xhr.open('POST', '/admin/update_classlens' + u + p + c + l, true);
+        xhr.onload = function () {
+            // console.log("classJson uploaded!!");
+            console.log("updated lens!!");
+        };
+        // xhr.send(JSON.stringify(APP_STATE.classJson[APP_STATE.project]));
+        xhr.send(JSON.stringify(APP_STATE.lensJson[APP_STATE.activeLens][APP_STATE.class]));
+    }
+
 }
 
 function populateEvidenceList(x){
@@ -2518,11 +2541,13 @@ function draw(){
         scale(-1, 1);
     }
     
-    if(DOM_EL.capture.width > DOM_EL.capture.height){
-        image(DOM_EL.capture, width/2, height/2, DOM_EL.capture.width * height/DOM_EL.capture.height, height);
+    if(DOM_EL.capture.elt.width > DOM_EL.capture.elt.height){
+        image(DOM_EL.capture, width/2, height/2, DOM_EL.capture.elt.width * height / DOM_EL.capture.elt.height, height);
+        // image(DOM_EL.capture, width/2, height/2, width, DOM_EL.capture.height * width/DOM_EL.capture.width);
     }
     else{
-        image(DOM_EL.capture, width/2, height/2, width, DOM_EL.capture.height * width/DOM_EL.capture.width);
+        image(DOM_EL.capture, width/2, height/2, width, DOM_EL.capture.elt.height * width/DOM_EL.capture.elt.width);
+        // image(DOM_EL.capture, width/2, height/2, DOM_EL.capture.width * height / DOM_EL.capture.height, height);
     }    
 
 }
@@ -2573,6 +2598,7 @@ function switchCamera()
   DOM_EL.capture = createCapture(options, function(stream) {
     console.log(stream);
   });
+
   DOM_EL.capture.id("video");
   DOM_EL.capture.parent(DOM_EL.canvasContainer);
   DOM_EL.cameraChange.style("z-index","6");
